@@ -1,0 +1,40 @@
+body {
+    margin: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #4589FF;
+    padding: 18px;
+    padding-left: 36px;
+    box-shadow: 0px 4px 5px -1px rgba(0,0,0,0.29);
+    height: 48px;
+}
+
+header span {
+    color: white;
+}
+
+.header-right {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 250px;
+}
+
+.main-page {
+    display: flex;
+}
+
+.sidebar {
+    background-color: red;
+    width: 15%;
+    height: calc(100vh - 84px); 
+}
+
+.main-content {
+    background-color: green;
+    width: 85%;
+    height: calc(100vh - 84px); 
+}
