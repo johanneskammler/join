@@ -1,0 +1,170 @@
+body {
+  background-color: #f5f5f5;
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 85%;
+  margin-top: 73.7px;
+  margin-left: 70px;
+}
+
+.inpbox {
+  /* Search task web */
+
+  box-sizing: border-box;
+
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 13px 21px;
+  gap: 10px;
+
+  width: 251px;
+  height: 51px;
+
+  background: #ffffff;
+  /* icon */
+
+  border-radius: 10px;
+  border: 1px solid #a8a8a8;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.board-top {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+
+  gap: 46px;
+
+  width: 1078px;
+  margin-bottom: 62px;
+  left: 299px;
+  top: 47px;
+}
+
+.inp-top {
+  width: 100%;
+  line-height: 5vh;
+  border: none;
+}
+
+.inp-top:focus {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.btn-top {
+  /* Auto layout */
+
+  border: 1px solid #4589ff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 10px;
+  gap: 10px;
+  color: white;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 23px;
+  line-height: 120%;
+
+  width: 138px;
+  height: 51px;
+
+  /* Version 2/main color */
+
+  background: #4589ff;
+  /* Version 2/main color */
+
+  border-radius: 10px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.board-main {
+  display: flex;
+}
+
+#search {
+  border-left: 1px solid #d1d1d1;
+  object-fit: scale-down;
+  height: 31px;
+  margin-inline-end: -17px;
+  padding-left: 9px;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 234px;
+  height: 51px;
+}
+
+.head h2 {
+  padding-inline-start: 5px;
+}
+
+.todo-head img {
+  object-fit: scale-down;
+}
+
+.mr26 {
+  margin-right: 57px;
+}
+
+.card {
+  background-color: white;
+  max-width: 10vw;
+  height: auto;
+  padding: 25px;
+  border-radius: 25px;
+  box-shadow: rgb(0 0 0 / 10%) 0px 20px 25px -5px,
+    rgb(0 0 0 / 4%) 0px 10px 10px -5px;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-footer {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  border: none;
+}
+
+.card-invite {
+  display: flex;
+}
+
+.invate {
+  background-color: green;
+  padding: 10px;
+  width: 20px;
+  text-align: center;
+  border-radius: 151px;
+  border: 1px solid white;
+  color: white;
+  margin-right: -6px;
+}
