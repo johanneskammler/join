@@ -3,6 +3,10 @@ body {
     font-family: 'Open Sans';
 }
 
+.font-family {
+    font-family: 'Open Sans';
+}
+
 header {
     display: flex;
     flex-direction: row;
@@ -12,7 +16,7 @@ header {
     gap: 34px;
 
     position: absolute;
-    height: 97.3px;
+    height: 60px;
     right: 0px;
     left: 0px;
     top: 0px;
@@ -33,13 +37,28 @@ header {
 
 header span {
     color: white;
+    font-size: 19px;
 }
 
 .header-right {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-    width: 250px;
+    width: 450px;
+}
+
+.profile-box {
+    display: flex;
+    border: 3px solid white;
+    border-radius: 100%;
+}
+
+.profile-picture {
+    height: 54px;
+    width: 54px;
+    object-fit: cover;
+    border-radius: 100%;
+    border: 2px solid #4589FF;
 }
 
 .main-page {
@@ -102,8 +121,9 @@ header span {
     padding: 8px 30px;
     gap: 20px;
 
-    width: 186px;
+    width: 200px;
     height: 46px;
+    font-size: 16px;
 
     /* Versio 2 main color */
 
@@ -118,6 +138,10 @@ header span {
     flex: none;
     order: 1;
     flex-grow: 0;
+}
+
+.sidebar a {
+    text-decoration: none;
 }
 
 .sidebar button:hover {
