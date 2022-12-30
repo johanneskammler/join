@@ -57,6 +57,7 @@ body {
   width: 100%;
   line-height: 5vh;
   border: none;
+  outline: none;
 }
 
 .inp-top:focus {
