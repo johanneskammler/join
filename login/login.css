@@ -1,0 +1,121 @@
+body {
+    margin: 0;
+}
+
+.login-overlay {
+    z-index: 1;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4589FF;
+    width: 100vw;
+    height: 100vh;
+    animation: fade;
+    animation-duration: .5s;
+    animation-delay: .8s;
+    animation-timing-function: linear;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    animation-play-state: inherit;
+    animation-iteration-count: 1;
+    opacity: 1;
+}
+
+.img-box {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.login-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+}
+
+.login-img {
+    height: 323px;
+    width: 323px;
+    object-fit: contain;
+}
+
+.login-logo-white {
+    height: 400px;
+    width: 400px;
+    object-fit: contain;
+}
+
+.slide-tl {
+    -webkit-animation: slide-tl .3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: slide-tl .3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation-delay: 1.5s;
+}
+
+@-webkit-keyframes slide-tl {
+    0% {
+        -webkit-transform: translateY(0) translateX(0);
+        transform: translateY(0) translateX(0);
+        height: 400px;
+        width: 400px;
+    }
+    100% {
+        -webkit-transform: translateY(-30vh) translateX(-43vw);
+        transform: translateY(-30vh) translateX(-43vw);
+        height: 200px;
+        width: 200px;
+    }
+}
+
+@keyframes slide-tl {
+    0% {
+        -webkit-transform: translateY(0) translateX(0);
+        transform: translateY(0) translateX(0);
+        height: 400px;
+        width: 400px;
+    }
+    100% {
+        -webkit-transform: translateY(-30vh) translateX(-43vw);
+        transform: translateY(-30vh) translateX(-43vw);
+        height: 200px;
+        width: 200px;
+    }
+}
+
+
+/* .login-header-join {
+    width: 168px;
+    height: 28px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 23px;
+    line-height: 120%;
+    color: #000000;
+}
+
+.login-signup-button {
+    width: 80px;
+    height: 28px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 23px;
+    line-height: 120%;
+    color: #FFFFFF;
+} */
