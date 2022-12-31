@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="add_task.css">
     <link rel="stylesheet" href="../main_page/main_page.css">
     <script src="../include.js"></script>
     <title>Add Task</title>
@@ -12,7 +13,12 @@
 
 <body onload="includeHTML()">
     <header w3-include-html="../templates/header.html"></header>
-    <div w3-include-html="../templates/sidebar.html"></div>
+    <div>
+        <div w3-include-html="../templates/sidebar.html"></div>
+        <div class="add-task-content">
+            <input type="text" placeholder="Enter a title">
+        </div>
+    </div>
 </body>
 
 </html>
