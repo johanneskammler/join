@@ -1,3 +1,45 @@
+.blue-screen {
+    width: 100vw;
+    height: 100vh;
+    background-color: #4589FF;
+    display: flex;
+    position: absolute;
+    z-index: -1;
+    animation: fade;
+    animation-duration: .5s;
+    animation-delay: .8s;
+    animation-timing-function: linear;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    animation-play-state: inherit;
+    animation-iteration-count: 1;
+    opacity: 1;
+}
+
+.logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.logo-box {
+    position: absolute;
+}
+
+.blue-logo, .white-logo {
+    width: 265px;
+    height: 324px;
+}
+
+
+
+
+
+
+
+
 body {
     margin: 0;
 }
