@@ -1,3 +1,7 @@
+body {
+  caret-color: transparent;
+}
+
 .blue-screen {
   width: 100vw;
   height: 100vh;
@@ -168,7 +172,8 @@ input {
   margin-bottom: 29px;
   outline: none;
   font-size: 19px;
-  cursor: black;
+  cursor: pointer;
+  caret-color: black;
 }
 
 input::placeholder {
