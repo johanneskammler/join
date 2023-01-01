@@ -1,0 +1,12 @@
+body {
+    margin: 0;
+}
+
+.contact-list-container {
+    position: absolute;
+    width: 453px;
+    height: 935px;
+    left: 232px;
+    top: 89px;
+    overflow-y: scroll;
+}
