@@ -16,7 +16,27 @@
     <div>
         <div w3-include-html="../templates/sidebar.html"></div>
         <div class="add-task-content">
-            <input type="text" placeholder="Enter a title">
+            <input type="text" placeholder="Enter a title" class="title-input">
+            <input type="text" placeholder="Select contacts to assign" class="select-contacts">
+            <span class="due-date-text">Due date</span>
+            <input type="text" placeholder="dd/mm/yyyy" class="select-date">
+            <span class="category-text">Category</span>
+            <input type="text" placeholder="Select task category" class="select-category">
+            <div>
+                <button>
+                    <span>Urgent</span>
+                    <img src="../add_task/img-add_task/urgent.png">
+                </button>
+                <button>
+                    <span>Medium</span>
+                    <img src="../add_task/img-add_task/medium.png">
+                </button>
+                <button>
+                    <span>Low</span>
+                    <img src="../add_task/img-add_task/low.png">
+                </button>
+            </div>
+            <span class="description-text">Description</span>
         </div>
     </div>
 </body>
