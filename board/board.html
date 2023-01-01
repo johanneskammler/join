@@ -5,64 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="board.css" />
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../templates/header_sidebar.css" />
+    <script src="../include.js"></script>
     <script src="board.js"></script>
     <title>Board</title>
   </head>
 
-  <body>
+  <body onload="init()">
     <header>
-      <img src="../assets/img/logo_white.png" />
-      <div class="header-right">
-        <div>
-          <span>Netzwerk Name</span>
-        </div>
-        <div>
-          <img src="../assets/img/Vector.png" />
-        </div>
-        <div>
-          <img src="#" />
-        </div>
-      </div>
+      <header w3-include-html="../templates/header.html"></header>
     </header>
-    <div class="main-page">
-      <div class="sidebar">
-        <div class="sidebar-top">
-          <button>
-            <img src="../assets/img/summary.png" />
-            <span>Summary</span>
-          </button>
-
-          <button>
-            <img src="../assets/img/board.png" />
-            <span>Board</span>
-          </button>
-
-          <button>
-            <img src="../assets/img/add_task.png" />
-            <span>Add task</span>
-          </button>
-
-          <button>
-            <img src="../assets/img/contacts.png" />
-            <span>Contacts</span>
-          </button>
-        </div>
-
-        <div class="sidebar-bottom">
-          <button>
-            <img src="../assets/img/legal_notice.png" />
-            <span>Legal notice</span>
-          </button>
-
-          <button>
-            <img src="../assets/img/padlock.png" />
-            <span>Datenschutz</span>
-          </button>
-        </div>
-      </div>
-
-      <div class="board">
+     <div w3-include-html="../templates/sidebar.html"></div>
+     <div class="board">
         <div class="board-top">
           <div class="inpbox">
             <input class="inp-top" type="text" name="" id="inp-board" />

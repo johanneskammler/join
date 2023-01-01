@@ -1,5 +1,4 @@
 body {
-  background-color: #f5f5f5;
 }
 
 .board {
@@ -7,8 +6,8 @@ body {
   flex-direction: column;
   height: auto;
   width: 85%;
-  margin-top: 73.7px;
-  margin-left: 70px;
+  margin-top: 153.7px;
+  margin-left: 322px;
 }
 
 .inpbox {
@@ -102,6 +101,7 @@ body {
 
 .board-main {
   display: flex;
+  margin-inline-start: -3px;
 }
 
 #search {
@@ -121,7 +121,7 @@ body {
 }
 
 .head h2 {
-  padding-inline-start: 5px;
+  padding-inline-start: 10px;
 }
 
 .todo-head img {
@@ -138,8 +138,7 @@ body {
   height: auto;
   padding: 25px;
   border-radius: 25px;
-  box-shadow: rgb(0 0 0 / 10%) 0px 20px 25px -5px,
-    rgb(0 0 0 / 4%) 0px 10px 10px -5px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .card-footer {
