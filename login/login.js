@@ -8,6 +8,9 @@ function renderSignUpPage() {
     document.getElementById('login-btn').innerHTML = 'Sign up';
     document.getElementById('login-btn').style = 'margin-top: 85px; margin-left: 120px; transition: none;';
     document.getElementById('guest-btn').classList.add('d-none');
+    document.getElementById('logos').style = 'background-color: #4589ff;';
+    document.getElementById('blue-logo').src = '../login/img/logo_white.png';
+    document.getElementById('white-logo').src = '../login/img/logo_blue.png';
 }
 
 
@@ -20,4 +23,7 @@ function backToLogin() {
     document.getElementById('login-btn').innerHTML = 'Log in';
     document.getElementById('login-btn').style = 'margin-top: 0; margin-left: 0; transition: none;';
     document.getElementById('guest-btn').classList.remove('d-none');
+    document.getElementById('logos').style = 'background-color: white;';
+    document.getElementById('blue-logo').src = '../login/img/logo_blue.png';
+    document.getElementById('white-logo').src = '../login/img/logo_white.png';
 }
