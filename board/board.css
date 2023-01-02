@@ -7,6 +7,10 @@
   margin-left: 322px;
 }
 
+.font {
+  font-family: "Open Sans";
+}
+
 .inpbox {
   /* Search task web */
 
@@ -129,6 +133,10 @@
   margin-right: 57px;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .card {
   background-color: white;
   max-width: 10vw;
@@ -136,6 +144,12 @@
   padding: 25px;
   border-radius: 25px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  cursor: pointer;
+}
+
+.title-text {
+  font-size: 16px;
+  color: #4589ff;
 }
 
 .card-footer {
@@ -164,4 +178,30 @@
   border: 1px solid white;
   color: white;
   margin-right: -6px;
+}
+
+.pogress-box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pogress-box {
+  font-size: 16px;
+}
+
+.pogressbar {
+  width: 60%;
+  height: 8px;
+  background-color: #d3d3d39c;
+  border-radius: 7%;
+}
+
+.pogress {
+  width: 33%;
+  background-color: #4589ff;
+  height: 8px;
+  border-top-left-radius: 7%;
+  border-bottom-left-radius: 7%;
 }
