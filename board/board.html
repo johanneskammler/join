@@ -8,15 +8,55 @@
     <link rel="stylesheet" href="../fonts/fonts.css">
     <link rel="stylesheet" href="../templates/header_sidebar.css" />
     <script src="../include.js"></script>
-    <script src="board.js"></script>
+    
     <title>Board</title>
   </head>
 
   <body onload="init()">
+
+    
+    <div class="popup"></div>
+    <div class="popup-card" onclick="showPopup(0)">
+      <div class="card-head">
+        <span class="responsible" class="pointer">Sales</span>
+      </div>
+      <div class="popup-card-title"><h1 class="popup-title font">Call pontencial clients </h1></div>
+      <div class="card-content">
+        <p class="popup-text font">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+          Ipsam...
+        </p>
+      <div class="date-box">
+        <p class="due-date">Due date:</p><p id="date">16-01-2023</p>
+      </div>
+      <div class="priority-box">
+        <p class="priority">Priority:</p><p id="priority"> urgent</p>
+      </div>
+      <div class="assigned">
+        <p class="assigned-to">Assigned To:</p>
+        <div id="assigned_contacts">
+          <div id="contact0">
+            <p id="popup_name_logo">DE</p><p id="popup_name">David Eisenberger</p>
+          </div>
+          <div id="contact1">
+            <p class="popup_name_logo">DE</p><p class="popup_name">David Eisenberger</p>
+          </div>
+          <div id="contact2">
+            <p class="popup_name_logo">DE</p><p class="popup_name">David Eisenberger</p>
+          </div>
+        </div>
+      </div>
+      <div class="edit-box">
+        <img src="img-board/edit-button.png" class="pointer ">
+      </div>
+    </div> 
+
+    </div>
     <header>
       <header w3-include-html="../templates/header.html"></header>
     </header>
      <div w3-include-html="../templates/sidebar.html"></div>
+     
      <div class="board">
         <div class="board-top">
           <div class="inpbox">
