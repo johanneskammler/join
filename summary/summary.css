@@ -1,0 +1,124 @@
+.summary {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 85%;
+    margin-top: 266.5px;
+    margin-left: auto;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    color: #2A3647;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+}
+
+.main {
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 35px;
+flex-wrap: wrap;
+position: inherit;
+}
+
+.task-urgent {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 28px 48px;
+    gap: 35px;
+    width: 682px;
+    height: 191px;
+    background: #4589FF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+    border-radius: 30px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.task-to-do {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    width: 208px;
+    height: 191px;
+    background: #D2E3FF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+    border-radius: 30px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.task-in-board {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    width: 208px;
+    height: 191px;
+    background: #D2E3FF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+    border-radius: 30px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.task-in-progress {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    width: 208px;
+    height: 191px;
+    background: #D2E3FF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+    border-radius: 30px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.awaiting-feedback {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    width: 208px;
+    height: 191px;
+    background: #D2E3FF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+    border-radius: 30px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.tasks-done {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    width: 208px;
+    height: 191px;
+    background: #D2E3FF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+    border-radius: 30px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
