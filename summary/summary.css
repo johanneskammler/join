@@ -17,13 +17,13 @@
 }
 
 .main {
-display: flex;
-justify-content: center;
-align-items: center;
-padding: 0px;
-gap: 35px;
-flex-wrap: wrap;
-position: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 35px;
+    flex-wrap: wrap;
+    position: inherit;
 }
 
 .task-urgent {
@@ -41,6 +41,14 @@ position: inherit;
     flex: none;
     order: 0;
     flex-grow: 0;
+
+}
+
+.task-urgent img {
+    width: 76px;
+    height: 76px;
+    border: 1px solid white;
+    border-radius: 50%;
 }
 
 .task-to-do {
