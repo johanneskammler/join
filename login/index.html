@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../fonts/fonts.css" />
     <link rel="stylesheet" href="login.css" />
+    <script src="login.js"></script>
     <title>Login</title>
   </head>
 
@@ -22,20 +23,24 @@
         />
       </div>
 
-      <div class="login-screen">
-        <div class="sign-up">
-          <p>Not a Join user?</p>
-          <button class="sign-btn">Sign up</button>
-        </div>
 
-        <h1>Log in</h1>
+      <div id="sign-up" class="sign-up">
+        <p>Not a Join user?</p>
+        <button onclick="renderSignUpPage()" class="sign-btn">Sign up</button>
+      </div>
+
+
+      <div class="login-screen">
+        <img onclick="backToLogin()" id="back-arrow" class="back-arrow d-none" src="../login/img/arrow_left.png">
+        <h1 id="login-headline">Log in</h1>
 
         <form action="summery.html">
+          <input type="text" name="" id="user" placeholder="Name" class="d-none"/>
           <input type="email" name="" id="email" placeholder="Email" />
           <input type="password" name="" id="pw" placeholder="Password" />
         </form>
 
-        <div class="pw-recovery">
+        <div id="pw-recovery" class="pw-recovery">
           <div class="remember-me">
             <label class="control control-checkbox">
                 Remember me
@@ -49,8 +54,8 @@
         </div>
 
         <div class="login-btn">
-          <button class="login-user">Log in</button>
-          <button class="login-guest">Guest log in</button>
+          <button id="login-btn" class="login-user">Log in</button>
+          <button id="guest-btn" class="login-guest">Guest log in</button>
         </div>
       </div>
     </div>
