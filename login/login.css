@@ -300,19 +300,17 @@ input::placeholder {
 }
 
 .pw-recovery {
-<<<<<<< HEAD
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  position: relative;
-  gap: 35px;
-  width: 378px;
-  height: 60px;
-  font-size: 19px;
-  font-family: "Open Sans";
-  margin-inline-start: 42px;
-  margin-top: 17px;
-=======
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    gap: 35px;
+    width: 378px;
+    height: 60px;
+    font-size: 19px;
+    font-family: "Open Sans";
+    margin-inline-start: 42px;
+    margin-top: 17px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -323,7 +321,6 @@ input::placeholder {
     font-family: "Open Sans";
     margin-inline-start: -6px;
     margin-top: 17px;
->>>>>>> f9770dc3e349063c6f88be8044bb825985b65686
 }
 
 .remember-me {
@@ -474,26 +471,26 @@ input::placeholder {
     text-decoration: none;
 }
 
-<<<<<<< HEAD
 .check-inp {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
 }
+
 .checkbox-parent {
-  margin-top: 19px;
+    margin-top: 19px;
 }
 
 .checkbox {
-  position: absolute;
-  top: 23px;
-  left: -35px;
-  height: 16px;
-  width: 16px;
-  border: 2px solid green;
-  border-radius: 3px;
+    position: absolute;
+    top: 23px;
+    left: -35px;
+    height: 16px;
+    width: 16px;
+    border: 2px solid green;
+    border-radius: 3px;
 }
 
 /*input[type="checkbox"] {
@@ -514,13 +511,12 @@ input::placeholder {
 }*/
 
 .checkbox1:checked:before {
-  background-color: green;
+    background-color: green;
 }
-=======
+
 .center-signup-btn {
     display: flex;
     justify-content: center;
     margin-top: 100px;
     transition: none;
 }
->>>>>>> f9770dc3e349063c6f88be8044bb825985b65686

@@ -6,7 +6,7 @@
 }
 
 .title-input {
-    width: 422px;
+    width: 400px;
     height: 74px;
     padding-left: 21px;
     border: none;
@@ -25,22 +25,27 @@
     color: #D1D1D1;
 }
 
+.select-contacts {
+    margin-bottom: 25px;
+}
+
 .select-contacts,
 .select-date,
-.select-category {
-    width: 422px;
+.select-category,
+.add-subtask {
+    width: 400px;
     height: 51px;
     padding-left: 21px;
     border: none;
     border-bottom: 1px solid #D1D1D1;
     outline: none;
     font-size: 19px;
-    margin-bottom: 25px;
 }
 
 .due-date-text,
 .category-text,
-.description-text {
+.description-text,
+.subtask-text {
     width: 86px;
     height: 23px;
     font-family: 'Open Sans';
@@ -48,8 +53,131 @@
     font-weight: 700;
     font-size: 19px;
     color: #42526E;
+    margin-bottom: 8px;
 }
 
-.select-date::placeholder {
+.select-date::placeholder,
+.add-subtask::placeholder {
     color: #D1D1D1;
+}
+
+.description-input::placeholder {
+    font-family: 'Open Sans';
+    color: #d1d1d1;
+    font-size: 19px;
+}
+
+.importance-buttons {
+    width: 422px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.importance-buttons button {
+    height: 51px;
+    width: 136px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 10px;
+    gap: 10px;
+    font-size: 19px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+    border: none;
+    border-radius: 10px;
+}
+
+.importance-button1:hover {
+    border-bottom: 2px solid #ff3d00;
+}
+
+.importance-button2:hover {
+    border-bottom: 2px solid #ffa800;
+}
+
+.importance-button3:hover {
+    border-bottom: 2px solid #7ae228;
+}
+
+.importance-buttons button img {
+    margin-left: 10px;
+}
+
+.date-box,
+.category-box,
+.description-box {
+    display: flex;
+    flex-direction: column;
+    width: 422px;
+    margin-bottom: 45px;
+}
+
+.subtask-box {
+    display: flex;
+    flex-direction: column;
+    width: 422px;
+    margin-bottom: 120px;
+}
+
+.description-input {
+    padding-top: 18px;
+    padding-left: 21px;
+    height: 103px;
+}
+
+.add-task-buttons {
+    height: 61px;
+    width: 341px;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    right: 45px;
+    bottom: -55vh;
+}
+
+.clear-task-btn {
+    width: 136px;
+    height: 61px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #647188;
+    border-radius: 10px;
+}
+
+.clear-task-btn span {
+    font-family: 'Open Sans';
+    font-size: 23px;
+    color: #647188;
+}
+
+.clear-task-btn img {
+    height: 12px;
+    width: 12px;
+    margin-left: 10.76px;
+}
+
+.create-task-btn {
+    width: 180px;
+    height: 61px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4589ff;
+    border: none;
+    border-radius: 10px;
+}
+
+.create-task-btn span {
+    font-family: 'Open Sans';
+    font-size: 23px;
+    color: white;
+}
+
+.create-task-btn img {
+    height: 12px;
+    width: 16px;
+    margin-left: 14px;
 }
