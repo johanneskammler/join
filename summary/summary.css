@@ -69,12 +69,28 @@
     color: white;
 }
 
+.task-urgent:hover {
+    scale: 1.1;
+    transition: all 225ms ease-in-out;
+    background: white;
+    color: #4589ff;
+    border-radius: 0 30px 30px 30px;
+}
+
+
 .first-task-line {
     width: 0px !important;
     height: 180px !important;
     border: 2px solid #FFFFFF !important;
     border-radius: 3px !important;
+    background: url(../templates/img/line_white.png)no-repeat;
+
 }
+
+.first-task-line:hover{
+    background: url(../templates/img/line_blue.png) no-repeat;
+}
+
 
 .task-urgent img {
     width: 76px;
@@ -104,13 +120,20 @@
     padding: 28px 28px;
     width: 208px;
     height: 191px;
-    background: #D2E3FF;
+    background: white;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
     border-radius: 30px;
     flex: none;
     order: 1;
     flex-grow: 0;
-    color: #4589FF;
+    color: #D2E3FF;
+}
+
+.task-to-do:hover {
+    background: #4589ff;
+    border-radius: 0 30px 30px 30px;
+    scale: 1.1;
+    transition: all 225ms ease-in-out;
 }
 
 .task-in-board {
@@ -121,13 +144,20 @@
     padding: 28px 28px;
     width: 208px;
     height: 191px;
-    background: #D2E3FF;
+    background: white;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
     border-radius: 30px;
     flex: none;
     order: 1;
     flex-grow: 0;
     color: #4589FF;
+}
+
+.task-in-board:hover {
+    background: #4589ff;
+    border-radius: 0 30px 30px 30px;
+    scale: 1.1;
+    transition: all 225ms ease-in-out;
 }
 
 .task-in-progress {
@@ -138,7 +168,7 @@
     padding: 28px 28px;
     width: 208px;
     height: 191px;
-    background: #D2E3FF;
+    background: white;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
     border-radius: 30px;
     flex: none;
@@ -146,6 +176,14 @@
     flex-grow: 0;
     color: #4589FF;
 }
+
+.task-in-progress:hover {
+    background: #4589ff;
+    border-radius: 0 30px 30px 30px;
+    scale: 1.1;
+    transition: all 225ms ease-in-out;
+}
+
 
 .awaiting-feedback {
     display: flex;
@@ -155,13 +193,20 @@
     padding: 28px 28px;
     width: 208px;
     height: 191px;
-    background: #D2E3FF;
+    background: white;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
     border-radius: 30px;
     flex: none;
     order: 1;
     flex-grow: 0;
     color: #4589FF;
+}
+
+.awaiting-feedback:hover {
+    background: #4589ff;
+    border-radius: 0 30px 30px 30px;
+    scale: 1.1;
+    transition: all 225ms ease-in-out;
 }
 
 .tasks-done {
@@ -172,11 +217,18 @@
     padding: 28px 28px;
     width: 208px;
     height: 191px;
-    background: #D2E3FF;
+    background: white;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
     border-radius: 30px;
     flex: none;
     order: 1;
     flex-grow: 0;
     color: #4589FF;
+}
+
+.tasks-done:hover {
+    background: #4589ff;
+    border-radius: 0 30px 30px 30px;
+    scale: 1.1;
+    transition: all 225ms ease-in-out;
 }
