@@ -78,6 +78,7 @@
     order: 0;
     flex-grow: 0;
     color: white;
+    transition: all 225ms ease-in-out;
 }
 
 .task-urgent:hover {
@@ -138,6 +139,7 @@
     order: 1;
     flex-grow: 0;
     color: #4589ff;
+    transition: all 225ms ease-in-out;
 }
 
 .task-to-do:hover {
@@ -162,6 +164,7 @@
     order: 1;
     flex-grow: 0;
     color: #4589FF;
+    transition: all 225ms ease-in-out;
 }
 
 .task-in-board:hover {
@@ -187,6 +190,7 @@
     order: 1;
     flex-grow: 0;
     color: #4589FF;
+    transition: all 225ms ease-in-out;
 }
 
 .task-in-progress:hover {
@@ -213,6 +217,7 @@
     order: 1;
     flex-grow: 0;
     color: #4589FF;
+    transition: all 225ms ease-in-out;
 }
 
 .awaiting-feedback:hover {
@@ -238,6 +243,7 @@
     order: 1;
     flex-grow: 0;
     color: #4589FF;
+    transition: all 225ms ease-in-out;
 }
 
 .tasks-done:hover {
