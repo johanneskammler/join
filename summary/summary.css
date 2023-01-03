@@ -38,7 +38,17 @@
 
 .task-top {
     display: flex;
-    
+
+}
+
+.task-first {
+    display: flex;
+}
+
+.task-first span {
+    font-size: 48px;
+    font-weight: 700;
+    margin-left: 25px;
 }
 
 .task-top span {
@@ -87,7 +97,7 @@
 
 }
 
-.first-task-line:hover{
+.first-task-line:hover {
     background: url(../templates/img/line_blue.png) no-repeat;
 }
 
@@ -120,17 +130,17 @@
     padding: 28px 28px;
     width: 208px;
     height: 191px;
-    background: white;
+    background: #D2E3FF;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
     border-radius: 30px;
     flex: none;
     order: 1;
     flex-grow: 0;
-    color: #D2E3FF;
+    color: #4589ff;
 }
 
 .task-to-do:hover {
-    background: #4589ff;
+    background: white;
     border-radius: 0 30px 30px 30px;
     scale: 1.1;
     transition: all 225ms ease-in-out;
@@ -158,6 +168,7 @@
     border-radius: 0 30px 30px 30px;
     scale: 1.1;
     transition: all 225ms ease-in-out;
+    color: white;
 }
 
 .task-in-progress {
@@ -182,6 +193,7 @@
     border-radius: 0 30px 30px 30px;
     scale: 1.1;
     transition: all 225ms ease-in-out;
+    color: white;
 }
 
 
@@ -207,6 +219,7 @@
     border-radius: 0 30px 30px 30px;
     scale: 1.1;
     transition: all 225ms ease-in-out;
+    color: white;
 }
 
 .tasks-done {
@@ -231,4 +244,10 @@
     border-radius: 0 30px 30px 30px;
     scale: 1.1;
     transition: all 225ms ease-in-out;
+    color: white;
+}
+
+.task-top img {
+    border: 2px solid white;
+    border-radius: 50%;
 }
