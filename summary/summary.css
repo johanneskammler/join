@@ -30,6 +30,9 @@
     flex-wrap: wrap;
     position: inherit;
     cursor: pointer;
+ /*   width: 1170px;
+    height: 445px; */
+    margin-left: 135px;
 }
 
 .main-task {
