@@ -17,6 +17,10 @@
     font-size: 36px;
 }
 
+.color-black {
+    color: black;
+}
+
 .main {
     display: flex;
     justify-content: center;
@@ -25,6 +29,26 @@
     gap: 35px;
     flex-wrap: wrap;
     position: inherit;
+}
+
+.main-task {
+    display: flex;
+    flex-direction: column;
+}
+
+.task-top {
+    display: flex;
+    
+}
+
+.task-top span {
+    font-size: 48px;
+    font-weight: 700;
+    margin-left: 25px;
+}
+
+.task-bottom {
+    font-size: 23px;
 }
 
 .task-urgent {
@@ -45,11 +69,31 @@
     color: white;
 }
 
+.first-task-line {
+    width: 0px !important;
+    height: 180px !important;
+    border: 2px solid #FFFFFF !important;
+    border-radius: 3px !important;
+}
+
 .task-urgent img {
     width: 76px;
     height: 76px;
     border: 1px solid white;
     border-radius: 50%;
+    margin-bottom: 14px;
+}
+
+.date {
+    font-size: 33px;
+    font-weight: 700;
+    width: 274px;
+    height: 40px;
+    margin-bottom: 18px;
+}
+
+.deadline {
+    font-size: 23px;
 }
 
 .task-to-do {
