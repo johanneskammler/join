@@ -1,3 +1,8 @@
+// Jede Section hard coden, einzeln stylen, dann als gesamte DIV container via JS ein- und ausblenden
+
+
+
+
 function renderSignUpPage() {
     document.getElementById('login-headline').innerHTML = 'Sign up';
     document.getElementById('sign-up').style = 'display: none;';

@@ -303,6 +303,17 @@ input::placeholder {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    position: relative;
+    gap: 35px;
+    width: 378px;
+    height: 60px;
+    font-size: 19px;
+    font-family: "Open Sans";
+    margin-inline-start: 42px;
+    margin-top: 17px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     gap: 35px;
     width: 426px;
     height: 60px;
@@ -458,6 +469,49 @@ input::placeholder {
 
 .forgot a {
     text-decoration: none;
+}
+
+.check-inp {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkbox-parent {
+    margin-top: 19px;
+}
+
+.checkbox {
+    position: absolute;
+    top: 23px;
+    left: -35px;
+    height: 16px;
+    width: 16px;
+    border: 2px solid green;
+    border-radius: 3px;
+}
+
+/*input[type="checkbox"] {
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid green;
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+}
+
+.form-control + .form-control {
+  margin-top: 1em;
+}*/
+
+.checkbox1:checked:before {
+    background-color: green;
 }
 
 .center-signup-btn {
