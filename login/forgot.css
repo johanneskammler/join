@@ -1,0 +1,40 @@
+.forgot-box {
+  width: 761px !important;
+  height: 450px !important;
+}
+
+.arrow-top {
+  top: 11.5%;
+}
+
+.forgot-text {
+  margin-block-start: 35px;
+  width: 589px;
+  text-align: center;
+  font-size: 23px;
+}
+
+.correct-heigth {
+  height: 13px !important;
+}
+
+form {
+  width: 0px;
+}
+
+.center-divs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.correct-btn {
+  margin-top: -55px !important;
+  margin-left: 0 !important;
+  width: 270px !important;
+}
+
+.correct-button-box {
+  width: 270px !important;
+  margin-top: 0 !important;
+}
