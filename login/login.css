@@ -40,13 +40,35 @@ body {
     -webkit-animation: slide-tl-blue 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
     animation: slide-tl-blue 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
     animation-delay: 0.8s;
+    animation-iteration-count: 1;
 }
 
 .slide-tl-white {
     -webkit-animation: slide-tl-white 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
     animation: slide-tl-white 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
     animation-delay: 0.8s;
+    animation-iteration-count: 1;
+    
 }
+
+.sign-up-logo {
+    width: 100px;
+    height: 122px;
+    position: absolute;
+    top: 80px;
+    left: 77px;
+}
+
+.stopAnimation {
+    animation-fill-mode: forwards;
+}
+
+.notransition {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+    transition: none !important;
+  }
 
 @-webkit-keyframes slide-tl-blue {
     0% {
@@ -130,6 +152,16 @@ body {
 
 .logo-box {
     position: absolute;
+}
+
+.logo-box-index {
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    top: 80px;
+    left: 77px;
 }
 
 .blue-logo,
@@ -445,6 +477,20 @@ input::placeholder {
     transition: all 125ms ease-in-out;
 }
 
+.sign-up-btn {
+    width: 155px;
+    height: 48px;
+    border: none;
+    border-radius: 8px;
+    background-color: #4589ff;
+    font-size: 23px;
+    font-weight: 400;
+    color: white;
+    transition: all 125ms ease-in-out;
+    margin-left: 120px;
+    margin-top: 85px;
+}
+
 .sign-btn {
     transition: all 125ms ease-in-out;
 }
@@ -519,4 +565,58 @@ input::placeholder {
     justify-content: center;
     margin-top: 100px;
     transition: none;
+}
+
+.logos-sign-up {
+    background-color: #4589ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.login-screen-no-animation {
+    width: 652px;
+    height: 457px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 0px 10px 3px rgb(0 0 0 / 8%);
+    border-radius: 30px;
+    position: relative;
+    background-color: white;
+}
+
+.login-screen-no-animation h1 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 57.6px;
+    font-family: "Open Sans";
+}
+
+.sign-up-no-animation {
+    position: absolute;
+    top: 67px;
+    right: 86px;
+    width: 315px;
+    height: 48px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 23px;
+    font-family: "Open Sans";
+    align-items: center;
+}
+
+.sign-up-no-animation button {
+    width: 112px;
+    height: 48px;
+    padding: 10px 16px;
+    font-size: 23px;
+    font-family: "Opens Sans";
+    border-radius: 8px;
+    color: white;
+    background-color: #4589ff;
+    border: none;
 }

@@ -3,7 +3,7 @@
 
 
 
-function renderSignUpPage() {
+/*function renderSignUpPage() {
     document.getElementById('login-headline').innerHTML = 'Sign up';
     document.getElementById('sign-up').style = 'display: none;';
     document.getElementById('back-from-signup').style = 'display: block;';
@@ -53,4 +53,16 @@ function forgotPassword() {
     document.getElementById('reset-instructions').classList.remove('d-none');
     document.getElementById('blue-logo').src = '../login/img/logo_white.png';
     document.getElementById('white-logo').src = '../login/img/logo_blue.png';
+}*/
+
+
+function renderSignUpPage() {
+    window.location = "signUp.html";
 }
+
+function backToStart() {
+    window.location.assign('startPage.html');
+   
+}
+
+
