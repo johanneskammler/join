@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   height: auto;
-  width: 83%;
+  width: calc(83.2vw - 63px);
   margin-top: 153.7px;
   margin-left: 322px;
 }
@@ -12,32 +12,23 @@
 }
 
 .inpbox {
-  /* Search task web */
-
   box-sizing: border-box;
-
-  /* Auto layout */
-
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 13px 21px;
   gap: 10px;
-
-  width: 251px;
+  width: 15vw;
   height: 51px;
-
   background: #ffffff;
-  /* icon */
-
   border-radius: 10px;
   border: 1px solid #a8a8a8;
 
-  /* Inside auto layout */
+  margin-left: 1%;
+}
 
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+.inp-top::placeholder {
+  color: lightgray;
 }
 
 .board-top {
@@ -67,37 +58,14 @@
 }
 
 .btn-top {
-  /* Auto layout */
-
   border: 1px solid #4589ff;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 18px 10px;
-  gap: 10px;
   color: white;
   font-family: "Open Sans";
-  font-style: normal;
-  font-weight: 400;
   font-size: 23px;
   line-height: 120%;
-
-  width: 138px;
-  height: 51px;
-
-  /* Version 2/main color */
-
+  height: 48px;
   background: #4589ff;
-  /* Version 2/main color */
-
-  border-radius: 10px;
-
-  /* Inside auto layout */
-
-  flex: none;
-  order: 1;
-  flex-grow: 0;
+  border-radius: 8px;
 }
 
 .board-main {
@@ -117,8 +85,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 234px;
+  width: 16.5vw;
   height: 51px;
+  margin-bottom: 24px;
 }
 
 .head h2 {
@@ -139,23 +108,40 @@
 
 .card {
   background-color: white;
-  max-width: 10vw;
+  width: 14.4vw;
   height: auto;
-  padding: 25px;
+  padding: 16px 13px;
   border-radius: 25px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   cursor: pointer;
 }
 
+.card-head {
+  width: 100%;
+  height: 67px;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-block-start: -47px;
+}
+
 .title-text {
   font-size: 16px;
   color: #4589ff;
+  margin-top: 15px;
+  margin-bottom: -13px;
 }
 
 .card-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-block-end: -20px;
+  position: relative;
+}
+
+.card-invite {
+  margin-top: -15px;
 }
 
 .btn-footer {
@@ -183,18 +169,16 @@
 .pogress-box {
   width: 100%;
   display: flex;
+  font-size: 16px;
   justify-content: space-between;
   align-items: center;
-}
-
-.pogress-box {
-  font-size: 16px;
+  margin-top: -16px;
 }
 
 .pogressbar {
   width: 60%;
   height: 8px;
-  background-color: #d3d3d39c;
+  background-color: #b5b5b545;
   border-radius: 7%;
 }
 
@@ -223,8 +207,7 @@
   position: absolute;
   z-index: 20;
   border: none;
-
-  inset: 11% 26%;
+  inset: 11% 33% auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -334,3 +317,84 @@
 .popup_name {
   margin-left: 25px;
 }
+
+.d-none {
+  display: none;
+}
+
+.img-position {
+  position: absolute;
+  top: 22px;
+}
+
+.inter {
+  font-family: "Inter";
+}
+
+.gray {
+  color: #808080a6;
+}
+.close {
+  position: relative;
+  height: 40px;
+}
+
+.close-img {
+  position: absolute;
+  transform: rotate(90deg);
+}
+
+.edit-box {
+  width: 542px;
+  display: flex;
+  justify-content: end;
+  margin-right: 0;
+  margin-block-start: -24px;
+}
+
+#contact0,
+#contact1,
+#contact2 {
+  margin-top: 7px;
+}
+
+#popup_name_logo {
+  border-radius: 58px;
+  background-color: #ffbc00;
+  width: 45px;
+  height: 45px;
+  margin-block-start: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+/* ANIMATION SECTION  */
+.rotate-90-cw {
+  -webkit-animation: rotate-90-cw 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: rotate-90-cw 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@-webkit-keyframes rotate-90-cw {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+}
+@keyframes rotate-90-cw {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+}
+
+/* ANIMATION SECTION END */

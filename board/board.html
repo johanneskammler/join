@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="board.css" />
     <link rel="stylesheet" href="../fonts/fonts.css">
+    <link rel="stylesheet" href="../fonts/Inter.css">
     <link rel="stylesheet" href="../templates/header_sidebar.css" />
+    <script src="board.js"></script>
     <script src="../include.js"></script>
     
     <title>Board</title>
@@ -15,10 +17,14 @@
   <body onload="init()">
 
     
-    <div class="popup"></div>
-    <div class="popup-card" onclick="showPopup(0)">
+    <div id="popup" onclick="popup()" class="popup d-none"></div>
+    <div id="popup_card" class="popup-card d-none" onclick="popup(0)">
       <div class="card-head">
         <span class="responsible" class="pointer">Sales</span>
+        <div class="close">
+          <img src="img-board/line.png" onclick="popup()" class="close-img">
+          <img src="img-board/line.png" >
+        </div>
       </div>
       <div class="popup-card-title"><h1 class="popup-title font">Call pontencial clients </h1></div>
       <div class="card-content">
@@ -39,10 +45,10 @@
             <p id="popup_name_logo">DE</p><p id="popup_name">David Eisenberger</p>
           </div>
           <div id="contact1">
-            <p class="popup_name_logo">DE</p><p class="popup_name">David Eisenberger</p>
+            <p id="popup_name_logo">DE</p><p class="popup_name">David Eisenberger</p>
           </div>
           <div id="contact2">
-            <p class="popup_name_logo">DE</p><p class="popup_name">David Eisenberger</p>
+            <p id="popup_name_logo">DE</p><p class="popup_name">David Eisenberger</p>
           </div>
         </div>
       </div>
@@ -69,18 +75,18 @@
         <div class="board-main">
           <div class="todo mr26">
             <div class="head">
-              <h2 class="font""">To do</h2>
+              <h2 class="font">To do</h2>
               <img src="img-board/plus-button.png" class="pointer"/>
             </div>
             <div class="todobox">
               <div class="todo-content" id="todo-board">
-                <div class="card" onclick="showPopup(0)">
+                <div class="card" id="card" onclick="clicked()">
                   <div class="card-head">
                     <img src="img-board/backoffice.png" class="pointer" />
                   </div>
                   <div class="card-title"><h1 class="title-text font">Überschrieft Test Test</h1></div>
                   <div class="card-content">
-                    <p classs="font">
+                    <p class="inter gray">
                       Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                       Ipsam...
                     </p>
@@ -102,9 +108,8 @@
 
 
                     <button class="btn-footer">
-                      <img src="img-board/footer-button-green.png" /><img
-                        src="img-board/footer-button-green.png"
-                      />
+                      <img class="img-position" src="img-board/footer-button-green.png">
+                      <img src="img-board/footer-button-green.png">
                     </button>
                   </div>
                 </div>
