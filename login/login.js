@@ -56,12 +56,13 @@ function forgotPassword() {
 }*/
 
 
+/* Lädt signUp.html und zurück kommt man dann auf startpage.html */
 function renderSignUpPage() {
     window.location = "signUp.html";
 }
 
 function backToStart() {
-    window.location.assign('startPage.html');
+    window.location = 'startPage.html';
    
 }
 
