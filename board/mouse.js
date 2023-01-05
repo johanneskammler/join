@@ -1,13 +1,16 @@
-var mouseDown = 0;
-document.getElementById("card").onmousedown = function () {
+let card = document.getElementById("card");
+let mouseDown = 0;
+
+card.onmousedown = function () {
   ++mouseDown;
   console.log(mouseDown);
   checkClick();
 };
-document.getElementById("card").onmouseup = function () {
+card.onmouseup = function () {
   mouseDown = 0;
   console.log(mouseDown);
-  document.getElementById("card").onmousemove = null;
+  setRotation();
+  card.onmousemove = null;
 };
 
 function checkClick() {
@@ -19,6 +22,7 @@ function checkClick() {
 function checkTime() {
   if (mouseDown == 1) {
     console.log("Animation");
+    setRotation();
   }
 }
 
@@ -29,7 +33,10 @@ function checkpopup() {
 }
 
 function checkMouseMove() {
-  document.getElementById("card").onmousemove = function () {
+  card.onmousemove = function () {
     console.log("Animation");
   };
+}
+function setRotation() {
+  card.classList.toggle("rotate-90-cw");
 }
