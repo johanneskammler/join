@@ -8,21 +8,18 @@ card.onmousedown = function () {
 };
 card.onmouseup = function () {
   mouseDown = 0;
-  console.log(mouseDown);
-  setRotation();
   card.onmousemove = null;
+  console.log(mouseDown);
 };
 
 function checkClick() {
-  checkMouseMove();
-  setTimeout(checkpopup, 150);
-  setTimeout(checkTime, 800);
+  setTimeout(checkpopup, 200);
+  setTimeout(checkTime, 1000);
 }
 
 function checkTime() {
   if (mouseDown == 1) {
     console.log("Animation");
-    setRotation();
   }
 }
 
@@ -32,11 +29,6 @@ function checkpopup() {
   }
 }
 
-function checkMouseMove() {
-  card.onmousemove = function () {
-    console.log("Animation");
-  };
-}
 function setRotation() {
   card.classList.toggle("rotate-90-cw");
 }
