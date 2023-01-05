@@ -1,24 +1,19 @@
 var mouseDown = 0;
-function clicked() {
+document.getElementById("card").onmousedown = function () {
   ++mouseDown;
   console.log(mouseDown);
   checkClick();
-}
-document.getElementById("card").onmousedown = function () {
-  clicked();
 };
-document.getElementById("demo").onmousedown = function () {
-  mouseDown();
-};
-
-document.onmouseup = function () {
+document.getElementById("card").onmouseup = function () {
   mouseDown = 0;
   console.log(mouseDown);
+  document.getElementById("card").onmousemove = null;
 };
 
 function checkClick() {
+  checkMouseMove();
   setTimeout(checkpopup, 150);
-  setTimeout(checkTime, 1200);
+  setTimeout(checkTime, 800);
 }
 
 function checkTime() {
@@ -31,4 +26,10 @@ function checkpopup() {
   if (mouseDown == 0) {
     popup();
   }
+}
+
+function checkMouseMove() {
+  document.getElementById("card").onmousemove = function () {
+    console.log("Animation");
+  };
 }
