@@ -73,14 +73,17 @@
         </div>
 
         <div class="board-main">
-          <div class="todo mr26">
+
+          
+          <div class="choice todo mr26">
             <div class="head">
               <h2 class="font">To do</h2>
               <img src="img-board/plus-button.png" class="pointer"/>
             </div>
             <div class="todobox">
               <div class="todo-content" id="todo-board">
-                <div class="card" id="card">
+
+                <div draggable="true" class="card" id="card">
                   <div class="card-head">
                     <img src="img-board/backoffice.png" class="pointer" />
                   </div>
@@ -117,14 +120,14 @@
             </div>
           </div>
 
-          <div class="in-pogress mr26">
+          <div class="choice in-pogress mr26">
             <div class="head">
               <h2 class="font""">In pogress</h2>
               <img src="img-board/plus-button.png" class="pointer" />
             </div>
             <div class="pogressbox">
               <div class="pogress-content" id="pogress-board">
-                <div class="card" onclick="clicked()">
+                <div draggable="true" class="card" onclick="clicked()">
                   <div class="card-head">
                     <img src="img-board/backoffice.png" alt="" />
                   </div>
@@ -152,7 +155,7 @@
             </div>
           </div>
 
-          <div class="await-feedback mr26">
+          <div class="choice await-feedback mr26">
             <div class="head">
               <h2 class="font">Await feedback</h2>
               <img src="img-board/plus-button.png" class="pointer" />
@@ -160,7 +163,7 @@
 
             <div class="feedbackbox">
               <div class="await-feedback-content" id="feedback-board">
-                <div class="card" onclick="showPopup(2)">
+                <div draggable="true" class="card" onclick="showPopup(2)">
                   <div class="card-head">
                     <img src="img-board/backoffice.png" alt="" />
                   </div>
@@ -189,7 +192,7 @@
             </div>
           </div>
 
-          <div class="done mr26">
+          <div class=" choice done mr26">
             <div class="head">
               <h2 class="font">Done</h2>
               <img src="img-board/plus-button.png" class="pointer" />
@@ -197,7 +200,7 @@
 
             <div class="donebox">
               <div class="done-content" id="done-board">
-                <div class="card" onclick="showPopup(3)">
+                <div draggable="true" class="card" onclick="showPopup(3)">
                   <div class="card-head">
                     <img src="img-board/backoffice.png" alt="" />
                   </div>

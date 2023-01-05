@@ -1,8 +1,8 @@
-let p = document.getElementsByTagName("p");
+let card = document.getElementsByClassName("card");
 let choice = document.getElementsByClassName("choice");
 let dragItem = null;
 
-for (let i of p) {
+for (let i of card) {
   i.addEventListener("dragstart", dragStart);
   i.addEventListener("dragend", dragEnd);
 }
