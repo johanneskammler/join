@@ -9,11 +9,13 @@ for (let i of card) {
 
 function dragStart() {
   dragItem = this;
+
   setTimeout(() => (this.style.display = "none"), 0);
 }
 
 function dragEnd() {
   setTimeout(() => (this.style.display = "block"), 0);
+
   dragItem = null;
 }
 
@@ -26,9 +28,11 @@ for (j of choice) {
 
 function Drop() {
   this.append(dragItem);
+  this.classList.remove("hover");
 }
 
 function dragOver(e) {
+  this.classList.add("hover");
   e.preventDefault();
 }
 
@@ -36,4 +40,10 @@ function dragEnter(e) {
   e.preventDefault();
 }
 
-function dragLeave() {}
+function dragLeave() {
+  this.classList.remove("hover");
+}
+
+function setRotation() {
+  document.getElementById("card").classList.toggle("rotate-90-cw");
+}

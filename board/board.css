@@ -99,6 +99,7 @@
 
 .mr26 {
   margin-right: 57px;
+  padding: 8px;
 }
 
 .pointer {
@@ -114,6 +115,7 @@
   border-radius: 25px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   cursor: pointer;
+  margin-bottom: 16px;
 }
 
 .card-head {
@@ -373,6 +375,15 @@
   align-items: center;
   color: white;
 }
+
+.hover {
+  background-color: #7da2e1ac;
+  border-radius: 24px;
+  margin-bottom: 10px;
+}
+/* .choice:hover {
+  background-color: #7da2e1ac;
+} */
 
 /* ANIMATION SECTION  */
 .rotate-90-cw {

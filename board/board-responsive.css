@@ -1,0 +1,61 @@
+@media (width <= 1800px) {
+  .board {
+    margin-left: 18.5vw;
+  }
+  .board-main {
+    height: 71vh;
+  }
+}
+
+@media (width <= 1660px) {
+  .mr26 {
+    margin-right: 3vw;
+  }
+
+  .board {
+    margin-left: 19vw;
+  }
+}
+
+@media (width <= 1550px) {
+  .mr26 {
+    margin-right: 2.5vw;
+  }
+  .board {
+    margin-left: 20vw;
+  }
+}
+
+@media (width <= 1440px) {
+  .board {
+    margin-left: 21.4vw;
+  }
+
+  .board-main {
+    height: 68vh;
+  }
+
+  .mr26 {
+    margin-right: 2vw;
+  }
+}
+
+@media (width <= 1440px) {
+  .mr26 {
+    margin-right: 1vw;
+  }
+  .board {
+    margin-left: 23.4vw;
+    width: 73vw;
+  }
+
+  .board-top {
+    width: auto;
+  }
+}
+/* 
+@media (width <= 1330px) {
+  .inpbox {
+    width: 22vw;
+  }
+} */

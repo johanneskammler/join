@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="board.css" />
     <link rel="stylesheet" href="../fonts/fonts.css">
     <link rel="stylesheet" href="../fonts/Inter.css">
+    <link rel="stylesheet" href="board-responsive.css">
     <link rel="stylesheet" href="../templates/header_sidebar.css" />
     <script src="board.js"></script>
     <script src="../include.js"></script>
@@ -14,7 +15,7 @@
     <title>Board</title>
   </head>
 
-  <body onload="init()">
+  <body onresize="checkSize()" onload="init()">
 
     
     <div id="popup" onclick="popup()" class="popup d-none"></div>
@@ -83,7 +84,7 @@
             <div class="todobox">
               <div class="todo-content" id="todo-board">
 
-                <div draggable="true" class="card" id="card">
+                <div draggable="true" class="card" id="card" onclick="popup()">
                   <div class="card-head">
                     <img src="img-board/backoffice.png" class="pointer" />
                   </div>
@@ -232,6 +233,5 @@
       </div>
     </div>
     <script src="dragAndDrop.js"></script>
-    <script src="mouse.js"></script>
   </body>
 </html>
