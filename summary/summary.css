@@ -93,6 +93,7 @@
 }
 
 
+/*
 .first-task-line {
     width: 0px !important;
     height: 180px !important;
@@ -105,7 +106,7 @@
 .first-task-line:hover {
     background: url(../templates/img/line_blue.png) no-repeat;
 }
-
+*/
 
 .task-urgent img {
     width: 76px;
@@ -115,18 +116,50 @@
     margin-bottom: 14px;
 }
 
+
+.border-line {
+    border-left: 3px solid white; 
+    width: 40%;
+    height: 145px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.border-line:hover {
+    border-left: 3px solid #4589ff;
+    width: 40%;
+    
+}
+
+
 .date {
     font-size: 33px;
     font-weight: 700;
     width: 274px;
-    height: 40px;
     margin-bottom: 18px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.date p {
+    font-size: 23px;
 }
 
 .deadline {
     font-size: 23px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-left: 88px;
 }
 
+.right-container {
+    display: flex;
+}
 .task-to-do {
     display: flex;
     flex-direction: row;
