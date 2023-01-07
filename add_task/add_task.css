@@ -42,6 +42,24 @@
     font-size: 19px;
 }
 
+.drop-down-arrow {
+    cursor: pointer;
+    height: 8px;
+    width: 16px;
+    position: absolute;
+    top: 24px;
+    right: 18px;
+}
+
+.plus-icon {
+    cursor: pointer;
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    top: 18px;
+    right: 18px;
+}
+
 .due-date-text,
 .category-text,
 .description-text,
@@ -158,6 +176,7 @@
 
 .date-box,
 .category-box,
+.contacts-box,
 .description-box {
     display: flex;
     flex-direction: column;
