@@ -39,3 +39,13 @@ function emptyImportanceButton3() {
     document.getElementById('importance-button3').style = 'display: flex;';
     document.getElementById('importance-button3-colored').style = 'display: none;';
 }
+
+
+function openContactsToSelect() {
+    document.getElementById('contacts-drop-down').classList.remove('d-none');
+}
+
+
+function openCategoriesToSelect() {
+    document.getElementById('categories-drop-down').classList.remove('d-none');
+}

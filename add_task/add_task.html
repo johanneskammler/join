@@ -21,8 +21,12 @@
 
             <div class="contacts-box">
                 <div style="position: relative;">
-                    <input type="text" placeholder="Select contacts to assign" class="select-contacts">
-                    <img src="../add_task/img-add_task/dropdown_blue.png" class="drop-down-arrow">
+                    <div class="contacts-dropdown">
+                        <input type="text" placeholder="Select contacts to assign" class="select-contacts">
+                        <img onclick="openContactsToSelect()" src="../add_task/img-add_task/dropdown_blue.png"
+                            class="drop-down-arrow" id="contacts-drop-down-arrow">
+                        <div id="contacts-drop-down" class="contacts-dropdown-content d-none">Hallo</div>
+                    </div>
                 </div>
             </div>
 
@@ -38,8 +42,12 @@
             <div class="category-box">
                 <span class="category-text">Category</span>
                 <div style="position: relative">
-                    <input type="text" placeholder="Select task category" class="select-category">
-                    <img src="../add_task/img-add_task/dropdown_blue.png" class="drop-down-arrow">
+                    <div class="category-dropdown">
+                        <input type="text" placeholder="Select task category" class="select-category">
+                        <img onclick="openCategoriesToSelect()" src="../add_task/img-add_task/dropdown_blue.png"
+                            class="drop-down-arrow">
+                        <div id="categories-drop-down" class="categories-dropdown-content d-none">Hallo</div>
+                    </div>
                 </div>
             </div>
 
@@ -94,15 +102,17 @@
                     <img src="../add_task/img-add_task/plus_blue.png" class="plus-icon">
                 </div>
             </div>
-            <div class="add-task-buttons">
-                <button class="clear-task-btn">
-                    <span>Clear</span>
-                    <img src="../add_task/img-add_task/x.png">
-                </button>
-                <button class="create-task-btn">
-                    <span>Create Task</span>
-                    <img src="../add_task/img-add_task/check.png">
-                </button>
+            <div style="display: flex; justify-content: flex-end; margin-right: 48px;">
+                <div class="add-task-buttons">
+                    <button class="clear-task-btn">
+                        <span>Clear</span>
+                        <img src="../add_task/img-add_task/x.png">
+                    </button>
+                    <button class="create-task-btn">
+                        <span>Create Task</span>
+                        <img src="../add_task/img-add_task/check.png">
+                    </button>
+                </div>
             </div>
         </div>
     </div>
