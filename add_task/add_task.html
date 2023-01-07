@@ -22,7 +22,7 @@
             <div class="contacts-box">
                 <div style="position: relative;">
                     <div class="contacts-dropdown">
-                        <input type="text" placeholder="Select contacts to assign" class="select-contacts">
+                        <p onclick="openContactsToSelect()" class="select-contacts">Select contacts to assign</p>
                         <img onclick="openContactsToSelect()" src="../add_task/img-add_task/dropdown_blue.png"
                             class="drop-down-arrow" id="contacts-drop-down-arrow">
                         <div id="contacts-drop-down" class="contacts-dropdown-content d-none">Hallo</div>
@@ -43,7 +43,7 @@
                 <span class="category-text">Category</span>
                 <div style="position: relative">
                     <div class="category-dropdown">
-                        <input type="text" placeholder="Select task category" class="select-category">
+                        <p onclick="openCategoriesToSelect()" class="select-category">Select task category</p>
                         <img onclick="openCategoriesToSelect()" src="../add_task/img-add_task/dropdown_blue.png"
                             class="drop-down-arrow">
                         <div id="categories-drop-down" class="categories-dropdown-content d-none">Hallo</div>
