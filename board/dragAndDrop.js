@@ -29,6 +29,7 @@ for (j of choice) {
 function Drop() {
   this.append(dragItem);
   this.classList.remove("hover");
+  setTimeout(ScrollbarExist, 250);
 }
 
 function dragOver(e) {
