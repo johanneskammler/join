@@ -18,21 +18,47 @@
         <div w3-include-html="../templates/sidebar.html"></div>
         <div class="add-task-content">
             <input type="text" placeholder="Enter a title" class="title-input">
-            <input type="text" placeholder="Select contacts to assign" class="select-contacts">
+
+            <div class="contacts-box">
+                <div style="position: relative;">
+                    <div class="contacts-dropdown">
+                        <p onclick="openContactsToSelect()" class="select-contacts">Select contacts to assign</p>
+                        <img onclick="openContactsToSelect()" src="../add_task/img-add_task/dropdown_blue.png"
+                            class="drop-down-arrow" id="contacts-drop-down-arrow">
+                        <div id="contacts-drop-down" class="contacts-dropdown-content d-none">Hallo</div>
+                    </div>
+                </div>
+            </div>
+
+
+
             <div class="date-box">
                 <span class="due-date-text">Due date</span>
-                <input type="text" placeholder="dd/mm/yyyy" class="select-date">
+                <input type="date" placeholder="dd/mm/yyyy" class="select-date">
             </div>
+
+
+
             <div class="category-box">
                 <span class="category-text">Category</span>
-                <input type="text" placeholder="Select task category" class="select-category">
+                <div style="position: relative">
+                    <div class="category-dropdown">
+                        <p onclick="openCategoriesToSelect()" class="select-category">Select task category</p>
+                        <img onclick="openCategoriesToSelect()" src="../add_task/img-add_task/dropdown_blue.png"
+                            class="drop-down-arrow">
+                        <div id="categories-drop-down" class="categories-dropdown-content d-none">Hallo</div>
+                    </div>
+                </div>
             </div>
+
+
             <div class="importance-buttons">
                 <button onclick="fillImportanceButton1()" class="importance-button1" id="importance-button1">
                     <span>Urgent</span>
                     <img src="../add_task/img-add_task/urgent.png">
                 </button>
-                <button onclick="emptyImportanceButton1()" class="importance-button1-colored" id="importance-button1-colored" style="display: none;">
+                <button onclick="emptyImportanceButton1()" class="importance-button1-colored"
+                    id="importance-button1-colored" style="display: none;">
                     <span>Urgent</span>
                     <img src="../add_task/img-add_task/urgent.png">
                 </button>
@@ -42,7 +68,8 @@
                     <span>Medium</span>
                     <img src="../add_task/img-add_task/medium.png">
                 </button>
-                <button onclick="emptyImportanceButton2()" class="importance-button2-colored" id="importance-button2-colored" style="display: none;">
+                <button onclick="emptyImportanceButton2()" class="importance-button2-colored"
+                    id="importance-button2-colored" style="display: none;">
                     <span>Medium</span>
                     <img src="../add_task/img-add_task/medium.png">
                 </button>
@@ -53,7 +80,8 @@
                     <span>Low</span>
                     <img src="../add_task/img-add_task/low.png">
                 </button>
-                <button onclick="emptyImportanceButton3()" class="importance-button3-colored" id="importance-button3-colored" style="display: none;">
+                <button onclick="emptyImportanceButton3()" class="importance-button3-colored"
+                    id="importance-button3-colored" style="display: none;">
                     <span>Low</span>
                     <img src="../add_task/img-add_task/low.png">
                 </button>
@@ -64,21 +92,27 @@
             </div>
             <div class="description-box">
                 <span class="description-text">Description</span>
-                <textarea name="description" id="description-input" class="description-input" cols="30" rows="10" placeholder="Enter a description"></textarea>
+                <textarea name="description" id="description-input" class="description-input" cols="30" rows="10"
+                    placeholder="Enter a description"></textarea>
             </div>
             <div class="subtask-box">
                 <span class="subtask-text">Subtasks</span>
-                <input type="text" placeholder="Add new subtask" class="add-subtask">
+                <div style="position: relative;">
+                    <input type="text" placeholder="Add new subtask" class="add-subtask">
+                    <img src="../add_task/img-add_task/plus_blue.png" class="plus-icon">
+                </div>
             </div>
-            <div class="add-task-buttons">
-                <button class="clear-task-btn">
-                    <span>Clear</span>
-                    <img src="../add_task/img-add_task/x.png">
-                </button>
-                <button class="create-task-btn">
-                    <span>Create Task</span>
-                    <img src="../add_task/img-add_task/check.png">
-                </button>
+            <div style="display: flex; justify-content: flex-end; margin-right: 48px;">
+                <div class="add-task-buttons">
+                    <button class="clear-task-btn">
+                        <span>Clear</span>
+                        <img src="../add_task/img-add_task/x.png">
+                    </button>
+                    <button class="create-task-btn">
+                        <span>Create Task</span>
+                        <img src="../add_task/img-add_task/check.png">
+                    </button>
+                </div>
             </div>
         </div>
     </div>
