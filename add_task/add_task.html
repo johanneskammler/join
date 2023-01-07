@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="add_task.css">
     <link rel="stylesheet" href="../templates/header_sidebar.css">
+    <script src="add_task.js"></script>
     <script src="../include.js"></script>
     <title>Add Task</title>
 </head>
@@ -27,18 +28,39 @@
                 <input type="text" placeholder="Select task category" class="select-category">
             </div>
             <div class="importance-buttons">
-                <button class="importance-button1">
+                <button onclick="fillImportanceButton1()" class="importance-button1" id="importance-button1">
                     <span>Urgent</span>
                     <img src="../add_task/img-add_task/urgent.png">
                 </button>
-                <button class="importance-button2">
+                <button onclick="emptyImportanceButton1()" class="importance-button1-colored" id="importance-button1-colored" style="display: none;">
+                    <span>Urgent</span>
+                    <img src="../add_task/img-add_task/urgent.png">
+                </button>
+
+
+                <button onclick="fillImportanceButton2()" class="importance-button2" id="importance-button2">
                     <span>Medium</span>
                     <img src="../add_task/img-add_task/medium.png">
                 </button>
-                <button class="importance-button3">
+                <button onclick="emptyImportanceButton2()" class="importance-button2-colored" id="importance-button2-colored" style="display: none;">
+                    <span>Medium</span>
+                    <img src="../add_task/img-add_task/medium.png">
+                </button>
+
+
+
+                <button onclick="fillImportanceButton3()" class="importance-button3" id="importance-button3">
                     <span>Low</span>
                     <img src="../add_task/img-add_task/low.png">
                 </button>
+                <button onclick="emptyImportanceButton3()" class="importance-button3-colored" id="importance-button3-colored" style="display: none;">
+                    <span>Low</span>
+                    <img src="../add_task/img-add_task/low.png">
+                </button>
+
+
+
+
             </div>
             <div class="description-box">
                 <span class="description-text">Description</span>

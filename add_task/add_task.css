@@ -90,19 +90,70 @@
 }
 
 .importance-button1:hover {
+    cursor: pointer;
     border-bottom: 2px solid #ff3d00;
 }
 
 .importance-button2:hover {
+    cursor: pointer;
     border-bottom: 2px solid #ffa800;
 }
 
 .importance-button3:hover {
+    cursor: pointer;
     border-bottom: 2px solid #7ae228;
 }
 
 .importance-buttons button img {
     margin-left: 10px;
+}
+
+.importance-button1-colored {
+    height: 51px;
+    width: 136px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 10px;
+    gap: 10px;
+    font-size: 19px;
+    color: white;
+    background: #ff3d00 !important;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+    border: none;
+    border-radius: 10px;
+}
+
+.importance-button2-colored {
+    height: 51px;
+    width: 136px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 10px;
+    gap: 10px;
+    font-size: 19px;
+    color: white;
+    background: #ffa800 !important;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+    border: none;
+    border-radius: 10px;
+}
+
+.importance-button3-colored {
+    height: 51px;
+    width: 136px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 10px;
+    gap: 10px;
+    font-size: 19px;
+    color: white;
+    background: #7ae228 !important;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+    border: none;
+    border-radius: 10px;
 }
 
 .date-box,
@@ -143,8 +194,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #647188;
     border: 1px solid #647188;
     border-radius: 10px;
+    transition: all 125ms ease-in-out;
+}
+
+.clear-task-btn:hover {
+    cursor: pointer;
+    color: #4589ff !important;
+    border: 2px solid #4589ff;
+    box-shadow: 0px 9px 5px -3px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0px 9px 5px -3px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 9px 5px -3px rgba(0, 0, 0, 0.2);
+    transition: all 125ms ease-in-out;
 }
 
 .clear-task-btn span {
@@ -168,6 +231,16 @@
     background-color: #4589ff;
     border: none;
     border-radius: 10px;
+    transition: all 125ms ease-in-out;
+}
+
+.create-task-btn:hover {
+    cursor: pointer;
+    background-color: #045fff;
+    box-shadow: 0px 9px 5px -3px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0px 9px 5px -3px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 9px 5px -3px rgba(0, 0, 0, 0.2);
+    transition: all 125ms ease-in-out;
 }
 
 .create-task-btn span {
