@@ -59,8 +59,15 @@ form {
 
 .sent-box {
   position: absolute;
-  top: 57vh;
-  left: 35vw;
+  top: 62%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+}
+
+.reset-img {
+  display: block;
+  margin: 0 auto;
 }
 
 .sent-img {
