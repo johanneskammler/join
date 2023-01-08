@@ -16,10 +16,30 @@ function checkSize() {
   let size = window.innerWidth;
   console.log(size);
   if (size < 1280) {
-    document.getElementById("card").setAttribute("draggable", false);
+    draggableFalse();
   } else if (size > 1280) {
-    document.getElementById("card").setAttribute("draggable", true);
+    draggableTrue();
   }
+}
+
+function draggableFalse() {
+  let cards = document.getElementsByClassName("card");
+  for (let i = 0; i < cards.length; i++) {
+    const card = cards[i];
+    card.setAttribute("draggable", false);
+  }
+}
+
+function draggableTrue() {
+  let cards = document.getElementsByClassName("card");
+  for (let i = 0; i < cards.length; i++) {
+    const card = cards[i];
+    card.setAttribute("draggable", true);
+  }
+}
+
+function hello() {
+  console.log("Hello");
 }
 
 function ScrollbarExist() {
