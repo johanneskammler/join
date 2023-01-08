@@ -127,3 +127,7 @@ header span {
   width: 85%;
   height: calc(100vh - 84px);
 }
+
+#help-section-btn {
+  cursor: pointer;
+}
