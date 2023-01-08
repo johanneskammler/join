@@ -37,3 +37,22 @@ function sendMeTheEmail() {
   }
   return true;
 }
+
+
+function resetPassword() {
+  var password = document.getElementById("new-password").value;
+  var confirmedPassword = document.getElementById("confirm-password").value;
+  if (password == "") {
+    alert("Bitte gib ein Passwort ein.");
+    return false;
+  } else if (confirmedPassword == "") {
+    alert("Bitte bestätige dein Passwort.");
+  } else if (password != confirmedPassword) {
+    alert("Passwörter stimmen nicht überein.");
+  } else {
+    document.getElementById('reset-overlay').classList.remove('d-none');
+    document.getElementById('reset-container').classList.remove('d-none');
+    setTimeout(backToStart, 1500);
+  }
+  return true;
+}
