@@ -14,7 +14,7 @@ header {
   align-items: center;
   padding: 20px 39px;
   gap: 34px;
-  position: absolute;
+  position: fixed;
   height: 60px;
   right: 0px;
   left: 0px;
@@ -59,29 +59,13 @@ header span {
   display: flex;
 }
 
-/* .sidebar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 66px 20px;
-    gap: 235px;
-    position: absolute;
-    width: 232px;
-    height: 932px;
-    left: 0px;
-    top: 92px;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
-    border-radius: 0px;
-} */
-
 .sidebar {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 66px 20px;
   gap: 235px;
-  position: absolute;
+  position: fixed;
   width: 232px;
   height: auto;
   bottom: 0;
