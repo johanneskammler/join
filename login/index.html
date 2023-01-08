@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,11 +9,17 @@
     <link rel="stylesheet" href="login.css" />
     <script src="login.js"></script>
     <title>Login</title>
-  </head>
+</head>
 
-  <body>
+<body>
     <div class="blue-screen"></div>
     <div id="logos" class="logos">
+<<<<<<< HEAD
+        <div class="logo-box">
+            <img src="../login/img/logo_blue.png" class="blue-logo slide-tl-blue" id="blue-logo" />
+        </div>
+        <!-- <div class="logo-box">
+=======
       <div class="logo-box">
         <img
           src="../login/img/logo_blue.png"
@@ -21,63 +28,42 @@
         />
       </div>
       <div class="logo-box">
+>>>>>>> ca35d63fffc95cf5a300d72bec341594ee618490
         <img src="../login/img/logo_white.png" class="white-logo slide-tl-white" id="white-logo"/>
       </div>
 
-      <div id="sign-up" class="sign-up">
-        <p>Not a Join user?</p>
-        <button onclick="renderSignUpPage()" class="sign-btn">Sign up</button>
-      </div>
+        <div id="sign-up" class="sign-up">
+            <p>Not a Join user?</p>
+            <button onclick="renderSignUpPage()" class="sign-btn">Sign up</button>
+        </div>
 
-      <div class="login-screen">
-        <img
-          onclick="backFromSignUp()"
-          id="back-from-signup"
-          class="back-arrow d-none"
-          src="../login/img/arrow_left.png"
-        />
-        <img
-          onclick="backFromPassword()"
-          id="back-from-password"
-          class="back-arrow d-none"
-          src="../login/img/arrow_left.png"
-        />
-        <h1 id="login-headline">Log in</h1>
-        <hr class="underline" />
+        <div class="login-screen">
+            <img onclick="backFromSignUp()" id="back-from-signup" class="back-arrow d-none" src="../login/img/arrow_left.png" />
+            <img onclick="backFromPassword()" id="back-from-password" class="back-arrow d-none" src="../login/img/arrow_left.png" />
+            <h1 id="login-headline">Log in</h1>
+            <hr class="underline" />
 
-        <p id="reset-instructions" class="reset-instructions d-none">
-          Don't worry. We will send you an email with the instructions to reset
-          your password.
-        </p>
+            <p id="reset-instructions" class="reset-instructions d-none">
+                Don't worry. We will send you an email with the instructions to reset your password.
+            </p>
 
-        <form action="summery.html">
-          <input
-            type="text"
-            name=""
-            id="user"
-            placeholder="Name"
-            class="d-none"
-          />
-          <input type="email" name="" id="email" placeholder="Email" />
-          <input type="password" name="" id="pw" placeholder="Password" />
-        </form>
+            <form action="summery.html">
+                <input type="text" name="" id="user" placeholder="Name" class="d-none" />
+                <input type="email" name="" id="email" placeholder="Email" />
+                <input type="password" name="" id="pw" placeholder="Password" />
+            </form>
 
-        <div id="pw-recovery" class="pw-recovery">
-          <div class="remember-me">
-            <label class="control control-checkbox">
+            <div id="pw-recovery" class="pw-recovery">
+                <div class="remember-me">
+                    <label class="control control-checkbox">
               Remember me
               <input type="checkbox" />
               <div class="control_indicator"></div>
             </label>
-          </div>
-          <div class="forgot">
-            <p>
-              <a
-                onclick="forgotPassword()"
-                id="forgot-password"
-                href="#"
-                class="c-blue"
-                >Forgot my password</a
+                </div>
+                <div class="forgot">
+                    <p>
+                        <a onclick="forgotPassword()" id="forgot-password" href="#" class="c-blue">Forgot my password</a
               >
             </p>
           </div>

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="../templates/header_sidebar.css">
+    <link rel="stylesheet" href="../fonts/fonts.css">
     <link rel="stylesheet" href="contacts.css">
     <script src="../help/help.js"></script>
     <script src="../include.js"></script>
@@ -15,11 +16,14 @@
 
 <body onload="init()">
     <header w3-include-html="../templates/header.html"></header>
-    <div>
-        <div w3-include-html="../templates/sidebar.html"></div>
-        <div class="contact-list-container"></div>
-    </div>
+    <div w3-include-html="../templates/sidebar.html"></div>
 
+    <div class="contact-list-container" id="contact_list">
+
+    </div>
 </body>
+<div class="char-container">
+    <div class="char">A</div>
+</div>
 
 </html>
