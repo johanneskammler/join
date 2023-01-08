@@ -1,4 +1,14 @@
-/* scrollY function sidebar and board  */
+header {
+  position: fixed !important;
+}
+
+.sidebar {
+  position: fixed !important;
+}
+
+.hide-overflow-y {
+  overflow-y: hidden;
+}
 
 .board {
   display: flex;

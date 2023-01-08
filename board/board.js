@@ -3,7 +3,11 @@ function init() {}
 function popup() {
   let background = document.getElementById("popup");
   let card = document.getElementById("popup_card");
+  let list = document.getElementsByTagName("body");
+  let body = list[0];
 
+  window.scrollTo(0, 0);
+  body.classList.toggle("hide-overflow-y");
   background.classList.toggle("d-none");
   card.classList.toggle("d-none");
 }
@@ -19,15 +23,29 @@ function checkSize() {
 }
 
 function ScrollbarExist() {
-  var div = document.getElementsByClassName("choice");
-
+  let div = document.getElementsByClassName("choice");
+  let counter;
   for (let i = 0; i < div.length; i++) {
     console.log(div[i]);
     let answer = div[i].scrollHeight > div[i].clientHeight;
     console.log(answer);
     if (answer == true) {
       addHeigth();
+    } else if (answer == false) {
+      counter++;
+      if (counter == 4) {
+        removeHeigth();
+        counter = 0;
+      }
     }
+  }
+}
+
+function removeHeigth() {
+  let divs = document.getElementsByClassName("choice");
+  for (let i = 0; i < divs.length; i++) {
+    const element = divs[i];
+    element.classList.remove("more-heigth");
   }
 }
 
@@ -109,5 +127,5 @@ function addTask() {
 function closeAddTask() {
   document.getElementById("add-board").classList.remove("slide-left");
   document.getElementById("add-board").classList.add("slide-right");
-  setTimeout(addTask, 400);
+  setTimeout(addTask, 350);
 }

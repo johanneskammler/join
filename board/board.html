@@ -25,7 +25,7 @@
     <div id="popup" onclick="popup()" class="popup d-none"></div>
     <div id="popup_card" class="popup-card d-none">
       <div class="card-head">
-        <span class="responsible"  class="pointer">Sales</span>
+        <span class="responsible" onclick="addTask()" class="pointer">Sales</span>
         <div class="close" onclick="popup()">
           <img src="img-board/line.png" class="close-img">
           <img src="img-board/line.png" >
@@ -74,7 +74,7 @@
             <input class="inp-top pointer" type="text" name="" id="inp-board" placeholder="Find Task"/>
             <img id="search" src="img-board/search.png" class="pointer" />
           </div>
-          <button class="btn-top pointer" id="btn-board-top font" onclick="addTask()">Add task +</button>
+          <button class="btn-top pointer" onclick="addTask()" id="btn-board-top font" >Add task +</button>
         </div>
 
         <div class="board-main">
@@ -83,7 +83,7 @@
           <div class="todo">
             <div class="head">
               <h2 class="font">To do</h2>
-              <img src="img-board/plus-button.png" class="pointer"/>
+              <img src="img-board/plus-button.png"  onclick="addTask()" class="pointer"/>
             </div>
             <div class="todobox">
               <div class="choice todo-content" id="todo-board">
@@ -128,11 +128,11 @@
           <div class="in-pogress">
             <div class="head">
               <h2 class="font""">In pogress</h2>
-              <img src="img-board/plus-button.png" class="pointer" />
+              <img src="img-board/plus-button.png" onclick="addTask()" class="pointer" />
             </div>
             <div class="pogressbox">
               <div class="choice pogress-content" id="pogress-board">
-                <div draggable="true" class="card" onclick="clicked()">
+                <div draggable="true" class="card" onclick="popup()">
                   <div class="card-head">
                     <img src="img-board/backoffice.png" alt="" />
                   </div>
@@ -163,12 +163,12 @@
           <div class="await-feedback">
             <div class="head">
               <h2 class="font">Await feedback</h2>
-              <img src="img-board/plus-button.png" class="pointer" />
+              <img src="img-board/plus-button.png" onclick="addTask()" class="pointer" />
             </div>
 
             <div class="feedbackbox">
               <div class="choice await-feedback-content" id="feedback-board">
-                <div draggable="true" class="card" onclick="showPopup(2)">
+                <div draggable="true" class="card"  onclick="popup()">
                   <div class="card-head">
                     <img src="img-board/backoffice.png" alt="" />
                   </div>
@@ -200,12 +200,12 @@
           <div class="done">
             <div class="head">
               <h2 class="font">Done</h2>
-              <img src="img-board/plus-button.png" class="pointer" />
+              <img src="img-board/plus-button.png" onclick="addTask()" class="pointer" />
             </div>
 
             <div class="donebox">
               <div class=" choice done-content" id="done-board">
-                <div draggable="true" class="card" onclick="showPopup(3)">
+                <div draggable="true" class="card"  onclick="popup()">
                   <div class="card-head">
                     <img src="img-board/backoffice.png" alt="" />
                   </div>
