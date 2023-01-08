@@ -93,6 +93,12 @@
 }
 
 @media (width <= 1280px) {
+  .todo-content,
+  .pogress-content,
+  .await-feedback-content,
+  .done-content {
+    height: 55.3vh;
+  }
 }
 
 @media (height <= 680px) {
