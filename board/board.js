@@ -1,4 +1,7 @@
-function init() {}
+async function init() {
+  await includeHTML();
+  checkSize();
+}
 
 function popup() {
   let background = document.getElementById("popup");
@@ -15,11 +18,17 @@ function popup() {
 function checkSize() {
   let size = window.innerWidth;
   console.log(size);
-  if (size < 1280) {
+  if (size < 1024) {
     draggableFalse();
-  } else if (size > 1280) {
+    sidebarTabled();
+  } else if (size > 1024) {
     draggableTrue();
   }
+}
+
+function sidebarTabled() {
+  document.getElementById("sidebar").classList.remove("sidebar");
+  document.getElementById("sidebar").classList.add("tablet-sidebar");
 }
 
 function draggableFalse() {
@@ -44,7 +53,7 @@ function hello() {
 
 function ScrollbarExist() {
   let div = document.getElementsByClassName("choice");
-  let counter;
+  let counter = 0;
   for (let i = 0; i < div.length; i++) {
     console.log(div[i]);
     let answer = div[i].scrollHeight > div[i].clientHeight;
@@ -53,7 +62,7 @@ function ScrollbarExist() {
       addHeigth();
     } else if (answer == false) {
       counter++;
-      if (counter == 4) {
+      if (counter == 3) {
         removeHeigth();
         counter = 0;
       }

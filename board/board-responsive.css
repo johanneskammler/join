@@ -6,6 +6,19 @@
 
 /* if scrollbarY exist end */
 
+.tablet-sidebar {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
+  border-top: 1px solid lightgray;
+  z-index: 20;
+}
+
 @media (width <= 1800px) {
   .board {
     margin-left: 18.5vw;
@@ -26,11 +39,48 @@
 }
 
 @media (width <= 1550px) {
+  .card-content-popup {
+    width: 85%;
+  }
+
+  .popup-card {
+    inset: 4% 30% 3%;
+    position: absolute;
+    z-index: 20;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 50px;
+    background: #ffffff;
+    box-shadow: 0px 0px 4px rgb(0 0 0 / 16%);
+    border-radius: 30px;
+  }
+
+  .popup-title {
+    height: 109px;
+    font-weight: 700;
+    font-size: 53px;
+    line-height: 57.2px;
+    max-width: 29vw;
+  }
+
+  .edit-box {
+    width: 33vw;
+    display: flex;
+    justify-content: end;
+    margin-right: 0;
+    margin-block-start: -36px;
+  }
+
   .mr26 {
     margin-right: 2.5vw;
   }
   .board {
     margin-left: 22vw;
+  }
+  .popup-card p {
+    margin-top: 16px;
   }
 }
 
@@ -90,6 +140,9 @@
   .board {
     margin-left: 23.4vw;
   }
+  .popup-title {
+    font-size: 50px;
+  }
 }
 
 @media (width <= 1280px) {
@@ -98,6 +151,119 @@
   .await-feedback-content,
   .done-content {
     height: 55.3vh;
+  }
+
+  .popup-card-title {
+    margin-top: 8px;
+  }
+
+  .popup-title {
+    font-size: 45px;
+  }
+
+  .popup-text,
+  .popup-card p,
+  .priority,
+  .assigned-to {
+    font-size: 19px;
+  }
+
+  #contact0,
+  #contact1,
+  #contact2 {
+    margin-top: 7px;
+    align-items: baseline;
+  }
+
+  .inpbox {
+    height: 40px;
+  }
+
+  .btn-top {
+    height: 38px;
+  }
+
+  .head {
+    font-size: 13px;
+  }
+}
+
+@media (width <= 1240px) {
+  .sidebar {
+    width: 17vw !important;
+  }
+}
+
+@media (width <= 1024px) {
+  .board {
+    width: 54vw;
+  }
+
+  .sidebar-bottom {
+    display: none !important;
+  }
+
+  .sidebar-top {
+    flex-direction: inherit !important;
+    align-items: baseline !important;
+    height: 64px !important;
+    padding-top: 13px !important;
+    width: 90% !important;
+    caret-color: transparent;
+  }
+
+  .sidebar-top a {
+    text-decoration: unset;
+  }
+
+  .sidebar-top button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border: none;
+  }
+
+  .sidebar span {
+    padding-top: 5px;
+  }
+
+  .board-main {
+    flex-direction: column;
+  }
+
+  .inpbox {
+    margin-left: 4%;
+  }
+
+  .todo-content,
+  .pogress-content,
+  .await-feedback-content,
+  .done-content {
+    height: 41.3vh;
+  }
+
+  .for-tablet {
+    gap: 8vw;
+    margin-bottom: -96px;
+  }
+
+  .card {
+    width: 21vw;
+  }
+
+  .board-main {
+    display: flex;
+    align-items: center;
+  }
+
+  .head {
+    width: 20.5vw;
+    margin-inline-start: -22px;
+  }
+
+  .head h2 {
+    padding-inline-start: 0;
   }
 }
 

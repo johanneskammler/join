@@ -274,7 +274,7 @@
   margin-bottom: 0;
 }
 
-.date-box {
+.date-box-popup {
   display: flex;
   align-items: baseline;
 }
@@ -435,3 +435,7 @@
 }
 
 /* ANIMATION SECTION END */
+
+.for-tablet {
+  display: flex;
+}
