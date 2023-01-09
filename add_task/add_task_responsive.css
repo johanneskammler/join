@@ -1,0 +1,26 @@
+@media(max-width: 1024px) {
+    header {
+        background-color: green;;
+    }
+    
+    .profile-box {
+        display: none;
+    }
+    
+    .add-task-content {
+        margin-left: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .clear-task-btn {
+        display: none;
+    }
+
+    .create-task-btn {
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        z-index: 2;
+    }
+}
