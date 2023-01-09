@@ -3,7 +3,7 @@
 }
 
 .add-task-content {
-    margin-top: 160px;
+    margin-top: 140px;
     margin-left: 350px;
     display: flex;
     flex-direction: column;
@@ -11,20 +11,20 @@
 
 .title-input {
     width: 400px;
-    height: 74px;
+    height: 36px;
     padding-left: 21px;
     border: none;
     border-bottom: 1px solid #D1D1D1;
     outline: none;
-    font-size: 40px;
-    margin-bottom: 25px;
+    font-size: 28px;
+    margin-bottom: 16px;
 }
 
 .title-input::placeholder {
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
-    font-size: 40px;
+    font-size: 28px;
     line-height: 48px;
     color: #D1D1D1;
 }
@@ -39,13 +39,17 @@
 .add-subtask {
     cursor: pointer;
     width: 400px;
-    height: 51px;
+    height: 32px;
     padding-left: 21px;
     border: none;
     border-bottom: 1px solid #D1D1D1;
     outline: none;
-    font-size: 19px;
+    font-size: 16px;
     font-family: 'Open Sans';
+}
+
+.select-contacts {
+    margin-bottom: 12px !important;
 }
 
 .select-date {
@@ -63,7 +67,7 @@
 
 .contacts-dropdown-content {
     width: 422px;
-    margin-top: -26px;
+    margin-top: -12px;
     margin-bottom: -24px;
 }
 
@@ -80,7 +84,7 @@
 
 .categories-dropdown-content {
     width: 375px;
-    margin-top: -20px;
+    margin-top: -16px;
     margin-bottom: -24px;
 }
 
@@ -113,7 +117,7 @@
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 700;
-    font-size: 19px;
+    font-size: 16px;
     color: #42526E;
     margin-bottom: 8px;
 }
@@ -121,12 +125,13 @@
 .select-date::placeholder,
 .add-subtask::placeholder {
     color: #D1D1D1;
+    font-size: 16px;
 }
 
 .description-input::placeholder {
     font-family: 'Open Sans';
     color: #d1d1d1;
-    font-size: 19px;
+    font-size: 16px;
 }
 
 .importance-buttons {
@@ -137,14 +142,14 @@
 }
 
 .importance-buttons button {
-    height: 51px;
+    height: 42px;
     width: 136px;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 18px 10px;
     gap: 10px;
-    font-size: 19px;
+    font-size: 16px;
     background: #FFFFFF;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
     border: none;
@@ -170,38 +175,8 @@
     margin-left: 10px;
 }
 
-.importance-button1-colored {
-    height: 51px;
-    width: 136px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 18px 10px;
-    gap: 10px;
-    font-size: 19px;
-    color: white;
-    background: #ff3d00 !important;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
-    border: none;
-    border-radius: 10px;
-}
-
-.importance-button2-colored {
-    height: 51px;
-    width: 136px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 18px 10px;
-    gap: 10px;
-    font-size: 19px;
-    color: white;
-    background: #ffa800 !important;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
-    border: none;
-    border-radius: 10px;
-}
-
+.importance-button1-colored,
+.importance-button2-colored,
 .importance-button3-colored {
     height: 51px;
     width: 136px;
@@ -210,12 +185,23 @@
     align-items: center;
     padding: 18px 10px;
     gap: 10px;
-    font-size: 19px;
+    font-size: 16px;
     color: white;
-    background: #7ae228 !important;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
     border: none;
     border-radius: 10px;
+}
+
+.importance-button1-colored {
+    background: #ff3d00 !important;
+}
+
+.importance-button2-colored {
+    background: #ffa800 !important;
+}
+
+.importance-button3-colored {
+    background: #7ae228 !important;
 }
 
 .date-box,
@@ -225,7 +211,7 @@
     display: flex;
     flex-direction: column;
     width: 422px;
-    margin-bottom: 45px;
+    margin-bottom: 24px;
 }
 
 .subtask-box {
@@ -236,25 +222,27 @@
 }
 
 .description-input {
-    padding: 18px 21px;
-    height: 103px;
+    padding: 12px 21px;
+    height: 60px;
     border: 1px solid #D1D1D1;
     border-radius: 0px 10px 10px 10px;
+    outline: none;
+    font-size: 16px;
+    font-family: 'Open Sans';
 }
 
 .add-task-buttons {
-    height: 61px;
+    height: 48px;
     width: 341px;
     display: flex;
     justify-content: space-between;
-    right: 45px;
-    bottom: -68vh;
-    margin-bottom: 36px;
+    margin-top: -24px;
+    margin-bottom: 24px;
 }
 
 .clear-task-btn {
     width: 136px;
-    height: 61px;
+    height: 48px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -279,7 +267,7 @@
 
 .clear-task-btn span {
     font-family: 'Open Sans';
-    font-size: 23px;
+    font-size: 18px;
     color: #647188;
 }
 
@@ -291,7 +279,7 @@
 
 .create-task-btn {
     width: 180px;
-    height: 61px;
+    height: 48px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -312,7 +300,7 @@
 
 .create-task-btn span {
     font-family: 'Open Sans';
-    font-size: 23px;
+    font-size: 18px;
     color: white;
 }
 
@@ -326,6 +314,4 @@
     display: flex;
     justify-content: flex-end;
     margin-right: 48px;
-    position: fixed;
-    bottom: 0;
 }
