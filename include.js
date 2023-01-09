@@ -1,3 +1,7 @@
+async function init() {
+  await includeHTML();
+}
+
 async function includeHTML() {
   let includeElements = document.querySelectorAll("[w3-include-html]");
   for (let i = 0; i < includeElements.length; i++) {
