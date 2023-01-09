@@ -1,0 +1,45 @@
+.tablet-sidebar {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    border-top: 1px solid lightgray;
+    z-index: 20;
+}
+
+@media (width <=1024px) {
+    .board {
+        width: 54vw;
+    }
+    .sidebar-bottom {
+        display: none !important;
+    }
+    .sidebar-top {
+        flex-direction: inherit !important;
+        align-items: baseline !important;
+        height: 64px !important;
+        padding-top: 13px !important;
+        width: 90% !important;
+        caret-color: transparent;
+    }
+    .sidebar-top a {
+        text-decoration: unset;
+    }
+    .sidebar-top button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+        border: none;
+    }
+    .sidebar span {
+        padding-top: 5px;
+    }
+    .board-main {
+        flex-direction: column;
+    }
+}

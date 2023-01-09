@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,234 +15,247 @@
     <script src="../help/help.js"></script>
     <script src="board.js"></script>
     <script src="../include.js"></script>
-    
+    <script src="../main.js"></script>
+
+
     <title>Board</title>
-  </head>
+</head>
 
-  <body onload="init()" onresize="checkSize()">
+<body onload="init()" onresize="checkSize()">
 
-    <div id="add_task"  class="add-task-popup d-none">
-   
+    <div id="add_task" class="add-task-popup d-none">
+
     </div>
     <div id="popup" onclick="popup()" class="popup d-none"></div>
     <div id="popup_card" class="popup-card d-none">
-      <div class="card-head">
-        <span class="responsible" onclick="addTask()" class="pointer">Sales</span>
-        <div class="close" onclick="popup()">
-          <img src="img-board/line.png" class="close-img">
-          <img src="img-board/line.png" >
+        <div class="card-head">
+            <span class="responsible" onclick="addTask()" class="pointer">Sales</span>
+            <div class="close" onclick="popup()">
+                <img src="img-board/line.png" class="close-img">
+                <img src="img-board/line.png">
+            </div>
         </div>
-      </div>
-      <div class="popup-card-title"><h1 class="popup-title font">Call pontencial clients </h1></div>
-      <div class="card-content-popup">
-        <p class="popup-text font">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-          Ipsam...
-        </p>
-      <div class="date-box-popup">
-        <p class="due-date">Due date:</p><p id="date">16-01-2023</p>
-      </div>
-      <div class="priority-box">
-        <p class="priority">Priority:</p><p id="priority"> urgent</p>
-      </div>
-      <div class="assigned">
-        <p class="assigned-to">Assigned To:</p>
-        <div id="assigned_contacts">
-          <div id="contact0">
-            <p id="popup_name_logo">DE</p><p id="popup_name">David Eisenberger</p>
-          </div>
-          <div id="contact1">
-            <p id="popup_name_logo">DE</p><p class="popup_name">David Eisenberger</p>
-          </div>
-          <div id="contact2">
-            <p id="popup_name_logo">DE</p><p class="popup_name">David Eisenberger</p>
-          </div>
+        <div class="popup-card-title">
+            <h1 class="popup-title font">Call pontencial clients </h1>
         </div>
-      </div>
-      <div class="edit-box">
-        <img src="img-board/edit-button.png" class="pointer ">
-      </div>
-    </div> 
+        <div class="card-content-popup">
+            <p class="popup-text font">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam...
+            </p>
+            <div class="date-box-popup">
+                <p class="due-date">Due date:</p>
+                <p id="date">16-01-2023</p>
+            </div>
+            <div class="priority-box">
+                <p class="priority">Priority:</p>
+                <p id="priority"> urgent</p>
+            </div>
+            <div class="assigned">
+                <p class="assigned-to">Assigned To:</p>
+                <div id="assigned_contacts">
+                    <div id="contact0">
+                        <p id="popup_name_logo">DE</p>
+                        <p id="popup_name">David Eisenberger</p>
+                    </div>
+                    <div id="contact1">
+                        <p id="popup_name_logo">DE</p>
+                        <p class="popup_name">David Eisenberger</p>
+                    </div>
+                    <div id="contact2">
+                        <p id="popup_name_logo">DE</p>
+                        <p class="popup_name">David Eisenberger</p>
+                    </div>
+                </div>
+            </div>
+            <div class="edit-box">
+                <img src="img-board/edit-button.png" class="pointer ">
+            </div>
+        </div>
 
     </div>
     <header>
-      <header w3-include-html="../templates/header.html"></header>
+        <header w3-include-html="../templates/header.html"></header>
     </header>
-     <div w3-include-html="../templates/sidebar.html"></div>
-     
-     <div class="board">
+    <div w3-include-html="../templates/sidebar.html"></div>
+
+    <div class="board">
         <div class="board-top">
-          <div class="inpbox">
-            <input class="inp-top pointer" type="text" name="" id="inp-board" placeholder="Find Task"/>
-            <img id="search" src="img-board/search.png" class="pointer" />
-          </div>
-          <button class="btn-top pointer" onclick="addTask()" id="btn-board-top font" >Add task +</button>
+            <div class="inpbox">
+                <input class="inp-top pointer" type="text" name="" id="inp-board" placeholder="Find Task" />
+                <img id="search" src="img-board/search.png" class="pointer" />
+            </div>
+            <button class="btn-top pointer" onclick="addTask()" id="btn-board-top font">Add task +</button>
         </div>
 
         <div class="board-main">
 
-          <div class="for-tablet">
+            <div class="for-tablet">
 
-            <div class="todo">
-              <div class="head">
-                <h2 class="font">To do</h2>
-                <img src="img-board/plus-button.png"  onclick="addTask()" class="pointer"/>
-              </div>
-              <div class="todobox">
-                <div class="choice todo-content" id="todo-board">
-  
-                  <div draggable="true" class="card" id="card" onclick="popup()">
-                    <div class="card-head">
-                      <img src="img-board/backoffice.png" class="pointer" />
+                <div class="todo">
+                    <div class="head">
+                        <h2 class="font">To do</h2>
+                        <img src="img-board/plus-button.png" onclick="addTask()" class="pointer" />
                     </div>
-                    <div class="card-title"><h1 class="title-text font">Überschrieft Test Test</h1></div>
-                    <div class="card-content">
-                      <p class="inter gray">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                        Ipsam...
-                      </p>
-                    </div>
-  
-                  <div class="pogress-box">
-                    <div class="pogressbar">
-                      <div class="pogress" id="pogress-nr"></div>
-                    </div>
-                    <p class="done" id="done_status font">1/3 Done</p>
-                  </div>
-  
-                    <div class="card-footer">
-                      <div class="card-invite">
-                        <p class="claus invate font">CV</p>
-                        <p class="peter invate font">PW</p>
-                        <p class="nina invate font">NS</p>
-                      </div>
-  
-  
-                      <button class="btn-footer">
+                    <div class="todobox">
+                        <div class="choice todo-content" id="todo-board">
+
+                            <div draggable="true" class="card" id="card" onclick="popup()">
+                                <div class="card-head">
+                                    <img src="img-board/backoffice.png" class="pointer" />
+                                </div>
+                                <div class="card-title">
+                                    <h1 class="title-text font">Überschrieft Test Test</h1>
+                                </div>
+                                <div class="card-content">
+                                    <p class="inter gray">
+                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam...
+                                    </p>
+                                </div>
+
+                                <div class="pogress-box">
+                                    <div class="pogressbar">
+                                        <div class="pogress" id="pogress-nr"></div>
+                                    </div>
+                                    <p class="done" id="done_status font">1/3 Done</p>
+                                </div>
+
+                                <div class="card-footer">
+                                    <div class="card-invite">
+                                        <p class="claus invate font">CV</p>
+                                        <p class="peter invate font">PW</p>
+                                        <p class="nina invate font">NS</p>
+                                    </div>
+
+
+                                    <button class="btn-footer">
                         <img class="img-position" src="img-board/footer-button-green.png">
                         <img src="img-board/footer-button-green.png">
                       </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
-            </div>
-  
-            <div class="in-pogress">
-              <div class="head">
-                <h2 class="font""">In pogress</h2>
-                <img src="img-board/plus-button.png" onclick="addTask()" class="pointer" />
-              </div>
-              <div class="pogressbox">
-                <div class="choice pogress-content" id="pogress-board">
-                  <div draggable="true" class="card" onclick="popup()">
-                    <div class="card-head">
-                      <img src="img-board/backoffice.png" alt="" />
-                    </div>
-                    <div class="card-title"><h1 class="title-text font">Überschrieft Test Test</h1></div>
-                    <div class="card-content">
-                      <p class="font">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                        Ipsam...
-                    </div>
-                    <div class="card-footer">
-                      <div class="card-invite">
-                        <p class="claus invate font">CV</p>
-                        <p class="peter invate font">PW</p>
-                        <p class="nina invate font">NS</p>
-                      </div>
-  
-                      <button class="btn-footer">
-                        <img src="img-board/footer-button-green.png" /><img
-                          src="img-board/footer-button-green.png"
-                        />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <div class="for-tablet">
+                <div class="in-pogress">
+                    <div class="head">
+                        <h2 class="font" "">In pogress</h2>
+                        <img src="img-board/plus-button.png" onclick="addTask()" class="pointer" />
+                    </div>
+                    <div class="pogressbox">
+                        <div class="choice pogress-content" id="pogress-board">
+                            <div draggable="true" class="card" onclick="popup()">
+                                <div class="card-head">
+                                    <img src="img-board/backoffice.png" alt="" />
+                                </div>
+                                <div class="card-title">
+                                    <h1 class="title-text font">Überschrieft Test Test</h1>
+                                </div>
+                                <div class="card-content">
+                                    <p class="font">
+                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam...
+                                </div>
+                                <div class="card-footer">
+                                    <div class="card-invite">
+                                        <p class="claus invate font">CV</p>
+                                        <p class="peter invate font">PW</p>
+                                        <p class="nina invate font">NS</p>
+                                    </div>
 
-            <div class="await-feedback">
-              <div class="head">
-                <h2 class="font">Await feedback</h2>
-                <img src="img-board/plus-button.png" onclick="addTask()" class="pointer" />
-              </div>
-  
-              <div class="feedbackbox">
-                <div class="choice await-feedback-content" id="feedback-board">
-                  <div draggable="true" class="card"  onclick="popup()">
-                    <div class="card-head">
-                      <img src="img-board/backoffice.png" alt="" />
-                    </div>
-                    <div class="card-title"><h1 class="title-text font">Überschrieft Test Test</h1></div>
-                    <div class="card-content">
-                      <p class="font">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                        Ipsam eni...
-                      </p>
-                    </div>
-                    <div class="card-footer">
-                      <div class="card-invite">
-                        <p class="claus invate font">CV</p>
-                        <p class="peter invate font">PW</p>
-                        <p class="nina invate font">NS</p>
-                      </div>
-  
-                      <button class="btn-footer">
+                                    <button class="btn-footer">
                         <img src="img-board/footer-button-green.png" /><img
                           src="img-board/footer-button-green.png"
                         />
                       </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
-  
-            <div class="done">
-              <div class="head">
-                <h2 class="font">Done</h2>
-                <img src="img-board/plus-button.png" onclick="addTask()" class="pointer" />
-              </div>
-  
-              <div class="donebox">
-                <div class=" choice done-content" id="done-board">
-                  <div draggable="true" class="card"  onclick="popup()">
-                    <div class="card-head">
-                      <img src="img-board/backoffice.png" alt="" />
+
+            <div class="for-tablet">
+
+                <div class="await-feedback">
+                    <div class="head">
+                        <h2 class="font">Await feedback</h2>
+                        <img src="img-board/plus-button.png" onclick="addTask()" class="pointer" />
                     </div>
-                    <div class="card-title"><h1 class="title-text font">Überschrieft Test Test</h1></div>
-                    <div class="card-content">
-                      <p class="font">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                        Ipsams...
-                      </p>
-                    </div>
-                    <div class="card-footer">
-                      <div class="card-invite">
-                        <p class="claus invate">CV</p>
-                        <p class="peter invate">PW</p>
-                        <p class="nina invate">NS</p>
-                      </div>
-  
-                      <button class="btn-footer">
+
+                    <div class="feedbackbox">
+                        <div class="choice await-feedback-content" id="feedback-board">
+                            <div draggable="true" class="card" onclick="popup()">
+                                <div class="card-head">
+                                    <img src="img-board/backoffice.png" alt="" />
+                                </div>
+                                <div class="card-title">
+                                    <h1 class="title-text font">Überschrieft Test Test</h1>
+                                </div>
+                                <div class="card-content">
+                                    <p class="font">
+                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam eni...
+                                    </p>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="card-invite">
+                                        <p class="claus invate font">CV</p>
+                                        <p class="peter invate font">PW</p>
+                                        <p class="nina invate font">NS</p>
+                                    </div>
+
+                                    <button class="btn-footer">
                         <img src="img-board/footer-button-green.png" /><img
                           src="img-board/footer-button-green.png"
                         />
                       </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
+
+                <div class="done">
+                    <div class="head">
+                        <h2 class="font">Done</h2>
+                        <img src="img-board/plus-button.png" onclick="addTask()" class="pointer" />
+                    </div>
+
+                    <div class="donebox">
+                        <div class=" choice done-content" id="done-board">
+                            <div draggable="true" class="card" onclick="popup()">
+                                <div class="card-head">
+                                    <img src="img-board/backoffice.png" alt="" />
+                                </div>
+                                <div class="card-title">
+                                    <h1 class="title-text font">Überschrieft Test Test</h1>
+                                </div>
+                                <div class="card-content">
+                                    <p class="font">
+                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsams...
+                                    </p>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="card-invite">
+                                        <p class="claus invate">CV</p>
+                                        <p class="peter invate">PW</p>
+                                        <p class="nina invate">NS</p>
+                                    </div>
+
+                                    <button class="btn-footer">
+                        <img src="img-board/footer-button-green.png" /><img
+                          src="img-board/footer-button-green.png"
+                        />
+                      </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          </div>
-      </div>
+        </div>
+    </div>
     </div>
     <script src="dragAndDrop.js"></script>
-  </body>
+</body>
+
 </html>
