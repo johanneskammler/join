@@ -42,10 +42,14 @@ function emptyImportanceButton3() {
 
 
 function openContactsToSelect() {
-    document.getElementById('contacts-drop-down').classList.remove('d-none');
+    document.getElementById('categories-drop-down').classList.add('d-none');
+    var element = document.getElementById('contacts-drop-down');
+    element.classList.toggle('d-none');
 }
 
 
 function openCategoriesToSelect() {
-    document.getElementById('categories-drop-down').classList.remove('d-none');
+    document.getElementById('contacts-drop-down').classList.add('d-none');
+    var element = document.getElementById('categories-drop-down');
+    element.classList.toggle('d-none');
 }
