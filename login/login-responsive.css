@@ -1,0 +1,143 @@
+
+
+
+
+
+
+
+
+
+
+
+
+/* -Animation auf index.html überprüfen in responsive  */
+
+
+
+
+
+
+
+
+@media (width <= 1024px) {
+  @keyframes slide-tl-blue {
+    0% {
+      -webkit-transform: translateY(0) translateX(0);
+      transform: translateY(0) translateX(0);
+      height: 400px;
+      width: 320px;
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateY(-44.5vh) translateX(-43vw);
+      transform: translateY(calc(-58vh + 141px)) translateX(calc(-55vw + 126px));
+      height: 100px;
+      width: 82px;
+      opacity: 1;
+    }
+  }
+
+  .login-screen {
+    margin-top: 7%;
+  }
+
+  .sign-up {
+    top: auto;
+    right: auto;
+    bottom: 4.5vh;
+    width: 315px;
+    height: 48px;
+  }
+}
+
+@media (width <= 768px) {
+  .remember-me {
+    margin-top: 0;
+  }
+
+  .underline {
+    width: 88px;
+  }
+
+  .pw-recovery {
+    flex-direction: column-reverse;
+    gap: 0;
+    margin-top: 40px;
+    margin-inline-start: -35px;
+  }
+
+  .login-screen {
+    transform: scale(0.8);
+    height: 560px;
+  }
+
+  .login-btn {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    width: 197px;
+    height: 16vh;
+  }
+  #login-btn {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 197px;
+    height: 48px;
+  }
+}
+
+@media (width <= 500px) {
+  #email,
+  #pw {
+    width: 86vw;
+  }
+
+  .pw-recovery {
+    width: 110vw;
+    margin-inline-start: 13vw;
+  }
+
+  .login-screen {
+    width: 110vw;
+  }
+  .sign-up {
+    transform: scale(0.8);
+    width: 82vw;
+  }
+
+  .sign-up p,
+  .sign-up button {
+    font-size: 20px;
+    font-family: inherit;
+  }
+
+  .login-user,
+  .login-guest {
+    font-family: "Open Sans" !important;
+    font-size: 20px;
+  }
+
+  @keyframes slide-tl-white {
+    0% {
+      -webkit-transform: translateY(0) translateX(0);
+      transform: translateY(0) translateX(0);
+      height: 122px;
+      width: 100px;
+      opacity: 1;
+    }
+  }
+
+
+@keyframes slide-tl-blue {
+    100% {
+      -webkit-transform: translateY(-44.5vh) translateX(-43vw);
+      transform: translateY(calc(-60vh + 141px)) translateX(calc(-69vw + 126px));
+      height: 78px;
+      width: 64px;
+      opacity: 1;
+  }
+    
+}
