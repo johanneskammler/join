@@ -1,15 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
 /* -Animation auf index.html überprüfen in responsive  */
 
 
@@ -19,7 +7,7 @@
 
 
 
-@media (width <= 1024px) {
+@media (width <=1024px) {
   @keyframes slide-tl-blue {
     0% {
       -webkit-transform: translateY(0) translateX(0);
@@ -28,6 +16,7 @@
       width: 320px;
       opacity: 0;
     }
+
     100% {
       -webkit-transform: translateY(-44.5vh) translateX(-43vw);
       transform: translateY(calc(-58vh + 141px)) translateX(calc(-55vw + 126px));
@@ -50,7 +39,7 @@
   }
 }
 
-@media (width <= 768px) {
+@media (width <=768px) {
   .remember-me {
     margin-top: 0;
   }
@@ -77,8 +66,10 @@
     flex-direction: column;
     align-items: center;
     width: 197px;
-    height: 16vh;
+    height: 14vh;
+    margin-top: 24px;
   }
+
   #login-btn {
     display: flex;
     justify-content: center;
@@ -87,9 +78,14 @@
     width: 197px;
     height: 48px;
   }
+
+  .sign-up {
+    bottom: 8.5vh;
+  }
 }
 
-@media (width <= 500px) {
+@media (width <=500px) {
+
   #email,
   #pw {
     width: 86vw;
@@ -103,6 +99,7 @@
   .login-screen {
     width: 110vw;
   }
+
   .sign-up {
     transform: scale(0.8);
     width: 82vw;
@@ -131,13 +128,19 @@
   }
 
 
-@keyframes slide-tl-blue {
+  @keyframes slide-tl-blue {
     100% {
       -webkit-transform: translateY(-44.5vh) translateX(-43vw);
       transform: translateY(calc(-60vh + 141px)) translateX(calc(-69vw + 126px));
       height: 78px;
       width: 64px;
       opacity: 1;
+    }
   }
-    
+}
+
+@media(width <= 340px) {
+  .sign-up {
+    width: 95vw;
+  }
 }
