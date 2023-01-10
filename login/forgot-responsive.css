@@ -1,0 +1,96 @@
+@media (width <=1200px) {
+    .sign-up-logo {
+        top: 28px;
+        left: 44px;
+    }
+}
+
+
+
+
+@media (width <=1024px) {
+    .sign-up-logo {
+        height: 100px;
+        width: 82px;
+        top: 22px;
+        left: 34px;
+    }
+}
+
+@media (width <=810px) {
+    .forgot-box {
+        transform: scale(0.8);
+    }
+
+    .back-arrow {
+        left: 5%;
+        top: 5%;
+        height: 18px;
+    }
+
+    /* .forgot-box {
+        width: 94vw !important;
+    }
+
+    .forgot-text {
+        width: 63vw;
+        font-size: 21px;
+    } */
+
+    .login-screen-no-animation h1 {
+        padding: 0 72px;
+        font-size: 40px;
+    }
+}
+
+@media (width <=768px) {
+    .underline {
+        width: 88px;
+    }
+}
+
+@media (width <=500px) {
+    .forgot-box {
+        width: 117vw !important;
+        height: 58vh !important;
+    }
+
+    .forgot-text {
+        font-size: 19px;
+        width: 85vw;
+    }
+
+    #email {
+        width: 75vw;
+    }
+}
+
+@media (width <=363px) {
+    .forgot-box {
+        height: 55vh !important;
+    }
+
+    .login-screen-no-animation h1 {
+        font-size: 30px;
+        line-height: 46px;
+    }
+}
+
+@media (width <=310px) {
+    .forgot-box {
+        height: 57vh !important;
+    }
+
+    .login-screen-no-animation h1 {
+        padding: 0;
+    }
+
+    .correct-btn {
+        margin-left: 24px !important;
+        width: 222px !important;
+    }
+
+    .sign-up-btn {
+        font-size: 18px;
+    }
+}
