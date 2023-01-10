@@ -20,13 +20,13 @@ body {
 h1 {
     color: #4589ff;
     font-size: 61px;
-    margin-bottom: -8px;
+    margin-bottom: 8px;
 }
 
 h2 {
     color: #005DFF;
     font-size: 33px;
-    margin-bottom: -10px;
+    margin-bottom: 0;
 }
 
 p {
@@ -50,17 +50,15 @@ p {
 
 .list-item {
     display: flex;
-    align-items: center;
-    height: 90px;
+    align-items: unset;
 }
 
 h3 {
     color:#005DFF;
     font-size: 33px;
+    margin-top: 10px;
 }
 
 .list-item p {
     margin-left: 24px;
-    max-width: 55vw;
-    margin-block-start: 50px;
 }
