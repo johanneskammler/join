@@ -1,10 +1,20 @@
 @media(max-width: 1024px) {
     header {
-        background-color: green;;
+        background-color: white;
+    }
+
+    .main-logo {
+        content: url(../templates/img/logo_blue.png);
     }
     
-    .profile-box {
+    #help-section-btn,
+    .profile-picture {
         display: none;
+    }
+
+    header span {
+        color: #4589ff;
+        margin-top: 24px;
     }
     
     .add-task-content {
@@ -22,5 +32,60 @@
         top: 24px;
         right: 24px;
         z-index: 2;
+    }
+}
+
+@media (max-width: 700px) {
+    header span {
+        font-size: 16px;
+    }
+
+    .header-right {
+        justify-content: center;
+        margin-right: 16px;
+    }
+}
+
+@media(max-width: 600px) {
+    header span {
+        color: #4589ff;
+        margin-top: 24px;
+        position: absolute;
+        top: 85px;
+        left: 20%;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        z-index: -1;
+    }
+
+    .create-task-btn {
+        position: absolute !important;
+        top: -112px !important;
+        right: 12px !important;
+    }
+
+    .add-task-content {
+        transform: scaleX(0.9);
+        margin-top: 138px;
+    }
+}
+
+@media (max-width: 400px) {
+    .create-task-btn {
+        position: absolute !important;
+        top: -175px !important;
+        right: -16px !important;
+    }
+
+    .add-task-content {
+        transform: scale(0.8);
+        margin-top: 100px;
+    }
+
+    header span {
+        margin-top: 36px;
     }
 }
