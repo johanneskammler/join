@@ -4,7 +4,7 @@
   }
 
   .login-screen-no-animation {
-    width: 60vw;
+    width: 57vw;
   }
 
   .startpage-logo {
@@ -38,7 +38,7 @@
 @media (width <= 900px) {
   #email,
   #pw {
-    width: 47vw;
+    width: 46vw;
   }
 
   form {
@@ -47,6 +47,17 @@
 }
 
 @media (width <=768px) {
+  #user::placeholder {
+    font-size: 16px;
+  }
+
+  .startpage-logo {
+    width: 60px;
+    height: 80px;
+    top: -8vh;
+    left: -6vw;
+  }
+
   .remember-me {
     margin-top: 0;
   }
@@ -55,12 +66,32 @@
     width: 88px;
   }
 
+  form {
+    margin-top: -10px;
+  }
+  #email,
+  #pw {
+    width: 66vw;
+  }
+
   .pw-recovery {
     flex-direction: column-reverse;
     gap: 0;
     margin-top: 40px;
-    margin-inline-start: -35px;
+    margin-inline-start: -25vw;
     width: 47vw;
+  }
+
+  .pw-recovery,
+  .remember-me {
+    font-size: 16px;
+  }
+
+  .underline {
+    width: 69px;
+    background-color: #4589ff;
+    border-radius: 3px;
+    margin-top: -13px;
   }
 
   .login-screen {
@@ -83,8 +114,16 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    width: 197px;
-    height: 48px;
+    width: 56vw;
+    height: 6vh;
+    font-size: 16px;
+  }
+
+  #guest-btn {
+    width: 56vw;
+    height: 6vh;
+    font-size: 16px;
+    justify-content: center;
   }
 
   .sign-up {
@@ -92,6 +131,34 @@
   }
 
   .login-screen-no-animation {
-    height: 61vh;
+    height: 67vh;
+    width: 84vw;
+    margin-block-end: -17px;
+  }
+
+  .login-screen-no-animation h1 {
+    font-size: 40px;
+    line-height: inherit;
+  }
+}
+
+@media (width <= 490px) {
+  .startpage-logo {
+    width: 60px;
+    height: 80px;
+    top: -8vh;
+    left: -11vw;
+  }
+  .sign-up-no-animation {
+    transform: scale(0.7);
+  }
+}
+
+@media (width <= 490px) {
+  .startpage-logo {
+    width: 60px;
+    height: 80px;
+    top: -8vh;
+    left: -17vw;
   }
 }

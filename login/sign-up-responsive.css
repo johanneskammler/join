@@ -21,6 +21,17 @@
 }
 
 @media (width <= 768px) {
+  .sign-up-logo {
+    width: 60px;
+    height: 80px;
+  }
+
+  .login-screen-no-animation {
+    width: 86vw;
+    height: 64vh;
+    margin-block-start: 5vh;
+  }
+
   .logos-sign-up {
     width: 100%;
   }
@@ -39,6 +50,12 @@
   #email,
   #pw {
     width: 50vw;
+  }
+
+  #user::placeholder,
+  #email::placeholder,
+  #pw::placeholder {
+    font-size: 16px;
   }
 
   .underline {
