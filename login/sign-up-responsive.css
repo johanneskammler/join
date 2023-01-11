@@ -1,0 +1,61 @@
+@media (width <= 1200px) {
+  .sign-up-logo {
+    width: 80px;
+    height: 100px;
+    position: absolute;
+    top: 13px;
+    left: 39px;
+  }
+}
+
+@media (width <= 1024px) {
+  .login-screen-no-animation {
+    width: 63vw;
+  }
+
+  #user,
+  #email,
+  #pw {
+    width: 40vw;
+  }
+}
+
+@media (width <= 768px) {
+  .logos-sign-up {
+    width: 100%;
+  }
+
+  .login-screen-no-animation {
+    width: 92vw;
+    height: 64vh;
+    margin-block-start: 15vh;
+  }
+
+  form {
+    width: 43vw;
+  }
+
+  #user,
+  #email,
+  #pw {
+    width: 50vw;
+  }
+
+  .underline {
+    width: 20vw;
+  }
+
+  .login-btn {
+    width: 46vw;
+    height: 21vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 0;
+  }
+
+  .sign-up-btn {
+    margin-top: 0;
+    margin-left: 0;
+  }
+}
