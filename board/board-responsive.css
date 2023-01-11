@@ -132,7 +132,7 @@
   }
 
   .board-main {
-    gap: 10px;
+    gap: 0px;
   }
 }
 
@@ -146,11 +146,35 @@
 }
 
 @media (width <= 1280px) {
+  .card {
+    width: 16.4vw;
+  }
+
   .todo-content,
   .pogress-content,
   .await-feedback-content,
   .done-content {
     height: 55.3vh;
+    width: calc(17.5vw - 8px);
+  }
+
+  .todo-content {
+    width: 19vw;
+  }
+  .sidebar {
+    width: 14vw !important;
+  }
+
+  .board {
+    margin-left: 20.4vw;
+  }
+
+  .board-main {
+    gap: 15px;
+  }
+
+  .for-tablet {
+    gap: 15px;
   }
 
   .popup-card-title {
@@ -190,13 +214,41 @@
 
 @media (width <= 1240px) {
   .sidebar {
-    width: 17vw !important;
+    width: 13.5vw !important;
+  }
+
+  .board {
+    margin-left: 19.4vw;
+  }
+
+  .head {
+    width: 18.5vw;
   }
 }
 
 @media (width <= 1024px) {
+  body {
+    height: 134vh;
+  }
+
   .board {
+    width: 98vw;
+    margin-left: 0;
+    width: 98vw;
+    align-items: center;
+  }
+
+  .board-top {
     width: 54vw;
+  }
+
+  .btn-top {
+    display: none;
+  }
+
+  .inpbox {
+    margin-left: 0;
+    width: 31vw;
   }
 
   .sidebar-bottom {
@@ -228,8 +280,8 @@
     padding-top: 5px;
   }
 
-  .board-main {
-    flex-direction: column;
+  .head {
+    width: 23.5vw;
   }
 
   .inpbox {
@@ -245,7 +297,6 @@
 
   .for-tablet {
     gap: 8vw;
-    margin-bottom: -96px;
   }
 
   .card {
@@ -255,6 +306,7 @@
   .board-main {
     display: flex;
     align-items: center;
+    flex-direction: column;
   }
 
   .head {

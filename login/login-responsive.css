@@ -1,23 +1,4 @@
-
-
-
-
-
-
-
-
-
-
-
-
 /* -Animation auf index.html überprüfen in responsive  */
-
-
-
-
-
-
-
 
 @media (width <= 1024px) {
   @keyframes slide-tl-blue {
@@ -130,14 +111,13 @@
     }
   }
 
-
-@keyframes slide-tl-blue {
+  @keyframes slide-tl-blue {
     100% {
       -webkit-transform: translateY(-44.5vh) translateX(-43vw);
       transform: translateY(calc(-60vh + 141px)) translateX(calc(-69vw + 126px));
       height: 78px;
       width: 64px;
       opacity: 1;
+    }
   }
-    
 }
