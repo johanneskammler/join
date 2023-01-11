@@ -1,3 +1,10 @@
+.kanban {
+  margin-top: -12vh;
+  width: 45%;
+  text-align: justify;
+  display: none;
+}
+
 .hide-overflow-y {
   overflow-y: hidden;
 }
@@ -158,7 +165,7 @@
   position: relative;
 }
 
-.done {
+.done-p {
   font-family: "Inter";
 }
 

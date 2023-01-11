@@ -317,15 +317,123 @@
   .head h2 {
     padding-inline-start: 0;
   }
+
+  .todobox,
+  .pogressbox,
+  .feedbackbox,
+  .donebox {
+    width: 27vw;
+  }
+
+  .for-tablet {
+    width: 160%;
+    margin-left: 5%;
+    justify-content: center;
+  }
+
+  .card {
+    width: 28vw;
+  }
 }
 
-@media (height <= 680px) {
-  .board {
-    height: 77vh;
+@media (width <= 850px) {
+  /*   .todobox,
+  .pogressbox,
+  .feedbackbox,
+  .donebox {
+    width: 27vw;
   }
 
-  .sidebar {
-    padding: 5px 20px !important;
-    gap: 160px !important;
+  .for-tablet {
+    width: 160%;
+    margin-left: 5%;
+    justify-content: center;
   }
+
+  .card {
+    width: 28vw;
+  } */
+}
+
+@media (height <= 767px) {
+  .kanban {
+    display: block;
+  }
+
+  .for-tablet {
+    flex-direction: column;
+    width: 80vw;
+    align-items: center;
+    margin-left: 0;
+    margin-inline-start: -17px;
+    gap: 8vh;
+  }
+
+  .board {
+    margin-top: 24.5vh;
+  }
+
+  .board-main {
+    gap: 43px;
+  }
+
+  .head h2 {
+    padding-inline-start: 0px;
+    font-size: 23px;
+  }
+
+  .card {
+    width: 42vw;
+    margin-inline-start: 27px;
+  }
+
+  .pogress-box {
+    margin-top: -20px;
+  }
+
+  .title-text {
+    font-size: 19px;
+  }
+
+  .todobox,
+  .pogressbox,
+  .feedbackbox,
+  .donebox {
+    width: 62vw;
+    display: flex;
+    justify-content: center;
+  }
+
+  .done {
+    margin-block-start: -20vw;
+  }
+
+  .in-pogress,
+  .await-feedback,
+  .done {
+    margin-top: -16vw;
+  }
+
+  .head {
+    width: 46vw;
+    margin-inline-start: 58px;
+    margin-bottom: -3px;
+  }
+
+  .board-top {
+    width: 48vw;
+    margin-bottom: 3px;
+  }
+
+  /* For all of us */
+
+  header {
+    height: 40px !important;
+  }
+
+  .main-logo {
+    width: 40px !important;
+    height: 50.3px !important;
+  }
+  /* end */
 }
