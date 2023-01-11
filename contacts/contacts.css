@@ -24,6 +24,7 @@ body {
     width: 453px;
     height: 829px;
     overflow-y: scroll;
+    box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
 }
 
 * {
@@ -47,7 +48,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 357px;
+    width: 357px
 }
 
 .contact-char {
@@ -81,6 +82,12 @@ body {
     flex-direction: column;
 }
 
+.contact:hover {
+    border-radius: 10px;
+    color: white;
+    background-color: #4589FF;
+}
+
 .contact-name {
     display: flex;
     flex-direction: row;
@@ -93,6 +100,10 @@ body {
     color: #4589FF;
 }
 
+.contact-email:hover {
+    color: white;
+}
+
 .circle {
     display: flex;
     justify-content: center;
@@ -103,4 +114,132 @@ body {
     width: 42px;
     height: 42px;
     margin-left: 25px;
+}
+
+.contact-information-container {
+    display: flex;
+}
+
+.contact-right {
+    position: absolute;
+    left: 455px;
+    width: 1190px;
+}
+
+.name-container {
+    display: flex;
+    align-items: center;
+    margin-left: 65px;
+}
+
+.circle-right {
+    font-size: 48px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height: 120px;
+    width: 120px;
+    border-radius: 100%;
+    background-color: orange;
+    margin-top: 58.7px;
+}
+
+.name {
+    margin-left: 54px;
+    margin-top: 73.7px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.name h1 {
+    font-size: 48px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.name-addTask {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.name-addTask p {
+    font-size: 16px;
+    color: #005DFF;
+}
+
+.cross {
+    margin-right: 15px;
+    height: 15px;
+    width: 15px;
+}
+
+.contact-information {
+    margin-left: 65px;
+    margin-top: 21.67px;
+}
+
+.contact-information h2 {
+    margin: 0;
+    font: 23px;
+}
+
+.info-email p,
+.info-mobil p {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.info-email span,
+.info-mobil span {
+    color: #005DFF;
+    font-size: 16px;
+    margin-top: 15px;
+}
+
+.edit-contact {
+    display: flex;
+    margin-left: 61.87px;
+    align-items: flex-start;
+    margin-top: 21.67px;
+}
+
+.edit-contact p {
+    font-size: 16px;
+    color: #2A3647;
+    margin: 0;
+}
+
+.edit-contact img {
+    height: 25.37px;
+    left: 20.85px;
+    margin-right: 6px;
+}
+
+.new-contact-btn {
+    cursor: pointer;
+    font-size: 23px;
+    color: #FFFFFF;
+    position: absolute;
+    top: 700px;
+    left: 1390px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 10px;
+    gap: 10px;
+    background: #4589FF;
+    /* Version 2/main color */
+    border: 1px solid #4589FF;
+    border-radius: 10px;
+}
+
+.btn-img {
+    width: 33px;
+    height: 29.71px;
 }
