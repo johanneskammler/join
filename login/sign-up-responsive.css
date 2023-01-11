@@ -1,10 +1,10 @@
 @media (width <= 1200px) {
   .sign-up-logo {
-    width: 80px;
-    height: 100px;
+    width: 100px;
+    height: 122px;
     position: absolute;
-    top: 13px;
-    left: 39px;
+    top: 3vh;
+    left: 4vw;
   }
 }
 
