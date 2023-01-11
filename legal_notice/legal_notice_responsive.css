@@ -1,0 +1,53 @@
+@media (max-width: 1024px) {
+    body {
+        display: flex;
+        justify-content: center;
+        margin: 0;
+    }
+    
+    .legal-notice-content {
+        margin-left: 0;
+        margin-top: 100px;
+    }
+
+    h1 {
+        color: black;
+        font-size: 47px;
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        font-size: 23px;
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 620px) {
+    #header-name,
+    #help-section-btn {
+        display: none;
+    }
+
+    .back-from-legal-notice {
+        width: 16px;
+        height: 15.5px;
+    }
+
+    h1 {
+        margin-right: 24px;
+    }
+}
+
+@media (max-width: 420px) {
+    .legal-notice-content {
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+}
+
+@media (max-width: 410px) {
+    h1 {
+        font-size: 40px;
+        margin-top: 36px;
+    }
+}

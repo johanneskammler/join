@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="../templates/header_sidebar.css">
     <link rel="stylesheet" href="../fonts/fonts.css">
     <link rel="stylesheet" href="../add_task/add_task_responsive.css">
-    <script src="../main.js"></script>
     <link rel="stylesheet" href="../templates/header-sidebar-responsive.css">
     <script src="../help/help.js"></script>
     <script src="../add_task/add_task.js"></script>
@@ -28,7 +27,8 @@
             <div style="position: relative;">
                 <div class="contacts-dropdown">
                     <p onclick="openContactsToSelect()" class="select-contacts">Select contacts to assign</p>
-                    <img onclick="openContactsToSelect()" src="../add_task/img-add_task/dropdown_blue.png" class="drop-down-arrow" id="contacts-drop-down-arrow">
+                    <img onclick="openContactsToSelect()" src="../add_task/img-add_task/dropdown_blue.png"
+                        class="drop-down-arrow" id="contacts-drop-down-arrow">
                     <div id="contacts-drop-down" class="contacts-dropdown-content d-none">
                         <div class="contacts-list-elem">You</div>
                         <div class="contacts-list-elem">Maximilian Vogel</div>
@@ -48,7 +48,8 @@
             <div style="position: relative">
                 <div class="category-dropdown">
                     <p onclick="openCategoriesToSelect()" class="select-category">Select task category</p>
-                    <img onclick="openCategoriesToSelect()" src="../add_task/img-add_task/dropdown_blue.png" class="drop-down-arrow">
+                    <img onclick="openCategoriesToSelect()" src="../add_task/img-add_task/dropdown_blue.png"
+                        class="drop-down-arrow">
                     <div id="categories-drop-down" class="categories-dropdown-content d-none">
                         <div class="categories-list-elem">New category</div>
                         <div class="categories-list-elem">Sales</div>
@@ -63,7 +64,8 @@
                 <span>Urgent</span>
                 <img src="../add_task/img-add_task/urgent.png">
             </button>
-            <button onclick="emptyImportanceButton1()" class="importance-button1-colored" id="importance-button1-colored" style="display: none;">
+            <button onclick="emptyImportanceButton1()" class="importance-button1-colored"
+                id="importance-button1-colored" style="display: none;">
                 <span>Urgent</span>
                 <img src="../add_task/img-add_task/urgent.png">
             </button>
@@ -72,7 +74,8 @@
                 <span>Medium</span>
                 <img src="../add_task/img-add_task/medium.png">
             </button>
-            <button onclick="emptyImportanceButton2()" class="importance-button2-colored" id="importance-button2-colored" style="display: none;">
+            <button onclick="emptyImportanceButton2()" class="importance-button2-colored"
+                id="importance-button2-colored" style="display: none;">
                 <span>Medium</span>
                 <img src="../add_task/img-add_task/medium.png">
             </button>
@@ -81,7 +84,8 @@
                 <span>Low</span>
                 <img src="../add_task/img-add_task/low.png">
             </button>
-            <button onclick="emptyImportanceButton3()" class="importance-button3-colored" id="importance-button3-colored" style="display: none;">
+            <button onclick="emptyImportanceButton3()" class="importance-button3-colored"
+                id="importance-button3-colored" style="display: none;">
                 <span>Low</span>
                 <img src="../add_task/img-add_task/low.png">
             </button>
@@ -89,7 +93,8 @@
 
         <div class="description-box">
             <span class="description-text">Description</span>
-            <textarea name="description" id="description-input" class="description-input" cols="30" rows="10" placeholder="Enter a description"></textarea>
+            <textarea name="description" id="description-input" class="description-input" cols="30" rows="10"
+                placeholder="Enter a description"></textarea>
         </div>
 
         <div class="subtask-box">
@@ -106,7 +111,7 @@
                     <span>Clear</span>
                     <img src="../add_task/img-add_task/x.png">
                 </button>
-                <button class="create-task-btn">
+                <button class="create-task-btn" id="create-task-btn">
                     <span id="create-task-btn-span">Create Task</span>
                     <img src="../add_task/img-add_task/check.png">
                 </button>

@@ -1,0 +1,62 @@
+@media (max-width: 1024px) {
+    body {
+        margin-left: 36px !important;
+        margin-right: 36px !important;
+    }
+
+    #header-name,
+    #help-section-btn {
+        display: block !important;
+    }
+    
+    .help-content {
+        margin-left: 0 !important;
+        margin-top: 100px !important;
+    }
+
+    h1 {
+        color: black !important;
+        font-size: 47px !important;
+        margin-bottom: 20px !important;
+    }
+
+    h2 {
+        font-size: 23px !important;
+        margin-bottom: 0 !important;
+    }
+
+    .list-item {
+        min-height: 90px;
+    }
+
+    h3 {
+        margin-bottom: 0;
+    }
+
+    p {
+        max-width: 80vw !important;
+    }
+}
+
+@media (max-width: 620px) {    
+    #header-name,
+    #help-section-btn {
+        display: none !important;
+    }
+
+    .back-from-help {
+        width: 16px !important;
+        height: 15.5px !important;
+    }
+
+    h1 {
+        margin-right: 24px !important;
+    }
+}
+
+@media (max-width: 410px) {
+    h1 {
+        font-size: 40px !important;
+        margin-top: 36px !important;
+    }
+}
