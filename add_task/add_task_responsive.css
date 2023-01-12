@@ -1,63 +1,63 @@
-@media(max-width: 1024px) {
-    header {
-        background-color: white;
-    }
+@media (max-width: 1024px) {
+  header {
+    background-color: white;
+  }
 
-    .main-logo {
-        content: url(../templates/img/logo_blue.png);
-    }
+  .main-logo {
+    content: url(../templates/img/logo_blue.png);
+  }
 
-    #help-section-btn,
-    .profile-picture {
-        display: none;
-    }
+  #help-section-btn,
+  .profile-picture {
+    display: none;
+  }
 
-    #header-name-resp {
-        color: #4589ff;
-        margin-top: -18px;
-        margin-bottom: 24px;
-    }
+  #header-name-resp {
+    color: #4589ff;
+    margin-top: -18px;
+    margin-bottom: 24px;
+  }
 
-    .add-task-content {
-        margin-left: 0;
-        display: flex;
-        align-items: center;
-    }
+  .add-task-content {
+    margin-left: 0;
+    display: flex;
+    align-items: center;
+  }
 }
 
 @media (max-width: 480px) {
-    .create-task-btn-resp {
-        top: -4vh;
-        right: 4vw;
-    }
+  .create-task-btn-resp {
+    top: -4vh;
+    right: 4vw;
+  }
 
-    .add-task-content {
-        transform: scaleX(0.9);
-        margin-top: 138px;
-    }
+  .add-task-content {
+    transform: scaleX(0.9);
+    margin-top: 138px;
+  }
 }
 
 @media (max-width: 400px) {
-    .add-task-content {
-        transform: scale(0.8);
-        margin-top: 100px;
-    }
+  .add-task-content {
+    transform: scale(0.8);
+    margin-top: 100px;
+  }
 
-    header span {
-        margin-top: 36px;
-    }
+  header span {
+    margin-top: 36px;
+  }
 
-    .create-task-btn-resp {
-        top: -22.3vh;
-        right: 0;
-    }
+  .create-task-btn-resp {
+    top: -22.3vh;
+    right: 0;
+  }
 
-    #header-name-resp {
-        margin-top: -48px;
-    }
+  #header-name-resp {
+    margin-top: -48px;
+  }
 
-    .clear-task-btn,
-    .create-task-btn {
-        display: none;
-    }
+  .clear-task-btn,
+  .create-task-btn {
+    display: none;
+  }
 }
