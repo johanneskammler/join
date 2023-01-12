@@ -150,9 +150,7 @@
     margin: 0;
     width: 0;
   }
-}
 
-@media (width <= 410px) {
   h1 {
     font-size: 40px;
     margin-top: 420px;
