@@ -19,6 +19,17 @@ function popup() {
   card.classList.toggle("d-none");
 }
 
+function closePopup() {
+  let background = document.getElementById("popup");
+  let card = document.getElementById("popup_card");
+  let list = document.getElementsByTagName("body");
+  let body = list[0];
+
+  body.classList.remove("hide-overflow-y");
+  background.classList.remove("d-none");
+  card.classList.remove("d-none");
+}
+
 function checkSize() {
   let size = window.innerWidth;
   console.log(size);
