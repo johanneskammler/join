@@ -1,5 +1,5 @@
 async function init() {
-  includeHTML();
+  await includeHTML();
   checkMainSize();
 }
 

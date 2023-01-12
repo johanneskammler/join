@@ -81,3 +81,13 @@ function signUpUser() {
     }
     return true;
 }
+
+
+function openSummaryAsUser() {
+    window.location = "../summary/summary.html";
+}
+
+
+function openSummary() {
+    window.location = "../summary/summary.html";
+}
