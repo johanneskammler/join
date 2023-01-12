@@ -47,6 +47,10 @@
 }
 
 @media (width <=768px) {
+  form {
+    width: 92vw;
+  }
+
   .remember-me {
     margin-top: 0;
   }
@@ -163,6 +167,26 @@
     100% {
       -webkit-transform: translateY(-44.5vh) translateX(-43vw);
       transform: translateY(calc(-60vh + 141px)) translateX(calc(-69vw + 126px));
+      height: 78px;
+      width: 64px;
+      opacity: 1;
+    }
+  }
+}
+
+@media (width <=500px) and (height <= 750px) {
+  .login-btn {
+    height: 17vh;
+  }
+
+  .sign-up {
+    bottom: 2vh;
+  }
+
+  @keyframes slide-tl-blue {
+    100% {
+      -webkit-transform: translateY(-44.5vh) translateX(-43vw);
+      transform: translateY(-41vh) translateX(-30vw);
       height: 78px;
       width: 64px;
       opacity: 1;
