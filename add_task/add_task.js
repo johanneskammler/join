@@ -18,16 +18,16 @@ function sidebarTabled() {
     document.getElementById("sidebar").classList.remove("sidebar");
     document.getElementById("sidebar").classList.add("tablet-sidebar");
     document.getElementById("help-section-btn").classList.add("d-none");
-    document.getElementById("create-task-btn-span").innerHTML = 'Create';
-    document.getElementById("create-task-btn").style = 'width: 113px';
+    document.getElementById("create-btn-responsive").classList.remove("d-none");
+    document.getElementById("header-name-resp").classList.remove("d-none");
 }
 
 function enableSidebar() {
     document.getElementById("sidebar").classList.add("sidebar");
     document.getElementById("sidebar").classList.remove("tablet-sidebar");
     document.getElementById("help-section-btn").classList.remove("d-none");
-    document.getElementById("create-task-btn-span").innerHTML = 'Create Task';
-    document.getElementById("create-task-btn").style = '';
+    document.getElementById("create-btn-responsive").classList.add("d-none");
+    document.getElementById("header-name-resp").classList.add("d-none");
 }
 
 

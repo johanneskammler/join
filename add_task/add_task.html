@@ -21,6 +21,8 @@
     <div w3-include-html="../templates/sidebar.html"></div>
 
     <div class="add-task-content">
+        <span id="header-name-resp" class="d-none">Kanban Project Management Tool</span>
+
         <input type="text" placeholder="Enter a title" class="title-input">
 
         <div class="contacts-box">
@@ -107,7 +109,7 @@
 
         <div class="main-buttons">
             <div class="add-task-buttons">
-                <button class="clear-task-btn">
+                <button class="clear-task-btn" id="clear-task-btn">
                     <span>Clear</span>
                     <img src="../add_task/img-add_task/x.png">
                 </button>
@@ -115,6 +117,12 @@
                     <span id="create-task-btn-span">Create Task</span>
                     <img src="../add_task/img-add_task/check.png">
                 </button>
+                <div id="create-btn-responsive" class="create-btn-responsive d-none">
+                    <button class="create-task-btn-resp" id="create-task-btn-resp">
+                        <span id="create-task-btn-span">Create</span>
+                        <img src="../add_task/img-add_task/check.png">
+                    </button>
+                </div>
             </div>
         </div>
 
