@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../summary/summary.css">
     <link rel="stylesheet" href="../templates/header_sidebar.css">
     <link rel="stylesheet" href="../fonts/fonts.css">
+    <link rel="stylesheet" href="../summary/summary_responsive.css">
+    <link rel="stylesheet" href="../templates/header-sidebar-responsive.css">
     <script src="../help/help.js"></script>
     <script src="../include.js"></script>
     <script src="../summary/summary.js"></script>
@@ -15,7 +17,7 @@
     <title>Summary</title>
 </head>
 
-<body onload="init()">
+<body onresize="checkSize()" onload="init()">
     <header w3-include-html="../templates/header.html"></header>
     <div w3-include-html="../templates/sidebar.html"></div>
     <div class="summary">
@@ -41,7 +43,7 @@
                 <div class="border-line">
                     <div class="right-container">
                         <div class="date">
-                            <time datetime="2022-01-03">Januar 3, 2022</time>
+                            <p>Januar 3, 2022</p>
                             <p>Upcoming Deadline</p>
                         </div>
 
