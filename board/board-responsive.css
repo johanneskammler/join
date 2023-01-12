@@ -223,6 +223,10 @@
     overflow-y: inherit !important;
   }
 
+  .kanban {
+    display: block;
+  }
+
   .popup-card-title {
     width: 41vw;
   }
@@ -278,7 +282,7 @@
     align-items: baseline !important;
     height: 64px !important;
     padding-top: 13px !important;
-    width: 90% !important;
+    width: 93% !important;
     caret-color: transparent;
   }
 
@@ -313,6 +317,9 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    height: 122vh;
+    gap: 0;
+    margin-inline-start: 0;
   }
 
   .head {
@@ -340,6 +347,10 @@
   .card {
     width: 28vw;
   }
+
+  .done {
+    height: 60vh;
+  }
 }
 
 @media (width <= 900px) {
@@ -364,6 +375,9 @@
   .popup {
     justify-content: end;
   }
+  .kanban {
+    width: 361px;
+  }
 
   .popup-card-title {
     width: 50vw;
@@ -375,9 +389,19 @@
     line-height: 46.2px;
     width: 68vw;
   }
+  .board-main {
+    gap: 0;
+  }
+
+  .board-top {
+    width: 364px;
+    margin-inline-start: 8px;
+    margin-bottom: -8px;
+  }
 
   .for-tablet {
     flex-direction: column;
+    gap: 0px;
   }
 
   .todobox,
@@ -395,9 +419,9 @@
     width: inherit;
   }
 
-  .board-top {
-    width: 364px;
-    margin-inline-start: 8px;
+  .board-main {
+    height: inherit;
+    margin-inline-start: inherit;
   }
 
   .inpbox {
@@ -405,12 +429,21 @@
   }
 
   .head {
-    width: 357px;
+    width: 392px;
     margin-inline-start: 0px;
+    margin-top: 3vh;
   }
 
   .card {
-    width: 332px;
+    width: 364px;
+  }
+
+  .done {
+    height: 58vh;
+  }
+
+  .in-pogress {
+    margin-top: 5vh;
   }
 }
 
@@ -431,9 +464,24 @@
     width: 68vw;
   }
 
+  .kanban {
+    font-size: 11px;
+    width: 76vw;
+    margin-inline-end: -2vw;
+  }
+
   .card {
     width: 74vw;
   }
+
+  .in-pogress {
+    margin-top: 3vh;
+  }
+
+  .done {
+    margin-top: -3vh;
+  }
+
   .todo-content,
   .pogress-content,
   .await-feedback-content,
@@ -459,11 +507,26 @@
   .popup-card-title {
     width: 76vw;
   }
+  .kanban {
+    width: 77vw;
+  }
 }
 
 @media (width <= 400px) {
   .popup {
     right: -57px;
+  }
+
+  .head {
+    margin-inline-start: 9px;
+  }
+
+  .in-pogress {
+    margin-top: 5vh;
+  }
+  .done {
+    margin-top: 1vh;
+    height: 65vh;
   }
 
   .popup-card {
@@ -507,7 +570,7 @@
   }
 }
 
-@media (width <= 767px) and (height <= 655px) {
+@media (width <= 767px) and (height <= 700px) {
   .todo-content,
   .pogress-content,
   .await-feedback-content,

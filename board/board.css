@@ -1,7 +1,12 @@
+body {
+  caret-color: transparent;
+}
+
 .kanban {
-  margin-top: -12vh;
-  width: 45%;
+  margin-top: -4vh;
+  width: 69vw;
   text-align: justify;
+  color: #4589ff;
   display: none;
 }
 
@@ -58,6 +63,7 @@
   line-height: 2.5vh;
   border: none;
   outline: none;
+  caret-color: inherit;
 }
 
 .inp-top:focus {
@@ -350,7 +356,7 @@
 
 .img-position {
   position: absolute;
-  top: 22px;
+  top: 20px;
 }
 
 .inter {
