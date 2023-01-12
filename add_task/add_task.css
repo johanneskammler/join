@@ -54,6 +54,12 @@
 
 .select-date {
     color: #d1d1d1;
+    padding-right: 16px;
+    width: 384px;
+}
+
+.select-date[type="date"]::-webkit-calendar-picker-indicator {
+    content: url(../add_task/img-add_task/calendar.png);
 }
 
 .drop-down-arrow {
