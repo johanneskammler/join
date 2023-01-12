@@ -184,6 +184,9 @@
       opacity: 1;
     }
   }
+  .login-btn {
+    height: 18vh;
+  }
 
   .sign-up {
     transform: scale(0.8);
