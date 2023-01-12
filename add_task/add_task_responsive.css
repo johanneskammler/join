@@ -26,15 +26,15 @@
 }
 
 @media (max-width: 480px) {
-    /* .create-task-btn-resp {
+    .create-task-btn-resp {
         top: -4vh;
         right: 4vw;
-    } */
+    }
 
-    /* .add-task-content {
+    .add-task-content {
         transform: scaleX(0.9);
         margin-top: 138px;
-    } */
+    }
 }
 
 @media (max-width: 400px) {
