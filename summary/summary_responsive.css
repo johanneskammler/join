@@ -47,9 +47,9 @@
     }
 
     .task-urgent {
-        width: 363px;
+        width: 50vw;
         height: 150px;
-
+        gap: 35px !important;
     }
 
     .task-urgent p {
@@ -61,7 +61,7 @@
     }
 
     .task-to-do {
-        width: 363px;
+        width: 50vw;
         height: 150px;
         padding: 28px 48px;
         gap: 35px;
@@ -104,9 +104,13 @@
         margin-bottom: 25px;
     }
 
+    .border-line {
+        width: 25vw;
+    }
+
 }
 
-@media (width <=820px) {
+@media (width <=821px) {
     .summary {
         display: flex;
         flex-direction: column;
@@ -117,6 +121,11 @@
         margin-bottom: 25px;
     }
 
+    .border-line {
+        width: 33vw;
+    }
+
+    
 
 }
 
@@ -133,61 +142,128 @@
     h1 {
         margin-right: 24px;
     }
+
+    .task-urgent p {
+        font-size: 14px;
+    }
+
+    .task-urgent time {
+        font-size: 24px;
+    }
+
+    .date {
+        margin: 0;
+        width: 0;
+    }
 }
 
 
 @media (width <= 410px) {
     h1 {
         font-size: 40px;
-        margin-top: 36px;
+        margin-top: 420px;
+        margin-left: 50px;
+    }
         
     }
 
     .summary {
         margin-left: 40px;
         margin-right: 40px;
-        margin-top: 150px;
-        margin-bottom: 150px;
+        
+       
     }
 
-    .task-urgent {
-        width: 330px;
-        height: 100px;
+    #header-name {
+        display: none;
+    }
 
+    #help-section-btn {
+        display: none;
+    }
+
+    .main {
+        margin-left: 15px;
+    }
+
+    .right-container {
+        margin-left: 35px;
+
+    }
+
+    .task-top span {
+        font-size: 36px;
+        font-weight: 400;
+        margin-left: 10px;
+    }
+
+    .task-bottom {
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    .task-top img {
+        width: 55px;
+        height: 55px;
+    }
+    .task-urgent {
+        width: 60vw;
+        height: 100px;
+        gap: 0;
     }
 
     .task-urgent p {
+        font-size: 14px;
+        font-weight: 200;
+    }
+
+
+    .task-urgent time {
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .text-span {
         font-size: 18px;
     }
 
+    .number-span {
+        font-size: 20px;
+    }
     .task-done {
         bottom: 150px;
     }
 
     .task-to-do {
-        width: 330px;
+        width: 60vw;
         height: 100px;
         padding: 28px 48px;
         gap: 35px;
     }
 
     .task-in-board {
-        width: 120px;
+        width: 25vw;
         height: 90px;
+        padding: 28px 22px;
     }
 
     .task-in-progress {
-        width: 120px;
+        width: 25vw;
         height: 90px;
+        padding: 28px 22px;
     }
 
     .awaiting-feedback {
-        width: 120px;
+        width: 25vw;
         height: 90px;
+        padding: 28px 22px;
     }
 
     .tasks-done {
-        width: 120px;
+        width: 25vw;
         height: 90px;
+        padding: 28px 22px;
     }
-}
