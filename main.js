@@ -2,9 +2,9 @@ function checkMainSize() {
   let size = window.innerWidth;
   console.log(size);
   if (size < 1024) {
-    sidebarTabled();
+    sidebarMainTabled();
   } else if (size > 1024) {
-    enableSidebar();
+    enableMainSidebar();
   }
 }
 

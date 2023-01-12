@@ -98,16 +98,16 @@
 @media (width <=500px) {
   #email,
   #pw {
-    width: 86vw;
+    width: 80vw;
   }
 
   .pw-recovery {
-    width: 110vw;
-    margin-inline-start: 13vw;
+    width: 100vw;
+    margin-inline-start: 12vw;
   }
 
   .login-screen {
-    width: 110vw;
+    width: 100vw;
   }
 
   .sign-up {
@@ -171,6 +171,23 @@
       width: 64px;
       opacity: 1;
     }
+  }
+}
+
+@media (width <= 1024px) and (height <= 750px) {
+  @keyframes slide-tl-blue {
+    100% {
+      -webkit-transform: translateY(-44.5vh) translateX(-43vw);
+      transform: translateY(calc(-61vh + 141px)) translateX(calc(-57vw + 126px));
+      height: 80px;
+      width: 62px;
+      opacity: 1;
+    }
+  }
+
+  .sign-up {
+    transform: scale(0.8);
+    bottom: 1.5vh;
   }
 }
 

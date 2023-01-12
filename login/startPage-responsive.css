@@ -165,25 +165,52 @@
     height: 16vh;
     align-items: center;
   }
+
+  .login-user {
+    width: 194px;
+  }
 }
 
-@media (width <= 490px) {
+@media (width <= 650px) {
+  #email,
+  #pw {
+    width: 67vw;
+  }
+
+  .pw-recovery {
+    width: 67vw;
+  }
+}
+
+@media (width <= 500px) {
   .startpage-logo {
-    width: 60px;
-    height: 80px;
-    top: -8vh;
-    left: -11vw;
+    width: 64px;
+    height: 78px;
+    top: -7.5vh;
+    left: -13vw;
   }
   .sign-up-no-animation {
     transform: scale(0.7);
   }
 }
 
-@media (width <= 490px) {
+@media (width <= 357px) {
   .startpage-logo {
-    width: 60px;
+    top: -56px;
+    left: -47px;
+  }
+}
+
+@media (width <= 1024px) and (height <= 750px) {
+  .startpage-logo {
+    width: 62px;
     height: 80px;
-    top: -8vh;
-    left: -17vw;
+    position: absolute;
+    top: -10vh;
+    left: -7vw;
+  }
+
+  .login-screen-no-animation {
+    margin-top: 15px;
   }
 }

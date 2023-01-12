@@ -1,97 +1,108 @@
+.tablet-sidebar {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
+  border-top: 1px solid lightgray;
+  z-index: 20;
+}
+
 .summary {
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    width: 85%;
-    margin-top: 266.5px;
-    margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 85%;
+  margin-top: 266.5px;
+  margin-left: auto;
 }
 
 .header {
-    display: flex;
-    justify-content: center;
-    color: #2A3647;
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 36px;
+  display: flex;
+  justify-content: center;
+  color: #2a3647;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
 }
 
 .color-black {
-    color: black;
+  color: black;
 }
 
 .main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0px;
-    gap: 35px;
-    flex-wrap: wrap;
-    position: inherit;
-    cursor: pointer;
- /*   width: 1170px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 35px;
+  flex-wrap: wrap;
+  position: inherit;
+  cursor: pointer;
+  /*   width: 1170px;
     height: 445px; */
-    margin-left: 135px;
+  margin-left: 135px;
 }
 
 .main-task {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .task-top {
-    display: flex;
-
+  display: flex;
 }
 
 .task-first {
-    display: flex;
+  display: flex;
 }
 
 .task-first span {
-    font-size: 48px;
-    font-weight: 700;
-    margin-left: 25px;
+  font-size: 48px;
+  font-weight: 700;
+  margin-left: 25px;
 }
 
 .task-top span {
-    font-size: 48px;
-    font-weight: 700;
-    margin-left: 25px;
+  font-size: 48px;
+  font-weight: 700;
+  margin-left: 25px;
 }
 
 .task-bottom {
-    font-size: 23px;
+  font-size: 23px;
 }
 
 .task-urgent {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 28px 48px;
-    gap: 35px;
-    width: 682px;
-    height: 191px;
-    background: #4589FF;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
-    border-radius: 30px;
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    color: white;
-    transition: all 225ms ease-in-out;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 28px 48px;
+  gap: 35px;
+  width: 682px;
+  height: 191px;
+  background: #4589ff;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+  border-radius: 30px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  color: white;
+  transition: all 225ms ease-in-out;
 }
 
 .task-urgent:hover {
-    scale: 1.1;
-    transition: all 225ms ease-in-out;
-    background: white;
-    color: #4589ff;
-    border-radius: 0 30px 30px 30px;
+  scale: 1.1;
+  transition: all 225ms ease-in-out;
+  background: white;
+  color: #4589ff;
+  border-radius: 0 30px 30px 30px;
 }
-
 
 /*
 .first-task-line {
@@ -109,188 +120,184 @@
 */
 
 .task-urgent img {
-    width: 76px;
-    height: 76px;
-    border: 1px solid white;
-    border-radius: 50%;
-    margin-bottom: 14px;
+  width: 76px;
+  height: 76px;
+  border: 1px solid white;
+  border-radius: 50%;
+  margin-bottom: 14px;
 }
 
-
 .border-line {
-    border-left: 3px solid white; 
-    width: 40%;
-    height: 145px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
+  border-left: 3px solid white;
+  width: 40%;
+  height: 145px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }
 
 .border-line:hover {
-    border-left: 3px solid #4589ff;
-    width: 40%;
-    
+  border-left: 3px solid #4589ff;
+  width: 40%;
 }
 
-
 .date {
-    font-size: 33px;
-    font-weight: 700;
-    width: 274px;
-    margin-bottom: 18px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  font-size: 33px;
+  font-weight: 700;
+  width: 274px;
+  margin-bottom: 18px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .date p {
-    font-size: 23px;
+  font-size: 23px;
 }
 
 .deadline {
-    font-size: 23px;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    margin-left: 88px;
+  font-size: 23px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-left: 88px;
 }
 
 .right-container {
-    display: flex;
+  display: flex;
 }
 .task-to-do {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 28px 28px;
-    width: 208px;
-    height: 191px;
-    background: #D2E3FF;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
-    border-radius: 30px;
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-    color: #4589ff;
-    transition: all 225ms ease-in-out;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 28px 28px;
+  width: 208px;
+  height: 191px;
+  background: #d2e3ff;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+  border-radius: 30px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  color: #4589ff;
+  transition: all 225ms ease-in-out;
 }
 
 .task-to-do:hover {
-    background: white;
-    border-radius: 0 30px 30px 30px;
-    scale: 1.1;
-    transition: all 225ms ease-in-out;
+  background: white;
+  border-radius: 0 30px 30px 30px;
+  scale: 1.1;
+  transition: all 225ms ease-in-out;
 }
 
 .task-in-board {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 28px 28px;
-    width: 208px;
-    height: 191px;
-    background: white;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
-    border-radius: 30px;
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-    color: #4589FF;
-    transition: all 225ms ease-in-out;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 28px 28px;
+  width: 208px;
+  height: 191px;
+  background: white;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+  border-radius: 30px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  color: #4589ff;
+  transition: all 225ms ease-in-out;
 }
 
 .task-in-board:hover {
-    background: #4589ff;
-    border-radius: 0 30px 30px 30px;
-    scale: 1.1;
-    transition: all 225ms ease-in-out;
-    color: white;
+  background: #4589ff;
+  border-radius: 0 30px 30px 30px;
+  scale: 1.1;
+  transition: all 225ms ease-in-out;
+  color: white;
 }
 
 .task-in-progress {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 28px 28px;
-    width: 208px;
-    height: 191px;
-    background: white;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
-    border-radius: 30px;
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-    color: #4589FF;
-    transition: all 225ms ease-in-out;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 28px 28px;
+  width: 208px;
+  height: 191px;
+  background: white;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+  border-radius: 30px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  color: #4589ff;
+  transition: all 225ms ease-in-out;
 }
 
 .task-in-progress:hover {
-    background: #4589ff;
-    border-radius: 0 30px 30px 30px;
-    scale: 1.1;
-    transition: all 225ms ease-in-out;
-    color: white;
+  background: #4589ff;
+  border-radius: 0 30px 30px 30px;
+  scale: 1.1;
+  transition: all 225ms ease-in-out;
+  color: white;
 }
 
-
 .awaiting-feedback {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 28px 28px;
-    width: 208px;
-    height: 191px;
-    background: white;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
-    border-radius: 30px;
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-    color: #4589FF;
-    transition: all 225ms ease-in-out;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 28px 28px;
+  width: 208px;
+  height: 191px;
+  background: white;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+  border-radius: 30px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  color: #4589ff;
+  transition: all 225ms ease-in-out;
 }
 
 .awaiting-feedback:hover {
-    background: #4589ff;
-    border-radius: 0 30px 30px 30px;
-    scale: 1.1;
-    transition: all 225ms ease-in-out;
-    color: white;
+  background: #4589ff;
+  border-radius: 0 30px 30px 30px;
+  scale: 1.1;
+  transition: all 225ms ease-in-out;
+  color: white;
 }
 
 .tasks-done {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 28px 28px;
-    width: 208px;
-    height: 191px;
-    background: white;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
-    border-radius: 30px;
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-    color: #4589FF;
-    transition: all 225ms ease-in-out;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 28px 28px;
+  width: 208px;
+  height: 191px;
+  background: white;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+  border-radius: 30px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  color: #4589ff;
+  transition: all 225ms ease-in-out;
 }
 
 .tasks-done:hover {
-    background: #4589ff;
-    border-radius: 0 30px 30px 30px;
-    scale: 1.1;
-    transition: all 225ms ease-in-out;
-    color: white;
+  background: #4589ff;
+  border-radius: 0 30px 30px 30px;
+  scale: 1.1;
+  transition: all 225ms ease-in-out;
+  color: white;
 }
 
 .task-top img {
-    border: 2px solid white;
-    border-radius: 50%;
+  border: 2px solid white;
+  border-radius: 50%;
 }
