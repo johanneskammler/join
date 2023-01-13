@@ -228,24 +228,31 @@ body {
 
 /* Popup Sections */
 
+.tap-to-close-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+}
+
 .popup {
   inset: 0;
-  background-color: #ffffffa1;
   position: fixed;
-  z-index: 30;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: #ffffffa1;
+  z-index: 3;
 }
 
 .popup-card {
+  width: 520px;
   caret-color: transparent;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 50px;
   background: #ffffff;
-
+  position: absolute;
+  top: 126px;
+  right: 34vw;
+  z-index: 5;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
   border-radius: 30px;
 }

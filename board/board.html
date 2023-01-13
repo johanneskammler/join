@@ -21,19 +21,19 @@
     <title>Board</title>
 </head>
 
-<body onresize="checkSize()" onload="hallo(), init()" >
+<body onresize="checkSize()" onload="init()" >
 
     <div id="add_task" class="add-task-popup d-none">
 
     </div>
 
-    
-    <div id="popup" onclick="popup()" class="popup d-none">
+  
+    <div id="popup" onclick="popup()"  class="popup d-none"></div>
     
         <div id="popup_card" class="popup-card d-none">
             <div class="card-head">
-                <span class="responsible" onclick="addTask()" class="pointer">Sales</span>
-                <div class="close" onclick="closePopup()">
+                <span class="responsible"  class="pointer">Sales</span>
+                <div class="close" onclick="popup()">
                     <img src="img-board/line.png" class="close-img">
                     <img src="img-board/line.png">
                 </div>
@@ -76,8 +76,7 @@
             </div>
     
         </div>
-    </div>
- 
+
     <header>
         <header w3-include-html="../templates/header.html"></header>
     </header>

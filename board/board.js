@@ -1,12 +1,15 @@
+/**
+ * This function Initialized some functions that need to run with onload of the body
+ *
+ */
 async function init() {
   await includeHTML();
   checkSize();
 }
 
-function hallo() {
-  console.log("Hallo");
-}
-
+/**
+ * Remove the display none from the div's and
+ */
 function popup() {
   let background = document.getElementById("popup");
   let card = document.getElementById("popup_card");
@@ -14,15 +17,16 @@ function popup() {
   let body = list[0];
 
   window.scrollTo(0, 0);
-  body.classList.toggle("hide-overflow-y");
   background.classList.toggle("d-none");
   card.classList.toggle("d-none");
+  body.classList.toggle("hide-overflow-y");
 }
 
 function closePopup() {
-  let background = document.getElementById("popup");
+  let background = document.getElementById("overlay");
   let card = document.getElementById("popup_card");
   let list = document.getElementsByTagName("body");
+
   let body = list[0];
 
   body.classList.remove("hide-overflow-y");
@@ -180,4 +184,20 @@ function closeAddTask() {
   document.getElementById("add-board").classList.remove("slide-left");
   document.getElementById("add-board").classList.add("slide-right");
   setTimeout(addTask, 350);
+}
+
+let responsAsJson;
+
+async function contactAsJson() {
+  let path = "../cards.json";
+  let respons = await fetch(path);
+  responsAsJson = await respons.json();
+}
+
+function setVariable() {
+  let object = Object.keys(responsAsJson["todo"]).length;
+  for (let i = 0; i < object; i++) {
+    const element = responsAsJson["todo"][i];
+    console.log(element);
+  }
 }
