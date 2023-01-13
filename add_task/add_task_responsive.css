@@ -1,63 +1,84 @@
-@media (max-width: 1024px) {
+@media(max-width: 1024px) {
   header {
-    background-color: white;
+      background-color: white;
   }
-
   .main-logo {
-    content: url(../templates/img/logo_blue.png);
+      content: url(../templates/img/logo_blue.png);
   }
-
   #help-section-btn,
   .profile-picture {
-    display: none;
+      display: none;
   }
-
   #header-name-resp {
-    color: #4589ff;
-    margin-top: -18px;
-    margin-bottom: 24px;
+      color: #4589FF;
+      margin-top: -18px;
+      margin-bottom: 24px;
   }
-
   .add-task-content {
-    margin-left: 0;
-    display: flex;
-    align-items: center;
+      margin-left: 0;
+      display: flex;
+      align-items: center;
   }
-}
-
-@media (max-width: 480px) {
-  .create-task-btn-resp {
-    top: -4vh;
-    right: 4vw;
-  }
-
-  .add-task-content {
-    transform: scaleX(0.9);
-    margin-top: 138px;
-  }
-}
-
-@media (max-width: 400px) {
-  .add-task-content {
-    transform: scale(0.8);
-    margin-top: 100px;
-  }
-
-  header span {
-    margin-top: 36px;
-  }
-
-  .create-task-btn-resp {
-    top: -22.3vh;
-    right: 0;
-  }
-
-  #header-name-resp {
-    margin-top: -48px;
-  }
-
   .clear-task-btn,
   .create-task-btn {
-    display: none;
+      display: none;
+  }
+}
+@media (max-width: 480px) {
+  .create-task-btn-resp {
+      top: 2.8vh;
+      right: 8vw;
+  }
+  .add-task-content {
+      margin-top: 138px;
+  }
+  .title-input {
+      width: 83%;
+  }
+  .date-box,
+  .category-box,
+  .contacts-box,
+  .description-box,
+  .subtask-box {
+      width: 88%;
+  }
+  .select-contacts,
+  .select-category,
+  .add-subtask {
+      width: 95%;
+  }
+  .select-date {
+      width: 91%;
+  }
+  .importance-buttons {
+      width: 88%;
+  }
+  .importance-buttons button {
+      width: 32%;
+  }
+}
+@media (max-width: 400px) {
+  .add-task-content {
+      margin-top: 168px;
+  }
+  header span {
+      margin-top: 36px;
+  }
+  .create-task-btn-resp {
+      top: 3vh;
+      right: 8vw;
+  }
+  #header-name-resp {
+      margin-top: -48px;
+  }
+  .clear-task-btn,
+  .create-task-btn {
+      display: none;
+  }
+  .importance-buttons button span {
+      font-size: 14px;
+  }
+  .importance-buttons button img {
+      margin-left: 0px;
   }
 }

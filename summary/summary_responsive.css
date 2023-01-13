@@ -150,109 +150,106 @@
     margin: 0;
     width: 0;
   }
-}
 
-@media (width <= 410px) {
   h1 {
     font-size: 40px;
     margin-top: 420px;
     margin-left: 50px;
   }
 
-.summary {
-  margin-left: 40px;
-  margin-right: 40px;
-}
+  .summary {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
 
-#header-name {
-  display: none;
-}
+  #header-name {
+    display: none;
+  }
 
-#help-section-btn {
-  display: none;
-}
+  #help-section-btn {
+    display: none;
+  }
 
-.main {
-  margin-left: 15px;
-}
+  .main {
+    margin-left: 15px;
+  }
 
-.right-container {
-  margin-left: 35px;
-}
+  .right-container {
+    margin-left: 35px;
+  }
 
-.task-top span {
-  font-size: 36px;
-  font-weight: 400;
-  margin-left: 10px;
-}
+  .task-top span {
+    font-size: 36px;
+    font-weight: 400;
+    margin-left: 10px;
+  }
 
-.task-bottom {
-  font-size: 18px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .task-bottom {
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.task-top img {
-  width: 55px;
-  height: 55px;
-}
-.task-urgent {
-  width: 60vw;
-  height: 100px;
-  gap: 0;
-}
+  .task-top img {
+    width: 55px;
+    height: 55px;
+  }
+  .task-urgent {
+    width: 60vw;
+    height: 100px;
+    gap: 0;
+  }
 
-.task-urgent p {
-  font-size: 14px;
-  font-weight: 200;
-}
+  .task-urgent p {
+    font-size: 14px;
+    font-weight: 200;
+  }
 
-.task-urgent time {
-  font-size: 18px;
-  font-weight: 600;
-}
+  .task-urgent time {
+    font-size: 18px;
+    font-weight: 600;
+  }
 
-.text-span {
-  font-size: 18px;
-}
+  .text-span {
+    font-size: 18px;
+  }
 
-.number-span {
-  font-size: 20px;
-}
-.task-done {
-  bottom: 150px;
-}
+  .number-span {
+    font-size: 20px;
+  }
+  .task-done {
+    bottom: 150px;
+  }
 
-.task-to-do {
-  width: 60vw;
-  height: 100px;
-  padding: 28px 48px;
-  gap: 35px;
-}
+  .task-to-do {
+    width: 60vw;
+    height: 100px;
+    padding: 28px 48px;
+    gap: 35px;
+  }
 
-.task-in-board {
-  width: 25vw;
-  height: 90px;
-  padding: 28px 22px;
-}
+  .task-in-board {
+    width: 25vw;
+    height: 90px;
+    padding: 28px 22px;
+  }
 
-.task-in-progress {
-  width: 25vw;
-  height: 90px;
-  padding: 28px 22px;
-}
+  .task-in-progress {
+    width: 25vw;
+    height: 90px;
+    padding: 28px 22px;
+  }
 
-.awaiting-feedback {
-  width: 25vw;
-  height: 90px;
-  padding: 28px 22px;
-}
+  .awaiting-feedback {
+    width: 25vw;
+    height: 90px;
+    padding: 28px 22px;
+  }
 
-.tasks-done {
-  width: 25vw;
-  height: 90px;
-  padding: 28px 22px;
-}
- 
+  .tasks-done {
+    width: 25vw;
+    height: 90px;
+    padding: 28px 22px;
+  }
 }
