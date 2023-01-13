@@ -1,4 +1,86 @@
-.tablet-sidebar {
+@media (max-width: 1800px) {
+  body {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .summary {
+    height: 80vh;
+    width: 100vw;
+  }
+
+  h1 {
+    color: black;
+    font-size: 47px;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 23px;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 1280px) {
+  .summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 100px !important;
+  }
+
+  .task-urgent {
+    width: 50vw;
+    height: 150px;
+    gap: 35px !important;
+  }
+
+  .task-urgent p {
+    font-size: 18px;
+  }
+
+  .task-done {
+    bottom: 150px;
+  }
+
+  .task-to-do {
+    width: 50vw;
+    height: 150px;
+    padding: 28px 48px;
+    gap: 35px;
+  }
+
+  .task-in-board {
+    width: 150px;
+    height: 120px;
+  }
+
+  .task-in-progress {
+    width: 150px;
+    height: 120px;
+  }
+
+  .awaiting-feedback {
+    width: 150px;
+    height: 120px;
+  }
+
+  .tasks-done {
+    width: 150px;
+    height: 120px;
+  }
+
+  .date {
+    margin-left: 65px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .tablet-sidebar {
     position: fixed;
     bottom: 0;
     right: 0;
@@ -9,185 +91,165 @@
     background-color: white;
     border-top: 1px solid lightgray;
     z-index: 20;
+  }
+
+  .summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 150px;
+    margin-top: 20vh;
+    margin-bottom: 25px;
+  }
+
+  .border-line {
+    width: 25vw;
+  }
 }
 
-@media (width <=1800px) {
-    body {
-        display: flex;
-        justify-content: center;
-        margin: 0;
-        height: 100vh;
-        width: 100vw;
-    }
+@media (width <=821px) {
+  .summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 150px;
+    margin-top: 100px;
+    margin-bottom: 25px;
+  }
 
-    .summary {
-        height: 80vh;
-        width: 100vw;
-    }
-
-    h1 {
-        color: black;
-        font-size: 47px;
-        margin-bottom: 20px;
-    }
-
-    h2 {
-        font-size: 23px;
-        margin-bottom: 0;
-    }
-}
-
-@media (width <=1280px) {
-    .summary {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-right: 100px !important;
-    }
-
-    .task-urgent {
-        width: 363px;
-        height: 150px;
-
-    }
-
-    .task-urgent p {
-        font-size: 18px;
-    }
-
-    .task-done {
-        bottom: 150px;
-    }
-
-    .task-to-do {
-        width: 363px;
-        height: 150px;
-        padding: 28px 48px;
-        gap: 35px;
-    }
-
-    .task-in-board {
-        width: 150px;
-        height: 120px;
-    }
-
-    .task-in-progress {
-        width: 150px;
-        height: 120px;
-    }
-
-    .awaiting-feedback {
-        width: 150px;
-        height: 120px;
-    }
-
-    .tasks-done {
-        width: 150px;
-        height: 120px;
-    }
-
-
-    .date {
-        margin-left: 65px;
-    }
-}
-
-@media (width <= 1024px) {
-    .summary {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-right: 150px;
-        margin-top: 100px;
-        margin-bottom: 25px;
-    }
-
-}
-
-@media (width <=820px) {
-    .summary {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-right: 150px;
-        margin-top: 100px;
-        margin-bottom: 25px;
-    }
-
-
+  .border-line {
+    width: 33vw;
+  }
 }
 
 @media (max-width: 620px) {
-    .summary {
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-        width: 100vw;
-        margin-top: 100px;
-        margin-bottom: 25px;
-    }
+  .summary {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    margin-top: 100px;
+    margin-bottom: 25px;
+  }
 
-    h1 {
-        margin-right: 24px;
-    }
-}
+  h1 {
+    margin-right: 24px;
+  }
 
+  .task-urgent p {
+    font-size: 14px;
+  }
 
-@media (width <= 410px) {
-    h1 {
-        font-size: 40px;
-        margin-top: 36px;
-        
-    }
+  .task-urgent time {
+    font-size: 24px;
+  }
 
-    .summary {
-        margin-left: 40px;
-        margin-right: 40px;
-        margin-top: 150px;
-        margin-bottom: 150px;
-    }
+  .date {
+    margin: 0;
+    width: 0;
+  }
 
-    .task-urgent {
-        width: 330px;
-        height: 100px;
+  h1 {
+    font-size: 40px;
+    margin-top: 420px;
+    margin-left: 50px;
+  }
 
-    }
+  .summary {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
 
-    .task-urgent p {
-        font-size: 18px;
-    }
+  #header-name {
+    display: none;
+  }
 
-    .task-done {
-        bottom: 150px;
-    }
+  #help-section-btn {
+    display: none;
+  }
 
-    .task-to-do {
-        width: 330px;
-        height: 100px;
-        padding: 28px 48px;
-        gap: 35px;
-    }
+  .main {
+    margin-left: 15px;
+  }
 
-    .task-in-board {
-        width: 120px;
-        height: 90px;
-    }
+  .right-container {
+    margin-left: 35px;
+  }
 
-    .task-in-progress {
-        width: 120px;
-        height: 90px;
-    }
+  .task-top span {
+    font-size: 36px;
+    font-weight: 400;
+    margin-left: 10px;
+  }
 
-    .awaiting-feedback {
-        width: 120px;
-        height: 90px;
-    }
+  .task-bottom {
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .tasks-done {
-        width: 120px;
-        height: 90px;
-    }
+  .task-top img {
+    width: 55px;
+    height: 55px;
+  }
+  .task-urgent {
+    width: 60vw;
+    height: 100px;
+    gap: 0;
+  }
+
+  .task-urgent p {
+    font-size: 14px;
+    font-weight: 200;
+  }
+
+  .task-urgent time {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .text-span {
+    font-size: 18px;
+  }
+
+  .number-span {
+    font-size: 20px;
+  }
+  .task-done {
+    bottom: 150px;
+  }
+
+  .task-to-do {
+    width: 60vw;
+    height: 100px;
+    padding: 28px 48px;
+    gap: 35px;
+  }
+
+  .task-in-board {
+    width: 25vw;
+    height: 90px;
+    padding: 28px 22px;
+  }
+
+  .task-in-progress {
+    width: 25vw;
+    height: 90px;
+    padding: 28px 22px;
+  }
+
+  .awaiting-feedback {
+    width: 25vw;
+    height: 90px;
+    padding: 28px 22px;
+  }
+
+  .tasks-done {
+    width: 25vw;
+    height: 90px;
+    padding: 28px 22px;
+  }
 }

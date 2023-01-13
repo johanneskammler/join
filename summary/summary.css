@@ -97,7 +97,8 @@
 }
 
 .task-urgent:hover {
-  scale: 1.1;
+  padding-right: 80px;
+  padding-bottom: 48px;
   transition: all 225ms ease-in-out;
   background: white;
   color: #4589ff;
@@ -189,7 +190,8 @@
 .task-to-do:hover {
   background: white;
   border-radius: 0 30px 30px 30px;
-  scale: 1.1;
+  padding-right: 56px;
+  padding-bottom: 56px;
   transition: all 225ms ease-in-out;
 }
 
@@ -214,7 +216,7 @@
 .task-in-board:hover {
   background: #4589ff;
   border-radius: 0 30px 30px 30px;
-  scale: 1.1;
+  padding-bottom: 56px;
   transition: all 225ms ease-in-out;
   color: white;
 }
@@ -240,7 +242,7 @@
 .task-in-progress:hover {
   background: #4589ff;
   border-radius: 0 30px 30px 30px;
-  scale: 1.1;
+  padding-bottom: 56px;
   transition: all 225ms ease-in-out;
   color: white;
 }
@@ -266,7 +268,7 @@
 .awaiting-feedback:hover {
   background: #4589ff;
   border-radius: 0 30px 30px 30px;
-  scale: 1.1;
+  padding-bottom: 56px;
   transition: all 225ms ease-in-out;
   color: white;
 }
@@ -292,7 +294,7 @@
 .tasks-done:hover {
   background: #4589ff;
   border-radius: 0 30px 30px 30px;
-  scale: 1.1;
+  padding-bottom: 56px;
   transition: all 225ms ease-in-out;
   color: white;
 }
