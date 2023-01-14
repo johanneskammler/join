@@ -1,7 +1,7 @@
 let task_cards = [];
 const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const d = new Date();
-setURL("http://gruppe-417.developerakademie.net/smallest_backend_ever");
+setURL("https://gruppe-417.developerakademie.net/smallest_backend_ever");
 board = "summary.html"
 
 
