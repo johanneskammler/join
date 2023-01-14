@@ -1,3 +1,7 @@
+html {
+  overflow: overlay;
+}
+
 .d-none {
   display: none;
 }
