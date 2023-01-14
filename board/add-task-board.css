@@ -140,5 +140,9 @@
     width: 83vw !important;
   }
 }
-@media (width <= 479px) {
+
+@media (width <= 300px) {
+  .add-task-content-overlay {
+    margin-inline-start: 53px;
+  }
 }
