@@ -132,7 +132,7 @@
     height: 68vh;
   }
   .todo-content,
-  .pogress-content,
+  .progress-content,
   .await-feedback-content,
   .done-content {
     width: calc(17.5vw - 8px);
@@ -183,7 +183,7 @@
   }
 
   .todo-content,
-  .pogress-content,
+  .progress-content,
   .await-feedback-content,
   .done-content {
     height: 55.3vh;
@@ -343,7 +343,7 @@
   }
 
   .todo-content,
-  .pogress-content,
+  .progress-content,
   .await-feedback-content,
   .done-content {
     height: 41.3vh;
@@ -372,7 +372,7 @@
   }
 
   .todobox,
-  .pogressbox,
+  .progressbox,
   .feedbackbox,
   .donebox {
     width: 27vw;
@@ -445,14 +445,14 @@
   }
 
   .todobox,
-  .pogressbox,
+  .progressbox,
   .feedbackbox,
   .donebox {
     width: inherit;
   }
 
   .todo-content,
-  .pogress-content,
+  .progress-content,
   .await-feedback-content,
   .done-content {
     height: 24vh;
@@ -482,7 +482,7 @@
     height: 58vh;
   }
 
-  .in-pogress {
+  .in-progress {
     margin-top: 5vh;
   }
 }
@@ -521,7 +521,7 @@
     width: 74vw;
   }
 
-  .in-pogress {
+  .in-progress {
     margin-top: 3vh;
   }
 
@@ -530,7 +530,7 @@
   }
 
   .todo-content,
-  .pogress-content,
+  .progress-content,
   .await-feedback-content,
   .done-content {
     height: 26vh;
@@ -576,7 +576,7 @@
     margin-inline-start: 9px;
   }
 
-  .in-pogress {
+  .in-progress {
     margin-top: 5vh;
   }
   .done {
@@ -597,7 +597,7 @@
   }
 
   .todo-content,
-  .pogress-content,
+  .progress-content,
   .await-feedback-content,
   .done-content {
     height: 26vh;
@@ -624,7 +624,7 @@
 
 @media (width <= 767px) and (height <= 800px) {
   .todo-content,
-  .pogress-content,
+  .progress-content,
   .await-feedback-content,
   .done-content {
     height: 25.3vh;
@@ -633,7 +633,7 @@
 
 @media (width <= 767px) and (height <= 700px) {
   .todo-content,
-  .pogress-content,
+  .progress-content,
   .await-feedback-content,
   .done-content {
     height: 28.3vh;
@@ -642,7 +642,7 @@
 
 @media (width <= 500px) and (height <= 800px) {
   .todo-content,
-  .pogress-content,
+  .progress-content,
   .await-feedback-content,
   .done-content {
     height: 27vh;
@@ -651,7 +651,7 @@
 
 @media (width <= 500px) and (height <= 690px) {
   .todo-content,
-  .pogress-content,
+  .progress-content,
   .await-feedback-content,
   .done-content {
     height: 30vh;

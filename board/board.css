@@ -128,7 +128,7 @@ body {
 }
 
 .todo-content,
-.pogress-content,
+.progress-content,
 .await-feedback-content,
 .done-content {
   width: 17vw;
@@ -206,7 +206,7 @@ body {
   font-family: "Inter";
 }
 
-.pogress-box {
+.progress-box {
   width: 100%;
   display: flex;
   font-size: 16px;
@@ -215,14 +215,14 @@ body {
   margin-top: -16px;
 }
 
-.pogressbar {
+.progressbar {
   width: 60%;
   height: 8px;
   background-color: #b5b5b545;
   border-radius: 7%;
 }
 
-.pogress {
+.progress {
   width: 33%;
   background-color: #4589ff;
   height: 8px;

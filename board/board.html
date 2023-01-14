@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../templates/header_sidebar.css" />
     <link rel="stylesheet" href="../add_task/add_task.css">
     <link rel="stylesheet" href="add-task-popup.css">
+    <link rel="stylesheet" href="add-task-board.css">
     <script src="../help/help.js"></script>
     <script src="board.js"></script>
     <script src="../include.js"></script>
@@ -121,9 +122,9 @@
                                     </p>
                                 </div>
 
-                                <div class="pogress-box">
-                                    <div class="pogressbar">
-                                        <div class="pogress" id="pogress-nr"></div>
+                                <div class="progress-box">
+                                    <div class="progressbar">
+                                        <div class="progress" id="progress-nr"></div>
                                     </div>
                                     <p class="done-p" id="done_status font">1/3 Done</p>
                                 </div>
@@ -146,13 +147,13 @@
                     </div>
                 </div>
 
-                <div class="in-pogress">
+                <div class="in-progress">
                     <div class="head">
-                        <h2 class="font" "">In pogress</h2>
+                        <h2 class="font" "">In progress</h2>
                         <img src="img-board/plus-button.png" onclick="openAddTask()" class="pointer" />
                     </div>
-                    <div class="pogressbox">
-                        <div class="choice pogress-content" id="pogress-board">
+                    <div class="progressbox">
+                        <div class="choice progress-content" id="progress-board">
                             <div onmousedown="return false" draggable="true" class="card" onclick="popup()">
                                 <div class="card-head">
                                     <img src="img-board/backoffice.png" alt="" />

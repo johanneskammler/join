@@ -1,0 +1,25 @@
+.add-task-content {
+  top: -141px !important;
+}
+
+.add-tasks-board-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 422px;
+  position: relative;
+}
+
+.close-add-task-board {
+  position: absolute;
+  right: -9px;
+  top: -1px;
+}
+
+.add-title {
+  font-size: 48px;
+}
+
+.main-buttons {
+  display: none;
+}
