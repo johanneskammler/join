@@ -12,24 +12,26 @@
     <script src="../help/help.js"></script>
     <script src="../include.js"></script>
     <script src="../main.js"></script>
-
+    <script src="contacts.js"></script>
     <title>Contacts</title>
 </head>
 
-<body onload="includeHTML()">
+<body onload="includeHTML(); renderContactList()">
     <header w3-include-html="../templates/header.html"></header>
     <div w3-include-html="../templates/sidebar.html"></div>
     <div class="contact-container">
         <div class="contact-list-container">
             <div class="contact-list-inner-container">
 
-                <div>
+                <!-- <div>
+
+
                     <div class="contact-char">A</div>
                     <hr class="underline">
                 </div>
 
                 <div>
-                    <div class="contact" onclick="openContactInfo()">
+                    <div class="contact">
                         <div class="circle">AM</div>
                         <div class="contact-info-container">
                             <span class="contact-name">Anton Mayer</span>
@@ -228,7 +230,7 @@
             </div>
         </div>
 
-        <div class="contact-right">
+        <div class="contact-right " id="contact_right">
             <div class="name-container">
                 <div class="circle-right">AM</div>
                 <div class="name">
@@ -238,32 +240,34 @@
                         <p>Add Task</p>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="contact-information-container">
-                <div class="contact-information">
-                    <h2>Contact Information</h2>
-                    <div class="info-email">
-                        <p>Email</p>
-                        <span>antom@gmail.com</span>
+                <div id="content"></div>
+
+                <!-- <div class="contact-information-container">
+                    <div class="contact-information">
+                        <h2>Contact Information</h2>
+                        <div class="info-email">
+                            <p>Email</p>
+                            <span>antom@gmail.com</span>
+                        </div>
+                        <div class="info-mobil">
+                            <p>Mobil</p>
+                            <span>+49 111 1111 11</span>
+                        </div>
                     </div>
-                    <div class="info-mobil">
-                        <p>Mobil</p>
-                        <span>+49 111 1111 11</span>
+                    <div class="edit-contact">
+                        <img src="img/pencil.png" alt="">
+                        <p>Edit Contact</p>
                     </div>
                 </div>
-                <div class="edit-contact">
-                    <img src="img/pencil.png" alt="">
-                    <p>Edit Contact</p>
-                </div>
-            </div>
-        </div>
+                <button class="new-contact-btn">
+                New Contact
+                <img class="btn-img" src="img/button.png" alt="">
+            </button>
+            </div> -->
 
-        <button class="new-contact-btn">
-            New Contact
-            <img class="btn-img" src="img/button.png" alt="">
-        </button>
-    </div>
+            </div>
 
 
 </body>

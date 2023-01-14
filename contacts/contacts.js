@@ -1,9 +1,17 @@
-function render() {
-    let container = document.getElementById('contact_list');
-    alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+import contacts from '../contacts.json';
 
-    for (let i = 0; i < alphabet.length; i++) {
-        const element = alphabet[i];
-        container.innerHTML += `<div>${element}</div>`
+function renderContactList() {
+    for (let i = 0; i < contacts.length; i++) {
+        const element = contacts[i];
+
+        document.getElementById('content').innerHTML += `
+        <div class="contact">
+                <div class="circle">AM</div>
+                <div class="contact-info-container">
+                     <span class="contact-name">${element['name']}</span>
+                    <span class="contact-email">${element['mail']}</span>
+                </div>
+        </div>
+        `;
     }
 }
