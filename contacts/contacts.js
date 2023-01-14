@@ -1,8 +1,7 @@
 async function init() {
     await includeHTML();
     await renderContactList();
-
-    checkMainSize();
+    checkSize();
 }
 
 function checkSize() {
