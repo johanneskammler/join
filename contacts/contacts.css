@@ -6,20 +6,11 @@ body {
     display: none;
 }
 
-.contact-container {
-    top: 100px;
-    position: relative;
-    left: 275px;
-    right: 0;
-    width: 1645px;
-}
-
 .contact-list-container {
     display: flex;
     justify-content: center;
-    position: absolute;
-    top: 0;
-    left: 0;
+    margin-left: 300px;
+    margin-top: 100px;
     width: 453px;
     height: 829px;
     overflow-y: scroll;
