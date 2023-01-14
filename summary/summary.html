@@ -13,6 +13,7 @@
     <script src="../include.js"></script>
     <script src="../summary/summary.js"></script>
     <script src="../main.js"></script>
+    <script src="./mini_backend.js"></script>
     <title>Summary</title>
   </head>
 
@@ -21,7 +22,8 @@
     <div w3-include-html="../templates/sidebar.html"></div>
     <div class="summary">
       <div class="header">
-        <h1 class="greeting">Good.. Variabel JS</h1>
+        <h1 id="greet-at-time" class="greeting">Good morning</h1>
+        <span  id="greet-user"></span>
       </div>
 
       <div class="main">
@@ -32,7 +34,7 @@
                 <img src="../templates/img/Urgent.png" alt="" />
               </div>
               <div>
-                <span class="number-span">1</span>
+                <span id="task-id-" class="number-span">1</span>
               </div>
             </div>
             <div class="task-bottom">
@@ -41,9 +43,10 @@
           </div>
           <div class="border-line">
             <div class="right-container">
-              <div class="date">
-                <time datetime="2022-01-03">Januar 3, 2022</time>
+              <div id="urgent-date" class="date">
+                Januar 3, 2022
                 <p>Upcoming Deadline</p>
+                
               </div>
             </div>
           </div>
@@ -56,7 +59,7 @@
                 <img src="../templates/img/board_summary.png" alt="" />
               </div>
               <div class="color-black">
-                <span class="number-span">1</span>
+                <span id="task-to-do-id-" class="number-span">1</span>
               </div>
             </div>
             <div class="task-bottom">
@@ -72,7 +75,7 @@
                 <img src="../templates/img/board_summary.png" alt="" />
               </div>
               <div class="color-black">
-                <span class="number-span">5</span>
+                <span id="task-in-board-id-" class="number-span">5</span>
               </div>
             </div>
             <div class="task-bottom">
@@ -88,7 +91,7 @@
                 <img src="../templates/img/In Progress.png" alt="" />
               </div>
               <div class="color-black">
-                <span class="number-span">2</span>
+                <span id="task-in-progress-id-" class="number-span">2</span>
               </div>
             </div>
             <div class="task-bottom">
@@ -104,7 +107,7 @@
                 <img src="../templates/img/Awaiting feedback.png" alt="" />
               </div>
               <div class="color-black">
-                <span class="number-span">2</span>
+                <span id="task-awaiting-feedback-id-" class="number-span">2</span>
               </div>
             </div>
             <div class="task-bottom">
@@ -120,7 +123,7 @@
                 <img src="../templates/img/Done.png" alt="" />
               </div>
               <div class="color-black">
-                <span class="number-span">1</span>
+                <span id="task-done-id-" class="number-span">1</span>
               </div>
             </div>
             <div class="task-bottom">
