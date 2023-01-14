@@ -16,30 +16,13 @@ async function init() {
 function popup() {
   let background = document.getElementById("popup");
   let card = document.getElementById("popup_card");
-  let list = document.getElementsByTagName("body");
-  let body = list[0];
+  let list = document.getElementsByTagName("html");
+  let html = list[0];
 
   window.scrollTo(0, 0);
-  background.classList.toggle("d-none");
+  html.classList.toggle("hide-overflow-y");
   card.classList.toggle("d-none");
-  body.classList.toggle("hide-overflow-y");
-}
-
-/**
- * close the popup in the popup close div
- * maybe this i will delete
- */
-
-function closePopup() {
-  let background = document.getElementById("overlay");
-  let card = document.getElementById("popup_card");
-  let list = document.getElementsByTagName("body");
-
-  let body = list[0];
-
-  body.classList.remove("hide-overflow-y");
-  background.classList.remove("d-none");
-  card.classList.remove("d-none");
+  background.classList.toggle("d-none");
 }
 
 /**
@@ -103,13 +86,18 @@ function draggableTrue() {
 function renderAddTask() {
   document.getElementById("add_task").innerHTML = `
     
+  
       <div class="for-close" onclick="closeAddTask()"></div>  
 
 
       <div class="add-task-content slide-left" id="add-board">
+      <div class="header ">
+        <img src="../templates/img/logo_blue.png" class="main-logo" />
+      </div>
         <div class="add-tasks-board-head" id="add-board">
-          <h1 class="add-title">Add Task</h1><button class="add-card btn-top" onclick="saveTask()">Creat Task <img src="img-board/checkmark.png"></button>
-          <div class="close-add-task-board">
+          <h1 class="add-title">Add Task</h1>
+          <button class="add-card btn-create" onclick="saveTask()">Creat Task <img src="img-board/checkmark.png"></button>
+          <div class="close-add-task-board" onclick="closeAddTask()">
             <img class="close-img" src="img-board/line.png">
             <img src="img-board/line.png">
           </div>
@@ -301,6 +289,11 @@ function renderAddTask() {
  */
 function openAddTask() {
   document.getElementById("add_task").classList.toggle("d-none");
+  window.scrollTo(0, 0);
+  let list = document.getElementsByTagName("html");
+  let html = list[0];
+
+  html.classList.toggle("hide-overflow-y");
   renderAddTask();
 }
 /**
@@ -331,5 +324,3 @@ function setVariable() {
     console.log(element);
   }
 }
-
-/*  Versuche JsDocs zum laufen zu bringen  */

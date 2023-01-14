@@ -1,33 +1,34 @@
+function hello() {
+  console.log("Hello");
+}
+
 let tasks = [];
 
-
 function addToTasks() {
-  let title = document.getElementById('title-input');
-  let date = document.getElementById('select-date');
-  let category = document.getElementById('select-category');
-  let description = document.getElementById('description-input');
+  let title = document.getElementById("title-input");
+  let date = document.getElementById("select-date");
+  let category = document.getElementById("select-category");
+  let description = document.getElementById("description-input");
 
   let task = {
-    "title": title.value,
-    "date": date.value,
-    "category": category.innerText,
-    "decription": description.value
-  }
+    title: title.value,
+    date: date.value,
+    category: category.innerText,
+    decription: description.value,
+  };
 
   tasks.push(task);
   console.log(tasks);
-  title.value = '';
-  date.value = '';
-  description.value = '';
+  title.value = "";
+  date.value = "";
+  description.value = "";
 }
-
 
 async function init() {
   await includeHTML();
   checkSize();
   renderContacts();
 }
-
 
 function checkSize() {
   let size = window.innerWidth;
@@ -38,7 +39,6 @@ function checkSize() {
   }
 }
 
-
 function sidebarTabled() {
   document.getElementById("sidebar").classList.remove("sidebar");
   document.getElementById("sidebar").classList.add("tablet-sidebar");
@@ -46,7 +46,6 @@ function sidebarTabled() {
   document.getElementById("create-btn-responsive").classList.remove("d-none");
   document.getElementById("header-name-resp").classList.remove("d-none");
 }
-
 
 function enableSidebar() {
   document.getElementById("sidebar").classList.add("sidebar");
@@ -56,20 +55,19 @@ function enableSidebar() {
   document.getElementById("header-name-resp").classList.add("d-none");
 }
 
-
 async function renderContacts() {
-  let url = '../contacts.json';
+  let url = "../contacts.json";
   let response = await fetch(url);
   let contacts = await response.json();
 
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];
 
-    document.getElementById('contacts-drop-down').innerHTML += `
+    document.getElementById("contacts-drop-down").innerHTML += `
     <div class="contacts-list-elem">
       <label class="control control-checkbox" id="selected-contact">
         <div class="contacts-list-elem-box">
-          <span class="rendered-contact-name">${element['name']}</span>
+          <span class="rendered-contact-name">${element["name"]}</span>
           <input type="checkbox" />
           <div class="control_indicator"></div>
         </div>
@@ -79,21 +77,20 @@ async function renderContacts() {
   }
 }
 
-
 function fillCategory(category) {
-  let categoryField = document.getElementById('select-category');
+  let categoryField = document.getElementById("select-category");
 
-  if (category == 'sales') {
-    categoryField.innerHTML = '';
+  if (category == "sales") {
+    categoryField.innerHTML = "";
     categoryField.innerHTML += `
     <div class="selected-category">
       Sales
       <img src="../add_task/img-add_task/circle_pink.png" />
     </div>
     `;
-    document.getElementById('categories-drop-down').classList.add('d-none');
-  } else if (category == 'backoffice') {
-    categoryField.innerHTML = '';
+    document.getElementById("categories-drop-down").classList.add("d-none");
+  } else if (category == "backoffice") {
+    categoryField.innerHTML = "";
     categoryField.innerHTML += `
     <div class="selected-category">
       Backoffice
@@ -101,39 +98,39 @@ function fillCategory(category) {
     </div>
     `;
   }
-  document.getElementById('categories-drop-down').classList.add('d-none');
+  document.getElementById("categories-drop-down").classList.add("d-none");
 }
-
 
 function createNewCategory() {
-  document.getElementById('categories-drop-down').classList.add('d-none');
-  document.getElementById('new-category-input').classList.remove('d-none');
-  document.getElementById('new-category-content').classList.remove('d-none');
-  document.getElementById('drop-down-arrow-categories').classList.add('d-none');
-  document.getElementById('new-category-accept').classList.remove('d-none');
+  document.getElementById("categories-drop-down").classList.add("d-none");
+  document.getElementById("new-category-input").classList.remove("d-none");
+  document.getElementById("new-category-content").classList.remove("d-none");
+  document.getElementById("drop-down-arrow-categories").classList.add("d-none");
+  document.getElementById("new-category-accept").classList.remove("d-none");
 }
-
 
 function goBackToSelectCategory() {
-  document.getElementById('new-category-input').classList.add('d-none');
-  document.getElementById('new-category-content').classList.add('d-none');
-  document.getElementById('drop-down-arrow-categories').classList.remove('d-none');
-  document.getElementById('new-category-accept').classList.add('d-none');
-  document.getElementById('select-category').innerHTML = 'Select task category';
+  document.getElementById("new-category-input").classList.add("d-none");
+  document.getElementById("new-category-content").classList.add("d-none");
+  document
+    .getElementById("drop-down-arrow-categories")
+    .classList.remove("d-none");
+  document.getElementById("new-category-accept").classList.add("d-none");
+  document.getElementById("select-category").innerHTML = "Select task category";
 }
-
 
 function addNewCategory() {
-  let newCategory = document.getElementById('new-category-input');
+  let newCategory = document.getElementById("new-category-input");
 
-  document.getElementById('new-category-input').classList.add('d-none');
-  document.getElementById('new-category-content').classList.add('d-none');
-  document.getElementById('drop-down-arrow-categories').classList.remove('d-none');
-  document.getElementById('new-category-accept').classList.add('d-none');
-  document.getElementById('select-category').innerHTML = '';
-  document.getElementById('select-category').innerHTML = newCategory.value;
+  document.getElementById("new-category-input").classList.add("d-none");
+  document.getElementById("new-category-content").classList.add("d-none");
+  document
+    .getElementById("drop-down-arrow-categories")
+    .classList.remove("d-none");
+  document.getElementById("new-category-accept").classList.add("d-none");
+  document.getElementById("select-category").innerHTML = "";
+  document.getElementById("select-category").innerHTML = newCategory.value;
 }
-
 
 function fillImportanceButton1() {
   document.getElementById("importance-button1").style = "display: none;";
@@ -147,13 +144,11 @@ function fillImportanceButton1() {
     "display: none;";
 }
 
-
 function emptyImportanceButton1() {
   document.getElementById("importance-button1").style = "display: flex;";
   document.getElementById("importance-button1-colored").style =
     "display: none;";
 }
-
 
 function fillImportanceButton2() {
   document.getElementById("importance-button2").style = "display: none;";
@@ -167,13 +162,11 @@ function fillImportanceButton2() {
     "display: none;";
 }
 
-
 function emptyImportanceButton2() {
   document.getElementById("importance-button2").style = "display: flex;";
   document.getElementById("importance-button2-colored").style =
     "display: none;";
 }
-
 
 function fillImportanceButton3() {
   document.getElementById("importance-button3").style = "display: none;";
@@ -187,13 +180,11 @@ function fillImportanceButton3() {
     "display: none;";
 }
 
-
 function emptyImportanceButton3() {
   document.getElementById("importance-button3").style = "display: flex;";
   document.getElementById("importance-button3-colored").style =
     "display: none;";
 }
-
 
 function openContactsToSelect() {
   document.getElementById("categories-drop-down").classList.add("d-none");
@@ -201,13 +192,11 @@ function openContactsToSelect() {
   element.classList.toggle("d-none");
 }
 
-
 function openCategoriesToSelect() {
   document.getElementById("contacts-drop-down").classList.add("d-none");
   var element = document.getElementById("categories-drop-down");
   element.classList.toggle("d-none");
 }
-
 
 async function contactAsJson() {
   let path = "../cards.json";

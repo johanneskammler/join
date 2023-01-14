@@ -8,6 +8,8 @@
   align-items: center;
   width: 422px;
   position: relative;
+  margin-top: 45px;
+  margin-bottom: -22px;
 }
 
 .close-add-task-board {
@@ -22,4 +24,65 @@
 
 .main-buttons {
   display: none;
+}
+
+.btn-create {
+  height: 50px;
+  padding: 10px 8px;
+  border: 1px solid #4589ff;
+  background: #4589ff;
+  border-radius: 8px;
+  color: white;
+  font-family: "Open Sans";
+  font-size: 23px;
+  line-height: 120%;
+}
+
+/*                   RESPONSIV SECTION                      **/
+
+@media (width <= 1600px) {
+  .add-task-content {
+    width: 449px;
+  }
+}
+
+@media (width <= 1024px) {
+  .btn-create {
+    display: none;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 39px;
+    gap: 34px;
+    position: absolute;
+    height: 60px;
+    right: 0px;
+    left: 0px;
+    top: 0px;
+    background: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+  }
+
+  .main_logo_add {
+    content: url(../templates/img/logo_blue.png) !important;
+  }
+}
+
+@media (width <= 767px) {
+  .add-task-content {
+    top: -100px !important;
+    bottom: 277px !important;
+    display: flex;
+    align-items: center;
+    width: 89vw;
+  }
+
+  .close-add-task-board {
+    top: 49px;
+  }
 }
