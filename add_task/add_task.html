@@ -23,8 +23,8 @@
     <div class="content-box">
         <div class="add-task-content">
             <span id="header-name-resp" class="d-none">Kanban Project Management Tool</span>
-            <form onsubmit="addToTasks()">
-                <input type="text" placeholder="Enter a title" id="title-input" class="title-input" required/>
+            <!-- <form onsubmit="addToTasks()"> -->
+                <input type="text" placeholder="Enter a title" id="title-input" class="title-input" required />
 
                 <div class="contacts-box">
                     <div style="position: relative">
@@ -55,7 +55,7 @@
 
                 <div class="date-box">
                     <span class="due-date-text">Due date</span>
-                    <input type="date" placeholder="dd/mm/yyyy" id="select-date" class="select-date" required/>
+                    <input type="date" placeholder="dd/mm/yyyy" id="select-date" class="select-date" required />
                 </div>
 
                 <div class="category-box">
@@ -66,9 +66,16 @@
                                 Select task category
                             </p>
                             <img onclick="openCategoriesToSelect()" src="../add_task/img-add_task/dropdown_blue.png"
-                                class="drop-down-arrow" />
+                                class="drop-down-arrow" id="drop-down-arrow-categories" />
+                            <input type="text" placeholder="New category name" id="new-category-input"
+                                class="new-category-input d-none">
+                            <div id="new-category-accept" class="new-category-accept d-none">
+                                <img onclick="goBackToSelectCategory()" src="../add_task/img-add_task/x_blue.png">
+                                <span>|</span>
+                                <img onclick="addNewCategory()" src="../add_task/img-add_task/check_blue.png">
+                            </div>
                             <div id="categories-drop-down" class="categories-dropdown-content d-none">
-                                <div class="categories-list-elem">New category</div>
+                                <div onclick="createNewCategory()" class="categories-list-elem">New category</div>
                                 <div onclick="fillCategory('sales')" class="categories-list-elem">
                                     Sales
                                     <img src="../add_task/img-add_task/circle_pink.png" />
@@ -78,12 +85,21 @@
                                     <img src="../add_task/img-add_task/circle_turquois.png" />
                                 </div>
                             </div>
+                            <div id="new-category-content" class="new-category-content d-none">
+                                <img src="../add_task/img-add_task/circle_turquois.png">
+                                <img src="../add_task/img-add_task/circle_red.png">
+                                <img src="../add_task/img-add_task/circle_green.png">
+                                <img src="../add_task/img-add_task/circle_orange.png">
+                                <img src="../add_task/img-add_task/circle_pink.png">
+                                <img src="../add_task/img-add_task/circle_blue.png">
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="importance-buttons">
-                    <button onclick="fillImportanceButton1()" class="importance-button1" id="importance-button1" type="button">
+                    <button onclick="fillImportanceButton1()" class="importance-button1" id="importance-button1"
+                        type="button">
                         <span>Urgent</span>
                         <img src="../add_task/img-add_task/urgent.png" />
                     </button>
@@ -93,7 +109,8 @@
                         <img src="../add_task/img-add_task/urgent_white.png" />
                     </button>
 
-                    <button onclick="fillImportanceButton2()" class="importance-button2" id="importance-button2" type="button">
+                    <button onclick="fillImportanceButton2()" class="importance-button2" id="importance-button2"
+                        type="button">
                         <span>Medium</span>
                         <img src="../add_task/img-add_task/medium.png" />
                     </button>
@@ -103,7 +120,8 @@
                         <img src="../add_task/img-add_task/medium_white.png" />
                     </button>
 
-                    <button onclick="fillImportanceButton3()" class="importance-button3" id="importance-button3" type="button">
+                    <button onclick="fillImportanceButton3()" class="importance-button3" id="importance-button3"
+                        type="button">
                         <span>Low</span>
                         <img src="../add_task/img-add_task/low.png" />
                     </button>
@@ -136,18 +154,18 @@
                             <img src="../add_task/img-add_task/x.png" />
                         </button>
                         <button class="create-task-btn" id="create-task-btn">
-                            <span id="create-task-btn-span">Create Task</span>
+                            <span onclick="addToTasks()" id="create-task-btn-span">Create Task</span>
                             <img src="../add_task/img-add_task/check.png" />
                         </button>
                         <div id="create-btn-responsive" class="create-btn-responsive d-none">
-                            <button class="create-task-btn-resp" id="create-task-btn-resp">
+                            <button onclick="addToTasks()" class="create-task-btn-resp" id="create-task-btn-resp">
                                 <span id="create-task-btn-span">Create</span>
                                 <img src="../add_task/img-add_task/check.png" />
                             </button>
                         </div>
                     </div>
                 </div>
-            </form>
+            <!-- </form> -->
         </div>
     </div>
 </body>

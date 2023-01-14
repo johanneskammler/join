@@ -4,11 +4,13 @@ let tasks = [];
 function addToTasks() {
   let title = document.getElementById('title-input');
   let date = document.getElementById('select-date');
+  let category = document.getElementById('select-category');
   let description = document.getElementById('description-input');
 
   let task = {
     "title": title.value,
     "date": date.value,
+    "category": category.innerText,
     "decription": description.value
   }
 
@@ -65,7 +67,7 @@ async function renderContacts() {
 
     document.getElementById('contacts-drop-down').innerHTML += `
     <div class="contacts-list-elem">
-      <label class="control control-checkbox">
+      <label class="control control-checkbox" id="selected-contact">
         <div class="contacts-list-elem-box">
           <span class="rendered-contact-name">${element['name']}</span>
           <input type="checkbox" />
@@ -100,6 +102,36 @@ function fillCategory(category) {
     `;
   }
   document.getElementById('categories-drop-down').classList.add('d-none');
+}
+
+
+function createNewCategory() {
+  document.getElementById('categories-drop-down').classList.add('d-none');
+  document.getElementById('new-category-input').classList.remove('d-none');
+  document.getElementById('new-category-content').classList.remove('d-none');
+  document.getElementById('drop-down-arrow-categories').classList.add('d-none');
+  document.getElementById('new-category-accept').classList.remove('d-none');
+}
+
+
+function goBackToSelectCategory() {
+  document.getElementById('new-category-input').classList.add('d-none');
+  document.getElementById('new-category-content').classList.add('d-none');
+  document.getElementById('drop-down-arrow-categories').classList.remove('d-none');
+  document.getElementById('new-category-accept').classList.add('d-none');
+  document.getElementById('select-category').innerHTML = 'Select task category';
+}
+
+
+function addNewCategory() {
+  let newCategory = document.getElementById('new-category-input');
+
+  document.getElementById('new-category-input').classList.add('d-none');
+  document.getElementById('new-category-content').classList.add('d-none');
+  document.getElementById('drop-down-arrow-categories').classList.remove('d-none');
+  document.getElementById('new-category-accept').classList.add('d-none');
+  document.getElementById('select-category').innerHTML = '';
+  document.getElementById('select-category').innerHTML = newCategory.value;
 }
 
 
