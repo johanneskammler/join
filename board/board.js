@@ -92,8 +92,9 @@ function renderAddTask() {
 
       <div class="add-task-content slide-left" id="add-board">
       <div class="header ">
-        <img src="../templates/img/logo_blue.png" class="main-logo" />
+        <img src="../templates/img/logo_blue.png" class="logo" />
       </div>
+      <div class="add-task-content-overlay">
         <div class="add-tasks-board-head" id="add-board">
           <h1 class="add-title">Add Task</h1>
           <button class="add-card btn-create" onclick="saveTask()">Creat Task <img src="img-board/checkmark.png"></button>
@@ -257,6 +258,7 @@ function renderAddTask() {
               class="plus-icon"
             />
           </div>
+        </div>
         </div>
 
         <div class="main-buttons">

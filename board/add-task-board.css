@@ -2,6 +2,10 @@
   top: -141px !important;
 }
 
+.header {
+  display: none;
+}
+
 .add-tasks-board-head {
   display: flex;
   justify-content: space-between;
@@ -47,29 +51,24 @@
 }
 
 @media (width <= 1024px) {
+  .profile-picture {
+    display: block !important;
+  }
+
+  .main-logo {
+    content: url(../templates/img/logo_white.png) !important;
+  }
+
+  .logo-in-blue {
+    content: url(../templates/img/logo_blue.png) !important;
+  }
+
+  header {
+    background-color: #4589ff !important;
+  }
+
   .btn-create {
     display: none;
-  }
-
-  .header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 39px;
-    gap: 34px;
-    position: absolute;
-    height: 60px;
-    right: 0px;
-    left: 0px;
-    top: 0px;
-    background: white;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-    z-index: 2;
-  }
-
-  .main_logo_add {
-    content: url(../templates/img/logo_blue.png) !important;
   }
 }
 
@@ -81,8 +80,65 @@
     align-items: center;
     width: 89vw;
   }
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 70px;
+    gap: 34px;
+    position: absolute;
+    height: 48px;
+    right: 0px;
+    left: 0px;
+    top: 0px;
+    background: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+  }
+
+  .logo {
+    width: 47px;
+    height: 57.3px;
+  }
 
   .close-add-task-board {
     top: 49px;
   }
+}
+
+@media (width <= 480px) {
+  .add-tasks-board-head {
+    width: 83vw;
+  }
+}
+
+@media (width <= 400px) {
+  .add-tasks-board-head {
+    width: 81vw !important;
+  }
+
+  .select-date {
+    width: 91% !important;
+  }
+
+  .add-task-content {
+    margin-top: 141px !important;
+  }
+
+  .elect-contacts,
+  .select-category,
+  .add-subtask {
+    width: 95% !important;
+    margin-inline-start: -8px !important;
+  }
+  .date-box,
+  .category-box,
+  .contacts-box,
+  .description-box,
+  .subtask-box {
+    width: 83vw !important;
+  }
+}
+@media (width <= 479px) {
 }

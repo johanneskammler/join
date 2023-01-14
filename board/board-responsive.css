@@ -412,6 +412,13 @@
 }
 
 @media (width <= 767px) {
+  header {
+    padding: 8px 39px !important;
+  }
+  .sidebar-top {
+    padding-top: 10px !important;
+  }
+
   .popup {
     justify-content: end;
   }
@@ -422,7 +429,7 @@
   .popup-card-title {
     width: 50vw;
     margin-bottom: -3vh;
-    width: 58vw;
+    width: 57vw;
   }
 
   .popup-title {
