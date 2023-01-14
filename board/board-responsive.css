@@ -38,6 +38,53 @@
   }
 }
 
+@media (width <= 1600px) {
+  .popup-card {
+    right: 26vw;
+  }
+}
+
+@media (width <= 1440px) {
+  .popup-card {
+    right: 22vw;
+  }
+}
+
+@media (width <= 1440px) {
+  .popup-card {
+    right: 30vw;
+    width: 31%;
+  }
+}
+
+@media (width <= 1200px) {
+  .popup-card {
+    right: 28vw;
+    width: 361px;
+  }
+}
+
+@media (width <= 950px) {
+  .popup-card {
+    right: 26vw;
+  }
+}
+
+@media (width <= 830px) {
+  .popup-card {
+    right: 21vw;
+  }
+}
+
+@media (width <= 757px) {
+  .popup-card {
+    top: 101px;
+    right: 0px;
+    width: 364px;
+    position: fixed;
+  }
+}
+
 @media (width <= 1550px) {
   .card-content-popup {
     width: 85%;
@@ -219,10 +266,6 @@
 }
 
 @media (width <= 1024px) {
-  body {
-    overflow-y: inherit !important;
-  }
-
   .kanban {
     display: block;
   }
@@ -235,9 +278,6 @@
     width: 98%;
   }
 
-  .popup-card {
-    width: 368px;
-  }
   .popup-title {
     font-size: 40px;
   }
@@ -447,6 +487,12 @@
   }
 }
 
+@media (width <= 670px) {
+  .popup-card-title {
+    width: 65vw;
+  }
+}
+
 @media (width <= 500px) {
   .board-top {
     width: 77vw;
@@ -458,6 +504,7 @@
 
   .popup-card {
     transform: scale(0.9);
+    right: -22px;
   }
 
   .popup-card-title {
@@ -495,10 +542,6 @@
 }
 
 @media (width <= 455px) {
-  .popup-card {
-    transform: scale(0.8);
-  }
-
   .popup {
     right: -46px;
   }
@@ -509,6 +552,18 @@
   }
   .kanban {
     width: 77vw;
+  }
+}
+@media (width <= 430px) {
+  .popup-card {
+    width: 82vw;
+    right: -18px;
+  }
+
+  .edit-box {
+    width: 96vw;
+    transform: scale(0.8);
+    right: -11vw;
   }
 }
 
@@ -529,25 +584,13 @@
     height: 65vh;
   }
 
-  .popup-card {
-    transform: scale(0.75);
-  }
-
   .popup-title,
   .popup-card-title {
     width: 89vw;
   }
-
-  .edit-box {
-    width: 100vw;
-  }
 }
 
 @media (width <= 365px) {
-  .popup-card {
-    width: 100vw;
-  }
-
   .popup-title,
   .popup-card-title {
     width: 100vw;
@@ -558,6 +601,24 @@
   .await-feedback-content,
   .done-content {
     height: 26vh;
+  }
+}
+
+@media (width <= 330px) {
+  .popup-card {
+    width: 99vw;
+    padding: 50px 20px;
+  }
+
+  .popup-title {
+    line-height: 37.2px;
+    font-size: 36px;
+    margin-bottom: -12px;
+  }
+
+  .edit-box {
+    width: 308px;
+    margin-block-start: -16px;
   }
 }
 
