@@ -1,11 +1,11 @@
 async function init() {
   await includeHTML();
   checkSize();
+  renderContacts();
 }
 
 function checkSize() {
   let size = window.innerWidth;
-  console.log(size);
   if (size < 1024) {
     sidebarTabled();
   } else if (size > 1024) {
@@ -27,6 +27,31 @@ function enableSidebar() {
   document.getElementById("help-section-btn").classList.remove("d-none");
   document.getElementById("create-btn-responsive").classList.add("d-none");
   document.getElementById("header-name-resp").classList.add("d-none");
+}
+
+
+async function renderContacts() {
+  let url = '../contacts.json';
+  let response = await fetch(url);
+  let contacts = await response.json();
+
+  console.log(contacts);
+
+  for (let i = 0; i < contacts.length; i++) {
+    const element = contacts[i];
+
+    document.getElementById('contacts-drop-down').innerHTML += `
+    <div class="contacts-list-elem">
+      <label class="control control-checkbox">
+        <div class="contacts-list-elem-box">
+          <span class="rendered-contact-name">${element['name']}</span>
+          <input type="checkbox" />
+          <div class="control_indicator"></div>
+        </div>
+      </label>
+    </div>
+        `;
+  }
 }
 
 function fillImportanceButton1() {

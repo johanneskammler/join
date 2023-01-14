@@ -1,84 +1,152 @@
 @media(max-width: 1024px) {
-  header {
-      background-color: white;
-  }
-  .main-logo {
-      content: url(../templates/img/logo_blue.png);
-  }
-  #help-section-btn,
-  .profile-picture {
-      display: none;
-  }
-  #header-name-resp {
-      color: #4589FF;
-      margin-top: -18px;
-      margin-bottom: 24px;
-  }
-  .add-task-content {
-      margin-left: 0;
-      display: flex;
-      align-items: center;
-  }
-  .clear-task-btn,
-  .create-task-btn {
-      display: none;
-  }
+    header {
+        background-color: white;
+    }
+
+    .main-logo {
+        content: url(../templates/img/logo_blue.png);
+    }
+
+    #help-section-btn,
+    .profile-picture {
+        display: none;
+    }
+
+    #header-name-resp {
+        color: #4589FF;
+        margin-top: -18px;
+        margin-bottom: 24px;
+    }
+
+    .add-task-content {
+        margin-left: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .clear-task-btn,
+    .create-task-btn {
+        display: none;
+    }
+
+    .new-contact {
+        margin-right: 14px;
+    }
 }
+
 @media (max-width: 480px) {
-  .create-task-btn-resp {
-      top: 2.8vh;
-      right: 8vw;
-  }
-  .add-task-content {
-      margin-top: 138px;
-  }
-  .title-input {
-      width: 83%;
-  }
-  .date-box,
-  .category-box,
-  .contacts-box,
-  .description-box,
-  .subtask-box {
-      width: 88%;
-  }
-  .select-contacts,
-  .select-category,
-  .add-subtask {
-      width: 95%;
-  }
-  .select-date {
-      width: 91%;
-  }
-  .importance-buttons {
-      width: 88%;
-  }
-  .importance-buttons button {
-      width: 32%;
-  }
+    .create-task-btn-resp {
+        top: 2.8vh;
+        right: 8vw;
+    }
+
+    .add-task-content {
+        margin-top: 138px;
+    }
+
+    .title-input {
+        width: 83%;
+    }
+
+    .date-box,
+    .category-box,
+    .contacts-box,
+    .description-box,
+    .subtask-box {
+        width: 88%;
+    }
+
+    .select-contacts,
+    .select-category,
+    .add-subtask {
+        width: 95%;
+    }
+
+    .select-date {
+        width: 91%;
+    }
+
+    .importance-buttons {
+        width: 88%;
+    }
+
+    .importance-buttons button {
+        width: 32%;
+    }
+
+    .rendered-contact-name {
+        width: 75vw;
+    }
+
+    .contacts-dropdown-content {
+        width: 88vw;
+    }
 }
+
+@media(max-width: 414px) {
+    .rendered-contact-name {
+        width: 73.5vw;
+    }
+}
+
 @media (max-width: 400px) {
-  .add-task-content {
-      margin-top: 168px;
-  }
-  header span {
-      margin-top: 36px;
-  }
-  .create-task-btn-resp {
-      top: 3vh;
-      right: 8vw;
-  }
-  #header-name-resp {
-      margin-top: -48px;
-  }
-  .clear-task-btn,
-  .create-task-btn {
-      display: none;
-  }
-  .importance-buttons button span {
-      font-size: 14px;
-  }
-  .importance-buttons button img {
-      margin-left: 0px;
-  }
+    .add-task-content {
+        margin-top: 168px;
+    }
+
+    header span {
+        margin-top: 36px;
+    }
+
+    .create-task-btn-resp {
+        top: 3vh;
+        right: 8vw;
+    }
+
+    #header-name-resp {
+        margin-top: -48px;
+    }
+
+    .clear-task-btn,
+    .create-task-btn {
+        display: none;
+    }
+
+    .importance-buttons button span {
+        font-size: 14px;
+    }
+
+    .importance-buttons button img {
+        margin-left: 0px;
+    }
+}
+
+@media(max-width: 393px) {
+    .rendered-contact-name {
+        width: 72.5vw;
+    }
+}
+
+@media(max-width: 390px) {
+    .rendered-contact-name {
+        width: 73vw;
+    }
+}
+
+@media(max-width: 375px) {
+    .rendered-contact-name {
+        width: 72vw;
+    }
+}
+
+@media(max-width: 360px) {
+    .rendered-contact-name {
+        width: 71.2vw;
+    }
+}
+
+@media(max-width: 280px) {
+    .rendered-contact-name {
+        width: 67vw;
+    }
 }
