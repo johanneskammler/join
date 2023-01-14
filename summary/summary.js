@@ -29,7 +29,7 @@ async function greetUser() {
   } else {
     document.getElementById("greet-at-time").innerHTML = "Good evening, ";
   }
-  document.getElementById("greet-user").innerHTML = getCurrentUserName();
+  /* document.getElementById("greet-user").innerHTML = getCurrentUserName(); */
 }
 
 function syncSummaryTasks(state) {
