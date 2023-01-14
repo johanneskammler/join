@@ -132,6 +132,11 @@
     width: 100vw;
     margin-top: 100px;
     margin-bottom: 25px;
+    
+  }
+
+  .main {
+    padding-bottom: 139px;
   }
 
   h1 {
