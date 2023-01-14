@@ -50,7 +50,7 @@
   flex-wrap: wrap;
   position: inherit;
   cursor: pointer;
-  margin-left: 135px;
+  margin-left: 220px;
   margin-bottom: 240px;
 }
 
@@ -119,6 +119,18 @@
   border-radius: 0 30px 30px 30px;
 }
 
+.fw-bold {
+    font-weight: bold;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.cl-main {
+    color: #4589ff;
+}
+
 
 .task-urgent img {
   width: 76px;
@@ -174,6 +186,8 @@
 
 .right-container {
   display: flex;
+  flex-direction: column;
+  margin-left: 10rem;
 }
 
 

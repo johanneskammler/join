@@ -8,13 +8,14 @@ board = "summary.html"
 async function init() {
   await includeHTML();
   checkMainSize();
+  renderCurrentDate();
+  renderAmountToTasks();
   
   await downloadFromServer();
   task_cards = JSON.parse(backend.getItem('tasks')) || [];
   
   await greetUser();
-  renderCurrentDate();
-  renderAmountToTasks();
+  
   
   /*
   setTimeout(() => {
