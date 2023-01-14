@@ -1,6 +1,8 @@
-import contacts from '../contacts.json';
-
 function renderContactList() {
+    let url = '../contacts.json';
+    let response = fetch(url);
+    let contacts = response.json();
+
     for (let i = 0; i < contacts.length; i++) {
         const element = contacts[i];
 
