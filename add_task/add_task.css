@@ -72,7 +72,7 @@
 }
 
 .contacts-dropdown-content {
-  width: 422px;
+  width: 436px;
   margin-top: -12px;
   margin-bottom: -24px;
   height: 250px;
@@ -87,8 +87,9 @@
 }
 
 .new-contact {
+  cursor: pointer;
   justify-content: space-between;
-  padding-right: 2px;
+  padding-right: 15px;
 }
 
 .contacts-list-elem-box {
@@ -188,6 +189,7 @@
 }
 
 .categories-list-elem {
+  cursor: pointer;
   display: flex;
   align-items: center;
   padding: 12px 24px;
@@ -198,10 +200,16 @@
   background-color: #7babfe48;
 }
 
-.categories-list-elem img {
+.categories-list-elem img,
+.selected-category img {
   height: 18px;
   width: 18px;
   margin-left: 12px;
+}
+
+.selected-category {
+  display: flex;
+  align-items: center;
 }
 
 .plus-icon {

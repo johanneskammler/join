@@ -45,7 +45,7 @@
     }
 
     .title-input {
-        width: 83%;
+        width: 75vw;
     }
 
     .date-box,
@@ -53,7 +53,7 @@
     .contacts-box,
     .description-box,
     .subtask-box {
-        width: 88%;
+        width: 80vw;
     }
 
     .select-contacts,
@@ -67,7 +67,7 @@
     }
 
     .importance-buttons {
-        width: 88%;
+        width: 80vw;
     }
 
     .importance-buttons button {
@@ -75,11 +75,15 @@
     }
 
     .rendered-contact-name {
-        width: 75vw;
+        width: 61vw;
     }
 
     .contacts-dropdown-content {
-        width: 88vw;
+        width: 74vw;
+    }
+
+    .new-contact {
+        margin-right: 3px;
     }
 }
 

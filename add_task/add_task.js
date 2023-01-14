@@ -1,8 +1,31 @@
+let tasks = [];
+
+
+function addToTasks() {
+  let title = document.getElementById('title-input');
+  let date = document.getElementById('select-date');
+  let description = document.getElementById('description-input');
+
+  let task = {
+    "title": title.value,
+    "date": date.value,
+    "decription": description.value
+  }
+
+  tasks.push(task);
+  console.log(tasks);
+  title.value = '';
+  date.value = '';
+  description.value = '';
+}
+
+
 async function init() {
   await includeHTML();
   checkSize();
   renderContacts();
 }
+
 
 function checkSize() {
   let size = window.innerWidth;
@@ -13,6 +36,7 @@ function checkSize() {
   }
 }
 
+
 function sidebarTabled() {
   document.getElementById("sidebar").classList.remove("sidebar");
   document.getElementById("sidebar").classList.add("tablet-sidebar");
@@ -20,6 +44,7 @@ function sidebarTabled() {
   document.getElementById("create-btn-responsive").classList.remove("d-none");
   document.getElementById("header-name-resp").classList.remove("d-none");
 }
+
 
 function enableSidebar() {
   document.getElementById("sidebar").classList.add("sidebar");
@@ -34,8 +59,6 @@ async function renderContacts() {
   let url = '../contacts.json';
   let response = await fetch(url);
   let contacts = await response.json();
-
-  console.log(contacts);
 
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];
@@ -54,6 +77,32 @@ async function renderContacts() {
   }
 }
 
+
+function fillCategory(category) {
+  let categoryField = document.getElementById('select-category');
+
+  if (category == 'sales') {
+    categoryField.innerHTML = '';
+    categoryField.innerHTML += `
+    <div class="selected-category">
+      Sales
+      <img src="../add_task/img-add_task/circle_pink.png" />
+    </div>
+    `;
+    document.getElementById('categories-drop-down').classList.add('d-none');
+  } else if (category == 'backoffice') {
+    categoryField.innerHTML = '';
+    categoryField.innerHTML += `
+    <div class="selected-category">
+      Backoffice
+      <img src="../add_task/img-add_task/circle_turquois.png" />
+    </div>
+    `;
+  }
+  document.getElementById('categories-drop-down').classList.add('d-none');
+}
+
+
 function fillImportanceButton1() {
   document.getElementById("importance-button1").style = "display: none;";
   document.getElementById("importance-button1-colored").style =
@@ -66,11 +115,13 @@ function fillImportanceButton1() {
     "display: none;";
 }
 
+
 function emptyImportanceButton1() {
   document.getElementById("importance-button1").style = "display: flex;";
   document.getElementById("importance-button1-colored").style =
     "display: none;";
 }
+
 
 function fillImportanceButton2() {
   document.getElementById("importance-button2").style = "display: none;";
@@ -84,11 +135,13 @@ function fillImportanceButton2() {
     "display: none;";
 }
 
+
 function emptyImportanceButton2() {
   document.getElementById("importance-button2").style = "display: flex;";
   document.getElementById("importance-button2-colored").style =
     "display: none;";
 }
+
 
 function fillImportanceButton3() {
   document.getElementById("importance-button3").style = "display: none;";
@@ -102,11 +155,13 @@ function fillImportanceButton3() {
     "display: none;";
 }
 
+
 function emptyImportanceButton3() {
   document.getElementById("importance-button3").style = "display: flex;";
   document.getElementById("importance-button3-colored").style =
     "display: none;";
 }
+
 
 function openContactsToSelect() {
   document.getElementById("categories-drop-down").classList.add("d-none");
@@ -114,11 +169,13 @@ function openContactsToSelect() {
   element.classList.toggle("d-none");
 }
 
+
 function openCategoriesToSelect() {
   document.getElementById("contacts-drop-down").classList.add("d-none");
   var element = document.getElementById("categories-drop-down");
   element.classList.toggle("d-none");
 }
+
 
 async function contactAsJson() {
   let path = "../cards.json";
