@@ -6,13 +6,16 @@ board = "summary.html"
 
 
 async function init() {
+  await includeHTML();
+  checkMainSize();
+  
   await downloadFromServer();
   task_cards = JSON.parse(backend.getItem('tasks')) || [];
-  await includeHTML();
+  
   await greetUser();
   renderCurrentDate();
   renderAmountToTasks();
-  checkMainSize();
+  
   /*
   setTimeout(() => {
     markSummaryNav();
