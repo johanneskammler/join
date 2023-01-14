@@ -1,4 +1,5 @@
 let tasks = [];
+let selectedContacts = [];
 
 
 function addToTasks() {
@@ -11,7 +12,8 @@ function addToTasks() {
     "title": title.value,
     "date": date.value,
     "category": category.innerText,
-    "decription": description.value
+    "decription": description.value,
+    "contacts": selectedContacts
   }
 
   tasks.push(task);
@@ -70,12 +72,25 @@ async function renderContacts() {
       <label class="control control-checkbox" id="selected-contact">
         <div class="contacts-list-elem-box">
           <span class="rendered-contact-name">${element['name']}</span>
-          <input type="checkbox" />
-          <div class="control_indicator"></div>
+          <input onclick="addContactToTask(${i})" id="contacts-checkbox-${i}" type="checkbox" value="${element['name']}" />
+          <div id="control-indicator" class="control-indicator"></div>
         </div>
       </label>
     </div>
         `;
+  }
+}
+
+
+function addContactToTask(i) {
+  let contact = document.getElementById('contacts-checkbox-' + i).value;
+
+  if (selectedContacts.includes(contact)) {
+    selectedContacts.splice(i, 1);
+    console.log(selectedContacts);
+  } else {
+    selectedContacts.push(contact);
+    console.log(selectedContacts);
   }
 }
 

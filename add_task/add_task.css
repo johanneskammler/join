@@ -116,7 +116,7 @@ html {
   cursor: pointer;
 }
 
-.control_indicator {
+.control-indicator {
   position: absolute;
   top: 5px;
   right: 0;
@@ -127,33 +127,33 @@ html {
   border-radius: 3px;
 }
 
-.control input:checked~.control_indicator {
+.control input:checked~.control-indicator {
   background: white;
 }
 
-.control:hover input:not([disabled]):checked~.control_indicator,
-.control input:checked:focus~.control_indicator {
+.control:hover input:not([disabled]):checked~.control-indicator,
+.control input:checked:focus~.control-indicator {
   background: white;
 }
 
-.control input:disabled~.control_indicator {
+.control input:disabled~.control-indicator {
   background: #e6e6e6;
   opacity: 7;
   pointer-events: none;
 }
 
-.control_indicator:after {
+.control-indicator:after {
   box-sizing: unset;
   content: "";
   position: absolute;
   display: none;
 }
 
-.control input:checked~.control_indicator:after {
+.control input:checked~.control-indicator:after {
   display: block;
 }
 
-.control-checkbox .control_indicator:after {
+.control-checkbox .control-indicator:after {
   left: 8px;
   top: -5px;
   width: 5px;
@@ -163,11 +163,11 @@ html {
   transform: rotate(45deg);
 }
 
-.control-checkbox input:disabled~.control_indicator:after {
+.control-checkbox input:disabled~.control-indicator:after {
   border-color: #7b7b7b;
 }
 
-.control-checkbox .control_indicator::before {
+.control-checkbox .control-indicator::before {
   content: "";
   display: block;
   position: absolute;
@@ -512,3 +512,27 @@ html {
   justify-content: flex-end;
   margin-right: 48px;
 }
+
+/* .task-added-to-board {
+  height: 74px;
+  width: 326px;
+  position: absolute;
+  top: 45vh;
+  left: 40vw;
+  animation-duration: 2s;
+  animation-name: slidein;
+  animation-iteration-count: 2;
+  animation-direction: alternate;
+}
+
+@keyframes slidein {
+  from {
+    margin-top: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-top: 0%;
+    width: 100%;
+  }
+} */
