@@ -89,13 +89,21 @@ html {
   margin-bottom: 6px;
 }
 
+.subtask-list-elem {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  margin-bottom: 6px;
+}
+
 .new-contact {
   cursor: pointer;
   justify-content: space-between;
   padding-right: 15px;
 }
 
-.contacts-list-elem-box {
+.contacts-list-elem-box,
+.subtask-list-elem-box {
   display: flex;
 }
 
@@ -103,7 +111,13 @@ html {
   width: 362px;
 }
 
-.contacts-list-elem:hover {
+.rendered-subtask-name {
+  width: 362px;
+  margin-left: 12px;
+}
+
+.contacts-list-elem:hover,
+.subtask-list-elem:hover {
   background-color: #7babfe48;
 }
 
@@ -126,33 +140,51 @@ html {
   border-radius: 3px;
 }
 
-.control input:checked~.control-indicator {
+.control-indicator-subtask {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  background: #ffffff;
+  border: 2px solid #4589ff;
+  border-radius: 3px;
+}
+
+.control input:checked~.control-indicator,
+.control input:checked~.control-indicator-subtask {
   background: white;
 }
 
 .control:hover input:not([disabled]):checked~.control-indicator,
-.control input:checked:focus~.control-indicator {
+.control input:checked:focus~.control-indicator,
+.control:hover input:not([disabled]):checked~.control-indicator-subtask,
+.control input:checked:focus~.control-indicator-subtask {
   background: white;
 }
 
-.control input:disabled~.control-indicator {
+.control input:disabled~.control-indicator,
+.control input:disabled~.control-indicator-subtask {
   background: #e6e6e6;
   opacity: 7;
   pointer-events: none;
 }
 
-.control-indicator:after {
+.control-indicator:after,
+.control-indicator-subtask:after {
   box-sizing: unset;
   content: "";
   position: absolute;
   display: none;
 }
 
-.control input:checked~.control-indicator:after {
+.control input:checked~.control-indicator:after,
+.control input:checked~.control-indicator-subtask:after {
   display: block;
 }
 
-.control-checkbox .control-indicator:after {
+.control-checkbox .control-indicator:after,
+.control-checkbox .control-indicator-subtask:after {
   left: 8px;
   top: -5px;
   width: 5px;
@@ -162,11 +194,13 @@ html {
   transform: rotate(45deg);
 }
 
-.control-checkbox input:disabled~.control-indicator:after {
+.control-checkbox input:disabled~.control-indicator:after,
+.control-checkbox input:disabled~.control-indicator-subtask:after {
   border-color: #7b7b7b;
 }
 
-.control-checkbox .control-indicator::before {
+.control-checkbox .control-indicator::before,
+.control-checkbox .control-indicator-subtask::before {
   content: "";
   display: block;
   position: absolute;
@@ -186,6 +220,14 @@ html {
 .categories-dropdown-content {
   width: 422px;
   margin-top: -16px;
+  margin-bottom: -24px;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.subtask-content {
+  width: 422px;
+  margin-top: -40px;
   margin-bottom: -24px;
   max-height: 250px;
   overflow-y: auto;
@@ -408,7 +450,7 @@ html {
   width: 341px;
   display: flex;
   justify-content: space-between;
-  margin-top: -24px;
+  margin-top: 30px;
   margin-bottom: 24px;
 }
 

@@ -69,7 +69,7 @@ async function renderContacts() {
         <div class="contacts-list-elem-box">
           <span class="rendered-contact-name">${element["name"]}</span>
           <input type="checkbox" />
-          <div class="control_indicator"></div>
+          <div class="control-indicator"></div>
         </div>
       </label>
     </div>
@@ -130,6 +130,26 @@ function addNewCategory() {
   document.getElementById("new-category-accept").classList.add("d-none");
   document.getElementById("select-category").innerHTML = "";
   document.getElementById("select-category").innerHTML = newCategory.value;
+}
+
+function addSubtask() {
+  let newSubtask = document.getElementById('add-subtask').value;
+  if (newSubtask == '') {
+    return false;
+  } else {
+    document.getElementById('subtask-content').innerHTML += `
+      <div class="subtask-list-elem">
+        <label class="control control-checkbox" id="selected-subtask">
+          <div class="subtask-list-elem-box">
+            <input type="checkbox" />
+            <span class="rendered-subtask-name">${newSubtask}</span>
+            <div class="control-indicator-subtask"></div>
+          </div>
+        </label>
+      </div>
+      `;
+  }
+  document.getElementById('add-subtask').value = '';
 }
 
 function fillImportanceButton1() {
