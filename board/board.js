@@ -1,4 +1,13 @@
 let responsAsJson;
+let todos = [];
+let progresses = [];
+let feedbackes = [];
+let dones = [];
+let todo = "todo";
+let feedback = "feedback";
+let progress = "progress";
+let done = "done";
+let idCounter = 0; // Später im Server speichern da sonst wieder von 0 anfängt !!!
 /**
  * This function Initialized some functions that need to run with onload of the body
  *
@@ -7,7 +16,7 @@ async function init() {
   await includeHTML();
   checkSize();
   await getCardInfo();
-  setTodos();
+  generateCards();
   activateDragAndDrop();
   draggableTrue();
 }
@@ -88,7 +97,11 @@ function draggableTrue() {
 }
 
 function renderAddTask() {
-  document.getElementById("add_task").innerHTML = `
+  document.getElementById("add_task").innerHTML = renderAddTaskHTML();
+}
+
+function renderAddTaskHTML() {
+  return `
     
   
       <div class="for-close" onclick="closeAddTask()"></div>  
@@ -339,10 +352,10 @@ function getFirstLetter(contacts) {
  * check how the lenght is from responsAsJson['todo']
  * <div onmousedown="return false" draggable="true" class="card" id="card${object}" onclick="popup(${object})">
  */
-function setTodos() {
-  let object = Object.keys(responsAsJson["todo"]).length;
+function setCards(section) {
+  let object = Object.keys(responsAsJson[section]).length;
   for (let i = 0; i < object; i++) {
-    const element = responsAsJson["todo"][i];
+    const element = responsAsJson[section][i];
     let category = element["category"];
     let color = element["color"];
     let title = element["title"];
@@ -353,9 +366,31 @@ function setTodos() {
 
     let letters = getFirstLetter(contacts);
 
-    document.getElementById("todo-board").innerHTML += `
-              
-                    <div onmousedown="return false" draggable="true" class="card" onclick="popup()">
+    document.getElementById(`${section}-board`).innerHTML += setCardHTML(
+      object,
+      category,
+      color,
+      title,
+      description,
+      progress,
+      progressStatus
+    );
+
+    renderContacts(letters, idCounter);
+    idCounter++;
+  }
+}
+
+function setCardHTML(
+  object,
+  category,
+  color,
+  title,
+  description,
+  progress,
+  progressStatus
+) {
+  return `<div onmousedown="return false" draggable="true" class="card" onclick="popup()" id="card${idCounter}">
                     
                       
                       <div class="card-head">
@@ -382,7 +417,7 @@ function setTodos() {
                       </div>
 
                       <div class="card-footer">
-                        <div class="card-invite" id="contacts_card"></div>
+                        <div class="card-invite" id="contacts_card${idCounter}"></div>
                         <button class="btn-footer">
                           <img class="img-position" src="img-board/footer-button-green.png">
                           <img src="img-board/footer-button-green.png">
@@ -390,15 +425,20 @@ function setTodos() {
                       <div>
                     </div>
       `;
-    renderContacts(letters);
-  }
 }
 
-function renderContacts(letters) {
+function renderContacts(letters, idCounter) {
   for (let i = 0; i < letters.length; i++) {
     const firstLetters = letters[i];
     document.getElementById(
-      "contacts_card"
+      `contacts_card${idCounter}`
     ).innerHTML += `<p class="invate font">${firstLetters}</p>`;
   }
+}
+
+function generateCards() {
+  setCards(todo);
+  setCards(progress);
+  setCards(feedback);
+  setCards(done);
 }

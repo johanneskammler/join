@@ -13,9 +13,23 @@
         "Enna Flanlos",
         "Gernd Hlanvoll"
       ]
+    },
+    {
+      "category": "Media",
+      "color": "#9327FF",
+      "title": "Accounting invoices",
+      "description": "hsuofahouhdoijdisodjspi dpodja oisjd s dosI DSODHSDOSUHD W DwshdosDHsodh d hds oidhWSDHI",
+      "progress": "enabled",
+      "progress-status": 3,
+      "contacts": [
+        "Aax Busterman",
+        "Cieter Delß",
+        "Enna Flanlos",
+        "Gernd Hlanvoll"
+      ]
     }
   ],
-  "pogress": [
+  "progress": [
     {
       "category": "Sales",
       "color": "#FF7A00",
