@@ -24,6 +24,7 @@
     <script src="board.js"></script>
     <script src="../include.js"></script>
     <script src="../main.js"></script>
+    <script src="boardHTML.js"></script>
 
 
     <title>Board</title>
@@ -38,7 +39,7 @@
   
     <div id="popup" onclick="popup()"  class="popup d-none"></div>
     
-        <div id="popup_card" class="popup-card d-none">
+        <!-- <div id="popup_card" class="popup-card d-none">
             <div class="card-head">
                 <span class="responsible"  class="pointer">Sales</span>
                 <div class="close" onclick="popup()">
@@ -54,7 +55,7 @@
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam...      
                 </p>
                 <div class="date-box-popup">
-                    <p class="due-date">Due date:</p>
+                  <p class="due-date">Due date:</p>
                     <p id="date">16-01-2023</p>
                 </div>
                 <div class="priority-box">
@@ -83,7 +84,7 @@
                 </div>
             </div>
     
-        </div>
+        </div> -->
 
     
     <header w3-include-html="../templates/header.html"></header>
@@ -124,31 +125,7 @@
                     </div>
                     <div class="progressbox">
                         <div class="choice progress-content" id="progress-board">
-                            <!-- <div onmousedown="return false" draggable="true" class="card" onclick="popup()">
-                                <div class="card-head">
-                                    <img src="img-board/backoffice.png" alt="" />
-                                </div>
-                                <div class="card-title">
-                                    <h1 class="title-text font">Überschrieft Test Test</h1>
-                                </div>
-                                <div class="card-content">
-                                    <p class="font">
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam...
-                                </div>
-                                <div class="card-footer">
-                                    <div class="card-invite">
-                                        <p class="claus invate font">CV</p>
-                                        <p class="peter invate font">PW</p>
-                                        <p class="nina invate font">NS</p>
-                                    </div>
-
-                                    <button class="btn-footer">
-                        <img src="img-board/footer-button-green.png" /><img
-                          src="img-board/footer-button-green.png"
-                        />
-                      </button>
-                                </div>
-                            </div> -->
+                       
                         </div>
                     </div>
                 </div>
@@ -163,33 +140,7 @@
                     </div>
 
                     <div class="feedbackbox">
-                        <div class="choice await-feedback-content" id="feedback-board">
-                            <div onmousedown="return false" draggable="true" class="card" onclick="popup()">
-                                <div class="card-head">
-                                    <img src="img-board/backoffice.png" alt="" />
-                                </div>
-                                <div class="card-title">
-                                    <h1 class="title-text font">Überschrieft Test Test</h1>
-                                </div>
-                                <div class="card-content">
-                                    <p class="font">
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam eni...
-                                    </p>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="card-invite">
-                                        <p class="claus invate font">CV</p>
-                                        <p class="peter invate font">PW</p>
-                                        <p class="nina invate font">NS</p>
-                                    </div>
-
-                                    <button class="btn-footer">
-                        <img src="img-board/footer-button-green.png" /><img
-                          src="img-board/footer-button-green.png"
-                        />
-                      </button>
-                                </div>
-                            </div>
+                        <div class="choice await-feedback-content" id="feedback-board"></div>
                         </div>
                     </div>
                 </div>
@@ -201,33 +152,7 @@
                     </div>
 
                     <div class="donebox">
-                        <div class=" choice done-content" id="done-board">
-                            <div onmousedown="return false" draggable="true" class="card" onclick="popup()">
-                                <div class="card-head">
-                                    <img src="img-board/backoffice.png" alt="" />
-                                </div>
-                                <div class="card-title">
-                                    <h1 class="title-text font">Überschrieft Test Test</h1>
-                                </div>
-                                <div class="card-content">
-                                    <p class="font">
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsams...
-                                    </p>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="card-invite">
-                                        <p class="claus invate">CV</p>
-                                        <p class="peter invate">PW</p>
-                                        <p class="nina invate">NS</p>
-                                    </div>
-
-                                    <button class="btn-footer">
-                        <img src="img-board/footer-button-green.png" /><img
-                          src="img-board/footer-button-green.png"
-                        />
-                      </button>
-                                </div>
-                            </div>
+                        <div class=" choice done-content" id="done-board"></div>
                         </div>
                     </div>
                 </div>
