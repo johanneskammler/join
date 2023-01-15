@@ -1,10 +1,19 @@
-let card = document.getElementsByClassName("card");
-let choice = document.getElementsByClassName("choice");
-let dragItem = null;
+async function activateDragAndDrop() {
+  let card = document.getElementsByClassName("card");
+  let choice = document.getElementsByClassName("choice");
+  let dragItem = null;
 
-for (let i of card) {
-  i.addEventListener("dragstart", dragStart);
-  i.addEventListener("dragend", dragEnd);
+  for (let i of card) {
+    i.addEventListener("dragstart", dragStart);
+    i.addEventListener("dragend", dragEnd);
+  }
+
+  for (j of choice) {
+    j.addEventListener("dragover", dragOver);
+    j.addEventListener("dragenter", dragEnter);
+    j.addEventListener("dragleave", dragLeave);
+    j.addEventListener("drop", Drop);
+  }
 }
 
 function dragStart() {
@@ -24,13 +33,13 @@ function dragEnd() {
 
   dragItem = null;
 }
-
+/* 
 for (j of choice) {
   j.addEventListener("dragover", dragOver);
   j.addEventListener("dragenter", dragEnter);
   j.addEventListener("dragleave", dragLeave);
   j.addEventListener("drop", Drop);
-}
+} */
 
 function Drop() {
   if (window.innerWidth < 1024) {
@@ -38,7 +47,7 @@ function Drop() {
   }
   this.append(dragItem);
   this.classList.remove("hover");
-  setTimeout(ScrollbarExist, 250);
+  /*   setTimeout(ScrollbarExist, 250); */
 }
 
 function dragOver(e) {

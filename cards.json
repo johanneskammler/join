@@ -2,6 +2,7 @@
   "todo": [
     {
       "category": "Design",
+      "color": "#1fd7c1",
       "title": "Websites redisgn",
       "description": "hsuofahouhdoijdisodjspi dpodja oisjd s dosI DSODHSDOSUHD W DwshdosDHsodh d hds oidhWSDHI",
       "progress": "enable",
@@ -16,9 +17,10 @@
   ],
   "pogress": [
     {
-      "area": "Sales",
+      "category": "Sales",
+      "color": "#FF7A00",
       "title": "Call a clients",
-      "text": "hsuofahouhdoijdisodjspi dpodja oisjd s dosI DSODHSDOSUHD W DwshdosDHsodh d hds oidhWSDHI",
+      "description": "hsuofahouhdoijdisodjspi dpodja oisjd s dosI DSODHSDOSUHD W DwshdosDHsodh d hds oidhWSDHI",
       "progress": "",
       "progress-status": 0,
       "contacts": [
@@ -31,9 +33,10 @@
   ],
   "feedback": [
     {
-      "area": "Backoffice",
+      "category": "Backoffice",
+      "color": "#0223CF",
       "title": "Accounting invoices",
-      "text": "hsuofahouhdoijdisodjspi dpodja oisjd s dosI DSODHSDOSUHD W DwshdosDHsodh d hds oidhWSDHI",
+      "description": "hsuofahouhdoijdisodjspi dpodja oisjd s dosI DSODHSDOSUHD W DwshdosDHsodh d hds oidhWSDHI",
       "progress": "",
       "progress-status": 0,
       "contacts": [
@@ -46,9 +49,10 @@
   ],
   "done": [
     {
-      "area": "Backoffice",
+      "category": "Marketing",
+      "color": "#FFA800",
       "title": "Accounting invoices",
-      "text": "hsuofahouhdoijdisodjspi dpodja oisjd s dosI DSODHSDOSUHD W DwshdosDHsodh d hds oidhWSDHI",
+      "description": "hsuofahouhdoijdisodjspi dpodja oisjd s dosI DSODHSDOSUHD W DwshdosDHsodh d hds oidhWSDHI",
       "progress": "enabled",
       "progress-status": 3,
       "contacts": [
@@ -59,9 +63,10 @@
       ]
     },
     {
-      "area": "Backoffice",
+      "category": "Media",
+      "color": "#9327FF",
       "title": "Accounting invoices",
-      "text": "hsuofahouhdoijdisodjspi dpodja oisjd s dosI DSODHSDOSUHD W DwshdosDHsodh d hds oidhWSDHI",
+      "description": "hsuofahouhdoijdisodjspi dpodja oisjd s dosI DSODHSDOSUHD W DwshdosDHsodh d hds oidhWSDHI",
       "progress": "enabled",
       "progress-status": 3,
       "contacts": [

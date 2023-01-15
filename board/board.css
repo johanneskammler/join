@@ -160,6 +160,20 @@ body {
   margin-block-start: -6px;
 }
 
+.category-overlay {
+  width: 127px;
+  height: 28px;
+  position: absolute;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 16px;
+  font-family: "Open Sans";
+  border-radius: 8px;
+}
+
 .title-text {
   font-size: 16px;
   color: #4589ff;

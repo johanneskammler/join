@@ -6,6 +6,10 @@ let responsAsJson;
 async function init() {
   await includeHTML();
   checkSize();
+  await getCardInfo();
+  setTodos();
+  activateDragAndDrop();
+  draggableTrue();
 }
 
 /**
@@ -310,19 +314,91 @@ function closeAddTask() {
 /**
  * get the json data
  */
-async function contactAsJson() {
+async function getCardInfo() {
   let path = "../cards.json";
   let respons = await fetch(path);
   responsAsJson = await respons.json();
 }
 
+function getFirstLetter(contacts) {
+  let letters = [];
+  let firstLetters;
+
+  for (let i = 0; i < contacts.length; i++) {
+    const element = contacts[i];
+    let name = element.split(" ");
+    let firstLetter = name[0].split("");
+    let secondLetter = name[1].split("");
+    firstLetters = firstLetter[0] + secondLetter[0];
+    letters.push(firstLetters);
+  }
+  return letters;
+}
+
 /**
  * check how the lenght is from responsAsJson['todo']
+ * <div onmousedown="return false" draggable="true" class="card" id="card${object}" onclick="popup(${object})">
  */
-function setVariable() {
+function setTodos() {
   let object = Object.keys(responsAsJson["todo"]).length;
   for (let i = 0; i < object; i++) {
     const element = responsAsJson["todo"][i];
-    console.log(element);
+    let category = element["category"];
+    let color = element["color"];
+    let title = element["title"];
+    let description = element["description"];
+    let progress = element["progress"];
+    let progressStatus = element["progress-status"];
+    let contacts = element["contacts"];
+
+    let letters = getFirstLetter(contacts);
+
+    document.getElementById("todo-board").innerHTML += `
+              
+                    <div onmousedown="return false" draggable="true" class="card" onclick="popup()">
+                    
+                      
+                      <div class="card-head">
+                        <div class="category-overlay" style="background-color: ${color}">
+                          <p id="c_overlay${object}">${category}</p>
+                        </div>
+                      </div>
+
+                      <div class="card-title">
+                        <h1 class="title-text font">${title}</h1>
+                      </div>
+
+                      <div class="card-content">
+                        <p class="inter gray">
+                          ${description}
+                        </p>
+                      </div>
+
+                      <div class="progress-box">
+                        <div class="progressbar">
+                          <div class="progress" id="progress-nr"></div>
+                        </div>
+                          <p class="done-p" id="done_status font">${progressStatus}/3 Done</p>
+                      </div>
+
+                      <div class="card-footer">
+                        <div class="card-invite" id="contacts_card"></div>
+                        <button class="btn-footer">
+                          <img class="img-position" src="img-board/footer-button-green.png">
+                          <img src="img-board/footer-button-green.png">
+                        </button>
+                      <div>
+                    </div>
+      `;
+    renderContacts(letters);
+  }
+}
+
+function renderContacts(letters) {
+  for (let i = 0; i < letters.length; i++) {
+    const firstLetters = letters[i];
+    document.getElementById(
+      "contacts_card"
+    ).innerHTML += `<p class="invate font">${firstLetters}</p>`;
   }
 }
