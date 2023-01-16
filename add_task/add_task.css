@@ -287,13 +287,22 @@ html {
   z-index: 4;
 }
 
-.new-category-accept img {
+.new-subtask-accept {
+  position: absolute;
+  top: 0;
+  right: 16px;
+  z-index: 4;
+}
+
+.new-category-accept img,
+.new-subtask-accept img {
   cursor: pointer;
   height: 16px;
   width: 16px;
 }
 
-.new-category-accept span {
+.new-category-accept span,
+.new-subtask-accept span {
   color: gray;
   font-size: 24px;
   font-weight: 100;
