@@ -1,5 +1,5 @@
-setURL("https://gruppe-417.developerakademie.net/smallest_backend_ever");
 let tasks = [];
+// setURL("https://gruppe-417.developerakademie.net/smallest_backend_ever");
 
 function addToTasks() {
   let title = document.getElementById("title-input");
@@ -8,10 +8,10 @@ function addToTasks() {
   let description = document.getElementById("description-input");
 
   let task = {
-    title: title.value,
-    date: date.value,
-    category: category.innerText,
-    decription: description.value,
+    'title': title.value,
+    'date': date.value,
+    'category': category.innerText,
+    'decription': description.value,
   };
 
   tasks.push(task);
@@ -21,10 +21,14 @@ function addToTasks() {
   description.value = "";
 }
 
+
 async function init() {
   await includeHTML();
   checkSize();
   renderContacts();
+
+  // await downloadFromServer();
+  // tasks = JSON.parse(backend.getItem('tasks')) || [];
 }
 
 function checkSize() {
@@ -59,44 +63,25 @@ async function renderContacts() {
 
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];
-
-    document.getElementById("contacts-drop-down").innerHTML += `
-    <div class="contacts-list-elem">
-      <label class="control control-checkbox" id="selected-contact">
-        <div class="contacts-list-elem-box">
-          <span class="rendered-contact-name">${element["name"]}</span>
-          <input type="checkbox" />
-          <div class="control-indicator"></div>
-        </div>
-      </label>
-    </div>
-        `;
+    document.getElementById("contacts-drop-down").innerHTML += generateHTMLcontacts(element);
   }
 }
+
 
 function fillCategory(category) {
   let categoryField = document.getElementById("select-category");
 
   if (category == "sales") {
     categoryField.innerHTML = "";
-    categoryField.innerHTML += `
-    <div class="selected-category">
-      Sales
-      <img src="../add_task/img-add_task/circle_pink.png" />
-    </div>
-    `;
+    categoryField.innerHTML += setCategoryToSales();
     document.getElementById("categories-drop-down").classList.add("d-none");
   } else if (category == "backoffice") {
     categoryField.innerHTML = "";
-    categoryField.innerHTML += `
-    <div class="selected-category">
-      Backoffice
-      <img src="../add_task/img-add_task/circle_turquois.png" />
-    </div>
-    `;
+    categoryField.innerHTML += setCategoryToBackoffice();
   }
   document.getElementById("categories-drop-down").classList.add("d-none");
 }
+
 
 function createNewCategory() {
   document.getElementById("categories-drop-down").classList.add("d-none");
@@ -109,21 +94,16 @@ function createNewCategory() {
 function goBackToSelectCategory() {
   document.getElementById("new-category-input").classList.add("d-none");
   document.getElementById("new-category-content").classList.add("d-none");
-  document
-    .getElementById("drop-down-arrow-categories")
-    .classList.remove("d-none");
+  document.getElementById("drop-down-arrow-categories").classList.remove("d-none");
   document.getElementById("new-category-accept").classList.add("d-none");
   document.getElementById("select-category").innerHTML = "Select task category";
 }
 
 function addNewCategory() {
   let newCategory = document.getElementById("new-category-input");
-
   document.getElementById("new-category-input").classList.add("d-none");
   document.getElementById("new-category-content").classList.add("d-none");
-  document
-    .getElementById("drop-down-arrow-categories")
-    .classList.remove("d-none");
+  document.getElementById("drop-down-arrow-categories").classList.remove("d-none");
   document.getElementById("new-category-accept").classList.add("d-none");
   document.getElementById("select-category").innerHTML = "";
   document.getElementById("select-category").innerHTML = newCategory.value;
@@ -134,73 +114,52 @@ function addSubtask() {
   if (newSubtask == '') {
     return false;
   } else {
-    document.getElementById('subtask-content').innerHTML += `
-      <div class="subtask-list-elem">
-        <label class="control control-checkbox" id="selected-subtask">
-          <div class="subtask-list-elem-box">
-            <input type="checkbox" />
-            <span class="rendered-subtask-name">${newSubtask}</span>
-            <div class="control-indicator-subtask"></div>
-          </div>
-        </label>
-      </div>
-      `;
+    document.getElementById('subtask-content').innerHTML += generateHTMLsubtask(newSubtask);
   }
   document.getElementById('add-subtask').value = '';
 }
 
+
 function fillImportanceButton1() {
   document.getElementById("importance-button1").style = "display: none;";
-  document.getElementById("importance-button1-colored").style =
-    "display: flex; cursor: pointer;";
+  document.getElementById("importance-button1-colored").style = "display: flex; cursor: pointer;";
   document.getElementById("importance-button2").style = "display: flex;";
-  document.getElementById("importance-button2-colored").style =
-    "display: none;";
+  document.getElementById("importance-button2-colored").style = "display: none;";
   document.getElementById("importance-button3").style = "display: flex;";
-  document.getElementById("importance-button3-colored").style =
-    "display: none;";
+  document.getElementById("importance-button3-colored").style = "display: none;";
 }
 
 function emptyImportanceButton1() {
   document.getElementById("importance-button1").style = "display: flex;";
-  document.getElementById("importance-button1-colored").style =
-    "display: none;";
+  document.getElementById("importance-button1-colored").style = "display: none;";
 }
 
 function fillImportanceButton2() {
   document.getElementById("importance-button2").style = "display: none;";
-  document.getElementById("importance-button2-colored").style =
-    "display: flex; cursor: pointer;";
+  document.getElementById("importance-button2-colored").style = "display: flex; cursor: pointer;";
   document.getElementById("importance-button1").style = "display: flex;";
-  document.getElementById("importance-button1-colored").style =
-    "display: none;";
+  document.getElementById("importance-button1-colored").style = "display: none;";
   document.getElementById("importance-button3").style = "display: flex;";
-  document.getElementById("importance-button3-colored").style =
-    "display: none;";
+  document.getElementById("importance-button3-colored").style = "display: none;";
 }
 
 function emptyImportanceButton2() {
   document.getElementById("importance-button2").style = "display: flex;";
-  document.getElementById("importance-button2-colored").style =
-    "display: none;";
+  document.getElementById("importance-button2-colored").style = "display: none;";
 }
 
 function fillImportanceButton3() {
   document.getElementById("importance-button3").style = "display: none;";
-  document.getElementById("importance-button3-colored").style =
-    "display: flex; cursor: pointer;";
+  document.getElementById("importance-button3-colored").style = "display: flex; cursor: pointer;";
   document.getElementById("importance-button1").style = "display: flex;";
-  document.getElementById("importance-button1-colored").style =
-    "display: none;";
+  document.getElementById("importance-button1-colored").style = "display: none;";
   document.getElementById("importance-button2").style = "display: flex;";
-  document.getElementById("importance-button2-colored").style =
-    "display: none;";
+  document.getElementById("importance-button2-colored").style = "display: none;";
 }
 
 function emptyImportanceButton3() {
   document.getElementById("importance-button3").style = "display: flex;";
-  document.getElementById("importance-button3-colored").style =
-    "display: none;";
+  document.getElementById("importance-button3-colored").style = "display: none;";
 }
 
 function openContactsToSelect() {
@@ -215,10 +174,10 @@ function openCategoriesToSelect() {
   element.classList.toggle("d-none");
 }
 
-async function contactAsJson() {
-  let path = "../cards.json";
-  let respons = await fetch(path);
-  let responsAsJson = await respons.json();
+// async function contactAsJson() {
+//   let path = "../cards.json";
+//   let response = await fetch(path);
+//   let responseAsJson = await response.json();
 
-  console.log(responsAsJson);
-}
+//   console.log(responseAsJson);
+// }
