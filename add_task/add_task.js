@@ -109,6 +109,12 @@ function addNewCategory() {
   document.getElementById("select-category").innerHTML = newCategory.value;
 }
 
+
+function createNewSubtask() {
+  document.getElementById('plus-icon').classList.add('d-none');
+  document.getElementById('new-subtask-accept').classList.remove('d-none');
+}
+
 function addSubtask() {
   let newSubtask = document.getElementById('add-subtask').value;
   if (newSubtask == '') {
@@ -117,6 +123,14 @@ function addSubtask() {
     document.getElementById('subtask-content').innerHTML += generateHTMLsubtask(newSubtask);
   }
   document.getElementById('add-subtask').value = '';
+  document.getElementById('plus-icon').classList.remove('d-none');
+  document.getElementById('new-subtask-accept').classList.add('d-none');
+}
+
+
+function backToSubtasks() {
+  document.getElementById('plus-icon').classList.remove('d-none');
+  document.getElementById('new-subtask-accept').classList.add('d-none');
 }
 
 
