@@ -6,7 +6,6 @@ async function init() {
 
 function checkSize() {
     let size = window.innerWidth;
-    console.log(size);
     if (size < 1024) {
         sidebarTabled();
     } else if (size > 1024) {
@@ -25,29 +24,476 @@ function sidebarTabled() {
 function enableSidebar() {
     document.getElementById("sidebar").classList.add("sidebar");
     document.getElementById("sidebar").classList.remove("tablet-sidebar");
-    // document.getElementById("help-section-btn").classList.remove("d-none");
-    // document.getElementById("create-btn-responsive").classList.add("d-none");
-    // document.getElementById("header-name-resp").classList.add("d-none");
 }
+
+// Contact JS
 
 async function renderContactList() {
     let url = '../contacts.json';
     let response = await fetch(url);
     let contacts = await response.json();
 
+
     for (let i = 0; i < contacts.length; i++) {
         const element = contacts[i];
+        let firstLetters = element['name'].match(/\b(\w)/g);
+        let acronym = firstLetters.join('');
 
-        document.getElementById('content').innerHTML += `
-        <div class="contact">
-                <div class="circle">AM</div>
-                <div class="contact-info-container">
-                     <span class="contact-name">${element['name']}</span>
-                    <span class="contact-email">${element['mail']}</span>
-                </div>
-        </div>
-        `;
+        renderContactListHTML(element, acronym);
+        disableContactContainer();
+        // getNewColor();
+    }
+}
+
+async function openContactDetail(element, acronym) {
+    let url = '../contacts.json';
+    let response = await fetch(url);
+    let contacts = await response.json();
+
+    document.getElementById('circle_right').innerHTML = element[acronym];
+
+}
+
+// function getNewColor() {
+//     var symbols, color;
+//     symbols = "0123456789ABCDEF";
+//     color = "#";
+
+//     for (let f = 0; f < 6; f++) {
+//         color = color + symbols[Math.floor(Math.random() * 16)]
+//         document.getElementById('circle_contacts').style.background = color;
+
+//     }
+// }
+
+
+
+
+
+//  Render HMTL
+
+function disableContactContainer() {
+    if (document.getElementById('a').innerHTML < 1) {
+        document.getElementById('a_container').classList.add('d-none');
+    } else {
+        document.getElementById('a_container').classList.remove('d-none');
+    }
+    if (document.getElementById('b').innerHTML < 1) {
+        document.getElementById('b_container').classList.add('d-none');
+    } else {
+        document.getElementById('b_container').classList.remove('d-none');
+    }
+    if (document.getElementById('c').innerHTML < 1) {
+        document.getElementById('c_container').classList.add('d-none');
+    } else {
+        document.getElementById('c_container').classList.remove('d-none');
+    }
+    if (document.getElementById('d').innerHTML < 1) {
+        document.getElementById('d_container').classList.add('d-none');
+    } else {
+        document.getElementById('d_container').classList.remove('d-none');
+    }
+    if (document.getElementById('e').innerHTML < 1) {
+        document.getElementById('e_container').classList.add('d-none');
+    } else {
+        document.getElementById('e_container').classList.remove('d-none');
+    }
+    if (document.getElementById('f').innerHTML < 1) {
+        document.getElementById('f_container').classList.add('d-none');
+    } else {
+        document.getElementById('f_container').classList.remove('d-none');
+    }
+    if (document.getElementById('g').innerHTML < 1) {
+        document.getElementById('g_container').classList.add('d-none');
+    } else {
+        document.getElementById('g_container').classList.remove('d-none');
+    }
+    if (document.getElementById('h').innerHTML < 1) {
+        document.getElementById('h_container').classList.add('d-none');
+    } else {
+        document.getElementById('h_container').classList.remove('d-none');
+    }
+    if (document.getElementById('i').innerHTML < 1) {
+        document.getElementById('i_container').classList.add('d-none');
+    } else {
+        document.getElementById('i_container').classList.remove('d-none');
+    }
+    if (document.getElementById('j').innerHTML < 1) {
+        document.getElementById('j_container').classList.add('d-none');
+    } else {
+        document.getElementById('j_container').classList.remove('d-none');
+    }
+    if (document.getElementById('k').innerHTML < 1) {
+        document.getElementById('k_container').classList.add('d-none');
+    } else {
+        document.getElementById('k_container').classList.remove('d-none');
+    }
+    if (document.getElementById('l').innerHTML < 1) {
+        document.getElementById('l_container').classList.add('d-none');
+    } else {
+        document.getElementById('l_container').classList.remove('d-none');
+    }
+    if (document.getElementById('m').innerHTML < 1) {
+        document.getElementById('m_container').classList.add('d-none');
+    } else {
+        document.getElementById('m_container').classList.remove('d-none');
+    }
+    if (document.getElementById('n').innerHTML < 1) {
+        document.getElementById('n_container').classList.add('d-none');
+    } else {
+        document.getElementById('n_container').classList.remove('d-none');
+    }
+    if (document.getElementById('o').innerHTML < 1) {
+        document.getElementById('o_container').classList.add('d-none');
+    } else {
+        document.getElementById('o_container').classList.remove('d-none');
+    }
+    if (document.getElementById('p').innerHTML < 1) {
+        document.getElementById('p_container').classList.add('d-none');
+    } else {
+        document.getElementById('p_container').classList.remove('d-none');
+    }
+    if (document.getElementById('q').innerHTML < 1) {
+        document.getElementById('q_container').classList.add('d-none');
+    } else {
+        document.getElementById('q_container').classList.remove('d-none');
+    }
+    if (document.getElementById('r').innerHTML < 1) {
+        document.getElementById('r_container').classList.add('d-none');
+    } else {
+        document.getElementById('r_container').classList.remove('d-none');
+    }
+    if (document.getElementById('s').innerHTML < 1) {
+        document.getElementById('s_container').classList.add('d-none');
+    } else {
+        document.getElementById('s_container').classList.remove('d-none');
+    }
+    if (document.getElementById('t').innerHTML < 1) {
+        document.getElementById('t_container').classList.add('d-none');
+    } else {
+        document.getElementById('t_container').classList.remove('d-none');
+    }
+    if (document.getElementById('u').innerHTML < 1) {
+        document.getElementById('u_container').classList.add('d-none');
+    } else {
+        document.getElementById('u_container').classList.remove('d-none');
+    }
+    if (document.getElementById('v').innerHTML < 1) {
+        document.getElementById('v_container').classList.add('d-none');
+    } else {
+        document.getElementById('v_container').classList.remove('d-none');
+    }
+    if (document.getElementById('w').innerHTML < 1) {
+        document.getElementById('w_container').classList.add('d-none');
+    } else {
+        document.getElementById('w_container').classList.remove('d-none');
+    }
+    if (document.getElementById('x').innerHTML < 1) {
+        document.getElementById('x_container').classList.add('d-none');
+    } else {
+        document.getElementById('x_container').classList.remove('d-none');
+    }
+    if (document.getElementById('y').innerHTML < 1) {
+        document.getElementById('y_container').classList.add('d-none');
+    } else {
+        document.getElementById('y_container').classList.remove('d-none');
+    }
+    if (document.getElementById('z').innerHTML < 1) {
+        document.getElementById('z_container').classList.add('d-none');
+    } else {
+        document.getElementById('z_container').classList.remove('d-none');
     }
 
-    console.log(contacts)
+
+}
+
+function renderContactListHTML(element, acronym) {
+    let firstLetter = element['name'][0];
+
+    if (firstLetter == 'A') {
+        document.getElementById('a').innerHTML += `
+            <div class="contact" onclick="openContactDetail(${element, acronym})">
+            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+            <span class="contact-name">${element['name']}</span>
+            <span class="contact-email">${element['mail']}</span>
+            </div>
+            </div>
+            `;
+    }
+    if (firstLetter == 'B') {
+        document.getElementById('b').innerHTML += `
+            <div class="contact" onclick="openContactDetail(element)">
+            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+            <span class="contact-name">${element['name']}</span>
+            <span class="contact-email">${element['mail']}</span>
+            </div>
+            </div>
+            `;
+    }
+    if (firstLetter == 'C') {
+        document.getElementById('c').innerHTML += `
+            <div class="contact" onclick="openContactDetail(element)">
+            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+            <span class="contact-name">${element['name']}</span>
+            <span class="contact-email">${element['mail']}</span>
+            </div>
+            </div>
+            `;
+    }
+    if (firstLetter == 'D') {
+        document.getElementById('d').innerHTML += `
+            <div class="contact" onclick="openContactDetail(element)">
+            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+            <span class="contact-name">${element['name']}</span>
+            <span class="contact-email">${element['mail']}</span>
+            </div>
+            </div>
+            `;
+    }
+    if (firstLetter == 'E') {
+        document.getElementById('e').innerHTML += `
+            <div class="contact" onclick="openContactDetail(element)">
+            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+            <span class="contact-name">${element['name']}</span>
+            <span class="contact-email">${element['mail']}</span>
+            </div>
+            </div>
+            `;
+    }
+    if (firstLetter == 'F') {
+        document.getElementById('f').innerHTML += `
+            <div class="contact" onclick="openContactDetail(element)">
+            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+            <span class="contact-name">${element['name']}</span>
+            <span class="contact-email">${element['mail']}</span>
+            </div>
+            </div>
+            `;
+    }
+    if (firstLetter == 'G') {
+        document.getElementById('g').innerHTML += `
+            <div class="contact" onclick="openContactDetail(element)">
+            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+            <span class="contact-name">${element['name']}</span>
+            <span class="contact-email">${element['mail']}</span>
+            </div>
+            </div>
+            `;
+    }
+    if (firstLetter == 'H') {
+        document.getElementById('h').innerHTML += `
+            <div class="contact" onclick="openContactDetail(element)">
+            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+            <span class="contact-name">${element['name']}</span>
+            <span class="contact-email">${element['mail']}</span>
+            </div>
+            </div>
+            `;
+    }
+    if (firstLetter == 'I') {
+        document.getElementById('i').innerHTML += `
+            <div class="contact" onclick="openContactDetail(element)">
+            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+            <span class="contact-name">${element['name']}</span>
+            <span class="contact-email">${element['mail']}</span>
+            </div>
+            </div>
+            `;
+    }
+    if (firstLetter == 'J') {
+        document.getElementById('j').innerHTML += `
+            <div class="contact" onclick="openContactDetail(element)">
+            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+            <span class="contact-name">${element['name']}</span>
+            <span class="contact-email">${element['mail']}</span>
+            </div>
+            </div>
+            `;
+    }
+    if (firstLetter == 'K') {
+        document.getElementById('k').innerHTML += `
+            <div class="contact" onclick="openContactDetail(element)">
+            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+            <span class="contact-name">${element['name']}</span>
+            <span class="contact-email">${element['mail']}</span>
+            </div>
+            </div>
+            `;
+    }
+    if (firstLetter == 'L') {
+        document.getElementById('l').innerHTML += `
+            <div class="contact" onclick="openContactDetail(element)">
+            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+            <span class="contact-name">${element['name']}</span>
+            <span class="contact-email">${element['mail']}</span>
+            </div>
+            </div>
+            `;
+    }
+    if (firstLetter == 'M') {
+        document.getElementById('m').innerHTML += `
+            <div class="contact" onclick="openContactDetail(element)">
+            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+            <span class="contact-name">${element['name']}</span>
+            <span class="contact-email">${element['mail']}</span>
+            </div>
+            </div>
+            `;
+    }
+    if (firstLetter == 'N') {
+        document.getElementById('n').innerHTML += `
+            <div class="contact" onclick="openContactDetail(element)">
+            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+            <span class="contact-name">${element['name']}</span>
+            <span class="contact-email">${element['mail']}</span>
+            </div>
+            </div>
+            `;
+    }
+    if (firstLetter == 'O') {
+        document.getElementById('o').innerHTML += `
+            <div class="contact" onclick="openContactDetail(element)">
+            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+            <span class="contact-name">${element['name']}</span>
+            <span class="contact-email">${element['mail']}</span>
+            </div>
+            </div>
+            `;
+    }
+    if (firstLetter == 'P') {
+        document.getElementById('p').innerHTML += `
+            <div class="contact" onclick="openContactDetail(element)">
+            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+            <span class="contact-name">${element['name']}</span>
+            <span class="contact-email">${element['mail']}</span>
+            </div>
+            </div>
+            `;
+    }
+    if (firstLetter == 'Q') {
+        document.getElementById('q').innerHTML += `
+            <div class="contact" onclick="openContactDetail(element)">
+            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+            <span class="contact-name">${element['name']}</span>
+            <span class="contact-email">${element['mail']}</span>
+            </div>
+            </div>
+            `;
+    }
+    if (firstLetter == 'R') {
+        document.getElementById('r').innerHTML += `
+            <div class="contact" onclick="openContactDetail(element)">
+            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+            <span class="contact-name">${element['name']}</span>
+            <span class="contact-email">${element['mail']}</span>
+            </div>
+            </div>
+            `;
+    }
+    if (firstLetter == 'S') {
+        document.getElementById('s').innerHTML += `
+            <div class="contact" onclick="openContactDetail(element)">
+            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+            <span class="contact-name">${element['name']}</span>
+            <span class="contact-email">${element['mail']}</span>
+            </div>
+            </div>
+            `;
+    }
+    if (firstLetter == 'T') {
+        document.getElementById('t').innerHTML += `
+            <div class="contact" onclick="openContactDetail(element)">
+            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+            <span class="contact-name">${element['name']}</span>
+            <span class="contact-email">${element['mail']}</span>
+            </div>
+            </div>
+            `;
+    }
+    if (firstLetter == 'U') {
+        document.getElementById('u').innerHTML += `
+            <div class="contact" onclick="openContactDetail(element)">
+            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+            <span class="contact-name">${element['name']}</span>
+            <span class="contact-email">${element['mail']}</span>
+            </div>
+            </div>
+            `;
+    }
+    if (firstLetter == 'V') {
+        document.getElementById('v').innerHTML += `
+            <div class="contact" onclick="openContactDetail(element)">
+            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+            <span class="contact-name">${element['name']}</span>
+            <span class="contact-email">${element['mail']}</span>
+            </div>
+            </div>
+            `;
+    }
+    if (firstLetter == 'W') {
+        document.getElementById('w').innerHTML += `
+            <div class="contact" onclick="openContactDetail(element)">
+            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+            <span class="contact-name">${element['name']}</span>
+            <span class="contact-email">${element['mail']}</span>
+            </div>
+            </div>
+            `;
+    }
+    if (firstLetter == 'X') {
+        document.getElementById('x').innerHTML += `
+            <div class="contact" onclick="openContactDetail(element)">
+            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+            <span class="contact-name">${element['name']}</span>
+            <span class="contact-email">${element['mail']}</span>
+            </div>
+            </div>
+            `;
+    }
+    if (firstLetter == 'Y') {
+        document.getElementById('y').innerHTML += `
+            <div class="contact" onclick="openContactDetail(element)">
+            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+            <span class="contact-name">${element['name']}</span>
+            <span class="contact-email">${element['mail']}</span>
+            </div>
+            </div>
+            `;
+    }
+    if (firstLetter == 'Z') {
+        document.getElementById('z').innerHTML += `
+            <div class="contact" onclick="openContactDetail(element)">
+            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+            <span class="contact-name">${element['name']}</span>
+            <span class="contact-email">${element['mail']}</span>
+            </div>
+            </div>
+            `;
+    }
 }
