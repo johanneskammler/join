@@ -1,7 +1,4 @@
-function hello() {
-  console.log("Hello");
-}
-
+setURL("https://gruppe-417.developerakademie.net/smallest_backend_ever");
 let tasks = [];
 
 function addToTasks() {

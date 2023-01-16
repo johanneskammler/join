@@ -92,7 +92,6 @@ html {
 .subtask-list-elem {
   display: flex;
   align-items: center;
-  padding: 0 16px;
   margin-bottom: 6px;
 }
 
