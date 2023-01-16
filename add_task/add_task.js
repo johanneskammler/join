@@ -1,4 +1,8 @@
 let tasks = [];
+let selectedContacts = [];
+let importance;
+
+
 setURL("https://gruppe-417.developerakademie.net/smallest_backend_ever");
 
 
@@ -10,9 +14,11 @@ function addToTasks() {
 
   let task = {
     'title': title.value,
+    'contacts': selectedContacts,
     'date': date.value,
     'category': category.innerText,
-    'decription': description.value,
+    'importance': importance,
+    'decription': description.value
   };
 
   tasks.push(task);
@@ -66,7 +72,20 @@ async function renderContacts() {
 
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];
-    document.getElementById("contacts-drop-down").innerHTML += generateHTMLcontacts(element);
+    document.getElementById("contacts-drop-down").innerHTML += generateHTMLcontacts(element, i);
+  }
+}
+
+
+function addContactToTask(i) {
+  let contact = document.getElementById('contacts-checkbox-' + i).value;
+
+  if (selectedContacts.includes(contact)) {
+    selectedContacts.splice(i, 1);
+    console.log(selectedContacts);
+  } else {
+    selectedContacts.push(contact);
+    console.log(selectedContacts);
   }
 }
 
@@ -151,6 +170,7 @@ function backToSubtasks() {
 
 
 function fillImportanceButton1() {
+  importance = 'urgent';
   document.getElementById("importance-button1").style = "display: none;";
   document.getElementById("importance-button1-colored").style = "display: flex; cursor: pointer;";
   document.getElementById("importance-button2").style = "display: flex;";
@@ -160,11 +180,13 @@ function fillImportanceButton1() {
 }
 
 function emptyImportanceButton1() {
+  importance = '';
   document.getElementById("importance-button1").style = "display: flex;";
   document.getElementById("importance-button1-colored").style = "display: none;";
 }
 
 function fillImportanceButton2() {
+  importance = 'medium';
   document.getElementById("importance-button2").style = "display: none;";
   document.getElementById("importance-button2-colored").style = "display: flex; cursor: pointer;";
   document.getElementById("importance-button1").style = "display: flex;";
@@ -174,11 +196,13 @@ function fillImportanceButton2() {
 }
 
 function emptyImportanceButton2() {
+  importance = '';
   document.getElementById("importance-button2").style = "display: flex;";
   document.getElementById("importance-button2-colored").style = "display: none;";
 }
 
 function fillImportanceButton3() {
+  importance = 'low';
   document.getElementById("importance-button3").style = "display: none;";
   document.getElementById("importance-button3-colored").style = "display: flex; cursor: pointer;";
   document.getElementById("importance-button1").style = "display: flex;";
@@ -188,6 +212,7 @@ function fillImportanceButton3() {
 }
 
 function emptyImportanceButton3() {
+  importance = '';
   document.getElementById("importance-button3").style = "display: flex;";
   document.getElementById("importance-button3-colored").style = "display: none;";
 }
