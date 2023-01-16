@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <script>
+    
+
+
+                        const hans = new Map();
+                        hans.set('a', 1);
+                        hans.set('b', 2);
+
+            hans.set('c', 3);
+/* 
+            console.log(hans.get('a'));
+            // Expected output: 1
+ */
+            hans.set('a', 97);
+
+       /*      console.log(hans.get('a'));
+            // Expected output: 97
+
+            console.log(hans.size);
+            // Expected output: 3
+
+            hans.delete('b');
+
+            console.log(hans.size);
+            // Expected output: 2
+ */
+            
+
+            // New Map() ist die Funktion  die auf der Variable ausgeführt werden muss
+             /* mit SET kann man neue einträge machen oder auch vorhandene einträge löschen, nach den prinzip der key value methode
+            mit SIZE bekommt man die länge und mit DELETE kann man löschen */
+
+                /* const map1 = new Map([
+                ['country', 'Chile'],
+                ['age', 30],
+                ]); */
+
+
+                let a = [];
+                hans.set('name', 'bobby hadz');
+                hans.set('Jessie', {phone: '465454', adresse: 'Sonnengase'});
+                a.push(hans)
+
+
+                for (const [key, value] of hans) {
+                 // country Chile
+                 // age 30
+                 // name bobby hadz
+                 console.log(value['phone']);
+                }
+                console.log('a: ' + a[0]);
+
+  </script>
+  <body>
+    <div id="output">
+    <div>
+  </body>
+</html>
