@@ -1,5 +1,6 @@
 let tasks = [];
-// setURL("https://gruppe-417.developerakademie.net/smallest_backend_ever");
+setURL("https://gruppe-417.developerakademie.net/smallest_backend_ever");
+
 
 function addToTasks() {
   let title = document.getElementById("title-input");
@@ -19,6 +20,8 @@ function addToTasks() {
   title.value = "";
   date.value = "";
   description.value = "";
+
+  backend.setItem("tasks", JSON.stringify(tasks));
 }
 
 
@@ -27,8 +30,8 @@ async function init() {
   checkSize();
   renderContacts();
 
-  // await downloadFromServer();
-  // tasks = JSON.parse(backend.getItem('tasks')) || [];
+  await downloadFromServer();
+  tasks = JSON.parse(backend.getItem('tasks')) || [];
 }
 
 function checkSize() {
@@ -200,11 +203,3 @@ function openCategoriesToSelect() {
   var element = document.getElementById("categories-drop-down");
   element.classList.toggle("d-none");
 }
-
-// async function contactAsJson() {
-//   let path = "../cards.json";
-//   let response = await fetch(path);
-//   let responseAsJson = await response.json();
-
-//   console.log(responseAsJson);
-// }
