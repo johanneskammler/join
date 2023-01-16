@@ -33,6 +33,16 @@ function setCategoryToBackoffice() {
 }
 
 
+function setCategoryToNewSubtask(newCategory) {
+  return `
+  <div class="selected-category">
+    ${newCategory}
+    <img src="../add_task/img-add_task/circle_green.png" />
+  </div>
+  `;
+}
+
+
 function generateHTMLsubtask(newSubtask) {
     return `
     <div class="subtask-list-elem">

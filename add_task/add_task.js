@@ -70,6 +70,7 @@ async function renderContacts() {
 
 function fillCategory(category) {
   let categoryField = document.getElementById("select-category");
+  let newCategory = document.getElementById("new-category-input").value;
 
   if (category == "sales") {
     categoryField.innerHTML = "";
@@ -78,12 +79,18 @@ function fillCategory(category) {
   } else if (category == "backoffice") {
     categoryField.innerHTML = "";
     categoryField.innerHTML += setCategoryToBackoffice();
+    document.getElementById("categories-drop-down").classList.add("d-none");
+  } else {
+    categoryField.innerHTML = "";
+    categoryField.innerHTML += setCategoryToNewSubtask(newCategory);
+    document.getElementById("categories-drop-down").classList.add("d-none");
   }
   document.getElementById("categories-drop-down").classList.add("d-none");
 }
 
 
 function createNewCategory() {
+  document.getElementById("new-category-input").value = '';
   document.getElementById("categories-drop-down").classList.add("d-none");
   document.getElementById("new-category-input").classList.remove("d-none");
   document.getElementById("new-category-content").classList.remove("d-none");
@@ -100,13 +107,19 @@ function goBackToSelectCategory() {
 }
 
 function addNewCategory() {
-  let newCategory = document.getElementById("new-category-input");
+  let newCategory = document.getElementById("new-category-input").value;
   document.getElementById("new-category-input").classList.add("d-none");
   document.getElementById("new-category-content").classList.add("d-none");
   document.getElementById("drop-down-arrow-categories").classList.remove("d-none");
   document.getElementById("new-category-accept").classList.add("d-none");
   document.getElementById("select-category").innerHTML = "";
-  document.getElementById("select-category").innerHTML = newCategory.value;
+  document.getElementById("select-category").innerHTML = newCategory;
+  document.getElementById('categories-drop-down').innerHTML += `
+  <div onclick="fillCategory('${newCategory}')" class="categories-list-elem">
+    ${newCategory}
+    <img src="../add_task/img-add_task/circle_green.png" />
+  </div>
+  `;
 }
 
 
