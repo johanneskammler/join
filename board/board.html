@@ -39,23 +39,23 @@
   
     <div id="popup" onclick="popup()"  class="popup d-none"></div>
     
-        <!-- <div id="popup_card" class="popup-card d-none">
+        <div id="popup_card" class="popup-card d-none">
             <div class="card-head">
-                <span class="responsible"  class="pointer">Sales</span>
+                <span class="responsible" id="category" class="pointer">Sales</span>
                 <div class="close" onclick="popup()">
                     <img src="img-board/line.png" class="close-img">
                     <img src="img-board/line.png">
                 </div>
             </div>
             <div class="popup-card-title">
-                <h1 class="popup-title font">Call pontencial clients </h1>
+                <h1 class="popup-title font" id="popup_title">Call pontencial clients </h1>
             </div>
             <div class="card-content-popup">
-                <p class="popup-text font">
+                <p class="popup-text font" id="popup_description">
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam...      
                 </p>
                 <div class="date-box-popup">
-                  <p class="due-date">Due date:</p>
+                  <p class="due-date" >Due date:</p>
                     <p id="date">16-01-2023</p>
                 </div>
                 <div class="priority-box">
@@ -65,17 +65,9 @@
                 <div class="assigned">
                     <p class="assigned-to">Assigned To:</p>
                     <div id="assigned_contacts">
-                        <div id="contact0">
+                        <div id="contact">
                             <p id="popup_name_logo">DE</p>
                             <p id="popup_name">David Eisenberger</p>
-                        </div>
-                        <div id="contact1">
-                            <p id="popup_name_logo">DE</p>
-                            <p class="popup_name">David Eisenberger</p>
-                        </div>
-                        <div id="contact2">
-                            <p id="popup_name_logo">DE</p>
-                            <p class="popup_name">David Eisenberger</p>
                         </div>
                     </div>
                 </div>
@@ -84,7 +76,7 @@
                 </div>
             </div>
     
-        </div> -->
+        </div>
 
     
     <header w3-include-html="../templates/header.html"></header>

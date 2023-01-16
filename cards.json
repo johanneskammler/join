@@ -5,27 +5,27 @@
       "color": "#1fd7c1",
       "title": "Websites redisgn",
       "description": "hsuofahouhdoijdisodjspi dpodja oisjd s dosI DSODHSDOSUHD W DwshdosDHsodh d hds oidhWSDHI",
-      "progress": "enable",
-      "progress-status": 2,
+      "subtask-title": ["new Smiles"],
+      "progress-status": [0],
       "contacts": [
-        "Aax Busterman",
-        "Cieter Delß",
-        "Enna Flanlos",
-        "Gernd Hlanvoll"
+        "Aax Busterman #555891",
+        "Cieter Delß #080c66",
+        "Enna Flanlos #dfd41c",
+        "Gernd Hlanvoll #df1c29"
       ]
     },
     {
       "category": "Media",
       "color": "#9327FF",
-      "title": "Accounting invoices",
+      "title": "Video cut",
       "description": "hsuofahouhdoijdisodjspi dpodja oisjd s dosI DSODHSDOSUHD W DwshdosDHsodh d hds oidhWSDHI",
-      "progress": "enabled",
-      "progress-status": 3,
+      "subtask-title": ["Twitter adds", "Youtube Channel"],
+      "progress-status": [0, 1],
       "contacts": [
-        "Aax Busterman",
-        "Cieter Delß",
-        "Enna Flanlos",
-        "Gernd Hlanvoll"
+        "Aax Busterman #895499",
+        "Cieter Delß #4d205a",
+        "Enna Flanlos #145e99",
+        "Gernd Hlanvoll #14992e"
       ]
     }
   ],
@@ -33,15 +33,15 @@
     {
       "category": "Sales",
       "color": "#FF7A00",
-      "title": "Call a clients",
+      "title": "Call potencial clients",
       "description": "hsuofahouhdoijdisodjspi dpodja oisjd s dosI DSODHSDOSUHD W DwshdosDHsodh d hds oidhWSDHI",
-      "progress": "",
-      "progress-status": 0,
+      "subtask-title": [],
+      "progress-status": [],
       "contacts": [
-        "Aax Busterman",
-        "Cieter Delß",
-        "Enna Flanlos",
-        "Gernd Hlanvoll"
+        "Aax Busterma #008000",
+        "Cieter Delß #800079",
+        "Enna Flanlos #5a7dc3",
+        "Gernd Hlanvoll #3f274c"
       ]
     }
   ],
@@ -51,13 +51,13 @@
       "color": "#0223CF",
       "title": "Accounting invoices",
       "description": "hsuofahouhdoijdisodjspi dpodja oisjd s dosI DSODHSDOSUHD W DwshdosDHsodh d hds oidhWSDHI",
-      "progress": "",
-      "progress-status": 0,
+      "subtask-title": ["Salarys"],
+      "progress-status": [1],
       "contacts": [
-        "Aax Busterman",
-        "Cieter Delß",
-        "Enna Flanlos",
-        "Gernd Hlanvoll"
+        "Aax Busterman #342c08",
+        "Cieter Delß #083415",
+        "Enna Flanlos #082934",
+        "Gernd Hlanvoll #0a0834"
       ]
     }
   ],
@@ -67,13 +67,13 @@
       "color": "#FFA800",
       "title": "Accounting invoices",
       "description": "hsuofahouhdoijdisodjspi dpodja oisjd s dosI DSODHSDOSUHD W DwshdosDHsodh d hds oidhWSDHI",
-      "progress": "enabled",
-      "progress-status": 3,
+      "subtask-title": [],
+      "progress-status": [],
       "contacts": [
-        "Aax Busterman",
-        "Cieter Delß",
-        "Enna Flanlos",
-        "Gernd Hlanvoll"
+        "Aax Busterman #220834",
+        "Cieter Delß #141213",
+        "Enna Flanlos #f3a7cd",
+        "Gernd Hlanvoll #b5a7f3"
       ]
     },
     {
@@ -81,13 +81,13 @@
       "color": "#9327FF",
       "title": "Accounting invoices",
       "description": "hsuofahouhdoijdisodjspi dpodja oisjd s dosI DSODHSDOSUHD W DwshdosDHsodh d hds oidhWSDHI",
-      "progress": "enabled",
-      "progress-status": 3,
+      "subtask-title": [],
+      "progress-status": [],
       "contacts": [
-        "Aax Busterman",
-        "Cieter Delß",
-        "Enna Flanlos",
-        "Gernd Hlanvoll"
+        "Aax Busterman #a7caf3",
+        "Cieter Delß #a7f3cb",
+        "Enna Flanlos #e7bf59",
+        "Gernd Hlanvoll #e76a59"
       ]
     }
   ]

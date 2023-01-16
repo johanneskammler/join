@@ -3,33 +3,33 @@ function setCardHTML(
   color,
   title,
   description,
-  progress,
+  totalSubtasks,
   progressStatus
 ) {
   return `<div onmousedown="return false" draggable="true" class="card" onclick="popup(${idCounter})" id="card${idCounter}">
                     
                       
                       <div class="card-head">
-                        <div class="category-overlay" style="background-color: ${color}">
+                        <div class="category-overlay" id="c-color${idCounter}" style="background-color: ${color}">
                           <p id="c_overlay${idCounter}">${category}</p>
                         </div>
                       </div>
 
                       <div class="card-title">
-                        <h1 class="title-text font">${title}</h1>
+                        <h1 class="title-text font" id="title${idCounter}">${title}</h1>
                       </div>
 
                       <div class="card-content">
-                        <p class="inter gray">
+                        <p class="inter gray" id="description${idCounter}">
                           ${description}
                         </p>
                       </div>
 
-                      <div class="progress-box">
+                      <div class="progress-box" id="progress_box${idCounter}">
                         <div class="progressbar">
-                          <div class="progress" id="progress-nr"></div>
+                          <div class="progress" id="progress-nr${idCounter}"></div>
                         </div>
-                          <p class="done-p" id="done_status font">${progressStatus}/3 Done</p>
+                          <p class="done-p" id="done_status font">${progressStatus}/${totalSubtasks} Done</p>
                       </div>
 
                       <div class="card-footer">

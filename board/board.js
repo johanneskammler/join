@@ -41,9 +41,13 @@ function popup(id) {
 
 function generatePopup(id) {
   let category = document.getElementById(`c_text${idCounter}`);
-  let color = document.getElementsByClassName;
+  let color = document.getElementById(`category-overlay${idCounter}`);
+  let title = document.getElementById(`title${idCounter}`);
+  let description = document.getElementById(`description${idCounter}`);
+  let subtask = document.getElementById(`pogress${idCounter}`);
+  let progressStatus = document.getElementById;
 }
-// Setze die  generatePopup do das es die ganze Daten hat !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!<<<<<<
+// Setze die  generatePopup so das es die ganze Daten hat !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!<<<<<<
 
 /*   const element = responsAsJson[section][i];
     let category = element["category"];
@@ -175,9 +179,10 @@ function setCards(section) {
     let color = element["color"];
     let title = element["title"];
     let description = element["description"];
-    let progress = element["progress"];
+    let subtasks = element["subtask-title"];
     let progressStatus = element["progress-status"];
     let contacts = element["contacts"];
+    let totalSubtasks = subtasks.length;
 
     let letters = getFirstLetter(contacts);
 
@@ -186,12 +191,20 @@ function setCards(section) {
       color,
       title,
       description,
-      progress,
+      totalSubtasks,
       progressStatus
     );
 
+    checkSubtasks(subtasks, idCounter);
+
     renderContacts(letters, idCounter);
     idCounter++;
+  }
+}
+
+function checkSubtasks(subtasks, idCounter) {
+  if (subtasks.length == 0) {
+    document.getElementById(`progress_box${idCounter}`).classList.add("d-none");
   }
 }
 
