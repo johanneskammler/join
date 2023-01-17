@@ -22,120 +22,90 @@
 <body onload="init()" onresize="checkMainSize()">
     <header w3-include-html="../templates/header.html"></header>
     <div w3-include-html="../templates/sidebar.html"></div>
-    <div class="summary">
-        <div class="header">
-            <h1 id="greet-at-time" class="greeting">Good morning,</h1>
-            <span class="d-flex fw-bold cl-main" id="greet-user">Max Kebabman</span>
-        </div>
 
-        <div class="main">
-            <div onclick="goToBoard()" class="task-urgent">
-                <div class="main-task">
-                    <div class="task-top">
-                        <div>
-                            <img src="../templates/img/Urgent.png" alt="" />
+    <div id="summary-container">
+        <div class="container" id="summary-container">
+            <div w3-include-html="templates/legal.html" class="d-none" id="legal-template"></div>
+            <div w3-include-html="templates/help.html" class="d-none" id="help-template"></div>
+
+            <section class="greeting-container d-flex" id="greeting">
+                <span class="d-flex" id="greet-at-time">Good morning,</span>
+                <span class="d-flex fw-bold cl-main" id="greet-user">Max Kebebman</span>
+            </section>
+
+            <section class="container flex-row" id="task-container">
+                <div class="tasks-container">
+                    <div onclick="goToBoard();" class="urgent-container d-flex" id="urgent-container">
+                        <div class=" d-flex" id="urgent-left-container">
+                            <div class="d-flex" id="urgent-left-top">
+                                <img class="icon-task d-flex" src="../templates/img/Urgent.png" alt="urgentPNG">
+                                <div class="task-id fw-bold fs-2 d-flex fs-4" id="task-id-">1</div>
+                            </div>
+
+                            <div class="desc-white d-flex" id="task-urgent-desc">Task Urgent</div>
                         </div>
-                        <div>
-                            <span id="task-id-" class="number-span">1</span>
+                        <div class="d-flex" id="urgent-middle-container">
                         </div>
+                        <div class="d-flex" id="urgent-right-container">
+                            <div class="urgent-date fs-3 d-flex" id="urgent-date">October 16, 2022</div>
+                            <div class="d-flex" id="urgent-date-desc">
+                                Upcoming Deadline
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="task-bottom">
-                        <span class="text-span">Task urgent</span>
+                    <div onclick="goToBoard();" class="tasks-box d-flex" id="task-to-do-container">
+                        <div class="task-to-do-top d-flex flex-row">
+                            <img class="icon-task-border-none d-flex" src="../templates/img/board_summary.png" alt="boardPNG">
+                            <div class="task-id fw-bold d-flex fc-black fs-4" id="task-to-do-id-">1</div>
+                        </div>
+                        <div class="d-flex" id="task-to-do-desc">Task To-do</div>
+
                     </div>
                 </div>
-                <div class="border-line">
-                    <div class="right-container">
-                        <div id="urgent-date" class="date">
-                            Januar 3, 2022</div>
-                        <div class="d-flex">
-                            <p>Upcoming Deadline</p>
+            </section>
+            <section class="container d-flex" id="tasks">
+                <div class="tasks-container">
+                    <div onclick="goToBoard();" class="tasks-box" id="task-box-task-in-board">
+                        <div class="tasks-box-top">
+                            <img class="icon" src="../templates/img/board_summary.png" alt="">
+                            <div class="task-amount task-id fw-bold d-flex fc-black fs-4" id="task-in-board-id-">5
+                            </div>
+                        </div>
+                        <div class="d-flex tasks-box-bottom" id="task-to-do-desc">Task in Board</div>
+                    </div>
+                    <div onclick="goToBoard();" class="tasks-box" id="task-box-task-in-board">
+                        <div class="tasks-box-top">
+                            <img class="icon" src="../templates/img/In Progress.png" alt="inProgressPNG">
+                            <div class="task-amount task-id fw-bold d-flex fc-black fs-4" id="task-in-progress-id-">
+                                2
+                            </div>
+                        </div>
+                        <div class="d-flex tasks-box-bottom" id="task-to-do-desc">Task in Progress</div>
+                    </div>
+                    <div onclick="goToBoard();" class="tasks-box" id="task-box-task-in-board">
+                        <div class="tasks-box-top">
+                            <img class="icon" src="../templates/img/Awaiting feedback.png" alt="awaitingPNG">
+                            <div class="task-amount task-id fw-bold d-flex fc-black fs-4"
+                                id="task-awaiting-feedback-id-">2</div>
+                        </div>
+                        <div class="d-flex tasks-box-bottom" id="task-to-do-desc">Awaiting Feedback</div>
+                    </div>
+                    <div onclick="goToBoard();" class="tasks-box" id="task-box-task-in-board">
+                        <div class="tasks-box-top">
+                            <img class="icon" src="../templates/img/Done.png" alt="donePNG">
+                            <div class="task-amount task-id fw-bold d-flex fc-black fs-4" id="task-done-id-">1</div>
+                        </div>
+                        <div class="d-flex tasks-box-bottom" id="task-to-do-desc">Tasks Done
                         </div>
                     </div>
+
                 </div>
 
-            </div>
-
-            <div onclick="goToBoard()" class="task-to-do">
-                <div class="main-task">
-                    <div class="task-first">
-                        <div class="img-hover">
-                            <img src="../templates/img/board_summary.png" alt="" />
-                        </div>
-                        <div class="color-black">
-                            <span id="task-to-do-id-" class="number-span">1</span>
-                        </div>
-                    </div>
-                    <div class="task-bottom">
-                        <span>Task to do</span>
-                    </div>
-                </div>
-            </div>
-
-            <div onclick="goToBoard()" class="task-in-board">
-                <div class="main-task">
-                    <div class="task-top">
-                        <div class="img-hover">
-                            <img src="../templates/img/board_summary.png" alt="" />
-                        </div>
-                        <div class="color-black">
-                            <span id="task-in-board-id-" class="number-span">5</span>
-                        </div>
-                    </div>
-                    <div class="task-bottom">
-                        <span>Task in Board</span>
-                    </div>
-                </div>
-            </div>
-
-            <div onclick="goToBoard()" class="task-in-progress">
-                <div class="main-task">
-                    <div class="task-top">
-                        <div class="img-hover">
-                            <img src="../templates/img/In Progress.png" alt="" />
-                        </div>
-                        <div class="color-black">
-                            <span id="task-in-progress-id-" class="number-span">2</span>
-                        </div>
-                    </div>
-                    <div class="task-bottom">
-                        <span>Task in progress</span>
-                    </div>
-                </div>
-            </div>
-
-            <div onclick="goToBoard()" class="awaiting-feedback">
-                <div class="main-task">
-                    <div class="task-top">
-                        <div class="img-hover">
-                            <img src="../templates/img/Awaiting feedback.png" alt="" />
-                        </div>
-                        <div class="color-black">
-                            <span id="task-awaiting-feedback-id-" class="number-span">2</span>
-                        </div>
-                    </div>
-                    <div class="task-bottom">
-                        <span>Awaiting feedback</span>
-                    </div>
-                </div>
-            </div>
-
-            <div onclick="goToBoard()" class="tasks-done">
-                <div class="main-task">
-                    <div class="task-top">
-                        <div class="img-hover">
-                            <img src="../templates/img/Done.png" alt="" />
-                        </div>
-                        <div class="color-black">
-                            <span id="task-done-id-" class="number-span">1</span>
-                        </div>
-                    </div>
-                    <div class="task-bottom">
-                        <span>Tasks done</span>
-                    </div>
-                </div>
-            </div>
+            </section>
         </div>
     </div>
+
 </body>
 
 </html>
