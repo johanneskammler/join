@@ -1,4 +1,4 @@
-/* open-sans-regular - latin */
+
 @font-face {
     font-family: 'Open Sans';
     font-style: normal;
@@ -18,7 +18,7 @@
     /* Legacy iOS */
 }
 
-/* open-sans-700 - latin */
+
 @font-face {
     font-family: 'Open Sans';
     font-style: normal;
@@ -38,7 +38,7 @@
     /* Legacy iOS */
 }
 
-/* open-sans-800 - latin */
+
 @font-face {
     font-family: 'Open Sans';
     font-style: normal;
@@ -59,13 +59,10 @@
 }
 
 
-
-
-
 * {
     box-sizing: border-box;
-
 }
+
 
 body {
     margin: 0;
@@ -78,9 +75,11 @@ body {
     font-family: "Open Sans"
 }
 
+
 header {
     height: 92px !important;
 }
+
 
 .align-center {
     align-items: center;
@@ -90,6 +89,7 @@ header {
 :root {
     --main-color: #4589FF;
 }
+
 
 #summary-container{
     display: flex;
@@ -106,13 +106,16 @@ header {
     display: flex;
 }
 
+
 .flex-row {
     flex-direction: row !important;
 }
 
+
 .flex-col {
     flex-direction: column;
 }
+
 
 section {
     width: 100%;
@@ -143,6 +146,7 @@ section {
     display: none;
 }
 
+
 .fw-bold {
     font-weight: bold;
 }
@@ -157,22 +161,27 @@ section {
     font-size: clamp(1rem, 5vw, 2rem)
 }
 
+
 .fs-3 {
     font-size: clamp(1rem, 5vw, 3rem)
 }
+
 
 .fs-4 {
     font-size: clamp(1rem, 5vw, 4rem)
 }
 
+
 .cl-main {
     color: var(--main-color);
 }
+
 
 .icon {
     width: clamp(45px, 3vw, 76px);
     object-fit: contain;
 }
+
 
 .icon-task {
     width: clamp(40px, 5vw, 76px);
@@ -182,6 +191,7 @@ section {
     border: 4px solid white;
 }
 
+
 .icon-task-border-none {
     width: clamp(40px, 5vw, 76px);
     object-fit: contain;
@@ -190,15 +200,11 @@ section {
 }
 
 
-
-
 .greeting-container {
-
     flex-direction: row;
     width: 100%;
     justify-content: center;
     gap: 22px;
-
 }
 
 
@@ -206,9 +212,11 @@ section {
     font-size: clamp(1rem, 5vw, 3rem);
 }
 
+
 #greet-user {
     font-size: clamp(1rem, 5vw, 4rem);
 }
+
 
 .urgent-container {
     width: 74%;
@@ -220,6 +228,7 @@ section {
     transition: all 225ms ease-in-out;
 }
 
+
 .urgent-container:hover {
     color: #4589FF;
     background-color: white;
@@ -227,8 +236,8 @@ section {
     cursor: pointer;
     scale: 1.05;
     transition: all 225ms ease-in-out;
-
 }
+
 
 .urgent-container:hover #urgent-middle-container {
     background-color: #4589FF;
@@ -248,9 +257,11 @@ section {
     align-items: flex-start;
 }
 
+
 .task-box-top {
     padding-left: 1rem;
 }
+
 
 #urgent-left-container {
     flex-direction: column;
@@ -258,8 +269,8 @@ section {
     justify-content: center;
     width: 40%;
     gap: 16px;
-
 }
+
 
 #urgent-left-top {
     width: 100%;
@@ -270,13 +281,16 @@ section {
     justify-content: space-evenly;
 }
 
+
 #task-urgent-desc {
     font-size: clamp(1rem, 3vw, 2rem)
 }
 
+
 #task-urgent-desc:hover {
     color: #4589FF;
 }
+
 
 #urgent-middle-container {
     align-self: center;
@@ -285,6 +299,7 @@ section {
     border-radius: 25px;
     height: 90%;
 }
+
 
 #urgent-middle-container:hover {
     background-color: #4589FF;
@@ -299,16 +314,16 @@ section {
 }
 
 
-
-
 #urgent-date {
     font-weight: bold;
     font-size: clamp(1rem, 2vw, 3rem);
 }
 
+
 #task-to-do-container {
     background-color: #D2E3FF;
 }
+
 
 #task-to-do-container:hover {
     background-color: white;
@@ -317,10 +332,12 @@ section {
 }
 
 
+
 #task-to-do-container:hover #task-to-do-id-{
     color: #005DFF;
     transition: all 225ms ease-in-out;
 }
+
 
 .task-to-do-top {
     width: 100%;
@@ -328,9 +345,11 @@ section {
     justify-content: space-evenly;
 }
 
+
 .task-id {
     text-align: end;
 }
+
 
 #task-to-do-desc {
     display: flex;
@@ -338,6 +357,7 @@ section {
     text-align: center;
     font-size: clamp(0.8rem, 2vw, 1.5rem);
 }
+
 
 .tasks-container {
     display: flex;
@@ -348,6 +368,7 @@ section {
     width: 80%;
     height: clamp(150px, 15vw, 217px);
 }
+
 
 .tasks-box {
     display: flex;
@@ -362,8 +383,8 @@ section {
     gap: 7px;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
     border-radius: 30px;
-
 }
+
 
 .tasks-box:hover {
     border-top-left-radius: 0;
@@ -374,14 +395,17 @@ section {
     cursor: pointer;
 }
 
+
 .tasks-box:hover .icon {
     border: 2px solid white;
     border-radius: 100%;
 }
 
+
 .tasks-box:hover .task-amount{
     color: white!important;
 }
+
 
 .tasks-box-top {
     display: flex;
@@ -391,6 +415,7 @@ section {
     width: 100%;
 }
 
+
 .tasks-box-bottom {
     justify-content: center;
     text-align: center;
@@ -398,11 +423,7 @@ section {
     width: 100%;
 }
 
+
 .task-amount{
     color: black!important;
 }
-
-
-
-
-

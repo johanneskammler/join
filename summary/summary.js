@@ -10,18 +10,15 @@ async function init() {
   checkMainSize();
   renderCurrentDate();
   renderAmountToTasks();
-  
   await downloadFromServer();
   task_cards = JSON.parse(backend.getItem('tasks')) || [];
-  
   await greetUser();
-  
-  
   /*
   setTimeout(() => {
     markSummaryNav();
   }, 250); */
 }
+
 
 async function greetUser() {
   let currentTime = new Date().getHours();
@@ -33,18 +30,20 @@ async function greetUser() {
   /* document.getElementById("greet-user").innerHTML = getCurrentUserName(); */
 }
 
+
 function syncSummaryTasks(state) {
   let states = task_cards.filter((a) => a.state === state)
   let amountState = states.length;
   return amountState
 }
 
+
 function syncSummaryUrgent() {
   let urgent = task_cards.filter((a) => a.priority[0] === "urgent")
   let amountUrgent = urgent.length;
-  console.log(amountUrgent);
   return amountUrgent
 }
+
 
 function renderCurrentDate() {
   let currentYear = new Date().getFullYear().toString();
@@ -53,6 +52,7 @@ function renderCurrentDate() {
   document.getElementById('urgent-date').innerHTML = `${currentMonth} ${currentDay}, ${currentYear}`;
 }
 
+
 function renderAmountToTasks() {
   getDoc('task-to-do-id-').innerHTML = syncSummaryTasks("to_do");
   getDoc('task-in-board-id-').innerHTML = task_cards.length;
@@ -60,8 +60,8 @@ function renderAmountToTasks() {
   getDoc('task-awaiting-feedback-id-').innerHTML = syncSummaryTasks("await_feedback");
   getDoc('task-done-id-').innerHTML = syncSummaryTasks("done");
   getDoc("task-id-").innerHTML = syncSummaryUrgent();
-
 }
+
 
 /*
 function markSummaryNav(){
