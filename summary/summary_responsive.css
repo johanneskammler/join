@@ -70,7 +70,6 @@
     #summary-container{
         justify-content: center;
         height: calc(100vh - 97.3px);
-
     }
 
     #task-to-do-container {
@@ -125,8 +124,7 @@
 
     #summary-container{
         justify-content: space-evenly;
-        gap: 30px
-
+        gap: 30px;
     }
 
     #urgent-left-top img{
@@ -143,6 +141,10 @@
 
     #task-to-do-container{
      min-height: 20%;   
+    }
+
+    header {
+        height: 68px !important;
     }
 
 }
