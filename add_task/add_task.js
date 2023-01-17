@@ -1,6 +1,10 @@
 let tasks = [];
 let selectedContacts = [];
 let importance;
+let subtasks = [];
+let selectedSubtasks = [];
+let newCategories = [];
+let categoryColor;
 
 
 setURL("https://gruppe-417.developerakademie.net/smallest_backend_ever");
@@ -18,14 +22,17 @@ function addToTasks() {
     'date': date.value,
     'category': category.innerText,
     'importance': importance,
-    'decription': description.value
+    'decription': description.value,
+    'subtasks': selectedSubtasks
   };
 
   tasks.push(task);
   console.log(tasks);
   title.value = "";
+  selectedContacts = [];
   date.value = "";
   description.value = "";
+  selectedSubtasks = [];
 
   backend.setItem("tasks", JSON.stringify(tasks));
 }
@@ -35,7 +42,6 @@ async function init() {
   await includeHTML();
   checkSize();
   renderContacts();
-
   await downloadFromServer();
   tasks = JSON.parse(backend.getItem('tasks')) || [];
 }
@@ -92,7 +98,6 @@ function addContactToTask(i) {
 
 function fillCategory(category) {
   let categoryField = document.getElementById("select-category");
-  let newCategory = document.getElementById("new-category-input").value;
 
   if (category == "sales") {
     categoryField.innerHTML = "";
@@ -104,7 +109,7 @@ function fillCategory(category) {
     document.getElementById("categories-drop-down").classList.add("d-none");
   } else {
     categoryField.innerHTML = "";
-    categoryField.innerHTML += setCategoryToNewSubtask(newCategory);
+    categoryField.innerHTML += setCategoryToNewSubtask(newCategories);
     document.getElementById("categories-drop-down").classList.add("d-none");
   }
   document.getElementById("categories-drop-down").classList.add("d-none");
@@ -136,12 +141,14 @@ function addNewCategory() {
   document.getElementById("new-category-accept").classList.add("d-none");
   document.getElementById("select-category").innerHTML = "";
   document.getElementById("select-category").innerHTML = newCategory;
-  document.getElementById('categories-drop-down').innerHTML += `
-  <div onclick="fillCategory('${newCategory}')" class="categories-list-elem">
-    ${newCategory}
-    <img src="../add_task/img-add_task/circle_green.png" />
-  </div>
-  `;
+  newCategories.push(newCategory, categoryColor);
+  renderNewCategories(newCategories);
+}
+
+
+function renderNewCategories(newCategories) {
+  document.getElementById('categories-drop-down').innerHTML += generateHTMLcategory(newCategories);
+  newCategories = '';
 }
 
 
@@ -154,18 +161,43 @@ function addSubtask() {
   let newSubtask = document.getElementById('add-subtask').value;
   if (newSubtask == '') {
     return false;
+  } else if (subtasks.includes(newSubtask)) {
+    alert('This subtask already exists!');
   } else {
-    document.getElementById('subtask-content').innerHTML += generateHTMLsubtask(newSubtask);
+    subtasks.push(newSubtask);
   }
   document.getElementById('add-subtask').value = '';
   document.getElementById('plus-icon').classList.remove('d-none');
   document.getElementById('new-subtask-accept').classList.add('d-none');
+  renderSubtasks();
 }
 
 
 function backToSubtasks() {
   document.getElementById('plus-icon').classList.remove('d-none');
   document.getElementById('new-subtask-accept').classList.add('d-none');
+}
+
+
+function renderSubtasks() {
+  document.getElementById('subtask-content').innerHTML = '';
+  for (let i = 0; i < subtasks.length; i++) {
+    const subtask = subtasks[i];
+    document.getElementById('subtask-content').innerHTML += generateHTMLsubtask(subtask, i);
+  }
+}
+
+
+function addSubtaskToTask(i) {
+  let subtask = document.getElementById('subtasks-checkbox-' + i).value;
+
+  if (selectedSubtasks.includes(subtask)) {
+    selectedSubtasks.splice(i, 1);
+    console.log(selectedSubtasks);
+  } else {
+    selectedSubtasks.push(subtask);
+    console.log(selectedSubtasks);
+  }
 }
 
 
