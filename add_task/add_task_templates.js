@@ -13,6 +13,36 @@ function generateHTMLcontacts(element, i) {
 }
 
 
+// function generateHTMLcategory(newCategory, categoryColor) {
+//   return `
+//   <div onclick="fillCategory('${newCategory}')" class="categories-list-elem">
+//     ${newCategory}
+//     <img src="../add_task/img-add_task/circle_${categoryColor}.png" />
+//   </div>
+//   `;
+// }
+
+
+function generateHTMLcategory(newCategories) {
+  return `
+  <div onclick="fillCategory('${newCategories[0]}')" class="categories-list-elem">
+    ${newCategories[0]}
+    <img src="../add_task/img-add_task/circle_${newCategories[1]}.png" />
+  </div>
+  `;
+}
+
+
+function selectCategoryColor(color) {
+  document.getElementById('category-color-' + color).classList.toggle('select-new-category-color');
+  if (document.getElementById('category-color-' + color).classList.contains('select-new-category-color')) {
+    categoryColor = color;
+  } else {
+    categoryColor = '';
+  }
+}
+
+
 function setCategoryToSales() {
     return `
     <div class="selected-category">
@@ -33,11 +63,11 @@ function setCategoryToBackoffice() {
 }
 
 
-function setCategoryToNewSubtask(newCategory) {
+function setCategoryToNewSubtask(newCategories) {
   return `
   <div class="selected-category">
-    ${newCategory}
-    <img src="../add_task/img-add_task/circle_green.png" />
+    ${newCategories[0]}
+    <img src="../add_task/img-add_task/circle_${newCategories[1]}.png" />
   </div>
   `;
 }

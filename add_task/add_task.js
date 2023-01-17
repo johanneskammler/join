@@ -3,6 +3,8 @@ let selectedContacts = [];
 let importance;
 let subtasks = [];
 let selectedSubtasks = [];
+let newCategories = [];
+let categoryColor;
 
 
 setURL("https://gruppe-417.developerakademie.net/smallest_backend_ever");
@@ -40,7 +42,6 @@ async function init() {
   await includeHTML();
   checkSize();
   renderContacts();
-
   await downloadFromServer();
   tasks = JSON.parse(backend.getItem('tasks')) || [];
 }
@@ -97,7 +98,6 @@ function addContactToTask(i) {
 
 function fillCategory(category) {
   let categoryField = document.getElementById("select-category");
-  let newCategory = document.getElementById("new-category-input").value;
 
   if (category == "sales") {
     categoryField.innerHTML = "";
@@ -109,7 +109,7 @@ function fillCategory(category) {
     document.getElementById("categories-drop-down").classList.add("d-none");
   } else {
     categoryField.innerHTML = "";
-    categoryField.innerHTML += setCategoryToNewSubtask(newCategory);
+    categoryField.innerHTML += setCategoryToNewSubtask(newCategories);
     document.getElementById("categories-drop-down").classList.add("d-none");
   }
   document.getElementById("categories-drop-down").classList.add("d-none");
@@ -141,12 +141,14 @@ function addNewCategory() {
   document.getElementById("new-category-accept").classList.add("d-none");
   document.getElementById("select-category").innerHTML = "";
   document.getElementById("select-category").innerHTML = newCategory;
-  document.getElementById('categories-drop-down').innerHTML += `
-  <div onclick="fillCategory('${newCategory}')" class="categories-list-elem">
-    ${newCategory}
-    <img src="../add_task/img-add_task/circle_green.png" />
-  </div>
-  `;
+  newCategories.push(newCategory, categoryColor);
+  renderNewCategories(newCategories);
+}
+
+
+function renderNewCategories(newCategories) {
+  document.getElementById('categories-drop-down').innerHTML += generateHTMLcategory(newCategories);
+  newCategories = '';
 }
 
 
