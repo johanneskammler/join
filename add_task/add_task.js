@@ -41,8 +41,8 @@ async function init() {
   checkSize();
   renderContacts();
 
-  // await downloadFromServer();
-  // tasks = JSON.parse(backend.getItem('tasks')) || [];
+  await downloadFromServer();
+  tasks = JSON.parse(backend.getItem('tasks')) || [];
 }
 
 function checkSize() {
