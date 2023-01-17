@@ -43,13 +43,13 @@ function setCategoryToNewSubtask(newCategory) {
 }
 
 
-function generateHTMLsubtask(newSubtask) {
+function generateHTMLsubtask(subtask, i) {
     return `
     <div class="subtask-list-elem">
       <label class="control control-checkbox" id="selected-subtask">
         <div class="subtask-list-elem-box">
-          <input type="checkbox" />
-          <span class="rendered-subtask-name">${newSubtask}</span>
+          <input onclick="addSubtaskToTask(${i})" id="subtasks-checkbox-${i}" type="checkbox" value="${subtask}" />
+          <span class="rendered-subtask-name">${subtask}</span>
           <div class="control-indicator-subtask"></div>
         </div>
       </label>

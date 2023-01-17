@@ -1,6 +1,8 @@
 let tasks = [];
 let selectedContacts = [];
 let importance;
+let subtasks = [];
+let selectedSubtasks = [];
 
 
 setURL("https://gruppe-417.developerakademie.net/smallest_backend_ever");
@@ -18,14 +20,17 @@ function addToTasks() {
     'date': date.value,
     'category': category.innerText,
     'importance': importance,
-    'decription': description.value
+    'decription': description.value,
+    'subtasks': selectedSubtasks
   };
 
   tasks.push(task);
   console.log(tasks);
   title.value = "";
+  selectedContacts = [];
   date.value = "";
   description.value = "";
+  selectedSubtasks = [];
 
   backend.setItem("tasks", JSON.stringify(tasks));
 }
@@ -36,8 +41,8 @@ async function init() {
   checkSize();
   renderContacts();
 
-  await downloadFromServer();
-  tasks = JSON.parse(backend.getItem('tasks')) || [];
+  // await downloadFromServer();
+  // tasks = JSON.parse(backend.getItem('tasks')) || [];
 }
 
 function checkSize() {
@@ -154,18 +159,43 @@ function addSubtask() {
   let newSubtask = document.getElementById('add-subtask').value;
   if (newSubtask == '') {
     return false;
+  } else if (subtasks.includes(newSubtask)) {
+    alert('This subtask already exists!');
   } else {
-    document.getElementById('subtask-content').innerHTML += generateHTMLsubtask(newSubtask);
+    subtasks.push(newSubtask);
   }
   document.getElementById('add-subtask').value = '';
   document.getElementById('plus-icon').classList.remove('d-none');
   document.getElementById('new-subtask-accept').classList.add('d-none');
+  renderSubtasks();
 }
 
 
 function backToSubtasks() {
   document.getElementById('plus-icon').classList.remove('d-none');
   document.getElementById('new-subtask-accept').classList.add('d-none');
+}
+
+
+function renderSubtasks() {
+  document.getElementById('subtask-content').innerHTML = '';
+  for (let i = 0; i < subtasks.length; i++) {
+    const subtask = subtasks[i];
+    document.getElementById('subtask-content').innerHTML += generateHTMLsubtask(subtask, i);
+  }
+}
+
+
+function addSubtaskToTask(i) {
+  let subtask = document.getElementById('subtasks-checkbox-' + i).value;
+
+  if (selectedSubtasks.includes(subtask)) {
+    selectedSubtasks.splice(i, 1);
+    console.log(selectedSubtasks);
+  } else {
+    selectedSubtasks.push(subtask);
+    console.log(selectedSubtasks);
+  }
 }
 
 
