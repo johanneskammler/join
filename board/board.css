@@ -267,7 +267,7 @@ body {
   padding: 50px;
   background: #ffffff;
   position: absolute;
-  top: 126px;
+  top: 72px;
   right: 34vw;
   z-index: 5;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
@@ -290,7 +290,7 @@ body {
 }
 
 .popup-title {
-  height: 143px;
+  width: 200px;
   font-weight: 700;
   font-size: 61px;
   line-height: 73.2px;
@@ -302,8 +302,8 @@ body {
   font-weight: 400;
   font-size: 21px;
   line-height: 120%;
-  margin-top: 25px;
-  margin-bottom: 0;
+  margin-top: 32px;
+  margin-bottom: 6px;
 }
 
 .date-box-popup {
@@ -325,11 +325,6 @@ body {
   font-size: 21px;
   line-height: 120%;
   margin-left: 25px;
-}
-
-.popup-card p {
-  margin-top: 25px;
-  margin-bottom: 0;
 }
 
 .priority-box {
@@ -390,6 +385,23 @@ body {
 .gray {
   color: #808080a6;
 }
+
+.contactsDiv {
+  display: flex;
+  text-align: center;
+  align-items: baseline;
+  margin-block-start: -17px;
+  margin-bottom: -14px;
+  font-size: 18px;
+  font-family: "Inter";
+  font-weight: 400;
+}
+
+.fullName {
+  margin-left: 30px;
+  font-weight: 500;
+}
+
 .close {
   position: relative;
   height: 40px;

@@ -6,7 +6,7 @@ function setCardHTML(
   totalSubtasks,
   progressStatus
 ) {
-  return `<div onmousedown="return false" draggable="true" class="card" onclick="popup(${idCounter})" id="card${idCounter}">
+  return `<div onmousedown="return false" draggable="true" class="card" onclick="openPopup(${idCounter})" id="card${idCounter}">
                     
                       
                       <div class="card-head">

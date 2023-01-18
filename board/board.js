@@ -26,13 +26,17 @@ async function init() {
   draggableTrue();
 }
 
+function openPopup(id) {
+  generatePopup(id);
+  popup();
+}
+
 /**
  * Remove the display none from the div's and show the popup
  * scroll to the top for good view (Layout)
  * block scolling while view on popup
  */
 function popup(id) {
-  generatePopup(id);
   let background = document.getElementById("popup");
   let card = document.getElementById("popup_card");
   let list = document.getElementsByTagName("html");
@@ -137,26 +141,31 @@ async function getCardInfo() {
   responsAsJson = await response.json();
 }
 
-function getFirstLetter(contacts) {
-  let letters = [];
-  let firstLetters;
-  const contactInMap = new Map();
+function getFirstLetter(contacts, idCounter) {
+  let namesSplit = new Map();
+  let nameList = [];
+  let letterList = [];
+  let colorList = [];
 
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];
     let name = element.split(" ");
-    let justName = `${name[0]}, ${name[1]}`;
+    let justName = `${name[0]} ${name[1]}`;
     let nameColor = name[2];
     let firstLetter = name[0].split("");
     let secondLetter = name[1].split("");
-    firstLetters = firstLetter[0] + secondLetter[0];
+    let firstLetters = firstLetter[0] + secondLetter[0];
 
-    contactInMap.set(`${justName}`, {
-      letters: firstLetters,
-      color: nameColor,
-    });
+    nameList.push(justName);
+    letterList.push(firstLetters);
+    colorList.push(nameColor);
   }
-  return contactInMap;
+  namesSplit.set(`${idCounter}`, {
+    contacts: `${nameList}`,
+    letters: `${letterList}`,
+    color: `${colorList}`,
+  });
+  return namesSplit;
 }
 
 /**
@@ -166,9 +175,13 @@ function getFirstLetter(contacts) {
 function setCards(section) {
   let object = Object.keys(responsAsJson[section]).length;
   for (let i = 0; i < object; i++) {
-    const element = responsAsJson[section][i];
+    const element = responsAsJson[section][i]; //
+    let contacts = element["contacts"];
+    let namesSplit = getFirstLetter(contacts, idCounter);
+    // die Funktion getFirstLetter gib ein Objekt zurück, verpacken in ein array und in map. einpflegen !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! <-------
     let subtasks = element["subtask-title"];
     let totalSubtasks = subtasks.length;
+
     cardsMap.set(`${idCounter}`, {
       category: `${element["category"]}`,
       color: `${element["color"]}`,
@@ -176,12 +189,15 @@ function setCards(section) {
       description: `${element["description"]}`,
       subtasks: `${element["subtask-title"]}`,
       progressStatus: `${element["progress-status"]}`,
-      contacts: `${element["contacts"]}`,
+      contacts: `${namesSplit.get(`${idCounter}`)["contacts"]}`,
+      letters: `${namesSplit.get(`${idCounter}`)["letters"]}`,
+      colors: `${namesSplit.get(`${idCounter}`)["color"]}`,
       totalSubtasks: `${totalSubtasks}`,
     });
-    let contacts = element["contacts"];
 
-    let letters = getFirstLetter(contacts);
+    let colors = cardsMap.get(`${idCounter}`)["colors"].split(",");
+    let letters = cardsMap.get(`${idCounter}`)["letters"].split(",");
+
     // for (const [key, value] of cardsMap) {
     document.getElementById(`${section}-board`).innerHTML += setCardHTML(
       cardsMap.get(`${idCounter}`)["category"],
@@ -194,7 +210,7 @@ function setCards(section) {
     cardsMap.get(`${idCounter}`)["subtasks"];
     checkSubtasks(cardsMap.get(`${idCounter}`)["subtasks"], idCounter);
 
-    renderContacts(letters, idCounter);
+    renderContacts(idCounter, colors, letters);
     idCounter++;
     // }
   }
@@ -206,11 +222,13 @@ function checkSubtasks(subtasks, idCounter) {
   }
 }
 
-function renderContacts(letters, idCounter) {
-  for (const [key, value] of letters) {
+function renderContacts(idCounter, colors, letters) {
+  for (let i = 0; i < colors.length; i++) {
+    const element = colors[i];
+
     document.getElementById(
       `contacts_card${idCounter}`
-    ).innerHTML += `<p class="invate font">${value["letters"]}</p>`;
+    ).innerHTML += `<p class="invate font" style="background-color: ${element};">${letters[i]}</p>`;
   }
 }
 
@@ -228,8 +246,10 @@ function renderPopup(
   description,
   subtask,
   progressStatus,
-  contact,
-  id
+  id,
+  colors,
+  contactsSplit,
+  letters
 ) {
   document.getElementById("popup_card").innerHTML = `
     <div class="card-head">
@@ -258,6 +278,7 @@ function renderPopup(
                     <p class="assigned-to">Assigned To:</p>
                     <div id="assigned_contacts">
                         <div id="contact">
+                        
                       
                         </div>
                     </div>
@@ -266,21 +287,43 @@ function renderPopup(
                     <img src="img-board/edit-button.png" class="pointer ">
                 </div>
             </div>`;
-  renderPopupContacts(contact, id);
+  renderPopupContacts(colors, contactsSplit, letters);
 }
 
-function renderPopupContacts(contact, id) {
-  document.getElementById(`assigned_contacts`).innerHTML = `${contact}`;
+/*       <div class="contacts"<p class="invate font">CD</p><p class="font fullName"></p></div>
+                        <p class="invate font">EF</p>
+                        <p class="invate font">GH</p> */
+
+function renderPopupContacts(colors, contactsSplit, letters) {
+  for (let i = 0; i < contactsSplit.length; i++) {
+    const element = contactsSplit[i];
+    document.getElementById(`contact`).innerHTML += `
+      <div class="contactsDiv">
+        <p class="invate font" style="background-color: ${colors[i]};">${letters[i]}</p>
+        <p class="font fullName">${element}</p>
+      </div>`;
+  }
 }
 
 function generatePopup(id) {
-  let category = document.getElementById(`c_overlay${id}`).innerHTML;
-  let color = document.getElementById(`c-color${id}`).style.backgroundColor;
-  let title = document.getElementById(`title${id}`).innerHTML;
-  let description = document.getElementById(`description${id}`).innerHTML;
-  let subtask = document.getElementById(`pogress${id}`);
-  let progressStatus = document.getElementById;
-  let contact = document.getElementById(`contacts_card${id}`).innerHTML;
+  let category; //document.getElementById(`c_overlay${id}`).innerHTML;
+  let color; // = document.getElementById(`c-color${id}`).style.backgroundColor;
+  let title; // = document.getElementById(`title${id}`).innerHTML;
+  let description; // = document.getElementById(`description${id}`).innerHTML;
+  let subtask; // = document.getElementById(`pogress${id}`);
+  let progressStatus; // = document.getElementById;
+  /*   let contact = document.getElementById(`contacts_card${id}`).innerHTML; */
+
+  let colors = cardsMap.get(`${id}`)["colors"].split(",");
+  let contactsSplit = cardsMap.get(`${id}`)["contacts"].split(",");
+  let letters = cardsMap.get(`${id}`)["letters"].split(",");
+
+  category = cardsMap.get(`${id}`)["category"];
+  color = cardsMap.get(`${id}`)["color"];
+  title = cardsMap.get(`${id}`)["title"];
+  description = cardsMap.get(`${id}`)["description"];
+  subtask = cardsMap.get(`${id}`)["subtask"];
+  progressStatus = cardsMap.get(`${id}`)["progressStatus"];
 
   renderPopup(
     category,
@@ -289,7 +332,9 @@ function generatePopup(id) {
     description,
     subtask,
     progressStatus,
-    contact,
-    id
+    id,
+    colors,
+    contactsSplit,
+    letters
   );
 }
