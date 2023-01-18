@@ -1,260 +1,157 @@
-@media (max-width: 1800px) {
-  body {
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    height: 100vh;
-    width: 100vw;
-  }
+@media (max-width: 768px){
 
-  .summary {
-    height: 80vh;
-    width: 100vw;
-  }
+    #greeting{
+        height: 10%;
+    }
 
-  h1 {
-    color: black;
-    font-size: 47px;
-    margin-bottom: 20px;
-  }
+    .container {
+        justify-content: space-evenly;
+        height: unset;
+    }
 
-  h2 {
-    font-size: 23px;
-    margin-bottom: 0;
-  }
-}
+    .icon-task{
+        width: 80px;
+    }
 
-@media (max-width: 1280px) {
-  .summary {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-right: 100px !important;
-  }
+    .icon-task-border-none{
+        width: 80px;
+    }
 
-  .task-urgent {
-    width: 50vw;
-    height: 150px;
-    gap: 35px !important;
-  }
+    #urgent-left-top{
+        justify-content: flex-start;
+        gap: 24px;
+    }
 
-  .task-urgent p {
-    font-size: 18px;
-  }
+    #urgent-left-top > .task-id{
+        font-size: 4rem;
+    }
 
-  .task-done {
-    bottom: 150px;
-  }
+        .task-to-do-top{
+            justify-content: flex-start;
+        }
 
-  .task-to-do {
-    width: 50vw;
-    height: 150px;
-    padding: 28px 48px;
-    gap: 35px;
-  }
+    .urgent-container{
+        min-height: 120px;
+        max-height: 120px;
+    }
 
-  .task-in-board {
-    width: 150px;
-    height: 120px;
-  }
+    #urgent-middle-container{
+        height: 90px;
+    }
+    .tasks-container{
+        flex-wrap: wrap;
+        gap: 16px;
+    }
 
-  .task-in-progress {
-    width: 150px;
-    height: 120px;
-  }
+    .urgent-container{
+        min-width: 100%;
+    }
 
-  .awaiting-feedback {
-    width: 150px;
-    height: 120px;
-  }
+    #task-to-do-container{
+        min-height: 120px;
+        min-width: 100%;
+    }
 
-  .tasks-done {
-    width: 150px;
-    height: 120px;
-  }
+    .tasks-box{
+        width: calc(50% - 16px);
+        max-height: 120px;
+    }
 
-  .date {
-    margin-left: 65px;
-  }
-}
+    #task-container {
+        width: 100%;
+        height: unset; 
+        align-items: flex-start;
+    }
 
-@media (max-width: 1024px) {
-  .tablet-sidebar {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    background-color: white;
-    border-top: 1px solid lightgray;
-    z-index: 20;
-  }
+    .tasks-container{
+        height: unset;
+    }
 
-  .summary {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-right: 150px;
-    margin-top: 20vh;
-    margin-bottom: 25px;
-  }
+    #summary-container{
+        justify-content: center;
+        height: calc(100vh - 97.3px);
+    }
 
-  .border-line {
-    width: 25vw;
-  }
-}
+    #task-to-do-container {
+        height: 50%;
+    }
 
-@media (width <=821px) {
-  .summary {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-right: 150px;
-    margin-top: 100px;
-    margin-bottom: 25px;
-  }
+    #urgent-left-container{
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+    }
 
-  .border-line {
-    width: 33vw;
-  }
-}
-
-@media (max-width: 620px) {
-  .summary {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: 100vw;
-    margin-top: 100px;
-    margin-bottom: 25px;
+    #urgent-left-top{
+        gap: 4px;
     
-  }
+    }
 
-  .main {
-    padding-bottom: 139px;
-  }
+    #task-id-{
+        font-size: 2.5rem!important;
+    }
 
-  h1 {
-    margin-right: 24px;
-  }
+    #urgent-left-top > img{
+        border: 2px solid white!important;
+    }
 
-  .task-urgent p {
-    font-size: 14px;
-  }
+    #task-to-do-container{
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
 
-  .task-urgent time {
-    font-size: 24px;
-  }
+    .task-to-do-top{
+        width: auto;
+        gap: 16px;
+    }
 
-  .date {
-    margin: 0;
-    width: 0;
-  }
+    #task-to-do-id-{
+        font-size: 3rem;
+    }
 
-  h1 {
-    font-size: 40px;
-    margin-top: 420px;
-    margin-left: 50px;
-  }
+    #task-to-do-desc{
+       
+        margin-left: 1rem;
+    }
 
-  .summary {
-    margin-left: 40px;
-    margin-right: 40px;
-  }
+    #urgent-date{
+        font-size: clamp(1rem, 3vw, 2rem)
+    }
+}
 
-  #header-name {
-    display: none;
-  }
+@media (max-width: 412px){
 
-  #help-section-btn {
-    display: none;
-  }
+    #summary-container{
+        justify-content: space-evenly;
+        gap: 30px;
+    }
 
-  .main {
-    margin-left: 15px;
-  }
+    #urgent-left-top img{
+        width: 75px;
+    }
 
-  .right-container {
-    margin-left: 35px;
-  }
+    .tasks-box{
+        max-height: 50%;
+    }
 
-  .task-top span {
-    font-size: 36px;
-    font-weight: 400;
-    margin-left: 10px;
-  }
+    #greeting{
+        height: auto;
+    }
 
-  .task-bottom {
-    font-size: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+    #task-to-do-container{
+     min-height: 20%;   
+    }
 
-  .task-top img {
-    width: 55px;
-    height: 55px;
-  }
-  .task-urgent {
-    width: 60vw;
-    height: 100px;
-    gap: 0;
-  }
+    header {
+        height: 68px !important;
+    }
 
-  .task-urgent p {
-    font-size: 14px;
-    font-weight: 200;
-  }
+}
 
-  .task-urgent time {
-    font-size: 18px;
-    font-weight: 600;
-  }
 
-  .text-span {
-    font-size: 18px;
-  }
-
-  .number-span {
-    font-size: 20px;
-  }
-  .task-done {
-    bottom: 150px;
-  }
-
-  .task-to-do {
-    width: 60vw;
-    height: 100px;
-    padding: 28px 48px;
-    gap: 35px;
-  }
-
-  .task-in-board {
-    width: 25vw;
-    height: 90px;
-    padding: 28px 22px;
-  }
-
-  .task-in-progress {
-    width: 25vw;
-    height: 90px;
-    padding: 28px 22px;
-  }
-
-  .awaiting-feedback {
-    width: 25vw;
-    height: 90px;
-    padding: 28px 22px;
-  }
-
-  .tasks-done {
-    width: 25vw;
-    height: 90px;
-    padding: 28px 22px;
-  }
+@media (max-width: 375px){
+    #summary-container{
+        justify-content: flex-start;
+    }
 }
