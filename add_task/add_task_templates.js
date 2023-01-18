@@ -1,5 +1,5 @@
 function generateHTMLcontacts(element, i) {
-    return `
+  return `
     <div class="contacts-list-elem">
       <label class="control control-checkbox" id="selected-contact">
         <div class="contacts-list-elem-box">
@@ -11,16 +11,6 @@ function generateHTMLcontacts(element, i) {
     </div>
     `;
 }
-
-
-// function generateHTMLcategory(newCategory, categoryColor) {
-//   return `
-//   <div onclick="fillCategory('${newCategory}')" class="categories-list-elem">
-//     ${newCategory}
-//     <img src="../add_task/img-add_task/circle_${categoryColor}.png" />
-//   </div>
-//   `;
-// }
 
 
 function generateHTMLcategory(newCategories) {
@@ -44,7 +34,7 @@ function selectCategoryColor(color) {
 
 
 function setCategoryToSales() {
-    return `
+  return `
     <div class="selected-category">
       Sales
       <img src="../add_task/img-add_task/circle_pink.png" />
@@ -54,7 +44,7 @@ function setCategoryToSales() {
 
 
 function setCategoryToBackoffice() {
-    return `
+  return `
     <div class="selected-category">
       Backoffice
       <img src="../add_task/img-add_task/circle_turquois.png" />
@@ -73,8 +63,17 @@ function setCategoryToNewSubtask(newCategories) {
 }
 
 
+function resetCategory() {
+  return `
+  <div class="selected-category">
+    Select task category
+  </div>
+  `;
+}
+
+
 function generateHTMLsubtask(subtask, i) {
-    return `
+  return `
     <div class="subtask-list-elem">
       <label class="control control-checkbox" id="selected-subtask">
         <div class="subtask-list-elem-box">
@@ -85,4 +84,4 @@ function generateHTMLsubtask(subtask, i) {
       </label>
     </div>
     `;
-  }
+}

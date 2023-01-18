@@ -11,8 +11,7 @@ setURL("https://gruppe-417.developerakademie.net/smallest_backend_ever");
 
 
 function addToTasks() {
-  document.getElementById('task-added-to-board').classList.remove('d-none');
-  setTimeout(resetAddedButton, 3000);
+  triggerAddedToBoardButton();
 
   let title = document.getElementById("title-input");
   let date = document.getElementById("select-date");
@@ -31,18 +30,41 @@ function addToTasks() {
 
   tasks.push(task);
   console.log(tasks);
-  title.value = "";
-  selectedContacts = [];
-  date.value = "";
-  description.value = "";
-  selectedSubtasks = [];
+  resetTasksInputs(title, selectedContacts, date, description, selectedSubtasks);
+  resetImportanceButtons();
 
   backend.setItem("tasks", JSON.stringify(tasks));
 }
 
 
+function triggerAddedToBoardButton() {
+  document.getElementById('task-added-to-board').classList.remove('d-none');
+  setTimeout(resetAddedButton, 3000);
+}
+
+
 function resetAddedButton() {
   document.getElementById('task-added-to-board').classList.add('d-none');
+}
+
+
+function resetTasksInputs(title, selectedContacts, date, description, selectedSubtasks) {
+  title.value = "";
+  selectedContacts = [];
+  date.value = "";
+  description.value = "";
+  selectedSubtasks = [];
+  document.getElementById("select-category").innerHTML = resetCategory();
+}
+
+
+function resetImportanceButtons() {
+  document.getElementById('importance-button1').style = 'display: flex;';
+  document.getElementById('importance-button1-colored').style = 'display: none;';
+  document.getElementById('importance-button2').style = 'display: flex;';
+  document.getElementById('importance-button2-colored').style = 'display: none;';
+  document.getElementById('importance-button3').style = 'display: flex;';
+  document.getElementById('importance-button3-colored').style = 'display: none;';
 }
 
 
