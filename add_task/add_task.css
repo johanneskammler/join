@@ -576,26 +576,39 @@ html {
   margin-right: 48px;
 }
 
-/* .task-added-to-board {
+.task-added-to-board {
   height: 74px;
   width: 326px;
   position: absolute;
   top: 45vh;
   left: 40vw;
-  animation-duration: 2s;
-  animation-name: slidein;
-  animation-iteration-count: 2;
-  animation-direction: alternate;
 }
 
-@keyframes slidein {
-  from {
-    margin-top: 100%;
-    width: 300%;
+.slide-top {
+  -webkit-animation: slide-top 1.5s cubic-bezier(0.230, 1.000, 0.320, 1.000) 2 alternate both;
+  animation: slide-top 1.5s cubic-bezier(0.230, 1.000, 0.320, 1.000) 2 alternate both;
+}
+
+@-webkit-keyframes slide-top {
+  0% {
+    -webkit-transform: translateY(600px);
+    transform: translateY(600px);
   }
 
-  to {
-    margin-top: 0%;
-    width: 100%;
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
   }
-} */
+}
+
+@keyframes slide-top {
+  0% {
+    -webkit-transform: translateY(600px);
+    transform: translateY(600px);
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}

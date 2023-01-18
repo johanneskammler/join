@@ -11,6 +11,9 @@ setURL("https://gruppe-417.developerakademie.net/smallest_backend_ever");
 
 
 function addToTasks() {
+  document.getElementById('task-added-to-board').classList.remove('d-none');
+  setTimeout(resetAddedButton, 3000);
+
   let title = document.getElementById("title-input");
   let date = document.getElementById("select-date");
   let category = document.getElementById("select-category");
@@ -38,12 +41,17 @@ function addToTasks() {
 }
 
 
+function resetAddedButton() {
+  document.getElementById('task-added-to-board').classList.add('d-none');
+}
+
+
 async function init() {
   await includeHTML();
   checkSize();
   renderContacts();
-  await downloadFromServer();
-  tasks = JSON.parse(backend.getItem('tasks')) || [];
+  // await downloadFromServer();
+  // tasks = JSON.parse(backend.getItem('tasks')) || [];
 }
 
 function checkSize() {
