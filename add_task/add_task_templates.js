@@ -13,11 +13,11 @@ function generateHTMLcontacts(element, i) {
 }
 
 
-function generateHTMLcategory(newCategories) {
+function generateHTMLcategory(categoryName, categoryColor) {
   return `
-  <div onclick="fillCategory('${newCategories[0]}')" class="categories-list-elem">
-    ${newCategories[0]}
-    <img src="../add_task/img-add_task/circle_${newCategories[1]}.png" />
+  <div onclick="fillCategory('${categoryName}')" class="categories-list-elem">
+    ${categoryName}
+    <img src="../add_task/img-add_task/circle_${categoryColor}.png" />
   </div>
   `;
 }
@@ -43,13 +43,13 @@ function setCategoryToBackoffice() {
 }
 
 
-function setCategoryToNewSubtask(newCategories) {
+function setCategoryToNewCategory(categoryName, categoryColor, newCategories) {
   return `
-  <div class="selected-category">
-    ${newCategories[0]}
-    <img src="../add_task/img-add_task/circle_${newCategories[1]}.png" />
-  </div>
-  `;
+    <div class="selected-category">
+      ${categoryName}
+      <img src="../add_task/img-add_task/circle_${newCategories[1]}.png" />
+    </div>
+    `;
 }
 
 
