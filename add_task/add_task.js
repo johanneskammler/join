@@ -72,8 +72,8 @@ async function init() {
   await includeHTML();
   checkSize();
   renderContacts();
-  // await downloadFromServer();
-  // tasks = JSON.parse(backend.getItem('tasks')) || [];
+  await downloadFromServer();
+  tasks = JSON.parse(backend.getItem('tasks')) || [];
 }
 
 function checkSize() {
