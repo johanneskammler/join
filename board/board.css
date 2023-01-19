@@ -540,6 +540,7 @@ body {
 /* POPUP EDIT CLASSES */
 
 .popup-title-edit {
+  outline: none;
   width: 100%;
   height: 56px;
   font-size: 48px;
@@ -588,6 +589,19 @@ h4 {
 
 .select-date {
   color: rgba(0, 0, 0, 0.908) !important;
+}
+
+.set-contact-popup {
+  height: 125px !important;
+  font-size: 16px !important;
+}
+
+.set-title {
+  margin-top: -117px;
+}
+
+.set-content {
+  margin-block-start: -100px;
 }
 
 /* POPUP EDIR CLASSES END */
