@@ -23,16 +23,6 @@ function generateHTMLcategory(newCategories) {
 }
 
 
-function selectCategoryColor(color) {
-  document.getElementById('category-color-' + color).classList.toggle('select-new-category-color');
-  if (document.getElementById('category-color-' + color).classList.contains('select-new-category-color')) {
-    categoryColor = color;
-  } else {
-    categoryColor = '';
-  }
-}
-
-
 function setCategoryToSales() {
   return `
     <div class="selected-category">

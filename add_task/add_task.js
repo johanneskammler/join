@@ -23,6 +23,7 @@ function addToTasks() {
     'contacts': selectedContacts,
     'date': date.value,
     'category': category.innerText,
+    'category-color': categoryColor,
     'importance': importance,
     'decription': description.value,
     'subtasks': selectedSubtasks
@@ -173,6 +174,16 @@ function addNewCategory() {
   document.getElementById("select-category").innerHTML = newCategory;
   newCategories.push(newCategory, categoryColor);
   renderNewCategories(newCategories);
+}
+
+
+function selectCategoryColor(color) {
+  document.getElementById('category-color-' + color).classList.toggle('select-new-category-color');
+  if (document.getElementById('category-color-' + color).classList.contains('select-new-category-color')) {
+    categoryColor = color;
+  } else {
+    categoryColor = '';
+  }
 }
 
 
