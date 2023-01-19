@@ -253,46 +253,64 @@ function renderPopup(
 ) {
   document.getElementById("popup_card").innerHTML = `
     <div class="card-head">
-                <div class="card-head">
-                        <div class="category-overlay" id="c-color${idCounter}" style="background-color: ${color}">
-                          <p id="c_overlay${idCounter}">${category}</p>
-                        </div>
-                      </div>
-            </div>
-            <div class="popup-card-title">
-                <h1 class="popup-title font" id="popup_title">${title}</h1>
-            </div>
-            <div class="card-content-popup">
-                <p class="popup-text font" id="popup_description">
-                    ${description}
-                </p>
-                <div class="date-box-popup">
-                  <p class="due-date" >Due date:</p>
-                    <p id="date">16-01-2023</p>
-                </div>
-                <div class="priority-box">
-                    <p class="priority">Priority:</p>
-                    <p id="priority"> urgent</p>
-                </div>
-                <div class="assigned">
-                    <p class="assigned-to">Assigned To:</p>
-                    <div id="assigned_contacts">
-                        <div id="contact">
-                        
-                      
-                        </div>
-                    </div>
-                </div>
-                <div class="edit-box">
-                    <img src="img-board/edit-button.png" class="pointer ">
-                </div>
-            </div>`;
+      <div class="card-head">
+        <div class="category-overlay" id="c-color${idCounter}" style="background-color: ${color}">
+          <p id="c_overlay${idCounter}">${category}</p>
+        </div>
+      </div>
+    </div>
+    <div class="popup-card-title">
+      <h1 class="popup-title font" id="popup_title">${title}</h1>
+    </div>
+
+    <div class="card-content-popup">
+      <p class="popup-text font" id="popup_description">
+        ${description}
+      </p>
+      
+      <div class="date-box-popup">
+        <p class="due-date" >Due date:</p>
+        <p id="date">16-01-2023</p>
+      </div>
+      
+      <div class="priority-box">
+        <p class="priority">Priority:</p>
+        <p id="priority"> urgent</p>
+      </div>
+      
+      <div class="progress-box-popup" id="progress_box_popup${id}">
+        <div class="progess-text">
+        
+        <h3 class="subtask">Subtask's:</h3><p class="tasks">${subtask}</p>
+        </div>
+        <div class="progress-box-2">
+          <div class="progressbar">
+            <div class="progress" id="progress-nr0"></div>
+          </div>
+          <p class="done-p" id="done_status font">0/1 Done</p>
+        </div>
+      </div>
+      
+      <div class="assigned">
+        <p class="assigned-to">Assigned To:</p>
+        <div id="assigned_contacts">
+          <div id="contact"></div>
+        </div>
+      </div>
+      
+      <div class="edit-box" onclick="edit(${"id"})">
+        <img src="img-board/edit-button.png" class="pointer">
+      </div>
+    </div>`;
+  checkSubtasksPopup(subtask, id);
   renderPopupContacts(colors, contactsSplit, letters);
 }
 
-/*       <div class="contacts"<p class="invate font">CD</p><p class="font fullName"></p></div>
-                        <p class="invate font">EF</p>
-                        <p class="invate font">GH</p> */
+function checkSubtasksPopup(subtask, id) {
+  if (subtask === "") {
+    document.getElementById(`progress_box_popup${id}`).classList.add("d-none");
+  }
+}
 
 function renderPopupContacts(colors, contactsSplit, letters) {
   for (let i = 0; i < contactsSplit.length; i++) {
@@ -306,13 +324,12 @@ function renderPopupContacts(colors, contactsSplit, letters) {
 }
 
 function generatePopup(id) {
-  let category; //document.getElementById(`c_overlay${id}`).innerHTML;
-  let color; // = document.getElementById(`c-color${id}`).style.backgroundColor;
-  let title; // = document.getElementById(`title${id}`).innerHTML;
-  let description; // = document.getElementById(`description${id}`).innerHTML;
-  let subtask; // = document.getElementById(`pogress${id}`);
-  let progressStatus; // = document.getElementById;
-  /*   let contact = document.getElementById(`contacts_card${id}`).innerHTML; */
+  let category;
+  let color;
+  let title;
+  let description;
+  let subtask;
+  let progressStatus;
 
   let colors = cardsMap.get(`${id}`)["colors"].split(",");
   let contactsSplit = cardsMap.get(`${id}`)["contacts"].split(",");
@@ -322,7 +339,7 @@ function generatePopup(id) {
   color = cardsMap.get(`${id}`)["color"];
   title = cardsMap.get(`${id}`)["title"];
   description = cardsMap.get(`${id}`)["description"];
-  subtask = cardsMap.get(`${id}`)["subtask"];
+  subtask = cardsMap.get(`${id}`)["subtasks"];
   progressStatus = cardsMap.get(`${id}`)["progressStatus"];
 
   renderPopup(
@@ -337,4 +354,14 @@ function generatePopup(id) {
     contactsSplit,
     letters
   );
+}
+
+function edit(id, title) {
+  document.getElementById(`c-overlay${id}`).classList.add("d-none");
+  document.getElementById(
+    "popup-title"
+  ).innerHTML = `<input type="text" class="popup-title-edit" id="popup_title_edit" placeholder="${title}">`;
+  document.getElementById(
+    "popup_description"
+  ).innerHTML = `<input type="text" class="popup-text font" id="popup_description_edit" placeholder>`;
 }

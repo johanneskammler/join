@@ -210,13 +210,19 @@ body {
 .invate {
   background-color: green;
   padding: 10px;
-  width: 20px;
+  width: 22px;
   text-align: center;
   border-radius: 151px;
   border: 1px solid white;
   color: white;
   margin-right: -6px;
   font-family: "Inter";
+  display: flex;
+  justify-content: center;
+}
+
+.subtask {
+  font-size: 21px;
 }
 
 .progress-box {
@@ -229,7 +235,7 @@ body {
 }
 
 .progressbar {
-  width: 60%;
+  width: 67%;
   height: 8px;
   background-color: #b5b5b545;
   border-radius: 7%;
@@ -241,6 +247,14 @@ body {
   height: 8px;
   border-top-left-radius: 7%;
   border-bottom-left-radius: 7%;
+}
+
+.progress-box-2 {
+  display: flex;
+  align-items: baseline;
+  width: 80%;
+  justify-content: space-between;
+  margin-block-start: -20px;
 }
 
 /* Popup Sections */
@@ -267,7 +281,7 @@ body {
   padding: 50px;
   background: #ffffff;
   position: absolute;
-  top: 72px;
+  top: 40px;
   right: 34vw;
   z-index: 5;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
@@ -282,6 +296,10 @@ body {
   margin-top: 25px;
 }
 
+.progress-box-popup {
+  margin-top: -24px;
+}
+
 .responsible {
   padding: 4px 36.5px;
   background: #fc71ff;
@@ -289,8 +307,22 @@ body {
   color: white;
 }
 
+.task {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 120%;
+}
+
+.progess-text {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
 .popup-title {
-  width: 200px;
+  width: 440px;
   font-weight: 700;
   font-size: 61px;
   line-height: 73.2px;
@@ -302,13 +334,14 @@ body {
   font-weight: 400;
   font-size: 21px;
   line-height: 120%;
-  margin-top: 32px;
+  margin-top: 25px;
   margin-bottom: 6px;
 }
 
 .date-box-popup {
   display: flex;
   align-items: baseline;
+  margin-top: -7px;
 }
 
 .due-date {
@@ -316,6 +349,10 @@ body {
   font-weight: 700;
   font-size: 23px;
   line-height: 25px;
+}
+
+.assigned {
+  margin-top: -14px;
 }
 
 #date {
@@ -329,6 +366,8 @@ body {
 
 .priority-box {
   display: flex;
+  margin-top: -23px;
+  align-items: center;
 }
 
 .priority {
@@ -345,7 +384,7 @@ body {
   font-weight: 400;
   font-size: 19px;
   line-height: 120%;
-  margin-left: 25px;
+  margin-left: 54px;
 }
 
 .assigned-to {
