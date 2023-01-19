@@ -93,7 +93,6 @@ header {
 
 #summary-container{
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -427,3 +426,94 @@ section {
 .task-amount{
     color: black!important;
 }
+
+
+/* sidebar */
+
+.main-page {
+    display: flex;
+    width: 20% !important;
+  }
+  
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 66px 20px;
+    gap: 235px;
+    position: fixed;
+    width: 232px;
+    height: auto;
+    bottom: 0;
+    left: 0px;
+    top: 92px;
+    background: #ffffff;
+    box-shadow: 0px 0px 4px rgb(0 0 0 / 16%);
+    border-radius: 0px;
+  }
+  
+  .sidebar-top {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 220px;
+    padding-top: 36px;
+    width: 100%;
+  }
+  
+  .sidebar-bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 126px;
+    padding-bottom: 36px;
+  }
+  
+  .sidebar button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 30px;
+    gap: 20px;
+    width: 200px;
+    height: 46px;
+    font-size: 16px;
+    background: none;
+    color: #42526e;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+  }
+  
+  .sidebar a {
+    text-decoration: none;
+  }
+  
+  .sidebar button:hover {
+    cursor: pointer;
+  }
+  
+  .main-content {
+    width: 85%;
+    height: calc(100vh - 84px);
+  }
+  
+  #help-section-btn {
+    cursor: pointer;
+  }
+  
+  .logout-box {
+    cursor: pointer;
+    position: absolute;
+    top: 90px;
+    right: 36px;
+  }
+  
+  .logout-box:hover {
+    content: url(../templates/img/logout_hover.png);
+  }
