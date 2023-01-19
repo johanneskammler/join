@@ -48,6 +48,19 @@ function popup(id) {
   background.classList.toggle("d-none");
 }
 
+function edit(id) {
+  let currentCard = cardsMap.get(`${id}`);
+  let title = currentCard["title"];
+
+  document.getElementById(`c-overlay${id}`).classList.add("d-none");
+  document.getElementById(
+    "popup-title"
+  ).innerHTML = `<input type="text" class="popup-title-edit" id="popup_title_edit" placeholder="${title}">`;
+  document.getElementById(
+    "popup_description"
+  ).innerHTML = `<input type="text" class="popup-text font" id="popup_description_edit" placeholder>`;
+}
+
 /*  
 /**
  * check size by onload and on resize window too and start the function
@@ -252,13 +265,17 @@ function renderPopup(
   letters
 ) {
   document.getElementById("popup_card").innerHTML = `
-    <div class="card-head">
-      <div class="card-head">
-        <div class="category-overlay" id="c-color${idCounter}" style="background-color: ${color}">
-          <p id="c_overlay${idCounter}">${category}</p>
-        </div>
+    <div class="card-head relative">
+      <div class="category-overlay" id="c-color${idCounter}" style="background-color: ${color}">
+        <p id="c_overlay${idCounter}">${category}</p>
+      </div>
+      <div onclick="popup()" class="close-box">
+      
+        <img src="img-board/line.png" class="close-img">
+        <img src="img-board/line.png" >
       </div>
     </div>
+  
     <div class="popup-card-title">
       <h1 class="popup-title font" id="popup_title">${title}</h1>
     </div>
@@ -298,8 +315,8 @@ function renderPopup(
         </div>
       </div>
       
-      <div class="edit-box" onclick="edit(${"id"})">
-        <img src="img-board/edit-button.png" class="pointer">
+      <div class="edit-box">
+        <img src="img-board/edit-button.png" class="pointer" onclick="edit(${id})">
       </div>
     </div>`;
   checkSubtasksPopup(subtask, id);
@@ -354,14 +371,4 @@ function generatePopup(id) {
     contactsSplit,
     letters
   );
-}
-
-function edit(id, title) {
-  document.getElementById(`c-overlay${id}`).classList.add("d-none");
-  document.getElementById(
-    "popup-title"
-  ).innerHTML = `<input type="text" class="popup-title-edit" id="popup_title_edit" placeholder="${title}">`;
-  document.getElementById(
-    "popup_description"
-  ).innerHTML = `<input type="text" class="popup-text font" id="popup_description_edit" placeholder>`;
 }

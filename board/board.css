@@ -265,6 +265,10 @@ body {
   z-index: 3;
 }
 
+.card-content-popup {
+  width: 479px;
+}
+
 .popup {
   inset: 0;
   position: fixed;
@@ -294,6 +298,10 @@ body {
   height: 130px;
   align-items: center;
   margin-top: 25px;
+}
+
+.relative {
+  position: relative;
 }
 
 .progress-box-popup {
@@ -450,13 +458,20 @@ body {
   align-items: baseline;
 }
 
+.close-box {
+  position: absolute;
+  right: 0;
+  width: 40px;
+  height: 37px;
+}
+
 .close-img {
   position: absolute;
   transform: rotate(90deg);
 }
 
 .edit-box {
-  width: 542px;
+  width: 500px;
   display: flex;
   justify-content: end;
   margin-right: 0;
