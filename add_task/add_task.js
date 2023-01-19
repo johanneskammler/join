@@ -134,10 +134,12 @@ function fillCategory(category) {
     categoryField.innerHTML = "";
     categoryField.innerHTML += setCategoryToSales();
     document.getElementById("categories-drop-down").classList.add("d-none");
+    categoryColor = 'pink';
   } else if (category == "backoffice") {
     categoryField.innerHTML = "";
     categoryField.innerHTML += setCategoryToBackoffice();
     document.getElementById("categories-drop-down").classList.add("d-none");
+    categoryColor = 'turquois';
   } else {
     categoryField.innerHTML = "";
     categoryField.innerHTML += setCategoryToNewSubtask(newCategories);
@@ -162,6 +164,7 @@ function goBackToSelectCategory() {
   document.getElementById("drop-down-arrow-categories").classList.remove("d-none");
   document.getElementById("new-category-accept").classList.add("d-none");
   document.getElementById("select-category").innerHTML = "Select task category";
+  categoryColor = '';
 }
 
 function addNewCategory() {
