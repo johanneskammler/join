@@ -260,7 +260,61 @@ function renderPopup(
   contactsSplit,
   letters
 ) {
-  document.getElementById("popup_card").innerHTML = popupCardHTML();
+  document.getElementById("popup_card").innerHTML = `
+    <div class="card-head relative" id="popup_head">
+      <div class="category-overlay" id="c-color" style="background-color: ${color}">
+        <p id="c_overlay${id}">${category}</p>
+      </div>
+      <div onclick="popup()" class="close-box">
+      
+        <img src="img-board/line.png" class="close-img">
+        <img src="img-board/line.png" >
+      </div>
+    </div>
+  
+    <div class="popup-card-title">
+      <h1 class="popup-title font" id="popup_title">${title}</h1>
+    </div>
+
+    <div class="card-content-popup" id="card_content">
+      <p class="popup-text font" id="popup_description">
+        ${description}
+      </p>
+      
+      <div class="date-box-popup" id="date_box">
+        <p class="due-date" >Due date:</p>
+        <p id="date">16-01-2023</p>
+      </div>
+      
+      <div class="priority-box" id="edit_priority">
+        <p class="priority">Priority:</p>
+        <p id="priority"> urgent</p>
+      </div>
+      
+      <div class="progress-box-popup" id="progress_box_popup${id}">
+        <div class="progess-text">
+        
+        <h3 class="subtask">Subtask's:</h3><p class="tasks">${subtask}</p>
+        </div>
+        <div class="progress-box-2">
+          <div class="progressbar">
+            <div class="progress" id="progress-nr0"></div>
+          </div>
+          <p class="done-p" id="done_status font">0/1 Done</p>
+        </div>
+      </div>
+      
+      <div class="assigned" >
+        <p class="assigned-to" id="edit-assigned">Assigned To:</p>
+        <div id="assigned_contacts">
+          <div id="contact"></div>
+        </div>
+      </div>
+      
+      <div class="edit-box" id="edit_box">
+        <img src="img-board/edit-button.png" class="pointer" onclick="edit(${id})">
+      </div>
+    </div>`;
   checkSubtasksPopup(subtask, id);
   renderPopupContacts(colors, contactsSplit, letters);
 }
