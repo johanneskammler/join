@@ -206,6 +206,7 @@ function addSubtask() {
 function backToSubtasks() {
   document.getElementById('plus-icon').classList.remove('d-none');
   document.getElementById('new-subtask-accept').classList.add('d-none');
+  document.getElementById('add-subtask').value = '';
 }
 
 
