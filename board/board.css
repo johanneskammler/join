@@ -537,3 +537,57 @@ body {
 .for-tablet {
   display: flex;
 }
+/* POPUP EDIT CLASSES */
+
+.popup-title-edit {
+  width: 100%;
+  height: 56px;
+  font-size: 48px;
+  border: 2px solid #80808038;
+  border-right: none;
+  border-top: none;
+  border-left: none;
+}
+
+.popup-title-edit::placeholder {
+  color: rgba(0, 0, 0, 0.962);
+  opacity: 1;
+}
+
+textarea {
+  resize: vertical;
+  font-size: 21px;
+}
+textarea::placeholder {
+  color: rgba(0, 0, 0, 0.962);
+}
+
+h4 {
+  margin-bottom: -22px;
+}
+
+.correctDate {
+  font-size: 21px !important;
+  width: 130px !important;
+  color: black !important;
+  margin-bottom: 15px !important;
+}
+
+.due-date-text {
+  color: rgba(0, 0, 0, 0.908) !important;
+}
+
+.correctPrio {
+  margin-top: 35px;
+}
+
+.flex-contact {
+  display: flex;
+  gap: 9px;
+}
+
+.select-date {
+  color: rgba(0, 0, 0, 0.908) !important;
+}
+
+/* POPUP EDIR CLASSES END */

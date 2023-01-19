@@ -1,3 +1,5 @@
+setURL("https://gruppe-417.developerakademie.net/smallest_backend_ever");
+
 let responsAsJson;
 let cardsMap = new Map();
 let todos = [];
@@ -8,6 +10,7 @@ let feedbackes = [];
 let feedbacksMap = new Map();
 let dones = [];
 let donesMap = new Map();
+
 let todo = "todo";
 let feedback = "feedback";
 let progress = "progress";
@@ -17,6 +20,7 @@ let idCounter = 0; // Später im Server speichern da sonst wieder von 0 anfängt
  * This function Initialized some functions that need to run with onload of the body
  *
  */
+
 async function init() {
   await includeHTML();
   checkSize();
@@ -24,6 +28,7 @@ async function init() {
   generateCards();
   activateDragAndDrop();
   draggableTrue();
+  await downloadFromServer();
 }
 
 function openPopup(id) {
@@ -41,24 +46,12 @@ function popup(id) {
   let card = document.getElementById("popup_card");
   let list = document.getElementsByTagName("html");
   let html = list[0];
+  document.getElementById("edit_priority").classList.remove("correctPrio");
 
   window.scrollTo(0, 0);
   html.classList.toggle("hide-overflow-y");
   card.classList.toggle("d-none");
   background.classList.toggle("d-none");
-}
-
-function edit(id) {
-  let currentCard = cardsMap.get(`${id}`);
-  let title = currentCard["title"];
-
-  document.getElementById(`c-overlay${id}`).classList.add("d-none");
-  document.getElementById(
-    "popup-title"
-  ).innerHTML = `<input type="text" class="popup-title-edit" id="popup_title_edit" placeholder="${title}">`;
-  document.getElementById(
-    "popup_description"
-  ).innerHTML = `<input type="text" class="popup-text font" id="popup_description_edit" placeholder>`;
 }
 
 /*  
@@ -265,9 +258,9 @@ function renderPopup(
   letters
 ) {
   document.getElementById("popup_card").innerHTML = `
-    <div class="card-head relative">
-      <div class="category-overlay" id="c-color${idCounter}" style="background-color: ${color}">
-        <p id="c_overlay${idCounter}">${category}</p>
+    <div class="card-head relative" id="popup_head">
+      <div class="category-overlay" id="c-color" style="background-color: ${color}">
+        <p id="c_overlay${id}">${category}</p>
       </div>
       <div onclick="popup()" class="close-box">
       
@@ -285,12 +278,12 @@ function renderPopup(
         ${description}
       </p>
       
-      <div class="date-box-popup">
+      <div class="date-box-popup" id="date_box">
         <p class="due-date" >Due date:</p>
         <p id="date">16-01-2023</p>
       </div>
       
-      <div class="priority-box">
+      <div class="priority-box" id="edit_priority">
         <p class="priority">Priority:</p>
         <p id="priority"> urgent</p>
       </div>
@@ -308,8 +301,8 @@ function renderPopup(
         </div>
       </div>
       
-      <div class="assigned">
-        <p class="assigned-to">Assigned To:</p>
+      <div class="assigned" >
+        <p class="assigned-to" id="edit-assigned">Assigned To:</p>
         <div id="assigned_contacts">
           <div id="contact"></div>
         </div>
@@ -372,3 +365,97 @@ function generatePopup(id) {
     letters
   );
 }
+
+function edit(id) {
+  let currentCard = cardsMap.get(`${id}`);
+  let title = currentCard["title"];
+  let description = currentCard["description"];
+  let name = document.getElementsByClassName("fullName");
+  for (let i = 0; i < name.length; i++) {
+    const element = name[i];
+    element.classList.add("d-none");
+  }
+
+  document.getElementById(`c-color`).classList.add("d-none");
+  document.getElementById(
+    "popup_title"
+  ).innerHTML = `<input type="text" class="popup-title-edit" id="popup_title_edit" placeholder="${title}">`;
+  document.getElementById(
+    "popup_description"
+  ).innerHTML = `<div class="edit-title">
+                  <h4>Description<h4>
+                  <textarea cols="36" rows="5" charswidth="500" name="text_body"id="popup_description_edit" placeholder="${description}"></textarea>
+                </div>`;
+  document.getElementById("date_box").innerHTML = `
+    <div class="correctDate">
+      <h4 class="due-date-text">Due date</h4>
+      <input type="date" placeholder="dd/mm/yyyy" id="select-date" class="select-date" required />
+    </div>`;
+  document.getElementById("edit_priority").classList.add("correctPrio");
+  document.getElementById("edit_priority").innerHTML = `
+              <div class="importance-buttons">
+                <button onclick="fillImportanceButton1()" class="importance-button1" id="importance-button1"
+                    type="button">
+                    <span>Urgent</span>
+                    <img src="../add_task/img-add_task/urgent.png" />
+                </button>
+                <button onclick="emptyImportanceButton1()" class="importance-button1-colored"
+                    id="importance-button1-colored" style="display: none" type="button">
+                    <span>Urgent</span>
+                    <img src="../add_task/img-add_task/urgent_white.png" />
+                </button>
+
+                <button onclick="fillImportanceButton2()" class="importance-button2" id="importance-button2"
+                    type="button">
+                    <span>Medium</span>
+                    <img src="../add_task/img-add_task/medium.png" />
+                </button>
+                <button onclick="emptyImportanceButton2()" class="importance-button2-colored"
+                    id="importance-button2-colored" style="display: none" type="button">
+                    <span>Medium</span>
+                    <img src="../add_task/img-add_task/medium_white.png" />
+                </button>
+
+                <button onclick="fillImportanceButton3()" class="importance-button3" id="importance-button3"
+                    type="button">
+                    <span>Low</span>
+                    <img src="../add_task/img-add_task/low.png" />
+                </button>
+                <button onclick="emptyImportanceButton3()" class="importance-button3-colored"
+                    id="importance-button3-colored" style="display: none" type="button">
+                    <span>Low</span>
+                    <img src="../add_task/img-add_task/low_white.png" />
+                </button>
+            </div>`;
+  document.getElementById("edit-assigned").innerHTML += `
+              <div class="contacts-box">
+                <div style="position: relative">
+                    <div class="contacts-dropdown">
+                        <p onclick="openContactsToSelect()" class="select-contacts">
+                            Select contacts to assign
+                        </p>
+                        <img onclick="openContactsToSelect()" src="../add_task/img-add_task/dropdown_blue.png"
+                            class="drop-down-arrow" id="contacts-drop-down-arrow" />
+                        <div id="contacts-drop-down" class="contacts-dropdown-content d-none">
+                            <div class="contacts-list-elem">
+                                <label class="control control-checkbox">
+                                    <div class="contacts-list-elem-box">
+                                        <span class="rendered-contact-name">You</span>
+                                        <input type="checkbox" />
+                                        <div class="control-indicator"></div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="contacts-list-elem new-contact">
+                                Invite new contact
+                                <img src="../add_task/img-add_task/contact_blue.png" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div`;
+  document.getElementById("contact").classList.add("flex-contact");
+}
+
+/*       "importance"   einfügen noch in .json*/
+task = JSON.parse(backend.getItem("tasks")) || [];
