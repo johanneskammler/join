@@ -3,6 +3,10 @@ body {
   font-family: "Open Sans";
 }
 
+.d-none {
+  display: none;
+}
+
 .font-family {
   font-family: "Open Sans";
 }
@@ -48,6 +52,7 @@ header span {
 }
 
 .profile-picture {
+  cursor: pointer;
   height: 54px;
   width: 54px;
   object-fit: cover;
@@ -129,4 +134,15 @@ header span {
 
 #help-section-btn {
   cursor: pointer;
+}
+
+.logout-box {
+  cursor: pointer;
+  position: absolute;
+  top: 90px;
+  right: 36px;
+}
+
+.logout-box:hover {
+  content: url(../templates/img/logout_hover.png);
 }

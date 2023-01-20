@@ -1,12 +1,19 @@
 let tasks = [];
 let selectedContacts = [];
 let importance;
+let subtasks = [];
+let selectedSubtasks = [];
+let newCategories = [];
+let categoryName;
+let categoryColor;
 
 
 setURL("https://gruppe-417.developerakademie.net/smallest_backend_ever");
 
 
 function addToTasks() {
+  triggerAddedToBoardButton();
+
   let title = document.getElementById("title-input");
   let date = document.getElementById("select-date");
   let category = document.getElementById("select-category");
@@ -17,17 +24,50 @@ function addToTasks() {
     'contacts': selectedContacts,
     'date': date.value,
     'category': category.innerText,
+    'category-color': categoryColor,
     'importance': importance,
-    'decription': description.value
+    'decription': description.value,
+    'subtasks': selectedSubtasks
   };
 
   tasks.push(task);
   console.log(tasks);
-  title.value = "";
-  date.value = "";
-  description.value = "";
+  resetTasksInputs(title, selectedContacts, date, categoryColor, description, selectedSubtasks);
+  resetImportanceButtons();
 
   backend.setItem("tasks", JSON.stringify(tasks));
+}
+
+
+function triggerAddedToBoardButton() {
+  document.getElementById('task-added-to-board').classList.remove('d-none');
+  setTimeout(resetAddedButton, 3000);
+}
+
+
+function resetAddedButton() {
+  document.getElementById('task-added-to-board').classList.add('d-none');
+}
+
+
+function resetTasksInputs(title, selectedContacts, date, description, selectedSubtasks) {
+  title.value = "";
+  selectedContacts = [];
+  date.value = "";
+  categoryColor = '';
+  description.value = "";
+  selectedSubtasks = [];
+  document.getElementById("select-category").innerHTML = resetCategory();
+}
+
+
+function resetImportanceButtons() {
+  document.getElementById('importance-button1').style = 'display: flex;';
+  document.getElementById('importance-button1-colored').style = 'display: none;';
+  document.getElementById('importance-button2').style = 'display: flex;';
+  document.getElementById('importance-button2-colored').style = 'display: none;';
+  document.getElementById('importance-button3').style = 'display: flex;';
+  document.getElementById('importance-button3-colored').style = 'display: none;';
 }
 
 
@@ -35,7 +75,6 @@ async function init() {
   await includeHTML();
   checkSize();
   renderContacts();
-
   await downloadFromServer();
   tasks = JSON.parse(backend.getItem('tasks')) || [];
 }
@@ -92,19 +131,20 @@ function addContactToTask(i) {
 
 function fillCategory(category) {
   let categoryField = document.getElementById("select-category");
-  let newCategory = document.getElementById("new-category-input").value;
 
   if (category == "sales") {
     categoryField.innerHTML = "";
     categoryField.innerHTML += setCategoryToSales();
     document.getElementById("categories-drop-down").classList.add("d-none");
+    categoryColor = 'pink';
   } else if (category == "backoffice") {
     categoryField.innerHTML = "";
     categoryField.innerHTML += setCategoryToBackoffice();
     document.getElementById("categories-drop-down").classList.add("d-none");
+    categoryColor = 'turquois';
   } else {
     categoryField.innerHTML = "";
-    categoryField.innerHTML += setCategoryToNewSubtask(newCategory);
+    categoryField.innerHTML += setCategoryToNewCategory(categoryName, categoryColor, newCategories);
     document.getElementById("categories-drop-down").classList.add("d-none");
   }
   document.getElementById("categories-drop-down").classList.add("d-none");
@@ -126,22 +166,36 @@ function goBackToSelectCategory() {
   document.getElementById("drop-down-arrow-categories").classList.remove("d-none");
   document.getElementById("new-category-accept").classList.add("d-none");
   document.getElementById("select-category").innerHTML = "Select task category";
+  categoryColor = '';
 }
 
 function addNewCategory() {
-  let newCategory = document.getElementById("new-category-input").value;
+  categoryName = document.getElementById("new-category-input").value;
   document.getElementById("new-category-input").classList.add("d-none");
   document.getElementById("new-category-content").classList.add("d-none");
   document.getElementById("drop-down-arrow-categories").classList.remove("d-none");
   document.getElementById("new-category-accept").classList.add("d-none");
   document.getElementById("select-category").innerHTML = "";
-  document.getElementById("select-category").innerHTML = newCategory;
-  document.getElementById('categories-drop-down').innerHTML += `
-  <div onclick="fillCategory('${newCategory}')" class="categories-list-elem">
-    ${newCategory}
-    <img src="../add_task/img-add_task/circle_green.png" />
-  </div>
-  `;
+  document.getElementById("select-category").innerHTML = categoryName;
+  newCategories.push(categoryName, categoryColor);
+  renderNewCategories(categoryName, categoryColor);
+}
+
+
+function selectCategoryColor(color) {
+  document.getElementById('category-color-' + color).classList.toggle('select-new-category-color');
+  if (document.getElementById('category-color-' + color).classList.contains('select-new-category-color')) {
+    categoryColor = color;
+  } else {
+    categoryColor = '';
+  }
+}
+
+
+function renderNewCategories(categoryName, categoryColor) {
+  document.getElementById('categories-drop-down').innerHTML += generateHTMLcategory(categoryName, categoryColor);
+  // categoryName = '';
+  // categoryColor = '';
 }
 
 
@@ -154,18 +208,44 @@ function addSubtask() {
   let newSubtask = document.getElementById('add-subtask').value;
   if (newSubtask == '') {
     return false;
+  } else if (subtasks.includes(newSubtask)) {
+    alert('This subtask already exists!');
   } else {
-    document.getElementById('subtask-content').innerHTML += generateHTMLsubtask(newSubtask);
+    subtasks.push(newSubtask);
   }
   document.getElementById('add-subtask').value = '';
   document.getElementById('plus-icon').classList.remove('d-none');
   document.getElementById('new-subtask-accept').classList.add('d-none');
+  renderSubtasks();
 }
 
 
 function backToSubtasks() {
   document.getElementById('plus-icon').classList.remove('d-none');
   document.getElementById('new-subtask-accept').classList.add('d-none');
+  document.getElementById('add-subtask').value = '';
+}
+
+
+function renderSubtasks() {
+  document.getElementById('subtask-content').innerHTML = '';
+  for (let i = 0; i < subtasks.length; i++) {
+    const subtask = subtasks[i];
+    document.getElementById('subtask-content').innerHTML += generateHTMLsubtask(subtask, i);
+  }
+}
+
+
+function addSubtaskToTask(i) {
+  let subtask = document.getElementById('subtasks-checkbox-' + i).value;
+
+  if (selectedSubtasks.includes(subtask)) {
+    selectedSubtasks.splice(i, 1);
+    console.log(selectedSubtasks);
+  } else {
+    selectedSubtasks.push(subtask);
+    console.log(selectedSubtasks);
+  }
 }
 
 

@@ -210,13 +210,19 @@ body {
 .invate {
   background-color: green;
   padding: 10px;
-  width: 20px;
+  width: 22px;
   text-align: center;
   border-radius: 151px;
   border: 1px solid white;
   color: white;
   margin-right: -6px;
   font-family: "Inter";
+  display: flex;
+  justify-content: center;
+}
+
+.subtask {
+  font-size: 21px;
 }
 
 .progress-box {
@@ -229,7 +235,7 @@ body {
 }
 
 .progressbar {
-  width: 60%;
+  width: 67%;
   height: 8px;
   background-color: #b5b5b545;
   border-radius: 7%;
@@ -243,12 +249,24 @@ body {
   border-bottom-left-radius: 7%;
 }
 
+.progress-box-2 {
+  display: flex;
+  align-items: baseline;
+  width: 80%;
+  justify-content: space-between;
+  margin-block-start: -20px;
+}
+
 /* Popup Sections */
 
 .tap-to-close-popup {
   position: fixed;
   inset: 0;
   z-index: 3;
+}
+
+.card-content-popup {
+  width: 479px;
 }
 
 .popup {
@@ -267,7 +285,7 @@ body {
   padding: 50px;
   background: #ffffff;
   position: absolute;
-  top: 126px;
+  top: 40px;
   right: 34vw;
   z-index: 5;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
@@ -282,6 +300,14 @@ body {
   margin-top: 25px;
 }
 
+.relative {
+  position: relative;
+}
+
+.progress-box-popup {
+  margin-top: -24px;
+}
+
 .responsible {
   padding: 4px 36.5px;
   background: #fc71ff;
@@ -289,8 +315,22 @@ body {
   color: white;
 }
 
+.task {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 120%;
+}
+
+.progess-text {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
 .popup-title {
-  height: 143px;
+  width: 440px;
   font-weight: 700;
   font-size: 61px;
   line-height: 73.2px;
@@ -303,12 +343,13 @@ body {
   font-size: 21px;
   line-height: 120%;
   margin-top: 25px;
-  margin-bottom: 0;
+  margin-bottom: 6px;
 }
 
 .date-box-popup {
   display: flex;
   align-items: baseline;
+  margin-top: -7px;
 }
 
 .due-date {
@@ -316,6 +357,10 @@ body {
   font-weight: 700;
   font-size: 23px;
   line-height: 25px;
+}
+
+.assigned {
+  margin-top: -14px;
 }
 
 #date {
@@ -327,13 +372,10 @@ body {
   margin-left: 25px;
 }
 
-.popup-card p {
-  margin-top: 25px;
-  margin-bottom: 0;
-}
-
 .priority-box {
   display: flex;
+  margin-top: -23px;
+  align-items: center;
 }
 
 .priority {
@@ -350,7 +392,7 @@ body {
   font-weight: 400;
   font-size: 19px;
   line-height: 120%;
-  margin-left: 25px;
+  margin-left: 54px;
 }
 
 .assigned-to {
@@ -390,6 +432,23 @@ body {
 .gray {
   color: #808080a6;
 }
+
+.contactsDiv {
+  display: flex;
+  text-align: center;
+  align-items: baseline;
+  margin-block-start: -17px;
+  margin-bottom: -14px;
+  font-size: 18px;
+  font-family: "Inter";
+  font-weight: 400;
+}
+
+.fullName {
+  margin-left: 30px;
+  font-weight: 500;
+}
+
 .close {
   position: relative;
   height: 40px;
@@ -399,13 +458,20 @@ body {
   align-items: baseline;
 }
 
+.close-box {
+  position: absolute;
+  right: 0;
+  width: 40px;
+  height: 37px;
+}
+
 .close-img {
   position: absolute;
   transform: rotate(90deg);
 }
 
 .edit-box {
-  width: 542px;
+  width: 500px;
   display: flex;
   justify-content: end;
   margin-right: 0;
@@ -471,3 +537,71 @@ body {
 .for-tablet {
   display: flex;
 }
+/* POPUP EDIT CLASSES */
+
+.popup-title-edit {
+  outline: none;
+  width: 100%;
+  height: 56px;
+  font-size: 48px;
+  border: 2px solid #80808038;
+  border-right: none;
+  border-top: none;
+  border-left: none;
+}
+
+.popup-title-edit::placeholder {
+  color: rgba(0, 0, 0, 0.962);
+  opacity: 1;
+}
+
+textarea {
+  resize: vertical;
+  font-size: 21px;
+}
+textarea::placeholder {
+  color: rgba(0, 0, 0, 0.962);
+}
+
+h4 {
+  margin-bottom: -22px;
+}
+
+.correctDate {
+  font-size: 21px !important;
+  width: 130px !important;
+  color: black !important;
+  margin-bottom: 15px !important;
+}
+
+.due-date-text {
+  color: rgba(0, 0, 0, 0.908) !important;
+}
+
+.correctPrio {
+  margin-top: 35px;
+}
+
+.flex-contact {
+  display: flex;
+  gap: 9px;
+}
+
+.select-date {
+  color: rgba(0, 0, 0, 0.908) !important;
+}
+
+.set-contact-popup {
+  height: 125px !important;
+  font-size: 16px !important;
+}
+
+.set-title {
+  margin-top: -117px;
+}
+
+.set-content {
+  margin-block-start: -100px;
+}
+
+/* POPUP EDIR CLASSES END */

@@ -31,6 +31,7 @@
 
   .new-contact {
     margin-right: 14px;
+    width: 382px;
   }
 }
 
@@ -75,21 +76,46 @@
   }
 
   .rendered-contact-name {
-    width: 61vw;
+    width: 67vw;
   }
 
   .contacts-dropdown-content {
-    width: 74vw;
+    width: 82vw;
   }
 
   .new-contact {
     margin-right: 3px;
+    width: 71vw;
+  }
+
+  .categories-dropdown-content {
+    width: 83vw;
+  }
+
+  .subtask-content {
+    width: 80vw;
+  }
+
+  .rendered-subtask-name {
+    width: 65vw;
   }
 }
 
 @media (max-width: 414px) {
   .rendered-contact-name {
     width: 73.5vw;
+  }
+
+  .contacts-list-elem-box {
+    width: 71vw;
+  }
+
+  .contacts-dropdown-content {
+    width: 82vw;
+  }
+
+  .new-contact {
+    width: 71vw;
   }
 }
 

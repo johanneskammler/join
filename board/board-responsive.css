@@ -96,6 +96,7 @@
     font-size: 53px;
     line-height: 57.2px;
     width: 33vw;
+    margin-block-end: 80px;
   }
 
   .edit-box {
@@ -111,9 +112,6 @@
   }
   .board {
     margin-left: 22vw;
-  }
-  .popup-card p {
-    margin-top: 16px;
   }
 }
 

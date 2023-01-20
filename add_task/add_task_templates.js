@@ -1,5 +1,5 @@
 function generateHTMLcontacts(element, i) {
-    return `
+  return `
     <div class="contacts-list-elem">
       <label class="control control-checkbox" id="selected-contact">
         <div class="contacts-list-elem-box">
@@ -13,8 +13,18 @@ function generateHTMLcontacts(element, i) {
 }
 
 
+function generateHTMLcategory(categoryName, categoryColor) {
+  return `
+  <div onclick="fillCategory('${categoryName}')" class="categories-list-elem">
+    ${categoryName}
+    <img src="../add_task/img-add_task/circle_${categoryColor}.png" />
+  </div>
+  `;
+}
+
+
 function setCategoryToSales() {
-    return `
+  return `
     <div class="selected-category">
       Sales
       <img src="../add_task/img-add_task/circle_pink.png" />
@@ -24,7 +34,7 @@ function setCategoryToSales() {
 
 
 function setCategoryToBackoffice() {
-    return `
+  return `
     <div class="selected-category">
       Backoffice
       <img src="../add_task/img-add_task/circle_turquois.png" />
@@ -33,26 +43,35 @@ function setCategoryToBackoffice() {
 }
 
 
-function setCategoryToNewSubtask(newCategory) {
+function setCategoryToNewCategory(categoryName, categoryColor, newCategories) {
+  return `
+    <div class="selected-category">
+      ${categoryName}
+      <img src="../add_task/img-add_task/circle_${newCategories[1]}.png" />
+    </div>
+    `;
+}
+
+
+function resetCategory() {
   return `
   <div class="selected-category">
-    ${newCategory}
-    <img src="../add_task/img-add_task/circle_green.png" />
+    Select task category
   </div>
   `;
 }
 
 
-function generateHTMLsubtask(newSubtask) {
-    return `
+function generateHTMLsubtask(subtask, i) {
+  return `
     <div class="subtask-list-elem">
       <label class="control control-checkbox" id="selected-subtask">
         <div class="subtask-list-elem-box">
-          <input type="checkbox" />
-          <span class="rendered-subtask-name">${newSubtask}</span>
+          <input onclick="addSubtaskToTask(${i})" id="subtasks-checkbox-${i}" type="checkbox" value="${subtask}" />
+          <span class="rendered-subtask-name">${subtask}</span>
           <div class="control-indicator-subtask"></div>
         </div>
       </label>
     </div>
     `;
-  }
+}
