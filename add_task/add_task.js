@@ -4,6 +4,7 @@ let importance;
 let subtasks = [];
 let selectedSubtasks = [];
 let newCategories = [];
+let categoryName;
 let categoryColor;
 
 
@@ -23,6 +24,7 @@ function addToTasks() {
     'contacts': selectedContacts,
     'date': date.value,
     'category': category.innerText,
+    'category-color': categoryColor,
     'importance': importance,
     'decription': description.value,
     'subtasks': selectedSubtasks
@@ -30,7 +32,7 @@ function addToTasks() {
 
   tasks.push(task);
   console.log(tasks);
-  resetTasksInputs(title, selectedContacts, date, description, selectedSubtasks);
+  resetTasksInputs(title, selectedContacts, date, categoryColor, description, selectedSubtasks);
   resetImportanceButtons();
 
   backend.setItem("tasks", JSON.stringify(tasks));
@@ -52,6 +54,7 @@ function resetTasksInputs(title, selectedContacts, date, description, selectedSu
   title.value = "";
   selectedContacts = [];
   date.value = "";
+  categoryColor = '';
   description.value = "";
   selectedSubtasks = [];
   document.getElementById("select-category").innerHTML = resetCategory();
@@ -72,8 +75,8 @@ async function init() {
   await includeHTML();
   checkSize();
   renderContacts();
-  // await downloadFromServer();
-  // tasks = JSON.parse(backend.getItem('tasks')) || [];
+  await downloadFromServer();
+  tasks = JSON.parse(backend.getItem('tasks')) || [];
 }
 
 function checkSize() {
@@ -133,13 +136,15 @@ function fillCategory(category) {
     categoryField.innerHTML = "";
     categoryField.innerHTML += setCategoryToSales();
     document.getElementById("categories-drop-down").classList.add("d-none");
+    categoryColor = 'pink';
   } else if (category == "backoffice") {
     categoryField.innerHTML = "";
     categoryField.innerHTML += setCategoryToBackoffice();
     document.getElementById("categories-drop-down").classList.add("d-none");
+    categoryColor = 'turquois';
   } else {
     categoryField.innerHTML = "";
-    categoryField.innerHTML += setCategoryToNewSubtask(newCategories);
+    categoryField.innerHTML += setCategoryToNewCategory(categoryName, categoryColor, newCategories);
     document.getElementById("categories-drop-down").classList.add("d-none");
   }
   document.getElementById("categories-drop-down").classList.add("d-none");
@@ -161,24 +166,36 @@ function goBackToSelectCategory() {
   document.getElementById("drop-down-arrow-categories").classList.remove("d-none");
   document.getElementById("new-category-accept").classList.add("d-none");
   document.getElementById("select-category").innerHTML = "Select task category";
+  categoryColor = '';
 }
 
 function addNewCategory() {
-  let newCategory = document.getElementById("new-category-input").value;
+  categoryName = document.getElementById("new-category-input").value;
   document.getElementById("new-category-input").classList.add("d-none");
   document.getElementById("new-category-content").classList.add("d-none");
   document.getElementById("drop-down-arrow-categories").classList.remove("d-none");
   document.getElementById("new-category-accept").classList.add("d-none");
   document.getElementById("select-category").innerHTML = "";
-  document.getElementById("select-category").innerHTML = newCategory;
-  newCategories.push(newCategory, categoryColor);
-  renderNewCategories(newCategories);
+  document.getElementById("select-category").innerHTML = categoryName;
+  newCategories.push(categoryName, categoryColor);
+  renderNewCategories(categoryName, categoryColor);
 }
 
 
-function renderNewCategories(newCategories) {
-  document.getElementById('categories-drop-down').innerHTML += generateHTMLcategory(newCategories);
-  newCategories = '';
+function selectCategoryColor(color) {
+  document.getElementById('category-color-' + color).classList.toggle('select-new-category-color');
+  if (document.getElementById('category-color-' + color).classList.contains('select-new-category-color')) {
+    categoryColor = color;
+  } else {
+    categoryColor = '';
+  }
+}
+
+
+function renderNewCategories(categoryName, categoryColor) {
+  document.getElementById('categories-drop-down').innerHTML += generateHTMLcategory(categoryName, categoryColor);
+  // categoryName = '';
+  // categoryColor = '';
 }
 
 
@@ -206,6 +223,7 @@ function addSubtask() {
 function backToSubtasks() {
   document.getElementById('plus-icon').classList.remove('d-none');
   document.getElementById('new-subtask-accept').classList.add('d-none');
+  document.getElementById('add-subtask').value = '';
 }
 
 

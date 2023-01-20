@@ -1,3 +1,5 @@
+setURL("https://gruppe-417.developerakademie.net/smallest_backend_ever");
+
 let responsAsJson;
 let cardsMap = new Map();
 let todos = [];
@@ -8,6 +10,7 @@ let feedbackes = [];
 let feedbacksMap = new Map();
 let dones = [];
 let donesMap = new Map();
+
 let todo = "todo";
 let feedback = "feedback";
 let progress = "progress";
@@ -17,6 +20,7 @@ let idCounter = 0; // Später im Server speichern da sonst wieder von 0 anfängt
  * This function Initialized some functions that need to run with onload of the body
  *
  */
+
 async function init() {
   await includeHTML();
   checkSize();
@@ -24,6 +28,7 @@ async function init() {
   generateCards();
   activateDragAndDrop();
   draggableTrue();
+  await downloadFromServer();
 }
 
 function openPopup(id) {
@@ -41,6 +46,10 @@ function popup(id) {
   let card = document.getElementById("popup_card");
   let list = document.getElementsByTagName("html");
   let html = list[0];
+
+  document.getElementById("edit_priority").classList.remove("correctPrio");
+  document.getElementById("popup_title").classList.remove("card-content-popup");
+  document.getElementById("card_content").classList.remove("set-content");
 
   window.scrollTo(0, 0);
   html.classList.toggle("hide-overflow-y");
@@ -252,28 +261,32 @@ function renderPopup(
   letters
 ) {
   document.getElementById("popup_card").innerHTML = `
-    <div class="card-head">
-      <div class="card-head">
-        <div class="category-overlay" id="c-color${idCounter}" style="background-color: ${color}">
-          <p id="c_overlay${idCounter}">${category}</p>
-        </div>
+    <div class="card-head relative" id="popup_head">
+      <div class="category-overlay" id="c-color" style="background-color: ${color}">
+        <p id="c_overlay${id}">${category}</p>
+      </div>
+      <div onclick="popup()" class="close-box">
+      
+        <img src="img-board/line.png" class="close-img">
+        <img src="img-board/line.png" >
       </div>
     </div>
+  
     <div class="popup-card-title">
       <h1 class="popup-title font" id="popup_title">${title}</h1>
     </div>
 
-    <div class="card-content-popup">
+    <div class="card-content-popup" id="card_content">
       <p class="popup-text font" id="popup_description">
         ${description}
       </p>
       
-      <div class="date-box-popup">
+      <div class="date-box-popup" id="date_box">
         <p class="due-date" >Due date:</p>
         <p id="date">16-01-2023</p>
       </div>
       
-      <div class="priority-box">
+      <div class="priority-box" id="edit_priority">
         <p class="priority">Priority:</p>
         <p id="priority"> urgent</p>
       </div>
@@ -291,15 +304,15 @@ function renderPopup(
         </div>
       </div>
       
-      <div class="assigned">
-        <p class="assigned-to">Assigned To:</p>
+      <div class="assigned" >
+        <p class="assigned-to" id="edit-assigned">Assigned To:</p>
         <div id="assigned_contacts">
           <div id="contact"></div>
         </div>
       </div>
       
-      <div class="edit-box" onclick="edit(${"id"}), ${title})">
-        <img src="img-board/edit-button.png" class="pointer">
+      <div class="edit-box" id="edit_box">
+        <img src="img-board/edit-button.png" class="pointer" onclick="edit(${id})">
       </div>
     </div>`;
   checkSubtasksPopup(subtask, id);
@@ -356,12 +369,35 @@ function generatePopup(id) {
   );
 }
 
-function edit(id, title) {
-  document.getElementById(`c-overlay${id}`).classList.add("d-none");
+function edit(id) {
+  let currentCard = cardsMap.get(`${id}`);
+  let title = currentCard["title"];
+  let description = currentCard["description"];
+  let name = document.getElementsByClassName("fullName");
+  for (let i = 0; i < name.length; i++) {
+    const element = name[i];
+    element.classList.add("d-none");
+  }
+
+  document.getElementById(`c-color`).classList.add("d-none");
   document.getElementById(
-    "popup-title"
+    "popup_title"
   ).innerHTML = `<input type="text" class="popup-title-edit" id="popup_title_edit" placeholder="${title}">`;
+  document.getElementById("popup_title").classList.add("set-title");
+  document.getElementById("card_content").classList.add("set-content");
+  document.getElementById("popup_description").innerHTML =
+    descriptionHTML(description);
+
+  document.getElementById("date_box").innerHTML = dateHTML();
+  document.getElementById("edit_priority").classList.add("correctPrio");
+  document.getElementById("edit_priority").innerHTML = priorityHTML();
+  document.getElementById("edit-assigned").innerHTML += assignedHTML();
+  document.getElementById("contact").classList.add("flex-contact");
   document.getElementById(
-    "popup_description"
-  ).innerHTML = `<input type="text" class="popup-text font" id="popup_description_edit" placeholder>`;
+    "edit_box"
+  ).innerHTML += `<div class="ok"><p class="ok-text">Done</p></div>`;
+  document.getElementById;
 }
+
+/*       "importance"   einfügen noch in .json*/
+/*       contacte syncronisieren mit den vorhendenen/Listepopup*/

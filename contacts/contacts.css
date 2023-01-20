@@ -113,8 +113,9 @@ body {
 .contact-right {
     position: absolute;
     top: 100px;
-    left: 730px;
+    left: 720px;
     width: 1190px;
+    overflow: hidden;
 }
 
 .name-container {
@@ -216,8 +217,8 @@ body {
     font-size: 23px;
     color: #FFFFFF;
     position: absolute;
-    top: 700px;
-    left: 900px;
+    top: 800px;
+    left: 1650px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -233,4 +234,100 @@ body {
 .btn-img {
     width: 33px;
     height: 29.71px;
+}
+
+#add_contact_container {
+    position: absolute;
+    top: 100px;
+    width: 580px;
+}
+
+.add-contact-header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #4589FF;
+}
+
+.add-contact-header p {
+    color: white;
+    font-family: 'Open Sans';
+    margin: 0;
+}
+
+.add-contact-img {
+    margin-top: 51px;
+    margin-bottom: 12px;
+    height: 66.48px;
+    width: 55.12px;
+}
+
+.add-contact-headline {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.add-contact-paragraph {
+    font-size: 27px;
+    font-weight: 400;
+    padding-bottom: 51px;
+}
+
+.add-contact-information {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+}
+
+.img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+    margin-top: 43px;
+    border-radius: 100%;
+    background-color: #D1D1D1;
+    margin-bottom: 35px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form input {
+    padding: 40px;
+    width: 422px;
+    margin-bottom: 49px;
+    border: none;
+    border-bottom: 1px solid #D1D1D1;
+    outline: none;
+    padding: 13px 21px;
+}
+
+form input::placeholder {
+    font-size: 19px;
+    font-family: 'Open Sans';
+    color: #D1D1D1;
+}
+
+#input-name {
+    background: url(../login/img/user.png) no-repeat scroll 95% 7px;
+}
+
+#input-mail {
+    background: url(../login/img/email.png) no-repeat scroll 95% 7px;
+}
+
+#input-phone {
+    background: url(img/phone.png) no-repeat scroll 95% 7px;
+}
+
+.new-contact-btn-container {
+    background-color: white;
+    display: flex;
+    justify-content: center;
 }

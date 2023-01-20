@@ -265,6 +265,10 @@ body {
   z-index: 3;
 }
 
+.card-content-popup {
+  width: 479px;
+}
+
 .popup {
   inset: 0;
   position: fixed;
@@ -294,6 +298,10 @@ body {
   height: 130px;
   align-items: center;
   margin-top: 25px;
+}
+
+.relative {
+  position: relative;
 }
 
 .progress-box-popup {
@@ -450,13 +458,20 @@ body {
   align-items: baseline;
 }
 
+.close-box {
+  position: absolute;
+  right: 0;
+  width: 40px;
+  height: 37px;
+}
+
 .close-img {
   position: absolute;
   transform: rotate(90deg);
 }
 
 .edit-box {
-  width: 542px;
+  width: 500px;
   display: flex;
   justify-content: end;
   margin-right: 0;
@@ -522,3 +537,71 @@ body {
 .for-tablet {
   display: flex;
 }
+/* POPUP EDIT CLASSES */
+
+.popup-title-edit {
+  outline: none;
+  width: 100%;
+  height: 56px;
+  font-size: 48px;
+  border: 2px solid #80808038;
+  border-right: none;
+  border-top: none;
+  border-left: none;
+}
+
+.popup-title-edit::placeholder {
+  color: rgba(0, 0, 0, 0.962);
+  opacity: 1;
+}
+
+textarea {
+  resize: vertical;
+  font-size: 21px;
+}
+textarea::placeholder {
+  color: rgba(0, 0, 0, 0.962);
+}
+
+h4 {
+  margin-bottom: -22px;
+}
+
+.correctDate {
+  font-size: 21px !important;
+  width: 130px !important;
+  color: black !important;
+  margin-bottom: 15px !important;
+}
+
+.due-date-text {
+  color: rgba(0, 0, 0, 0.908) !important;
+}
+
+.correctPrio {
+  margin-top: 35px;
+}
+
+.flex-contact {
+  display: flex;
+  gap: 9px;
+}
+
+.select-date {
+  color: rgba(0, 0, 0, 0.908) !important;
+}
+
+.set-contact-popup {
+  height: 125px !important;
+  font-size: 16px !important;
+}
+
+.set-title {
+  margin-top: -117px;
+}
+
+.set-content {
+  margin-block-start: -100px;
+}
+
+/* POPUP EDIR CLASSES END */
