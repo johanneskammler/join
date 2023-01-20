@@ -39,38 +39,66 @@ async function renderContactList() {
         let firstLetters = element['name'].match(/\b(\w)/g);
         let acronym = firstLetters.join('');
 
-        renderContactListHTML(element, acronym);
+        renderContactListHTML(element, acronym, i);
         disableContactContainer();
-        // getNewColor();
+        getNewColor(i);
     }
 }
 
-async function openContactDetail(element, acronym) {
+async function openContactDetail(i) {
     let url = '../contacts.json';
     let response = await fetch(url);
     let contacts = await response.json();
 
-    document.getElementById('circle_right').innerHTML = element[acronym];
+    let contact = contacts[i];
+    let name = contact['name'];
+    let email = contact['mail'];
+    let phone = contact['mobil'];
+    let firstLetters = contact['name'].match(/\b(\w)/g);
+    let acronym = firstLetters.join('');
 
+
+    document.getElementById('contact_right').classList.remove('d-none');
+    document.getElementById("name_right").innerHTML = name;
+    document.getElementById("mail_right").innerHTML = email;
+    document.getElementById("mobil_right").innerHTML = phone;
+    document.getElementById("circle_right").innerHTML = acronym;
+
+    gsap.from("#contact_right", {
+        x: 1200,
+        duration: 0.15,
+
+    });
 }
 
-// function getNewColor() {
-//     var symbols, color;
-//     symbols = "0123456789ABCDEF";
-//     color = "#";
+function addNewContact() {
+    document.getElementById('add_contact_container').classList.remove('d-none');
+    renderAddNewContactHTML();
 
-//     for (let f = 0; f < 6; f++) {
-//         color = color + symbols[Math.floor(Math.random() * 16)]
-//         document.getElementById('circle_contacts').style.background = color;
+    gsap.from("#add_contact_container", {
+        x: -600,
+        duration: 0.4,
 
-//     }
-// }
-
+    });
+}
 
 
+function getNewColor(i) {
+    var symbols, color;
+    symbols = "0123456789ABCDEF";
+    color = "#";
 
+    for (let f = 0; f < 6; f++) {
+        color = color + symbols[Math.floor(Math.random() * 16)]
+        document.getElementById(`circle_contacts${i}`).style.background = color;
+    }
+}
 
 //  Render HMTL
+
+function renderAddNewContactHTML() {
+
+}
 
 function disableContactContainer() {
     if (document.getElementById('a').innerHTML < 1) {
@@ -207,24 +235,24 @@ function disableContactContainer() {
 
 }
 
-function renderContactListHTML(element, acronym) {
+function renderContactListHTML(element, acronym, i) {
     let firstLetter = element['name'][0];
 
     if (firstLetter == 'A') {
         document.getElementById('a').innerHTML += `
-            <div class="contact" onclick="openContactDetail(${element, acronym})">
-            <div id="circle_contacts" class="circle">${acronym}</div>
-            <div class="contact-info-container">
-            <span class="contact-name">${element['name']}</span>
-            <span class="contact-email">${element['mail']}</span>
-            </div>
+            <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
+                <div class="contact-info-container">
+                    <span class="contact-name">${element['name']}</span>
+                    <span class="contact-email">${element['mail']}</span>
+                </div>
             </div>
             `;
     }
     if (firstLetter == 'B') {
         document.getElementById('b').innerHTML += `
-            <div class="contact" onclick="openContactDetail(element)">
-            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
             <div class="contact-info-container">
             <span class="contact-name">${element['name']}</span>
             <span class="contact-email">${element['mail']}</span>
@@ -234,8 +262,8 @@ function renderContactListHTML(element, acronym) {
     }
     if (firstLetter == 'C') {
         document.getElementById('c').innerHTML += `
-            <div class="contact" onclick="openContactDetail(element)">
-            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
             <div class="contact-info-container">
             <span class="contact-name">${element['name']}</span>
             <span class="contact-email">${element['mail']}</span>
@@ -245,8 +273,8 @@ function renderContactListHTML(element, acronym) {
     }
     if (firstLetter == 'D') {
         document.getElementById('d').innerHTML += `
-            <div class="contact" onclick="openContactDetail(element)">
-            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
             <div class="contact-info-container">
             <span class="contact-name">${element['name']}</span>
             <span class="contact-email">${element['mail']}</span>
@@ -256,8 +284,8 @@ function renderContactListHTML(element, acronym) {
     }
     if (firstLetter == 'E') {
         document.getElementById('e').innerHTML += `
-            <div class="contact" onclick="openContactDetail(element)">
-            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
             <div class="contact-info-container">
             <span class="contact-name">${element['name']}</span>
             <span class="contact-email">${element['mail']}</span>
@@ -267,8 +295,8 @@ function renderContactListHTML(element, acronym) {
     }
     if (firstLetter == 'F') {
         document.getElementById('f').innerHTML += `
-            <div class="contact" onclick="openContactDetail(element)">
-            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
             <div class="contact-info-container">
             <span class="contact-name">${element['name']}</span>
             <span class="contact-email">${element['mail']}</span>
@@ -278,8 +306,8 @@ function renderContactListHTML(element, acronym) {
     }
     if (firstLetter == 'G') {
         document.getElementById('g').innerHTML += `
-            <div class="contact" onclick="openContactDetail(element)">
-            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
             <div class="contact-info-container">
             <span class="contact-name">${element['name']}</span>
             <span class="contact-email">${element['mail']}</span>
@@ -289,8 +317,8 @@ function renderContactListHTML(element, acronym) {
     }
     if (firstLetter == 'H') {
         document.getElementById('h').innerHTML += `
-            <div class="contact" onclick="openContactDetail(element)">
-            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
             <div class="contact-info-container">
             <span class="contact-name">${element['name']}</span>
             <span class="contact-email">${element['mail']}</span>
@@ -300,8 +328,8 @@ function renderContactListHTML(element, acronym) {
     }
     if (firstLetter == 'I') {
         document.getElementById('i').innerHTML += `
-            <div class="contact" onclick="openContactDetail(element)">
-            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
             <div class="contact-info-container">
             <span class="contact-name">${element['name']}</span>
             <span class="contact-email">${element['mail']}</span>
@@ -311,8 +339,8 @@ function renderContactListHTML(element, acronym) {
     }
     if (firstLetter == 'J') {
         document.getElementById('j').innerHTML += `
-            <div class="contact" onclick="openContactDetail(element)">
-            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
             <div class="contact-info-container">
             <span class="contact-name">${element['name']}</span>
             <span class="contact-email">${element['mail']}</span>
@@ -322,8 +350,8 @@ function renderContactListHTML(element, acronym) {
     }
     if (firstLetter == 'K') {
         document.getElementById('k').innerHTML += `
-            <div class="contact" onclick="openContactDetail(element)">
-            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
             <div class="contact-info-container">
             <span class="contact-name">${element['name']}</span>
             <span class="contact-email">${element['mail']}</span>
@@ -333,8 +361,8 @@ function renderContactListHTML(element, acronym) {
     }
     if (firstLetter == 'L') {
         document.getElementById('l').innerHTML += `
-            <div class="contact" onclick="openContactDetail(element)">
-            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
             <div class="contact-info-container">
             <span class="contact-name">${element['name']}</span>
             <span class="contact-email">${element['mail']}</span>
@@ -344,8 +372,8 @@ function renderContactListHTML(element, acronym) {
     }
     if (firstLetter == 'M') {
         document.getElementById('m').innerHTML += `
-            <div class="contact" onclick="openContactDetail(element)">
-            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
             <div class="contact-info-container">
             <span class="contact-name">${element['name']}</span>
             <span class="contact-email">${element['mail']}</span>
@@ -355,8 +383,8 @@ function renderContactListHTML(element, acronym) {
     }
     if (firstLetter == 'N') {
         document.getElementById('n').innerHTML += `
-            <div class="contact" onclick="openContactDetail(element)">
-            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
             <div class="contact-info-container">
             <span class="contact-name">${element['name']}</span>
             <span class="contact-email">${element['mail']}</span>
@@ -366,8 +394,8 @@ function renderContactListHTML(element, acronym) {
     }
     if (firstLetter == 'O') {
         document.getElementById('o').innerHTML += `
-            <div class="contact" onclick="openContactDetail(element)">
-            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
             <div class="contact-info-container">
             <span class="contact-name">${element['name']}</span>
             <span class="contact-email">${element['mail']}</span>
@@ -377,8 +405,8 @@ function renderContactListHTML(element, acronym) {
     }
     if (firstLetter == 'P') {
         document.getElementById('p').innerHTML += `
-            <div class="contact" onclick="openContactDetail(element)">
-            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
             <div class="contact-info-container">
             <span class="contact-name">${element['name']}</span>
             <span class="contact-email">${element['mail']}</span>
@@ -388,8 +416,8 @@ function renderContactListHTML(element, acronym) {
     }
     if (firstLetter == 'Q') {
         document.getElementById('q').innerHTML += `
-            <div class="contact" onclick="openContactDetail(element)">
-            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
             <div class="contact-info-container">
             <span class="contact-name">${element['name']}</span>
             <span class="contact-email">${element['mail']}</span>
@@ -399,8 +427,8 @@ function renderContactListHTML(element, acronym) {
     }
     if (firstLetter == 'R') {
         document.getElementById('r').innerHTML += `
-            <div class="contact" onclick="openContactDetail(element)">
-            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
             <div class="contact-info-container">
             <span class="contact-name">${element['name']}</span>
             <span class="contact-email">${element['mail']}</span>
@@ -410,8 +438,8 @@ function renderContactListHTML(element, acronym) {
     }
     if (firstLetter == 'S') {
         document.getElementById('s').innerHTML += `
-            <div class="contact" onclick="openContactDetail(element)">
-            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
             <div class="contact-info-container">
             <span class="contact-name">${element['name']}</span>
             <span class="contact-email">${element['mail']}</span>
@@ -421,8 +449,8 @@ function renderContactListHTML(element, acronym) {
     }
     if (firstLetter == 'T') {
         document.getElementById('t').innerHTML += `
-            <div class="contact" onclick="openContactDetail(element)">
-            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
             <div class="contact-info-container">
             <span class="contact-name">${element['name']}</span>
             <span class="contact-email">${element['mail']}</span>
@@ -432,8 +460,8 @@ function renderContactListHTML(element, acronym) {
     }
     if (firstLetter == 'U') {
         document.getElementById('u').innerHTML += `
-            <div class="contact" onclick="openContactDetail(element)">
-            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
             <div class="contact-info-container">
             <span class="contact-name">${element['name']}</span>
             <span class="contact-email">${element['mail']}</span>
@@ -443,8 +471,8 @@ function renderContactListHTML(element, acronym) {
     }
     if (firstLetter == 'V') {
         document.getElementById('v').innerHTML += `
-            <div class="contact" onclick="openContactDetail(element)">
-            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
             <div class="contact-info-container">
             <span class="contact-name">${element['name']}</span>
             <span class="contact-email">${element['mail']}</span>
@@ -454,8 +482,8 @@ function renderContactListHTML(element, acronym) {
     }
     if (firstLetter == 'W') {
         document.getElementById('w').innerHTML += `
-            <div class="contact" onclick="openContactDetail(element)">
-            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
             <div class="contact-info-container">
             <span class="contact-name">${element['name']}</span>
             <span class="contact-email">${element['mail']}</span>
@@ -465,8 +493,8 @@ function renderContactListHTML(element, acronym) {
     }
     if (firstLetter == 'X') {
         document.getElementById('x').innerHTML += `
-            <div class="contact" onclick="openContactDetail(element)">
-            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
             <div class="contact-info-container">
             <span class="contact-name">${element['name']}</span>
             <span class="contact-email">${element['mail']}</span>
@@ -476,8 +504,8 @@ function renderContactListHTML(element, acronym) {
     }
     if (firstLetter == 'Y') {
         document.getElementById('y').innerHTML += `
-            <div class="contact" onclick="openContactDetail(element)">
-            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
             <div class="contact-info-container">
             <span class="contact-name">${element['name']}</span>
             <span class="contact-email">${element['mail']}</span>
@@ -487,8 +515,8 @@ function renderContactListHTML(element, acronym) {
     }
     if (firstLetter == 'Z') {
         document.getElementById('z').innerHTML += `
-            <div class="contact" onclick="openContactDetail(element)">
-            <div id="circle_contacts" class="circle">${acronym}</div>
+            <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
             <div class="contact-info-container">
             <span class="contact-name">${element['name']}</span>
             <span class="contact-email">${element['mail']}</span>

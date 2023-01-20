@@ -14,6 +14,8 @@
     <script src="../include.js"></script>
     <script src="contacts.js"></script>
     <script src="../main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+
     <title>Contacts</title>
 </head>
 
@@ -23,7 +25,6 @@
     <div class="contact-container">
         <div class="contact-list-container">
             <div class="contact-list-inner-container">
-
                 <div id="a_container">
                     <div class="contact-char">A</div>
                     <hr class="underline">
@@ -184,7 +185,7 @@
             </div>
         </div>
 
-        <div class="contact-right" id="contact_right">
+        <div class="contact-right d-none" id="contact_right">
 
             <div class="name-container">
                 <div class="circle-right" id="circle_right"></div>
@@ -214,11 +215,40 @@
                     <p>Edit Contact</p>
                 </div>
             </div>
-            <button class="new-contact-btn">
-                    New Contact
-                    <img class="btn-img" src="img/button.png" alt="">
-                </button>
         </div>
+        <button class="new-contact-btn" onclick="addNewContact()">
+            New Contact
+            <img class="btn-img" src="img/button.png" alt="">
+        </button>
+
+        <div id="add_contact_container" class="d-none">
+            <div class="add-contact-header">
+                <img class="add-contact-img" src="img/logo.png" alt="">
+                <p class="add-contact-headline">Add contact</p>
+                <p class="add-contact-paragraph">Tasks are better with a team!</p>
+            </div>
+            <div class="add-contact-information">
+                <div class="img-container">
+                    <img src="img/people.png" alt="">
+                </div>
+                <form>
+                    <input id="input-name" placeholder="Name" type="text" required>
+                    <input id="input-mail" placeholder="Email" type="email" required>
+                    <input id="input-phone" placeholder="Phone" type="tel" required>
+                </form>
+            </div>
+
+            <div class="new-contact-btn-container">
+                <button>Cancel
+                    <img src="" alt="">
+                </button>
+                <button>
+                    Create contact
+                    <img src="" alt="">
+                </button>
+            </div>
+        </div>
+
     </div>
 
 
