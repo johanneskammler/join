@@ -476,7 +476,7 @@ async function saveMaps() {
   backend.setItem("progressesMap", JSON.stringify(progressesMap));
   backend.setItem("feedbacksMap", JSON.stringify(feedbacksMap));
   backend.setItem("donesMap", JSON.stringify(donesMap));
-  backend.setItem("idCounter", JSON.stringify(idCounterMap));
+  backend.setItem("idCounter", JSON.stringify(idCounter));
 }
 
 async function getMaps() {
