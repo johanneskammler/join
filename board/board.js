@@ -1,15 +1,16 @@
-setURL("https://gruppe-417.developerakademie.net/smallest_backend_ever");
+setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
+/*gruppe-417.developerakademie.net/join/smallest_backend_ever*/
 
-let responsAsJson;
-let cardsMap = new Map();
-let todos = [];
 let todosMap = new Map();
+let todos = [];
+
 let progresses = [];
-let pogressMap = new Map();
-let feedbackes = [];
+let progressesMap = new Map();
+let feedbacks = [];
 let feedbacksMap = new Map();
 let dones = [];
 let donesMap = new Map();
+let contacts = [];
 
 let todo = "todo";
 let feedback = "feedback";
@@ -23,12 +24,13 @@ let idCounter = 0; // Später im Server speichern da sonst wieder von 0 anfängt
 
 async function init() {
   await includeHTML();
-  checkSize();
-  await getCardInfo();
-  generateCards();
-  activateDragAndDrop();
-  draggableTrue();
   await downloadFromServer();
+  checkSize();
+  getMaps();
+
+  generateCards();
+  draggableTrue();
+  setTimeout(activateDragAndDrop, 300); /* setCards(); */
 }
 
 function openPopup(id) {
@@ -66,11 +68,9 @@ function checkSize() {
   let size = window.innerWidth;
   console.log(size);
   if (size <= 1024) {
-    console.log("smaller than 1024");
     sidebarTabled();
     draggableFalse();
   } else if (size > 1024) {
-    console.log("bigger than 1024");
     draggableTrue();
     sidebarDesktop();
   }
@@ -144,30 +144,36 @@ function closeAddTask() {
 /**
  * get the json data
  */
-async function getCardInfo() {
-  let path = "../cards.json";
-  let response = await fetch(path);
-  responsAsJson = await response.json();
-}
 
-function getFirstLetter(contacts, idCounter) {
+async function getFirstLetter(contacts, idCounter) {
   let namesSplit = new Map();
   let nameList = [];
   let letterList = [];
   let colorList = [];
 
-  for (let i = 0; i < contacts.length; i++) {
-    const element = contacts[i];
-    let name = element.split(" ");
-    let justName = `${name[0]} ${name[1]}`;
-    let nameColor = name[2];
-    let firstLetter = name[0].split("");
-    let secondLetter = name[1].split("");
-    let firstLetters = firstLetter[0] + secondLetter[0];
+  let url = "../contacts.json";
+  let response = await fetch(url);
+  let contactsJson = await response.json();
+  let namesList = [];
+  for (let i = 0; i < contactsJson.length; i++) {
+    namesList.push(contactsJson[i]["name"]);
+  }
 
-    nameList.push(justName);
-    letterList.push(firstLetters);
-    colorList.push(nameColor);
+  for (let i = 0; i < contacts.length; i++) {
+    if (namesList.indexOf(`${contacts[i]}`) >= 0) {
+      const element = contacts[i];
+      let index = namesList.indexOf(`${contacts[i]}`);
+      let name = element.split(" ");
+      let justName = `${name[0]} ${name[1]}`;
+      let nameColor = contactsJson[index]["color"];
+      let firstLetter = name[0].split("");
+      let secondLetter = name[1].split("");
+      let firstLetters = firstLetter[0] + secondLetter[0];
+
+      nameList.push(justName);
+      letterList.push(firstLetters);
+      colorList.push(nameColor);
+    }
   }
   namesSplit.set(`${idCounter}`, {
     contacts: `${nameList}`,
@@ -177,52 +183,43 @@ function getFirstLetter(contacts, idCounter) {
   return namesSplit;
 }
 
-/**
- * check how the lenght is from responsAsJson['todo']
- * <div onmousedown="return false" draggable="true" class="card" id="card${object}" onclick="popup(${object})">
- */
-function setCards(section) {
-  let object = Object.keys(responsAsJson[section]).length;
-  for (let i = 0; i < object; i++) {
-    const element = responsAsJson[section][i]; //
-    let contacts = element["contacts"];
-    let namesSplit = getFirstLetter(contacts, idCounter);
-    // die Funktion getFirstLetter gib ein Objekt zurück, verpacken in ein array und in map. einpflegen !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! <-------
-    let subtasks = element["subtask-title"];
-    let totalSubtasks = subtasks.length;
+async function setCards(section) {
+  let tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
 
-    cardsMap.set(`${idCounter}`, {
-      category: `${element["category"]}`,
-      color: `${element["color"]}`,
-      title: `${element["title"]}`,
-      description: `${element["description"]}`,
-      subtasks: `${element["subtask-title"]}`,
-      progressStatus: `${element["progress-status"]}`,
-      contacts: `${namesSplit.get(`${idCounter}`)["contacts"]}`,
-      letters: `${namesSplit.get(`${idCounter}`)["letters"]}`,
+  for (let i = 0; i < tasks.length; i++) {
+    let contacts = tasks[idCounter]["contacts"];
+    let namesSplit = await getFirstLetter(contacts, idCounter);
+    key = tasks[i];
+    todosMap.set(`${i}`, {
+      category: `${key["category"]}`,
+      categorycolor: `${key["category-color"]}`,
+      contacts: `${key["contacts"]}`,
       colors: `${namesSplit.get(`${idCounter}`)["color"]}`,
-      totalSubtasks: `${totalSubtasks}`,
+      letters: `${namesSplit.get(`${idCounter}`)["letters"]}`,
+      date: `${key["date"]}`,
+      description: `${key["decription"]}`,
+      importance: `${key["importance"]}`,
+      subtask: `${key["subtasks"]}`,
+      subtaskStatus: "0",
+      title: `${key["title"]}`,
     });
+    saveMaps();
 
-    let colors = cardsMap.get(`${idCounter}`)["colors"].split(",");
-    let letters = cardsMap.get(`${idCounter}`)["letters"].split(",");
-
-    // for (const [key, value] of cardsMap) {
-    document.getElementById(`${section}-board`).innerHTML += setCardHTML(
-      cardsMap.get(`${idCounter}`)["category"],
-      cardsMap.get(`${idCounter}`)["color"],
-      cardsMap.get(`${idCounter}`)["title"],
-      cardsMap.get(`${idCounter}`)["description"],
-      cardsMap.get(`${idCounter}`)["totalSubtasks"],
-      cardsMap.get(`${idCounter}`)["progressStatus"]
-    );
-    cardsMap.get(`${idCounter}`)["subtasks"];
-    checkSubtasks(cardsMap.get(`${idCounter}`)["subtasks"], idCounter);
-
-    renderContacts(idCounter, colors, letters);
+    cardContent(section, idCounter);
+    renderContacts(idCounter);
     idCounter++;
-    // }
   }
+}
+
+function cardContent(section, id) {
+  document.getElementById(`${section}-board`).innerHTML += setCardHTML(
+    todosMap.get(`${id}`)["category"],
+    todosMap.get(`${id}`)["color"],
+    todosMap.get(`${id}`)["title"],
+    todosMap.get(`${id}`)["description"],
+    todosMap.get(`${id}`)["totalSubtasks"],
+    todosMap.get(`${id}`)["progressStatus"]
+  );
 }
 
 function checkSubtasks(subtasks, idCounter) {
@@ -231,7 +228,9 @@ function checkSubtasks(subtasks, idCounter) {
   }
 }
 
-function renderContacts(idCounter, colors, letters) {
+function renderContacts(id) {
+  let colors = todosMap.get(`${id}`)["colors"].split(",");
+  let letters = todosMap.get(`${id}`)["letters"].split(",");
   for (let i = 0; i < colors.length; i++) {
     const element = colors[i];
 
@@ -288,7 +287,7 @@ function renderPopup(
       
       <div class="priority-box" id="edit_priority">
         <p class="priority">Priority:</p>
-        <p id="priority"> urgent</p>
+        <p id="priority"></p>
       </div>
       
       <div class="progress-box-popup" id="progress_box_popup${id}">
@@ -317,6 +316,7 @@ function renderPopup(
     </div>`;
   checkSubtasksPopup(subtask, id);
   renderPopupContacts(colors, contactsSplit, letters);
+  setTimeout(setPriority, 50, todosMap.get(`${id}`)["importance"]);
 }
 
 function checkSubtasksPopup(subtask, id) {
@@ -344,16 +344,16 @@ function generatePopup(id) {
   let subtask;
   let progressStatus;
 
-  let colors = cardsMap.get(`${id}`)["colors"].split(",");
-  let contactsSplit = cardsMap.get(`${id}`)["contacts"].split(",");
-  let letters = cardsMap.get(`${id}`)["letters"].split(",");
+  let colors = todosMap.get(`${id}`)["colors"].split(",");
+  let contactsSplit = todosMap.get(`${id}`)["contacts"].split(",");
+  let letters = todosMap.get(`${id}`)["letters"].split(",");
 
-  category = cardsMap.get(`${id}`)["category"];
-  color = cardsMap.get(`${id}`)["color"];
-  title = cardsMap.get(`${id}`)["title"];
-  description = cardsMap.get(`${id}`)["description"];
-  subtask = cardsMap.get(`${id}`)["subtasks"];
-  progressStatus = cardsMap.get(`${id}`)["progressStatus"];
+  category = todosMap.get(`${id}`)["category"];
+  color = todosMap.get(`${id}`)["color"];
+  title = todosMap.get(`${id}`)["title"];
+  description = todosMap.get(`${id}`)["description"];
+  subtask = todosMap.get(`${id}`)["subtasks"];
+  progressStatus = todosMap.get(`${id}`)["progressStatus"];
 
   renderPopup(
     category,
@@ -370,7 +370,7 @@ function generatePopup(id) {
 }
 
 function edit(id) {
-  let currentCard = cardsMap.get(`${id}`);
+  let currentCard = todosMap.get(`${id}`);
   let title = currentCard["title"];
   let description = currentCard["description"];
   let name = document.getElementsByClassName("fullName");
@@ -399,5 +399,92 @@ function edit(id) {
   document.getElementById;
 }
 
-/*       "importance"   einfügen noch in .json*/
-/*       contacte syncronisieren mit den vorhendenen/Listepopup*/
+async function renderContactsFromJson() {
+  let url = "../contacts.json";
+  let response = await fetch(url);
+  contacts = await response.json();
+
+  for (let i = 0; i < contacts.length; i++) {
+    const element = contacts[i];
+    console.log(element, i);
+  }
+}
+
+function setPriority(priority) {
+  if (priority === "urgent") {
+    setCardUrgent();
+  } else if (priority === "medium") {
+    priority.innerHTML = buttonMEDIUM();
+  } else {
+    priority.innerHTML = buttonLOW();
+  }
+}
+
+function setCardUrgent() {
+  priority.innerHTML = buttonURGENT();
+}
+
+function setImportanceCard(importance) {}
+
+function checkCards() {
+  let fields = ["todo", "progress", "feedback", "done"];
+  for (let i = 0; i < fields.length; i++) {
+    const field = fields[i];
+    searchCards(field);
+  }
+}
+
+async function searchCards(field) {
+  let currentField = document.getElementById(`${field}-board`);
+  let lokalCards = document.getElementsByClassName("card");
+  for (let i = 0; i < lokalCards.length; i++) {
+    const element = lokalCards[i];
+    let result = currentField.contains(element);
+    if (result === true && field.indexOf(element) === -1) {
+      let cardsId = element.id.slice(-1);
+      checkSection(cardsId, field);
+    }
+  }
+}
+
+function checkSection(id, field) {
+  if (field === "todo") {
+    todosMap.set(id, todosMap.get(id));
+    progressesMap.delete(id);
+    feedbacksMap.delete(id);
+    donesMap.delete(id);
+  } else if (field === "progress") {
+    progressesMap.set(id, todosMap.get(id));
+    todosMap.delete(id);
+    donesMap.delete(id);
+    feedbacksMap.delete(id);
+  } else if (field === "done") {
+    feedbacksMap.set(id, todosMap.get(id));
+    progressesMap.delete(id);
+    todosMap.delete(id);
+    donesMap.delete(id);
+  } else {
+    donesMap.set(id, todosMap.get(id));
+    progressesMap.delete(id);
+    todosMap.delete(id);
+    feedbacksMap.delete(id);
+  }
+  saveMaps();
+}
+async function saveMaps() {
+  backend.setItem("todosMap", JSON.stringify(todosMap));
+  backend.setItem("progressesMap", JSON.stringify(progressesMap));
+  backend.setItem("feedbacksMap", JSON.stringify(feedbacksMap));
+  backend.setItem("donesMap", JSON.stringify(donesMap));
+  backend.setItem("idCounter", JSON.stringify(idCounterMap));
+}
+
+async function getMaps() {
+  JSON.parse(backend.getItem("todosMap")) || [];
+  JSON.parse(backend.getItem("progressesMap")) || [];
+  JSON.parse(backend.getItem("feedbacksMap")) || [];
+  JSON.parse(backend.getItem("donesMap")) || [];
+  JSON.parse(backend.getItem("idCounter")) || [];
+}
+// Idcounter muss gespeichert werden, tasks muss immer in todos rein mit fortlaufender zahl
+// Render function die ab progress render was in progresses Map ist beim load

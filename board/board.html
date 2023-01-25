@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="add-task-animation.css">
     <link rel="stylesheet" href="add-task-board.css">
     <link rel="stylesheet" href="../add_task/add_task_responsive.css">
-    <script src="../mini-backend.js"></script>
+    <script src="../smallest_backend_ever/mini-backend.js"></script>
     <script src="../help/help.js"></script>
     <script src="board.js"></script>
     <script src="../include.js"></script>
@@ -30,49 +30,35 @@
 </head>
 
 <body onresize="checkSize()" onload="init()" >
+  <div id="add_task" class="add-task-popup d-none"></div>
+  <div id="popup" onclick="popup()"  class="popup d-none"></div>
+  <div id="popup_card" class="popup-card d-none"></div>
+  <header w3-include-html="../templates/header.html"></header>
+  <div w3-include-html="../templates/sidebar.html"></div>
 
-    <div id="add_task" class="add-task-popup d-none">
-
+  <div class="board">
+    <div class="kanban">
+        <h2 class="text-in-blue">Kanban Management Tool</h2>
     </div>
-
-  
-    <div id="popup" onclick="popup()"  class="popup d-none"></div>
-    
-        <div id="popup_card" class="popup-card d-none">
-            
-    
+    <div class="board-top">
+        <div class="inpbox">
+            <input class="inp-top pointer" type="text" name="" id="inp-board" placeholder="Find Task" />
+            <img id="search" src="img-board/search.png" class="pointer" />
         </div>
-
-    
-    <header w3-include-html="../templates/header.html"></header>
-    <div w3-include-html="../templates/sidebar.html"></div>
-
-    <div class="board">
-        <div class="kanban">
-
-            <h2 class="text-in-blue">Kanban Management Tool</h2>
-        </div>
-        <div class="board-top">
-            <div class="inpbox">
-                <input class="inp-top pointer" type="text" name="" id="inp-board" placeholder="Find Task" />
-                <img id="search" src="img-board/search.png" class="pointer" />
-            </div>
             <button class="btn-top pointer" onclick="openAddTask()" id="btn-board-top font">Add task +</button>
         </div>
 
         <div class="board-main">
-
             <div class="for-tablet">
 
                 <div class="todo">
-                    
                     <div class="head">
                         <h2 class="font">To do</h2>
                         <img src="img-board/plus-button.png" onclick="openAddTask()" class="pointer" />
                     </div>
                     <div class="todobox" >
-                        <div class="choice todo-content" id="todo-board"></div>
-                    </div>
+                        <div class="choice todo-content" id="todo-board" ></div>
+                        </div>
                 </div>
 
                 <div class="in-progress">
@@ -81,24 +67,19 @@
                         <img src="img-board/plus-button.png" onclick="openAddTask()" class="pointer" />
                     </div>
                     <div class="progressbox">
-                        <div class="choice progress-content" id="progress-board">
-                       
-                        </div>
+                        <div class="choice progress-content" id="progress-board"></div>
                     </div>
                 </div>
             </div>
 
             <div class="for-tablet">
-
                 <div class="await-feedback">
                     <div class="head">
                         <h2 class="font">Await feedback</h2>
                         <img src="img-board/plus-button.png" onclick="openAddTask()" class="pointer" />
                     </div>
-
                     <div class="feedbackbox">
-                        <div class="choice await-feedback-content" id="feedback-board"></div>
-                        </div>
+                        <div class="choice await-feedback-content" id="feedback-board" ></div>
                     </div>
                 </div>
 
@@ -107,18 +88,16 @@
                         <h2 class="font">Done</h2>
                         <img src="img-board/plus-button.png" onclick="openAddTask()" class="pointer" />
                     </div>
-
                     <div class="donebox">
                         <div class=" choice done-content" id="done-board"></div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    <div class="category-overlay" id="c_overlay">
+        <p id="c_text">Backoffice</p>
     </div>
-    <div class="category-overlay" id="c_overlay"><p id="c_text">Backoffice</p></div>
     <script src="dragAndDrop.js"></script>
 </body>
 

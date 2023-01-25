@@ -1,7 +1,10 @@
 async function activateDragAndDrop() {
   let card = document.getElementsByClassName("card");
   let choice = document.getElementsByClassName("choice");
-  let dragItem = null;
+  let todos = [];
+  let progresses = [];
+  let feedbacks = [];
+  let dones = [];
 
   for (let i of card) {
     i.addEventListener("dragstart", dragStart);
@@ -15,6 +18,7 @@ async function activateDragAndDrop() {
     j.addEventListener("drop", Drop);
   }
 }
+let dragItem = null;
 
 function dragStart() {
   if (window.innerWidth < 1024) {
@@ -29,17 +33,11 @@ function dragEnd() {
   if (window.innerWidth < 1024) {
     return;
   }
+  checkCards();
   setTimeout(() => (this.style.display = "block"), 0);
 
   dragItem = null;
 }
-/* 
-for (j of choice) {
-  j.addEventListener("dragover", dragOver);
-  j.addEventListener("dragenter", dragEnter);
-  j.addEventListener("dragleave", dragLeave);
-  j.addEventListener("drop", Drop);
-} */
 
 function Drop() {
   if (window.innerWidth < 1024) {

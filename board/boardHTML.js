@@ -1,3 +1,5 @@
+/* onmousedown = "return false"; */
+
 function setCardHTML(
   category,
   color,
@@ -6,9 +8,8 @@ function setCardHTML(
   totalSubtasks,
   progressStatus
 ) {
-  return `<div onmousedown="return false" draggable="true" class="card" onclick="openPopup(${idCounter})" id="card${idCounter}">
-                    
-                      
+  return `
+                    <div draggable="true" class="card" onclick="openPopup(${idCounter})" id="card${idCounter}">
                       <div class="card-head">
                         <div class="category-overlay" id="c-color${idCounter}" style="background-color: ${color}">
                           <p id="c_overlay${idCounter}">${category}</p>
@@ -34,13 +35,12 @@ function setCardHTML(
 
                       <div class="card-footer">
                         <div class="card-invite" id="contacts_card${idCounter}"></div>
-                        <button class="btn-footer">
-                          <img class="img-position" src="img-board/footer-button-green.png">
-                          <img src="img-board/footer-button-green.png">
+                        <button class="btn-footer" id="btn_footer">
+                          <img class="img-position" src="img-board/low.png">
+                          <img src="img-board/low.png">
                         </button>
                       <div>
-                    </div>
-      `;
+                    </div>`;
 }
 
 function renderAddTaskHTML() {
@@ -298,7 +298,7 @@ function priorityHTML() {
 }
 
 function assignedHTML() {
-  `
+  return `
               <div class="contacts-box">
                 <div style="position: relative">
                     <div class="contacts-dropdown">
@@ -394,4 +394,40 @@ function popupCardHTML(
         <img src="img-board/edit-button.png" class="pointer" onclick="edit(${id})">
       </div>
     </div>`;
+}
+
+function buttonURGENT() {
+  return `
+                <button onclick="fillImportanceButton1()" class="importance-button1" id="importance-button1" type="button">
+                    <span>Urgent</span>
+                    <img src="../add_task/img-add_task/urgent.png">
+                </button>
+                <button onclick="emptyImportanceButton1()" class="importance-button1-colored" id="importance-button1-colored" style="display: none" type="button">
+                    <span>Urgent</span>
+                    <img src="../add_task/img-add_task/urgent_white.png">
+                </button>`;
+}
+
+function buttonMEDIUM() {
+  return `
+                <button onclick="fillImportanceButton2()" class="importance-button2" id="importance-button2" type="button">
+                    <span>Medium</span>
+                    <img src="../add_task/img-add_task/medium.png">
+                </button>
+                <button onclick="emptyImportanceButton2()" class="importance-button2-colored" id="importance-button2-colored" style="display: none" type="button">
+                    <span>Medium</span>
+                    <img src="../add_task/img-add_task/medium_white.png">
+                </button>`;
+}
+
+function buttonLOW() {
+  return `
+                <button onclick="fillImportanceButton3()" class="importance-button3" id="importance-button3" type="button">
+                    <span>Low</span>
+                    <img src="../add_task/img-add_task/low.png">
+                </button>
+                <button onclick="emptyImportanceButton3()" class="importance-button3-colored" id="importance-button3-colored" style="display: none" type="button">
+                    <span>Low</span>
+                    <img src="../add_task/img-add_task/low_white.png">
+                </button>`;
 }

@@ -2,12 +2,14 @@
   "todo": [
     {
       "category": "Design",
-      "color": "#1fd7c1",
-      "title": "Websites redisgn",
+      "category-color": "#1fd7c1",
+      "date": "468465454",
       "description": "hsuofahouhdoijdisodjspi dpodja oisjd s dosI ",
+      "importance": "urgend",
 
-      "subtask-title": ["new Smiles"],
+      "subtask": ["new Smiles"],
       "progress-status": [0],
+      "title": "Websites redisgn",
       "contacts": [
         "Aax Busterman #555891",
         "Cieter Delß #080c66",
