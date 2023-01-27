@@ -14,11 +14,6 @@ let mapsList = ["todosMap", "progressesMap", "feedbacksMap", "donesMap"];
 let comeFrom;
 let comeTo;
 
-let progresses = [];
-let feedbacks = [];
-let dones = [];
-let contacts = [];
-
 let todo = "todo";
 let feedback = "feedback";
 let progress = "progress";
@@ -37,10 +32,11 @@ async function init() {
   await includeHTML();
   await downloadFromServer();
   checkSize();
-
-  generateCards();
   draggableTrue();
   setTimeout(activateDragAndDrop, 300); /* setCards(); */
+  await getMaps();
+
+  generateCards();
 }
 
 function openPopup(id) {
@@ -193,34 +189,75 @@ async function getFirstLetter(contacts, idCounter) {
   return namesSplit;
 }
 
-async function setCards(section) {
+async function setTasks(section) {
   let tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
 
-  for (let i = 0; i < tasks.length; i++) {
-    let contacts = tasks[idCounter]["contacts"];
-    let namesSplit = await getFirstLetter(contacts, idCounter);
-    let idSection = "`${diCounter}`+ section";
-    key = tasks[i];
-    todosMap.set(`${idCounter}`, {
-      category: `${key["category"]}`,
-      categorycolor: `${key["category-color"]}`,
-      contacts: `${key["contacts"]}`,
-      colors: `${namesSplit.get(`${idCounter}`)["color"]}`,
-      letters: `${namesSplit.get(`${idCounter}`)["letters"]}`,
-      date: `${key["date"]}`,
-      description: `${key["decription"]}`,
-      importance: `${key["importance"]}`,
-      subtask: `${key["subtasks"]}`,
-      subtaskStatus: "0",
-      title: `${key["title"]}`,
-    });
+  if (tasks.length > 0) {
+    for (let i = 0; i < tasks.length; i++) {
+      loadCounter();
+      if (idCounter == "leer") {
+        idCounter = 0;
+      }
+      let contacts = tasks[0]["contacts"];
+      let namesSplit = await getFirstLetter(contacts, idCounter);
 
-    // saveMaps();
-    /* backend.deleteItem("tasks"); */
+      key = tasks[i];
+      todosMap.set(`${idCounter}`, {
+        category: `${key["category"]}`,
+        categorycolor: `${key["category-color"]}`,
+        contacts: `${key["contacts"]}`,
+        colors: `${namesSplit.get(`${idCounter}`)["color"]}`,
+        letters: `${namesSplit.get(`${idCounter}`)["letters"]}`,
+        date: `${key["date"]}`,
+        description: `${key["decription"]}`,
+        importance: `${key["importance"]}`,
+        subtask: `${key["subtasks"]}`,
+        subtaskStatus: "0",
+        title: `${key["title"]}`,
+      });
+      await saveMaps();
+      await backend.deleteItem("tasks");
 
-    cardContent(section, idCounter);
-    renderContacts(idCounter);
-    idCounter++;
+      cardContent(section, idCounter);
+      renderContacts(idCounter);
+      idCounter++;
+      idCounterToJson();
+    }
+  }
+}
+
+function setCards(section) {
+  if (section === "todo") {
+    for (const [key, value] of todosMap) {
+      if (!(key === "NaN")) {
+        cardContent(section, key);
+        renderContacts(key);
+      }
+    }
+  }
+  if (section === "progress") {
+    for (const [key, value] of progressesMap) {
+      if (!(key === "NaN")) {
+        cardContent(section, key);
+        renderContacts(key);
+      }
+    }
+  }
+  if (section === "feedback") {
+    for (const [key, value] of feedbacksMap) {
+      if (!(key === "NaN")) {
+        cardContent(section, key);
+        renderContacts(key);
+      }
+    }
+  }
+  if (section === "done") {
+    for (const [key, value] of donesMap) {
+      if (!(key === "NaN")) {
+        cardContent(section, key);
+        renderContacts(key);
+      }
+    }
   }
 }
 
@@ -254,10 +291,11 @@ function renderContacts(id) {
 }
 
 function generateCards() {
+  setTasks(todo);
   setCards(todo);
-  /*   setCards(progress);
+  setCards(progress);
   setCards(feedback);
-  setCards(done); */
+  setCards(done);
 }
 
 function renderPopup(
@@ -429,41 +467,143 @@ function setCardUrgent() {
 function setImportanceCard(importance) {}
 
 function checkCards() {
-  searchCards();
-}
-
-function searchCards() {
   let start = comeFrom.id.split("-")[0];
   let end = comeTo.childNodes[1].id.split("-")[0];
   let id = draggedItem.id.slice(-1);
-  setMapsPosition(start, end, id);
+  if (start === "todo") {
+    setFromTodo(end, id);
+  } else if (start === "progress") {
+    setFromProgress(end, id);
+  } else if (start === "feedback") {
+    setFromFeedback(end, id);
+  } else if (start === "done") {
+    setFromDone(end, id);
+  }
+  saveMaps();
 }
 
-function setMapsPosition(start, end, id) {
-  if (start === "todo" && end === "progress") {
+function setFromTodo(end, id) {
+  if (end === "progress") {
     progressesMap.set(id, todosMap.get(id));
     todosMap.delete(id);
-  } else if (start === "todo" && end === "feedback") {
+  } else if (end === "feedback") {
     feedbacksMap.set(id, todosMap.get(id));
     todosMap.delete(id);
-  } else if (start === "todo" && end === "done") {
+  } else if (end === "done") {
     donesMap.set(id, todosMap.get(id));
     todosMap.delete(id);
   }
 }
 
+function setFromProgress(end, id) {
+  if (end === "todo") {
+    todosMap.set(id, progressesMap.get(id));
+    progressesMap.delete(id);
+  } else if (end === "feedback") {
+    feedbacksMap.set(id, progressesMap.get(id));
+    progressesMap.delete(id);
+  } else if (end === "done") {
+    donesMap.set(id, progressesMap.get(id));
+    progressesMap.delete(id);
+  }
+}
+
+function setFromFeedback(end, id) {
+  if (end === "todo") {
+    todosMap.set(id, feedbacksMap.get(id));
+    feedbacksMap.delete(id);
+  } else if (end === "progress") {
+    progessesMap.set(id, feedbacksMap.get(id));
+    feedbacksMap.delete(id);
+  } else if (end === "done") {
+    donesMap.set(id, feedbacksMap.get(id));
+    feedbacksMap.delete(id);
+  }
+}
+
+function setFromDone(end, id) {
+  if (end === "todo") {
+    todoMap.set(id, donesMap.get(id));
+    donesMap.delete(id);
+  } else if (end === "progress") {
+    progressesMap.set(id, donesMap.get(id));
+    donesMap.delete(id);
+  } else if (end === "feedback") {
+    feedbacksMap.set(id, donesMap.get(id));
+    donesMap.delete(id);
+  }
+}
+
 async function saveMaps() {
-  /*  backend.setItem("todosMap", JSON.stringify(todosMap)); */
-  backend.setItem("progressesMap", JSON.stringify(progressesMap));
-  backend.setItem("feedbacksMap", JSON.stringify(feedbacksMap));
-  backend.setItem("donesMap", JSON.stringify(donesMap));
-  /*   backend.setItem("idCounter", JSON.stringify(idCounter)); */
+  idCounterToJson();
+  todosMapToJson();
+  progressToJson();
+  feedbackToJSon();
+  doneToJson();
+  /*   await backend.setItem("progressesMap", JSON.stringify(progressesMap));
+  await backend.setItem("feedbacksMap", JSON.stringify(feedbacksMap));
+  await backend.setItem("donesMap", JSON.stringify(donesMap));
+  await backend.setItem("idCounter", JSON.stringify(idCounter)); */
 }
 
 async function getMaps() {
-  /*  todosMap = JSON.parse(backend.getItem("todosMap")) || []; */
-  progressesMap = JSON.parse(backend.getItem("progressesMap")) || [];
-  feedsbackMap = JSON.parse(backend.getItem("feedbacksMap")) || [];
-  donesMap = JSON.parse(backend.getItem("donesMap")) || [];
-  /*   idCounter = JSON.parse(backend.getItem("idCounter")) || []; */
+  loadCounter();
+  let todos = (await JSON.parse(backend.getItem("todoJson"))) || [];
+  if (todos.length > 1) {
+    todosMap = new Map(Object.entries(JSON.parse(todos)));
+  }
+
+  let progresses = (await JSON.parse(backend.getItem("progressJson"))) || [];
+  if (progresses.length > 1) {
+    progressesMap = new Map(Object.entries(JSON.parse(progresses)));
+  }
+
+  let feedbacks = (await JSON.parse(backend.getItem("feedbackJson"))) || [];
+  if (feedbacks.length > 1) {
+    feedbacksMap = new Map(Object.entries(JSON.parse(feedbacks)));
+  }
+
+  let dones = (await JSON.parse(backend.getItem("doneJson"))) || [];
+  if (dones.length > 1) {
+    donesMap = new Map(Object.entries(JSON.parse(dones)));
+  }
 }
+
+async function todosMapToJson() {
+  const todos = JSON.stringify(Object.fromEntries(todosMap));
+  await backend.setItem("todoJson", JSON.stringify(todos));
+}
+
+async function progressToJson() {
+  const progresses = JSON.stringify(Object.fromEntries(progressesMap));
+  await backend.setItem("progressJson", JSON.stringify(progresses));
+}
+
+async function feedbackToJSon() {
+  const feedbackes = JSON.stringify(Object.fromEntries(feedbacksMap));
+  await backend.setItem("feedbackJson", JSON.stringify(feedbackes));
+}
+
+async function doneToJson() {
+  const dones = JSON.stringify(Object.fromEntries(donesMap));
+  await backend.setItem("doneJson", JSON.stringify(dones));
+}
+
+async function idCounterToJson() {
+  await backend.setItem("count", JSON.stringify(idCounter));
+}
+
+async function loadCounter() {
+  idCounter = parseInt(await JSON.parse(backend.getItem("count"))) || 0;
+}
+
+/* async function checkIfEmpty() {
+  if (
+    todosMap.size === 1 &&
+    progressesMap.size === 1 &&
+    feedbacksMap.size == 1 &&
+    donesMap.size === 1
+  ) {
+    await backend.deleteItem("idCounter");
+  }
+} */
