@@ -1,15 +1,22 @@
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 /*gruppe-417.developerakademie.net/join/smallest_backend_ever*/
-
+let startposition;
 let todosMap = new Map();
-let todos = [];
+todosMap.set("NaN", { value: "none" });
+let progressesMap = new Map();
+progressesMap.set("NaN", { value: "none" });
+let feedbacksMap = new Map();
+feedbacksMap.set("NaN", { value: "none" });
+let donesMap = new Map();
+donesMap.set("NaN", { value: "none" });
+let mapsList = ["todosMap", "progressesMap", "feedbacksMap", "donesMap"];
+
+let comeFrom;
+let comeTo;
 
 let progresses = [];
-let progressesMap = new Map();
 let feedbacks = [];
-let feedbacksMap = new Map();
 let dones = [];
-let donesMap = new Map();
 let contacts = [];
 
 let todo = "todo";
@@ -22,11 +29,14 @@ let idCounter = 0; // Später im Server speichern da sonst wieder von 0 anfängt
  *
  */
 
+function checkMaps(place) {
+  console.log(place);
+}
+
 async function init() {
   await includeHTML();
   await downloadFromServer();
   checkSize();
-  getMaps();
 
   generateCards();
   draggableTrue();
@@ -189,8 +199,9 @@ async function setCards(section) {
   for (let i = 0; i < tasks.length; i++) {
     let contacts = tasks[idCounter]["contacts"];
     let namesSplit = await getFirstLetter(contacts, idCounter);
+    let idSection = "`${diCounter}`+ section";
     key = tasks[i];
-    todosMap.set(`${i}`, {
+    todosMap.set(`${idCounter}`, {
       category: `${key["category"]}`,
       categorycolor: `${key["category-color"]}`,
       contacts: `${key["contacts"]}`,
@@ -203,7 +214,9 @@ async function setCards(section) {
       subtaskStatus: "0",
       title: `${key["title"]}`,
     });
-    saveMaps();
+
+    // saveMaps();
+    /* backend.deleteItem("tasks"); */
 
     cardContent(section, idCounter);
     renderContacts(idCounter);
@@ -242,9 +255,9 @@ function renderContacts(id) {
 
 function generateCards() {
   setCards(todo);
-  setCards(progress);
+  /*   setCards(progress);
   setCards(feedback);
-  setCards(done);
+  setCards(done); */
 }
 
 function renderPopup(
@@ -399,17 +412,6 @@ function edit(id) {
   document.getElementById;
 }
 
-async function renderContactsFromJson() {
-  let url = "../contacts.json";
-  let response = await fetch(url);
-  contacts = await response.json();
-
-  for (let i = 0; i < contacts.length; i++) {
-    const element = contacts[i];
-    console.log(element, i);
-  }
-}
-
 function setPriority(priority) {
   if (priority === "urgent") {
     setCardUrgent();
@@ -427,64 +429,41 @@ function setCardUrgent() {
 function setImportanceCard(importance) {}
 
 function checkCards() {
-  let fields = ["todo", "progress", "feedback", "done"];
-  for (let i = 0; i < fields.length; i++) {
-    const field = fields[i];
-    searchCards(field);
-  }
+  searchCards();
 }
 
-async function searchCards(field) {
-  let currentField = document.getElementById(`${field}-board`);
-  let lokalCards = document.getElementsByClassName("card");
-  for (let i = 0; i < lokalCards.length; i++) {
-    const element = lokalCards[i];
-    let result = currentField.contains(element);
-    if (result === true && field.indexOf(element) === -1) {
-      let cardsId = element.id.slice(-1);
-      checkSection(cardsId, field);
-    }
-  }
+function searchCards() {
+  let start = comeFrom.id.split("-")[0];
+  let end = comeTo.childNodes[1].id.split("-")[0];
+  let id = draggedItem.id.slice(-1);
+  setMapsPosition(start, end, id);
 }
 
-function checkSection(id, field) {
-  if (field === "todo") {
-    todosMap.set(id, todosMap.get(id));
-    progressesMap.delete(id);
-    feedbacksMap.delete(id);
-    donesMap.delete(id);
-  } else if (field === "progress") {
+function setMapsPosition(start, end, id) {
+  if (start === "todo" && end === "progress") {
     progressesMap.set(id, todosMap.get(id));
     todosMap.delete(id);
-    donesMap.delete(id);
-    feedbacksMap.delete(id);
-  } else if (field === "done") {
+  } else if (start === "todo" && end === "feedback") {
     feedbacksMap.set(id, todosMap.get(id));
-    progressesMap.delete(id);
     todosMap.delete(id);
-    donesMap.delete(id);
-  } else {
+  } else if (start === "todo" && end === "done") {
     donesMap.set(id, todosMap.get(id));
-    progressesMap.delete(id);
     todosMap.delete(id);
-    feedbacksMap.delete(id);
   }
-  saveMaps();
 }
+
 async function saveMaps() {
-  backend.setItem("todosMap", JSON.stringify(todosMap));
+  /*  backend.setItem("todosMap", JSON.stringify(todosMap)); */
   backend.setItem("progressesMap", JSON.stringify(progressesMap));
   backend.setItem("feedbacksMap", JSON.stringify(feedbacksMap));
   backend.setItem("donesMap", JSON.stringify(donesMap));
-  backend.setItem("idCounter", JSON.stringify(idCounter));
+  /*   backend.setItem("idCounter", JSON.stringify(idCounter)); */
 }
 
 async function getMaps() {
-  JSON.parse(backend.getItem("todosMap")) || [];
-  JSON.parse(backend.getItem("progressesMap")) || [];
-  JSON.parse(backend.getItem("feedbacksMap")) || [];
-  JSON.parse(backend.getItem("donesMap")) || [];
-  JSON.parse(backend.getItem("idCounter")) || [];
+  /*  todosMap = JSON.parse(backend.getItem("todosMap")) || []; */
+  progressesMap = JSON.parse(backend.getItem("progressesMap")) || [];
+  feedsbackMap = JSON.parse(backend.getItem("feedbacksMap")) || [];
+  donesMap = JSON.parse(backend.getItem("donesMap")) || [];
+  /*   idCounter = JSON.parse(backend.getItem("idCounter")) || []; */
 }
-// Idcounter muss gespeichert werden, tasks muss immer in todos rein mit fortlaufender zahl
-// Render function die ab progress render was in progresses Map ist beim load
