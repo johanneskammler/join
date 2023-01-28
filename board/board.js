@@ -278,7 +278,7 @@ function cardContent(section, id) {
 function contentDone(section, id) {
   document.getElementById(`${section}-board`).innerHTML += setCardHTML(
     donesMap.get(`${id}`)["category"],
-    donesMap.get(`${id}`)["color"],
+    donesMap.get(`${id}`)["categorycolor"],
     donesMap.get(`${id}`)["title"],
     donesMap.get(`${id}`)["description"],
     donesMap.get(`${id}`)["totalSubtasks"],
@@ -290,7 +290,7 @@ function contentDone(section, id) {
 function contentFeedback(section, id) {
   document.getElementById(`${section}-board`).innerHTML += setCardHTML(
     feedbacksMap.get(`${id}`)["category"],
-    feedbacksMap.get(`${id}`)["color"],
+    feedbacksMap.get(`${id}`)["categorycolor"],
     feedbacksMap.get(`${id}`)["title"],
     feedbacksMap.get(`${id}`)["description"],
     feedbacksMap.get(`${id}`)["totalSubtasks"],
@@ -302,7 +302,7 @@ function contentFeedback(section, id) {
 function contentProgress(section, id) {
   document.getElementById(`${section}-board`).innerHTML += setCardHTML(
     progressesMap.get(`${id}`)["category"],
-    progressesMap.get(`${id}`)["color"],
+    progressesMap.get(`${id}`)["categorycolor"],
     progressesMap.get(`${id}`)["title"],
     progressesMap.get(`${id}`)["description"],
     progressesMap.get(`${id}`)["totalSubtasks"],
@@ -314,7 +314,7 @@ function contentProgress(section, id) {
 function contentTodo(section, id) {
   document.getElementById(`${section}-board`).innerHTML += setCardHTML(
     todosMap.get(`${id}`)["category"],
-    todosMap.get(`${id}`)["color"],
+    todosMap.get(`${id}`)["categorycolor"],
     todosMap.get(`${id}`)["title"],
     todosMap.get(`${id}`)["description"],
     todosMap.get(`${id}`)["totalSubtasks"],
@@ -324,7 +324,7 @@ function contentTodo(section, id) {
 }
 
 function checkSubtasks(subtasks, idCounter) {
-  if (subtasks.length == 0) {
+  if (subtasks === undefined) {
     document.getElementById(`progress_box${idCounter}`).classList.add("d-none");
   }
 }
@@ -504,7 +504,7 @@ function generatePopup(id) {
   let progressStatus;
 
   let colors = todosMap.get(`${id}`)["colors"].split(",");
-  let contactsSplit = todosMap.get(`${id}`)["contacts"].split(",");
+  let contactsSplit = todosMap.get(`${id}`)["contacts"];
   let letters = todosMap.get(`${id}`)["letters"].split(",");
 
   category = todosMap.get(`${id}`)["category"];

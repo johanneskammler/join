@@ -144,12 +144,12 @@ function fillCategory(category) {
     categoryField.innerHTML = "";
     categoryField.innerHTML += setCategoryToSales();
     document.getElementById("categories-drop-down").classList.add("d-none");
-    categoryColor = "pink";
+    categoryColor = "#df1c9f";
   } else if (category == "backoffice") {
     categoryField.innerHTML = "";
     categoryField.innerHTML += setCategoryToBackoffice();
     document.getElementById("categories-drop-down").classList.add("d-none");
-    categoryColor = "turquois";
+    categoryColor = "#22bfc7";
   } else {
     categoryField.innerHTML = "";
     categoryField.innerHTML += setCategoryToNewCategory(
