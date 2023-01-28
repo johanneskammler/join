@@ -2,13 +2,13 @@ setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 /*gruppe-417.developerakademie.net/join/smallest_backend_ever*/
 let startposition;
 let todosMap = new Map();
-todosMap.set("NaN", { value: "none" });
+todosMap.set("x", { value: "none" });
 let progressesMap = new Map();
-progressesMap.set("NaN", { value: "none" });
+progressesMap.set("x", { value: "none" });
 let feedbacksMap = new Map();
-feedbacksMap.set("NaN", { value: "none" });
+feedbacksMap.set("x", { value: "none" });
 let donesMap = new Map();
-donesMap.set("NaN", { value: "none" });
+donesMap.set("x", { value: "none" });
 let mapsList = ["todosMap", "progressesMap", "feedbacksMap", "donesMap"];
 
 let comeFrom;
@@ -199,7 +199,7 @@ async function setTasks(section) {
       if (idCounter == "leer") {
         idCounter = 0;
       }
-      let contacts = tasks[0]["contacts"];
+      let contacts = tasks[i]["contacts"];
       let namesSplit = await getFirstLetter(contacts, idCounter);
 
       key = tasks[i];
@@ -231,7 +231,7 @@ async function setTasks(section) {
 function setCards(section) {
   if (section === "todo") {
     for (const [key, value] of todosMap) {
-      if (!(key === "NaN")) {
+      if (!(key === "x")) {
         cardContent(section, key);
         renderContacts(section, key);
       }
@@ -239,7 +239,7 @@ function setCards(section) {
   }
   if (section === "progress") {
     for (const [key, value] of progressesMap) {
-      if (!(key === "NaN")) {
+      if (!(key === "x")) {
         cardContent(section, key);
         renderContacts(section, key);
       }
@@ -247,7 +247,7 @@ function setCards(section) {
   }
   if (section === "feedback") {
     for (const [key, value] of feedbacksMap) {
-      if (!(key === "NaN")) {
+      if (!(key === "x")) {
         cardContent(section, key);
         renderContacts(section, key);
       }
@@ -255,7 +255,7 @@ function setCards(section) {
   }
   if (section === "done") {
     for (const [key, value] of donesMap) {
-      if (!(key === "NaN")) {
+      if (!(key === "x")) {
         cardContent(section, key);
         renderContacts(section, key);
       }
@@ -621,7 +621,7 @@ function setFromFeedback(end, id) {
     todosMap.set(id, feedbacksMap.get(id));
     feedbacksMap.delete(id);
   } else if (end === "progress") {
-    progessesMap.set(id, feedbacksMap.get(id));
+    progressesMap.set(id, feedbacksMap.get(id));
     feedbacksMap.delete(id);
   } else if (end === "done") {
     donesMap.set(id, feedbacksMap.get(id));
@@ -640,18 +640,6 @@ function setFromDone(end, id) {
     feedbacksMap.set(id, donesMap.get(id));
     donesMap.delete(id);
   }
-}
-
-async function saveMaps() {
-  idCounterToJson();
-  todosMapToJson();
-  progressToJson();
-  feedbackToJSon();
-  doneToJson();
-  /*   await backend.setItem("progressesMap", JSON.stringify(progressesMap));
-  await backend.setItem("feedbacksMap", JSON.stringify(feedbacksMap));
-  await backend.setItem("donesMap", JSON.stringify(donesMap));
-  await backend.setItem("idCounter", JSON.stringify(idCounter)); */
 }
 
 async function getMaps() {
@@ -677,22 +665,13 @@ async function getMaps() {
   }
 }
 
-async function todosMapToJson() {
+async function saveMaps() {
   const todos = JSON.stringify(Object.fromEntries(todosMap));
   await backend.setItem("todoJson", JSON.stringify(todos));
-}
-
-async function progressToJson() {
   const progresses = JSON.stringify(Object.fromEntries(progressesMap));
   await backend.setItem("progressJson", JSON.stringify(progresses));
-}
-
-async function feedbackToJSon() {
   const feedbackes = JSON.stringify(Object.fromEntries(feedbacksMap));
   await backend.setItem("feedbackJson", JSON.stringify(feedbackes));
-}
-
-async function doneToJson() {
   const dones = JSON.stringify(Object.fromEntries(donesMap));
   await backend.setItem("doneJson", JSON.stringify(dones));
 }
@@ -715,5 +694,11 @@ async function checkIfEmpty() {
     await backend.deleteItem("count");
     idCounter = 0;
   }
+}
+
+function deleteAll() {
+  backend.deleteItem("todoJson");
+  backend.deleteItem("progressJson");
+  location.reload();
 }
 // Render Funktion so anpassen das es nicht abhängig vom idCounter ist
