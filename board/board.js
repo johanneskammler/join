@@ -37,6 +37,7 @@ async function init() {
   await getMaps();
 
   generateCards();
+  checkIfEmpty();
 }
 
 function openPopup(id) {
@@ -203,27 +204,28 @@ async function setTasks(section) {
 
       key = tasks[i];
       todosMap.set(`${idCounter}`, {
-        category: `${key["category"]}`,
-        categorycolor: `${key["category-color"]}`,
-        contacts: `${key["contacts"]}`,
-        colors: `${namesSplit.get(`${idCounter}`)["color"]}`,
-        letters: `${namesSplit.get(`${idCounter}`)["letters"]}`,
-        date: `${key["date"]}`,
-        description: `${key["decription"]}`,
-        importance: `${key["importance"]}`,
-        subtask: `${key["subtasks"]}`,
+        category: key["category"],
+        categorycolor: key["categorycolor"],
+        contacts: key["contacts"],
+        colors: namesSplit.get(`${idCounter}`)["color"],
+        letters: namesSplit.get(`${idCounter}`)["letters"],
+        date: key["date"],
+        description: key["decription"],
+        importance: key["importance"],
+        subtask: key["subtasks"],
         subtaskStatus: "0",
-        title: `${key["title"]}`,
+        title: key["title"],
       });
       await saveMaps();
       await backend.deleteItem("tasks");
 
-      cardContent(section, idCounter);
-      renderContacts(idCounter);
+      /*       cardContent(section, idCounter);
+      renderContacts(section, idCounter); */
       idCounter++;
       idCounterToJson();
     }
   }
+  setCards(todo);
 }
 
 function setCards(section) {
@@ -231,7 +233,7 @@ function setCards(section) {
     for (const [key, value] of todosMap) {
       if (!(key === "NaN")) {
         cardContent(section, key);
-        renderContacts(key);
+        renderContacts(section, key);
       }
     }
   }
@@ -239,7 +241,7 @@ function setCards(section) {
     for (const [key, value] of progressesMap) {
       if (!(key === "NaN")) {
         cardContent(section, key);
-        renderContacts(key);
+        renderContacts(section, key);
       }
     }
   }
@@ -247,7 +249,7 @@ function setCards(section) {
     for (const [key, value] of feedbacksMap) {
       if (!(key === "NaN")) {
         cardContent(section, key);
-        renderContacts(key);
+        renderContacts(section, key);
       }
     }
   }
@@ -255,20 +257,69 @@ function setCards(section) {
     for (const [key, value] of donesMap) {
       if (!(key === "NaN")) {
         cardContent(section, key);
-        renderContacts(key);
+        renderContacts(section, key);
       }
     }
   }
 }
 
 function cardContent(section, id) {
+  if (section === "todo") {
+    contentTodo(section, id);
+  } else if (section === "progress") {
+    contentProgress(section, id);
+  } else if (section === "feedback") {
+    contentFeedback(section, id);
+  } else if (section === "done") {
+    contentDone(section, id);
+  }
+}
+
+function contentDone(section, id) {
+  document.getElementById(`${section}-board`).innerHTML += setCardHTML(
+    donesMap.get(`${id}`)["category"],
+    donesMap.get(`${id}`)["color"],
+    donesMap.get(`${id}`)["title"],
+    donesMap.get(`${id}`)["description"],
+    donesMap.get(`${id}`)["totalSubtasks"],
+    donesMap.get(`${id}`)["progressStatus"],
+    id
+  );
+}
+
+function contentFeedback(section, id) {
+  document.getElementById(`${section}-board`).innerHTML += setCardHTML(
+    feedbacksMap.get(`${id}`)["category"],
+    feedbacksMap.get(`${id}`)["color"],
+    feedbacksMap.get(`${id}`)["title"],
+    feedbacksMap.get(`${id}`)["description"],
+    feedbacksMap.get(`${id}`)["totalSubtasks"],
+    feedbacksMap.get(`${id}`)["progressStatus"],
+    id
+  );
+}
+
+function contentProgress(section, id) {
+  document.getElementById(`${section}-board`).innerHTML += setCardHTML(
+    progressesMap.get(`${id}`)["category"],
+    progressesMap.get(`${id}`)["color"],
+    progressesMap.get(`${id}`)["title"],
+    progressesMap.get(`${id}`)["description"],
+    progressesMap.get(`${id}`)["totalSubtasks"],
+    progressesMap.get(`${id}`)["progressStatus"],
+    id
+  );
+}
+
+function contentTodo(section, id) {
   document.getElementById(`${section}-board`).innerHTML += setCardHTML(
     todosMap.get(`${id}`)["category"],
     todosMap.get(`${id}`)["color"],
     todosMap.get(`${id}`)["title"],
     todosMap.get(`${id}`)["description"],
     todosMap.get(`${id}`)["totalSubtasks"],
-    todosMap.get(`${id}`)["progressStatus"]
+    todosMap.get(`${id}`)["progressStatus"],
+    id
   );
 }
 
@@ -278,21 +329,78 @@ function checkSubtasks(subtasks, idCounter) {
   }
 }
 
-function renderContacts(id) {
+function renderContacts(section, id) {
+  if (section === "todo") {
+    renderContactsTodo(id);
+  } else if (section === "progress") {
+    renderContactsProgress(id);
+  } else if (section === "feedback") {
+    renderContactsFeedback(id);
+  } else if (section === "done") {
+    renderContactsDone(id);
+  }
+  /*   let colors = todosMap.get(`${id}`)["colors"].split(",");
+  let letters = todosMap.get(`${id}`)["letters"].split(",");
+  for (let i = 0; i < colors.length; i++) {
+    const element = colors[i];
+
+    document.getElementById(
+      `contacts_card${id}`
+    ).innerHTML += `<p class="invate font" style="background-color: ${element};">${letters[i]}</p>`;
+  } */
+}
+
+function renderContactsDone(id) {
+  let colors = donesMap.get(`${id}`)["colors"].split(",");
+  let letters = donesMap.get(`${id}`)["letters"].split(",");
+  for (let i = 0; i < colors.length; i++) {
+    const element = colors[i];
+
+    document.getElementById(
+      `contacts_card${id}`
+    ).innerHTML += `<p class="invate font" style="background-color: ${element};">${letters[i]}</p>`;
+  }
+}
+
+function renderContactsFeedback(id) {
+  let colors = feedbacksMap.get(`${id}`)["colors"].split(",");
+  let letters = feedbacksMap.get(`${id}`)["letters"].split(",");
+  for (let i = 0; i < colors.length; i++) {
+    const element = colors[i];
+
+    document.getElementById(
+      `contacts_card${id}`
+    ).innerHTML += `<p class="invate font" style="background-color: ${element};">${letters[i]}</p>`;
+  }
+}
+
+function renderContactsProgress(id) {
+  let colors = progressesMap.get(`${id}`)["colors"].split(",");
+  let letters = progressesMap.get(`${id}`)["letters"].split(",");
+  for (let i = 0; i < colors.length; i++) {
+    const element = colors[i];
+
+    document.getElementById(
+      `contacts_card${id}`
+    ).innerHTML += `<p class="invate font" style="background-color: ${element};">${letters[i]}</p>`;
+  }
+}
+
+function renderContactsTodo(id) {
   let colors = todosMap.get(`${id}`)["colors"].split(",");
   let letters = todosMap.get(`${id}`)["letters"].split(",");
   for (let i = 0; i < colors.length; i++) {
     const element = colors[i];
 
     document.getElementById(
-      `contacts_card${idCounter}`
+      `contacts_card${id}`
     ).innerHTML += `<p class="invate font" style="background-color: ${element};">${letters[i]}</p>`;
   }
 }
 
 function generateCards() {
   setTasks(todo);
-  setCards(todo);
+
   setCards(progress);
   setCards(feedback);
   setCards(done);
@@ -523,7 +631,7 @@ function setFromFeedback(end, id) {
 
 function setFromDone(end, id) {
   if (end === "todo") {
-    todoMap.set(id, donesMap.get(id));
+    todosMap.set(id, donesMap.get(id));
     donesMap.delete(id);
   } else if (end === "progress") {
     progressesMap.set(id, donesMap.get(id));
@@ -597,13 +705,15 @@ async function loadCounter() {
   idCounter = parseInt(await JSON.parse(backend.getItem("count"))) || 0;
 }
 
-/* async function checkIfEmpty() {
+async function checkIfEmpty() {
   if (
     todosMap.size === 1 &&
     progressesMap.size === 1 &&
     feedbacksMap.size == 1 &&
     donesMap.size === 1
   ) {
-    await backend.deleteItem("idCounter");
+    await backend.deleteItem("count");
+    idCounter = 0;
   }
-} */
+}
+// Render Funktion so anpassen das es nicht abhängig vom idCounter ist

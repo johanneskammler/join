@@ -6,35 +6,36 @@ function setCardHTML(
   title,
   description,
   totalSubtasks,
-  progressStatus
+  progressStatus,
+  id
 ) {
   return `
-                    <div draggable="true" class="card" onclick="openPopup(${idCounter})" id="card${idCounter}">
+                    <div draggable="true" class="card" onclick="openPopup(${id})" id="card${id}">
                       <div class="card-head">
-                        <div class="category-overlay" id="c-color${idCounter}" style="background-color: ${color}">
-                          <p id="c_overlay${idCounter}">${category}</p>
+                        <div class="category-overlay" id="c-color${id}" style="background-color: ${color}">
+                          <p id="c_overlay${id}">${category}</p>
                         </div>
                       </div>
 
                       <div class="card-title">
-                        <h1 class="title-text font" id="title${idCounter}">${title}</h1>
+                        <h1 class="title-text font" id="title${id}">${title}</h1>
                       </div>
 
                       <div class="card-content">
-                        <p class="inter gray" id="description${idCounter}">
+                        <p class="inter gray" id="description${id}">
                           ${description}
                         </p>
                       </div>
 
-                      <div class="progress-box" id="progress_box${idCounter}">
+                      <div class="progress-box" id="progress_box${id}">
                         <div class="progressbar">
-                          <div class="progress" id="progress-nr${idCounter}"></div>
+                          <div class="progress" id="progress-nr${id}"></div>
                         </div>
                           <p class="done-p" id="done_status font">${progressStatus}/${totalSubtasks} Done</p>
                       </div>
 
                       <div class="card-footer">
-                        <div class="card-invite" id="contacts_card${idCounter}"></div>
+                        <div class="card-invite" id="contacts_card${id}"></div>
                         <button class="btn-footer" id="btn_footer">
                           <img class="img-position" src="img-board/low.png">
                           <img src="img-board/low.png">

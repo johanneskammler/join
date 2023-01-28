@@ -22,12 +22,12 @@ async function addToTasks() {
     contacts: selectedContacts,
     date: date.value,
     category: category.innerText,
-    "category-color": categoryColor,
+    categorycolor: categoryColor,
     importance: importance,
     decription: description.value,
     subtasks: selectedSubtasks,
   };
-
+  selectedContacts = []; // Du hast es in resetTasksInput drin aber es hat es nicht geleert, bei mir sind 2 tasks mit den Selben Kontackten erschienen jedesmal, weil er bsw erte task leer also ohne kontackte gespeichert zweite task mit und komischerweise hat er den ersten task auch dann selben kontackt reingeschrieben, wahrscheinlich weil des array selectedContacts nicht leer war. Logisch ist es nicht aber jetzt gehts wieder
   tasks.push(task);
   console.log(tasks);
   resetTasksInputs(
