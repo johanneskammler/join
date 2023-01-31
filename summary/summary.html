@@ -10,9 +10,10 @@
     <link rel="stylesheet" href="../fonts/fonts.css" />
     <link rel="stylesheet" href="../summary/summary_responsive.css" />
     <link rel="stylesheet" href="../templates/header-sidebar-responsive.css" />
+    <script src="../smallest_backend_ever/mini-backend.js"></script>
     <script src="../help/help.js"></script>
     <script src="../include.js"></script>
-    <script src="./mini_backend.js"></script>
+    <script src="../board/board.js"></script>
     <script src="../summary/summary.js"></script>
     <script src="../main.js"></script>
     <script src="../templates/header_sidebar.js"></script>
@@ -94,7 +95,7 @@
                         <div class=" d-flex" id="urgent-left-container">
                             <div class="d-flex" id="urgent-left-top">
                                 <img class="icon-task d-flex" src="../templates/img/Urgent.png" alt="urgentPNG">
-                                <div class="task-id fw-bold fs-2 d-flex fs-4" id="task-id-">1</div>
+                                <div class="task-id fw-bold fs-2 d-flex fs-4" id="task-id-">0</div>
                             </div>
 
                             <div class="desc-white d-flex" id="task-urgent-desc">Task Urgent</div>
@@ -112,7 +113,7 @@
                     <div onclick="goToBoard();" class="tasks-box d-flex" id="task-to-do-container">
                         <div class="task-to-do-top d-flex flex-row">
                             <img class="icon-task-border-none d-flex" src="../templates/img/board_summary.png" alt="boardPNG">
-                            <div class="task-id fw-bold d-flex fc-black fs-4" id="task-to-do-id-">1</div>
+                            <div class="task-id fw-bold d-flex fc-black fs-4" id="task-to-do-id-">0</div>
                         </div>
                         <div class="d-flex" id="task-to-do-desc">Task To-do</div>
 
@@ -124,7 +125,7 @@
                     <div onclick="goToBoard();" class="tasks-box" id="task-box-task-in-board">
                         <div class="tasks-box-top">
                             <img class="icon" src="../templates/img/board_summary.png" alt="">
-                            <div class="task-amount task-id fw-bold d-flex fc-black fs-4" id="task-in-board-id-">5
+                            <div class="task-amount task-id fw-bold d-flex fc-black fs-4" id="task-in-board-id-">0
                             </div>
                         </div>
                         <div class="d-flex tasks-box-bottom" id="task-to-do-desc">Task in Board</div>
@@ -133,7 +134,7 @@
                         <div class="tasks-box-top">
                             <img class="icon" src="../templates/img/In Progress.png" alt="inProgressPNG">
                             <div class="task-amount task-id fw-bold d-flex fc-black fs-4" id="task-in-progress-id-">
-                                2
+                                0
                             </div>
                         </div>
                         <div class="d-flex tasks-box-bottom" id="task-to-do-desc">Task in Progress</div>
@@ -142,14 +143,14 @@
                         <div class="tasks-box-top">
                             <img class="icon" src="../templates/img/Awaiting feedback.png" alt="awaitingPNG">
                             <div class="task-amount task-id fw-bold d-flex fc-black fs-4"
-                                id="task-awaiting-feedback-id-">2</div>
+                                id="task-awaiting-feedback-id-">0</div>
                         </div>
                         <div class="d-flex tasks-box-bottom" id="task-to-do-desc">Awaiting Feedback</div>
                     </div>
                     <div onclick="goToBoard();" class="tasks-box" id="task-box-task-in-board">
                         <div class="tasks-box-top">
                             <img class="icon" src="../templates/img/Done.png" alt="donePNG">
-                            <div class="task-amount task-id fw-bold d-flex fc-black fs-4" id="task-done-id-">1</div>
+                            <div class="task-amount task-id fw-bold d-flex fc-black fs-4" id="task-done-id-">0</div>
                         </div>
                         <div class="d-flex tasks-box-bottom" id="task-to-do-desc">Tasks Done
                         </div>

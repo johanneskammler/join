@@ -40,13 +40,14 @@
     <div class="kanban">
         <h2 class="text-in-blue">Kanban Management Tool</h2>
     </div>
-    <div class="board-top">
+    <div class="board-top" id="boarder-top">
         <div class="inpbox">
-            <input class="inp-top pointer" type="text" name="" id="inp-board" placeholder="Find Task" />
-            <img id="search" src="img-board/search.png" class="pointer" />
+          <input class="inp-top pointer" type="text" onkeyup='serach()' id="inp-board" placeholder="Find Task" />
+          <img id="search" src="img-board/search.png" class="pointer" />
         </div>
-            <button class="btn-top pointer" onclick="openAddTask()" id="btn-board-top font">Add task +</button>
-        </div>
+      
+          <button class="btn-top pointer" onclick="openAddTask()" id="btn-board-top font">Add task +</button>
+    </div>
 
         <div class="board-main">
             <div class="for-tablet">

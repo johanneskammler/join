@@ -1,18 +1,20 @@
 let task_cards = [];
 const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const d = new Date();
-setURL("https://gruppe-417.developerakademie.net/smallest_backend_ever");
+setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 board = "summary.html"
 
 
 async function init() {
   await includeHTML();
-  checkMainSize();
-  renderCurrentDate();
-  renderAmountToTasks();
   await downloadFromServer();
+  checkMainSize();
+  await getMaps();
+  renderCurrentDate();
   task_cards = JSON.parse(backend.getItem('tasks')) || [];
+  setTimeout(renderAmountToTasks, 150);
   await greetUser();
+
   /*
   setTimeout(() => {
     markSummaryNav();
@@ -31,7 +33,9 @@ async function greetUser() {
 }
 
 
-function syncSummaryTasks(state) {
+
+
+/* function syncSummaryTasks(state) {
   let states = task_cards.filter((a) => a.state === state)
   let amountState = states.length;
   return amountState
@@ -43,7 +47,7 @@ function syncSummaryUrgent() {
   let amountUrgent = urgent.length;
   return amountUrgent
 }
-
+*/
 
 function renderCurrentDate() {
   let currentYear = new Date().getFullYear().toString();
@@ -54,13 +58,21 @@ function renderCurrentDate() {
 
 
 function renderAmountToTasks() {
-  getDoc('task-to-do-id-').innerHTML = syncSummaryTasks("to_do");
-  getDoc('task-in-board-id-').innerHTML = task_cards.length;
-  getDoc('task-in-progress-id-').innerHTML = syncSummaryTasks("in_progress");
-  getDoc('task-awaiting-feedback-id-').innerHTML = syncSummaryTasks("await_feedback");
-  getDoc('task-done-id-').innerHTML = syncSummaryTasks("done");
-  getDoc("task-id-").innerHTML = syncSummaryUrgent();
+  document.getElementById("task-id-").innerHTML =
+    todosMap.size +
+    progressesMap.size -2;
+  document.getElementById("task-to-do-id-").innerHTML = todosMap.size - 1;
+  document.getElementById("task-in-board-id-").innerHTML =
+    todosMap.size +
+    progressesMap.size +
+    feedbacksMap.size +
+    donesMap.size - 4;
+  document.getElementById("task-in-progress-id-").innerHTML = progressesMap.size - 1;
+  document.getElementById("task-awaiting-feedback-id-").innerHTML = feedbacksMap.size - 1;
+  document.getElementById("task-done-id-").innerHTML = donesMap.size - 1;
 }
+
+
 
 
 /*
