@@ -28,60 +28,119 @@ function enableSidebar() {
 
 // Contact JS
 
-async function renderContactList() {
-    let url = '../contacts.json';
-    let response = await fetch(url);
-    let contacts = await response.json();
+// setURL("https://gruppe-417.developerakademie.net/smallest_backend_ever");
+
+let contacts = [{
+        "name": "Anton Mayer",
+        "mail": "antom@gmail.com",
+        "mobil": "49 111 1111 11",
+        "color": "#555891"
+    },
+    {
+        "name": "Emmanuel Mauer",
+        "mail": "emmanuelMa@gmail.com",
+        "mobil": "49 111 1111 11",
+        "color": "#e7bf59"
+    },
+    {
+        "name": "Jens Mustermann",
+        "mail": "mustermann.jens@gmail.com",
+        "mobil": "49 111 1111 11",
+        "color": "#3f274c"
+    }
+];
+
+function createNewContact() {
+    let name = document.getElementById('input-name');
+    let mail = document.getElementById('input-mail');
+    let phone = document.getElementById('input-phone');
+
+    let contact = {
+        'name': name.value,
+        'mail': mail.value,
+        'phone': phone.value
+    };
+
+    contacts.push(contact);
+    saveContact(contacts);
+    renderContactList();
 
 
-    for (let i = 0; i < contacts.length; i++) {
-        const element = contacts[i];
+    console.log(contacts);
+}
+
+function saveContact(contacts) {
+    let contactAsText = JSON.stringify(contacts);
+    localStorage.setItem('contact', contactAsText);
+}
+
+function loadContacts() {
+    let contactAsText = localStorage.getItem('contact');
+    contacts = JSON.parse(contactAsText);
+}
+
+function renderContactList() {
+    // let url = '../contacts.json';
+    // let response = await fetch(url);
+    // let contacts = await response.json();
+    let contact = contacts;
+    loadContacts();
+
+    for (let i = 0; i < contact.length; i++) {
+        const element = contact[i];
         let firstLetters = element['name'].match(/\b(\w)/g);
         let acronym = firstLetters.join('');
 
         renderContactListHTML(element, acronym, i);
-        disableContactContainer();
         getNewColor(i);
+        disableContactContainer();
     }
 }
 
-async function openContactDetail(i) {
-    let url = '../contacts.json';
-    let response = await fetch(url);
-    let contacts = await response.json();
+function openContactDetail(i) {
+    // let url = '../contacts.json';
+    // let response = await fetch(url);
+    // let contacts = await response.json();
+    let contact = contacts;
+    loadContacts();
 
-    let contact = contacts[i];
+    // let contact = contacts[i];
     let name = contact['name'];
     let email = contact['mail'];
     let phone = contact['mobil'];
     let firstLetters = contact['name'].match(/\b(\w)/g);
     let acronym = firstLetters.join('');
 
-
     document.getElementById('contact_right').classList.remove('d-none');
     document.getElementById("name_right").innerHTML = name;
     document.getElementById("mail_right").innerHTML = email;
-    document.getElementById("mobil_right").innerHTML = phone;
+    document.getElementById("mobil_right").innerHTML = `+ ${phone}`;
     document.getElementById("circle_right").innerHTML = acronym;
 
-    gsap.from("#contact_right", {
-        x: 1200,
-        duration: 0.15,
 
+
+
+    gsap.from("#contact_right", {
+        x: 500,
+        opacity: 0,
+        duration: 0.33,
+        ease: 'back.out(0.7)'
     });
 }
 
 function addNewContact() {
     document.getElementById('add_contact_container').classList.remove('d-none');
-    renderAddNewContactHTML();
+    document.getElementById('blur_screen').classList.remove('d-none');
+
+    // renderAddNewContactHTML();
 
     gsap.from("#add_contact_container", {
-        x: -600,
-        duration: 0.4,
-
+        width: 1200,
+        x: -1000,
+        duration: 0.55,
+        ease: 'back.out(0.35)',
     });
 }
-
 
 function getNewColor(i) {
     var symbols, color;
@@ -94,11 +153,24 @@ function getNewColor(i) {
     }
 }
 
+function closeBlurScreen() {
+    gsap.to("#add_contact_container", {
+        x: -1000,
+        width: 900,
+        duration: 0.59,
+        ease: 'back.in(0.9)',
+    });
+    setTimeout(() => {
+        document.getElementById('blur_screen').classList.add('d-none');
+        document.getElementById('blur_screen').style.opacity = '0';
+    }, 600);
+}
+
+function clickDialog(e) {
+    e.stopPropagation();
+}
 //  Render HMTL
 
-function renderAddNewContactHTML() {
-
-}
 
 function disableContactContainer() {
     if (document.getElementById('a').innerHTML < 1) {
