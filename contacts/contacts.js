@@ -1,23 +1,32 @@
+contacts = [];
+
 async function init() {
     await includeHTML();
     await renderContactList();
     checkSize();
+    await downloadFromServer();
+    contact = (await JSON.parse(backend.getItem("contact"))) || [];
 }
+
+
+
 
 function checkSize() {
     let size = window.innerWidth;
+    console.log(size);
     if (size < 1024) {
         sidebarTabled();
     } else if (size > 1024) {
         enableSidebar();
     }
+
 }
 
 function sidebarTabled() {
     document.getElementById("sidebar").classList.remove("sidebar");
     document.getElementById("sidebar").classList.add("tablet-sidebar");
     document.getElementById("help-section-btn").classList.add("d-none");
-    document.getElementById("create-btn-responsive").classList.remove("d-none");
+    // document.getElementById("create-btn-responsive").classList.remove("d-none");
     document.getElementById("header-name-resp").classList.remove("d-none");
 }
 
@@ -28,29 +37,9 @@ function enableSidebar() {
 
 // Contact JS
 
-// setURL("https://gruppe-417.developerakademie.net/smallest_backend_ever");
+setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 
-let contacts = [{
-        "name": "Anton Mayer",
-        "mail": "antom@gmail.com",
-        "mobil": "49 111 1111 11",
-        "color": "#555891"
-    },
-    {
-        "name": "Emmanuel Mauer",
-        "mail": "emmanuelMa@gmail.com",
-        "mobil": "49 111 1111 11",
-        "color": "#e7bf59"
-    },
-    {
-        "name": "Jens Mustermann",
-        "mail": "mustermann.jens@gmail.com",
-        "mobil": "49 111 1111 11",
-        "color": "#3f274c"
-    }
-];
-
-function createNewContact() {
+async function createNewContact() {
     let name = document.getElementById('input-name');
     let mail = document.getElementById('input-mail');
     let phone = document.getElementById('input-phone');
@@ -62,29 +51,16 @@ function createNewContact() {
     };
 
     contacts.push(contact);
-    saveContact(contacts);
     renderContactList();
 
-
-    console.log(contacts);
+    await backend.setItem("contact", JSON.stringify(contacts));
 }
 
-function saveContact(contacts) {
-    let contactAsText = JSON.stringify(contacts);
-    localStorage.setItem('contact', contactAsText);
-}
+async function renderContactList() {
+    let url = '../contacts.json';
+    let response = await fetch(url);
+    let contact = await response.json();
 
-function loadContacts() {
-    let contactAsText = localStorage.getItem('contact');
-    contacts = JSON.parse(contactAsText);
-}
-
-function renderContactList() {
-    // let url = '../contacts.json';
-    // let response = await fetch(url);
-    // let contacts = await response.json();
-    let contact = contacts;
-    loadContacts();
 
     for (let i = 0; i < contact.length; i++) {
         const element = contact[i];
@@ -97,14 +73,12 @@ function renderContactList() {
     }
 }
 
-function openContactDetail(i) {
-    // let url = '../contacts.json';
-    // let response = await fetch(url);
-    // let contacts = await response.json();
-    let contact = contacts;
-    loadContacts();
+async function openContactDetail(i) {
+    let url = '../contacts.json';
+    let response = await fetch(url);
+    let contacts = await response.json();
 
-    // let contact = contacts[i];
+    let contact = contacts[i];
     let name = contact['name'];
     let email = contact['mail'];
     let phone = contact['mobil'];
@@ -116,9 +90,6 @@ function openContactDetail(i) {
     document.getElementById("mail_right").innerHTML = email;
     document.getElementById("mobil_right").innerHTML = `+ ${phone}`;
     document.getElementById("circle_right").innerHTML = acronym;
-
-
-
 
     gsap.from("#contact_right", {
         x: 500,
