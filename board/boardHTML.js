@@ -34,7 +34,7 @@ function setCardHTML(
                           <p class="done-p" id="done_status font">${progressStatus}/${totalSubtasks} Done</p>
                       </div>
 
-                      <div class="card-footer">
+                      <div class="card-footer${id}">
                         <div class="card-invite" id="contacts_card${id}"></div>
                         <button class="btn-footer" id="btn_footer">
                           <img class="img-position" src="img-board/low.png">

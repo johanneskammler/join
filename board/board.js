@@ -10,7 +10,16 @@ feedbacksMap.set("x", { value: "none" });
 let donesMap = new Map();
 donesMap.set("x", { value: "none" });
 let mapsList = ["todosMap", "progressesMap", "feedbacksMap", "donesMap"];
-
+let maps = [];
+let mapsValue = [
+  "contacts",
+  "date",
+  "description",
+  "letters",
+  "subtask",
+  "subtaskStatus",
+  "title",
+];
 let comeFrom;
 let comeTo;
 
@@ -192,6 +201,8 @@ async function getFirstLetter(contacts, idCounter) {
 
 async function setTasks(section) {
   let tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
+  let subtask;
+  let currentId;
 
   if (tasks.length > 0) {
     for (let i = 0; i < tasks.length; i++) {
@@ -216,11 +227,14 @@ async function setTasks(section) {
         subtaskStatus: "0",
         title: key["title"],
       });
+
       await saveMaps();
       await backend.deleteItem("tasks");
 
       /*       cardContent(section, idCounter);
       renderContacts(section, idCounter); */
+      subtask = todosMap.get(`${idCounter}`)["substack"];
+      currentId = idCounter;
       idCounter++;
       idCounterToJson();
     }
@@ -233,6 +247,9 @@ function setCards(section) {
     for (const [key, value] of todosMap) {
       if (!(key === "x")) {
         cardContent(section, key);
+        if (todosMap.get(`${key}`)["subtask"].length === 0) {
+          checkSubtasks(key);
+        }
         renderContacts(section, key);
       }
     }
@@ -323,9 +340,16 @@ function contentTodo(section, id) {
   );
 }
 
-function checkSubtasks(subtasks, idCounter) {
-  if (subtasks === undefined) {
-    document.getElementById(`progress_box${idCounter}`).classList.add("d-none");
+function checkSubtasks(id) {
+  document.getElementById(`progress_box${id}`).classList.add("d-none");
+  addHeight(id);
+}
+
+function addHeight(id) {
+  let list = document.getElementsByClassName(`card-footer${id}`);
+  for (let i = 0; i < list.length; i++) {
+    const toAdd = list[i];
+    toAdd.style.height = "25px";
   }
 }
 
@@ -389,12 +413,14 @@ function renderContactsProgress(id) {
 function renderContactsTodo(id) {
   let colors = todosMap.get(`${id}`)["colors"].split(",");
   let letters = todosMap.get(`${id}`)["letters"].split(",");
-  for (let i = 0; i < colors.length; i++) {
-    const element = colors[i];
+  if (!(colors == "" || letters == "")) {
+    for (let i = 0; i < colors.length; i++) {
+      const element = colors[i];
 
-    document.getElementById(
-      `contacts_card${id}`
-    ).innerHTML += `<p class="invate font" style="background-color: ${element};">${letters[i]}</p>`;
+      document.getElementById(
+        `contacts_card${id}`
+      ).innerHTML += `<p class="invate font" style="background-color: ${element};">${letters[i]}</p>`;
+    }
   }
 }
 
@@ -473,16 +499,15 @@ function renderPopup(
         <img src="img-board/edit-button.png" class="pointer" onclick="edit(${id})">
       </div>
     </div>`;
-  checkSubtasksPopup(subtask, id);
   renderPopupContacts(colors, contactsSplit, letters);
   setTimeout(setPriority, 50, todosMap.get(`${id}`)["importance"]);
 }
 
-function checkSubtasksPopup(subtask, id) {
+/* function checkSubtasks(subtask, id) {
   if (subtask === "") {
     document.getElementById(`progress_box_popup${id}`).classList.add("d-none");
   }
-}
+} */
 
 function renderPopupContacts(colors, contactsSplit, letters) {
   for (let i = 0; i < contactsSplit.length; i++) {
@@ -663,6 +688,7 @@ async function getMaps() {
   if (dones.length > 1) {
     donesMap = new Map(Object.entries(JSON.parse(dones)));
   }
+  maps = [todosMap, progressesMap, feedbacksMap, donesMap];
 }
 
 async function saveMaps() {
@@ -701,4 +727,96 @@ function deleteAll() {
   backend.deleteItem("progressJson");
   location.reload();
 }
-// Render Funktion so anpassen das es nicht abhängig vom idCounter ist
+
+function serach() {
+  let input = document.getElementById("inp-board").value;
+  input = input.toLowerCase();
+  console.log(input);
+
+  for (let i = 0; i < maps.length; i++) {
+    const map = maps[i];
+    searchMaps(map, input);
+  }
+}
+
+/* function searchMapsLoop(map, input) {
+  for (const [key, value] of map) {
+    searchMaps(map, key, input);
+  }
+} */
+
+function searchMaps(map, input) {
+  for (const [key, value] of map) {
+    if (key == "x") {
+      continue;
+    }
+    searchInValue(value, key, input);
+  }
+}
+
+function searchInValue(value, key, input) {
+  for (let i = 0; i < mapsValue.length; i++) {
+    let values = value[mapsValue[i]];
+    if (
+      Number.isInteger(parseInt(values)) &&
+      Number.isInteger(parseInt(input))
+    ) {
+      outputNumber(values, key, input);
+    } else if (
+      Number.isInteger(parseInt(values)) ||
+      Number.isInteger(parseInt(input))
+    ) {
+      continue;
+    } else if (Array.isArray(values)) {
+      for (let j = 0; j < values.length; j++) {
+        const element = values[j];
+        checkIfIncludes(element, key, input);
+      }
+    } else if (mapsValue[i] === "description" || mapsValue[i] === "title") {
+      let splitted = values.split(" ");
+      if (splitted.length === 1) {
+        checkIfIncludes(values, key, input);
+      }
+      for (let i = 0; i < splitted.length; i++) {
+        let element = splitted[i];
+        checkIfIncludes(element, key, input);
+      }
+    } else {
+      checkIfNumberIncludes(values, key, input);
+      checkIfIncludes(values, key, input);
+    }
+  }
+}
+
+function checkIfNumberIncludes(values, key, input) {}
+
+function checkIfIncludes(values, key, input) {
+  let firstLetter;
+  if (!Number.isInteger(values)) {
+    values = values.toLowerCase();
+    firstLetter = values.slice(0, 1);
+    outputSerach(values, key, input, firstLetter);
+  }
+}
+
+function outputSerach(values, key, input, firstLetter) {
+  if (firstLetter.includes(input) && values.includes(input)) {
+    console.log(values);
+  }
+}
+
+function outputNumber(values, key, input) {
+  let firstNumber = getFirstNumber(values);
+
+  if (values.includes(input) && firstNumber.includes(input)) {
+    console.log("number/numbers: " + values);
+  }
+}
+
+function getFirstNumber(values) {
+  let firstNumberAsString = values.slice(0, 1);
+  return firstNumberAsString;
+}
+
+// wenn mapsValue[3] ist kommt eine zahl die in der if abfrage zeile 782 für einen Fehler sorgt
+// Schreibe eine extra funktion die die zahlen als input und value überprüft

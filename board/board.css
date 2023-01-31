@@ -64,10 +64,12 @@ body {
 
 .inp-top {
   width: 100%;
-  line-height: 2.5vh;
+  height: 100%;
+  line-height: 1.5vh;
   border: none;
   outline: none;
-  caret-color: inherit;
+  caret-color: black;
+  font-family: "Inter" !important;
 }
 
 .inp-top:focus {
