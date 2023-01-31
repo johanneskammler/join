@@ -60,7 +60,7 @@ function renderCurrentDate() {
 function renderAmountToTasks() {
   document.getElementById("task-id-").innerHTML =
     todosMap.size +
-    progressesMap.size;
+    progressesMap.size -2;
   document.getElementById("task-to-do-id-").innerHTML = todosMap.size - 1;
   document.getElementById("task-in-board-id-").innerHTML =
     todosMap.size +
