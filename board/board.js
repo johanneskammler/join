@@ -47,6 +47,8 @@ async function init() {
 
   generateCards();
   checkIfEmpty();
+
+  tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
 }
 
 function openPopup(id) {
@@ -144,7 +146,7 @@ function openAddTask() {
   window.scrollTo(0, 0);
   let list = document.getElementsByTagName("html");
   let html = list[0];
-
+  renderContactsAddTask();
   html.classList.toggle("hide-overflow-y");
   renderAddTask();
 }
@@ -199,7 +201,7 @@ async function getFirstLetter(contacts, idCounter) {
   return namesSplit;
 }
 
-async function setTasks(section) {
+async function setTasks() {
   let tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
   let subtask;
   let currentId;
@@ -451,7 +453,7 @@ function renderContactsTodo(id) {
 }
 
 function generateCards() {
-  setTasks(todo);
+  setTasks();
 
   setCards(progress);
   setCards(feedback);
