@@ -629,3 +629,21 @@ h4 {
 }
 
 /* POPUP EDIR CLASSES END */
+
+/*from add-task.css */
+.importance-buttons button {
+  height: 42px;
+  width: 136px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 10px;
+  gap: 10px;
+  font-size: 16px;
+  background: #ffffff;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+  border: none;
+  border-radius: 10px;
+}
+
+/* form add-task.css end  */
