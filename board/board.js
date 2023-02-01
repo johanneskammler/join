@@ -246,11 +246,13 @@ async function setTasks() {
 
 function setCards(section) {
   if (section === "todo") {
+    let todo = document.getElementById("todo-board");
+    todo.innerHTML = "";
     for (const [key, value] of todosMap) {
       if (!(key === "x")) {
         cardContent(section, key);
         if (todosMap.get(`${key}`)["subtask"].length === 0) {
-          checkSubtasks(key);
+          checkSubtasks(key, todosMap);
         }
         renderContacts(section, key);
       }
@@ -261,7 +263,7 @@ function setCards(section) {
       if (!(key === "x")) {
         cardContent(section, key);
         if (progressesMap.get(`${key}`)["subtask"].length === 0) {
-          checkSubtasks(key);
+          checkSubtasks(key, progressesMap);
         }
         renderContacts(section, key);
       }
@@ -272,7 +274,7 @@ function setCards(section) {
       if (!(key === "x")) {
         cardContent(section, key);
         if (feedbacksMap.get(`${key}`)["subtask"].length === 0) {
-          checkSubtasks(key);
+          checkSubtasks(key, feedbacksMap);
         }
         renderContacts(section, key);
       }
@@ -283,7 +285,7 @@ function setCards(section) {
       if (!(key === "x")) {
         cardContent(section, key);
         if (donesMap.get(`${key}`)["subtask"].length === 0) {
-          checkSubtasks(key);
+          checkSubtasks(key, donesMap);
         }
         renderContacts(section, key);
       }
@@ -358,8 +360,10 @@ function contentTodo(section, id) {
   );
 }
 
-function checkSubtasks(id) {
-  document.getElementById(`progress_box${id}`).classList.add("d-none");
+function checkSubtasks(id, map) {
+  let currentMap = new Map(map);
+  if (currentMap.get(`${id}`)["subtask"])
+    document.getElementById(`progress_box${id}`).classList.add("d-none");
   addHeight(id);
 }
 
@@ -442,19 +446,27 @@ function renderContactsProgress(id) {
 
 function renderContactsTodo(id) {
   let contacts = todosMap.get(`${id}`)["contacts"];
+  let element;
+
   if (contacts.length === 0) {
     let contactsSection = document.getElementById(`contacts_card${id}`);
     contactsSection.classList.add("d-none");
   }
   let colors = todosMap.get(`${id}`)["colors"].split(",");
-  let letters = todosMap.get(`${id}`)["letters"].split(",");
-  if (!(colors == "" || letters == "")) {
+  let letters = todosMap.get(`${id}`)["letters"].split(","); /// Die ifs raus nehmen wenn ohne kontackte nicht erstellbar ist
+  let contactsSection = document.getElementById(`contacts_card${id}`);
+  if (contacts.length > 2) {
+    for (let i = 0; i < 2; i++) {
+      const element = colors[i];
+
+      contactsSection.innerHTML += `<p class="invate font" style="background-color: ${element};">${letters[i]}</p>`;
+    }
+    contactsSection.innerHTML += `<p class="invate font" style="background-color: ${element};">...</p>`;
+  } else {
     for (let i = 0; i < colors.length; i++) {
       const element = colors[i];
 
-      document.getElementById(
-        `contacts_card${id}`
-      ).innerHTML += `<p class="invate font" style="background-color: ${element};">${letters[i]}</p>`;
+      contactsSection.innerHTML += `<p class="invate font" style="background-color: ${element};">${letters[i]}</p>`;
     }
   }
 }
@@ -659,21 +671,21 @@ function setPriority(importance, id, section) {
 }
 
 function buttonURGENT() {
-  return `<button class="importance-buttons" type="button">
+  return `<button class="importance-popup" type="button">
             <span>Urgent</span>
             <img src="../add_task/img-add_task/urgent.png">
           </button>`;
 }
 
 function buttonMEDIUM() {
-  return `<button  class="importance-buttons" type="button">
+  return `<button  class="importance-popup" type="button">
             <span>Medium</span>
             <img src="../add_task/img-add_task/medium.png">
           </button>`;
 }
 
 function buttonLOW() {
-  return `<button  class="importance-buttons" type="button">
+  return `<button  class="importance-popup" type="button">
             <span>Low</span>
             <img src="../add_task/img-add_task/low.png">
           </button>`;
@@ -810,6 +822,10 @@ function deleteAll() {
 
 function serach() {
   let input = document.getElementById("inp-board").value;
+
+  if (input === "") {
+    generateCards();
+  }
   input = input.toLowerCase();
   console.log(input);
 
@@ -819,11 +835,36 @@ function serach() {
   }
 }
 
-/* function searchMapsLoop(map, input) {
-  for (const [key, value] of map) {
-    searchMaps(map, key, input);
-  }
-} */
+function highlightText(input, key) {
+  let title = document.getElementById(`title${key}`);
+  let description = document.getElementById(`description${key}`);
+  let inputs = input;
+
+  inputs = inputs.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+  let pattern = new RegExp(`${inputs}`, "gi");
+
+  title.innerHTML = title.textContent.replace(
+    pattern,
+    (match) => `<mark>${match}</mark>`
+  );
+  description.innerHTML = description.textContent.replace(
+    pattern,
+    (match) => `<mark>${match}</mark>`
+  );
+}
+
+function highlightTextDescription(value, key) {
+  let description = document.getElementById(`description${key}`);
+  let inputs = input;
+
+  inputs = inputs.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  let pattern = new RegExp(`${inputs}`, "gi");
+  description.innerHTML = title.textContent.replace(
+    pattern,
+    (match) => `<mark>${match}</mark>`
+  );
+}
 
 function searchMaps(map, input) {
   for (const [key, value] of map) {
@@ -881,7 +922,14 @@ function checkIfIncludes(values, key, input) {
 
 function outputSerach(values, key, input, firstLetter) {
   if (firstLetter.includes(input) && values.includes(input)) {
+    highlightText(input, key);
     console.log(values);
+    for (let i = idCounter - 1; i > -1; i--) {
+      let card = document.getElementById(`card${i}`);
+      card.classList.add("d-none");
+    }
+    let shine = document.getElementById(`card${key}`);
+    shine.classList.remove("d-none");
   }
 }
 
@@ -889,6 +937,13 @@ function outputNumber(values, key, input) {
   let firstNumber = getFirstNumber(values);
 
   if (values.includes(input) && firstNumber.includes(input)) {
+    highlightText(input, key);
+    for (let i = idCounter - 1; i > -1; i--) {
+      let card = document.getElementById(`card${i}`);
+      card.classList.add("d-none");
+    }
+    let shine = document.getElementById(`card${key}`);
+    shine.classList.remove("d-none");
     console.log("number/numbers: " + values);
   }
 }

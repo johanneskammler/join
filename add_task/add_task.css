@@ -28,6 +28,7 @@ html {
   outline: none;
   font-size: 28px;
   margin-bottom: 16px;
+  caret-color: black;
 }
 
 .title-input::placeholder {
@@ -56,6 +57,10 @@ html {
   outline: none;
   font-size: 16px;
   font-family: "Open Sans";
+}
+
+.add-subtask {
+  caret-color: black;
 }
 
 .select-contacts {
@@ -156,20 +161,20 @@ html {
   border-radius: 3px;
 }
 
-.control input:checked~.control-indicator,
-.control input:checked~.control-indicator-subtask {
+.control input:checked ~ .control-indicator,
+.control input:checked ~ .control-indicator-subtask {
   background: white;
 }
 
-.control:hover input:not([disabled]):checked~.control-indicator,
-.control input:checked:focus~.control-indicator,
-.control:hover input:not([disabled]):checked~.control-indicator-subtask,
-.control input:checked:focus~.control-indicator-subtask {
+.control:hover input:not([disabled]):checked ~ .control-indicator,
+.control input:checked:focus ~ .control-indicator,
+.control:hover input:not([disabled]):checked ~ .control-indicator-subtask,
+.control input:checked:focus ~ .control-indicator-subtask {
   background: white;
 }
 
-.control input:disabled~.control-indicator,
-.control input:disabled~.control-indicator-subtask {
+.control input:disabled ~ .control-indicator,
+.control input:disabled ~ .control-indicator-subtask {
   background: #e6e6e6;
   opacity: 7;
   pointer-events: none;
@@ -183,8 +188,8 @@ html {
   display: none;
 }
 
-.control input:checked~.control-indicator:after,
-.control input:checked~.control-indicator-subtask:after {
+.control input:checked ~ .control-indicator:after,
+.control input:checked ~ .control-indicator-subtask:after {
   display: block;
 }
 
@@ -199,8 +204,8 @@ html {
   transform: rotate(45deg);
 }
 
-.control-checkbox input:disabled~.control-indicator:after,
-.control-checkbox input:disabled~.control-indicator-subtask:after {
+.control-checkbox input:disabled ~ .control-indicator:after,
+.control-checkbox input:disabled ~ .control-indicator-subtask:after {
   border-color: #7b7b7b;
 }
 
@@ -457,6 +462,7 @@ html {
   font-size: 16px;
   font-family: "Open Sans";
   resize: none;
+  caret-color: black;
 }
 
 .description-box img {
@@ -585,8 +591,9 @@ html {
 }
 
 .slide-top {
-  -webkit-animation: slide-top 1.5s cubic-bezier(0.230, 1.000, 0.320, 1.000) 2 alternate both;
-  animation: slide-top 1.5s cubic-bezier(0.230, 1.000, 0.320, 1.000) 2 alternate both;
+  -webkit-animation: slide-top 1.5s cubic-bezier(0.23, 1, 0.32, 1) 2 alternate
+    both;
+  animation: slide-top 1.5s cubic-bezier(0.23, 1, 0.32, 1) 2 alternate both;
 }
 
 @-webkit-keyframes slide-top {

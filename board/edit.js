@@ -1,12 +1,10 @@
-let task = JSON.parse(backend.getItem("tasks")) || [];
-
-let selectedContacts = [];
+/* let selectedContacts = [];
 let importance;
 let subtasksEdit = []; // subtask is not defined <<<----   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 let selectedSubtasks = [];
 let newCategories = [];
 let categoryName;
-let categoryColor;
+let categoryColor; */
 
 function openContactsToSelect() {
   var element = document.getElementById("contacts-drop-down");

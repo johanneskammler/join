@@ -285,7 +285,7 @@ function renderAddTaskHTML() {
 </div>
 
 <div class="subtask-box">
-<span class="subtask-text">Subtasks</span>
+<span class="subtask-text">Subtasks <p id="error_sub"></p></span>
 <div style="position: relative">
   <input
     onclick="createNewSubtask()"
