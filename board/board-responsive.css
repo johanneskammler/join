@@ -122,8 +122,28 @@
     position: relative;
   }
 
+  .popup-card-title {
+    display: flex;
+    height: auto;
+    align-items: center;
+    margin-top: 0px;
+  }
+
   .sidebar {
     padding: 22px 20px !important;
+  }
+
+  .edit-box {
+    width: 30vw;
+  }
+
+  .popup-card {
+    top: 8px;
+  }
+
+  .popup-title {
+    margin-block-end: 0px;
+    margin-bottom: -8px;
   }
 
   .board-main {

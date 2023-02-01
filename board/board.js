@@ -70,7 +70,7 @@ function popup(id) {
   document.getElementById("card_content").classList.remove("set-content");
 
   window.scrollTo(0, 0);
-  html.classList.toggle("hide-overflow-y");
+  //html.classList.toggle("hide-overflow-y");
   card.classList.toggle("d-none");
   background.classList.toggle("d-none");
 }
@@ -308,9 +308,16 @@ function contentDone(section, id) {
     donesMap.get(`${id}`)["title"],
     donesMap.get(`${id}`)["description"],
     donesMap.get(`${id}`)["totalSubtasks"],
-    donesMap.get(`${id}`)["progressStatus"],
-    id
+    donesMap.get(`${id}`)["progressStatus"]
   );
+  let importance = donesMap.get(`${id}`)["importance"];
+}
+function setCardImportanc(id) {
+  let footer = document.getElementById(`importance_footer${id}`);
+  if (donesMap.get(`${id}`)["importance"] === "urgent") {
+    footer.innerHTML = ` <img class="img-position" src="img-board/${importance}.png">
+                        <img src="img-board/${importance}.png">`;
+  }
 }
 
 function contentFeedback(section, id) {
@@ -483,7 +490,7 @@ function renderPopup(
       </div>
     </div>
   
-    <div class="popup-card-title">
+    <div class="popup-card-title" id="popup-card-title">
       <h1 class="popup-title font" id="popup_title">${title}</h1>
     </div>
 
@@ -515,7 +522,7 @@ function renderPopup(
         </div>
       </div>
       
-      <div class="assigned" >
+      <div class="assigned" id="assigned">
         <p class="assigned-to" id="edit-assigned">Assigned To:</p>
         <div id="assigned_contacts">
           <div id="contact"></div>
@@ -537,9 +544,11 @@ function renderPopup(
 } */
 
 function renderPopupContacts(colors, contactsSplit, letters) {
-  let contact = document.getElementById(`contact`);
-  if (colors.length === 0) {
+  let contact = document.getElementById(`assigned`);
+  let card = document.getElementById("popup_card");
+  if (colors[0] == "" && colors.length == 1) {
     contact.classList.add("d-none");
+    card.style.marginTop = "80px";
   } else {
     for (let i = 0; i < contactsSplit.length; i++) {
       const element = contactsSplit[i];
@@ -566,7 +575,7 @@ function generatePopup(id) {
   let letters = section.get(`${id}`)["letters"].split(",");
 
   category = section.get(`${id}`)["category"];
-  color = section.get(`${id}`)["color"];
+  color = section.get(`${id}`)["categorycolor"];
   title = section.get(`${id}`)["title"];
   description = section.get(`${id}`)["description"];
   subtasks = section.get(`${id}`)["subtasks"];
@@ -648,27 +657,25 @@ function setPriority(importance, id, section) {
 }
 
 function buttonURGENT() {
-  return `<button class="importance-button" type="button">
+  return `<button class="importance-buttons" type="button">
             <span>Urgent</span>
             <img src="../add_task/img-add_task/urgent.png">
           </button>`;
 }
 
 function buttonMEDIUM() {
-  return `<button  class="importance-button" type="button">
+  return `<button  class="importance-buttons" type="button">
             <span>Medium</span>
             <img src="../add_task/img-add_task/medium.png">
           </button>`;
 }
 
 function buttonLOW() {
-  return `<button  class="importance-button" type="button">
+  return `<button  class="importance-buttons" type="button">
             <span>Low</span>
             <img src="../add_task/img-add_task/low.png">
           </button>`;
 }
-
-function setImportanceCard(importance) {}
 
 function checkCards() {
   let start = comeFrom.id.split("-")[0];

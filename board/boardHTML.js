@@ -36,10 +36,10 @@ function setCardHTML(
 
                       <div class="card-footer" id="footer${id}">
                         <div class="card-invite" id="contacts_card${id}"></div>
-                        <button class="btn-footer" id="btn_footer">
+                        <div class="btn-footer" id="importance_footer${id}">
                           <img class="img-position" src="img-board/low.png">
                           <img src="img-board/low.png">
-                        </button>
+                        </div>
                       <div>
                     </div>`;
 }
@@ -398,40 +398,4 @@ function popupCardHTML(
         <img src="img-board/edit-button.png" class="pointer" onclick="edit(${id})">
       </div>
     </div>`;
-}
-
-function buttonURGENT() {
-  return `
-                <button onclick="fillImportanceButton1()" class="importance-button1" id="importance-button1" type="button">
-                    <span>Urgent</span>
-                    <img src="../add_task/img-add_task/urgent.png">
-                </button>
-                <button onclick="emptyImportanceButton1()" class="importance-button1-colored" id="importance-button1-colored" style="display: none" type="button">
-                    <span>Urgent</span>
-                    <img src="../add_task/img-add_task/urgent_white.png">
-                </button>`;
-}
-
-function buttonMEDIUM() {
-  return `
-                <button onclick="fillImportanceButton2()" class="importance-button2" id="importance-button2" type="button">
-                    <span>Medium</span>
-                    <img src="../add_task/img-add_task/medium.png">
-                </button>
-                <button onclick="emptyImportanceButton2()" class="importance-button2-colored" id="importance-button2-colored" style="display: none" type="button">
-                    <span>Medium</span>
-                    <img src="../add_task/img-add_task/medium_white.png">
-                </button>`;
-}
-
-function buttonLOW() {
-  return `
-                <button onclick="fillImportanceButton3()" class="importance-button3" id="importance-button3" type="button">
-                    <span>Low</span>
-                    <img src="../add_task/img-add_task/low.png">
-                </button>
-                <button onclick="emptyImportanceButton3()" class="importance-button3-colored" id="importance-button3-colored" style="display: none" type="button">
-                    <span>Low</span>
-                    <img src="../add_task/img-add_task/low_white.png">
-                </button>`;
 }

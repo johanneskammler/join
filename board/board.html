@@ -31,8 +31,10 @@
 
 <body onresize="checkSize()" onload="init()" >
   <div id="add_task" class="add-task-popup d-none"></div>
-  <div id="popup" onclick="popup()"  class="popup d-none"></div>
-  <div id="popup_card" class="popup-card d-none"></div>
+  <div class="popups">
+    <div id="popup" onclick="popup()"  class="popup d-none"></div>
+    <div id="popup_card" class="popup-card d-none"></div>
+  </div>
   <header w3-include-html="../templates/header.html"></header>
   <div w3-include-html="../templates/sidebar.html"></div>
 
@@ -51,7 +53,7 @@
 
         <div class="board-main">
             <div class="for-tablet">
-
+ 
                 <div class="todo">
                     <div class="head">
                         <h2 class="font">To do</h2>
