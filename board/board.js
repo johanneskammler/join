@@ -11,15 +11,7 @@ let donesMap = new Map();
 donesMap.set("x", { value: "none" });
 let mapsList = ["todosMap", "progressesMap", "feedbacksMap", "donesMap"];
 let maps = [];
-let mapsValue = [
-  "contacts",
-  "date",
-  "description",
-  "letters",
-  "subtask",
-  "subtaskStatus",
-  "title",
-];
+let mapsValue = ["description", "subtask", "title"];
 let comeFrom;
 let comeTo;
 
@@ -486,6 +478,7 @@ function generateCards() {
   setCards(progress);
   setCards(feedback);
   setCards(done);
+  return;
 }
 
 function renderPopup(
@@ -823,24 +816,20 @@ async function checkIfEmpty() {
   }
 }
 
-function deleteAll() {
-  backend.deleteItem("todoJson");
-  backend.deleteItem("progressJson");
-  location.reload();
-}
-
-function serach() {
+async function serach() {
   let input = document.getElementById("inp-board").value;
 
   if (input === "") {
     generateCards();
-  }
-  input = input.toLowerCase();
-  console.log(input);
+    setTimeout(activateDragAndDrop, 150);
+  } else {
+    input = input.toLowerCase();
+    console.log(input);
 
-  for (let i = 0; i < maps.length; i++) {
-    const map = maps[i];
-    searchMaps(map, input);
+    for (let i = 0; i < maps.length; i++) {
+      const map = maps[i];
+      searchMaps(map, input);
+    }
   }
 }
 
@@ -863,18 +852,6 @@ function highlightText(input, key) {
   );
 }
 
-function highlightTextDescription(value, key) {
-  let description = document.getElementById(`description${key}`);
-  let inputs = input;
-
-  inputs = inputs.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  let pattern = new RegExp(`${inputs}`, "gi");
-  description.innerHTML = title.textContent.replace(
-    pattern,
-    (match) => `<mark>${match}</mark>`
-  );
-}
-
 function searchMaps(map, input) {
   for (const [key, value] of map) {
     if (key == "x") {
@@ -887,6 +864,9 @@ function searchMaps(map, input) {
 function searchInValue(value, key, input) {
   for (let i = 0; i < mapsValue.length; i++) {
     let values = value[mapsValue[i]];
+    if (values == "" || values === []) {
+      continue;
+    }
     if (
       Number.isInteger(parseInt(values)) &&
       Number.isInteger(parseInt(input))
@@ -917,8 +897,6 @@ function searchInValue(value, key, input) {
     }
   }
 }
-
-function checkIfNumberIncludes(values, key, input) {}
 
 function checkIfIncludes(values, key, input) {
   let firstLetter;

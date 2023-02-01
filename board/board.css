@@ -2,6 +2,9 @@ body {
   caret-color: transparent;
 }
 
+.d-none {
+  display: none !important;
+}
 .slide-left {
   z-index: 0 !important;
 }
@@ -421,10 +424,6 @@ body {
 }
 .popup_name {
   margin-left: 25px;
-}
-
-.d-none {
-  display: none;
 }
 
 .img-position {
