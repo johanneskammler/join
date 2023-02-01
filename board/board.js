@@ -259,6 +259,8 @@ function setCards(section) {
     }
   }
   if (section === "progress") {
+    let progress = document.getElementById("progress-board");
+    progress.innerHTML = ``;
     for (const [key, value] of progressesMap) {
       if (!(key === "x")) {
         cardContent(section, key);
@@ -270,6 +272,8 @@ function setCards(section) {
     }
   }
   if (section === "feedback") {
+    let feedback = document.getElementById("feedback-board");
+    feedback.innerHTML = ``;
     for (const [key, value] of feedbacksMap) {
       if (!(key === "x")) {
         cardContent(section, key);
@@ -281,6 +285,8 @@ function setCards(section) {
     }
   }
   if (section === "done") {
+    let done = document.getElementById("done-board");
+    done.innerHTML = "";
     for (const [key, value] of donesMap) {
       if (!(key === "x")) {
         cardContent(section, key);
@@ -312,7 +318,8 @@ function contentDone(section, id) {
     donesMap.get(`${id}`)["title"],
     donesMap.get(`${id}`)["description"],
     donesMap.get(`${id}`)["totalSubtasks"],
-    donesMap.get(`${id}`)["progressStatus"]
+    donesMap.get(`${id}`)["progressStatus"],
+    id
   );
   let importance = donesMap.get(`${id}`)["importance"];
 }
@@ -362,9 +369,11 @@ function contentTodo(section, id) {
 
 function checkSubtasks(id, map) {
   let currentMap = new Map(map);
-  if (currentMap.get(`${id}`)["subtask"])
-    document.getElementById(`progress_box${id}`).classList.add("d-none");
-  addHeight(id);
+  let progressId = document.getElementById(`progress_box${id}`);
+  if (currentMap.get(`${id}`)["subtask"]) {
+    progressId.classList.add("d-none");
+    addHeight(id);
+  }
 }
 
 function addHeight(id) {
