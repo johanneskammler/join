@@ -307,12 +307,12 @@ body {
     margin-bottom: 35px;
 }
 
-form {
+.input-container {
     display: flex;
     flex-direction: column;
 }
 
-form input {
+.input-container input {
     padding: 40px;
     width: 422px;
     margin-bottom: 49px;
@@ -322,7 +322,7 @@ form input {
     padding: 13px 21px;
 }
 
-form input::placeholder {
+.input-container input::placeholder {
     font-size: 19px;
     font-family: 'Open Sans';
     color: #D1D1D1;
