@@ -6,6 +6,8 @@ let selectedSubtasks = [];
 let newCategories = [];
 let categoryName;
 let categoryColor;
+let contacts = [];
+
 
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 
@@ -24,7 +26,7 @@ async function addToTasks() {
     category: category.innerText,
     categorycolor: categoryColor,
     importance: importance,
-    decription: description.value,
+    description: description.value,
     subtasks: selectedSubtasks,
   };
   selectedContacts = []; // Du hast es in resetTasksInput drin aber es hat es nicht geleert, bei mir sind 2 tasks mit den Selben Kontackten erschienen jedesmal, weil er bsw erte task leer also ohne kontackte gespeichert zweite task mit und komischerweise hat er den ersten task auch dann selben kontackt reingeschrieben, wahrscheinlich weil des array selectedContacts nicht leer war. Logisch ist es nicht aber jetzt gehts wieder
@@ -56,16 +58,17 @@ function resetTasksInputs(
   title,
   selectedContacts,
   date,
-  description,
+
   selectedSubtasks
 ) {
   title.value = "";
   selectedContacts = [];
   date.value = "";
   categoryColor = "";
-  description.value = "";
+  document.getElementById("description-input").value ='';
   selectedSubtasks = [];
   document.getElementById("select-category").innerHTML = resetCategory();
+  resetCheckboxes();
 }
 
 function resetImportanceButtons() {
@@ -116,7 +119,7 @@ function enableSidebar() {
 async function renderContacts() {
   let url = "../contacts.json";
   let response = await fetch(url);
-  let contacts = await response.json();
+  contacts = await response.json();
 
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];
@@ -337,4 +340,11 @@ function openCategoriesToSelect() {
   document.getElementById("contacts-drop-down").classList.add("d-none");
   var element = document.getElementById("categories-drop-down");
   element.classList.toggle("d-none");
+}
+
+
+function resetCheckboxes() {
+  for (let i = 0; i < contacts.length; i++) {
+    document.getElementById(`contacts-checkbox-${i}`).checked = false;
+  }
 }
