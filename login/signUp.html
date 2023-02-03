@@ -7,12 +7,14 @@
     <link rel="stylesheet" href="../fonts/fonts.css" />
     <link rel="stylesheet" href="login.css" />
     <link rel="stylesheet" href="sign-up-responsive.css" />
+    <script src="../smallest_backend_ever/mini-backend.js"></script>
     <script src="login.js"></script>
     <script src="../login/users.js"></script>
+    <script src="../login/signUp.js"></script>
     <title>Sign up</title>
   </head>
 
-  <body>
+  <body onload="retrieveUsers()">
     <div class="blue-screen" id="sign-up-bluescreen"></div>
     <div id="logos" class="logos-sign-up">
       <div class="#">
@@ -33,29 +35,35 @@
         <h1 id="login-headline">Sign up</h1>
         <hr class="underline" />
 
-        <form action="summery.html">
+        <form onsubmit="signUpUser()" action="../login/startPage.html">
           <input
             type="text"
             name=""
             id="user"
             placeholder="Name"
             style="margin-bottom: 29px"
+            required
           />
-          <input type="email" name="" id="email" placeholder="Email" />
+          <input type="email" name="" id="email" placeholder="Email" required />
           <input
             type="password"
             name=""
             id="pw"
             placeholder="Password"
             class="#"
+            required
           />
+
+          <div id="login-buttons" class="login-btn">
+            <button type="submit" id="sign-up-btn" class="sign-up-btn position-bottom">
+              Sign up
+            </button>
+          </div>
+  
         </form>
 
-        <div id="login-buttons" class="login-btn">
-          <button onclick="signUpUser()" id="sign-up-btn" class="sign-up-btn">
-            Sign up
-          </button>
-        </div>
+
+
       </div>
     </div>
   </body>

@@ -488,7 +488,12 @@ input::placeholder {
     color: white;
     transition: all 125ms ease-in-out;
     margin-left: 120px;
-    margin-top: 85px;
+    margin-top: 83px;
+}
+
+.position-bottom {
+    position: absolute;
+    bottom: 24px;
 }
 
 .sign-btn {

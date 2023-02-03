@@ -65,24 +65,6 @@ function resetPassword() {
 }
 
 
-function signUpUser() {
-    var user = document.getElementById("user").value;
-    var email = document.getElementById("email").value;
-    var password = document.getElementById("pw").value;
-    if (user == "") {
-        alert("Bitte gib deinen Namen ein.");
-        return false;
-    } else if (email == "") {
-        alert("Bitte gib deine E-Mail-Adresse ein.");
-    } else if (password == "") {
-        alert("Bitte gib ein Passwort ein.");
-    } else {
-        window.location = "../login/startPage.html";
-    }
-    return true;
-}
-
-
 function openSummaryAsUser() {
     window.location = "../summary/summary.html";
 }
