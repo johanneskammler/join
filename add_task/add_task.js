@@ -216,8 +216,6 @@ function selectCategoryColor(color) {
 function renderNewCategories(categoryName, categoryColor) {
   document.getElementById("categories-drop-down").innerHTML +=
     generateHTMLcategory(categoryName, categoryColor);
-  // categoryName = '';
-  // categoryColor = '';
 }
 
 function createNewSubtask() {
@@ -345,25 +343,10 @@ function declareDD() {
 setTimeout(declareDD, 150);
 
 function openCategoriesToSelect() {
-  /* element = document.getElementById("categories-drop-down"); */
   dd.classList.toggle("d-none");
   closeOutside();
 }
 
-/* setTimeout(closeOutside, 200);
-function closeOutside() {
-  window.onclick = (event) => {
-    if (!event.target.matches(".btn")) {
-      if (dd.classList.contains("d-none")) {
-        dd.classList.add("d-none");
-      }
-    }
-  }; */
-/* setTimeout(addEvent, 300);
-
-function addEvent() {
-  dd.addEventListener("click", (event) => event.stopPropagation());
-} */
 function resetCheckboxes() {
   for (let i = 0; i < contacts.length; i++) {
     document.getElementById(`contacts-checkbox-${i}`).checked = false;
