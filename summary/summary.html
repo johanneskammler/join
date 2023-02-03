@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,159 +9,240 @@
     <link rel="stylesheet" href="../fonts/fonts.css" />
     <link rel="stylesheet" href="../summary/summary_responsive.css" />
     <link rel="stylesheet" href="../templates/header-sidebar-responsive.css" />
-    <script src="../login/users.js"></script>
     <script src="../smallest_backend_ever/mini-backend.js"></script>
+    <!--   <script src="../login/users.js"></script> -->
     <script src="../help/help.js"></script>
     <script src="../include.js"></script>
     <script src="../board/board.js"></script>
     <script src="../summary/summary.js"></script>
     <script src="../main.js"></script>
     <script src="../templates/header_sidebar.js"></script>
+    <!--    <script src="../login/users.js"></script> -->
 
     <title>Summary</title>
-</head>
+  </head>
 
-<body onload="init()" onresize="checkMainSize()">
+  <body onload="init()" onresize="checkMainSize()">
     <header w3-include-html="../templates/header.html"></header>
-    
-   
 
     <div id="summary-container">
+      <div class="main-page">
+        <div id="sidebar" class="sidebar">
+          <div class="sidebar-top">
+            <a href="../summary/summary.html">
+              <button class="font-family">
+                <img src="../templates/img/summary.png" />
+                <span>Summary</span>
+              </button>
+            </a>
 
+            <a href="../board/board.html">
+              <button class="font-family">
+                <img src="../templates/img/board.png" />
+                <span>Board</span>
+              </button>
+            </a>
 
-        <div class="main-page">
-            <div id="sidebar" class="sidebar">
-                <div class="sidebar-top">
-                    <a href="../summary/summary.html">
-                        <button class="font-family">
-                  <img src="../templates/img/summary.png" />
-                  <span>Summary</span>
-                </button>
-                    </a>
-        
-                    <a href="../board/board.html">
-                        <button class="font-family">
-                  <img src="../templates/img/board.png" />
-                  <span>Board</span>
-                </button>
-                    </a>
-        
-                    <a href="../add_task/add_task.html">
-                        <button class="font-family">
-                  <img src="../templates/img/add_task.png" />
-                  <span>Add task</span>
-                </button>
-                    </a>
-        
-                    <a href="../contacts/contacts.html" onclick="renderContactList()">
-                        <button class="font-family">
-                  <img src="../templates/img/contacts.png" />
-                  <span>Contacts</span>
-                </button>
-                    </a>
+            <a href="../add_task/add_task.html">
+              <button class="font-family">
+                <img src="../templates/img/add_task.png" />
+                <span>Add task</span>
+              </button>
+            </a>
+
+            <a href="../contacts/contacts.html" onclick="renderContactList()">
+              <button class="font-family">
+                <img src="../templates/img/contacts.png" />
+                <span>Contacts</span>
+              </button>
+            </a>
+          </div>
+
+          <div class="sidebar-bottom">
+            <a href="../legal_notice/legal_notice.html">
+              <button class="font-family">
+                <img src="../templates/img/legal_notice.png" />
+                <span>Legal notice</span>
+              </button>
+            </a>
+
+            <a href="../privacy/privacy.html">
+              <button class="font-family">
+                <img src="../templates/img/padlock.png" />
+                <span>Datenschutz</span>
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container" id="summary-container">
+        <div
+          w3-include-html="templates/legal.html"
+          class="d-none"
+          id="legal-template"
+        ></div>
+        <div
+          w3-include-html="templates/help.html"
+          class="d-none"
+          id="help-template"
+        ></div>
+
+        <section class="greeting-container d-flex" id="greeting">
+          <span class="d-flex" id="greet-at-time">Good morning,</span>
+          <span class="d-flex fw-bold cl-main" id="greet-user"
+            >Max Kebebman</span
+          >
+        </section>
+
+        <section class="container flex-row" id="task-container">
+          <div class="tasks-container">
+            <div
+              onclick="goToBoard();"
+              class="urgent-container d-flex"
+              id="urgent-container"
+            >
+              <div class="d-flex" id="urgent-left-container">
+                <div class="d-flex" id="urgent-left-top">
+                  <img
+                    class="icon-task d-flex"
+                    src="../templates/img/Urgent.png"
+                    alt="urgentPNG"
+                  />
+                  <div class="task-id fw-bold fs-2 d-flex fs-4" id="task-id-">
+                    0
+                  </div>
                 </div>
-        
-                <div class="sidebar-bottom">
-                    <a href="../legal_notice/legal_notice.html">
-                        <button class="font-family">
-                  <img src="../templates/img/legal_notice.png" />
-                  <span>Legal notice</span>
-                </button>
-                    </a>
-        
-                    <a href="../privacy/privacy.html">
-                        <button class="font-family">
-                  <img src="../templates/img/padlock.png" />
-                  <span>Datenschutz</span>
-                </button>
-                    </a>
+
+                <div class="desc-white d-flex" id="task-urgent-desc">
+                  Task Urgent
                 </div>
+              </div>
+              <div class="d-flex" id="urgent-middle-container"></div>
+              <div class="d-flex" id="urgent-right-container">
+                <div class="urgent-date fs-3 d-flex" id="urgent-date">
+                  October 16, 2022
+                </div>
+                <div class="d-flex" id="urgent-date-desc">
+                  Upcoming Deadline
+                </div>
+              </div>
             </div>
-        </div>
-
-
-        <div class="container" id="summary-container">
-            <div w3-include-html="templates/legal.html" class="d-none" id="legal-template"></div>
-            <div w3-include-html="templates/help.html" class="d-none" id="help-template"></div>
-
-            <section class="greeting-container d-flex" id="greeting">
-                <span class="d-flex" id="greet-at-time">Good morning,</span>
-                <span class="d-flex fw-bold cl-main" id="greet-user">Max Kebebman</span>
-            </section>
-
-            <section class="container flex-row" id="task-container">
-                <div class="tasks-container">
-                    <div onclick="goToBoard();" class="urgent-container d-flex" id="urgent-container">
-                        <div class=" d-flex" id="urgent-left-container">
-                            <div class="d-flex" id="urgent-left-top">
-                                <img class="icon-task d-flex" src="../templates/img/Urgent.png" alt="urgentPNG">
-                                <div class="task-id fw-bold fs-2 d-flex fs-4" id="task-id-">0</div>
-                            </div>
-
-                            <div class="desc-white d-flex" id="task-urgent-desc">Task Urgent</div>
-                        </div>
-                        <div class="d-flex" id="urgent-middle-container">
-                        </div>
-                        <div class="d-flex" id="urgent-right-container">
-                            <div class="urgent-date fs-3 d-flex" id="urgent-date">October 16, 2022</div>
-                            <div class="d-flex" id="urgent-date-desc">
-                                Upcoming Deadline
-                            </div>
-                        </div>
-
-                    </div>
-                    <div onclick="goToBoard();" class="tasks-box d-flex" id="task-to-do-container">
-                        <div class="task-to-do-top d-flex flex-row">
-                            <img class="icon-task-border-none d-flex" src="../templates/img/board_summary.png" alt="boardPNG">
-                            <div class="task-id fw-bold d-flex fc-black fs-4" id="task-to-do-id-">0</div>
-                        </div>
-                        <div class="d-flex" id="task-to-do-desc">Task To-do</div>
-
-                    </div>
+            <div
+              onclick="goToBoard();"
+              class="tasks-box d-flex"
+              id="task-to-do-container"
+            >
+              <div class="task-to-do-top d-flex flex-row">
+                <img
+                  class="icon-task-border-none d-flex"
+                  src="../templates/img/board_summary.png"
+                  alt="boardPNG"
+                />
+                <div
+                  class="task-id fw-bold d-flex fc-black fs-4"
+                  id="task-to-do-id-"
+                >
+                  0
                 </div>
-            </section>
-            <section class="container d-flex" id="tasks">
-                <div class="tasks-container">
-                    <div onclick="goToBoard();" class="tasks-box" id="task-box-task-in-board">
-                        <div class="tasks-box-top">
-                            <img class="icon" src="../templates/img/board_summary.png" alt="">
-                            <div class="task-amount task-id fw-bold d-flex fc-black fs-4" id="task-in-board-id-">0
-                            </div>
-                        </div>
-                        <div class="d-flex tasks-box-bottom" id="task-to-do-desc">Task in Board</div>
-                    </div>
-                    <div onclick="goToBoard();" class="tasks-box" id="task-box-task-in-board">
-                        <div class="tasks-box-top">
-                            <img class="icon" src="../templates/img/In Progress.png" alt="inProgressPNG">
-                            <div class="task-amount task-id fw-bold d-flex fc-black fs-4" id="task-in-progress-id-">
-                                0
-                            </div>
-                        </div>
-                        <div class="d-flex tasks-box-bottom" id="task-to-do-desc">Task in Progress</div>
-                    </div>
-                    <div onclick="goToBoard();" class="tasks-box" id="task-box-task-in-board">
-                        <div class="tasks-box-top">
-                            <img class="icon" src="../templates/img/Awaiting feedback.png" alt="awaitingPNG">
-                            <div class="task-amount task-id fw-bold d-flex fc-black fs-4"
-                                id="task-awaiting-feedback-id-">0</div>
-                        </div>
-                        <div class="d-flex tasks-box-bottom" id="task-to-do-desc">Awaiting Feedback</div>
-                    </div>
-                    <div onclick="goToBoard();" class="tasks-box" id="task-box-task-in-board">
-                        <div class="tasks-box-top">
-                            <img class="icon" src="../templates/img/Done.png" alt="donePNG">
-                            <div class="task-amount task-id fw-bold d-flex fc-black fs-4" id="task-done-id-">0</div>
-                        </div>
-                        <div class="d-flex tasks-box-bottom" id="task-to-do-desc">Tasks Done
-                        </div>
-                    </div>
-
+              </div>
+              <div class="d-flex" id="task-to-do-desc">Task To-do</div>
+            </div>
+          </div>
+        </section>
+        <section class="container d-flex" id="tasks">
+          <div class="tasks-container">
+            <div
+              onclick="goToBoard();"
+              class="tasks-box"
+              id="task-box-task-in-board"
+            >
+              <div class="tasks-box-top">
+                <img
+                  class="icon"
+                  src="../templates/img/board_summary.png"
+                  alt=""
+                />
+                <div
+                  class="task-amount task-id fw-bold d-flex fc-black fs-4"
+                  id="task-in-board-id-"
+                >
+                  0
                 </div>
-
-            </section>
-        </div>
+              </div>
+              <div class="d-flex tasks-box-bottom" id="task-to-do-desc">
+                Task in Board
+              </div>
+            </div>
+            <div
+              onclick="goToBoard();"
+              class="tasks-box"
+              id="task-box-task-in-board"
+            >
+              <div class="tasks-box-top">
+                <img
+                  class="icon"
+                  src="../templates/img/In Progress.png"
+                  alt="inProgressPNG"
+                />
+                <div
+                  class="task-amount task-id fw-bold d-flex fc-black fs-4"
+                  id="task-in-progress-id-"
+                >
+                  0
+                </div>
+              </div>
+              <div class="d-flex tasks-box-bottom" id="task-to-do-desc">
+                Task in Progress
+              </div>
+            </div>
+            <div
+              onclick="goToBoard();"
+              class="tasks-box"
+              id="task-box-task-in-board"
+            >
+              <div class="tasks-box-top">
+                <img
+                  class="icon"
+                  src="../templates/img/Awaiting feedback.png"
+                  alt="awaitingPNG"
+                />
+                <div
+                  class="task-amount task-id fw-bold d-flex fc-black fs-4"
+                  id="task-awaiting-feedback-id-"
+                >
+                  0
+                </div>
+              </div>
+              <div class="d-flex tasks-box-bottom" id="task-to-do-desc">
+                Awaiting Feedback
+              </div>
+            </div>
+            <div
+              onclick="goToBoard();"
+              class="tasks-box"
+              id="task-box-task-in-board"
+            >
+              <div class="tasks-box-top">
+                <img
+                  class="icon"
+                  src="../templates/img/Done.png"
+                  alt="donePNG"
+                />
+                <div
+                  class="task-amount task-id fw-bold d-flex fc-black fs-4"
+                  id="task-done-id-"
+                >
+                  0
+                </div>
+              </div>
+              <div class="d-flex tasks-box-bottom" id="task-to-do-desc">
+                Tasks Done
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
-
-</body>
-
+  </body>
 </html>

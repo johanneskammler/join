@@ -1,106 +1,73 @@
 let task_cards = [];
-const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+let ShowCurrentUserNameForSummery = [];
+const month = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 const d = new Date();
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
-board = "summary.html"
-
+board = "summary.html";
 
 async function init() {
   await includeHTML();
   await downloadFromServer();
+  loadAtStart();
   checkMainSize();
   await getMaps();
   renderCurrentDate();
-  task_cards = JSON.parse(backend.getItem('tasks')) || [];
+  task_cards = JSON.parse(backend.getItem("tasks")) || [];
   setTimeout(renderAmountToTasks, 150);
   await greetUser();
 
-  /*
-  setTimeout(() => {
-    markSummaryNav();
-  }, 250); */
+  function loadAtStart() {
+    ShowCurrentUserNameForSummery =
+      JSON.parse(backend.getItem("currentUser")) || [];
+  }
 }
-
 
 async function greetUser() {
   let currentTime = new Date().getHours();
+
   if (currentTime < 12) {
     document.getElementById("greet-at-time").innerHTML = "Good morning, ";
   } else {
     document.getElementById("greet-at-time").innerHTML = "Good evening, ";
   }
-  /* document.getElementById("greet-user").innerHTML = getCurrentUserName(); */
+  document.getElementById("greet-user").innerHTML =
+    ShowCurrentUserNameForSummery["userName"];
 }
-
-
-
-
-/* function syncSummaryTasks(state) {
-  let states = task_cards.filter((a) => a.state === state)
-  let amountState = states.length;
-  return amountState
-}
-
-
-function syncSummaryUrgent() {
-  let urgent = task_cards.filter((a) => a.priority[0] === "urgent")
-  let amountUrgent = urgent.length;
-  return amountUrgent
-}
-*/
 
 function renderCurrentDate() {
   let currentYear = new Date().getFullYear().toString();
   let currentDay = new Date().getDate().toString();
   let currentMonth = month[d.getMonth()];
-  document.getElementById('urgent-date').innerHTML = `${currentMonth} ${currentDay}, ${currentYear}`;
+  document.getElementById(
+    "urgent-date"
+  ).innerHTML = `${currentMonth} ${currentDay}, ${currentYear}`;
 }
-
 
 function renderAmountToTasks() {
   document.getElementById("task-id-").innerHTML =
-    todosMap.size +
-    progressesMap.size -2;
+    todosMap.size + progressesMap.size - 2;
   document.getElementById("task-to-do-id-").innerHTML = todosMap.size - 1;
   document.getElementById("task-in-board-id-").innerHTML =
-    todosMap.size +
-    progressesMap.size +
-    feedbacksMap.size +
-    donesMap.size - 4;
-  document.getElementById("task-in-progress-id-").innerHTML = progressesMap.size - 1;
-  document.getElementById("task-awaiting-feedback-id-").innerHTML = feedbacksMap.size - 1;
+    todosMap.size + progressesMap.size + feedbacksMap.size + donesMap.size - 4;
+  document.getElementById("task-in-progress-id-").innerHTML =
+    progressesMap.size - 1;
+  document.getElementById("task-awaiting-feedback-id-").innerHTML =
+    feedbacksMap.size - 1;
   document.getElementById("task-done-id-").innerHTML = donesMap.size - 1;
 }
-
-
-
-
-/*
-function markSummaryNav(){
-  document.getElementById("summary-html").classList.add("bgNavBlue");
-  document.getElementById("mob-summary-html").classList.add("bgNavBlue");
-}*/
-
-
-
-/*let borderContainer = document.getElementsByClassName("task-urgent");
-let borderLine = document.getElementsByClassName("border-line");
-
-if (borderLine.style.backgroundColor === "white") {
-  borderLine.style.borderLeft = "3px solid #4589ff";
-} else {
-  borderLine.style.borderLeft = "3px solid white";
-}*/
-
-
-/*let currentTime = new Date().getHours();
-if (currentTime < 12) {
-  document.getElementById('greeting').innerHTML = 'Guten Morgen';
-} else if (currentTime < 18) {
-  document.getElementById('greeting').innerHTML = 'Guten Mittag';
-} else {
-  document.getElementById('greeting').innerHTML = 'Guten Abend';
-}*/
 
 function goToBoard() {
   window.location = "../board/board.html";

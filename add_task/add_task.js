@@ -8,7 +8,6 @@ let categoryName;
 let categoryColor;
 let contacts = [];
 
-
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 
 async function addToTasks() {
@@ -65,7 +64,7 @@ function resetTasksInputs(
   selectedContacts = [];
   date.value = "";
   categoryColor = "";
-  document.getElementById("description-input").value ='';
+  document.getElementById("description-input").value = "";
   selectedSubtasks = [];
   document.getElementById("select-category").innerHTML = resetCategory();
   resetCheckboxes();
@@ -331,18 +330,40 @@ function emptyImportanceButton3() {
 }
 
 function openContactsToSelect() {
-  document.getElementById("categories-drop-down").classList.add("d-none");
-  var element = document.getElementById("contacts-drop-down");
-  element.classList.toggle("d-none");
+  let dropDown = document.getElementById("categories-drop-down");
+
+  dropDown.classList.add("d-none");
+  let dd = document.getElementById("contacts-drop-down");
+  dd.classList.toggle("d-none");
 }
+
+let dd;
+function declareDD() {
+  dd = document.getElementById("contacts-drop-down");
+}
+
+setTimeout(declareDD, 150);
 
 function openCategoriesToSelect() {
-  document.getElementById("contacts-drop-down").classList.add("d-none");
-  var element = document.getElementById("categories-drop-down");
-  element.classList.toggle("d-none");
+  /* element = document.getElementById("categories-drop-down"); */
+  dd.classList.toggle("d-none");
+  closeOutside();
 }
 
+/* setTimeout(closeOutside, 200);
+function closeOutside() {
+  window.onclick = (event) => {
+    if (!event.target.matches(".btn")) {
+      if (dd.classList.contains("d-none")) {
+        dd.classList.add("d-none");
+      }
+    }
+  }; */
+/* setTimeout(addEvent, 300);
 
+function addEvent() {
+  dd.addEventListener("click", (event) => event.stopPropagation());
+} */
 function resetCheckboxes() {
   for (let i = 0; i < contacts.length; i++) {
     document.getElementById(`contacts-checkbox-${i}`).checked = false;
