@@ -90,13 +90,9 @@ async function signUpUser() {
 
 async function retrieveUsers() {
     await downloadFromServer();
-    storedUsers = (await JSON.parse(backend.getItem("storedUsers"))) || [];
-
-    // if (storedUsers) {
-    //     newUsers = JSON.parse(storedUsers);
-    // }
+    // let storedJSON = await backend.getItem('storedUsers') || [];
+    // storedUsers = JSON.parse(jsonFromServer);
+    storedUsers = Object.entries(jsonFromServer);
 }
-
-// retrieveUsers();
 
 console.log(storedUsers);
