@@ -30,21 +30,30 @@ async function init() {
   await greetUser();
 
   function loadAtStart() {
-    ShowCurrentUserNameForSummery =
-      JSON.parse(backend.getItem("currentUser")) || [];
+    let nameTest = JSON.parse(backend.getItem("currentUser")) || [];
+    if (nameTest.length < 2) {
+      ShowCurrentUserNameForSummery = "Max Kebabman";
+    } else {
+      ShowCurrentUserNameForSummery = nameTest;
+    }
   }
 }
 
 async function greetUser() {
   let currentTime = new Date().getHours();
-
+  let name = ShowCurrentUserNameForSummery["userName"];
   if (currentTime < 12) {
     document.getElementById("greet-at-time").innerHTML = "Good morning, ";
   } else {
     document.getElementById("greet-at-time").innerHTML = "Good evening, ";
   }
-  document.getElementById("greet-user").innerHTML =
-    ShowCurrentUserNameForSummery["userName"];
+  if (name == undefined) {
+    document.getElementById("greet-user").innerHTML =
+      ShowCurrentUserNameForSummery;
+  } else {
+    document.getElementById("greet-user").innerHTML =
+      ShowCurrentUserNameForSummery["userName"];
+  }
 }
 
 function renderCurrentDate() {
