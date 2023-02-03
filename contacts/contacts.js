@@ -1,11 +1,13 @@
-contacts = [];
+let contacts = [];
+
+setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
+
 
 async function init() {
+    await downloadFromServer();
     await includeHTML();
     await renderContactList();
-    checkSize();
-    await downloadFromServer();
-    contact = (await JSON.parse(backend.getItem("contact"))) || [];
+
 }
 
 
@@ -37,7 +39,7 @@ function enableSidebar() {
 
 // Contact JS
 
-setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
+
 
 async function createNewContact() {
     let name = document.getElementById('input-name');
@@ -51,28 +53,39 @@ async function createNewContact() {
     };
 
     contacts.push(contact);
-    renderContactList();
-
     await backend.setItem("contact", JSON.stringify(contacts));
+    renderContactList();
 }
 
 async function renderContactList() {
-    let url = '../contacts.json';
-    let response = await fetch(url);
-    let contact = await response.json();
+    //   let url = '../contacts.json';
+    //   let response = await fetch(url);
+    //   let contact = await response.json();
+    contacts = (await JSON.parse(backend.getItem("contact"))) || [];
+
+    let name = [];
+    for (let i = 0; i < contacts.length; i++) {
+        let element = contacts[i]['name'];
+        name = element.split(" ");
+
+        let firstLetter = name[0].split("");
+        let secondLetter = name[1].split("");
+        let firstLetters = firstLetter[0].toUpperCase() + secondLetter[0].toUpperCase();
+        console.log(firstLetters);
+    }
 
 
-    for (let i = 0; i < contact.length; i++) {
-        const element = contact[i];
+    for (let i = 0; i < contacts.length; i++) {
+        const element = contacts[i];
         let firstLetters = element['name'].match(/\b(\w)/g);
         let acronym = firstLetters.join('');
 
         renderContactListHTML(element, acronym, i);
-        getNewColor(i);
+        // getNewColor(i);
         disableContactContainer();
     }
-}
 
+}
 async function openContactDetail(i) {
     let url = '../contacts.json';
     let response = await fetch(url);
@@ -125,16 +138,16 @@ function getNewColor(i) {
 }
 
 function closeBlurScreen() {
-    gsap.to("#add_contact_container", {
-        x: -1000,
-        width: 900,
-        duration: 0.59,
-        ease: 'back.in(0.9)',
-    });
-    setTimeout(() => {
-        document.getElementById('blur_screen').classList.add('d-none');
-        document.getElementById('blur_screen').style.opacity = '0';
-    }, 600);
+    // gsap.to("#add_contact_container", {
+    //     x: -1000,
+    //     width: 900,
+    //     duration: 0.59,
+    //     ease: 'back.in(0.9)',
+    // });
+
+    document.getElementById('blur_screen').classList.add('d-none');
+    document.getElementById('blur_screen').style.opacity = '0';
+
 }
 
 function clickDialog(e) {

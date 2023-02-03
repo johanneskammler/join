@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../templates/header-sidebar-responsive.css">
     <link rel="stylesheet" href="contacts-responsive.css">
     <script src="../help/help.js"></script>
+    <script src="../smallest_backend_ever/mini-backend.js"></script>
     <script src="../include.js"></script>
     <script src="contacts.js"></script>
     <script src="../main.js"></script>
@@ -232,7 +233,7 @@
                     <div class="img-container">
                         <img src="img/people.png" alt="">
                     </div>
-                    <div class="input-container">
+                    <form onsubmit="createNewContact(); return false">
                         <input id="input-name" placeholder="Name" type="text" required>
                         <input id="input-mail" placeholder="Email" type="email" required>
                         <input id="input-phone" placeholder="Phone" type="tel" required>
@@ -241,12 +242,12 @@
                         Cancel
                         <img src="img/btn-left.png" alt="">
                     </button>
-                            <button onclick="createNewContact()" class="add-contact-btn-right">
+                            <button class="add-contact-btn-right">
                         Create contact
                         <img src="img/btn-right.png" alt="">
                     </button>
                         </div>
-                    </div>
+                    </form>
 
                 </div>
 

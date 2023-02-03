@@ -2,6 +2,9 @@
     .new-contact-btn {
         left: 87%;
     }
+    .contact-right {
+        /* width: 60vw; */
+    }
 }
 
 @media (width <=1600px) {
@@ -58,8 +61,8 @@
         top: 82%;
     }
     .contact-list-inner-container {
-        position: absolute;
-        left: 0;
+        /* position: absolute;
+        left: 0; */
     }
     .contact-list-container {
         margin-left: 0;
