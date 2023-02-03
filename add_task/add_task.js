@@ -146,13 +146,11 @@ function fillCategory(category) {
     categoryField.innerHTML = "";
     categoryField.innerHTML += setCategoryToSales();
     openCategoriesToSelect();
-    // document.getElementById("categories-drop-down").classList.add("d-none");
     categoryColor = "#df1c9f";
   } else if (category == "backoffice") {
     categoryField.innerHTML = "";
     categoryField.innerHTML += setCategoryToBackoffice();
     openCategoriesToSelect();
-    // document.getElementById("categories-drop-down").classList.add("d-none");
     categoryColor = "#22bfc7";
   } else {
     categoryField.innerHTML = "";
@@ -162,15 +160,12 @@ function fillCategory(category) {
       newCategories
     );
     openCategoriesToSelect();
-    // document.getElementById("categories-drop-down").classList.add("d-none");
   }
-  // document.getElementById("categories-drop-down").classList.add("d-none");
 }
 
 function createNewCategory() {
   document.getElementById("new-category-input").value = "";
   openCategoriesToSelect();
-  // document.getElementById("categories-drop-down").classList.add("d-none");
   document.getElementById("new-category-input").classList.remove("d-none");
   document.getElementById("new-category-content").classList.remove("d-none");
   document.getElementById("drop-down-arrow-categories").classList.add("d-none");
