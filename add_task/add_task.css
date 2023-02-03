@@ -6,6 +6,22 @@ html {
   display: none;
 }
 
+.overlay {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
+.overlay-z {
+  z-index: 3 !important;
+}
+
+.contacts-z {
+  position: relative;
+  z-index: 5;
+}
+
 .select-new-category-color {
   border: 1px solid black !important;
   border-radius: 100%;
@@ -161,20 +177,20 @@ html {
   border-radius: 3px;
 }
 
-.control input:checked ~ .control-indicator,
-.control input:checked ~ .control-indicator-subtask {
+.control input:checked~.control-indicator,
+.control input:checked~.control-indicator-subtask {
   background: white;
 }
 
-.control:hover input:not([disabled]):checked ~ .control-indicator,
-.control input:checked:focus ~ .control-indicator,
-.control:hover input:not([disabled]):checked ~ .control-indicator-subtask,
-.control input:checked:focus ~ .control-indicator-subtask {
+.control:hover input:not([disabled]):checked~.control-indicator,
+.control input:checked:focus~.control-indicator,
+.control:hover input:not([disabled]):checked~.control-indicator-subtask,
+.control input:checked:focus~.control-indicator-subtask {
   background: white;
 }
 
-.control input:disabled ~ .control-indicator,
-.control input:disabled ~ .control-indicator-subtask {
+.control input:disabled~.control-indicator,
+.control input:disabled~.control-indicator-subtask {
   background: #e6e6e6;
   opacity: 7;
   pointer-events: none;
@@ -188,8 +204,8 @@ html {
   display: none;
 }
 
-.control input:checked ~ .control-indicator:after,
-.control input:checked ~ .control-indicator-subtask:after {
+.control input:checked~.control-indicator:after,
+.control input:checked~.control-indicator-subtask:after {
   display: block;
 }
 
@@ -204,8 +220,8 @@ html {
   transform: rotate(45deg);
 }
 
-.control-checkbox input:disabled ~ .control-indicator:after,
-.control-checkbox input:disabled ~ .control-indicator-subtask:after {
+.control-checkbox input:disabled~.control-indicator:after,
+.control-checkbox input:disabled~.control-indicator-subtask:after {
   border-color: #7b7b7b;
 }
 
@@ -591,8 +607,7 @@ html {
 }
 
 .slide-top {
-  -webkit-animation: slide-top 1.5s cubic-bezier(0.23, 1, 0.32, 1) 2 alternate
-    both;
+  -webkit-animation: slide-top 1.5s cubic-bezier(0.23, 1, 0.32, 1) 2 alternate both;
   animation: slide-top 1.5s cubic-bezier(0.23, 1, 0.32, 1) 2 alternate both;
 }
 

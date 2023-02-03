@@ -145,12 +145,12 @@ function fillCategory(category) {
   if (category == "sales") {
     categoryField.innerHTML = "";
     categoryField.innerHTML += setCategoryToSales();
-    document.getElementById("categories-drop-down").classList.add("d-none");
+    openCategoriesToSelect();
     categoryColor = "#df1c9f";
   } else if (category == "backoffice") {
     categoryField.innerHTML = "";
     categoryField.innerHTML += setCategoryToBackoffice();
-    document.getElementById("categories-drop-down").classList.add("d-none");
+    openCategoriesToSelect();
     categoryColor = "#22bfc7";
   } else {
     categoryField.innerHTML = "";
@@ -159,14 +159,13 @@ function fillCategory(category) {
       categoryColor,
       newCategories
     );
-    document.getElementById("categories-drop-down").classList.add("d-none");
+    openCategoriesToSelect();
   }
-  document.getElementById("categories-drop-down").classList.add("d-none");
 }
 
 function createNewCategory() {
   document.getElementById("new-category-input").value = "";
-  document.getElementById("categories-drop-down").classList.add("d-none");
+  openCategoriesToSelect();
   document.getElementById("new-category-input").classList.remove("d-none");
   document.getElementById("new-category-content").classList.remove("d-none");
   document.getElementById("drop-down-arrow-categories").classList.add("d-none");
@@ -216,8 +215,6 @@ function selectCategoryColor(color) {
 function renderNewCategories(categoryName, categoryColor) {
   document.getElementById("categories-drop-down").innerHTML +=
     generateHTMLcategory(categoryName, categoryColor);
-  // categoryName = '';
-  // categoryColor = '';
 }
 
 function createNewSubtask() {
@@ -328,17 +325,20 @@ function emptyImportanceButton3() {
   document.getElementById("importance-button3-colored").style =
     "display: none;";
 }
-
 function openContactsToSelect() {
   let ddContacts = document.getElementById("contacts-drop-down");
+  let overlay = document.getElementById("overlay-contacts");
   ddContacts.classList.toggle("d-none");
-  ddContacts.classList.ad;
+  ddContacts.classList.toggle("contacts-z");
+  overlay.classList.toggle("overlay-z");
 }
 
 function openCategoriesToSelect() {
-  element = document.getElementById("categories-drop-down");
-  dd.classList.toggle("d-none");
-  closeOutside();
+  let ddCategories = document.getElementById("categories-drop-down");
+  let overlay = document.getElementById("overlay-categories");
+  ddCategories.classList.toggle("d-none");
+  ddCategories.classList.toggle("contacts-z");
+  overlay.classList.toggle("overlay-z");
 }
 
 function resetCheckboxes() {
