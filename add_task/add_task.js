@@ -330,40 +330,17 @@ function emptyImportanceButton3() {
 }
 
 function openContactsToSelect() {
-  let dropDown = document.getElementById("categories-drop-down");
-
-  dropDown.classList.add("d-none");
-  let dd = document.getElementById("contacts-drop-down");
-  dd.classList.toggle("d-none");
+  let ddContacts = document.getElementById("contacts-drop-down");
+  ddContacts.classList.toggle("d-none");
+  ddContacts.classList.ad;
 }
-
-let dd;
-function declareDD() {
-  dd = document.getElementById("contacts-drop-down");
-}
-
-setTimeout(declareDD, 150);
 
 function openCategoriesToSelect() {
-  /* element = document.getElementById("categories-drop-down"); */
+  element = document.getElementById("categories-drop-down");
   dd.classList.toggle("d-none");
   closeOutside();
 }
 
-/* setTimeout(closeOutside, 200);
-function closeOutside() {
-  window.onclick = (event) => {
-    if (!event.target.matches(".btn")) {
-      if (dd.classList.contains("d-none")) {
-        dd.classList.add("d-none");
-      }
-    }
-  }; */
-/* setTimeout(addEvent, 300);
-
-function addEvent() {
-  dd.addEventListener("click", (event) => event.stopPropagation());
-} */
 function resetCheckboxes() {
   for (let i = 0; i < contacts.length; i++) {
     document.getElementById(`contacts-checkbox-${i}`).checked = false;

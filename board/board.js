@@ -551,6 +551,21 @@ function renderPopup(
     </div>`;
   renderPopupContacts(colors, contactsSplit, letters);
   setTimeout(setPriority, 50, importance, id, section);
+  checkSubtasksPopup(section, id);
+  checkTitlePopup(section, id);
+}
+
+function checkSubtasksPopup(section, id) {
+  let popSub = document.getElementById(`progress_box_popup${id}`);
+  if (section.get(`${id}`)["subtask"] == "") {
+    popSub.classList.add("d-none");
+  }
+}
+
+function checkTitlePopup(section, id) {
+  let titlePopup = document.getElementById("popup_title");
+  if (titlePopup.innerHTML.length < 17) {
+  }
 }
 
 /* function checkSubtasks(subtask, id) {
