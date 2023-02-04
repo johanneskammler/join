@@ -31,6 +31,7 @@
 }
 
 .btn-create {
+  cursor: pointer;
   height: 50px;
   padding: 10px 8px;
   border: 1px solid #4589ff;
@@ -145,4 +146,9 @@
   .add-task-content-overlay {
     margin-inline-start: 53px;
   }
+}
+
+.opacity {
+  cursor: initial !important;
+  opacity: 0.7;
 }

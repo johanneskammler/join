@@ -42,37 +42,57 @@ async function addToTasks() {
   tasks = [];
   closeAddTask();
   setTasks();
-  activateDragAndDrop();
+  setTimeout(activateDragAndDrop, 300); /* setCards(); */
 }
 
-function checkIfEmpty() {
+function allFieldsFilled() {
   let title = document.getElementById("title-input");
   let description = document.getElementById("description-input");
   let category = document.getElementById("select-category"); // .innerHTML.includes('Select')
   let date = document.getElementById("select-date"); // value
   let contacts = selectedContacts; // length
-  let buttonUrgent = document.getElementById("importance-button1-colored"); // classList
-  let buttonMedium = document.getElementById("importance-button2-colored");
-  let buttonLow = document.getElementById("importance-button3-colored");
+
   let result = "";
+
   if (
-    !(
-      title.value == result ||
-      description.value == result ||
-      category.innerHTML.includes("Select") ||
-      date.value == result ||
-      contacts.length == result ||
-      buttonUrgent.classList.contains("d-none") ||
-      buttonMedium.classList.contains("d-none") ||
-      buttonLow.classList.contains("d-none")
-    )
+    title.value.length > 1 &&
+    description.value.length > 1 &&
+    !category.innerHTML.includes("Select") &&
+    date.value.length > 1 &&
+    contacts.length == 1
   ) {
-    addToTasks();
+    buttonImportanceCheck();
   }
 }
 
+async function buttonImportanceCheck() {
+  let buttonUrgent = document.getElementById("importance-button1"); // classList
+  let buttonMedium = document.getElementById("importance-button2");
+  let buttonLow = document.getElementById("importance-button3");
+  let result;
+
+  if (
+    buttonUrgent.style.cssText == "display: none;" ||
+    buttonMedium.style.cssText == "display: none;" ||
+    buttonLow.style.cssText == "display: none;"
+  ) {
+    let btn = document.getElementById("submit-btn");
+    btn.classList.remove("opacity");
+    btn.onclick = function () {
+      addToTasks();
+    };
+  }
+
+  // buttonUrgent.classList.contains("d-none") ||
+  // buttonMedium.classList.contains("d-none") ||
+  // buttonLow.classList.contains("d-none")
+}
+
 function resetAddedButton() {
-  document.getElementById("task-added-to-board").classList.add("d-none");
+  let result = allFieldsFilled();
+  if (result) {
+    document.getElementById("task-added-to-board").classList.add("d-none");
+  }
 }
 
 function resetTasksInputs(
@@ -94,15 +114,12 @@ function resetTasksInputs(
 }
 
 function resetImportanceButtons() {
-  document.getElementById("importance-button1").style = "display: flex;";
-  document.getElementById("importance-button1-colored").style =
-    "display: none;";
-  document.getElementById("importance-button2").style = "display: flex;";
-  document.getElementById("importance-button2-colored").style =
-    "display: none;";
-  document.getElementById("importance-button3").style = "display: flex;";
-  document.getElementById("importance-button3-colored").style =
-    "display: none;";
+  document.getElementById("importance-button1").classList.remove("d-none");
+  document.getElementById("importance-button1-colored").classList.add("d-none");
+  document.getElementById("importance-button2").classList.remove("d-none");
+  document.getElementById("importance-button2-colored").classList.add("d-none");
+  document.getElementById("importance-button3").classList.remove("d-none");
+  document.getElementById("importance-button3-colored").classList.add("d-none");
 }
 
 async function renderContactsAddTask() {
