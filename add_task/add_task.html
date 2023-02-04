@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<<<<<<< HEAD
-  <body onload="init()" onresize="checkSize()">
-    <div class="overlay" onclick="openContactsToSelect()"></div>
-    <header w3-include-html="../templates/header.html"></header>
-    <div w3-include-html="../templates/sidebar.html"></div>
-=======
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -25,7 +19,6 @@
   <script src="../templates/header_sidebar.js"></script>
   <title>Add Task</title>
 </head>
->>>>>>> 47b4a7ab4f14f979570a511d021aa60e326ee6ed
 
 <body onload="init()" onresize="checkSize()">
 
@@ -38,7 +31,7 @@
   <div class="content-box">
     <div class="add-task-content">
       <span id="header-name-resp" class="d-none">Kanban Project Management Tool</span>
-      <form onsubmit="addToTasks()">
+      <form onsubmit="addToTasks(); return false">
         <input type="text" placeholder="Enter a title" id="title-input" class="title-input" required />
 
         <div class="contacts-box">
