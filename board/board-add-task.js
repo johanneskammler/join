@@ -353,6 +353,7 @@ function openContactsToSelect() {
   document.getElementById("categories-drop-down").classList.add("d-none");
   var element = document.getElementById("contacts-drop-down");
   element.classList.toggle("d-none");
+  allFieldsFilled();
 }
 
 function openCategoriesToSelect() {
