@@ -650,9 +650,13 @@ h4 {
 }
 
 #error_sub {
-  width: 260px;
-  margin-top: 72px;
+  width: 257px;
+  margin-top: 17px;
   color: red;
+  font-size: 13px;
+  position: absolute;
+  margin-left: 9vw;
+  z-index: 5;
 }
 
 /* form add-task.css end  */

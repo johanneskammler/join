@@ -13,8 +13,6 @@ function checkInp() {
       const element = users[i];
       if (element["email"] == forgotPasswordEmail.value) {
         console.log(forgotPasswordEmail.value);
-        let email = forgotPasswordEmail.value;
-        setPhp(email);
         sendMail();
       }
     }

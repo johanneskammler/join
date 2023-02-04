@@ -2,9 +2,9 @@
 
 ########### CONFIG ###############
 
-echo "<script>document.writeln(p1);</script>";
 
-$recipient = echo "<script>document.writeln(p1);</script>";
+
+$recipient = 'shngky@gmx.de"';
 $redirect = 'success.html';
 
 ########### CONFIG END ###########

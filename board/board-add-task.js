@@ -191,9 +191,7 @@ function createNewSubtask() {
 function addSubtask() {
   let newSubtask = document.getElementById("add-subtask").value;
 
-  if (subtasks.includes(newSubtask)) {
-    alert("This subtask already exists!");
-  } else if (newSubtask == "") {
+  if (newSubtask == "") {
     let errorField = document.getElementById("error_sub");
     errorField.innerHTML = "ERROR PLEASE FILL THE FIELD !";
   } else {
@@ -207,6 +205,14 @@ function addSubtask() {
 
 function subtaskReturn() {
   return false;
+}
+
+function checkSubInp() {
+  let inp = document.getElementById("add-subtask");
+  let error = document.getElementById("error_sub");
+  if (inp.value.length > 0) {
+    error.innerHTML = "";
+  }
 }
 
 function backToSubtasks() {
