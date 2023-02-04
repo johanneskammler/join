@@ -224,13 +224,7 @@ function createNewSubtask() {
 
 function addSubtask() {
   let newSubtask = document.getElementById("add-subtask").value;
-  if (newSubtask == "") {
-    return false;
-  } else if (subtasks.includes(newSubtask)) {
-    alert("This subtask already exists!");
-  } else {
-    subtasks.push(newSubtask);
-  }
+  subtasks.push(newSubtask);
   document.getElementById("add-subtask").value = "";
   document.getElementById("plus-icon").classList.remove("d-none");
   document.getElementById("new-subtask-accept").classList.add("d-none");
