@@ -42,10 +42,10 @@ async function addToTasks() {
   tasks = [];
   closeAddTask();
   setTasks();
-  activateDragAndDrop();
+  setTimeout(activateDragAndDrop, 300); /* setCards(); */
 }
 
-async function checkIfEmpty() {
+async function checkIfAddTaskIsEmpty() {
   let title = document.getElementById("title-input");
   let description = document.getElementById("description-input");
   let category = document.getElementById("select-category"); // .innerHTML.includes('Select')
@@ -54,14 +54,15 @@ async function checkIfEmpty() {
   let buttonUrgent = document.getElementById("importance-button1-colored"); // classList
   let buttonMedium = document.getElementById("importance-button2-colored");
   let buttonLow = document.getElementById("importance-button3-colored");
-  let result = "";
+  let result = '';
+  
   if (
     !(
       title.value == result ||
       description.value == result ||
       category.innerHTML.includes("Select") ||
       date.value == result ||
-      contacts.length == result ||
+      contacts.length == 0 ||
       buttonUrgent.classList.contains("d-none") ||
       buttonMedium.classList.contains("d-none") ||
       buttonLow.classList.contains("d-none")
