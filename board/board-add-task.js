@@ -45,7 +45,7 @@ async function addToTasks() {
   activateDragAndDrop();
 }
 
-async function checkIfEmpty() {
+function checkIfEmpty() {
   let title = document.getElementById("title-input");
   let description = document.getElementById("description-input");
   let category = document.getElementById("select-category"); // .innerHTML.includes('Select')
@@ -67,7 +67,7 @@ async function checkIfEmpty() {
       buttonLow.classList.contains("d-none")
     )
   ) {
-    await addToTasks();
+    addToTasks();
   }
 }
 
@@ -224,7 +224,7 @@ function addSubtask() {
   //   inputField.placeholder.style = "color: red;";
   //   // inputField.style = "color: red;";
   // } else {
-    subtasks.push(newSubtask);
+  subtasks.push(newSubtask);
   // }
   document.getElementById("add-subtask").value = "";
   document.getElementById("plus-icon").classList.remove("d-none");
