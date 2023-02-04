@@ -293,6 +293,7 @@ function renderAddTaskHTML() {
     placeholder="Add new subtask"
     class="add-subtask"
     id="add-subtask"
+    name="add-subtask"
   />
   <img
     src="../add_task/img-add_task/plus_blue.png"
