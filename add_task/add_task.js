@@ -11,37 +11,41 @@ let contacts = [];
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 
 async function addToTasks() {
-  triggerAddedToBoardButton();
+  if (selectedContacts.length == 0) {
+    alert('Please select at least one contact!')
+  } else {
+    triggerAddedToBoardButton();
 
-  let title = document.getElementById("title-input");
-  let date = document.getElementById("select-date");
-  let category = document.getElementById("select-category");
-  let description = document.getElementById("description-input");
+    let title = document.getElementById("title-input");
+    let date = document.getElementById("select-date");
+    let category = document.getElementById("select-category");
+    let description = document.getElementById("description-input");
 
-  let task = {
-    title: title.value,
-    contacts: selectedContacts,
-    date: date.value,
-    category: category.innerText,
-    categorycolor: categoryColor,
-    importance: importance,
-    description: description.value,
-    subtasks: selectedSubtasks,
-  };
-  selectedContacts = []; // Du hast es in resetTasksInput drin aber es hat es nicht geleert, bei mir sind 2 tasks mit den Selben Kontackten erschienen jedesmal, weil er bsw erte task leer also ohne kontackte gespeichert zweite task mit und komischerweise hat er den ersten task auch dann selben kontackt reingeschrieben, wahrscheinlich weil des array selectedContacts nicht leer war. Logisch ist es nicht aber jetzt gehts wieder
-  tasks.push(task);
-  console.log(tasks);
-  resetTasksInputs(
-    title,
-    selectedContacts,
-    date,
-    categoryColor,
-    description,
-    selectedSubtasks
-  );
-  resetImportanceButtons();
+    let task = {
+      title: title.value,
+      contacts: selectedContacts,
+      date: date.value,
+      category: category.innerText,
+      categorycolor: categoryColor,
+      importance: importance,
+      description: description.value,
+      subtasks: selectedSubtasks,
+    };
+    selectedContacts = []; // Du hast es in resetTasksInput drin aber es hat es nicht geleert, bei mir sind 2 tasks mit den Selben Kontackten erschienen jedesmal, weil er bsw erte task leer also ohne kontackte gespeichert zweite task mit und komischerweise hat er den ersten task auch dann selben kontackt reingeschrieben, wahrscheinlich weil des array selectedContacts nicht leer war. Logisch ist es nicht aber jetzt gehts wieder
+    tasks.push(task);
+    console.log(tasks);
+    resetTasksInputs(
+      title,
+      selectedContacts,
+      date,
+      categoryColor,
+      description,
+      selectedSubtasks
+    );
+    resetImportanceButtons();
 
-  await backend.setItem("tasks", JSON.stringify(tasks));
+    await backend.setItem("tasks", JSON.stringify(tasks));
+  }
 }
 
 function triggerAddedToBoardButton() {
@@ -224,13 +228,7 @@ function createNewSubtask() {
 
 function addSubtask() {
   let newSubtask = document.getElementById("add-subtask").value;
-  if (newSubtask == "") {
-    return false;
-  } else if (subtasks.includes(newSubtask)) {
-    alert("This subtask already exists!");
-  } else {
-    subtasks.push(newSubtask);
-  }
+  subtasks.push(newSubtask);
   document.getElementById("add-subtask").value = "";
   document.getElementById("plus-icon").classList.remove("d-none");
   document.getElementById("new-subtask-accept").classList.add("d-none");

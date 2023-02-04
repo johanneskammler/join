@@ -96,8 +96,10 @@ header {
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: calc(100vh - 97.3px);
+   /* height: calc(100vh - 97.3px); */
     gap: 16px;
+    height: 100vh;
+
 }
 
 
