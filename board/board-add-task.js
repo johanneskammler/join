@@ -11,8 +11,8 @@ setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 
 async function addToTasks() {
   let title = document.getElementById("title-input");
-  let date = document.getElementById("select-date");
   let category = document.getElementById("select-category");
+  let date = document.getElementById("select-date");
   let description = document.getElementById("description-input");
 
   let task = {
@@ -39,9 +39,36 @@ async function addToTasks() {
   resetImportanceButtons();
 
   await backend.setItem("tasks", JSON.stringify(tasks));
-
+  tasks = [];
   closeAddTask();
   setTasks();
+  activateDragAndDrop();
+}
+
+async function checkIfEmpty() {
+  let title = document.getElementById("title-input");
+  let description = document.getElementById("description-input");
+  let category = document.getElementById("select-category"); // .innerHTML.includes('Select')
+  let date = document.getElementById("select-date"); // value
+  let contacts = selectedContacts; // length
+  let buttonUrgent = document.getElementById("importance-button1-colored"); // classList
+  let buttonMedium = document.getElementById("importance-button2-colored");
+  let buttonLow = document.getElementById("importance-button3-colored");
+  let result = "";
+  if (
+    !(
+      title.value == result ||
+      description.value == result ||
+      category.innerHTML.includes("Select") ||
+      date.value == result ||
+      contacts.length == result ||
+      buttonUrgent.classList.contains("d-none") ||
+      buttonMedium.classList.contains("d-none") ||
+      buttonLow.classList.contains("d-none")
+    )
+  ) {
+    await addToTasks();
+  }
 }
 
 function resetAddedButton() {
