@@ -191,14 +191,14 @@ function createNewSubtask() {
 function addSubtask() {
   let newSubtask = document.getElementById("add-subtask").value;
 
-  if (newSubtask == "") {
-    let inputField = document.getElementsByName("add-subtask")[0];
-    inputField.placeholder = "ERROR PLEASE FILL THE FIELD !";
-    inputField.placeholder.style = "color: red;";
-    // inputField.style = "color: red;";
-  } else {
+  // if (newSubtask == "") {
+  //   let inputField = document.getElementsByName("add-subtask")[0];
+  //   inputField.placeholder = "ERROR PLEASE FILL THE FIELD !";
+  //   inputField.placeholder.style = "color: red;";
+  //   // inputField.style = "color: red;";
+  // } else {
     subtasks.push(newSubtask);
-  }
+  // }
   document.getElementById("add-subtask").value = "";
   document.getElementById("plus-icon").classList.remove("d-none");
   document.getElementById("new-subtask-accept").classList.add("d-none");
@@ -209,12 +209,12 @@ function subtaskReturn() {
   return false;
 }
 
-function checkSubInp() {
-  let inp = document.getElementById("add-subtask");
-  if (inp.value.length > 0) {
-    document.getElementsByName("add-subtask")[0].placeholder = "Add new subtask";
-  }
-}
+// function checkSubInp() {
+//   let inp = document.getElementById("add-subtask");
+//   if (inp.value.length > 0) {
+//     document.getElementsByName("add-subtask")[0].placeholder = "Add new subtask";
+//   }
+// }
 
 function backToSubtasks() {
   document.getElementById("plus-icon").classList.remove("d-none");
