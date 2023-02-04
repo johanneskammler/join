@@ -46,34 +46,56 @@ async function addToTasks() {
 }
 
 async function checkIfAddTaskIsEmpty() {
+  if (allFieldsFilled()) {
+    document.getElementById('submit-btn').classList.remove('opacity');
+    await addToTasks();
+  }
+}
+
+function allFieldsFilled() {
   let title = document.getElementById("title-input");
   let description = document.getElementById("description-input");
   let category = document.getElementById("select-category"); // .innerHTML.includes('Select')
   let date = document.getElementById("select-date"); // value
   let contacts = selectedContacts; // length
-  let buttonUrgent = document.getElementById("importance-button1-colored"); // classList
-  let buttonMedium = document.getElementById("importance-button2-colored");
-  let buttonLow = document.getElementById("importance-button3-colored");
+  // let buttonUrgent = document.getElementById("importance-button1-colored"); // classList
+  // let buttonMedium = document.getElementById("importance-button2-colored");
+  // let buttonLow = document.getElementById("importance-button3-colored");
   let result = '';
-  
+  let bool = true;
+
   if (
-    !(
-      title.value == result ||
+      !(title.value == result ||
       description.value == result ||
       category.innerHTML.includes("Select") ||
       date.value == result ||
       contacts.length == 0 ||
-      buttonUrgent.classList.contains("d-none") ||
-      buttonMedium.classList.contains("d-none") ||
-      buttonLow.classList.contains("d-none")
-    )
-  ) {
-    await addToTasks();
+      buttonImportanceCheck()
+  )){
+    return bool;
   }
 }
 
+function buttonImportanceCheck() {
+  let buttonUrgent = document.getElementById("importance-button1-colored"); // classList
+  let buttonMedium = document.getElementById("importance-button2-colored");
+  let buttonLow = document.getElementById("importance-button3-colored");
+
+  return (!(buttonUrgent.classList.contains("d-none") || buttonMedium.classList.contains("d-none") || buttonLow.classList.contains("d-none")))
+
+  // buttonUrgent.classList.contains("d-none") ||
+  // buttonMedium.classList.contains("d-none") ||
+  // buttonLow.classList.contains("d-none")
+}
+
 function resetAddedButton() {
-  document.getElementById("task-added-to-board").classList.add("d-none");
+  if (allFieldsFilled()) {
+    document.getElementById("task-added-to-board").classList.add("d-none");
+  }
+}
+
+function startFunction() {
+  setTimeout(resetAddedButton, 300);
 }
 
 function resetTasksInputs(
@@ -225,7 +247,7 @@ function addSubtask() {
   //   inputField.placeholder.style = "color: red;";
   //   // inputField.style = "color: red;";
   // } else {
-    subtasks.push(newSubtask);
+  subtasks.push(newSubtask);
   // }
   document.getElementById("add-subtask").value = "";
   document.getElementById("plus-icon").classList.remove("d-none");

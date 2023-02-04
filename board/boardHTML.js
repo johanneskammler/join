@@ -61,13 +61,13 @@ function renderAddTaskHTML() {
   <div class="add-task-content-overlay">
     <div class="add-tasks-board-head" id="add-board">
       <h1 class="add-title">Add Task</h1>
-      <button id="submit-btn" class="add-card btn-create" onclick="checkIfAddTaskIsEmpty()">Creat Task <img src="img-board/checkmark.png"></button>
+      <button id="submit-btn" class="add-card btn-create opacity" onclick="checkIfAddTaskIsEmpty()">Creat Task <img src="img-board/checkmark.png"></button>
       <div class="close-add-task-board" onclick="closeAddTask()">
         <img class="close-img" src="img-board/line.png">
         <img src="img-board/line.png">
       </div>
     </div>
-    <input type="text" placeholder="Enter a title" id="title-input" class="title-input" required />
+    <input onkeyup="startFunction()" type="text" placeholder="Enter a title" id="title-input" class="title-input" required />
 
     <div class="contacts-box">
     <div style="position: relative">
@@ -89,7 +89,7 @@ function renderAddTaskHTML() {
             <label class="control control-checkbox">
               <div class="contacts-list-elem-box">
                 <span class="rendered-contact-name">You</span>
-                <input type="checkbox" />
+                <input type="checkbox" onmouseup="startFunction()"/>
                 <div class="control-indicator"></div>
               </div>
             </label>
@@ -106,6 +106,7 @@ function renderAddTaskHTML() {
   <div class="date-box">
   <span class="due-date-text">Due date</span>
   <input
+    onkeyup="startFunction()"
     type="date"
     placeholder="dd/mm/yyyy"
     id="select-date"
@@ -132,6 +133,7 @@ function renderAddTaskHTML() {
       id="drop-down-arrow-categories"
     />
     <input
+      onkeyup="startFunction()"
       type="text"
       placeholder="New category name"
       id="new-category-input"
@@ -274,6 +276,7 @@ function renderAddTaskHTML() {
 <div class="description-box">
 <span class="description-text">Description</span>
 <textarea
+  onkeyup="startFunction()"
   name="description"
   id="description-input"
   class="description-input"
@@ -286,7 +289,7 @@ function renderAddTaskHTML() {
 
 <div class="subtask-box">
 <div style="position: relative">
-  <input onkeyup="createNewSubtask()"
+  <input onkeyup="createNewSubtask(); startFunction()"
     type="text"
     placeholder="Add new subtask"
     class="add-subtask"
