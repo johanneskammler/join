@@ -211,7 +211,7 @@ function renderAddTaskHTML() {
 </div>
 </div>
 
-<div class="importance-buttons">
+<div class="importance-buttons" onclick="allFieldsFilled()">
 <button
   onclick="fillImportanceButton1()"
   class="importance-button1"
