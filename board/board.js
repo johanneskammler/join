@@ -36,7 +36,7 @@ async function init() {
   draggableTrue();
   setTimeout(activateDragAndDrop, 300); /* setCards(); */
   await getMaps();
-
+  hoverBoardHtml();
   generateCards();
   checkIfEmpty();
 
@@ -48,6 +48,9 @@ function openPopup(id) {
   popup();
 }
 
+function hoverBoardHtml() {
+  document.getElementById("board-html").classList.add("board_html");
+}
 /**
  * Remove the display none from the div's and show the popup
  * scroll to the top for good view (Layout)
@@ -220,13 +223,11 @@ async function setTasks() {
         subtask: key["subtasks"],
         subtaskStatus: "0",
         title: key["title"],
+        progressStatus: key[0],
       });
 
       await saveMaps();
       await backend.deleteItem("tasks");
-
-      /*       cardContent(section, idCounter);
-      renderContacts(section, idCounter); */
       subtask = todosMap.get(`${idCounter}`)["substack"];
       currentId = idCounter;
       idCounter++;
@@ -293,13 +294,13 @@ function setCards(section) {
 
 function cardContent(section, id) {
   if (section === "todo") {
-    contentTodo(section, id);
+    contentTodo(section, id, todosMap);
   } else if (section === "progress") {
-    contentProgress(section, id);
+    contentTodo(section, id, progressesMap);
   } else if (section === "feedback") {
-    contentFeedback(section, id);
+    contentTodo(section, id, feedbacksMap);
   } else if (section === "done") {
-    contentDone(section, id);
+    contenTodo(section, id, donesMap);
   }
 }
 
@@ -347,16 +348,35 @@ function contentProgress(section, id) {
   );
 }
 
-function contentTodo(section, id) {
-  document.getElementById(`${section}-board`).innerHTML += setCardHTML(
-    todosMap.get(`${id}`)["category"],
-    todosMap.get(`${id}`)["categorycolor"],
-    todosMap.get(`${id}`)["title"],
-    todosMap.get(`${id}`)["description"],
-    todosMap.get(`${id}`)["totalSubtasks"],
-    todosMap.get(`${id}`)["progressStatus"],
-    id
-  );
+function contentTodo(section, id, map) {
+  let mapCategory = map.get(`${id}`)["category"];
+  let mapCatColor = map.get(`${id}`)["categorycolor"];
+  let mapTitle = map.get(`${id}`)["title"];
+  let mapDescription = map.get(`${id}`)["description"];
+  let totalSub = map.get(`${id}`)["subtask"];
+  if (totalSub == undefined) {
+    document.getElementById(`${section}-board`).innerHTML += setCardHTML(
+      mapCategory,
+      mapCatColor,
+      mapTitle,
+      mapDescription,
+      undefined,
+      undefined,
+      id
+    );
+  } else {
+    totalSub = map.get(`${id}`)["subtask"].length;
+    let progressStatus = map.get(`${id}`)["subtaskStatus"];
+    document.getElementById(`${section}-board`).innerHTML += setCardHTML(
+      mapCategory,
+      mapCatColor,
+      mapTitle,
+      mapDescription,
+      totalSub,
+      progressStatus,
+      id
+    );
+  }
 }
 
 function checkSubtasks(id, map) {
@@ -647,10 +667,13 @@ function renderSubtasksPopup(id, section) {
 }
 
 function edit(id) {
+  let popTop = document.getElementById("popup_card");
   let currentCard = todosMap.get(`${id}`);
   let title = currentCard["title"];
   let description = currentCard["description"];
   let name = document.getElementsByClassName("fullName");
+
+  popTop.style = "top: 20px !important;";
   for (let i = 0; i < name.length; i++) {
     const element = name[i];
     element.classList.add("d-none");
@@ -883,7 +906,7 @@ function searchMaps(map, input) {
 function searchInValue(value, key, input) {
   for (let i = 0; i < mapsValue.length; i++) {
     let values = value[mapsValue[i]];
-    if (values == "" || values === []) {
+    if (values == "" || values === [] || values == undefined) {
       continue;
     }
     if (
@@ -902,14 +925,7 @@ function searchInValue(value, key, input) {
         checkIfIncludes(element, key, input);
       }
     } else if (mapsValue[i] === "description" || mapsValue[i] === "title") {
-      let splitted = values.split(" ");
-      if (splitted.length === 1) {
-        checkIfIncludes(values, key, input);
-      }
-      for (let i = 0; i < splitted.length; i++) {
-        let element = splitted[i];
-        checkIfIncludes(element, key, input);
-      }
+      checkIfIncludes(values, key, input);
     } else {
       checkIfNumberIncludes(values, key, input);
       checkIfIncludes(values, key, input);
@@ -918,16 +934,14 @@ function searchInValue(value, key, input) {
 }
 
 function checkIfIncludes(values, key, input) {
-  let firstLetter;
   if (!Number.isInteger(values)) {
     values = values.toLowerCase();
-    firstLetter = values.slice(0, 1);
-    outputSerach(values, key, input, firstLetter);
+    outputSerach(values, key, input);
   }
 }
 
-function outputSerach(values, key, input, firstLetter) {
-  if (firstLetter.includes(input) && values.includes(input)) {
+function outputSerach(values, key, input) {
+  if (values.includes(input)) {
     highlightText(input, key);
     console.log(values);
     for (let i = idCounter - 1; i > -1; i--) {
@@ -940,8 +954,6 @@ function outputSerach(values, key, input, firstLetter) {
 }
 
 function outputNumber(values, key, input) {
-  let firstNumber = getFirstNumber(values);
-
   if (values.includes(input) && firstNumber.includes(input)) {
     highlightText(input, key);
     for (let i = idCounter - 1; i > -1; i--) {
@@ -952,11 +964,6 @@ function outputNumber(values, key, input) {
     shine.classList.remove("d-none");
     console.log("number/numbers: " + values);
   }
-}
-
-function getFirstNumber(values) {
-  let firstNumberAsString = values.slice(0, 1);
-  return firstNumberAsString;
 }
 
 // wenn mapsValue[3] ist kommt eine zahl die in der if abfrage zeile 782 für einen Fehler sorgt

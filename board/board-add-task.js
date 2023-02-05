@@ -6,7 +6,7 @@ let selectedSubtasks = [];
 let newCategories = [];
 let categoryName;
 let categoryColor;
-
+console.log(subtasks);
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 
 async function addToTasks() {
@@ -301,64 +301,45 @@ function addSubtaskToTask(i) {
   }
 }
 
-function fillImportanceButton1() {
-  importance = "urgent";
-  document.getElementById("importance-button1").style = "display: none;";
-  document.getElementById("importance-button1-colored").style =
-    "display: flex; cursor: pointer;";
-  document.getElementById("importance-button2").style = "display: flex;";
-  document.getElementById("importance-button2-colored").style =
-    "display: none;";
-  document.getElementById("importance-button3").style = "display: flex;";
-  document.getElementById("importance-button3-colored").style =
-    "display: none;";
+function fillImportanceButton(nr) {
+  let pushed = document.getElementById(`importance-button${nr}`);
+  let pushedColored = document.getElementById(`importance-button${nr}-colored`);
+  pushed.classList.toggle("d-none");
+  pushedColored.classList.toggle("d-none");
+
+  if (nr === 1) {
+    toggleBtn2();
+    toggleBtn3();
+  } else if (nr === 2) {
+    toggleBtn3();
+    toggleBtn1();
+  } else {
+    toggleBtn2();
+    toggleBtn1();
+  }
 }
 
-function emptyImportanceButton1() {
-  importance = "";
-  document.getElementById("importance-button1").style = "display: flex;";
-  document.getElementById("importance-button1-colored").style =
-    "display: none;";
+function toggleBtn1() {
+  let btn1 = document.getElementById("importance-button1");
+  let btn1Colored = document.getElementById("importance-button1-colored");
+  btn1.classList.remove("d-none");
+  btn1Colored.classList.add("d-none");
 }
 
-function fillImportanceButton2() {
-  importance = "medium";
-  document.getElementById("importance-button2").style = "display: none;";
-  document.getElementById("importance-button2-colored").style =
-    "display: flex; cursor: pointer;";
-  document.getElementById("importance-button1").style = "display: flex;";
-  document.getElementById("importance-button1-colored").style =
-    "display: none;";
-  document.getElementById("importance-button3").style = "display: flex;";
-  document.getElementById("importance-button3-colored").style =
-    "display: none;";
+function toggleBtn3() {
+  let btn3 = document.getElementById("importance-button3");
+  let btn3Colored = document.getElementById("importance-button3-colored");
+
+  btn3.classList.remove("d-none");
+  btn3Colored.classList.add("d-none");
 }
 
-function emptyImportanceButton2() {
-  importance = "";
-  document.getElementById("importance-button2").style = "display: flex;";
-  document.getElementById("importance-button2-colored").style =
-    "display: none;";
-}
+function toggleBtn2() {
+  let button2 = document.getElementById("importance-button2");
+  let btn2Colored = document.getElementById("importance-button2-colored");
 
-function fillImportanceButton3() {
-  importance = "low";
-  document.getElementById("importance-button3").style = "display: none;";
-  document.getElementById("importance-button3-colored").style =
-    "display: flex; cursor: pointer;";
-  document.getElementById("importance-button1").style = "display: flex;";
-  document.getElementById("importance-button1-colored").style =
-    "display: none;";
-  document.getElementById("importance-button2").style = "display: flex;";
-  document.getElementById("importance-button2-colored").style =
-    "display: none;";
-}
-
-function emptyImportanceButton3() {
-  importance = "";
-  document.getElementById("importance-button3").style = "display: flex;";
-  document.getElementById("importance-button3-colored").style =
-    "display: none;";
+  button2.classList.remove("d-none");
+  btn2Colored.classList.add("d-none");
 }
 
 function openContactsToSelect() {

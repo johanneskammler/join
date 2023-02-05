@@ -110,7 +110,7 @@ function renderAddTaskHTML() {
     
     type="date"
     placeholder="dd/mm/yyyy"
-    id="select-date"
+    id="select-date-popup"
     class="select-date"
     required
   />
@@ -214,7 +214,7 @@ function renderAddTaskHTML() {
 
 <div class="importance-buttons" onclick="allFieldsFilled()">
 <button
-  onclick="fillImportanceButton1()"
+  onclick="fillImportanceButton(1)"
   class="importance-button1"
   id="importance-button1"
   type="button"
@@ -223,10 +223,10 @@ function renderAddTaskHTML() {
   <img src="../add_task/img-add_task/urgent.png" />
 </button>
 <button
-  onclick="emptyImportanceButton1()"
-  class="importance-button1-colored"
+  onclick="fillImportanceButton(1)"
+  class="importance-button1-colored  d-none"
   id="importance-button1-colored"
-  style="display: none"
+  
   type="button"
 >
   <span>Urgent</span>
@@ -234,7 +234,7 @@ function renderAddTaskHTML() {
 </button>
 
 <button
-  onclick="fillImportanceButton2()"
+  onclick="fillImportanceButton(2)"
   class="importance-button2"
   id="importance-button2"
   type="button"
@@ -243,10 +243,10 @@ function renderAddTaskHTML() {
   <img src="../add_task/img-add_task/medium.png" />
 </button>
 <button
-  onclick="emptyImportanceButton2()"
-  class="importance-button2-colored"
+  onclick="fillImportanceButton(2)"
+  class="importance-button2-colored d-none"
   id="importance-button2-colored"
-  style="display: none"
+  
   type="button"
 >
   <span>Medium</span>
@@ -254,7 +254,7 @@ function renderAddTaskHTML() {
 </button>
 
 <button
-  onclick="fillImportanceButton3()"
+  onclick="fillImportanceButton(3)"
   class="importance-button3"
   id="importance-button3"
   type="button"
@@ -263,10 +263,9 @@ function renderAddTaskHTML() {
   <img src="../add_task/img-add_task/low.png" />
 </button>
 <button
-  onclick="emptyImportanceButton3()"
-  class="importance-button3-colored"
+  onclick="fillImportanceButton(3)"
+  class="importance-button3-colored d-none"
   id="importance-button3-colored"
-  style="display: none"
   type="button"
 >
   <span>Low</span>
@@ -282,7 +281,8 @@ function renderAddTaskHTML() {
   id="description-input"
   class="description-input"
   cols="30"
-  rows="10"
+  max-rows="10"
+  style="max-height: 70px"
   placeholder="Enter a description"
 ></textarea>
 <img src="../add_task/img-add_task/input_icon.png" />

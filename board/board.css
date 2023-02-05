@@ -288,6 +288,11 @@ body {
   z-index: 3;
 }
 
+.board_html {
+  background-color: #8080805c;
+  border-radius: 16px;
+}
+
 .popup-card {
   width: 520px;
   caret-color: transparent;
@@ -297,7 +302,7 @@ body {
   padding: 36px 25px 31px 39px;
   background: #ffffff;
   position: absolute;
-  top: 80px;
+  top: 105px;
   right: 34vw;
   z-index: 5;
   box-shadow: -14px 9px 34px rgb(0 0 0 / 16%);
@@ -564,9 +569,15 @@ body {
 textarea {
   resize: vertical;
   font-size: 21px;
+  caret-color: black;
+  max-height: 70px;
 }
 textarea::placeholder {
   color: rgba(0, 0, 0, 0.962);
+}
+
+.select-date {
+  caret-color: black;
 }
 
 h4 {
@@ -598,8 +609,11 @@ h4 {
 }
 
 .set-contact-popup {
-  height: 125px !important;
+  height: 176px !important;
   font-size: 16px !important;
+  position: absolute;
+  z-index: 20;
+  background-color: white;
 }
 
 .set-title {
