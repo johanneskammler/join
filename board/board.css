@@ -134,12 +134,13 @@ body {
 .progress-content,
 .await-feedback-content,
 .done-content {
+  height: auto;
   width: 17vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 58vh;
   padding-top: 11px;
+  padding-bottom: 190px;
 }
 
 .card {
