@@ -560,6 +560,7 @@ body {
   border-right: none;
   border-top: none;
   border-left: none;
+  caret-color: auto;
 }
 
 .popup-title-edit::placeholder {
@@ -662,6 +663,18 @@ h4 {
   border: none !important;
   border-radius: 10px !important;
   margin-bottom: 0 !important;
+}
+
+.button1-colored {
+  background-color: #ff3d0073 !important;
+}
+
+.button2-colored {
+  background: #ffa80082 !important;
+}
+
+.button3-colored {
+  background: #7ae22866 !important;
 }
 
 #error_sub {

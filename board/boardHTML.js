@@ -110,7 +110,7 @@ function renderAddTaskHTML() {
     
     type="date"
     placeholder="dd/mm/yyyy"
-    id="select-date-popup"
+    id="select-date-task"
     class="select-date"
     required
   />

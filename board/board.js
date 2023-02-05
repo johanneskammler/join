@@ -666,11 +666,25 @@ function renderSubtasksPopup(id, section) {
   task.innerHTML = `${section.get(`${id}`)["subtask"]}`;
 }
 
+function checkMap(id) {
+  let currentMap = new Map();
+  if (todosMap.has(`${id}`)) {
+    currentMap = new Map(todosMap);
+  } else if (progressesMap.has(`${id}`)) {
+    currentMap = new Map(progressesMap);
+  } else if (feedbacksMap.has(`${id}`)) {
+    currentMap = new Map(feedbacksMap);
+  } else {
+    currentMap = new Map(donesMap);
+  }
+  return currentMap;
+}
+
 function edit(id) {
+  let currentMap = new Map(checkMap(id));
   let popTop = document.getElementById("popup_card");
-  let currentCard = todosMap.get(`${id}`);
-  let title = currentCard["title"];
-  let description = currentCard["description"];
+  let title = currentMap.get(`${id}`)["title"];
+  let description = currentMap.get(`${id}`)["description"];
   let name = document.getElementsByClassName("fullName");
 
   popTop.style = "top: 20px !important;";
@@ -701,31 +715,31 @@ function edit(id) {
 
 function setPriority(importance, id, section) {
   /////////////////////////////////////////////////////////////////////////
-  if (importance === "urgent") {
+  if (importance === "Urgent") {
     priority.innerHTML = buttonURGENT();
-  } else if (importance === "medium") {
+  } else if (importance === "Medium") {
     priority.innerHTML = buttonMEDIUM();
-  } else if (importance === "low") {
+  } else if (importance === "Low") {
     priority.innerHTML = buttonLOW();
   }
 }
 
 function buttonURGENT() {
-  return `<button class="importance-popup" type="button">
+  return `<button class="importance-popup button1-colored" type="button">
             <span>Urgent</span>
             <img src="../add_task/img-add_task/urgent.png">
           </button>`;
 }
 
 function buttonMEDIUM() {
-  return `<button  class="importance-popup" type="button">
+  return `<button  class="importance-popup button2-colored" type="button">
             <span>Medium</span>
             <img src="../add_task/img-add_task/medium.png">
           </button>`;
 }
 
 function buttonLOW() {
-  return `<button  class="importance-popup" type="button">
+  return `<button  class="importance-popup button3-colored" type="button">
             <span>Low</span>
             <img src="../add_task/img-add_task/low.png">
           </button>`;

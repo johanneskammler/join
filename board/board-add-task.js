@@ -1,18 +1,18 @@
 let tasks = [];
 let selectedContacts = [];
-let importance;
 let subtasks = [];
 let selectedSubtasks = [];
 let newCategories = [];
 let categoryName;
 let categoryColor;
+let importance;
 console.log(subtasks);
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 
 async function addToTasks() {
   let title = document.getElementById("title-input");
   let category = document.getElementById("select-category");
-  let date = document.getElementById("select-date");
+  let date = document.getElementById("select-date-task");
   let description = document.getElementById("description-input");
 
   let task = {
@@ -49,7 +49,7 @@ function allFieldsFilled() {
   let title = document.getElementById("title-input");
   let description = document.getElementById("description-input");
   let category = document.getElementById("select-category"); // .innerHTML.includes('Select')
-  let date = document.getElementById("select-date"); // value
+  let date = document.getElementById("select-date-task"); // value
   let contacts = selectedContacts; // length
 
   let result = "";
@@ -78,9 +78,9 @@ async function buttonImportanceCheck() {
   let result;
 
   if (
-    buttonUrgent.style.cssText == "display: none;" ||
-    buttonMedium.style.cssText == "display: none;" ||
-    buttonLow.style.cssText == "display: none;"
+    buttonUrgent.classList.contains("d-none") ||
+    buttonMedium.classList.contains("d-none") ||
+    buttonLow.classList.contains("d-none")
   ) {
     let btn = document.getElementById("submit-btn");
     btn.classList.remove("opacity");
@@ -301,9 +301,20 @@ function addSubtaskToTask(i) {
   }
 }
 
+function setImportanceBoard(pushed) {
+  if (pushed.innerHTML.includes("Ur")) {
+    importance = "Urgent";
+  } else if (pushed.innerHTML.includes("Me")) {
+    importance = "Medium";
+  } else if (pushed.innerHTML.includes("Lo")) {
+    importance = "Low";
+  }
+}
+
 function fillImportanceButton(nr) {
   let pushed = document.getElementById(`importance-button${nr}`);
   let pushedColored = document.getElementById(`importance-button${nr}-colored`);
+  setImportanceBoard(pushed);
   pushed.classList.toggle("d-none");
   pushedColored.classList.toggle("d-none");
 
