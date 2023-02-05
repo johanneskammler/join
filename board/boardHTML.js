@@ -82,6 +82,7 @@ function renderAddTaskHTML() {
           id="contacts-drop-down-arrow"
         />
         <div
+        onclick="allFieldsFilled()"
           id="contacts-drop-down"
           class="contacts-dropdown-content d-none"
         >

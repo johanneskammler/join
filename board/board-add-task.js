@@ -55,13 +55,19 @@ function allFieldsFilled() {
   let result = "";
 
   if (
-    title.value.length > 1 &&
-    description.value.length > 1 &&
+    title.value.length > 0 &&
+    description.value.length > 0 &&
     !category.innerHTML.includes("Select") &&
-    date.value.length > 1 &&
-    contacts.length == 1
+    date.value.length > 0 &&
+    contacts.length >= 1
   ) {
     buttonImportanceCheck();
+  } else {
+    let btn = document.getElementById("submit-btn");
+    btn.classList.add("opacity");
+    btn.onclick = function () {
+      console.log("");
+    };
   }
 }
 

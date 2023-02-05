@@ -11,7 +11,7 @@ let donesMap = new Map();
 donesMap.set("x", { value: "none" });
 let mapsList = ["todosMap", "progressesMap", "feedbacksMap", "donesMap"];
 let maps = [];
-let mapsValue = ["description", "subtask", "title"];
+let mapsValue = ["description", "title"];
 let comeFrom;
 let comeTo;
 
@@ -831,6 +831,10 @@ async function checkIfEmpty() {
   }
 }
 
+function takeSearch() {
+  setTimeout(serach, 200);
+}
+
 async function serach() {
   let input = document.getElementById("inp-board").value;
 
@@ -942,7 +946,7 @@ function outputNumber(values, key, input) {
     highlightText(input, key);
     for (let i = idCounter - 1; i > -1; i--) {
       let card = document.getElementById(`card${i}`);
-      card.classList.add("d-none");
+      card.classList.add("d-none"); /// push die treffer id in ein array und befreie sie von d none
     }
     let shine = document.getElementById(`card${key}`);
     shine.classList.remove("d-none");
