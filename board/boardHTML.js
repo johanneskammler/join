@@ -58,7 +58,7 @@ function renderAddTaskHTML() {
   <div class="header ">
     <img src="../templates/img/logo_blue.png" class="logo" />
   </div>
-  <div class="add-task-content-overlay" onkeyup="allFieldsFilled()" onmouseup="allFieldsFilled()" >
+  <div class="add-task-content-overlay" onkeyup="allFieldsFilled()"  >
     <div class="add-tasks-board-head" id="add-board">
       <h1 class="add-title">Add Task</h1>
       <button id="submit-btn" class="add-card btn-create opacity" >Creat Task <img src="img-board/checkmark.png"></button>

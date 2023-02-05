@@ -59,9 +59,15 @@ function allFieldsFilled() {
     description.value.length > 1 &&
     !category.innerHTML.includes("Select") &&
     date.value.length > 1 &&
-    contacts.length == 1
+    contacts.length >= 1
   ) {
     buttonImportanceCheck();
+  } else {
+    let btn = document.getElementById("submit-btn");
+    btn.classList.add("opacity");
+    btn.onclick = function () {
+      console.log("Aufforderung alle Felder auszufüllen");
+    };
   }
 }
 
