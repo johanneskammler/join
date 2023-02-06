@@ -1,3 +1,14 @@
+async function init() {
+  await includeHTML();
+  hoverPrivacyHtml();
+}
+
+
+function hoverPrivacyHtml() {
+  document.getElementById("privacy-html").classList.add("privacy_html");
+}
+
+
 function goBackToLastPage() {
     window.history.back();
 }

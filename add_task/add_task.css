@@ -634,3 +634,8 @@ html {
     transform: translateY(0);
   }
 }
+
+.add_task_html {
+  background-color: #d2e3ff;
+  border-radius: 8px;
+}

@@ -7,8 +7,14 @@ async function init() {
     await downloadFromServer();
     await includeHTML();
     await renderContactList();
+    hoverContactsHtml();
 
 }
+
+
+function hoverContactsHtml() {
+    document.getElementById("contacts-html").classList.add("contacts_html");
+  }
 
 
 

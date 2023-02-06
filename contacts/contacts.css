@@ -395,3 +395,8 @@ form input::placeholder {
     z-index: 2;
     transition: all ease-in-out 125ms;
 }
+
+.contacts_html {
+    background-color: #d2e3ff;
+    border-radius: 8px;
+}

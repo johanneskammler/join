@@ -90,8 +90,13 @@ async function init() {
   await includeHTML();
   checkSize();
   renderContacts();
+  hoverAddTaskHtml();
   await downloadFromServer();
   tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
+}
+
+function hoverAddTaskHtml() {
+  document.getElementById("add-task-html").classList.add("add_task_html");
 }
 
 function checkSize() {
