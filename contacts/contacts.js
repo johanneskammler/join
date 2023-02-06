@@ -14,7 +14,7 @@ async function init() {
 
 function hoverContactsHtml() {
     document.getElementById("contacts-html").classList.add("contacts_html");
-  }
+}
 
 
 

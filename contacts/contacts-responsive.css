@@ -1,22 +1,6 @@
-@media (width <=1850px) {
-    .new-contact-btn {
-        left: 87%;
-    }
-    .contact-right {
-        /* width: 60vw; */
-    }
-}
-
-@media (width <=1600px) {
-    .new-contact-btn {
-        left: 85%;
-    }
-}
+@media (width <=1850px) {}
 
 @media (width <=1315px) {
-    .new-contact-btn {
-        left: 82%;
-    }
     .name-container {
         display: flex;
         flex-direction: column;
@@ -36,8 +20,6 @@
     }
     .contact-list-container {
         width: 360px;
-        overflow-y: scroll;
-        height: 829px;
     }
     .contact-right {
         position: absolute;
@@ -48,21 +30,13 @@
     }
 }
 
-@media (width <=1100px) {
-    .new-contact-btn {
-        left: 80%;
-    }
-}
+@media (width <=1100px) {}
 
 @media (width <=1024px) {
     .new-contact-btn {
         padding: 14px 6px;
         left: 77%;
         top: 82%;
-    }
-    .contact-list-inner-container {
-        /* position: absolute;
-        left: 0; */
     }
     .contact-list-container {
         margin-left: 0;
@@ -95,9 +69,6 @@
     }
     .name h1 {
         margin-left: 20px;
-    }
-    .new-contact-btn {
-        left: 76%;
     }
     .edit-contact {
         position: absolute;
