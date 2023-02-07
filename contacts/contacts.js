@@ -8,15 +8,12 @@ async function init() {
     await includeHTML();
     await renderContactList();
     hoverContactsHtml();
-
 }
 
 
 function hoverContactsHtml() {
     document.getElementById("contacts-html").classList.add("contacts_html");
 }
-
-
 
 
 function checkSize() {
@@ -27,8 +24,8 @@ function checkSize() {
     } else if (size > 1024) {
         enableSidebar();
     }
-
 }
+
 
 function sidebarTabled() {
     document.getElementById("sidebar").classList.remove("sidebar");
@@ -38,6 +35,7 @@ function sidebarTabled() {
     document.getElementById("header-name-resp").classList.remove("d-none");
 }
 
+
 function enableSidebar() {
     document.getElementById("sidebar").classList.add("sidebar");
     document.getElementById("sidebar").classList.remove("tablet-sidebar");
@@ -45,19 +43,15 @@ function enableSidebar() {
 
 // Contact JS
 
-
-
 async function createNewContact() {
     let name = document.getElementById('input-name');
     let mail = document.getElementById('input-mail');
     let mobil = document.getElementById('input-phone');
-
     let contact = {
         'name': name.value,
         'mail': mail.value,
         'mobil': mobil.value
     };
-
     contacts.push(contact);
     await backend.setItem("contacts", JSON.stringify(contacts));
     renderContactList();
@@ -65,36 +59,48 @@ async function createNewContact() {
 
 
 async function renderContactList() {
-    //   let url = '../contacts.json';
-    //   let response = await fetch(url);
-    //   let contact = await response.json();
     contacts = (await JSON.parse(backend.getItem("contact"))) || [];
+    for (let i = 0; i < contacts.length; i++) {
+        let element = contacts[i]['name'];
+        let name = [];
+        name = element.split(" ");
 
-    let name = [];
-for (let i = 0; i < contacts.length; i++) {
-    let element = contacts[i]['name'];
-    name = element.split(" ");
+        let firstLetter = name[0].split("")[0];
+        let secondLetter = (name[1] ? name[1].split("")[0] : "");
+        let firstLetters = firstLetter + secondLetter;
+        console.log(firstLetters);
+    }
 
-    let firstLetter = name[0].split("")[0];
-    let secondLetter = (name[1] ? name[1].split("")[0]: "");
-    let firstLetters = firstLetter + secondLetter;
-    console.log(firstLetters);
+    for (let i = 0; i < contacts.length; i++) {
+        const element = contacts[i];
+        let firstLetters = element['name'].match(/\b(\w)/g) || [];
+        let acronym = firstLetters.join('');
+        renderContactListHTML(element, acronym, i);
+        // getNewColor(i);
+        disableContactContainer();
+    }
 }
 
 
-
-for (let i = 0; i < contacts.length; i++) {
-    const element = contacts[i];
-    let firstLetters = element['name'].match(/\b(\w)/g) || [];
-    let acronym = firstLetters.join('');
-
-    renderContactListHTML(element, acronym, i);
-    // getNewColor(i);
-    disableContactContainer();
+function renderContactListHTML(element, acronym, i) {
+    let firstLetter = element['name'] ? element['name'][0] : '';
+    if (!firstLetter) {
+        console.error('First letter is undefined');
+        return;
+    }
+    let id = firstLetter.toLowerCase();
+    document.getElementById(id).innerHTML += `
+        <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+                <span class="contact-name">${element['name']}</span>
+                <span class="contact-email">${element['mail']}</span>
+            </div>
+        </div>
+    `;
 }
 
 
-}
 async function openContactDetail(i) {
     let url = '../contacts.json';
     let response = await fetch(url);
@@ -122,35 +128,35 @@ async function openContactDetail(i) {
 }
 
 
-  function addNewContact() {
+function addNewContact() {
     const addContactContainer = document.getElementById("add_contact_container");
     const blurScreen = document.getElementById("blur_screen");
-  
+
     if (addContactContainer.classList.contains("d-none")) {
-      addContactContainer.classList.remove("d-none");
-      blurScreen.classList.remove("d-none");
-  
-      gsap.from("#add_contact_container", {
-        width: 1200,
-        x: -1000,
-        duration: 0.55,
-        ease: "back.out(0.35)",
-      });
+        addContactContainer.classList.remove("d-none");
+        blurScreen.classList.remove("d-none");
+
+        gsap.from("#add_contact_container", {
+            width: 1200,
+            x: -1000,
+            duration: 0.55,
+            ease: "back.out(0.35)",
+        });
     } else {
-      addContactContainer.classList.add("d-none");
-      blurScreen.classList.add("d-none");
+        addContactContainer.classList.add("d-none");
+        blurScreen.classList.add("d-none");
     }
-  }
-  
-  function closeBlurScreen() {
+}
+
+function closeBlurScreen() {
     const addContactContainer = document.getElementById("add_contact_container");
     const blurScreen = document.getElementById("blur_screen");
-  
+
     addContactContainer.classList.add("d-none");
     blurScreen.classList.add("d-none");
-  }
-  
-  
+}
+
+
 function getNewColor(i) {
     var symbols, color;
     symbols = "0123456789ABCDEF";
@@ -306,309 +312,8 @@ function disableContactContainer() {
 }
 
 
-function renderContactListHTML(element, acronym, i) {
-    let firstLetter = element['name'][0];
-    let id = firstLetter.toLowerCase();
-    document.getElementById(id).innerHTML += `
-        <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
-            <div class="contact-info-container">
-                <span class="contact-name">${element['name']}</span>
-                <span class="contact-email">${element['mail']}</span>
-            </div>
-        </div>
-    `;
-}
 
 
 
-/* function renderContactListHTML(element, acronym, i) {
-    let firstLetter = element['name'][0];
 
-    if (firstLetter == 'A') {
-        document.getElementById('a').innerHTML += `
-            <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
-                <div class="contact-info-container">
-                    <span class="contact-name">${element['name']}</span>
-                    <span class="contact-email">${element['mail']}</span>
-                </div>
-            </div>
-            `;
-    }
-    if (firstLetter == 'B') {
-        document.getElementById('b').innerHTML += `
-            <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
-            <div class="contact-info-container">
-            <span class="contact-name">${element['name']}</span>
-            <span class="contact-email">${element['mail']}</span>
-            </div>
-            </div>
-            `;
-    }
-    if (firstLetter == 'C') {
-        document.getElementById('c').innerHTML += `
-            <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
-            <div class="contact-info-container">
-            <span class="contact-name">${element['name']}</span>
-            <span class="contact-email">${element['mail']}</span>
-            </div>
-            </div>
-            `;
-    }
-    if (firstLetter == 'D') {
-        document.getElementById('d').innerHTML += `
-            <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
-            <div class="contact-info-container">
-            <span class="contact-name">${element['name']}</span>
-            <span class="contact-email">${element['mail']}</span>
-            </div>
-            </div>
-            `;
-    }
-    if (firstLetter == 'E') {
-        document.getElementById('e').innerHTML += `
-            <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
-            <div class="contact-info-container">
-            <span class="contact-name">${element['name']}</span>
-            <span class="contact-email">${element['mail']}</span>
-            </div>
-            </div>
-            `;
-    }
-    if (firstLetter == 'F') {
-        document.getElementById('f').innerHTML += `
-            <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
-            <div class="contact-info-container">
-            <span class="contact-name">${element['name']}</span>
-            <span class="contact-email">${element['mail']}</span>
-            </div>
-            </div>
-            `;
-    }
-    if (firstLetter == 'G') {
-        document.getElementById('g').innerHTML += `
-            <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
-            <div class="contact-info-container">
-            <span class="contact-name">${element['name']}</span>
-            <span class="contact-email">${element['mail']}</span>
-            </div>
-            </div>
-            `;
-    }
-    if (firstLetter == 'H') {
-        document.getElementById('h').innerHTML += `
-            <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
-            <div class="contact-info-container">
-            <span class="contact-name">${element['name']}</span>
-            <span class="contact-email">${element['mail']}</span>
-            </div>
-            </div>
-            `;
-    }
-    if (firstLetter == 'I') {
-        document.getElementById('i').innerHTML += `
-            <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
-            <div class="contact-info-container">
-            <span class="contact-name">${element['name']}</span>
-            <span class="contact-email">${element['mail']}</span>
-            </div>
-            </div>
-            `;
-    }
-    if (firstLetter == 'J') {
-        document.getElementById('j').innerHTML += `
-            <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
-            <div class="contact-info-container">
-            <span class="contact-name">${element['name']}</span>
-            <span class="contact-email">${element['mail']}</span>
-            </div>
-            </div>
-            `;
-    }
-    if (firstLetter == 'K') {
-        document.getElementById('k').innerHTML += `
-            <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
-            <div class="contact-info-container">
-            <span class="contact-name">${element['name']}</span>
-            <span class="contact-email">${element['mail']}</span>
-            </div>
-            </div>
-            `;
-    }
-    if (firstLetter == 'L') {
-        document.getElementById('l').innerHTML += `
-            <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
-            <div class="contact-info-container">
-            <span class="contact-name">${element['name']}</span>
-            <span class="contact-email">${element['mail']}</span>
-            </div>
-            </div>
-            `;
-    }
-    if (firstLetter == 'M') {
-        document.getElementById('m').innerHTML += `
-            <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
-            <div class="contact-info-container">
-            <span class="contact-name">${element['name']}</span>
-            <span class="contact-email">${element['mail']}</span>
-            </div>
-            </div>
-            `;
-    }
-    if (firstLetter == 'N') {
-        document.getElementById('n').innerHTML += `
-            <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
-            <div class="contact-info-container">
-            <span class="contact-name">${element['name']}</span>
-            <span class="contact-email">${element['mail']}</span>
-            </div>
-            </div>
-            `;
-    }
-    if (firstLetter == 'O') {
-        document.getElementById('o').innerHTML += `
-            <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
-            <div class="contact-info-container">
-            <span class="contact-name">${element['name']}</span>
-            <span class="contact-email">${element['mail']}</span>
-            </div>
-            </div>
-            `;
-    }
-    if (firstLetter == 'P') {
-        document.getElementById('p').innerHTML += `
-            <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
-            <div class="contact-info-container">
-            <span class="contact-name">${element['name']}</span>
-            <span class="contact-email">${element['mail']}</span>
-            </div>
-            </div>
-            `;
-    }
-    if (firstLetter == 'Q') {
-        document.getElementById('q').innerHTML += `
-            <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
-            <div class="contact-info-container">
-            <span class="contact-name">${element['name']}</span>
-            <span class="contact-email">${element['mail']}</span>
-            </div>
-            </div>
-            `;
-    }
-    if (firstLetter == 'R') {
-        document.getElementById('r').innerHTML += `
-            <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
-            <div class="contact-info-container">
-            <span class="contact-name">${element['name']}</span>
-            <span class="contact-email">${element['mail']}</span>
-            </div>
-            </div>
-            `;
-    }
-    if (firstLetter == 'S') {
-        document.getElementById('s').innerHTML += `
-            <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
-            <div class="contact-info-container">
-            <span class="contact-name">${element['name']}</span>
-            <span class="contact-email">${element['mail']}</span>
-            </div>
-            </div>
-            `;
-    }
-    if (firstLetter == 'T') {
-        document.getElementById('t').innerHTML += `
-            <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
-            <div class="contact-info-container">
-            <span class="contact-name">${element['name']}</span>
-            <span class="contact-email">${element['mail']}</span>
-            </div>
-            </div>
-            `;
-    }
-    if (firstLetter == 'U') {
-        document.getElementById('u').innerHTML += `
-            <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
-            <div class="contact-info-container">
-            <span class="contact-name">${element['name']}</span>
-            <span class="contact-email">${element['mail']}</span>
-            </div>
-            </div>
-            `;
-    }
-    if (firstLetter == 'V') {
-        document.getElementById('v').innerHTML += `
-            <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
-            <div class="contact-info-container">
-            <span class="contact-name">${element['name']}</span>
-            <span class="contact-email">${element['mail']}</span>
-            </div>
-            </div>
-            `;
-    }
-    if (firstLetter == 'W') {
-        document.getElementById('w').innerHTML += `
-            <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
-            <div class="contact-info-container">
-            <span class="contact-name">${element['name']}</span>
-            <span class="contact-email">${element['mail']}</span>
-            </div>
-            </div>
-            `;
-    }
-    if (firstLetter == 'X') {
-        document.getElementById('x').innerHTML += `
-            <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
-            <div class="contact-info-container">
-            <span class="contact-name">${element['name']}</span>
-            <span class="contact-email">${element['mail']}</span>
-            </div>
-            </div>
-            `;
-    }
-    if (firstLetter == 'Y') {
-        document.getElementById('y').innerHTML += `
-            <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
-            <div class="contact-info-container">
-            <span class="contact-name">${element['name']}</span>
-            <span class="contact-email">${element['mail']}</span>
-            </div>
-            </div>
-            `;
-    }
-    if (firstLetter == 'Z') {
-        document.getElementById('z').innerHTML += `
-            <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
-            <div class="contact-info-container">
-            <span class="contact-name">${element['name']}</span>
-            <span class="contact-email">${element['mail']}</span>
-            </div>
-            </div>
-            `;
-    }
-} */
+
