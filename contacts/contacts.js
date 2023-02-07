@@ -1,5 +1,4 @@
 let contacts = [];
-
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 
 
@@ -103,9 +102,7 @@ function renderContactListHTML(element, acronym, i) {
 
 async function openContactDetail(i) {
     let url = '../contacts.json';
-    
-    let contacts = JSON.parse(backend.getItem("contacts")); 
-
+    let contacts = JSON.parse(backend.getItem("contacts"));
     let contact = contacts[i];
     let name = contact['name'];
     let email = contact['mail'];
@@ -118,7 +115,6 @@ async function openContactDetail(i) {
     document.getElementById("mail_right").innerHTML = email;
     document.getElementById("mobil_right").innerHTML = `+ ${phone}`;
     document.getElementById("circle_right").innerHTML = acronym;
-
     gsap.from("#contact_right", {
         x: 500,
         opacity: 0,
@@ -131,11 +127,9 @@ async function openContactDetail(i) {
 function addNewContact() {
     const addContactContainer = document.getElementById("add_contact_container");
     const blurScreen = document.getElementById("blur_screen");
-
     if (addContactContainer.classList.contains("d-none")) {
         addContactContainer.classList.remove("d-none");
         blurScreen.classList.remove("d-none");
-
         gsap.from("#add_contact_container", {
             width: 1200,
             x: -1000,
@@ -151,7 +145,6 @@ function addNewContact() {
 function closeBlurScreen() {
     const addContactContainer = document.getElementById("add_contact_container");
     const blurScreen = document.getElementById("blur_screen");
-
     addContactContainer.classList.add("d-none");
     blurScreen.classList.add("d-none");
 }
@@ -165,19 +158,20 @@ function openAddTask() {
     renderContactsAddTask();
     html.classList.toggle("hide-overflow-y");
     renderAddTask();
-  }
+}
 
 
-  function renderAddTask() {
+function renderAddTask() {
     document.getElementById("add_task").innerHTML = renderAddTaskHTML();
-  }
+}
 
 
-  function closeAddTask() {
+function closeAddTask() {
     document.getElementById("add-board").classList.remove("slide-left");
     document.getElementById("add-board").classList.add("slide-right");
     setTimeout(openAddTask, 350);
-  }
+}
+
 
 function getNewColor(i) {
     var symbols, color;
@@ -191,15 +185,12 @@ function getNewColor(i) {
 }
 
 
-
-
-
 function clickDialog(e) {
     e.stopPropagation();
 }
+
+
 //  Render HMTL
-
-
 function disableContactContainer() {
     if (document.getElementById('a').innerHTML < 1) {
         document.getElementById('a_container').classList.add('d-none');

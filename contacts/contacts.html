@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../add_task/add_task_responsive.css">
     <link rel="stylesheet" href="../board/add-task-animation.css">
     <link rel="stylesheet" href="../board/add-task-board.css">
+    <link rel="stylesheet" href="../contacts/add-contact-container.css">
     <link rel="shortcut icon" href="../login/img/logo_blue.png" type="image/x-icon">
     <script src="../help/help.js"></script>
     <script src="../smallest_backend_ever/mini-backend.js"></script>
@@ -34,14 +35,9 @@
 
 
     <div id="add_task" class="add-task-popup d-none">
-    
         <div class="test">
-        
-        
         </div>
         <div class="for-close" onclick="closeAddTask()"></div>  
-      
-      
         <div class="add-task-content slide-left" id="add-board">
         <div class="header ">
           <img src="../templates/img/logo_blue.png" class="logo">
@@ -264,11 +260,8 @@
       </div>
       </div>
       <div id="subtask-content" class="subtask-content"></div>
-      
-      
         </div>
       </div></div>
-
 
 
 
@@ -460,8 +453,8 @@
                         <span id="mobil_right"></span>
                     </div>
                 </div>
-                <div class="edit-contact">
-                    <img src="img/pencil.png" alt="">
+                <div  class="edit-contact">
+                    <img onclick="openEditOverlay()" src="img/pencil.png" alt="">
                     <p>Edit Contact</p>
                 </div>
             </div>
@@ -503,7 +496,6 @@
         </div>
 
     </div>
-
 
 </body>
 
