@@ -103,8 +103,8 @@ function renderContactListHTML(element, acronym, i) {
 
 async function openContactDetail(i) {
     let url = '../contacts.json';
-    let response = await fetch(url);
-    let contacts = await response.json();
+    
+    let contacts = JSON.parse(backend.getItem("contacts")); 
 
     let contact = contacts[i];
     let name = contact['name'];
