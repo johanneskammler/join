@@ -70,26 +70,28 @@ async function renderContactList() {
     contacts = (await JSON.parse(backend.getItem("contact"))) || [];
 
     let name = [];
-    for (let i = 0; i < contacts.length; i++) {
-        let element = contacts[i]['name'];
-        name = element.split(" ");
+for (let i = 0; i < contacts.length; i++) {
+    let element = contacts[i]['name'];
+    name = element.split(" ");
 
-        let firstLetter = name[0].split("");
-        let secondLetter = name[1].split("");
-        let firstLetters = firstLetter[0].toUpperCase() + secondLetter[0].toUpperCase();
-        console.log(firstLetters);
-    }
+    let firstLetter = name[0].split("")[0];
+    let secondLetter = (name[1] ? name[1].split("")[0]: "");
+    let firstLetters = firstLetter + secondLetter;
+    console.log(firstLetters);
+}
 
 
-    for (let i = 0; i < contacts.length; i++) {
-        const element = contacts[i];
-        let firstLetters = element['name'].match(/\b(\w)/g);
-        let acronym = firstLetters.join('');
 
-        renderContactListHTML(element, acronym, i);
-        // getNewColor(i);
-        disableContactContainer();
-    }
+for (let i = 0; i < contacts.length; i++) {
+    const element = contacts[i];
+    let firstLetters = element['name'].match(/\b(\w)/g) || [];
+    let acronym = firstLetters.join('');
+
+    renderContactListHTML(element, acronym, i);
+    // getNewColor(i);
+    disableContactContainer();
+}
+
 
 }
 async function openContactDetail(i) {
