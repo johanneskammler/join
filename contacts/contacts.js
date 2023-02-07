@@ -50,18 +50,19 @@ function enableSidebar() {
 async function createNewContact() {
     let name = document.getElementById('input-name');
     let mail = document.getElementById('input-mail');
-    let phone = document.getElementById('input-phone');
+    let mobil = document.getElementById('input-phone');
 
     let contact = {
         'name': name.value,
         'mail': mail.value,
-        'phone': phone.value
+        'mobil': mobil.value
     };
 
     contacts.push(contact);
-    await backend.setItem("contact", JSON.stringify(contacts));
+    await backend.setItem("contacts", JSON.stringify(contacts));
     renderContactList();
 }
+
 
 async function renderContactList() {
     //   let url = '../contacts.json';
