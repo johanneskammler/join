@@ -60,7 +60,6 @@
     }
     .contact-list-container {
         margin-left: 0;
-        width: 300pxvw;
     }
     .contact-right {
         position: absolute;
@@ -98,5 +97,42 @@
         position: absolute;
         left: 21%;
         top: 92%;
+    }
+}
+
+@media (width <=800px) {
+    .contact-list-container {
+        width: 100vw;
+        padding-top: 50px;
+        height: 90vh;
+    }
+    .contact-list-inner-container {
+        width: 90vw;
+    }
+    .underline {
+        width: 90vw;
+    }
+    .new-contact-btn {
+        right: 5%;
+        top: 11%;
+        font-size: 16px;
+    }
+    .btn-img {
+        width: 25px;
+        height: 22px;
+    }
+    #add_contact_container {
+        width: 100vw;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    .add-contact-header {
+        border-top-right-radius: 0;
+    }
+    .new-contact-btn-container {
+        padding-top: 50px;
+    }
+    .contact {
+        width: 70vw;
     }
 }
