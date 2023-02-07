@@ -10,9 +10,9 @@ body {
 .contact-list-container {
     display: flex;
     justify-content: center;
-    margin-left: 250px;
+    margin-left: 275px;
     margin-top: 100px;
-    width: 453px;
+    width: 20vw;
     height: 100vh;
     overflow-y: scroll;
     box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
@@ -61,13 +61,12 @@ body {
 
 .contact {
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     padding: 15px 25px;
     gap: 35px;
-    width: 328px;
+    width: 15vw;
     cursor: pointer;
-    transition: all 5m0ms ease-in-out;
+    transition: all 5ms ease-in-out;
 }
 
 .contact-info-container {
@@ -121,7 +120,7 @@ body {
 .contact-right {
     position: absolute;
     top: 100px;
-    left: 720px;
+    left: 740px;
     overflow: hidden;
 }
 
@@ -246,6 +245,8 @@ body {
 #add_contact_container {
     position: absolute;
     width: 580px;
+    background-color: white;
+    height: 100vh;
     box-shadow: 10px 9px 3px -7px rgba(0, 0, 0, 0.15);
     -webkit-box-shadow: 10px 9px 3px -7px rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 10px 9px 3px -7px rgba(0, 0, 0, 0.15);
@@ -298,17 +299,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 120px;
-    height: 120px;
-    margin-top: 43px;
+    width: 160px;
+    height: 160px;
+    margin-top: 100px;
     border-radius: 100%;
     background-color: #D1D1D1;
-    margin-bottom: 35px;
 }
 
 form {
     display: flex;
     flex-direction: column;
+    margin-top: 100px;
 }
 
 form input {
@@ -340,11 +341,10 @@ form input::placeholder {
 }
 
 .new-contact-btn-container {
-    padding-top: 55px;
+    padding-top: 150px;
     background-color: white;
     display: flex;
     justify-content: center;
-    border-bottom-right-radius: 30px;
 }
 
 .add-contact-btn-left {

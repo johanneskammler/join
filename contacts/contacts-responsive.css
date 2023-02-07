@@ -1,14 +1,35 @@
-@media (width <=1850px) {}
+@media (width <=1900px) {
+    .circle {
+        margin-left: 0;
+    }
+}
 
-@media (width <=1315px) {
+@media (width <=1700px) {
+    .contact-list-container {
+        width: 25vw;
+    }
+    .contact {
+        width: 18vw;
+    }
+    .contact-right {
+        left: 45vw;
+    }
+}
+
+@media (width <=1350px) {
     .name-container {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        margin-left: 5px;
+        align-items: center;
     }
-    .circle-right {
-        margin-left: 190px;
+    .contact-list-container {
+        width: 27vw;
+    }
+    .contact-name {
+        font-size: 16px;
+    }
+    .contact-email {
+        font-size: 14px;
     }
 }
 
@@ -25,7 +46,6 @@
         position: absolute;
         top: 100px;
         left: 600px;
-        width: 1190px;
         overflow: hidden;
     }
 }
@@ -35,25 +55,29 @@
 @media (width <=1024px) {
     .new-contact-btn {
         padding: 14px 6px;
-        left: 77%;
-        top: 82%;
+        right: 5%;
+        top: 85%;
     }
     .contact-list-container {
         margin-left: 0;
-        width: 360px;
-        overflow-y: scroll;
-        height: 829px;
+        width: 300pxvw;
     }
     .contact-right {
         position: absolute;
         top: 100px;
         left: 350px;
-        width: 1190px;
         overflow: hidden;
     }
     .contact {
         padding: 15px 20px;
-        width: 310px;
+        width: 235px;
+    }
+    .circle {
+        margin-left: 0;
+    }
+    .contact-email {
+        font-size: 14px;
+        color: #4589FF;
     }
 }
 
