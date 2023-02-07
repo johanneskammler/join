@@ -157,6 +157,28 @@ function closeBlurScreen() {
 }
 
 
+function openAddTask() {
+    document.getElementById("add_task").classList.toggle("d-none");
+    window.scrollTo(0, 0);
+    let list = document.getElementsByTagName("html");
+    let html = list[0];
+    renderContactsAddTask();
+    html.classList.toggle("hide-overflow-y");
+    renderAddTask();
+  }
+
+
+  function renderAddTask() {
+    document.getElementById("add_task").innerHTML = renderAddTaskHTML();
+  }
+
+
+  function closeAddTask() {
+    document.getElementById("add-board").classList.remove("slide-left");
+    document.getElementById("add-board").classList.add("slide-right");
+    setTimeout(openAddTask, 350);
+  }
+
 function getNewColor(i) {
     var symbols, color;
     symbols = "0123456789ABCDEF";
@@ -167,6 +189,8 @@ function getNewColor(i) {
         document.getElementById(`circle_contacts${i}`).style.background = color;
     }
 }
+
+
 
 
 
