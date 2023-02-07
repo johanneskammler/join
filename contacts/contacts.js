@@ -120,20 +120,36 @@ async function openContactDetail(i) {
     });
 }
 
-function addNewContact() {
-    document.getElementById('add_contact_container').classList.remove('d-none');
-    document.getElementById('blur_screen').classList.remove('d-none');
 
-    // renderAddNewContactHTML();
-
-    gsap.from("#add_contact_container", {
+  function addNewContact() {
+    const addContactContainer = document.getElementById("add_contact_container");
+    const blurScreen = document.getElementById("blur_screen");
+  
+    if (addContactContainer.classList.contains("d-none")) {
+      addContactContainer.classList.remove("d-none");
+      blurScreen.classList.remove("d-none");
+  
+      gsap.from("#add_contact_container", {
         width: 1200,
         x: -1000,
         duration: 0.55,
-        ease: 'back.out(0.35)',
-    });
-}
-
+        ease: "back.out(0.35)",
+      });
+    } else {
+      addContactContainer.classList.add("d-none");
+      blurScreen.classList.add("d-none");
+    }
+  }
+  
+  function closeBlurScreen() {
+    const addContactContainer = document.getElementById("add_contact_container");
+    const blurScreen = document.getElementById("blur_screen");
+  
+    addContactContainer.classList.add("d-none");
+    blurScreen.classList.add("d-none");
+  }
+  
+  
 function getNewColor(i) {
     var symbols, color;
     symbols = "0123456789ABCDEF";
@@ -145,18 +161,7 @@ function getNewColor(i) {
     }
 }
 
-function closeBlurScreen() {
-    // gsap.to("#add_contact_container", {
-    //     x: -1000,
-    //     width: 900,
-    //     duration: 0.59,
-    //     ease: 'back.in(0.9)',
-    // });
 
-    document.getElementById('blur_screen').classList.add('d-none');
-    document.getElementById('blur_screen').style.opacity = '0';
-
-}
 
 function clickDialog(e) {
     e.stopPropagation();
@@ -299,7 +304,24 @@ function disableContactContainer() {
 
 }
 
+
 function renderContactListHTML(element, acronym, i) {
+    let firstLetter = element['name'][0];
+    let id = firstLetter.toLowerCase();
+    document.getElementById(id).innerHTML += `
+        <div class="contact" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${acronym}</div>
+            <div class="contact-info-container">
+                <span class="contact-name">${element['name']}</span>
+                <span class="contact-email">${element['mail']}</span>
+            </div>
+        </div>
+    `;
+}
+
+
+
+/* function renderContactListHTML(element, acronym, i) {
     let firstLetter = element['name'][0];
 
     if (firstLetter == 'A') {
@@ -588,4 +610,4 @@ function renderContactListHTML(element, acronym, i) {
             </div>
             `;
     }
-}
+} */
