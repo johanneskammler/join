@@ -14,6 +14,8 @@ let maps = [];
 let mapsValue = ["description", "title"];
 let comeFrom;
 let comeTo;
+let searchHits = [];
+let searchInputs = [];
 
 let todo = "todo";
 let feedback = "feedback";
@@ -304,48 +306,12 @@ function cardContent(section, id) {
   }
 }
 
-function contentDone(section, id) {
-  document.getElementById(`${section}-board`).innerHTML += setCardHTML(
-    donesMap.get(`${id}`)["category"],
-    donesMap.get(`${id}`)["categorycolor"],
-    donesMap.get(`${id}`)["title"],
-    donesMap.get(`${id}`)["description"],
-    donesMap.get(`${id}`)["totalSubtasks"],
-    donesMap.get(`${id}`)["progressStatus"],
-    id
-  );
-  let importance = donesMap.get(`${id}`)["importance"];
-}
 function setCardImportanc(id) {
   let footer = document.getElementById(`importance_footer${id}`);
   if (donesMap.get(`${id}`)["importance"] === "urgent") {
     footer.innerHTML = ` <img class="img-position" src="img-board/${importance}.png">
                         <img src="img-board/${importance}.png">`;
   }
-}
-
-function contentFeedback(section, id) {
-  document.getElementById(`${section}-board`).innerHTML += setCardHTML(
-    feedbacksMap.get(`${id}`)["category"],
-    feedbacksMap.get(`${id}`)["categorycolor"],
-    feedbacksMap.get(`${id}`)["title"],
-    feedbacksMap.get(`${id}`)["description"],
-    feedbacksMap.get(`${id}`)["totalSubtasks"],
-    feedbacksMap.get(`${id}`)["progressStatus"],
-    id
-  );
-}
-
-function contentProgress(section, id) {
-  document.getElementById(`${section}-board`).innerHTML += setCardHTML(
-    progressesMap.get(`${id}`)["category"],
-    progressesMap.get(`${id}`)["categorycolor"],
-    progressesMap.get(`${id}`)["title"],
-    progressesMap.get(`${id}`)["description"],
-    progressesMap.get(`${id}`)["totalSubtasks"],
-    progressesMap.get(`${id}`)["progressStatus"],
-    id
-  );
 }
 
 function contentTodo(section, id, map) {
@@ -403,15 +369,6 @@ function renderContacts(section, id) {
   } else if (section === "done") {
     renderContactsDone(id);
   }
-  /*   let colors = todosMap.get(`${id}`)["colors"].split(",");
-  let letters = todosMap.get(`${id}`)["letters"].split(",");
-  for (let i = 0; i < colors.length; i++) {
-    const element = colors[i];
-
-    document.getElementById(
-      `contacts_card${id}`
-    ).innerHTML += `<p class="invate font" style="background-color: ${element};">${letters[i]}</p>`;
-  } */
 }
 
 function renderContactsDone(id) {
@@ -514,61 +471,19 @@ function renderPopup(
   section,
   importance
 ) {
-  document.getElementById("popup_card").innerHTML = `
-    <div class="card-head relative" id="popup_head">
-      <div class="category-overlay" id="c-color" style="background-color: ${color}">
-        <p id="c_overlay${id}">${category}</p>
-      </div>
-      <div onclick="popup()" class="close-box">
-      
-        <img src="img-board/line.png" class="close-img">
-        <img src="img-board/line.png" >
-      </div>
-    </div>
-  
-    <div class="popup-card-title" id="popup-card-title">
-      <h1 class="popup-title font" id="popup_title">${title}</h1>
-    </div>
-
-    <div class="card-content-popup" id="card_content">
-      <p class="popup-text font" id="popup_description">
-        ${description}
-      </p>
-      
-      <div class="date-box-popup" id="date_box">
-        <p class="due-date" >Due date:</p>
-        <p id="date">16-01-2023</p>
-      </div>
-      
-      <div class="priority-box" id="edit_priority">
-        <p class="priority">Priority:</p>
-        <p id="priority"></p>
-      </div>
-      
-      <div class="progress-box-popup" id="progress_box_popup${id}">
-        <div class="progess-text">
-        
-        <h3 class="subtask">Subtask's:</h3><p class="tasks" id="task"></p>
-        </div>
-        <div class="progress-box-2">
-          <div class="progressbar">
-            <div class="progress" id="progress-nr0"></div>
-          </div>
-          <p class="done-p" id="done_status font">0/1 Done</p>
-        </div>
-      </div>
-      
-      <div class="assigned" id="assigned">
-        <p class="assigned-to" id="edit-assigned">Assigned To:</p>
-        <div id="assigned_contacts">
-          <div id="contact"></div>
-        </div>
-      </div>
-      
-      <div class="edit-box" id="edit_box">
-        <img src="img-board/edit-button.png" class="pointer" onclick="edit(${id})">
-      </div>
-    </div>`;
+  document.getElementById("popup_card").innerHTML = renderPopupHTML(
+    category,
+    color,
+    title,
+    description,
+    progressStatus,
+    id,
+    colors,
+    contactsSplit,
+    letters,
+    section,
+    importance
+  );
   renderPopupContacts(colors, contactsSplit, letters);
   setTimeout(setPriority, 50, importance, id, section);
   checkSubtasksPopup(section, id);
@@ -588,12 +503,6 @@ function checkTitlePopup(section, id) {
   }
 }
 
-/* function checkSubtasks(subtask, id) {
-  if (subtask === "") {
-    document.getElementById(`progress_box_popup${id}`).classList.add("d-none");
-  }
-} */
-
 function renderPopupContacts(colors, contactsSplit, letters) {
   let contact = document.getElementById(`assigned`);
   let card = document.getElementById("popup_card");
@@ -603,11 +512,7 @@ function renderPopupContacts(colors, contactsSplit, letters) {
   } else {
     for (let i = 0; i < contactsSplit.length; i++) {
       const element = contactsSplit[i];
-      contact.innerHTML += `
-        <div class="contactsDiv">
-          <p class="invate font" style="background-color: ${colors[i]};">${letters[i]}</p>
-          <p class="font fullName">${element}</p>
-        </div>`;
+      contact.innerHTML += renderPopupContactsHTML(colors, element, i, letters);
     }
   }
 }
@@ -625,6 +530,9 @@ function generatePopup(id) {
   let contactsSplit = section.get(`${id}`)["contacts"];
   let letters = section.get(`${id}`)["letters"].split(",");
 
+  if (typeof contactsSplit == "string") {
+    contactsSplit = contactsSplit.split(",");
+  }
   category = section.get(`${id}`)["category"];
   color = section.get(`${id}`)["categorycolor"];
   title = section.get(`${id}`)["title"];
@@ -692,7 +600,10 @@ function edit(id) {
     const element = name[i];
     element.classList.add("d-none");
   }
+  showEdit(title, description, id);
+}
 
+function showEdit(title, description, id) {
   document.getElementById(`c-color`).classList.add("d-none");
   document.getElementById(
     "popup_title"
@@ -709,12 +620,166 @@ function edit(id) {
   document.getElementById("contact").classList.add("flex-contact");
   document.getElementById(
     "edit_box"
-  ).innerHTML += `<div class="ok"><p class="ok-text">Done</p></div>`;
+  ).innerHTML += `<div class="ok" onclick="editDone(${id})"><p class="ok-text">Done</p></div>`;
   document.getElementById;
 }
 
+function editDone(id) {
+  let titleEdit = document.getElementById("popup_title_edit").value;
+  let descriptionEdit = document.getElementById("popup_description_edit").value;
+  let dateEdit = document.getElementById("select-date").value;
+  let contactsEdit = selectedContacts;
+  let button = checkPrioBtn();
+  let section = wichSection(id);
+
+  let category = section.get(`${id}`)["category"];
+  let categorycolor = section.get(`${id}`)["categorycolor"];
+  let colors = section.get(`${id}`)["colors"];
+  let letters = section.get(`${id}`)["letters"];
+  let subtask = section.get(`${id}`)["subtask"];
+  let subtaskStatus = section.get(`${id}`)["subtaskStatus"];
+  if (titleEdit.length == 0) {
+    titleEdit = section.get(`${id}`)["title"];
+  }
+  if (descriptionEdit.length == 0) {
+    descriptionEdit = section.get(`${id}`)["description"];
+  }
+  if (dateEdit.length == 0) {
+    dateEdit = section.get(`${id}`)["date"];
+  }
+  if (contactsEdit.length == 0 || contactsEdit[0] == "") {
+    contact = section.get(`${id}`)["contacts"];
+    contactsEdit = contact;
+  }
+  if (button == undefined) {
+    button = section.get(`${id}`)["importance"];
+  }
+
+  saveIn(
+    titleEdit,
+    descriptionEdit,
+    dateEdit,
+    contactsEdit,
+    button,
+    section,
+    category,
+    categorycolor,
+    colors,
+    letters,
+    subtask,
+    subtaskStatus,
+    id
+  );
+
+  /*   section.set(`${id}`, {
+    category: `${category}`,
+    categorycolor: `${categorycolor}`,
+    colors: `${colors}`,
+    contacts: `${contactsEdit}`,
+    date: `${dateEdit}`,
+    description: `${descriptionEdit}`,
+    importance: `${button}`,
+    letters: `${letters}`,
+    subtask: `${subtask}`,
+    subtaskStatus: `${subtaskStatus}`,
+    title: `${titleEdit}`,
+  }); */
+  generatePopup(id);
+}
+
+function saveIn(
+  titleEdit,
+  descriptionEdit,
+  dateEdit,
+  contactsEdit,
+  button,
+  section,
+  category,
+  categorycolor,
+  colors,
+  letters,
+  subtask,
+  subtaskStatus,
+  id
+) {
+  if (todosMap.has(`${id}`)) {
+    todosMap.set(`${id}`, {
+      category: `${category}`,
+      categorycolor: `${categorycolor}`,
+      colors: `${colors}`,
+      contacts: `${contactsEdit}`,
+      date: `${dateEdit}`,
+      description: `${descriptionEdit}`,
+      importance: `${button}`,
+      letters: `${letters}`,
+      subtask: `${subtask}`,
+      subtaskStatus: `${subtaskStatus}`,
+      title: `${titleEdit}`,
+    });
+  } else if (progressesMap.has(`${id}`)) {
+    progressesMap.set(`${id}`, {
+      category: `${category}`,
+      categorycolor: `${categorycolor}`,
+      colors: `${colors}`,
+      contacts: `${contactsEdit}`,
+      date: `${dateEdit}`,
+      description: `${descriptionEdit}`,
+      importance: `${button}`,
+      letters: `${letters}`,
+      subtask: `${subtask}`,
+      subtaskStatus: `${subtaskStatus}`,
+      title: `${titleEdit}`,
+    });
+  } else if (feedbacksMap.has(`${id}`)) {
+    feedbacksMap.set(`${id}`, {
+      category: `${category}`,
+      categorycolor: `${categorycolor}`,
+      colors: `${colors}`,
+      contacts: `${contactsEdit}`,
+      date: `${dateEdit}`,
+      description: `${descriptionEdit}`,
+      importance: `${button}`,
+      letters: `${letters}`,
+      subtask: `${subtask}`,
+      subtaskStatus: `${subtaskStatus}`,
+      title: `${titleEdit}`,
+    });
+  } else if (donesMap.has(`${id}`)) {
+    donesMap.set(`${id}`, {
+      category: `${category}`,
+      categorycolor: `${categorycolor}`,
+      colors: `${colors}`,
+      contacts: `${contactsEdit}`,
+      date: `${dateEdit}`,
+      description: `${descriptionEdit}`,
+      importance: `${button}`,
+      letters: `${letters}`,
+      subtask: `${subtask}`,
+      subtaskStatus: `${subtaskStatus}`,
+      title: `${titleEdit}`,
+    });
+  }
+}
+
+function checkPrioBtn() {
+  let urgent = document.getElementById("importance-button1-colored").style
+    .cssText;
+  let medium = document.getElementById("importance-button2-colored").style
+    .cssText;
+  let low = document.getElementById("importance-button3-colored").style.cssText;
+  let result;
+
+  if (urgent.includes("flex")) {
+    result = "urgent";
+  } else if (medium.includes("flex")) {
+    result = "medium";
+  } else if (low.includes("flex")) {
+    result = "low";
+  }
+  return result;
+}
+
 function setPriority(importance, id, section) {
-  /////////////////////////////////////////////////////////////////////////
   if (importance === "Urgent") {
     priority.innerHTML = buttonURGENT();
   } else if (importance === "Medium") {
@@ -724,31 +789,10 @@ function setPriority(importance, id, section) {
   }
 }
 
-function buttonURGENT() {
-  return `<button class="importance-popup button1-colored" type="button">
-            <span>Urgent</span>
-            <img src="../add_task/img-add_task/urgent.png">
-          </button>`;
-}
-
-function buttonMEDIUM() {
-  return `<button  class="importance-popup button2-colored" type="button">
-            <span>Medium</span>
-            <img src="../add_task/img-add_task/medium.png">
-          </button>`;
-}
-
-function buttonLOW() {
-  return `<button  class="importance-popup button3-colored" type="button">
-            <span>Low</span>
-            <img src="../add_task/img-add_task/low.png">
-          </button>`;
-}
-
 function checkCards() {
+  let id = draggedItem.id.slice(-1);
   let start = comeFrom.id.split("-")[0];
   let end = comeTo.childNodes[1].id.split("-")[0];
-  let id = draggedItem.id.slice(-1);
   if (start === "todo") {
     setFromTodo(end, id);
   } else if (start === "progress") {
@@ -872,7 +916,13 @@ function takeSearch() {
   setTimeout(serach, 200);
 }
 
+function emptySearchArrays() {
+  searchHits = [];
+  searchInputs = [];
+}
+
 async function serach() {
+  emptySearchArrays();
   let input = document.getElementById("inp-board").value;
 
   if (input === "") {
@@ -886,6 +936,7 @@ async function serach() {
       const map = maps[i];
       searchMaps(map, input);
     }
+    highlightAndDnone();
   }
 }
 
@@ -956,14 +1007,7 @@ function checkIfIncludes(values, key, input) {
 
 function outputSerach(values, key, input) {
   if (values.includes(input)) {
-    highlightText(input, key);
-    console.log(values);
-    for (let i = idCounter - 1; i > -1; i--) {
-      let card = document.getElementById(`card${i}`);
-      card.classList.add("d-none");
-    }
-    let shine = document.getElementById(`card${key}`);
-    shine.classList.remove("d-none");
+    PushInArray(values, key, input);
   }
 }
 
@@ -972,7 +1016,7 @@ function outputNumber(values, key, input) {
     highlightText(input, key);
     for (let i = idCounter - 1; i > -1; i--) {
       let card = document.getElementById(`card${i}`);
-      card.classList.add("d-none"); /// push die treffer id in ein array und befreie sie von d none
+      card.classList.add("d-none");
     }
     let shine = document.getElementById(`card${key}`);
     shine.classList.remove("d-none");
@@ -980,5 +1024,24 @@ function outputNumber(values, key, input) {
   }
 }
 
-// wenn mapsValue[3] ist kommt eine zahl die in der if abfrage zeile 782 für einen Fehler sorgt
-// Schreibe eine extra funktion die die zahlen als input und value überprüft
+function PushInArray(values, key, input) {
+  if (searchHits.indexOf(key) === -1) {
+    searchInputs.push(input);
+    searchHits.push(key);
+  }
+}
+
+function highlightAndDnone() {
+  for (let i = idCounter - 1; i > -1; i--) {
+    let card = document.getElementById(`card${i}`);
+    card.classList.add("d-none");
+  }
+
+  for (let j = 0; j < searchHits.length; j++) {
+    let idS = +searchHits[j];
+    let inpS = searchInputs[j];
+    let shine = document.getElementById(`card${idS}`);
+    shine.classList.remove("d-none");
+    highlightText(inpS, idS);
+  }
+}

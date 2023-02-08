@@ -151,6 +151,7 @@ body {
   padding: 16px 13px;
   border-radius: 25px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border: 0.1px solid hsl(240deg 7% 97%);
   cursor: pointer;
   margin-bottom: 16px;
   position: relative;
@@ -564,7 +565,7 @@ body {
 }
 
 .popup-title-edit::placeholder {
-  color: rgba(0, 0, 0, 0.962);
+  color: rgba(107, 107, 107, 0.962);
   opacity: 1;
 }
 
@@ -575,7 +576,7 @@ textarea {
   max-height: 70px;
 }
 textarea::placeholder {
-  color: rgba(0, 0, 0, 0.962);
+  color: rgba(107, 107, 107, 0.962);
 }
 
 .select-date {
@@ -644,6 +645,10 @@ h4 {
 
 .ok p {
   margin: 0;
+  margin: 0;
+  font-family: "Inter";
+  font-weight: 800;
+  color: #ffffffc2;
 }
 
 /* POPUP EDIR CLASSES END */
