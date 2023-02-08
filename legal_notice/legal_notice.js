@@ -1,5 +1,11 @@
 async function init() {
     await includeHTML();
+    hoverLegalNoticeHtml();
+}
+
+
+function hoverLegalNoticeHtml() {
+  document.getElementById("legal-notice-html").classList.add("legal_notice_html");
 }
 
 

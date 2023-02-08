@@ -254,10 +254,6 @@ body {
 }
 
 .sign-up button {
-  font-family: 'Open Sans' !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 112px;
   height: 48px;
   padding: 10px 16px;
@@ -454,7 +450,6 @@ input::placeholder {
 }
 
 .login-user {
-  cursor: pointer;
   width: 155px;
   height: 48px;
   border: none;
@@ -468,7 +463,6 @@ input::placeholder {
 }
 
 .login-guest {
-  cursor: pointer;
   display: flex;
   align-items: center;
   padding: 10px 35px;
@@ -609,10 +603,6 @@ input::placeholder {
 }
 
 .sign-up-no-animation button {
-  font-family: 'Open Sans' !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 112px;
   height: 48px;
   padding: 10px 16px;

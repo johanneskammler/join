@@ -1,0 +1,94 @@
+@media (width <=1200px) {
+    .sign-up-logo {
+        top: 28px;
+        left: 44px;
+    }
+}
+
+
+@media (width <=1024px) {
+    .sign-up-logo {
+        height: 100px;
+        width: 82px;
+        top: 22px;
+        left: 34px;
+    }
+}
+
+
+@media (width <=810px) {
+    .reset-box {
+        transform: scale(0.8);
+    }
+    .back-arrow {
+        left: 5%;
+        top: 5%;
+        height: 18px;
+    }
+    .login-screen-no-animation h1 {
+        padding: 0 72px;
+        font-size: 40px;
+    }
+}
+
+
+@media (width <=768px) {
+    .underline {
+        width: 88px;
+    }
+}
+
+
+@media (width <=500px) {
+    .reset-box {
+        width: 117vw !important;
+        height: 67vh !important;
+    }
+    .forgot-text {
+        font-size: 19px;
+        width: 85vw;
+    }
+    #new-password {
+        width: 75vw;
+    }
+    #confirm-password {
+        width: 75vw;
+    }
+}
+
+
+@media (width <=375px) {
+    .reset-box {
+        height: 83vh !important;
+        top: 60px;
+    }
+    .login-screen-no-animation h1 {
+        font-size: 30px;
+        line-height: 46px;
+    }
+    .sign-up-logo {
+        height: 75px;
+        width: 64px;
+        
+    }
+}
+
+
+@media (width <=310px) {
+    .reset-box {
+        height: 57vh !important;
+    }
+
+    .login-screen-no-animation h1 {
+        padding: 0;
+    }
+
+    .correct-btn {
+        margin-left: 24px !important;
+        width: 222px !important;
+    }
+
+    .login-btn {
+        font-size: 18px;
+    }
+}

@@ -41,3 +41,8 @@ p {
     cursor: pointer;
     margin-block-start: 46px;
 }
+
+.privacy_html {
+    background-color: #d2e3ff;
+    border-radius: 8px;
+}
