@@ -114,7 +114,9 @@ async function openContactDetail(i) {
     var bodyWidth = body.offsetWidth;
     if (bodyWidth < 800) {
         document.getElementById('contact_list_container').classList.add('d-none');
+        document.getElementById('edit_contact_pencil').classList.add('d-none');
         document.getElementById('backarrow').classList.remove('d-none');
+        document.getElementById('edit_contact').classList.remove('d-none');
         document.getElementById('new_contact_btn').classList.add('d-none');
         document.getElementById('contact_right').classList.remove('d-none');
         document.getElementById("name_right").innerHTML = name;
@@ -144,6 +146,8 @@ async function openContactDetail(i) {
 }
 
 function closeDetail() {
+    document.getElementById('edit_contact_pencil').classList.remove('d-none');
+    document.getElementById('edit_contact').classList.add('d-none');
     document.getElementById('contact_list_container').classList.remove('d-none');
     document.getElementById('new_contact_btn').classList.remove('d-none');
     document.getElementById('contact_right').classList.add('d-none');

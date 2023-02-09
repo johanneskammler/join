@@ -12,6 +12,12 @@ body {
     height: 100vh;
 }
 
+#edit_contact {
+    position: absolute;
+    right: 16vw;
+    bottom: 16vh;
+}
+
 .contact-list-container {
     display: flex;
     justify-content: center;
