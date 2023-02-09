@@ -112,7 +112,7 @@ async function openContactDetail(i) {
 
     var body = document.body;
     var bodyWidth = body.offsetWidth;
-    if (bodyWidth < 800) {
+    if (bodyWidth < 1280) {
         document.getElementById('contact_list_container').classList.add('d-none');
         document.getElementById('edit_contact_pencil').classList.add('d-none');
         document.getElementById('backarrow').classList.remove('d-none');
