@@ -24,14 +24,18 @@ function checkSize() {
 }
 
 function sidebarTabled() {
+
     document.getElementById("sidebar").classList.remove("sidebar");
     document.getElementById("sidebar").classList.add("tablet-sidebar");
     document.getElementById("help-section-btn").classList.add("d-none");
     // document.getElementById("create-btn-responsive").classList.remove("d-none");
+
+
     let response = document.getElementById("header-name-resp");
     if (!(response == null)) {
         response.classList.remove("d-none");
     }
+
 }
 
 function enableSidebar() {
@@ -107,7 +111,6 @@ async function openContactDetail(i) {
   let phone = contact["mobil"];
   let firstLetters = contact["name"].match(/\b(\w)/g);
   let acronym = firstLetters.join("");
-
 
     const body = document.body;
     const bodyWidth = body.offsetWidth;
