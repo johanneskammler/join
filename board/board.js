@@ -348,7 +348,7 @@ function contentTodo(section, id, map) {
 function checkSubtasks(id, map) {
   let currentMap = new Map(map);
   let progressId = document.getElementById(`progress_box${id}`);
-  if (currentMap.get(`${id}`)["subtask"]) {
+  if (currentMap.get(`${id}`)["subtask"] == "") {
     progressId.classList.add("d-none");
     addHeight(id);
   }
@@ -425,6 +425,9 @@ function renderContactsProgress(id) {
 function renderContactsTodo(id) {
   let contacts = todosMap.get(`${id}`)["contacts"];
   let element;
+  if (typeof contacts === "string") {
+    contacts = contacts.split(";");
+  }
 
   if (contacts.length === 0) {
     let contactsSection = document.getElementById(`contacts_card${id}`);
@@ -488,6 +491,8 @@ function renderPopup(
   setTimeout(setPriority, 50, importance, id, section);
   checkSubtasksPopup(section, id);
   checkTitlePopup(section, id);
+  saveMaps();
+  generateCards();
 }
 
 function checkSubtasksPopup(section, id) {
@@ -586,6 +591,19 @@ function checkMap(id) {
     currentMap = new Map(donesMap);
   }
   return currentMap;
+}
+
+function editContactsPopup() {
+  let contactsInPopup = [];
+  let i = 0;
+  while (a !== null) {
+    contactsInPopup.push(
+      document.getElementById(`contacts-checkbox-${i}`).value
+    );
+    console.log(a);
+    i++;
+    if (a == null) break;
+  } // have a list with contacts check if indexOf than id.checked sikis party
 }
 
 function edit(id) {
@@ -759,6 +777,12 @@ function saveIn(
       title: `${titleEdit}`,
     });
   }
+}
+
+function editContacts(id) {
+  let map = wichSection(id);
+  let contacts = map.get(`${id}`)["contacts"].split(",");
+  return contacts;
 }
 
 function checkPrioBtn() {

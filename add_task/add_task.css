@@ -166,6 +166,17 @@ html {
   border-radius: 3px;
 }
 
+.control-setup {
+  position: absolute;
+  top: 5px;
+  right: 0;
+  height: 16px;
+  width: 16px;
+  background: #ffffff;
+  border: 2px solid #4589ff;
+  border-radius: 3px;
+}
+
 .control-indicator-subtask {
   position: absolute;
   top: 5px;
@@ -177,20 +188,20 @@ html {
   border-radius: 3px;
 }
 
-.control input:checked~.control-indicator,
-.control input:checked~.control-indicator-subtask {
+.control input:checked ~ .control-indicator,
+.control input:checked ~ .control-indicator-subtask {
   background: white;
 }
 
-.control:hover input:not([disabled]):checked~.control-indicator,
-.control input:checked:focus~.control-indicator,
-.control:hover input:not([disabled]):checked~.control-indicator-subtask,
-.control input:checked:focus~.control-indicator-subtask {
+.control:hover input:not([disabled]):checked ~ .control-indicator,
+.control input:checked:focus ~ .control-indicator,
+.control:hover input:not([disabled]):checked ~ .control-indicator-subtask,
+.control input:checked:focus ~ .control-indicator-subtask {
   background: white;
 }
 
-.control input:disabled~.control-indicator,
-.control input:disabled~.control-indicator-subtask {
+.control input:disabled ~ .control-indicator,
+.control input:disabled ~ .control-indicator-subtask {
   background: #e6e6e6;
   opacity: 7;
   pointer-events: none;
@@ -199,14 +210,15 @@ html {
 .control-indicator:after,
 .control-indicator-subtask:after {
   box-sizing: unset;
-  content: "";
+  content: "  ";
   position: absolute;
   display: none;
 }
 
-.control input:checked~.control-indicator:after,
-.control input:checked~.control-indicator-subtask:after {
+.control input:checked ~ .control-indicator:after,
+.control input:checked ~ .control-indicator-subtask:after {
   display: block;
+  content: "";
 }
 
 .control-checkbox .control-indicator:after,
@@ -220,8 +232,8 @@ html {
   transform: rotate(45deg);
 }
 
-.control-checkbox input:disabled~.control-indicator:after,
-.control-checkbox input:disabled~.control-indicator-subtask:after {
+.control-checkbox input:disabled ~ .control-indicator:after,
+.control-checkbox input:disabled ~ .control-indicator-subtask:after {
   border-color: #7b7b7b;
 }
 
@@ -607,7 +619,8 @@ html {
 }
 
 .slide-top {
-  -webkit-animation: slide-top 1.5s cubic-bezier(0.23, 1, 0.32, 1) 2 alternate both;
+  -webkit-animation: slide-top 1.5s cubic-bezier(0.23, 1, 0.32, 1) 2 alternate
+    both;
   animation: slide-top 1.5s cubic-bezier(0.23, 1, 0.32, 1) 2 alternate both;
 }
 

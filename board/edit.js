@@ -29,9 +29,9 @@ function generateHTMLcontacts(element, i) {
     <div class="contacts-list-elem">
       <label class="control control-checkbox" id="selected-contact">
         <div class="contacts-list-elem-box">
-          <span class="rendered-contact-name">${element["name"]}</span>
+          <span id="name${i}" class="rendered-contact-name">${element["name"]}</span>
           <input onclick="addContactToTask(${i})" id="contacts-checkbox-${i}" type="checkbox" value="${element["name"]}" />
-          <div id="control-indicator" class="control-indicator"></div>
+          <div id="control-indicator${i}" class="control-indicator control-setup"></div>
         </div>
       </label>
     </div>
