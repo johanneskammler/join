@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="../templates/header_sidebar.css">
-    <link rel="stylesheet" href="../fonts/fonts.css">
-    <link rel="stylesheet" href="contacts.css">
-    <link rel="stylesheet" href="../templates/header-sidebar-responsive.css">
-    <link rel="stylesheet" href="contacts-responsive.css">
-    <link rel="stylesheet" href="../add_task/add_task.css">
-    <link rel="stylesheet" href="../add_task/add_task_responsive.css">
-    <link rel="stylesheet" href="../board/add-task-animation.css">
-    <link rel="stylesheet" href="../board/add-task-board.css">
-    <link rel="stylesheet" href="../contacts/add-contact-container.css">
-    <link rel="shortcut icon" href="../login/img/logo_blue.png" type="image/x-icon">
+    <link rel="stylesheet" href="../templates/header_sidebar.css" />
+    <link rel="stylesheet" href="../fonts/fonts.css" />
+    <link rel="stylesheet" href="contacts.css" />
+    <link rel="stylesheet" href="../templates/header-sidebar-responsive.css" />
+    <link rel="stylesheet" href="contacts-responsive.css" />
+    <link rel="stylesheet" href="../add_task/add_task.css" />
+    <link rel="stylesheet" href="../add_task/add_task_responsive.css" />
+    <link rel="stylesheet" href="../board/add-task-animation.css" />
+    <link rel="stylesheet" href="../board/add-task-board.css" />
+    <link rel="stylesheet" href="../contacts/add-contact-container.css" />
+    <link
+      rel="shortcut icon"
+      href="../login/img/logo_blue.png"
+      type="image/x-icon"
+    />
     <script src="../help/help.js"></script>
     <script src="../smallest_backend_ever/mini-backend.js"></script>
     <script src="../board/board-add-task.js"></script>
@@ -27,480 +30,753 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
 
     <title>Contacts</title>
-</head>
+  </head>
 
-<body onload="init()" onresize="checkSize()">
+  <body onload="init()" onresize="checkSize()">
     <header w3-include-html="../templates/header.html"></header>
     <div w3-include-html="../templates/sidebar.html"></div>
 
-
     <div id="add_task" class="add-task-popup d-none">
-        <div class="test">
+      <div class="test"></div>
+      <div class="for-close" onclick="closeAddTask()"></div>
+      <div class="add-task-content slide-left" id="add-board">
+        <div class="header">
+          <img src="../templates/img/logo_blue.png" class="logo" />
         </div>
-        <div class="for-close" onclick="closeAddTask()"></div>
-        <div class="add-task-content slide-left" id="add-board">
-            <div class="header ">
-                <img src="../templates/img/logo_blue.png" class="logo">
+        <div class="add-task-content-overlay" onkeyup="allFieldsFilled()">
+          <div class="add-tasks-board-head" id="add-board">
+            <h1 class="add-title">Add Task</h1>
+            <button id="submit-btn" class="add-card btn-create opacity">
+              Creat Task <img src="../contacts/img/checkmark.png" />
+            </button>
+            <div class="close-add-task-board" onclick="closeAddTask()">
+              <img class="close-img" src="../contacts/img/line.png" />
+              <img src="../contacts/img/line.png" />
             </div>
-            <div class="add-task-content-overlay" onkeyup="allFieldsFilled()">
-                <div class="add-tasks-board-head" id="add-board">
-                    <h1 class="add-title">Add Task</h1>
-                    <button id="submit-btn" class="add-card btn-create opacity">Creat Task <img src="../contacts/img/checkmark.png"></button>
-                    <div class="close-add-task-board" onclick="closeAddTask()">
-                        <img class="close-img" src="contacts/img/line.png">
-                        <img src="contacts/img/line.png">
-                    </div>
+          </div>
+          <input
+            type="text"
+            placeholder="Enter a title"
+            id="title-input"
+            class="title-input"
+            required=""
+          />
+
+          <div class="contacts-box">
+            <div style="position: relative">
+              <div class="contacts-dropdown">
+                <p onclick="openContactsToSelect()" class="select-contacts">
+                  Select contacts to assign
+                </p>
+                <img
+                  onclick="openContactsToSelect()"
+                  src="../add_task/img-add_task/dropdown_blue.png"
+                  class="drop-down-arrow"
+                  id="contacts-drop-down-arrow"
+                />
+                <div
+                  onclick="allFieldsFilled()"
+                  id="contacts-drop-down"
+                  class="contacts-dropdown-content d-none"
+                >
+                  <div class="contacts-list-elem">
+                    <label class="control control-checkbox">
+                      <div class="contacts-list-elem-box">
+                        <span class="rendered-contact-name">You</span>
+                        <input type="checkbox" />
+                        <div class="control-indicator"></div>
+                      </div>
+                    </label>
+                  </div>
+                  <div class="contacts-list-elem new-contact">
+                    Invite new contact
+                    <img src="../add_task/img-add_task/contact_blue.png" />
+                  </div>
+
+                  <div class="contacts-list-elem">
+                    <label
+                      class="control control-checkbox"
+                      id="selected-contact"
+                    >
+                      <div class="contacts-list-elem-box">
+                        <span class="rendered-contact-name">Anton Mayer</span>
+                        <input
+                          onclick="addContactToTask(0)"
+                          id="contacts-checkbox-0"
+                          type="checkbox"
+                          value="Anton Mayer"
+                        />
+                        <div
+                          id="control-indicator"
+                          class="control-indicator"
+                        ></div>
+                      </div>
+                    </label>
+                  </div>
+
+                  <div class="contacts-list-elem">
+                    <label
+                      class="control control-checkbox"
+                      id="selected-contact"
+                    >
+                      <div class="contacts-list-elem-box">
+                        <span class="rendered-contact-name">Anja Schulz</span>
+                        <input
+                          onclick="addContactToTask(1)"
+                          id="contacts-checkbox-1"
+                          type="checkbox"
+                          value="Anja Schulz"
+                        />
+                        <div
+                          id="control-indicator"
+                          class="control-indicator"
+                        ></div>
+                      </div>
+                    </label>
+                  </div>
+
+                  <div class="contacts-list-elem">
+                    <label
+                      class="control control-checkbox"
+                      id="selected-contact"
+                    >
+                      <div class="contacts-list-elem-box">
+                        <span class="rendered-contact-name"
+                          >Benedikt Ziegler</span
+                        >
+                        <input
+                          onclick="addContactToTask(2)"
+                          id="contacts-checkbox-2"
+                          type="checkbox"
+                          value="Benedikt Ziegler"
+                        />
+                        <div
+                          id="control-indicator"
+                          class="control-indicator"
+                        ></div>
+                      </div>
+                    </label>
+                  </div>
+
+                  <div class="contacts-list-elem">
+                    <label
+                      class="control control-checkbox"
+                      id="selected-contact"
+                    >
+                      <div class="contacts-list-elem-box">
+                        <span class="rendered-contact-name">Eva Fischer</span>
+                        <input
+                          onclick="addContactToTask(3)"
+                          id="contacts-checkbox-3"
+                          type="checkbox"
+                          value="Eva Fischer"
+                        />
+                        <div
+                          id="control-indicator"
+                          class="control-indicator"
+                        ></div>
+                      </div>
+                    </label>
+                  </div>
+
+                  <div class="contacts-list-elem">
+                    <label
+                      class="control control-checkbox"
+                      id="selected-contact"
+                    >
+                      <div class="contacts-list-elem-box">
+                        <span class="rendered-contact-name"
+                          >David Eisenberg</span
+                        >
+                        <input
+                          onclick="addContactToTask(4)"
+                          id="contacts-checkbox-4"
+                          type="checkbox"
+                          value="David Eisenberg"
+                        />
+                        <div
+                          id="control-indicator"
+                          class="control-indicator"
+                        ></div>
+                      </div>
+                    </label>
+                  </div>
+
+                  <div class="contacts-list-elem">
+                    <label
+                      class="control control-checkbox"
+                      id="selected-contact"
+                    >
+                      <div class="contacts-list-elem-box">
+                        <span class="rendered-contact-name"
+                          >Emmanuel Mauer</span
+                        >
+                        <input
+                          onclick="addContactToTask(5)"
+                          id="contacts-checkbox-5"
+                          type="checkbox"
+                          value="Emmanuel Mauer"
+                        />
+                        <div
+                          id="control-indicator"
+                          class="control-indicator"
+                        ></div>
+                      </div>
+                    </label>
+                  </div>
+
+                  <div class="contacts-list-elem">
+                    <label
+                      class="control control-checkbox"
+                      id="selected-contact"
+                    >
+                      <div class="contacts-list-elem-box">
+                        <span class="rendered-contact-name">Heike Pilz</span>
+                        <input
+                          onclick="addContactToTask(6)"
+                          id="contacts-checkbox-6"
+                          type="checkbox"
+                          value="Heike Pilz"
+                        />
+                        <div
+                          id="control-indicator"
+                          class="control-indicator"
+                        ></div>
+                      </div>
+                    </label>
+                  </div>
+
+                  <div class="contacts-list-elem">
+                    <label
+                      class="control control-checkbox"
+                      id="selected-contact"
+                    >
+                      <div class="contacts-list-elem-box">
+                        <span class="rendered-contact-name"
+                          >Georg Steinert</span
+                        >
+                        <input
+                          onclick="addContactToTask(7)"
+                          id="contacts-checkbox-7"
+                          type="checkbox"
+                          value="Georg Steinert"
+                        />
+                        <div
+                          id="control-indicator"
+                          class="control-indicator"
+                        ></div>
+                      </div>
+                    </label>
+                  </div>
+
+                  <div class="contacts-list-elem">
+                    <label
+                      class="control control-checkbox"
+                      id="selected-contact"
+                    >
+                      <div class="contacts-list-elem-box">
+                        <span class="rendered-contact-name"
+                          >Jens Mustermann</span
+                        >
+                        <input
+                          onclick="addContactToTask(8)"
+                          id="contacts-checkbox-8"
+                          type="checkbox"
+                          value="Jens Mustermann"
+                        />
+                        <div
+                          id="control-indicator"
+                          class="control-indicator"
+                        ></div>
+                      </div>
+                    </label>
+                  </div>
                 </div>
-                <input type="text" placeholder="Enter a title" id="title-input" class="title-input" required="">
-
-                <div class="contacts-box">
-                    <div style="position: relative">
-                        <div class="contacts-dropdown">
-                            <p onclick="openContactsToSelect()" class="select-contacts">
-                                Select contacts to assign
-                            </p>
-                            <img onclick="openContactsToSelect()" src="../add_task/img-add_task/dropdown_blue.png" class="drop-down-arrow" id="contacts-drop-down-arrow">
-                            <div onclick="allFieldsFilled()" id="contacts-drop-down" class="contacts-dropdown-content d-none">
-                                <div class="contacts-list-elem">
-                                    <label class="control control-checkbox">
-                    <div class="contacts-list-elem-box">
-                      <span class="rendered-contact-name">You</span>
-                      <input type="checkbox">
-                      <div class="control-indicator"></div>
-                    </div>
-                  </label>
-                                </div>
-                                <div class="contacts-list-elem new-contact">
-                                    Invite new contact
-                                    <img src="../add_task/img-add_task/contact_blue.png">
-                                </div>
-
-                                <div class="contacts-list-elem">
-                                    <label class="control control-checkbox" id="selected-contact">
-              <div class="contacts-list-elem-box">
-                <span class="rendered-contact-name">Anton Mayer</span>
-                <input onclick="addContactToTask(0)" id="contacts-checkbox-0" type="checkbox" value="Anton Mayer">
-                <div id="control-indicator" class="control-indicator"></div>
               </div>
-            </label>
-                                </div>
-
-                                <div class="contacts-list-elem">
-                                    <label class="control control-checkbox" id="selected-contact">
-              <div class="contacts-list-elem-box">
-                <span class="rendered-contact-name">Anja Schulz</span>
-                <input onclick="addContactToTask(1)" id="contacts-checkbox-1" type="checkbox" value="Anja Schulz">
-                <div id="control-indicator" class="control-indicator"></div>
-              </div>
-            </label>
-                                </div>
-
-                                <div class="contacts-list-elem">
-                                    <label class="control control-checkbox" id="selected-contact">
-              <div class="contacts-list-elem-box">
-                <span class="rendered-contact-name">Benedikt Ziegler</span>
-                <input onclick="addContactToTask(2)" id="contacts-checkbox-2" type="checkbox" value="Benedikt Ziegler">
-                <div id="control-indicator" class="control-indicator"></div>
-              </div>
-            </label>
-                                </div>
-
-                                <div class="contacts-list-elem">
-                                    <label class="control control-checkbox" id="selected-contact">
-              <div class="contacts-list-elem-box">
-                <span class="rendered-contact-name">Eva Fischer</span>
-                <input onclick="addContactToTask(3)" id="contacts-checkbox-3" type="checkbox" value="Eva Fischer">
-                <div id="control-indicator" class="control-indicator"></div>
-              </div>
-            </label>
-                                </div>
-
-                                <div class="contacts-list-elem">
-                                    <label class="control control-checkbox" id="selected-contact">
-              <div class="contacts-list-elem-box">
-                <span class="rendered-contact-name">David Eisenberg</span>
-                <input onclick="addContactToTask(4)" id="contacts-checkbox-4" type="checkbox" value="David Eisenberg">
-                <div id="control-indicator" class="control-indicator"></div>
-              </div>
-            </label>
-                                </div>
-
-                                <div class="contacts-list-elem">
-                                    <label class="control control-checkbox" id="selected-contact">
-              <div class="contacts-list-elem-box">
-                <span class="rendered-contact-name">Emmanuel Mauer</span>
-                <input onclick="addContactToTask(5)" id="contacts-checkbox-5" type="checkbox" value="Emmanuel Mauer">
-                <div id="control-indicator" class="control-indicator"></div>
-              </div>
-            </label>
-                                </div>
-
-                                <div class="contacts-list-elem">
-                                    <label class="control control-checkbox" id="selected-contact">
-              <div class="contacts-list-elem-box">
-                <span class="rendered-contact-name">Heike Pilz</span>
-                <input onclick="addContactToTask(6)" id="contacts-checkbox-6" type="checkbox" value="Heike Pilz">
-                <div id="control-indicator" class="control-indicator"></div>
-              </div>
-            </label>
-                                </div>
-
-                                <div class="contacts-list-elem">
-                                    <label class="control control-checkbox" id="selected-contact">
-              <div class="contacts-list-elem-box">
-                <span class="rendered-contact-name">Georg Steinert</span>
-                <input onclick="addContactToTask(7)" id="contacts-checkbox-7" type="checkbox" value="Georg Steinert">
-                <div id="control-indicator" class="control-indicator"></div>
-              </div>
-            </label>
-                                </div>
-
-                                <div class="contacts-list-elem">
-                                    <label class="control control-checkbox" id="selected-contact">
-              <div class="contacts-list-elem-box">
-                <span class="rendered-contact-name">Jens Mustermann</span>
-                <input onclick="addContactToTask(8)" id="contacts-checkbox-8" type="checkbox" value="Jens Mustermann">
-                <div id="control-indicator" class="control-indicator"></div>
-              </div>
-            </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="date-box">
-                    <span class="due-date-text">Due date</span>
-                    <input type="date" placeholder="dd/mm/yyyy" id="select-date-task" class="select-date" required="">
-                </div>
-
-                <div class="category-box">
-                    <span class="category-text">Category</span>
-                    <div style="position: relative">
-                        <div class="category-dropdown">
-                            <p onclick="openCategoriesToSelect()" id="select-category" class="select-category">
-                                Select task category
-                            </p>
-                            <img onclick="openCategoriesToSelect()" src="../add_task/img-add_task/dropdown_blue.png" class="drop-down-arrow" id="drop-down-arrow-categories">
-                            <input type="text" placeholder="New category name" id="new-category-input" class="new-category-input d-none">
-                            <div id="new-category-accept" class="new-category-accept d-none">
-                                <img onclick="goBackToSelectCategory()" src="../add_task/img-add_task/x_blue.png">
-                                <span>|</span>
-                                <img onclick="addNewCategory()" src="../add_task/img-add_task/check_blue.png">
-                            </div>
-                            <div id="categories-drop-down" class="categories-dropdown-content d-none">
-                                <div onclick="createNewCategory()" class="categories-list-elem">
-                                    New category
-                                </div>
-                                <div onclick="fillCategory('sales')" class="categories-list-elem">
-                                    Sales
-                                    <img src="../add_task/img-add_task/circle_pink.png">
-                                </div>
-                                <div onclick="fillCategory('backoffice')" class="categories-list-elem">
-                                    Backoffice
-                                    <img src="../add_task/img-add_task/circle_turquois.png">
-                                </div>
-                            </div>
-                            <div id="new-category-content" class="new-category-content d-none">
-                                <img onclick="selectCategoryColor('turquois')" src="../add_task/img-add_task/circle_turquois.png" id="category-color-turquois">
-                                <img onclick="selectCategoryColor('red')" src="../add_task/img-add_task/circle_red.png" id="category-color-red">
-                                <img onclick="selectCategoryColor('green')" src="../add_task/img-add_task/circle_green.png" id="category-color-green">
-                                <img onclick="selectCategoryColor('orange')" src="../add_task/img-add_task/circle_orange.png" id="category-color-orange">
-                                <img onclick="selectCategoryColor('pink')" src="../add_task/img-add_task/circle_pink.png" id="category-color-pink">
-                                <img onclick="selectCategoryColor('blue')" src="../add_task/img-add_task/circle_blue.png" id="category-color-blue">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="importance-buttons" onclick="allFieldsFilled()">
-                    <button onclick="fillImportanceButton(1)" class="importance-button1" id="importance-button1" type="button">
-        <span>Urgent</span>
-        <img src="../add_task/img-add_task/urgent.png">
-      </button>
-                    <button onclick="fillImportanceButton(1)" class="importance-button1-colored  d-none" id="importance-button1-colored" type="button">
-        <span>Urgent</span>
-        <img src="../add_task/img-add_task/urgent_white.png">
-      </button>
-
-                    <button onclick="fillImportanceButton(2)" class="importance-button2" id="importance-button2" type="button">
-        <span>Medium</span>
-        <img src="../add_task/img-add_task/medium.png">
-      </button>
-                    <button onclick="fillImportanceButton(2)" class="importance-button2-colored d-none" id="importance-button2-colored" type="button">
-        <span>Medium</span>
-        <img src="../add_task/img-add_task/medium_white.png">
-      </button>
-
-                    <button onclick="fillImportanceButton(3)" class="importance-button3" id="importance-button3" type="button">
-        <span>Low</span>
-        <img src="../add_task/img-add_task/low.png">
-      </button>
-                    <button onclick="fillImportanceButton(3)" class="importance-button3-colored d-none" id="importance-button3-colored" type="button">
-        <span>Low</span>
-        <img src="../add_task/img-add_task/low_white.png">
-      </button>
-                </div>
-
-                <div class="description-box">
-                    <span class="description-text">Description</span>
-                    <textarea name="description" id="description-input" class="description-input" cols="30" max-rows="10" style="max-height: 70px" placeholder="Enter a description"></textarea>
-                    <img src="../add_task/img-add_task/input_icon.png">
-                </div>
-
-                <div class="subtask-box">
-                    <div style="position: relative">
-                        <input onkeyup="createNewSubtask()" type="text" placeholder="Add new subtask" class="add-subtask" id="add-subtask" name="add-subtask">
-                        <img src="../add_task/img-add_task/plus_blue.png" class="plus-icon" id="plus-icon">
-                        <div id="new-subtask-accept" class="new-subtask-accept d-none">
-                            <img onclick="backToSubtasks()" src="../add_task/img-add_task/x_blue.png">
-                            <span>|</span>
-                            <img onclick="addSubtask()" src="../add_task/img-add_task/check_blue.png">
-                        </div>
-                    </div>
-                </div>
-                <div id="subtask-content" class="subtask-content"></div>
             </div>
+          </div>
+
+          <div class="date-box">
+            <span class="due-date-text">Due date</span>
+            <input
+              type="date"
+              placeholder="dd/mm/yyyy"
+              id="select-date-task"
+              class="select-date"
+              required=""
+            />
+          </div>
+
+          <div class="category-box">
+            <span class="category-text">Category</span>
+            <div style="position: relative">
+              <div class="category-dropdown">
+                <p
+                  onclick="openCategoriesToSelect()"
+                  id="select-category"
+                  class="select-category"
+                >
+                  Select task category
+                </p>
+                <img
+                  onclick="openCategoriesToSelect()"
+                  src="../add_task/img-add_task/dropdown_blue.png"
+                  class="drop-down-arrow"
+                  id="drop-down-arrow-categories"
+                />
+                <input
+                  type="text"
+                  placeholder="New category name"
+                  id="new-category-input"
+                  class="new-category-input d-none"
+                />
+                <div
+                  id="new-category-accept"
+                  class="new-category-accept d-none"
+                >
+                  <img
+                    onclick="goBackToSelectCategory()"
+                    src="../add_task/img-add_task/x_blue.png"
+                  />
+                  <span>|</span>
+                  <img
+                    onclick="addNewCategory()"
+                    src="../add_task/img-add_task/check_blue.png"
+                  />
+                </div>
+                <div
+                  id="categories-drop-down"
+                  class="categories-dropdown-content d-none"
+                >
+                  <div
+                    onclick="createNewCategory()"
+                    class="categories-list-elem"
+                  >
+                    New category
+                  </div>
+                  <div
+                    onclick="fillCategory('sales')"
+                    class="categories-list-elem"
+                  >
+                    Sales
+                    <img src="../add_task/img-add_task/circle_pink.png" />
+                  </div>
+                  <div
+                    onclick="fillCategory('backoffice')"
+                    class="categories-list-elem"
+                  >
+                    Backoffice
+                    <img src="../add_task/img-add_task/circle_turquois.png" />
+                  </div>
+                </div>
+                <div
+                  id="new-category-content"
+                  class="new-category-content d-none"
+                >
+                  <img
+                    onclick="selectCategoryColor('turquois')"
+                    src="../add_task/img-add_task/circle_turquois.png"
+                    id="category-color-turquois"
+                  />
+                  <img
+                    onclick="selectCategoryColor('red')"
+                    src="../add_task/img-add_task/circle_red.png"
+                    id="category-color-red"
+                  />
+                  <img
+                    onclick="selectCategoryColor('green')"
+                    src="../add_task/img-add_task/circle_green.png"
+                    id="category-color-green"
+                  />
+                  <img
+                    onclick="selectCategoryColor('orange')"
+                    src="../add_task/img-add_task/circle_orange.png"
+                    id="category-color-orange"
+                  />
+                  <img
+                    onclick="selectCategoryColor('pink')"
+                    src="../add_task/img-add_task/circle_pink.png"
+                    id="category-color-pink"
+                  />
+                  <img
+                    onclick="selectCategoryColor('blue')"
+                    src="../add_task/img-add_task/circle_blue.png"
+                    id="category-color-blue"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="importance-buttons" onclick="allFieldsFilled()">
+            <button
+              onclick="fillImportanceButton(1)"
+              class="importance-button1"
+              id="importance-button1"
+              type="button"
+            >
+              <span>Urgent</span>
+              <img src="../add_task/img-add_task/urgent.png" />
+            </button>
+            <button
+              onclick="fillImportanceButton(1)"
+              class="importance-button1-colored d-none"
+              id="importance-button1-colored"
+              type="button"
+            >
+              <span>Urgent</span>
+              <img src="../add_task/img-add_task/urgent_white.png" />
+            </button>
+
+            <button
+              onclick="fillImportanceButton(2)"
+              class="importance-button2"
+              id="importance-button2"
+              type="button"
+            >
+              <span>Medium</span>
+              <img src="../add_task/img-add_task/medium.png" />
+            </button>
+            <button
+              onclick="fillImportanceButton(2)"
+              class="importance-button2-colored d-none"
+              id="importance-button2-colored"
+              type="button"
+            >
+              <span>Medium</span>
+              <img src="../add_task/img-add_task/medium_white.png" />
+            </button>
+
+            <button
+              onclick="fillImportanceButton(3)"
+              class="importance-button3"
+              id="importance-button3"
+              type="button"
+            >
+              <span>Low</span>
+              <img src="../add_task/img-add_task/low.png" />
+            </button>
+            <button
+              onclick="fillImportanceButton(3)"
+              class="importance-button3-colored d-none"
+              id="importance-button3-colored"
+              type="button"
+            >
+              <span>Low</span>
+              <img src="../add_task/img-add_task/low_white.png" />
+            </button>
+          </div>
+
+          <div class="description-box">
+            <span class="description-text">Description</span>
+            <textarea
+              name="description"
+              id="description-input"
+              class="description-input"
+              cols="30"
+              max-rows="10"
+              style="max-height: 70px"
+              placeholder="Enter a description"
+            ></textarea>
+            <img src="../add_task/img-add_task/input_icon.png" />
+          </div>
+
+          <div class="subtask-box">
+            <div style="position: relative">
+              <input
+                onkeyup="createNewSubtask()"
+                type="text"
+                placeholder="Add new subtask"
+                class="add-subtask"
+                id="add-subtask"
+                name="add-subtask"
+              />
+              <img
+                src="../add_task/img-add_task/plus_blue.png"
+                class="plus-icon"
+                id="plus-icon"
+              />
+              <div id="new-subtask-accept" class="new-subtask-accept d-none">
+                <img
+                  onclick="backToSubtasks()"
+                  src="../add_task/img-add_task/x_blue.png"
+                />
+                <span>|</span>
+                <img
+                  onclick="addSubtask()"
+                  src="../add_task/img-add_task/check_blue.png"
+                />
+              </div>
+            </div>
+          </div>
+          <div id="subtask-content" class="subtask-content"></div>
         </div>
+      </div>
     </div>
-
-
 
     <div class="contact-container">
-        <div class="contact-list-container" id="contact_list_container">
-            <div class="contact-list-inner-container">
-                <div id="a_container">
-                    <div class="contact-char">A</div>
-                    <hr class="underline">
-                </div>
-                <div id="a"></div>
+      <div class="contact-list-container" id="contact_list_container">
+        <div class="contact-list-inner-container">
+          <div id="a_container">
+            <div class="contact-char">A</div>
+            <hr class="underline" />
+          </div>
+          <div id="a"></div>
 
-                <div id="b_container">
-                    <div class="contact-char">B</div>
-                    <hr class="underline">
-                </div>
-                <div id="b"></div>
+          <div id="b_container">
+            <div class="contact-char">B</div>
+            <hr class="underline" />
+          </div>
+          <div id="b"></div>
 
-                <div id="c_container">
-                    <div>
-                        <div class="contact-char">C</div>
-                        <hr class="underline">
-                    </div>
-                    <div id="c"></div>
-                </div>
-
-                <div id="d_container">
-                    <div class="contact-char">D</div>
-                    <hr class="underline">
-                </div>
-                <div id="d"></div>
-
-                <div id="e_container">
-                    <div class="contact-char">E</div>
-                    <hr class="underline">
-                </div>
-                <div id="e"></div>
-
-                <div id="f_container">
-                    <div class="contact-char">F</div>
-                    <hr class="underline">
-                </div>
-                <div id="f"></div>
-
-                <div id="g_container">
-                    <div class="contact-char">G</div>
-                    <hr class="underline">
-                </div>
-                <div id="g"></div>
-
-                <div id="h_container">
-                    <div class="contact-char">H</div>
-                    <hr class="underline">
-                </div>
-                <div id="h"></div>
-
-                <div id="i_container">
-                    <div class="contact-char">I</div>
-                    <hr class="underline">
-                </div>
-                <div id="i"></div>
-
-                <div id="j_container">
-                    <div class="contact-char">J</div>
-                    <hr class="underline">
-                </div>
-                <div id="j"></div>
-
-                <div id="k_container">
-                    <div class="contact-char">K</div>
-                    <hr class="underline">
-                </div>
-                <div id="k"></div>
-
-                <div id="l_container">
-                    <div class="contact-char">L</div>
-                    <hr class="underline">
-                </div>
-                <div id="l"></div>
-
-                <div id="m_container">
-                    <div class="contact-char">M</div>
-                    <hr class="underline">
-                </div>
-                <div id="m"></div>
-
-                <div id="n_container">
-                    <div class="contact-char">N</div>
-                    <hr class="underline">
-                </div>
-                <div id="n"></div>
-
-                <div id="o_container">
-                    <div class="contact-char">O</div>
-                    <hr class="underline">
-                </div>
-                <div id="o"></div>
-
-                <div id="p_container">
-                    <div class="contact-char">P</div>
-                    <hr class="underline">
-                </div>
-                <div id="p"></div>
-
-                <div id="q_container">
-                    <div class="contact-char">Q</div>
-                    <hr class="underline">
-                </div>
-                <div id="q"></div>
-
-                <div id="r_container">
-                    <div class="contact-char">R</div>
-                    <hr class="underline">
-                </div>
-                <div id="r"></div>
-
-                <div id="s_container">
-                    <div class="contact-char">S</div>
-                    <hr class="underline">
-                </div>
-                <div id="s"></div>
-
-                <div id="t_container">
-                    <div class="contact-char">T</div>
-                    <hr class="underline">
-                </div>
-                <div id="t"></div>
-
-                <div id="u_container">
-                    <div class="contact-char">U</div>
-                    <hr class="underline">
-                </div>
-                <div id="u"></div>
-
-                <div id="v_container">
-                    <div class="contact-char">V</div>
-                    <hr class="underline">
-                </div>
-                <div id="v"></div>
-
-                <div id="w_container">
-                    <div class="contact-char">W</div>
-                    <hr class="underline">
-                </div>
-                <div id="w"></div>
-
-                <div id="x_container">
-                    <div class="contact-char">X</div>
-                    <hr class="underline">
-                </div>
-                <div id="x"></div>
-
-                <div id="y_container">
-                    <div class="contact-char">Y</div>
-                    <hr class="underline">
-                </div>
-                <div id="y"></div>
-
-                <div id="z_container">
-                    <div class="contact-char">Z</div>
-                    <hr class="underline">
-                </div>
-                <div id="z"></div>
+          <div id="c_container">
+            <div>
+              <div class="contact-char">C</div>
+              <hr class="underline" />
             </div>
+            <div id="c"></div>
+          </div>
+
+          <div id="d_container">
+            <div class="contact-char">D</div>
+            <hr class="underline" />
+          </div>
+          <div id="d"></div>
+
+          <div id="e_container">
+            <div class="contact-char">E</div>
+            <hr class="underline" />
+          </div>
+          <div id="e"></div>
+
+          <div id="f_container">
+            <div class="contact-char">F</div>
+            <hr class="underline" />
+          </div>
+          <div id="f"></div>
+
+          <div id="g_container">
+            <div class="contact-char">G</div>
+            <hr class="underline" />
+          </div>
+          <div id="g"></div>
+
+          <div id="h_container">
+            <div class="contact-char">H</div>
+            <hr class="underline" />
+          </div>
+          <div id="h"></div>
+
+          <div id="i_container">
+            <div class="contact-char">I</div>
+            <hr class="underline" />
+          </div>
+          <div id="i"></div>
+
+          <div id="j_container">
+            <div class="contact-char">J</div>
+            <hr class="underline" />
+          </div>
+          <div id="j"></div>
+
+          <div id="k_container">
+            <div class="contact-char">K</div>
+            <hr class="underline" />
+          </div>
+          <div id="k"></div>
+
+          <div id="l_container">
+            <div class="contact-char">L</div>
+            <hr class="underline" />
+          </div>
+          <div id="l"></div>
+
+          <div id="m_container">
+            <div class="contact-char">M</div>
+            <hr class="underline" />
+          </div>
+          <div id="m"></div>
+
+          <div id="n_container">
+            <div class="contact-char">N</div>
+            <hr class="underline" />
+          </div>
+          <div id="n"></div>
+
+          <div id="o_container">
+            <div class="contact-char">O</div>
+            <hr class="underline" />
+          </div>
+          <div id="o"></div>
+
+          <div id="p_container">
+            <div class="contact-char">P</div>
+            <hr class="underline" />
+          </div>
+          <div id="p"></div>
+
+          <div id="q_container">
+            <div class="contact-char">Q</div>
+            <hr class="underline" />
+          </div>
+          <div id="q"></div>
+
+          <div id="r_container">
+            <div class="contact-char">R</div>
+            <hr class="underline" />
+          </div>
+          <div id="r"></div>
+
+          <div id="s_container">
+            <div class="contact-char">S</div>
+            <hr class="underline" />
+          </div>
+          <div id="s"></div>
+
+          <div id="t_container">
+            <div class="contact-char">T</div>
+            <hr class="underline" />
+          </div>
+          <div id="t"></div>
+
+          <div id="u_container">
+            <div class="contact-char">U</div>
+            <hr class="underline" />
+          </div>
+          <div id="u"></div>
+
+          <div id="v_container">
+            <div class="contact-char">V</div>
+            <hr class="underline" />
+          </div>
+          <div id="v"></div>
+
+          <div id="w_container">
+            <div class="contact-char">W</div>
+            <hr class="underline" />
+          </div>
+          <div id="w"></div>
+
+          <div id="x_container">
+            <div class="contact-char">X</div>
+            <hr class="underline" />
+          </div>
+          <div id="x"></div>
+
+          <div id="y_container">
+            <div class="contact-char">Y</div>
+            <hr class="underline" />
+          </div>
+          <div id="y"></div>
+
+          <div id="z_container">
+            <div class="contact-char">Z</div>
+            <hr class="underline" />
+          </div>
+          <div id="z"></div>
+        </div>
+      </div>
+
+      <div class="contact-right d-none" id="contact_right">
+        <img
+          onclick="closeDetail()"
+          class="d-none"
+          id="backarrow"
+          src="img/backarrow.png"
+          alt=""
+        />
+        <div class="name-container">
+          <div class="circle-right" id="circle_right"></div>
+          <div class="name">
+            <h1 id="name_right"></h1>
+            <div onclick="openAddTask()" class="name-addTask">
+              <img class="cross" src="img/cross.png" alt="" />
+              <p>Add Task</p>
+            </div>
+          </div>
         </div>
 
-        <div class="contact-right d-none" id="contact_right">
-            <img onclick="closeDetail()" class="d-none" id="backarrow" src="img/backarrow.png" alt="">
-            <div class="name-container">
-                <div class="circle-right" id="circle_right"></div>
-                <div class="name">
-                    <h1 id="name_right"></h1>
-                    <div onclick="openAddTask()" class="name-addTask">
-                        <img class="cross" src="img/cross.png" alt="">
-                        <p>Add Task</p>
-                    </div>
-                </div>
+        <div class="contact-information-container">
+          <div class="contact-information">
+            <h2>Contact Information</h2>
+            <div class="info-email">
+              <p>Email</p>
+              <span id="mail_right"></span>
             </div>
-
-            <div class="contact-information-container">
-                <div class="contact-information">
-                    <h2>Contact Information</h2>
-                    <div class="info-email">
-                        <p>Email</p>
-                        <span id="mail_right"></span>
-                    </div>
-                    <div class="info-mobil">
-                        <p>Mobil</p>
-                        <span id="mobil_right"></span>
-                    </div>
-                </div>
-                <div id="edit_contact_pencil" class="edit-contact">
-                    <img onclick="openEditOverlay()" src="img/pencil.png" alt="">
-                    <p>Edit Contact</p>
-                </div>
+            <div class="info-mobil">
+              <p>Mobil</p>
+              <span id="mobil_right"></span>
             </div>
-            <img src="img/edit-contact.png" id="edit_contact" class="d-none" alt="">
+          </div>
+          <div id="edit_contact_pencil" class="edit-contact">
+            <img onclick="openEditOverlay()" src="img/pencil.png" alt="" />
+            <p>Edit Contact</p>
+          </div>
         </div>
+        <img
+          src="img/edit-contact.png"
+          id="edit_contact"
+          class="d-none"
+          alt=""
+        />
+      </div>
 
-        <button id="new_contact_btn" class="new-contact-btn" onclick="addNewContact()">
-            New Contact
-            <img class="btn-img" src="img/button.png" alt="">
-        </button>
-        <div class="blur-screen d-none" id="blur_screen" onclick="closeBlurScreen()">
-            <div onclick="clickDialog(event)" id="add_contact_container" class="d-none">
-                <div class="add-contact-header">
-                    <img class="add-contact-img" src="img/logo.png" alt="">
-                    <p class="add-contact-headline">Add contact</p>
-                    <p class="add-contact-paragraph">Tasks are better with a team!</p>
-                </div>
-                <div class="add-contact-information">
-                    <div class="img-container">
-                        <img src="img/people.png" alt="">
-                    </div>
-                    <form onsubmit="createNewContact(); return false">
-                        <input id="input-name" placeholder="Name" type="text" required>
-                        <input id="input-mail" placeholder="Email" type="email" required>
-                        <input id="input-phone" placeholder="Phone" type="tel" required>
-                        <div class="new-contact-btn-container">
-                            <button onclick="closeBlurScreen()" class="add-contact-btn-left">
-                        Cancel
-                        <img src="img/btn-left.png" alt="">
-                    </button>
-                            <button onclick="createNewContact()" class="add-contact-btn-right">
-                        Create contact
-                        <img src="img/btn-right.png" alt="">
-                    </button>
-                        </div>
-                    </form>
-
-                </div>
-
+      <button
+        id="new_contact_btn"
+        class="new-contact-btn"
+        onclick="addNewContact()"
+      >
+        New Contact
+        <img class="btn-img" src="img/button.png" alt="" />
+      </button>
+      <div
+        class="blur-screen d-none"
+        id="blur_screen"
+        onclick="closeBlurScreen()"
+      >
+        <div
+          onclick="clickDialog(event)"
+          id="add_contact_container"
+          class="d-none"
+        >
+          <div class="add-contact-header">
+            <img class="add-contact-img" src="img/logo.png" alt="" />
+            <p class="add-contact-headline">Add contact</p>
+            <p class="add-contact-paragraph">Tasks are better with a team!</p>
+          </div>
+          <div class="add-contact-information">
+            <div class="img-container">
+              <img src="img/people.png" alt="" />
             </div>
+            <form onsubmit="createNewContact(); return false">
+              <input id="input-name" placeholder="Name" type="text" required />
+              <input
+                id="input-mail"
+                placeholder="Email"
+                type="email"
+                required
+              />
+              <input id="input-phone" placeholder="Phone" type="tel" required />
+              <div class="new-contact-btn-container">
+                <button
+                  onclick="closeBlurScreen()"
+                  class="add-contact-btn-left"
+                >
+                  Cancel
+                  <img src="img/btn-left.png" alt="" />
+                </button>
+                <button
+                  onclick="createNewContact()"
+                  class="add-contact-btn-right"
+                >
+                  Create contact
+                  <img src="img/btn-right.png" alt="" />
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-
+      </div>
     </div>
-
-</body>
-
-
+  </body>
 </html>
