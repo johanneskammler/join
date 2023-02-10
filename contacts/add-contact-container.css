@@ -1,7 +1,7 @@
 /* === ADD CONTACT OVERLAY === */
 
 .d-none {
-    display: none;
+    display: none !important;
 }
 
 .add-contact-container {
