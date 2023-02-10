@@ -1,12 +1,13 @@
 let contacts = [];
+let nextID = 1;
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 
 async function init() {
-    await downloadFromServer();
-    await includeHTML();
-    checkSize();
-    await renderContactList();
-    hoverContactsHtml();
+  await downloadFromServer();
+  await includeHTML();
+  checkSize();
+  await renderContactList();
+  hoverContactsHtml();
 }
 
 function hoverContactsHtml() {
@@ -25,16 +26,16 @@ function checkSize() {
 
 function sidebarTabled() {
 
-    document.getElementById("sidebar").classList.remove("sidebar");
-    document.getElementById("sidebar").classList.add("tablet-sidebar");
-    document.getElementById("help-section-btn").classList.add("d-none");
-    // document.getElementById("create-btn-responsive").classList.remove("d-none");
+  document.getElementById("sidebar").classList.remove("sidebar");
+  document.getElementById("sidebar").classList.add("tablet-sidebar");
+  document.getElementById("help-section-btn").classList.add("d-none");
+  // document.getElementById("create-btn-responsive").classList.remove("d-none");
 
 
-    let response = document.getElementById("header-name-resp");
-    if (!(response == null)) {
-        response.classList.remove("d-none");
-    }
+  let response = document.getElementById("header-name-resp");
+  if (!(response == null)) {
+    response.classList.remove("d-none");
+  }
 
 }
 
@@ -46,19 +47,21 @@ function enableSidebar() {
 // Contact JS
 
 async function createNewContact() {
-    let name = document.getElementById('input-name');
-    let mail = document.getElementById('input-mail');
-    let mobil = document.getElementById('input-phone');
-    let contact = {
-        'name': name.value,
-        'mail': mail.value,
-        'mobil': mobil.value
-    };
+  let name = document.getElementById('input-name');
+  let mail = document.getElementById('input-mail');
+  let mobil = document.getElementById('input-phone');
+  let contact = {
+    'id': nextID++,
+    'name': name.value,
+    'mail': mail.value,
+    'mobil': mobil.value
+  };
 
-    // if anweisung mit indexOf
-    contacts.push(contact);
-    await backend.setItem("contacts", JSON.stringify(contacts));
-    renderContactList();
+  // if anweisung mit indexOf
+  contacts.push(contact);
+  await backend.setItem("contacts", JSON.stringify(contacts));
+  renderContactList();
+  closeBlurScreen();
 }
 
 async function renderContactList() {
@@ -91,6 +94,7 @@ function renderContactListHTML(element, acronym, i) {
     return;
   }
   let id = firstLetter.toLowerCase();
+  document.getElementById(id).innerHTML = "";
   document.getElementById(id).innerHTML += `
         <div class="contact" onclick="openContactDetail(${i})">
             <div id="circle_contacts${i}" class="circle">${acronym}</div>
@@ -102,6 +106,7 @@ function renderContactListHTML(element, acronym, i) {
     `;
 }
 
+
 async function openContactDetail(i) {
   let url = "../contacts.json";
   let contacts = JSON.parse(backend.getItem("contacts"));
@@ -112,39 +117,39 @@ async function openContactDetail(i) {
   let firstLetters = contact["name"].match(/\b(\w)/g);
   let acronym = firstLetters.join("");
 
-    const body = document.body;
-    const bodyWidth = body.offsetWidth;
-    if (bodyWidth < 1280) {
-        document.getElementById('new_contact_btn').classList.add('d-none');
-        document.getElementById('contact_list_container').classList.add('d-none');
-        document.getElementById('edit_contact_pencil').classList.add('d-none');
-        document.getElementById('backarrow').classList.remove('d-none');
-        document.getElementById('edit_contact').classList.remove('d-none');
-        document.getElementById('contact_right').classList.remove('d-none');
-        document.getElementById("name_right").innerHTML = name;
-        document.getElementById("mail_right").innerHTML = email;
-        document.getElementById("mobil_right").innerHTML = `+ ${phone}`;
-        document.getElementById("circle_right").innerHTML = acronym;
-        // gsap.from("#contact_right", {
-        //     x: 500,
-        //     opacity: 0,
-        //     duration: 0.33,
-        //     ease: 'back.out(0.7)'
-        // });
-    } else {
+  const body = document.body;
+  const bodyWidth = body.offsetWidth;
+  if (bodyWidth < 1280) {
+    document.getElementById('new_contact_btn').classList.add('d-none');
+    document.getElementById('contact_list_container').classList.add('d-none');
+    document.getElementById('edit_contact_pencil').classList.add('d-none');
+    document.getElementById('backarrow').classList.remove('d-none');
+    document.getElementById('edit_contact').classList.remove('d-none');
+    document.getElementById('contact_right').classList.remove('d-none');
+    document.getElementById("name_right").innerHTML = name;
+    document.getElementById("mail_right").innerHTML = email;
+    document.getElementById("mobil_right").innerHTML = `+ ${phone}`;
+    document.getElementById("circle_right").innerHTML = acronym;
+    // gsap.from("#contact_right", {
+    //     x: 500,
+    //     opacity: 0,
+    //     duration: 0.33,
+    //     ease: 'back.out(0.7)'
+    // });
+  } else {
 
-        document.getElementById('contact_right').classList.remove('d-none');
-        document.getElementById("name_right").innerHTML = name;
-        document.getElementById("mail_right").innerHTML = email;
-        document.getElementById("mobil_right").innerHTML = `+ ${phone}`;
-        document.getElementById("circle_right").innerHTML = acronym;
-        // gsap.from("#contact_right", {
-        //     x: 500,
-        //     opacity: 0,
-        //     duration: 0.33,
-        //     ease: 'back.out(0.7)'
-        // });
-    }
+    document.getElementById('contact_right').classList.remove('d-none');
+    document.getElementById("name_right").innerHTML = name;
+    document.getElementById("mail_right").innerHTML = email;
+    document.getElementById("mobil_right").innerHTML = `+ ${phone}`;
+    document.getElementById("circle_right").innerHTML = acronym;
+    // gsap.from("#contact_right", {
+    //     x: 500,
+    //     opacity: 0,
+    //     duration: 0.33,
+    //     ease: 'back.out(0.7)'
+    // });
+  }
 }
 
 function closeDetail() {
