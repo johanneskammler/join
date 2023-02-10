@@ -7,13 +7,24 @@ body {
     display: none;
 }
 
+.contact-container {
+    overflow: hidden;
+    height: 100vh;
+}
+
+#edit_contact {
+    position: absolute;
+    right: 4vw;
+    bottom: 5vh;
+}
+
 .contact-list-container {
     display: flex;
     justify-content: center;
     margin-left: 275px;
     margin-top: 100px;
     width: 20vw;
-    height: 100vh;
+    height: 92vh;
     overflow-y: scroll;
     box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
 }

@@ -110,17 +110,48 @@ async function openContactDetail(i) {
     let firstLetters = contact['name'].match(/\b(\w)/g);
     let acronym = firstLetters.join('');
 
-    document.getElementById('contact_right').classList.remove('d-none');
-    document.getElementById("name_right").innerHTML = name;
-    document.getElementById("mail_right").innerHTML = email;
-    document.getElementById("mobil_right").innerHTML = `+ ${phone}`;
-    document.getElementById("circle_right").innerHTML = acronym;
-    gsap.from("#contact_right", {
-        x: 500,
-        opacity: 0,
-        duration: 0.33,
-        ease: 'back.out(0.7)'
-    });
+    var body = document.body;
+    var bodyWidth = body.offsetWidth;
+    if (bodyWidth < 1280) {
+        document.getElementById('contact_list_container').classList.add('d-none');
+        document.getElementById('edit_contact_pencil').classList.add('d-none');
+        document.getElementById('backarrow').classList.remove('d-none');
+        document.getElementById('edit_contact').classList.remove('d-none');
+        document.getElementById('new_contact_btn').classList.add('d-none');
+        document.getElementById('contact_right').classList.remove('d-none');
+        document.getElementById("name_right").innerHTML = name;
+        document.getElementById("mail_right").innerHTML = email;
+        document.getElementById("mobil_right").innerHTML = `+ ${phone}`;
+        document.getElementById("circle_right").innerHTML = acronym;
+        gsap.from("#contact_right", {
+            x: 500,
+            opacity: 0,
+            duration: 0.33,
+            ease: 'back.out(0.7)'
+        });
+    } else {
+        document.getElementById('new_contact_btn').classList.add('d-none');
+        document.getElementById('contact_right').classList.remove('d-none');
+        document.getElementById("name_right").innerHTML = name;
+        document.getElementById("mail_right").innerHTML = email;
+        document.getElementById("mobil_right").innerHTML = `+ ${phone}`;
+        document.getElementById("circle_right").innerHTML = acronym;
+        gsap.from("#contact_right", {
+            x: 500,
+            opacity: 0,
+            duration: 0.33,
+            ease: 'back.out(0.7)'
+        });
+    }
+}
+
+function closeDetail() {
+    document.getElementById('edit_contact_pencil').classList.remove('d-none');
+    document.getElementById('edit_contact').classList.add('d-none');
+    document.getElementById('contact_list_container').classList.remove('d-none');
+    document.getElementById('new_contact_btn').classList.remove('d-none');
+    document.getElementById('contact_right').classList.add('d-none');
+    document.getElementById('backarrow').classList.add('d-none');
 }
 
 
@@ -325,10 +356,3 @@ function disableContactContainer() {
 
 
 }
-
-
-
-
-
-
-

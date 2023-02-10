@@ -355,11 +355,15 @@ function openCategoriesToSelect() {
 function generateHTMLcontacts(element, i) {
   return `
       <div class="contacts-list-elem">
-        <label class="control control-checkbox" id="selected-contact">
+        <label class="control control-checkbox" id="selected-contact-${i}">
           <div class="contacts-list-elem-box">
             <span class="rendered-contact-name">${element["name"]}</span>
             <input onclick="addContactToTask(${i})" id="contacts-checkbox-${i}" type="checkbox" value="${element["name"]}" />
+<<<<<<< HEAD
             <div id="control-indicator${i}" class="control-indicator"></div>
+=======
+            <div id="control-indicator-${i}" class="control-indicator"></div>
+>>>>>>> 3c1dfb9781075e81c3100b5f8277216feafe0aa6
           </div>
         </label>
       </div>

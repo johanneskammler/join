@@ -4,14 +4,13 @@ function generateHTMLcontacts(element, i) {
       <label class="control control-checkbox" id="selected-contact">
         <div class="contacts-list-elem-box">
           <span class="rendered-contact-name">${element["name"]}</span>
-          <input onclick="addContactToTask(${i})" id="contacts-checkbox-${i}" type="checkbox" value="${element['name']}" />
+          <input onclick="addContactToTask(${i})" id="contacts-checkbox-${i}" type="checkbox" value="${element["name"]}" />
           <div id="control-indicator" class="control-indicator"></div>
         </div>
       </label>
     </div>
     `;
 }
-
 
 function generateHTMLcategory(categoryName, categoryColor) {
   return `
@@ -22,7 +21,6 @@ function generateHTMLcategory(categoryName, categoryColor) {
   `;
 }
 
-
 function setCategoryToSales() {
   return `
     <div class="selected-category">
@@ -31,7 +29,6 @@ function setCategoryToSales() {
     </div>
     `;
 }
-
 
 function setCategoryToBackoffice() {
   return `
@@ -42,7 +39,6 @@ function setCategoryToBackoffice() {
     `;
 }
 
-
 function setCategoryToNewCategory(categoryName, categoryColor, newCategories) {
   return `
     <div class="selected-category">
@@ -52,7 +48,6 @@ function setCategoryToNewCategory(categoryName, categoryColor, newCategories) {
     `;
 }
 
-
 function resetCategory() {
   return `
   <div class="selected-category">
@@ -60,7 +55,6 @@ function resetCategory() {
   </div>
   `;
 }
-
 
 function generateHTMLsubtask(subtask, i) {
   return `
