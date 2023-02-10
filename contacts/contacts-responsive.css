@@ -51,19 +51,8 @@
 }
 
 @media (width <=1210px) {
-    .edit-contact {
-        position: absolute;
-        left: 0%;
-        top: 60%;
-    }
     .contact-list-container {
         width: 360px;
-    }
-    .contact-right {
-        position: absolute;
-        top: 100px;
-        left: 600px;
-        overflow: hidden;
     }
 }
 
