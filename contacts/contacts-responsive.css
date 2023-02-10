@@ -48,6 +48,10 @@
         height: 20px;
         width: 20px;
     }
+
+    .tasks-container {
+        width: 68%;
+    }
 }
 
 @media (width <=1210px) {
@@ -93,6 +97,9 @@
     }
     .new-contact-btn-container {
         margin-top: 10px;
+    }
+    #task-urgent-desc {
+        font-size: clamp(1rem, 3vw, 1rem);
     }
 }
 
