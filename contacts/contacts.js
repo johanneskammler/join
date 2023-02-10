@@ -5,6 +5,7 @@ setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 async function init() {
     await downloadFromServer();
     await includeHTML();
+    checkSize();
     await renderContactList();
     hoverContactsHtml();
 }
@@ -27,11 +28,18 @@ function checkSize() {
 
 
 function sidebarTabled() {
+
     document.getElementById("sidebar").classList.remove("sidebar");
     document.getElementById("sidebar").classList.add("tablet-sidebar");
     document.getElementById("help-section-btn").classList.add("d-none");
     // document.getElementById("create-btn-responsive").classList.remove("d-none");
-    document.getElementById("header-name-resp").classList.remove("d-none");
+
+
+    let response = document.getElementById("header-name-resp");
+    if (!(response == null)) {
+        response.classList.remove("d-none");
+    }
+
 }
 
 
@@ -123,12 +131,12 @@ async function openContactDetail(i) {
         document.getElementById("mail_right").innerHTML = email;
         document.getElementById("mobil_right").innerHTML = `+ ${phone}`;
         document.getElementById("circle_right").innerHTML = acronym;
-        gsap.from("#contact_right", {
-            x: 500,
-            opacity: 0,
-            duration: 0.33,
-            ease: 'back.out(0.7)'
-        });
+        // gsap.from("#contact_right", {
+        //     x: 500,
+        //     opacity: 0,
+        //     duration: 0.33,
+        //     ease: 'back.out(0.7)'
+        // });
     } else {
         document.getElementById('new_contact_btn').classList.add('d-none');
         document.getElementById('contact_right').classList.remove('d-none');
@@ -136,12 +144,12 @@ async function openContactDetail(i) {
         document.getElementById("mail_right").innerHTML = email;
         document.getElementById("mobil_right").innerHTML = `+ ${phone}`;
         document.getElementById("circle_right").innerHTML = acronym;
-        gsap.from("#contact_right", {
-            x: 500,
-            opacity: 0,
-            duration: 0.33,
-            ease: 'back.out(0.7)'
-        });
+        // gsap.from("#contact_right", {
+        //     x: 500,
+        //     opacity: 0,
+        //     duration: 0.33,
+        //     ease: 'back.out(0.7)'
+        // });
     }
 }
 
