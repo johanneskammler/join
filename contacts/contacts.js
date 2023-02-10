@@ -59,6 +59,8 @@ async function createNewContact() {
         'mail': mail.value,
         'mobil': mobil.value
     };
+
+    // if anweisung mit indexOf
     contacts.push(contact);
     await backend.setItem("contacts", JSON.stringify(contacts));
     renderContactList();
