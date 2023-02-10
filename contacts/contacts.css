@@ -17,6 +17,12 @@ body {
     bottom: 5vh;
 }
 
+.close-img {
+    position: absolute;
+    transform: rotate(90deg);
+    cursor: pointer;
+}
+
 .contact-list-container {
     display: flex;
     justify-content: center;
