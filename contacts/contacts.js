@@ -121,6 +121,7 @@ async function openContactDetail(i) {
     var body = document.body;
     var bodyWidth = body.offsetWidth;
     if (bodyWidth < 1280) {
+        document.getElementById('new_contact_btn').classList.add('d-none');
         document.getElementById('contact_list_container').classList.add('d-none');
         document.getElementById('edit_contact_pencil').classList.add('d-none');
         document.getElementById('backarrow').classList.remove('d-none');
@@ -138,7 +139,7 @@ async function openContactDetail(i) {
         //     ease: 'back.out(0.7)'
         // });
     } else {
-        document.getElementById('new_contact_btn').classList.add('d-none');
+
         document.getElementById('contact_right').classList.remove('d-none');
         document.getElementById("name_right").innerHTML = name;
         document.getElementById("mail_right").innerHTML = email;
