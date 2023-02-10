@@ -28,6 +28,7 @@ async function init() {
   task_cards = JSON.parse(backend.getItem("tasks")) || [];
   setTimeout(renderAmountToTasks, 150);
   await greetUser();
+  hoverSummaryHtml();
 
   function loadAtStart() {
     let nameTest = JSON.parse(backend.getItem("currentUser")) || [];
@@ -37,6 +38,10 @@ async function init() {
       ShowCurrentUserNameForSummery = nameTest;
     }
   }
+}
+
+function hoverSummaryHtml() {
+  document.getElementById("summary-html").classList.add("summary_html");
 }
 
 async function greetUser() {
