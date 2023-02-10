@@ -118,15 +118,14 @@ async function openContactDetail(i) {
     let firstLetters = contact['name'].match(/\b(\w)/g);
     let acronym = firstLetters.join('');
 
-    var body = document.body;
-    var bodyWidth = body.offsetWidth;
+    const body = document.body;
+    const bodyWidth = body.offsetWidth;
     if (bodyWidth < 1280) {
         document.getElementById('new_contact_btn').classList.add('d-none');
         document.getElementById('contact_list_container').classList.add('d-none');
         document.getElementById('edit_contact_pencil').classList.add('d-none');
         document.getElementById('backarrow').classList.remove('d-none');
         document.getElementById('edit_contact').classList.remove('d-none');
-        document.getElementById('new_contact_btn').classList.add('d-none');
         document.getElementById('contact_right').classList.remove('d-none');
         document.getElementById("name_right").innerHTML = name;
         document.getElementById("mail_right").innerHTML = email;
