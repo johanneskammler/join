@@ -143,11 +143,12 @@
 
 }
 
-@media (max-width: 412px) {
+@media (max-width: 414px) {
 
     #summary-container {
         justify-content: space-evenly;
         gap: 30px;
+        margin-left: 0 !important;
     }
 
     #urgent-left-top img {
@@ -168,6 +169,26 @@
 
     header {
         height: 68px !important;
+    }
+
+    .container {
+        width: 100vw;
+        margin-left: 0 !important;
+    }
+
+    .tasks-container {
+        flex-wrap: wrap;
+        flex-direction: row;
+        
+    }
+
+    #tasks {
+        width: 100vw;
+        margin-bottom: 10rem;
+    }
+
+    .icon-task {
+        width: 40% !important;
     }
 
 }
