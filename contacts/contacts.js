@@ -97,6 +97,7 @@ function renderContactListHTML(element, acronym, i) {
         return;
     }
     let id = firstLetter.toLowerCase();
+    document.getElementById(id).innerHTML = "";
     document.getElementById(id).innerHTML += `
         <div class="contact" onclick="openContactDetail(${i})">
             <div id="circle_contacts${i}" class="circle">${acronym}</div>
