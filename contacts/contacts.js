@@ -1,15 +1,12 @@
 let contacts = [];
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 
-async function init() { <<
-    <<
-    << < HEAD
+async function init() {
     await downloadFromServer();
     await includeHTML();
     await renderContactList();
-    hoverContactsHtml(); ===
-    ===
-    =
+    hoverContactsHtml();
+
     await downloadFromServer();
     await includeHTML();
     checkSize();
@@ -67,6 +64,7 @@ async function createNewContact() {
     contacts.push(contact);
     await backend.setItem("contacts", JSON.stringify(contacts));
     renderContactList();
+    closeBlurScreen();
 }
 
 async function renderContactList() {
