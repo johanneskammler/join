@@ -80,7 +80,7 @@ body {
     align-items: center;
     padding: 15px 25px;
     gap: 35px;
-    width: 15vw;
+    width: 17vw;
     cursor: pointer;
     transition: all 5ms ease-in-out;
 }
