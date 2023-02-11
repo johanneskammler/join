@@ -67,7 +67,7 @@ async function createNewContact() {
     closeBlurScreen();
 }
 
-async function renderContactList() {
+async function renderContactList(i) {
     contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
     for (let i = 0; i < contacts.length; i++) {
         let element = contacts[i]["name"];
@@ -85,7 +85,7 @@ async function renderContactList() {
         let firstLetters = element["name"].match(/\b(\w)/g) || [];
         let acronym = firstLetters.join("");
         renderContactListHTML(element, acronym, i);
-        // getNewColor(i);
+        getNewColor(i);
         disableContactContainer();
     }
 }
@@ -138,7 +138,6 @@ async function openContactDetail(i) {
         //     ease: 'back.out(0.7)'
         // });
     } else {
-
         document.getElementById('contact_right').classList.remove('d-none');
         document.getElementById("name_right").innerHTML = name;
         document.getElementById("mail_right").innerHTML = email;
@@ -220,6 +219,33 @@ function getNewColor(i) {
 
 function clickDialog(e) {
     e.stopPropagation();
+}
+
+async function openEditContact() {
+    document.getElementById('blur_screen-edit').classList.remove('d-none');
+
+    gsap.from("#add_contact_container", {
+        width: 1200,
+        x: -1000,
+        duration: 0.55,
+        ease: "back.out(0.35)",
+    });
+
+}
+
+async function saveEditContact() {
+    let contact = JSON.parse(backend.getItem("contacts"));
+    let name_input = document.getElementById('input-name-edit');
+    let mail_input = document.getElementById('input-mail-edit');
+    let phone_input = document.getElementById('input-phone-edit');
+
+    contact['name'][i] = name_input.value;
+    contact[i].mail = mail_input.value;
+    contact[i].phone = phone_input.value;
+
+    contacts.push(contacts);
+    await backend.setItem("contacts", JSON.stringify(contacts));
+    renderContactList(i);
 }
 
 //  Render HMTL
