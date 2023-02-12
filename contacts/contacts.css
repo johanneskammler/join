@@ -9,6 +9,7 @@ body {
 
 .contact-container {
   overflow: hidden;
+  height: 100vh;
 }
 
 #edit_contact {
@@ -28,7 +29,7 @@ body {
   justify-content: center;
   margin-left: 275px;
   margin-top: 100px;
-  width: 20vw;
+  width: 30vw !important;
   height: 92vh;
   overflow-y: scroll;
   box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
@@ -64,7 +65,7 @@ body {
   font-weight: 400;
   font-family: "Open Sans";
   margin-top: 10px;
-  margin-left: 37.5px;
+  margin-left: 10px !important;
 }
 
 .underline {
@@ -80,7 +81,7 @@ body {
   align-items: center;
   padding: 15px 25px;
   gap: 35px;
-  width: 17vw;
+  width: 22vw !important;
   cursor: pointer;
   transition: all 5ms ease-in-out;
 }
@@ -270,6 +271,9 @@ body {
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
   z-index: 4;
+  transform: scale(0.83);
+  top: -77px;
+  left: -50px;
 }
 
 .add-contact-header {
@@ -408,7 +412,7 @@ form input::placeholder {
   right: 0;
   backdrop-filter: blur(5px);
   background-color: rgba(24, 24, 24, 0.096);
-  z-index: 2;
+  z-index: 6;
   transition: all ease-in-out 125ms;
 }
 
