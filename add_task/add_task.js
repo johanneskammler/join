@@ -327,8 +327,13 @@ function emptyImportanceButton3() {
   document.getElementById("importance-button3-colored").style =
     "display: none;";
 }
+
+let contactsRendered = false;
 function openContactsToSelect() {
-  renderContacts();
+  if (!contactsRendered) {
+    renderContacts();
+    contactsRendered = true;
+  }
   let ddContacts = document.getElementById("contacts-drop-down");
   let overlay = document.getElementById("overlay-contacts");
   ddContacts.classList.toggle("d-none");

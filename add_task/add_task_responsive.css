@@ -36,6 +36,10 @@
 }
 
 @media (max-width: 480px) {
+  form {
+    width: 80vw;
+  }
+
   .create-task-btn-resp {
     top: 2.8vh;
     right: 8vw;
