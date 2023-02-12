@@ -137,7 +137,7 @@ body {
 .contact-right {
     position: absolute;
     top: 100px;
-    left: 993px;
+    left: 740px;
     overflow: hidden;
 }
 
@@ -271,6 +271,7 @@ body {
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
     z-index: 4;
+    transform: scale(0.83);
     top: -77px;
     left: -50px;
 }
