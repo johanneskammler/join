@@ -460,6 +460,7 @@ body {
 .fullName {
   margin-left: 30px;
   font-weight: 500;
+  font-family: "Inter";
 }
 
 .close {

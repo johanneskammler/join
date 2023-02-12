@@ -306,7 +306,7 @@ function cardContent(section, id) {
   } else if (section === "feedback") {
     contentTodo(section, id, feedbacksMap);
   } else if (section === "done") {
-    contenTodo(section, id, donesMap);
+    contentTodo(section, id, donesMap);
   }
 }
 
@@ -599,7 +599,10 @@ function checkMap(id) {
 
 function editContactsPopup(id) {
   let map = wichSection(id);
-  let mapsContacts = map.get(`${id}`)["contacts"].split(",");
+  let mapsContacts = map.get(`${id}`)["contacts"];
+  if (mapsContacts === "string") {
+    mapsContacts = mapsContacts.split(",");
+  }
   let contactsInPopup = [];
   let i = 0;
   while (contactsInPopup.length < mapsContacts.length) {
