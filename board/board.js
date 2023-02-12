@@ -16,12 +16,16 @@ let comeFrom;
 let comeTo;
 let searchHits = [];
 let searchInputs = [];
+let contactsEdit = [];
 
 let todo = "todo";
 let feedback = "feedback";
 let progress = "progress";
 let done = "done";
-let idCounter = 0; // Später im Server speichern da sonst wieder von 0 anfängt !!!
+let idCounter = 0;
+
+/* check a background color for the new contacts up */
+
 /**
  * This function Initialized some functions that need to run with onload of the body
  *
@@ -593,18 +597,32 @@ function checkMap(id) {
   return currentMap;
 }
 
-function editContactsPopup() {
+function editContactsPopup(id) {
+  let map = wichSection(id);
+  let mapsContacts = map.get(`${id}`)["contacts"].split(",");
   let contactsInPopup = [];
   let i = 0;
-  while (a !== null) {
-    contactsInPopup.push(
-      document.getElementById(`contacts-checkbox-${i}`).value
-    );
-    console.log(a);
-    i++;
-    if (a == null) break;
-  } // have a list with contacts check if indexOf than id.checked sikis party
+  while (contactsInPopup.length < mapsContacts.length) {
+    let dok = document.getElementById(`contacts-checkbox-${i}`);
+    console.log(contactsInPopup.indexOf(dok.value));
+    if (mapsContacts.indexOf(dok.value) > -1) {
+      contactsInPopup.push(i);
+      i++;
+    }
+  }
+  return contactsInPopup;
 }
+
+function contactsCheckboxUpdate(id) {
+  contacts = editContactsPopup(id);
+  for (let i = 0; i < contacts.length; i++) {
+    const element = contacts[i];
+    let id = document.getElementById(`contacts-checkbox-${element}`);
+    id.checked = true;
+    addContactToTask(element);
+  }
+}
+// have a list with contacts check if indexOf than id.checked sikis party
 
 function edit(id) {
   let currentMap = new Map(checkMap(id));
@@ -634,7 +652,7 @@ function showEdit(title, description, id) {
   document.getElementById("date_box").innerHTML = dateHTML();
   document.getElementById("edit_priority").classList.add("correctPrio");
   document.getElementById("edit_priority").innerHTML = priorityHTML();
-  document.getElementById("edit-assigned").innerHTML += assignedHTML();
+  document.getElementById("edit-assigned").innerHTML += assignedHTML(id);
   document.getElementById("contact").classList.add("flex-contact");
   document.getElementById(
     "edit_box"
@@ -777,6 +795,7 @@ function saveIn(
       title: `${titleEdit}`,
     });
   }
+  setTimeout(activateDragAndDrop, 150);
 }
 
 function editContacts(id) {

@@ -17,6 +17,12 @@ body {
     bottom: 5vh;
 }
 
+.close-img {
+    position: absolute;
+    transform: rotate(90deg);
+    cursor: pointer;
+}
+
 .contact-list-container {
     display: flex;
     justify-content: center;
@@ -74,7 +80,7 @@ body {
     align-items: center;
     padding: 15px 25px;
     gap: 35px;
-    width: 15vw;
+    width: 17vw;
     cursor: pointer;
     transition: all 5ms ease-in-out;
 }
@@ -210,6 +216,7 @@ body {
 }
 
 .edit-contact {
+    cursor: pointer;
     display: flex;
     margin-left: 61.87px;
     align-items: flex-start;
@@ -338,15 +345,15 @@ form input::placeholder {
     color: #D1D1D1;
 }
 
-#input-name {
+.input-name {
     background: url(../login/img/user.png) no-repeat scroll 95% 7px;
 }
 
-#input-mail {
+.input-mail {
     background: url(../login/img/email.png) no-repeat scroll 95% 7px;
 }
 
-#input-phone {
+.input-phone {
     background: url(img/phone.png) no-repeat scroll 95% 7px;
 }
 
@@ -408,4 +415,28 @@ form input::placeholder {
 .contacts_html {
     background-color: #d2e3ff;
     border-radius: 8px;
+}
+
+.save-btn {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 22px 14px;
+    gap: 10px;
+    width: 124px;
+    height: 51px;
+    background: #4589FF;
+    border-radius: 10px;
+    border: none;
+    font-size: 19px;
+    color: white;
+    font-family: 'open sans';
+    cursor: pointer;
+}
+
+.save-btn-container {
+    display: flex;
+    justify-content: center;
 }

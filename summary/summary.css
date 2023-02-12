@@ -123,9 +123,9 @@ section {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   gap: 35px;
   position: relative;
+  width: calc(100vw - 232px);
 }
 
 .d-none {
@@ -220,8 +220,12 @@ section {
   align-items: center;
 }
 
+#tasks {
+  width: calc(90vw - 232px);
+}
+
 #task-container {
-  width: 100%;
+  width: calc(90vw - 232px);
   height: clamp(150px, 15vw, 217px);
   align-items: flex-start;
 }
@@ -318,6 +322,7 @@ section {
   padding: 0px;
   justify-content: space-between;
   width: 80%;
+  gap: 16px;
   height: clamp(150px, 15vw, 217px);
 }
 

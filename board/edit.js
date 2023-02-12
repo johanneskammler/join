@@ -6,10 +6,11 @@ let newCategories = [];
 let categoryName;
 let categoryColor; */
 
-function openContactsToSelect() {
+function openContactsToSelect(id) {
   var element = document.getElementById("contacts-drop-down");
   element.classList.toggle("d-none");
   renderContactsEdit();
+  setTimeout(contactsCheckboxUpdate, 200, id);
 }
 
 async function renderContactsEdit() {
@@ -41,12 +42,12 @@ function generateHTMLcontacts(element, i) {
 function addContactToTask(i) {
   let contact = document.getElementById("contacts-checkbox-" + i).value;
 
-  if (selectedContacts.includes(contact)) {
-    selectedContacts.splice(i, 1);
-    console.log(selectedContacts);
-  } else {
+  if (selectedContacts.indexOf(contact) == -1) {
     selectedContacts.push(contact);
     console.log(selectedContacts);
+  } else {
+    console.log(selectedContacts);
+    return;
   }
 }
 

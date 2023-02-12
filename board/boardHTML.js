@@ -373,15 +373,15 @@ function priorityHTML() {
             </div>`;
 }
 
-function assignedHTML() {
+function assignedHTML(id) {
   return `
               <div class="contacts-box">
                 <div style="position: relative">
                     <div class="contacts-dropdown">
-                        <p onclick="openContactsToSelect()" class="select-contacts">
+                        <p onclick="openContactsToSelect(${id})" class="select-contacts">
                             Select contacts to assign
                         </p>
-                        <img onclick="openContactsToSelect()" src="../add_task/img-add_task/dropdown_blue.png"
+                        <img onclick="openContactsToSelect(${id})" src="../add_task/img-add_task/dropdown_blue.png"
                             class="drop-down-arrow" id="contacts-drop-down-arrow" />
                         <div id="contacts-drop-down" class="contacts-dropdown-content d-none set-contact-popup">
                             <div class="contacts-list-elem">
