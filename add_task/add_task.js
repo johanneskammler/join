@@ -6,7 +6,7 @@ let selectedSubtasks = [];
 let newCategories = [];
 let categoryName;
 let categoryColor;
-let contacts = [];
+let contacts;
 
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 
@@ -89,10 +89,11 @@ function resetImportanceButtons() {
 async function init() {
   await includeHTML();
   checkSize();
-  renderContacts();
+  await renderContacts();
   hoverAddTaskHtml();
   await downloadFromServer();
   tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
+  contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
 }
 
 function hoverAddTaskHtml() {
@@ -125,9 +126,7 @@ function enableSidebar() {
 }
 
 async function renderContacts() {
-  let url = "../contacts.json";
-  let response = await fetch(url);
-  contacts = await response.json();
+  contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
 
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];
@@ -329,6 +328,7 @@ function emptyImportanceButton3() {
     "display: none;";
 }
 function openContactsToSelect() {
+  renderContacts();
   let ddContacts = document.getElementById("contacts-drop-down");
   let overlay = document.getElementById("overlay-contacts");
   ddContacts.classList.toggle("d-none");
