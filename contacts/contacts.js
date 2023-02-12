@@ -60,6 +60,10 @@ async function createNewContact() {
   await backend.setItem("contacts", JSON.stringify(contacts));
   renderContactList();
   closeBlurScreen();
+
+  name.value = '';
+  mail.value = '';
+  mobil.value = '';
 }
 function renderContactsRaster() {
   let raster = document.getElementById("contact_list_container");
@@ -266,7 +270,7 @@ function renderContactListHTML(element, acronym, i) {
   /*  document.getElementById(id).innerHTML = ""; */
   document.getElementById(id).innerHTML += `
         <div class="contact" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym}</div>
+            <div id="circle_contacts${i}" class="circle">${acronym.toUpperCase()}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${element["name"]}</span>
                 <span class="contact-email">${element["mail"]}</span>
@@ -297,7 +301,7 @@ async function openContactDetail(i) {
     document.getElementById("name_right").innerHTML = name;
     document.getElementById("mail_right").innerHTML = email;
     document.getElementById("mobil_right").innerHTML = `+ ${phone}`;
-    document.getElementById("circle_right").innerHTML = acronym;
+    document.getElementById("circle_right").innerHTML = acronym.toUpperCase();
     // gsap.from("#contact_right", {
     //     x: 500,
     //     opacity: 0,
@@ -309,7 +313,7 @@ async function openContactDetail(i) {
     document.getElementById("name_right").innerHTML = name;
     document.getElementById("mail_right").innerHTML = email;
     document.getElementById("mobil_right").innerHTML = `+ ${phone}`;
-    document.getElementById("circle_right").innerHTML = acronym;
+    document.getElementById("circle_right").innerHTML = acronym.toUpperCase();
     // gsap.from("#contact_right", {
     //     x: 500,
     //     opacity: 0,
