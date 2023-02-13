@@ -28,7 +28,7 @@ async function renderContactsEdit() {
 function generateHTMLcontacts(element, i) {
   return `
     <div class="contacts-list-elem">
-      <label class="control control-checkbox" id="selected-contact" onclick="addContactToTask(${i})">
+      <label class="control control-checkbox" id="selected-contact" onmouseup="addContactToTask(${i})">
         <div class="contacts-list-elem-box">
           <span id="name${i}" class="rendered-contact-name">${element["name"]}</span>
           <input id="contacts-checkbox-${i}" type="checkbox" value="${element["name"]}" />
@@ -39,6 +39,31 @@ function generateHTMLcontacts(element, i) {
     `;
 }
 
+function contactsCheckboxUpdate(id) {
+  let contacts = editContactsPopup(id);
+  if (contacts == undefined) {
+    return;
+  }
+  for (let i = 0; i < contacts.length; i++) {
+    const element = contacts[i];
+    let id = document.getElementById(`contacts-checkbox-${element}`);
+    id.checked = true;
+    addContactToTask(element);
+  }
+}
+
+/* function addContactToTask(i) {
+  let contact = document.getElementById("contacts-checkbox-" + i).value;
+
+  if (selectedContacts.includes(contact)) {
+    selectedContacts.splice(i, 1);
+    console.log(selectedContacts);
+  } else {
+    selectedContacts.push(contact);
+    console.log(selectedContacts);
+  }
+} */
+
 function addContactToTask(i) {
   let contact = document.getElementById("contacts-checkbox-" + i).value;
 
@@ -46,8 +71,8 @@ function addContactToTask(i) {
     selectedContacts.push(contact);
     console.log(selectedContacts);
   } else {
-    let name = selectedContacts.indexOf(contact[i]);
-    selectedContacts.splice(`${name}`);
+    let pos = selectedContacts.indexOf(contact);
+    selectedContacts.splice(pos, 1);
     console.log(selectedContacts);
   }
 }

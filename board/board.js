@@ -599,6 +599,9 @@ function checkMap(id) {
 
 function editContactsPopup(id) {
   let map = wichSection(id);
+  if (map == undefined) {
+    return;
+  }
   let mapsContacts = map.get(`${id}`)["contacts"];
   if (mapsContacts === "string") {
     mapsContacts = mapsContacts.split(",");
@@ -617,7 +620,10 @@ function editContactsPopup(id) {
 }
 
 function contactsCheckboxUpdate(id) {
-  contacts = editContactsPopup(id);
+  let contacts = editContactsPopup(id);
+  if (contacts == undefined) {
+    return;
+  }
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];
     let id = document.getElementById(`contacts-checkbox-${element}`);
