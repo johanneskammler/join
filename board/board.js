@@ -619,18 +619,6 @@ function editContactsPopup(id) {
   return contactsInPopup;
 }
 
-function contactsCheckboxUpdate(id) {
-  let contacts = editContactsPopup(id);
-  if (contacts == undefined) {
-    return;
-  }
-  for (let i = 0; i < contacts.length; i++) {
-    const element = contacts[i];
-    let id = document.getElementById(`contacts-checkbox-${element}`);
-    id.checked = true;
-    addContactToTask(element);
-  }
-}
 // have a list with contacts check if indexOf than id.checked sikis party
 
 function edit(id) {
