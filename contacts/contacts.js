@@ -4,9 +4,6 @@ setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 async function init() {
     await downloadFromServer();
     await includeHTML();
-
-    await downloadFromServer();
-    await includeHTML();
     checkSize();
     await renderContactList();
     hoverContactsHtml();
