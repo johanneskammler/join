@@ -6,24 +6,31 @@
 
 @media (width <=1700px) {
     .contact-list-container {
-        width: 25vw;
+        width: 26vw;
     }
     .contact {
-        width: 18vw;
+        width: 20vw;
     }
     .contact-right {
         left: 45vw;
     }
 }
 
-@media (width <=1350px) {
-    /* .name-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    } */
+@media (width <=1550px) {
+    .contact {
+        width: 25vw;
+    }
     .contact-list-container {
-        width: 27vw;
+        width: 34vw;
+    }
+}
+
+@media (width <=1350px) {
+    .contact-list-container {
+        width: 34vw;
+    }
+    .contact {
+        width: 23vw;
     }
     .contact-name {
         font-size: 16px;
@@ -55,10 +62,19 @@
 
 @media (width <=1210px) {
     .contact-list-container {
-        width: 360px;
+        width: 33vw;
     }
     .save-btn {
         margin-top: 30px;
+    }
+}
+
+@media (width <=1190px) {
+    .contact-list-container {
+        width: 35vw;
+    }
+    .contact {
+        width: 27vw;
     }
 }
 
@@ -66,10 +82,14 @@
     .new-contact-btn {
         padding: 14px 6px;
         right: 5%;
-        top: 85%;
+        top: 84%;
+    }
+    .contact-char {
+        margin-left: 10px;
     }
     .contact-list-container {
         margin-left: 0;
+        width: 45vw;
     }
     .contact-right {
         position: absolute;
@@ -79,7 +99,7 @@
     }
     .contact {
         padding: 15px 20px;
-        width: 235px;
+        width: 35vw;
     }
     .circle {
         margin-left: 0;
@@ -131,7 +151,7 @@
     }
     .new-contact-btn {
         right: 5%;
-        top: 11%;
+        top: 15% !important;
         font-size: 16px;
     }
     .btn-img {
@@ -207,5 +227,11 @@
     }
     .contact-list-container {
         height: 91vh;
+    }
+}
+
+@media (height <=821px) {
+    .new-contact-btn {
+        top: 80vh;
     }
 }
