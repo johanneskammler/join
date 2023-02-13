@@ -128,6 +128,9 @@ function enableSidebar() {
 async function renderContacts() {
   contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
 
+  // list contacts in slphabetical order
+  contacts.sort((a, b) => (a.name > b.name) ? 1 : -1);
+
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];
     document.getElementById("contacts-drop-down").innerHTML +=
