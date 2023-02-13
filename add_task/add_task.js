@@ -357,3 +357,17 @@ function resetCheckboxes() {
     document.getElementById(`contacts-checkbox-${i}`).checked = false;
   }
 }
+
+
+function clearAllInputFields() {
+  document.getElementById('title-input').value = '';
+  document.getElementById('select-date').value = '';
+  document.getElementById('description-input').value = '';
+  document.getElementById('add-subtask').value = '';
+  resetImportanceButtons();
+  selectedContacts = [];
+  categoryColor = "";
+  selectedSubtasks = [];
+  document.getElementById("select-category").innerHTML = resetCategory();
+  resetCheckboxes();
+}
