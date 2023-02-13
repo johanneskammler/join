@@ -146,7 +146,7 @@ async function renderContactsAddTask() {
   }
 }
 
-function addContactToTask(i) {
+function addContactToTaskk(i) {
   let contact = document.getElementById("contacts-checkbox-" + i).value;
 
   if (selectedContacts.includes(contact)) {
@@ -358,7 +358,7 @@ function generateHTMLcontacts(element, i) {
         <label class="control control-checkbox" id="selected-contact-${i}">
           <div class="contacts-list-elem-box">
             <span class="rendered-contact-name">${element["name"]}</span>
-            <input onclick="addContactToTask(${i})" id="contacts-checkbox-${i}" type="checkbox" value="${element["name"]}" />
+            <input onclick="addContactToTaskk(${i})" id="contacts-checkbox-${i}" type="checkbox" value="${element["name"]}" />
             <div id="control-indicator-${i}" class="control-indicator"></div>
           </div>
         </label>

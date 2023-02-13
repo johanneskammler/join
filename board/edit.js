@@ -27,8 +27,8 @@ async function renderContactsEdit() {
 
 function generateHTMLcontacts(element, i) {
   return `
-    <div class="contacts-list-elem"  onclick="addContactToTask(${i})">
-      <label class="control control-checkbox" id="selected-contact">
+    <div class="contacts-list-elem">
+      <label class="control control-checkbox" id="selected-contact" onclick="addContactToTask(${i})">
         <div class="contacts-list-elem-box">
           <span id="name${i}" class="rendered-contact-name">${element["name"]}</span>
           <input id="contacts-checkbox-${i}" type="checkbox" value="${element["name"]}" />
@@ -46,9 +46,9 @@ function addContactToTask(i) {
     selectedContacts.push(contact);
     console.log(selectedContacts);
   } else {
-    selectedContacts.slice(`${i}`);
+    let name = selectedContacts.indexOf(contact[i]);
+    selectedContacts.splice(`${name}`);
     console.log(selectedContacts);
-    return;
   }
 }
 
