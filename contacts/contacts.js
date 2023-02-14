@@ -256,7 +256,7 @@ function renderContactListHTML(element, acronym, i) {
     let id = firstLetter.toLowerCase();
     /*  document.getElementById(id).innerHTML = ""; */
     document.getElementById(id).innerHTML += `
-        <div class="contact" id="contact${element}" onclick="openContactDetail(${i})">
+        <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
             <div id="circle_contacts${i}" class="circle">${acronym.toUpperCase()}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${element["name"]}</span>
@@ -287,7 +287,7 @@ async function openContactDetail(i) {
         document.getElementById("contact_right").classList.remove("d-none");
         document.getElementById("name_right").innerHTML = name;
         document.getElementById("mail_right").innerHTML = email;
-        document.getElementById("mobil_right").innerHTML = `+ ${phone}`;
+        document.getElementById("mobil_right").innerHTML = `${phone}`;
         document.getElementById("circle_right").innerHTML = acronym.toUpperCase();
         // gsap.from("#contact_right", {
         //     x: 500,
@@ -299,7 +299,7 @@ async function openContactDetail(i) {
         document.getElementById("contact_right").classList.remove("d-none");
         document.getElementById("name_right").innerHTML = name;
         document.getElementById("mail_right").innerHTML = email;
-        document.getElementById("mobil_right").innerHTML = `+ ${phone}`;
+        document.getElementById("mobil_right").innerHTML = `${phone}`;
         document.getElementById("circle_right").innerHTML = acronym.toUpperCase();
         // gsap.from("#contact_right", {
         //     x: 500,
