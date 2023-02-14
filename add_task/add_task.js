@@ -94,6 +94,8 @@ async function init() {
   await downloadFromServer();
   tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
   contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById("select-date").setAttribute("min", today);
 }
 
 function hoverAddTaskHtml() {
