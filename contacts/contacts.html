@@ -24,6 +24,11 @@
     <script src="../include.js"></script>
     <script src="contacts.js"></script>
     <script src="../main.js"></script>
+    <!-- <script defer>
+        window.onload = function() {
+          
+        }
+    </script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
 
     <title>Contacts</title>
@@ -251,7 +256,7 @@
                     </div>
                 </div>
 
-                <div class="date-box">
+                <div class="date-box" onclick="dateFuture()">
                     <span class="due-date-text">Due date</span>
                     <input type="date" placeholder="dd/mm/yyyy" id="select-date-task" class="select-date" required="" />
                 </div>
@@ -590,7 +595,7 @@
                     <div class="img-container">
                         <img src="img/people.png" alt="" />
                     </div>
-                    <form onsubmit="event.preventDefault(); saveEditContact(event); return false">
+                    <form onsubmit="event.preventDefault(); saveEditContact(event);">
                         <input id="input-name-edit" class="input-name" placeholder="Name" type="text" required />
                         <input id="input-mail-edit" class="input-mail" placeholder="Email" type="email" required />
                         <input id="input-phone-edit" class="input-phone" placeholder="Phone" type="tel" required />

@@ -7,9 +7,6 @@ async function init() {
     checkSize();
     await renderContactList();
     hoverContactsHtml();
-
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('select-date-task').setAttribute('min', today);
 }
 
 function hoverContactsHtml() {
@@ -259,7 +256,7 @@ function renderContactListHTML(element, acronym, i) {
     let id = firstLetter.toLowerCase();
     /*  document.getElementById(id).innerHTML = ""; */
     document.getElementById(id).innerHTML += `
-        <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
+        <div class="contact" data-contact-id="${i}" onclick="openContactDetail(${i})">
             <div id="circle_contacts${i}" class="circle">${acronym.toUpperCase()}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${element["name"]}</span>
@@ -357,6 +354,8 @@ function openAddTask() {
     renderContactsAddTask();
     html.classList.toggle("hide-overflow-y");
     renderAddTask();
+
+    dateFuture();
 }
 
 function renderAddTask() {
@@ -414,6 +413,11 @@ async function saveEditContact(event) {
 
     await backend.setItem("contacts", JSON.stringify(contacts));
     renderContactList();
+}
+
+function dateFuture() {
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('select-date-task').setAttribute('min', today);
 }
 
 
