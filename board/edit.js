@@ -6,7 +6,7 @@ let newCategories = [];
 let categoryName;
 let categoryColor; */
 
-function openContactsToSelect(id) {
+function openEditContactsToSelect(id) {
   var element = document.getElementById("contacts-drop-down");
   element.classList.toggle("d-none");
   renderContactsEdit();
@@ -14,9 +14,9 @@ function openContactsToSelect(id) {
 }
 
 async function renderContactsEdit() {
-  let url = "../contacts.json";
-  let response = await fetch(url);
-  let contacts = await response.json();
+  /*   let url = "../contacts.json";
+  let response = await fetch(url); */
+  let contacts = JSON.parse(backend.getItem("contacts").split(","));
 
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];
