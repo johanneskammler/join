@@ -85,9 +85,24 @@
   }
 }
 
-@media (width <= 1550px) {
+@media (width <= 1560px) {
+  .todo-content,
+  .progress-content,
+  .await-feedback-content,
+  .done-content {
+    width: 18vw !important;
+  }
+
+  .head {
+    width: 17vw !important;
+    margin-right: 8px !important;
+  }
+
   .card-content-popup {
-    width: 85%;
+    width: 85% !important;
+  }
+  .card {
+    width: 15.5vw !important;
   }
 
   .popup-title {
@@ -127,10 +142,6 @@
     height: auto;
     align-items: center;
     margin-top: 0px;
-  }
-
-  .sidebar {
-    padding: 22px 20px !important;
   }
 
   .edit-box {
@@ -185,13 +196,27 @@
   }
 }
 
-@media (width <= 1350px) {
+@media (width <= 1380px) {
   .board {
     margin-left: 23.4vw;
   }
   .popup-title {
     font-size: 50px;
   }
+
+  .head {
+    width: 16vw !important;
+  }
+
+  .todo-content, .progress-content, .await-feedback-content, .done-content {
+    width: 17vw !important;
+  }
+
+  .card {
+    width: 15vw !important;
+  }
+
+
 }
 
 @media (width <= 1280px) {
@@ -209,9 +234,7 @@
   .todo-content {
     width: 19vw;
   }
-  .sidebar {
-    width: 14vw !important;
-  }
+ }
 
   .board {
     margin-left: 20.4vw;
@@ -261,10 +284,6 @@
 }
 
 @media (width <= 1240px) {
-  .sidebar {
-    width: 13.5vw !important;
-  }
-
   .edit-box {
     width: 395px;
     display: flex;
@@ -278,6 +297,21 @@
 
   .head {
     width: 18.5vw;
+  }
+}
+
+@media (width <= 1200px){
+
+  .head {
+    width: 14.5vw !important;
+  }
+
+  .todo-content, .progress-content, .await-feedback-content, .done-content {
+    width: 16vw !important;
+  }
+
+  .card {
+    width: 13vw !important;
   }
 }
 
@@ -303,13 +337,18 @@
   }
 
   .board {
-    margin-left: 0;
+    margin-left: 0px !important;
 
-    align-items: center;
+    align-items: center !important;
   }
 
   .board-top {
-    width: 69vw;
+    width: initial !important;
+    margin-inline-start: -334px !important;
+  }
+
+  .inpbox {
+    width: 30vw !important;
   }
 
   .btn-top {
@@ -365,9 +404,6 @@
     height: 41.3vh;
   }
 
-  .card {
-    width: 21vw;
-  }
 
   .board-main {
     display: flex;
@@ -387,12 +423,7 @@
     padding-inline-start: 0;
   }
 
-  .todobox,
-  .progressbox,
-  .feedbackbox,
-  .donebox {
-    width: 27vw;
-  }
+  
 
   .for-tablet {
     gap: 8vw;
@@ -400,12 +431,22 @@
     justify-content: center;
   }
 
-  .card {
-    width: 28vw;
-  }
 
   .done {
     height: 60vh;
+  }
+
+
+    .head {
+    width: 27vw !important;
+  }
+
+  .todo-content, .progress-content, .await-feedback-content, .done-content {
+    width: 25vw !important;
+  }
+
+  .card {
+    width: 26vw !important;
   }
 }
 

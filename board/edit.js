@@ -1,4 +1,4 @@
-/* let selectedContacts = [];
+/*let selectedContacts = [];
 let importance;
 let subtasksEdit = []; // subtask is not defined <<<----   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 let selectedSubtasks = [];
@@ -48,24 +48,12 @@ function contactsCheckboxUpdate(id) {
     const element = contacts[i];
     let id = document.getElementById(`contacts-checkbox-${element}`);
     id.checked = true;
-    addContactToTask(element);
+    addContactToTask(element, id);
   }
 }
 
-/* function addContactToTask(i) {
-  let contact = document.getElementById("contacts-checkbox-" + i).value;
-
-  if (selectedContacts.includes(contact)) {
-    selectedContacts.splice(i, 1);
-    console.log(selectedContacts);
-  } else {
-    selectedContacts.push(contact);
-    console.log(selectedContacts);
-  }
-} */
-
-function addContactToTask(i) {
-  let contact = document.getElementById("contacts-checkbox-" + i).value;
+async function addContactToTask(element, id) {
+  let contact = document.getElementById("contacts-checkbox-" + element).value;
 
   if (selectedContacts.indexOf(contact) == -1) {
     selectedContacts.push(contact);
@@ -75,6 +63,133 @@ function addContactToTask(i) {
     selectedContacts.splice(pos, 1);
     console.log(selectedContacts);
   }
+  await safeEdit(id, selectedContacts);
+}
+
+async function safeEdit(id, selectedContacts) {
+  let map = wichSection(id);
+  if (map == todosMap) {
+    setupTodosMap(id, selectedContacts);
+  } else if (map == progressesMap) {
+    setupTodosMap(id, selectedContacts);
+  } else if (map == feedbacksMap) {
+    setupTodosMap(id, selectedContacts);
+  } else if (map == donesMap) {
+    setupTodosMap(id, selectedContacts);
+  }
+  await saveMaps();
+}
+
+function setupTodosMap(id, selectedContacts) {
+  let category = todosMap.get(`${id}`)["category"];
+  let categorycolor = todosMap.get(`${id}`)["categorycolor"];
+  let colors = todosMap.get(`${id}`)["colors"];
+  let contacts = selectedContacts;
+  let date = todosMap.get(`${id}`)["date"];
+  let description = todosMap.get(`${id}`)["description"];
+  let importance = todosMap.get(`${id}`)["importance"];
+  let letters = todosMap.get(`${id}`)["letters"];
+  let subtask = todosMap.get(`${id}`)["subtask"];
+  let subtaskStatus = todosMap.get(`${id}`)["subtaskStatus"];
+  let title = todosMap.get(`${id}`)["title"];
+
+  todosMap.set(`${id}`, {
+    category: `${category}`,
+    categorycolor: `${categorycolor}`,
+    colors: `${colors}`,
+    contacts: `${contacts}`,
+    date: `${date}`,
+    description: `${description}`,
+    importance: `${importance}`,
+    letters: `${letters}`,
+    subtask: `${subtask}`,
+    subtaskStatus: `${subtaskStatus}`,
+    title: `${title}`,
+  });
+}
+
+function setupFeedbacksMap(id, selectedContacts) {
+  let category = feedbacksMap.get(`${id}`)["category"];
+  let categorycolor = feedbacksMap.get(`${id}`)["categorycolor"];
+  let colors = feedbacksMap.get(`${id}`)["colors"];
+  let contacts = selectedContacts;
+  let date = feedbacksMap.get(`${id}`)["date"];
+  let description = feedbacksMap.get(`${id}`)["description"];
+  let importance = feedbacksMap.get(`${id}`)["importance"];
+  let letters = feedbacksMap.get(`${id}`)["letters"];
+  let subtask = feedbacksMap.get(`${id}`)["subtask"];
+  let subtaskStatus = feedbacksMap.get(`${id}`)["subtaskStatus"];
+  let title = feedbacksMap.get(`${id}`)["title"];
+
+  feedbacksMap.set(`${id}`, {
+    category: `${category}`,
+    categorycolor: `${categorycolor}`,
+    colors: `${colors}`,
+    contacts: `${contacts}`,
+    date: `${date}`,
+    description: `${description}`,
+    importance: `${importance}`,
+    letters: `${letters}`,
+    subtask: `${subtask}`,
+    subtaskStatus: `${subtaskStatus}`,
+    title: `${title}`,
+  });
+}
+
+function setupDonesMap(id, selectedContacts) {
+  let category = donesMap.get(`${id}`)["category"];
+  let categorycolor = donesMap.get(`${id}`)["categorycolor"];
+  let colors = donesMap.get(`${id}`)["colors"];
+  let contacts = selectedContacts;
+  let date = donesMap.get(`${id}`)["date"];
+  let description = donesMap.get(`${id}`)["description"];
+  let importance = donesMap.get(`${id}`)["importance"];
+  let letters = donesMap.get(`${id}`)["letters"];
+  let subtask = donesMap.get(`${id}`)["subtask"];
+  let subtaskStatus = donesMap.get(`${id}`)["subtaskStatus"];
+  let title = donesMap.get(`${id}`)["title"];
+
+  donesMap.set(`${id}`, {
+    category: `${category}`,
+    categorycolor: `${categorycolor}`,
+    colors: `${colors}`,
+    contacts: `${contacts}`,
+    date: `${date}`,
+    description: `${description}`,
+    importance: `${importance}`,
+    letters: `${letters}`,
+    subtask: `${subtask}`,
+    subtaskStatus: `${subtaskStatus}`,
+    title: `${title}`,
+  });
+}
+
+function setupProgressesMap(id, selectedContacts) {
+  let category = progressesMap.get(`${id}`)["category"];
+  let categorycolor = progressesMap.get(`${id}`)["categorycolor"];
+  let colors = progressesMap.get(`${id}`)["colors"];
+  let contacts = selectedContacts;
+  let date = progressesMap.get(`${id}`)["date"];
+  let description = progressesMap.get(`${id}`)["description"];
+  let importance = progressesMap.get(`${id}`)["importance"];
+  let letters = progressesMap.get(`${id}`)["letters"];
+  let subtask = progressesMap.get(`${id}`)["subtask"];
+  let subtaskStatus = progressesMap.get(`${id}`)["subtaskStatus"];
+  let title = progressesMap.get(`${id}`)["title"];
+
+  progressesMap.set(`${id}`, {
+    category: `${category}`,
+    categorycolor: `${categorycolor}`,
+    colors: `${colors}`,
+    contacts: `${contacts}`,
+    date: `${date}`,
+    description: `${description}`,
+    importance: `${importance}`,
+    letters: `${letters}`,
+    subtask: `${subtask}`,
+    subtaskStatus: `${subtaskStatus}`,
+    title: `${title}`,
+  });
 }
 
 /* umschreiben für edit

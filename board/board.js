@@ -170,9 +170,9 @@ async function getFirstLetter(contacts, idCounter) {
   let letterList = [];
   let colorList = [];
 
-  let url = "../contacts.json";
-  let response = await fetch(url);
-  let contactsJson = await response.json();
+  /*   let url = "../contacts.json";
+  let response = await fetch(url); */
+  let contactsJson = backend.getItem("contacts");
   let namesList = [];
   for (let i = 0; i < contactsJson.length; i++) {
     namesList.push(contactsJson[i]["name"]);
@@ -603,7 +603,7 @@ function editContactsPopup(id) {
     return;
   }
   let mapsContacts = map.get(`${id}`)["contacts"];
-  if (mapsContacts === "string") {
+  if (typeof mapsContacts === "string") {
     mapsContacts = mapsContacts.split(",");
   }
   let contactsInPopup = [];
@@ -613,8 +613,8 @@ function editContactsPopup(id) {
     console.log(contactsInPopup.indexOf(dok.value));
     if (mapsContacts.indexOf(dok.value) > -1) {
       contactsInPopup.push(i);
-      i++;
     }
+    i++;
   }
   return contactsInPopup;
 }
@@ -976,7 +976,7 @@ async function serach() {
       const map = maps[i];
       searchMaps(map, input);
     }
-    highlightAndDnone();
+    highlightAndDone();
   }
 }
 
@@ -1071,7 +1071,7 @@ function PushInArray(values, key, input) {
   }
 }
 
-function highlightAndDnone() {
+function highlightAndDone() {
   for (let i = idCounter - 1; i > -1; i--) {
     let card = document.getElementById(`card${i}`);
     card.classList.add("d-none");
