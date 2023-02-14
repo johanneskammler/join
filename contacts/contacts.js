@@ -232,7 +232,7 @@ function renderContactsRasterHTML() {
             `;
 }
 
-async function renderContactList(i) {
+async function renderContactList() {
     let a = document.getElementById("contact_list_container");
     a.innerHTML = "";
     renderContactsRaster();
@@ -398,13 +398,13 @@ async function saveEditContact() {
     let mail_input = document.getElementById("input-mail-edit");
     let phone_input = document.getElementById("input-phone-edit");
 
-    contact["name"][i] = name_input.value;
+    contact[i].name = name_input.value;
     contact[i].mail = mail_input.value;
     contact[i].phone = phone_input.value;
 
     contacts.push(contacts);
     await backend.setItem("contacts", JSON.stringify(contacts));
-    renderContactList(i);
+    renderContactList();
 }
 
 //  Render HMTL
