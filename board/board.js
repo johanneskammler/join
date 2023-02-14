@@ -460,7 +460,7 @@ function renderContactsTodo(id) {
   if (letters.length == 1) {
     letters = [letters[0]];
   } else {
-    letters = [letters.split(",")];
+    letters = String(letters).split(",");
   }
   let contactsSection = document.getElementById(`contacts_card${id}`);
   if (contacts.length > 2) {

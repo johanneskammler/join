@@ -539,14 +539,12 @@ function getFirstLetterInvate(contact) {
 }
 
 function getNewColorContacts() {
-  let symbols, color;
-  symbols = "0123456789ABCDEF";
-  color = "#";
-
+  let color = "#";
+  const symbols = "0123456789ABCDEF";
   for (let f = 0; f < 6; f++) {
-    color = color + symbols[Math.floor(Math.random() * 16)];
-    return color;
+    color += symbols[Math.floor(Math.random() * 16)];
   }
+  return color;
 }
 
 function loadAtStartTask() {
