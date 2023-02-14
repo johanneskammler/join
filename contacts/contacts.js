@@ -238,19 +238,7 @@ async function renderContactList(i) {
     renderContactsRaster();
     contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
     for (let i = 0; i < contacts.length; i++) {
-        let element = contacts[i]["name"];
-        let name = [];
-        name = element.split(" ");
-
-        let firstLetter = name[0].split("")[0];
-        let secondLetter = name[1] ? name[1].split("")[0] : "";
-        let firstLetters = firstLetter + secondLetter;
-        console.log(firstLetters);
-    }
-
-    for (let i = 0; i < contacts.length; i++) {
         const element = contacts[i];
-        // let firstLetters = element["name"].match(/\b(\w)/g) || [];
         let firstLetters = element["name"].split(/\s+/).map(word => word[0]);
         let acronym = firstLetters.join("");
         renderContactListHTML(element, acronym, i);
