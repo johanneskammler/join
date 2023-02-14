@@ -16,7 +16,8 @@ function openEditContactsToSelect(id) {
 async function renderContactsEdit() {
   /*   let url = "../contacts.json";
   let response = await fetch(url); */
-  let contacts = JSON.parse(backend.getItem("contacts").split(","));
+  let contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
+  contacts.sort((a, b) => (a.name > b.name ? 1 : -1));
 
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];

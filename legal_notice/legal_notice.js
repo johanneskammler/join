@@ -1,54 +1,68 @@
 async function init() {
-    await includeHTML();
-    hoverLegalNoticeHtml();
+  await includeHTML();
+  checkSize();
 }
-
 
 function hoverLegalNoticeHtml() {
-  document.getElementById("legal-notice-html").classList.add("legal_notice_html");
+  document
+    .getElementById("legal-notice-html")
+    .classList.add("legal_notice_html");
 }
 
-
 function goBackToLastPage() {
-    window.history.back();
+  window.history.back();
+}
+
+function hoverNoticeHtml() {
+  document
+    .getElementById("notice_bg")
+    .classList.add("section-background-normal");
+  document.getElementById("notice_bg").classList.remove("section-background");
+}
+
+function hoverNoticeRespons() {
+  document
+    .getElementById("notice_bg")
+    .classList.remove("section-background-normal");
+  document.getElementById("notice_bg").classList.add("section-background");
 }
 
 function checkSize() {
-    let size = window.innerWidth;
-    console.log(size);
-    if (size <= 1024) {
-      console.log("smaller than 1024");
-      sidebarTabled();
-      draggableFalse();
-    } else if (size > 1024) {
-      console.log("bigger than 1024");
-      draggableTrue();
-      sidebarDesktop();
-    }
-  }
+  let size = window.innerWidth;
+  console.log(size);
+  if (size <= 1024) {
+    console.log("smaller than 1024");
+    sidebarTabled();
+  } else if (size > 1024) {
+    console.log("bigger than 1024");
 
-  function sidebarTabled() {
-    document.getElementById("sidebar").classList.remove("sidebar");
-    document.getElementById("sidebar").classList.add("tablet-sidebar");
+    sidebarDesktop();
+    hoverNoticeHtml();
   }
-  function sidebarDesktop() {
-    document.getElementById("sidebar").classList.add("sidebar");
-    document.getElementById("sidebar").classList.remove("tablet-sidebar");
+}
+
+function sidebarTabled() {
+  document.getElementById("sidebar").classList.remove("sidebar");
+  document.getElementById("sidebar").classList.add("tablet-sidebar");
+}
+function sidebarDesktop() {
+  document.getElementById("sidebar").classList.add("sidebar");
+  document.getElementById("sidebar").classList.remove("tablet-sidebar");
+}
+
+function draggableFalse() {
+  let cards = document.getElementsByClassName("card");
+  for (let i = 0; i < cards.length; i++) {
+    const card = cards[i];
+    card.setAttribute("draggable", false);
   }
-  
-  function draggableFalse() {
-    let cards = document.getElementsByClassName("card");
-    for (let i = 0; i < cards.length; i++) {
-      const card = cards[i];
-      card.setAttribute("draggable", false);
-    }
+}
+
+function draggableTrue() {
+  let cards = document.getElementsByClassName("card");
+  for (let i = 0; i < cards.length; i++) {
+    const card = cards[i];
+    card.setAttribute("draggable", true);
+    card.onmousedown = "";
   }
-  
-  function draggableTrue() {
-    let cards = document.getElementsByClassName("card");
-    for (let i = 0; i < cards.length; i++) {
-      const card = cards[i];
-      card.setAttribute("draggable", true);
-      card.onmousedown = "";
-    }
-  }
+}

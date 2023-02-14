@@ -87,7 +87,7 @@ function renderAddTaskHTML() {
           class="contacts-dropdown-content d-none"
         >
           <div class="contacts-list-elem">
-            <label class="control control-checkbox">
+            <label class="control control-checkbox" onmousedown="loadAtStartTask()">
               <div class="contacts-list-elem-box">
                 <span class="rendered-contact-name">You</span>
                 <input type="checkbox"/>
@@ -95,7 +95,7 @@ function renderAddTaskHTML() {
               </div>
             </label>
           </div>
-          <div class="contacts-list-elem new-contact">
+          <div class="contacts-list-elem new-contact between" onmousedown="newContactAddTask()" id="new_contact">
             Invite new contact
             <img src="../add_task/img-add_task/contact_blue.png" />
           </div>
@@ -385,7 +385,7 @@ function assignedHTML(id) {
                             class="drop-down-arrow" id="contacts-drop-down-arrow" />
                         <div id="contacts-drop-down" class="contacts-dropdown-content d-none set-contact-popup">
                             <div class="contacts-list-elem">
-                                <label class="control control-checkbox">
+                                <label class="control control-checkbox" onmousedown="loadAtStartTask()">
                                     <div class="contacts-list-elem-box">
                                         <span class="rendered-contact-name">You</span>
                                         <input type="checkbox" />

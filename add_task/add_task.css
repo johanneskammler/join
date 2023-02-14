@@ -107,6 +107,7 @@ html {
   margin-top: -12px;
   height: 250px;
   overflow-y: auto;
+  height: auto;
 }
 
 .contacts-list-elem {
@@ -338,6 +339,7 @@ html {
   top: 0;
   right: 16px;
   z-index: 4;
+  padding-right: 11px;
 }
 
 .new-category-accept img,
@@ -650,4 +652,26 @@ html {
 .add_task_html {
   background-color: #d2e3ff;
   border-radius: 8px;
+}
+
+.new-contact-add-task {
+  position: relative;
+  margin-inline-start: -25px;
+}
+
+.m-i-e {
+  margin-inline-end: -18px;
+}
+
+.correct-width {
+  width: 386px !important;
+}
+
+.invate-class {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  padding-right: 15px;
 }

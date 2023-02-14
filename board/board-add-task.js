@@ -6,6 +6,8 @@ let newCategories = [];
 let categoryName;
 let categoryColor;
 let importance;
+let newContactAddTaskActive = true;
+let showCurrentUserNameForSummery;
 console.log(subtasks);
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 
@@ -14,10 +16,13 @@ async function addToTasks() {
   let category = document.getElementById("select-category");
   let date = document.getElementById("select-date-task");
   let description = document.getElementById("description-input");
+  let contactsData = contactToSave(selectedContacts);
 
   let task = {
     title: title.value,
-    contacts: selectedContacts,
+    contacts: contactsData[0],
+    letters: contactsData[2],
+    colors: contactsData[1],
     date: date.value,
     category: category.innerText,
     categorycolor: categoryColor,
@@ -43,6 +48,26 @@ async function addToTasks() {
   closeAddTask();
   setTasks();
   setTimeout(activateDragAndDrop, 300); /* setCards(); */
+}
+
+function contactToSave(selectedContacts) {
+  let names = [];
+  let colors = [];
+  let letters = [];
+  let list = JSON.parse(backend.getItem("contacts"));
+  for (let j = 0; j < selectedContacts.length; j++) {
+    const selected = selectedContacts[j];
+    for (let i = 0; i < list.length; i++) {
+      const element = list[i];
+      if (element["name"] == selected) {
+        names.push(element["name"]);
+        colors.push(element["color"]);
+        letters.push(element["firstletter"]);
+      }
+    }
+  }
+  let data = [names, colors, letters];
+  return data;
 }
 
 function allFieldsFilled() {
@@ -138,15 +163,16 @@ async function renderContactsAddTask() {
   /*   let url = "../contacts.json";
   let response = await fetch(url); */
   let contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
+  contacts.sort((a, b) => (a.name > b.name ? 1 : -1));
 
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];
     document.getElementById("contacts-drop-down").innerHTML +=
-      generateHTMLcontacts(element, i);
+      generateHTMLcontactsBoard(element, i);
   }
 }
 
-function addContactToTaskk(i) {
+function addContactToTaskBoard(i) {
   let contact = document.getElementById("contacts-checkbox-" + i).value;
 
   if (selectedContacts.includes(contact)) {
@@ -352,13 +378,13 @@ function openCategoriesToSelect() {
   element.classList.toggle("d-none");
 }
 
-function generateHTMLcontacts(element, i) {
+function generateHTMLcontactsBoard(element, i) {
   return `
       <div class="contacts-list-elem">
         <label class="control control-checkbox" id="selected-contact-${i}">
           <div class="contacts-list-elem-box">
             <span class="rendered-contact-name">${element["name"]}</span>
-            <input onclick="addContactToTaskk(${i})" id="contacts-checkbox-${i}" type="checkbox" value="${element["name"]}" />
+            <input onclick="addContactToTaskBoard(${i})" id="contacts-checkbox-${i}" type="checkbox" value="${element["name"]}" />
             <div id="control-indicator-${i}" class="control-indicator"></div>
           </div>
         </label>
@@ -422,4 +448,113 @@ function generateHTMLsubtask(subtask, i) {
         </label>
       </div>
       `;
+}
+
+function newContactAddTask() {
+  if (newContactAddTaskActive) {
+    let invateContact = document.getElementById("new_contact");
+    invateContact.innerHTML = `<div class="new-contact-add-task">
+                                  <input onkeyup="" type="email" placeholder="Add Contact Email" class="add-subtask correct-width" id="add_task_email"> 
+                                    <div id="new-subtask-accept" class="new-subtask-accept m-i-e">
+                                      <img onmouseup="newContactAddTaskReturn()" src="../add_task/img-add_task/x_blue.png">
+                                      <span>|</span>
+                                      <img onclick="addNameNewContact()" src="../add_task/img-add_task/check_blue.png">
+                                   </div>
+                                </div>`;
+    invateContact.classList.remove("contacts-list-elem");
+    invateContact.classList.remove("new-contact");
+    invateContact.classList.add("invate-class");
+
+    newContactAddTaskActive = false;
+  }
+}
+
+function newContactAddTaskReturn() {
+  let invateContact = document.getElementById("new_contact");
+  invateContact.classList.add("contacts-list-elem");
+  invateContact.classList.add("new-contact");
+  invateContact.classList.remove("invate-class");
+  invateContact.innerHTML = `
+  <span class="rendered-contact-name"
+  >Invite new contact</span
+    >
+    <img src="../add_task/img-add_task/contact_blue.png" />`;
+  newContactAddTaskActive = true;
+}
+
+let email;
+function addNameNewContact() {
+  let invateNewContactEmail = document.getElementById("add_task_email").value;
+  email = [String(invateNewContactEmail)];
+  let invateContact = document.getElementById("new_contact");
+  invateContact.innerHTML = `<div class="new-contact-add-task">
+                                  <input onkeyup="" type="text" placeholder="First and Lastname" class="add-subtask correct-width" id="add_task_name"> 
+                                    <div id="new-subtask-accept" class="new-subtask-accept m-i-e">
+                                      <img onmouseup="newContactAddTaskReturn()" src="../add_task/img-add_task/x_blue.png">
+                                      <span>|</span>
+                                      <img onmouseup="creatNewContactAddTask()" src="../add_task/img-add_task/check_blue.png">
+                                   </div>
+                                </div>`;
+}
+
+async function creatNewContactAddTask() {
+  let invateNewContactName = document.getElementById("add_task_name").value;
+  await invateCreateNewContact(invateNewContactName, email);
+}
+
+async function invateCreateNewContact(invateNewContactName, email) {
+  let invateContacts = [];
+  let firstletter = getFirstLetterInvate(invateNewContactName);
+  let color = getNewColorContacts();
+  let contact = {
+    name: invateNewContactName,
+    mail: email,
+    firstletter: firstletter,
+    color: color,
+  };
+  let exist = await JSON.parse(backend.getItem("contacts"));
+
+  // if anweisung mit indexOf
+  exist.push(contact);
+  await backend.setItem("contacts", JSON.stringify(exist));
+  newContactAddTaskReturn();
+  openContactsToSelect();
+}
+
+function getFirstLetterInvate(contact) {
+  let contacts = [contact];
+  let letterList;
+
+  for (let i = 0; i < contacts.length; i++) {
+    const element = contacts[i];
+    let name = element.split(" ");
+    let firstLetter = name[0].split("");
+    let secondLetter = name[1].split("");
+    let firstLetters = firstLetter[0] + secondLetter[0];
+
+    letterList = firstLetters;
+  }
+
+  return letterList;
+}
+
+function getNewColorContacts() {
+  let symbols, color;
+  symbols = "0123456789ABCDEF";
+  color = "#";
+
+  for (let f = 0; f < 6; f++) {
+    color = color + symbols[Math.floor(Math.random() * 16)];
+    return color;
+  }
+}
+
+function loadAtStartTask() {
+  let nameTest = JSON.parse(backend.getItem("currentUser")) || [];
+  if (nameTest.length < 2) {
+    showCurrentUserNameForSummery = "Max Kebabman";
+  } else {
+    showCurrentUserNameForSummery = nameTest;
+  }
+  return showCurrentUserNameForSummery;
 }

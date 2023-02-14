@@ -10,7 +10,15 @@ async function init() {
 }
 
 function hoverContactsHtml() {
-  document.getElementById("contacts-html").classList.add("contacts_html");
+  document.getElementById("contacts-html").classList.add("section-background");
+  document.getElementById("contacts_bg").classList.remove("section-background");
+}
+
+function hoverContactsRespons() {
+  document
+    .getElementById("contacts-html")
+    .classList.remove("section-background");
+  document.getElementById("contacts_bg").classList.add("section-background");
 }
 
 function checkSize() {
@@ -18,7 +26,9 @@ function checkSize() {
   console.log(size);
   if (size < 1024) {
     sidebarTabled();
+    hoverContactsRespons();
   } else if (size > 1024) {
+    hoverContactsHtml();
     enableSidebar();
   }
 }
@@ -369,7 +379,7 @@ function closeAddTask() {
 }
 
 function getNewColor(i) {
-  var symbols, color;
+  let symbols, color;
   symbols = "0123456789ABCDEF";
   color = "#";
 

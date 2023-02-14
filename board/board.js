@@ -42,7 +42,7 @@ async function init() {
   draggableTrue();
   setTimeout(activateDragAndDrop, 300); /* setCards(); */
   await getMaps();
-  hoverBoardHtml();
+
   generateCards();
   checkIfEmpty();
 
@@ -55,7 +55,17 @@ function openPopup(id) {
 }
 
 function hoverBoardHtml() {
-  document.getElementById("board-html").classList.add("board_html");
+  document
+    .getElementById("board_bg")
+    .classList.add("section-background-normal");
+  document.getElementById("board_bg").classList.remove("section-background");
+}
+
+function hoverBoardRespons() {
+  document
+    .getElementById("board_bg")
+    .classList.remove("section-background-normal");
+  document.getElementById("board_bg").classList.add("section-background");
 }
 /**
  * Remove the display none from the div's and show the popup
@@ -89,9 +99,11 @@ function checkSize() {
   if (size <= 1024) {
     sidebarTabled();
     draggableFalse();
+    hoverBoardRespons();
   } else if (size > 1024) {
     draggableTrue();
     sidebarDesktop();
+    hoverBoardHtml();
   }
 }
 
@@ -158,6 +170,7 @@ function closeAddTask() {
   document.getElementById("add-board").classList.remove("slide-left");
   document.getElementById("add-board").classList.add("slide-right");
   setTimeout(openAddTask, 350);
+  setTimeout(activateDragAndDrop, 350);
 }
 
 /**
@@ -213,16 +226,14 @@ async function setTasks() {
       if (idCounter == "leer") {
         idCounter = 0;
       }
-      let contacts = tasks[i]["contacts"];
-      let namesSplit = await getFirstLetter(contacts, idCounter);
 
       key = tasks[i];
       todosMap.set(`${idCounter}`, {
         category: key["category"],
         categorycolor: key["categorycolor"],
         contacts: key["contacts"],
-        colors: namesSplit.get(`${idCounter}`)["color"],
-        letters: namesSplit.get(`${idCounter}`)["letters"],
+        colors: key["colors"],
+        letters: key["letters"],
         date: key["date"],
         description: key["decription"],
         importance: key["importance"],
@@ -437,8 +448,20 @@ function renderContactsTodo(id) {
     let contactsSection = document.getElementById(`contacts_card${id}`);
     contactsSection.classList.add("d-none");
   }
-  let colors = todosMap.get(`${id}`)["colors"].split(",");
-  let letters = todosMap.get(`${id}`)["letters"].split(","); /// Die ifs raus nehmen wenn ohne kontackte nicht erstellbar ist
+
+  let colors = todosMap.get(`${id}`)["colors"];
+  if ((colors.length = 1)) {
+    colors = colors[0];
+  } else {
+    colors = colors.split(",");
+  }
+
+  let letters = todosMap.get(`${id}`)["letters"];
+  if (letters.length == 1) {
+    letters = [letters[0]];
+  } else {
+    letters = [letters.split(",")];
+  }
   let contactsSection = document.getElementById(`contacts_card${id}`);
   if (contacts.length > 2) {
     for (let i = 0; i < 2; i++) {
@@ -448,7 +471,7 @@ function renderContactsTodo(id) {
     }
     contactsSection.innerHTML += `<p class="invate font" style="background-color: ${element};">...</p>`;
   } else {
-    for (let i = 0; i < colors.length; i++) {
+    for (let i = 0; i < contacts.length; i++) {
       const element = colors[i];
 
       contactsSection.innerHTML += `<p class="invate font" style="background-color: ${element};">${letters[i]}</p>`;

@@ -7,12 +7,13 @@ let newCategories = [];
 let categoryName;
 let categoryColor;
 let contacts;
+let newContactAddTaskActive = true;
 
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 
 async function addToTasks() {
   if (selectedContacts.length == 0) {
-    alert('Please select at least one contact!')
+    alert("Please select at least one contact!");
   } else {
     triggerAddedToBoardButton();
 
@@ -46,6 +47,20 @@ async function addToTasks() {
 
     await backend.setItem("tasks", JSON.stringify(tasks));
   }
+}
+
+function hoverAddtaskHtml() {
+  document
+    .getElementById("add-task-html")
+    .classList.add("section-background-normal");
+  document.getElementById("addtask_bg").classList.remove("section-background");
+}
+
+function hoverAddtaskRespons() {
+  document
+    .getElementById("board_bg")
+    .classList.remove("section-background-normal");
+  document.getElementById("addtask_bg").classList.add("section-background");
 }
 
 function triggerAddedToBoardButton() {
@@ -94,7 +109,7 @@ async function init() {
   await downloadFromServer();
   tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
   contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
-  const today = new Date().toISOString().split('T')[0];
+  const today = new Date().toISOString().split("T")[0];
   document.getElementById("select-date").setAttribute("min", today);
 }
 
@@ -106,8 +121,10 @@ function checkSize() {
   let size = window.innerWidth;
   if (size < 1024) {
     sidebarTabled();
+    hoverAddtaskRespons();
   } else if (size > 1024) {
     enableSidebar();
+    hoverAddtaskHtml();
   }
 }
 
@@ -131,7 +148,7 @@ async function renderContacts() {
   contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
 
   // list contacts in slphabetical order
-  contacts.sort((a, b) => (a.name > b.name) ? 1 : -1);
+  contacts.sort((a, b) => (a.name > b.name ? 1 : -1));
 
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];
@@ -360,18 +377,115 @@ function resetCheckboxes() {
   }
 }
 
-
 function clearAllInputFields() {
-  document.getElementById('title-input').value = '';
-  document.getElementById('select-date').value = '';
-  document.getElementById('description-input').value = '';
-  document.getElementById('add-subtask').value = '';
-  document.getElementById('new-subtask-accept').classList.add('d-none');
-  document.getElementById('plus-icon').classList.remove('d-none');
+  document.getElementById("title-input").value = "";
+  document.getElementById("select-date").value = "";
+  document.getElementById("description-input").value = "";
+  document.getElementById("add-subtask").value = "";
+  document.getElementById("new-subtask-accept").classList.add("d-none");
+  document.getElementById("plus-icon").classList.remove("d-none");
   resetImportanceButtons();
   selectedContacts = [];
   categoryColor = "";
   selectedSubtasks = [];
   document.getElementById("select-category").innerHTML = resetCategory();
   resetCheckboxes();
+}
+
+function newContactAddTask() {
+  if (newContactAddTaskActive) {
+    let invateContact = document.getElementById("new_contact");
+    invateContact.innerHTML = `<div class="new-contact-add-task">
+                                  <input onkeyup="" type="email" placeholder="Add Contact Email" class="add-subtask correct-width" id="add_task_email"> 
+                                    <div id="new-subtask-accept" class="new-subtask-accept m-i-e">
+                                      <img onmouseup="newContactAddTaskReturn()" src="../add_task/img-add_task/x_blue.png">
+                                      <span>|</span>
+                                      <img onclick="addNameNewContact()" src="../add_task/img-add_task/check_blue.png">
+                                   </div>
+                                </div>`;
+    invateContact.classList.remove("contacts-list-elem");
+    invateContact.classList.remove("new-contact");
+    invateContact.classList.add("invate-class");
+
+    newContactAddTaskActive = false;
+  }
+}
+
+function newContactAddTaskReturn() {
+  let invateContact = document.getElementById("new_contact");
+  invateContact.classList.add("contacts-list-elem");
+  invateContact.classList.add("new-contact");
+  invateContact.classList.remove("invate-class");
+  invateContact.innerHTML = `
+  <span class="rendered-contact-name"
+  >Invite new contact</span
+    >
+    <img src="../add_task/img-add_task/contact_blue.png" />`;
+  newContactAddTaskActive = true;
+}
+
+let email;
+function addNameNewContact() {
+  let invateNewContactEmail = document.getElementById("add_task_email").value;
+  email = [String(invateNewContactEmail)];
+  let invateContact = document.getElementById("new_contact");
+  invateContact.innerHTML = `<div class="new-contact-add-task">
+                                  <input onkeyup="" type="text" placeholder="First and Lastname" class="add-subtask correct-width" id="add_task_name"> 
+                                    <div id="new-subtask-accept" class="new-subtask-accept m-i-e">
+                                      <img onmouseup="newContactAddTaskReturn()" src="../add_task/img-add_task/x_blue.png">
+                                      <span>|</span>
+                                      <img onmouseup="creatNewContactAddTask()" src="../add_task/img-add_task/check_blue.png">
+                                   </div>
+                                </div>`;
+}
+
+async function creatNewContactAddTask() {
+  let invateNewContactName = document.getElementById("add_task_name").value;
+  await invateCreateNewContact(invateNewContactName, email);
+}
+
+async function invateCreateNewContact(invateNewContactName, email) {
+  let invateContacts = [];
+  let firstletter = getFirstLetterInvate(invateNewContactName);
+  let color = getNewColorContact();
+  let contact = {
+    name: invateNewContactName,
+    mail: email,
+    firstletter: firstletter,
+    color: color,
+  };
+
+  // if anweisung mit indexOf
+  invateContacts.push(contact);
+  await backend.setItem("contacts", JSON.stringify(invateContacts));
+  newContactAddTaskReturn();
+  openContactsToSelect();
+}
+
+function getFirstLetterInvate(contact) {
+  let contacts = [contact];
+  let letterList;
+
+  for (let i = 0; i < contacts.length; i++) {
+    const element = contacts[i];
+    let name = element.split(" ");
+    let firstLetter = name[0].split("");
+    let secondLetter = name[1].split("");
+    let firstLetters = firstLetter[0] + secondLetter[0];
+
+    letterList = firstLetters;
+  }
+
+  return letterList;
+}
+
+function getNewColorContact() {
+  let symbols, color;
+  symbols = "0123456789ABCDEF";
+  color = "#";
+
+  for (let f = 0; f < 6; f++) {
+    color = color + symbols[Math.floor(Math.random() * 16)];
+    return color;
+  }
 }
