@@ -536,7 +536,7 @@
                 </div>
             </div>
             <div onclick="openEditContact()" id="edit_contact_pencil" class="edit-contact">
-                <img onclick="openEditOverlay()" src="img/pencil.png" alt="" />
+                <img src="img/pencil.png" alt="" />
                 <p>Edit Contact</p>
             </div>
         </div>
@@ -590,7 +590,7 @@
                     <div class="img-container">
                         <img src="img/people.png" alt="" />
                     </div>
-                    <form onsubmit="saveEditContact(); return false">
+                    <form onsubmit="event.preventDefault(); saveEditContact(event); return false">
                         <input id="input-name-edit" class="input-name" placeholder="Name" type="text" required />
                         <input id="input-mail-edit" class="input-mail" placeholder="Email" type="email" required />
                         <input id="input-phone-edit" class="input-phone" placeholder="Phone" type="tel" required />

@@ -256,7 +256,7 @@ function renderContactListHTML(element, acronym, i) {
     let id = firstLetter.toLowerCase();
     /*  document.getElementById(id).innerHTML = ""; */
     document.getElementById(id).innerHTML += `
-        <div class="contact" onclick="openContactDetail(${i})">
+        <div class="contact" id="contact${element}" onclick="openContactDetail(${i})">
             <div id="circle_contacts${i}" class="circle">${acronym.toUpperCase()}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${element["name"]}</span>
@@ -392,20 +392,28 @@ async function openEditContact() {
     });
 }
 
-async function saveEditContact() {
-    let contact = JSON.parse(backend.getItem("contacts"));
+async function saveEditContact(event) {
+    let contactId = event.target.dataset.contactId;
+    let contacts = JSON.parse(backend.getItem("contacts"));
     let name_input = document.getElementById("input-name-edit");
     let mail_input = document.getElementById("input-mail-edit");
     let phone_input = document.getElementById("input-phone-edit");
+    console.log(contactId);
+    let contact = contacts.find(c => c.id === contactId);
+    if (!contact) {
+        console.error(`Kontakt mit ID ${contactId} wurde nicht gefunden`);
+        return;
+    }
+    contact.name = name_input.value;
+    contact.mail = mail_input.value;
+    contact.phone = phone_input.value;
 
-    contact[i].name = name_input.value;
-    contact[i].mail = mail_input.value;
-    contact[i].phone = phone_input.value;
 
-    contacts.push(contacts);
     await backend.setItem("contacts", JSON.stringify(contacts));
     renderContactList();
 }
+
+
 
 //  Render HMTL
 function disableContactContainer() {
