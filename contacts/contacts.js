@@ -250,7 +250,8 @@ async function renderContactList(i) {
 
     for (let i = 0; i < contacts.length; i++) {
         const element = contacts[i];
-        let firstLetters = element["name"].match(/\b(\w)/g) || [];
+        // let firstLetters = element["name"].match(/\b(\w)/g) || [];
+        let firstLetters = element["name"].split(/\s+/).map(word => word[0]);
         let acronym = firstLetters.join("");
         renderContactListHTML(element, acronym, i);
         getNewColor(i);
@@ -284,7 +285,7 @@ async function openContactDetail(i) {
     let name = contact["name"];
     let email = contact["mail"];
     let phone = contact["mobil"];
-    let firstLetters = contact["name"].match(/\b(\w)/g);
+    let firstLetters = contact["name"].split(/\s+/).map(word => word[0]);
     let acronym = firstLetters.join("");
 
     const body = document.body;
