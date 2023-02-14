@@ -137,7 +137,7 @@ function resetImportanceButtons() {
 async function renderContactsAddTask() {
   /*   let url = "../contacts.json";
   let response = await fetch(url); */
-  let contacts = backend.getItem("contacts");
+  let contacts = JSON.parse(backend.getItem("contacts")).split(",");
 
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];
