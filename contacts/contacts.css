@@ -451,3 +451,7 @@ form input::placeholder {
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
 }
+
+#mobil_right {
+    color: black;
+}

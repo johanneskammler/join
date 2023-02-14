@@ -94,6 +94,8 @@ async function init() {
   await downloadFromServer();
   tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
   contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById("select-date").setAttribute("min", today);
 }
 
 function hoverAddTaskHtml() {
@@ -364,6 +366,8 @@ function clearAllInputFields() {
   document.getElementById('select-date').value = '';
   document.getElementById('description-input').value = '';
   document.getElementById('add-subtask').value = '';
+  document.getElementById('new-subtask-accept').classList.add('d-none');
+  document.getElementById('plus-icon').classList.remove('d-none');
   resetImportanceButtons();
   selectedContacts = [];
   categoryColor = "";

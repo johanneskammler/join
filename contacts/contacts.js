@@ -232,6 +232,7 @@ function renderContactsRasterHTML() {
             `;
 }
 
+<<<<<<< HEAD
 async function renderContactList(i) {
   let a = document.getElementById("contact_list_container");
   a.innerHTML = "";
@@ -268,6 +269,33 @@ function renderContactListHTML(element, acronym, i) {
   /*  document.getElementById(id).innerHTML = ""; */
   document.getElementById(id).innerHTML += `
         <div class="contact" onclick="openContactDetail(${i})">
+=======
+async function renderContactList() {
+    let a = document.getElementById("contact_list_container");
+    a.innerHTML = "";
+    renderContactsRaster();
+    contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
+    for (let i = 0; i < contacts.length; i++) {
+        const element = contacts[i];
+        let firstLetters = element["name"].split(/\s+/).map(word => word[0]);
+        let acronym = firstLetters.join("");
+        renderContactListHTML(element, acronym, i);
+        getNewColor(i);
+        disableContactContainer();
+    }
+}
+
+function renderContactListHTML(element, acronym, i) {
+    let firstLetter = element["name"] ? element["name"][0] : "";
+    if (!firstLetter) {
+        console.error("First letter is undefined");
+        return;
+    }
+    let id = firstLetter.toLowerCase();
+    /*  document.getElementById(id).innerHTML = ""; */
+    document.getElementById(id).innerHTML += `
+        <div class="contact" data-contact-id="${i}" onclick="openContactDetail(${i})">
+>>>>>>> 00ce4021e887399b0263bd7a17debaceaf0b3b9e
             <div id="circle_contacts${i}" class="circle">${acronym.toUpperCase()}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${element["name"]}</span>
@@ -278,6 +306,7 @@ function renderContactListHTML(element, acronym, i) {
 }
 
 async function openContactDetail(i) {
+<<<<<<< HEAD
   let url = "../contacts.json";
   let contacts = JSON.parse(backend.getItem("contacts"));
   let contact = contacts[i];
@@ -319,6 +348,49 @@ async function openContactDetail(i) {
     //     ease: 'back.out(0.7)'
     // });
   }
+=======
+    let url = "../contacts.json";
+    let contacts = JSON.parse(backend.getItem("contacts"));
+    let contact = contacts[i];
+    let name = contact["name"];
+    let email = contact["mail"];
+    let phone = contact["mobil"];
+    let firstLetters = contact["name"].split(/\s+/).map(word => word[0]);
+    let acronym = firstLetters.join("");
+
+    const body = document.body;
+    const bodyWidth = body.offsetWidth;
+    if (bodyWidth < 1280) {
+        document.getElementById("new_contact_btn").classList.add("d-none");
+        document.getElementById("contact_list_container").classList.add("d-none");
+        document.getElementById("edit_contact_pencil").classList.add("d-none");
+        document.getElementById("backarrow").classList.remove("d-none");
+        document.getElementById("edit_contact").classList.remove("d-none");
+        document.getElementById("contact_right").classList.remove("d-none");
+        document.getElementById("name_right").innerHTML = name;
+        document.getElementById("mail_right").innerHTML = email;
+        document.getElementById("mobil_right").innerHTML = `${phone}`;
+        document.getElementById("circle_right").innerHTML = acronym.toUpperCase();
+        // gsap.from("#contact_right", {
+        //     x: 500,
+        //     opacity: 0,
+        //     duration: 0.33,
+        //     ease: 'back.out(0.7)'
+        // });
+    } else {
+        document.getElementById("contact_right").classList.remove("d-none");
+        document.getElementById("name_right").innerHTML = name;
+        document.getElementById("mail_right").innerHTML = email;
+        document.getElementById("mobil_right").innerHTML = `${phone}`;
+        document.getElementById("circle_right").innerHTML = acronym.toUpperCase();
+        // gsap.from("#contact_right", {
+        //     x: 500,
+        //     opacity: 0,
+        //     duration: 0.33,
+        //     ease: 'back.out(0.7)'
+        // });
+    }
+>>>>>>> 00ce4021e887399b0263bd7a17debaceaf0b3b9e
 }
 
 function closeDetail() {
@@ -358,6 +430,7 @@ function closeBlurScreen() {
 }
 
 function openAddTask() {
+<<<<<<< HEAD
   document.getElementById("add_task").classList.toggle("d-none");
   window.scrollTo(0, 0);
   let list = document.getElementsByTagName("html");
@@ -365,6 +438,17 @@ function openAddTask() {
   renderContactsAddTask();
   html.classList.toggle("hide-overflow-y");
   renderAddTask();
+=======
+    document.getElementById("add_task").classList.toggle("d-none");
+    window.scrollTo(0, 0);
+    let list = document.getElementsByTagName("html");
+    let html = list[0];
+    renderContactsAddTask();
+    html.classList.toggle("hide-overflow-y");
+    renderAddTask();
+
+    dateFuture();
+>>>>>>> 00ce4021e887399b0263bd7a17debaceaf0b3b9e
 }
 
 function renderAddTask() {
@@ -403,6 +487,7 @@ async function openEditContact() {
   });
 }
 
+<<<<<<< HEAD
 async function saveEditContact() {
   let contact = JSON.parse(backend.getItem("contacts"));
   let name_input = document.getElementById("input-name-edit");
@@ -416,7 +501,35 @@ async function saveEditContact() {
   contacts.push(contacts);
   await backend.setItem("contacts", JSON.stringify(contacts));
   renderContactList(i);
+=======
+async function saveEditContact(event) {
+    let contactId = event.target.dataset.contactId;
+    let contacts = JSON.parse(backend.getItem("contacts"));
+    let name_input = document.getElementById("input-name-edit");
+    let mail_input = document.getElementById("input-mail-edit");
+    let phone_input = document.getElementById("input-phone-edit");
+    console.log(contactId);
+    let contact = contacts.find(c => c.id === contactId);
+    if (!contact) {
+        console.error(`Kontakt mit ID ${contactId} wurde nicht gefunden`);
+        return;
+    }
+    contact.name = name_input.value;
+    contact.mail = mail_input.value;
+    contact.phone = phone_input.value;
+
+
+    await backend.setItem("contacts", JSON.stringify(contacts));
+    renderContactList();
+>>>>>>> 00ce4021e887399b0263bd7a17debaceaf0b3b9e
 }
+
+function dateFuture() {
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('select-date-task').setAttribute('min', today);
+}
+
+
 
 //  Render HMTL
 function disableContactContainer() {
