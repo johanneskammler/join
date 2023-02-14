@@ -7,6 +7,9 @@ async function init() {
     checkSize();
     await renderContactList();
     hoverContactsHtml();
+
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('select-date-task').setAttribute('min', today);
 }
 
 function hoverContactsHtml() {
