@@ -162,6 +162,13 @@ function openAddTask() {
     renderContactsAddTask();
     html.classList.toggle("hide-overflow-y");
     renderAddTask();
+    dateFuture();
+}
+
+
+function dateFuture() {
+  const today = new Date().toISOString().split("T")[0];
+  document.getElementById("select-date-task").setAttribute("min", today);
 }
 /**
  * close the addTask div and add the d-none class from the div with id add-task
