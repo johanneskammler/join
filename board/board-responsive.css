@@ -220,7 +220,7 @@
   }
 }
 
-@media (width <= 1280px) {
+@media (width <= 1400px) {
   .card {
     width: 16.4vw;
   }
@@ -463,7 +463,7 @@
   height: 40px !important;
 }
 
-@media (width <= 767px) {
+@media (width <= 500px) {
   header {
     padding: 8px 39px !important;
   }

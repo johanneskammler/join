@@ -522,8 +522,12 @@ async function invateCreateNewContact(invateNewContactName, email) {
     firstletter: firstletter,
     color: color,
   };
-  exist = await JSON.parse(backend.getItem("contacts"));
-  let indexLength = exist.length;
+  exist = await JSON.parse(backend.getItem("contacts")) || [];
+  let indexLength;
+
+  if (exist.length > 0) {
+    indexLength = exist.length;
+  }
   // contacts = exist;
 
   // if anweisung mit indexOf
@@ -535,9 +539,11 @@ async function invateCreateNewContact(invateNewContactName, email) {
 }
 
 function clearContactsBeforeRendering(indexLength) {
-  for (let i = 0; i < indexLength; i++) {
-    // const element = contacts[i];
-    document.getElementById(`selected-contact-${i}`).parentElement.remove();
+  if (exist.length > 0) {
+    for (let i = 0; i < indexLength; i++) {
+      // const element = contacts[i];
+      document.getElementById(`selected-contact-${i}`).parentElement.remove();
+    }
   }
 }
 
