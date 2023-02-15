@@ -88,6 +88,7 @@ function popup(id) {
   //html.classList.toggle("hide-overflow-y");
   card.classList.toggle("d-none");
   background.classList.toggle("d-none");
+  activateDragAndDrop();
 }
 
 /*  
@@ -344,6 +345,10 @@ function contentTodo(section, id, map) {
   let mapTitle = map.get(`${id}`)["title"];
   let mapDescription = map.get(`${id}`)["description"];
   let totalSub = map.get(`${id}`)["subtask"];
+  if (!(Array.isArray(totalSub)) && totalSub.length > 0) {
+    totalSub = totalSub.split(",");
+  }
+  totalSub = totalSub.length;
   if (totalSub == undefined) {
     document.getElementById(`${section}-board`).innerHTML += setCardHTML(
       mapCategory,
@@ -355,7 +360,7 @@ function contentTodo(section, id, map) {
       id
     );
   } else {
-    totalSub = map.get(`${id}`)["subtask"].length;
+    // totalSub = map.get(`${id}`)["subtask"].size;
     let progressStatus = map.get(`${id}`)["subtaskStatus"];
     document.getElementById(`${section}-board`).innerHTML += setCardHTML(
       mapCategory,
@@ -540,9 +545,17 @@ function renderPopup(
   setTimeout(setPriority, 50, importance, id, section);
   checkSubtasksPopup(section, id);
   checkTitlePopup(section, id);
+  generateSubtasksSum(id);
   saveMaps();
   generateCards();
 }
+
+
+// function generateSubtasksSum(id) {
+//   let map = new Map(wichSection(id));
+//   let counter = map.get(`${id}`)['subtask'].size;
+//   document.getElementById(`done_status_popup${id}`).innerHTML = `0/${counter} done`;
+// }
 
 function checkSubtasksPopup(section, id) {
   let popSub = document.getElementById(`progress_box_popup${id}`);

@@ -31,7 +31,7 @@ function setCardHTML(
                         <div class="progressbar">
                           <div class="progress" id="progress-nr${id}"></div>
                         </div>
-                          <p class="done-p" id="done_status font">${progressStatus}/${totalSubtasks} Done</p>
+                          <p class="done-p" id="done_status${id}">${progressStatus}/${totalSubtasks} Done</p>
                       </div>
 
                       <div class="card-footer" id="footer${id}">
@@ -449,7 +449,7 @@ function popupCardHTML(
       <div class="progress-box-popup" id="progress_box_popup${id}">
         <div class="progess-text">
         
-        <h3 class="subtask">Subtask's:</h3><p class="tasks">${subtask}</p>
+        <h3 class="subtask">Subtasks:</h3><p class="tasks">${subtask}</p>
         </div>
         <div class="progress-box-2">
           <div class="progressbar">
@@ -540,13 +540,13 @@ function renderPopupHTML(
       <div class="progress-box-popup" id="progress_box_popup${id}">
         <div class="progess-text">
         
-        <h3 class="subtask">Subtask's:</h3><p class="tasks" id="task"></p>
+        <h3 class="subtask">Subtasks:</h3><p class="tasks" id="task"></p>
         </div>
         <div class="progress-box-2">
           <div class="progressbar">
             <div class="progress" id="progress-nr0"></div>
           </div>
-          <p class="done-p" id="done_status font">0/1 Done</p>
+          <p class="done-p" id="done_status_popup${id}">0/1 Done</p>
         </div>
       </div>
       
