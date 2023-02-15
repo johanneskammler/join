@@ -8,8 +8,14 @@ let categoryColor;
 let importance;
 let newContactAddTaskActive = true;
 let showCurrentUserNameForSummery;
+let urgentCounter;
 console.log(subtasks);
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
+
+async function getUrgentCounter() {
+  urgentCounter = await backend.getItem('urgentCounter') || 0;
+  urgentCounter = parseInt(urgentCounter);
+}
 
 async function addToTasks() {
   let title = document.getElementById("title-input");
@@ -43,6 +49,7 @@ async function addToTasks() {
   );
   resetImportanceButtons();
 
+  await backend.setItem("urgentCounter", JSON.stringify(urgentCounter));
   await backend.setItem("tasks", JSON.stringify(tasks));
   tasks = [];
   closeAddTask();
@@ -316,6 +323,7 @@ function addSubtaskToTask(i) {
 function setImportanceBoard(pushed) {
   if (pushed.innerHTML.includes("Ur")) {
     importance = "Urgent";
+    urgentCounter++;
   } else if (pushed.innerHTML.includes("Me")) {
     importance = "Medium";
   } else if (pushed.innerHTML.includes("Lo")) {

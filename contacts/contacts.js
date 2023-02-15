@@ -7,7 +7,6 @@ async function init() {
     await includeHTML();
     checkSize();
     await renderContactList();
-    hoverContactsHtml();
 }
 
 function hoverContactsHtml() {

@@ -8,14 +8,21 @@ let categoryName;
 let categoryColor;
 let contacts;
 let newContactAddTaskActive = true;
+let urgentCounter;
 
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
+
+async function getUrgentCounter() {
+  urgentCounter = await backend.getItem('urgentCounter') || 0;
+  urgentCounter = parseInt(urgentCounter);
+}
 
 async function addToTasks() {
   if (selectedContacts.length == 0) {
     alert("Please select at least one contact!");
   } else {
     triggerAddedToBoardButton();
+    checkImportance();
 
     let title = document.getElementById("title-input");
     let date = document.getElementById("select-date");
@@ -46,6 +53,14 @@ async function addToTasks() {
     resetImportanceButtons();
 
     await backend.setItem("tasks", JSON.stringify(tasks));
+    await backend.setItem("urgentCounter", JSON.stringify(urgentCounter));
+  }
+}
+
+
+function checkImportance() {
+  if (importance == 'urgent') {
+    urgentCounter++;
   }
 }
 
@@ -111,6 +126,7 @@ async function init() {
   contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
   const today = new Date().toISOString().split("T")[0];
   document.getElementById("select-date").setAttribute("min", today);
+  getUrgentCounter();
 }
 
 function hoverAddTaskHtml() {

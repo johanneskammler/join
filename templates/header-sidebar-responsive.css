@@ -20,7 +20,7 @@
   }
   .sidebar-top {
     flex-direction: inherit !important;
-    align-items: baseline !important;
+    align-items: center !important;
     height: 64px !important;
     width: 90% !important;
     caret-color: transparent;

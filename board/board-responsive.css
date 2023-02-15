@@ -14,7 +14,7 @@
   width: 100%;
   display: flex;
   justify-content: space-around;
-  background-color: transparent;
+  background-color: white;
   border-top: 1px solid lightgray;
   z-index: 20;
 }
@@ -379,7 +379,7 @@
 
     height: 64px !important;
 
-    width: 93% !important;
+    width: 90% !important;
     caret-color: transparent;
   }
 
@@ -466,9 +466,6 @@
 @media (width <= 767px) {
   header {
     padding: 8px 39px !important;
-  }
-  .sidebar-top {
-    padding-top: 10px !important;
   }
 
   .popup {

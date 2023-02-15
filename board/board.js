@@ -47,6 +47,8 @@ async function init() {
     checkIfEmpty();
 
     tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
+
+    getUrgentCounter();
 }
 
 function openPopup(id) {
@@ -242,7 +244,7 @@ async function setTasks() {
                 colors: key["colors"],
                 letters: key["letters"],
                 date: key["date"],
-                description: key["decription"],
+                description: key["description"],
                 importance: key["importance"],
                 subtask: key["subtasks"],
                 subtaskStatus: "0",
@@ -1117,4 +1119,13 @@ function highlightAndDone() {
     shine.classList.remove("d-none");
     highlightText(inpS, idS);
   }
+}
+
+
+async function cut() {
+  await backend.deleteItem('todoJson');
+  await backend.deleteItem('urgentCounter');
+  await backend.deleteItem('progressJson');
+  await backend.deleteItem('feedbackJson');
+  await backend.deleteItem('doneJson');
 }
