@@ -45,6 +45,7 @@ header {
 }
 
 .main-logo {
+  cursor: pointer;
   width: 47px;
   height: 57.3px;
 }

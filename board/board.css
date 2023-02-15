@@ -480,6 +480,7 @@ body {
 }
 
 .close-img {
+  cursor: pointer;
   position: absolute;
   transform: rotate(90deg);
 }
