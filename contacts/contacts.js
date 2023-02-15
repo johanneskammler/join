@@ -10,14 +10,12 @@ async function init() {
 }
 
 function hoverContactsHtml() {
-    document.getElementById("contacts-html").classList.add("section-background");
+    document.getElementById("contacts-html").classList.add("section-background-normal");
     document.getElementById("contacts_bg").classList.remove("section-background");
 }
 
 function hoverContactsRespons() {
-    document
-        .getElementById("contacts-html")
-        .classList.remove("section-background");
+    document.getElementById("contacts-html").classList.remove("section-background");
     document.getElementById("contacts_bg").classList.add("section-background");
 }
 
@@ -28,8 +26,8 @@ function checkSize() {
         sidebarTabled();
         hoverContactsRespons();
     } else if (size > 1024) {
-        hoverContactsHtml();
         enableSidebar();
+        hoverContactsHtml();
     }
 }
 
