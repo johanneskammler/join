@@ -410,13 +410,8 @@ function renderContactsDone(id) {
   if (donesMap.get(`${id}`)["letters"] == 'string') {
     letters.split(",");
   }
-  for (let i = 0; i < colors.length; i++) {
-    const element = colors[i];
-
-    document.getElementById(
-      `contacts_card${id}`
-    ).innerHTML += `<p class="invate font" style="background-color: ${element};">${letters[i]}</p>`;
-  }
+  let contactsSection = document.getElementById(`contacts_card${id}`);
+  checkForContactNumber(contacts, letters, contactsSection, colors);
 }
 
 function renderContactsFeedback(id) {
@@ -434,13 +429,8 @@ function renderContactsFeedback(id) {
   if (feedbacksMap.get(`${id}`)["letters"] == 'string') {
     letters.split(",");
   }
-  for (let i = 0; i < colors.length; i++) {
-    const element = colors[i];
-
-    document.getElementById(
-      `contacts_card${id}`
-    ).innerHTML += `<p class="invate font" style="background-color: ${element};">${letters[i]}</p>`;
-  }
+  let contactsSection = document.getElementById(`contacts_card${id}`);
+  checkForContactNumber(contacts, letters, contactsSection, colors);
 }
 
 function renderContactsProgress(id) {
@@ -458,13 +448,8 @@ function renderContactsProgress(id) {
   if (progressesMap.get(`${id}`)["letters"] == 'string') {
     letters.split(",");
   }
-  for (let i = 0; i < colors.length; i++) {
-    const element = colors[i];
-
-    document.getElementById(
-      `contacts_card${id}`
-    ).innerHTML += `<p class="invate font" style="background-color: ${element};">${letters[i]}</p>`;
-  }
+  let contactsSection = document.getElementById(`contacts_card${id}`);
+  checkForContactNumber(contacts, letters, contactsSection, colors);
 }
 
 function renderContactsTodo(id) {
