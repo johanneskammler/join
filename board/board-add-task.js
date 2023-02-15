@@ -10,6 +10,7 @@ let newContactAddTaskActive = true;
 let showCurrentUserNameForSummery;
 let urgentCounter;
 let contacts;
+let exist;
 console.log(subtasks);
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 
@@ -521,19 +522,21 @@ async function invateCreateNewContact(invateNewContactName, email) {
     firstletter: firstletter,
     color: color,
   };
-  let exist = await JSON.parse(backend.getItem("contacts"));
+  exist = await JSON.parse(backend.getItem("contacts"));
+  let indexLength = exist.length;
+  // contacts = exist;
 
   // if anweisung mit indexOf
   exist.push(contact);
   await backend.setItem("contacts", JSON.stringify(exist));
   newContactAddTaskReturn();
-  clearContactsBeforeRendering();
+  clearContactsBeforeRendering(indexLength);
   renderContactsAddTask();
 }
 
-function clearContactsBeforeRendering() {
-  for (let i = 0; i < contacts.length; i++) {
-    const element = contacts[i];
+function clearContactsBeforeRendering(indexLength) {
+  for (let i = 0; i < indexLength; i++) {
+    // const element = contacts[i];
     document.getElementById(`selected-contact-${i}`).parentElement.remove();
   }
 }

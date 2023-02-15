@@ -49,8 +49,8 @@
                 <div class="add-tasks-board-head" id="add-board">
                     <h1 class="add-title">Add Task</h1>
                     <button id="submit-btn" class="add-card btn-create opacity">
-              Create Task <img src="../contacts/img/checkmark.png" />
-            </button>
+                        Create Task <img src="../contacts/img/checkmark.png" />
+                    </button>
                     <div class="close-add-task-board" onclick="closeAddTask()">
                         <img class="close-img" src="../contacts/img/line.png" />
                         <img src="../contacts/img/line.png" />
@@ -64,16 +64,18 @@
                             <p onclick="openContactsToSelect()" class="select-contacts">
                                 Select contacts to assign
                             </p>
-                            <img onclick="openContactsToSelect()" src="../add_task/img-add_task/dropdown_blue.png" class="drop-down-arrow" id="contacts-drop-down-arrow" />
-                            <div onclick="allFieldsFilled()" id="contacts-drop-down" class="contacts-dropdown-content d-none">
+                            <img onclick="openContactsToSelect()" src="../add_task/img-add_task/dropdown_blue.png"
+                                class="drop-down-arrow" id="contacts-drop-down-arrow" />
+                            <div onclick="allFieldsFilled()" id="contacts-drop-down"
+                                class="contacts-dropdown-content d-none">
                                 <div class="contacts-list-elem">
                                     <label class="control control-checkbox">
-                      <div class="contacts-list-elem-box">
-                        <span class="rendered-contact-name">You</span>
-                        <input type="checkbox" />
-                        <div class="control-indicator"></div>
-                      </div>
-                    </label>
+                                        <div class="contacts-list-elem-box">
+                                            <span class="rendered-contact-name">You</span>
+                                            <input type="checkbox" />
+                                            <div class="control-indicator"></div>
+                                        </div>
+                                    </label>
                                 </div>
                                 <div class="contacts-list-elem new-contact">
                                     Invite new contact
@@ -82,174 +84,101 @@
 
                                 <div class="contacts-list-elem">
                                     <label class="control control-checkbox" id="selected-contact">
-                      <div class="contacts-list-elem-box">
-                        <span class="rendered-contact-name">Anton Mayer</span>
-                        <input
-                          onclick="addContactToTask(0)"
-                          id="contacts-checkbox-0"
-                          type="checkbox"
-                          value="Anton Mayer"
-                        />
-                        <div
-                          id="control-indicator"
-                          class="control-indicator"
-                        ></div>
-                      </div>
-                    </label>
+                                        <div class="contacts-list-elem-box">
+                                            <span class="rendered-contact-name">Anton Mayer</span>
+                                            <input onclick="addContactToTask(0)" id="contacts-checkbox-0"
+                                                type="checkbox" value="Anton Mayer" />
+                                            <div id="control-indicator" class="control-indicator"></div>
+                                        </div>
+                                    </label>
                                 </div>
 
                                 <div class="contacts-list-elem">
                                     <label class="control control-checkbox" id="selected-contact">
-                      <div class="contacts-list-elem-box">
-                        <span class="rendered-contact-name">Anja Schulz</span>
-                        <input
-                          onclick="addContactToTask(1)"
-                          id="contacts-checkbox-1"
-                          type="checkbox"
-                          value="Anja Schulz"
-                        />
-                        <div
-                          id="control-indicator"
-                          class="control-indicator"
-                        ></div>
-                      </div>
-                    </label>
+                                        <div class="contacts-list-elem-box">
+                                            <span class="rendered-contact-name">Anja Schulz</span>
+                                            <input onclick="addContactToTask(1)" id="contacts-checkbox-1"
+                                                type="checkbox" value="Anja Schulz" />
+                                            <div id="control-indicator" class="control-indicator"></div>
+                                        </div>
+                                    </label>
                                 </div>
 
                                 <div class="contacts-list-elem">
                                     <label class="control control-checkbox" id="selected-contact">
-                      <div class="contacts-list-elem-box">
-                        <span class="rendered-contact-name"
-                          >Benedikt Ziegler</span
-                        >
-                        <input
-                          onclick="addContactToTask(2)"
-                          id="contacts-checkbox-2"
-                          type="checkbox"
-                          value="Benedikt Ziegler"
-                        />
-                        <div
-                          id="control-indicator"
-                          class="control-indicator"
-                        ></div>
-                      </div>
-                    </label>
+                                        <div class="contacts-list-elem-box">
+                                            <span class="rendered-contact-name">Benedikt Ziegler</span>
+                                            <input onclick="addContactToTask(2)" id="contacts-checkbox-2"
+                                                type="checkbox" value="Benedikt Ziegler" />
+                                            <div id="control-indicator" class="control-indicator"></div>
+                                        </div>
+                                    </label>
                                 </div>
 
                                 <div class="contacts-list-elem">
                                     <label class="control control-checkbox" id="selected-contact">
-                      <div class="contacts-list-elem-box">
-                        <span class="rendered-contact-name">Eva Fischer</span>
-                        <input
-                          onclick="addContactToTask(3)"
-                          id="contacts-checkbox-3"
-                          type="checkbox"
-                          value="Eva Fischer"
-                        />
-                        <div
-                          id="control-indicator"
-                          class="control-indicator"
-                        ></div>
-                      </div>
-                    </label>
+                                        <div class="contacts-list-elem-box">
+                                            <span class="rendered-contact-name">Eva Fischer</span>
+                                            <input onclick="addContactToTask(3)" id="contacts-checkbox-3"
+                                                type="checkbox" value="Eva Fischer" />
+                                            <div id="control-indicator" class="control-indicator"></div>
+                                        </div>
+                                    </label>
                                 </div>
 
                                 <div class="contacts-list-elem">
                                     <label class="control control-checkbox" id="selected-contact">
-                      <div class="contacts-list-elem-box">
-                        <span class="rendered-contact-name"
-                          >David Eisenberg</span
-                        >
-                        <input
-                          onclick="addContactToTask(4)"
-                          id="contacts-checkbox-4"
-                          type="checkbox"
-                          value="David Eisenberg"
-                        />
-                        <div
-                          id="control-indicator"
-                          class="control-indicator"
-                        ></div>
-                      </div>
-                    </label>
+                                        <div class="contacts-list-elem-box">
+                                            <span class="rendered-contact-name">David Eisenberg</span>
+                                            <input onclick="addContactToTask(4)" id="contacts-checkbox-4"
+                                                type="checkbox" value="David Eisenberg" />
+                                            <div id="control-indicator" class="control-indicator"></div>
+                                        </div>
+                                    </label>
                                 </div>
 
                                 <div class="contacts-list-elem">
                                     <label class="control control-checkbox" id="selected-contact">
-                      <div class="contacts-list-elem-box">
-                        <span class="rendered-contact-name"
-                          >Emmanuel Mauer</span
-                        >
-                        <input
-                          onclick="addContactToTask(5)"
-                          id="contacts-checkbox-5"
-                          type="checkbox"
-                          value="Emmanuel Mauer"
-                        />
-                        <div
-                          id="control-indicator"
-                          class="control-indicator"
-                        ></div>
-                      </div>
-                    </label>
+                                        <div class="contacts-list-elem-box">
+                                            <span class="rendered-contact-name">Emmanuel Mauer</span>
+                                            <input onclick="addContactToTask(5)" id="contacts-checkbox-5"
+                                                type="checkbox" value="Emmanuel Mauer" />
+                                            <div id="control-indicator" class="control-indicator"></div>
+                                        </div>
+                                    </label>
                                 </div>
 
                                 <div class="contacts-list-elem">
                                     <label class="control control-checkbox" id="selected-contact">
-                      <div class="contacts-list-elem-box">
-                        <span class="rendered-contact-name">Heike Pilz</span>
-                        <input
-                          onclick="addContactToTask(6)"
-                          id="contacts-checkbox-6"
-                          type="checkbox"
-                          value="Heike Pilz"
-                        />
-                        <div
-                          id="control-indicator"
-                          class="control-indicator"
-                        ></div>
-                      </div>
-                    </label>
+                                        <div class="contacts-list-elem-box">
+                                            <span class="rendered-contact-name">Heike Pilz</span>
+                                            <input onclick="addContactToTask(6)" id="contacts-checkbox-6"
+                                                type="checkbox" value="Heike Pilz" />
+                                            <div id="control-indicator" class="control-indicator"></div>
+                                        </div>
+                                    </label>
                                 </div>
 
                                 <div class="contacts-list-elem">
                                     <label class="control control-checkbox" id="selected-contact">
-                      <div class="contacts-list-elem-box">
-                        <span class="rendered-contact-name"
-                          >Georg Steinert</span
-                        >
-                        <input
-                          onclick="addContactToTask(7)"
-                          id="contacts-checkbox-7"
-                          type="checkbox"
-                          value="Georg Steinert"
-                        />
-                        <div
-                          id="control-indicator"
-                          class="control-indicator"
-                        ></div>
-                      </div>
-                    </label>
+                                        <div class="contacts-list-elem-box">
+                                            <span class="rendered-contact-name">Georg Steinert</span>
+                                            <input onclick="addContactToTask(7)" id="contacts-checkbox-7"
+                                                type="checkbox" value="Georg Steinert" />
+                                            <div id="control-indicator" class="control-indicator"></div>
+                                        </div>
+                                    </label>
                                 </div>
 
                                 <div class="contacts-list-elem">
                                     <label class="control control-checkbox" id="selected-contact">
-                      <div class="contacts-list-elem-box">
-                        <span class="rendered-contact-name"
-                          >Jens Mustermann</span
-                        >
-                        <input
-                          onclick="addContactToTask(8)"
-                          id="contacts-checkbox-8"
-                          type="checkbox"
-                          value="Jens Mustermann"
-                        />
-                        <div
-                          id="control-indicator"
-                          class="control-indicator"
-                        ></div>
-                      </div>
-                    </label>
+                                        <div class="contacts-list-elem-box">
+                                            <span class="rendered-contact-name">Jens Mustermann</span>
+                                            <input onclick="addContactToTask(8)" id="contacts-checkbox-8"
+                                                type="checkbox" value="Jens Mustermann" />
+                                            <div id="control-indicator" class="control-indicator"></div>
+                                        </div>
+                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -268,8 +197,10 @@
                             <p onclick="openCategoriesToSelect()" id="select-category" class="select-category">
                                 Select task category
                             </p>
-                            <img onclick="openCategoriesToSelect()" src="../add_task/img-add_task/dropdown_blue.png" class="drop-down-arrow" id="drop-down-arrow-categories" />
-                            <input type="text" placeholder="New category name" id="new-category-input" class="new-category-input d-none" />
+                            <img onclick="openCategoriesToSelect()" src="../add_task/img-add_task/dropdown_blue.png"
+                                class="drop-down-arrow" id="drop-down-arrow-categories" />
+                            <input type="text" placeholder="New category name" id="new-category-input"
+                                class="new-category-input d-none" />
                             <div id="new-category-accept" class="new-category-accept d-none">
                                 <img onclick="goBackToSelectCategory()" src="../add_task/img-add_task/x_blue.png" />
                                 <span>|</span>
@@ -289,55 +220,69 @@
                                 </div>
                             </div>
                             <div id="new-category-content" class="new-category-content d-none">
-                                <img onclick="selectCategoryColor('turquois')" src="../add_task/img-add_task/circle_turquois.png" id="category-color-turquois" />
-                                <img onclick="selectCategoryColor('red')" src="../add_task/img-add_task/circle_red.png" id="category-color-red" />
-                                <img onclick="selectCategoryColor('green')" src="../add_task/img-add_task/circle_green.png" id="category-color-green" />
-                                <img onclick="selectCategoryColor('orange')" src="../add_task/img-add_task/circle_orange.png" id="category-color-orange" />
-                                <img onclick="selectCategoryColor('pink')" src="../add_task/img-add_task/circle_pink.png" id="category-color-pink" />
-                                <img onclick="selectCategoryColor('blue')" src="../add_task/img-add_task/circle_blue.png" id="category-color-blue" />
+                                <img onclick="selectCategoryColor('turquois')"
+                                    src="../add_task/img-add_task/circle_turquois.png" id="category-color-turquois" />
+                                <img onclick="selectCategoryColor('red')" src="../add_task/img-add_task/circle_red.png"
+                                    id="category-color-red" />
+                                <img onclick="selectCategoryColor('green')"
+                                    src="../add_task/img-add_task/circle_green.png" id="category-color-green" />
+                                <img onclick="selectCategoryColor('orange')"
+                                    src="../add_task/img-add_task/circle_orange.png" id="category-color-orange" />
+                                <img onclick="selectCategoryColor('pink')"
+                                    src="../add_task/img-add_task/circle_pink.png" id="category-color-pink" />
+                                <img onclick="selectCategoryColor('blue')"
+                                    src="../add_task/img-add_task/circle_blue.png" id="category-color-blue" />
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="importance-buttons" onclick="allFieldsFilled()">
-                    <button onclick="fillImportanceButton(1)" class="importance-button1" id="importance-button1" type="button">
-              <span>Urgent</span>
-              <img src="../add_task/img-add_task/urgent.png" />
-            </button>
-                    <button onclick="fillImportanceButton(1)" class="importance-button1-colored d-none" id="importance-button1-colored" type="button">
-              <span>Urgent</span>
-              <img src="../add_task/img-add_task/urgent_white.png" />
-            </button>
+                    <button onclick="fillImportanceButton(1)" class="importance-button1" id="importance-button1"
+                        type="button">
+                        <span>Urgent</span>
+                        <img src="../add_task/img-add_task/urgent.png" />
+                    </button>
+                    <button onclick="fillImportanceButton(1)" class="importance-button1-colored d-none"
+                        id="importance-button1-colored" type="button">
+                        <span>Urgent</span>
+                        <img src="../add_task/img-add_task/urgent_white.png" />
+                    </button>
 
-                    <button onclick="fillImportanceButton(2)" class="importance-button2" id="importance-button2" type="button">
-              <span>Medium</span>
-              <img src="../add_task/img-add_task/medium.png" />
-            </button>
-                    <button onclick="fillImportanceButton(2)" class="importance-button2-colored d-none" id="importance-button2-colored" type="button">
-              <span>Medium</span>
-              <img src="../add_task/img-add_task/medium_white.png" />
-            </button>
+                    <button onclick="fillImportanceButton(2)" class="importance-button2" id="importance-button2"
+                        type="button">
+                        <span>Medium</span>
+                        <img src="../add_task/img-add_task/medium.png" />
+                    </button>
+                    <button onclick="fillImportanceButton(2)" class="importance-button2-colored d-none"
+                        id="importance-button2-colored" type="button">
+                        <span>Medium</span>
+                        <img src="../add_task/img-add_task/medium_white.png" />
+                    </button>
 
-                    <button onclick="fillImportanceButton(3)" class="importance-button3" id="importance-button3" type="button">
-              <span>Low</span>
-              <img src="../add_task/img-add_task/low.png" />
-            </button>
-                    <button onclick="fillImportanceButton(3)" class="importance-button3-colored d-none" id="importance-button3-colored" type="button">
-              <span>Low</span>
-              <img src="../add_task/img-add_task/low_white.png" />
-            </button>
+                    <button onclick="fillImportanceButton(3)" class="importance-button3" id="importance-button3"
+                        type="button">
+                        <span>Low</span>
+                        <img src="../add_task/img-add_task/low.png" />
+                    </button>
+                    <button onclick="fillImportanceButton(3)" class="importance-button3-colored d-none"
+                        id="importance-button3-colored" type="button">
+                        <span>Low</span>
+                        <img src="../add_task/img-add_task/low_white.png" />
+                    </button>
                 </div>
 
                 <div class="description-box">
                     <span class="description-text">Description</span>
-                    <textarea name="description" id="description-input" class="description-input" cols="30" max-rows="10" style="max-height: 70px" placeholder="Enter a description"></textarea>
+                    <textarea name="description" id="description-input" class="description-input" cols="30"
+                        max-rows="10" style="max-height: 70px" placeholder="Enter a description"></textarea>
                     <img src="../add_task/img-add_task/input_icon.png" />
                 </div>
 
                 <div class="subtask-box">
                     <div style="position: relative">
-                        <input onkeyup="createNewSubtask()" type="text" placeholder="Add new subtask" class="add-subtask" id="add-subtask" name="add-subtask" />
+                        <input onkeyup="createNewSubtask()" type="text" placeholder="Add new subtask"
+                            class="add-subtask" id="add-subtask" name="add-subtask" />
                         <img src="../add_task/img-add_task/plus_blue.png" class="plus-icon" id="plus-icon" />
                         <div id="new-subtask-accept" class="new-subtask-accept d-none">
                             <img onclick="backToSubtasks()" src="../add_task/img-add_task/x_blue.png" />
@@ -551,7 +496,7 @@
     <button id="new_contact_btn" class="new-contact-btn" onclick="addNewContact()">
         New Contact
         <img class="btn-img" src="img/button.png" alt="" />
-      </button>
+    </button>
     <div class="blur-screen d-none" id="blur_screen" onclick="closeBlurScreen()">
         <div onclick="clickDialog(event)" id="add_contact_container" class="d-none">
             <div class="add-contact-header">
@@ -569,13 +514,13 @@
                     <input id="input-phone" class="input-phone" placeholder="Phone" type="tel" required />
                     <div class="new-contact-btn-container">
                         <button onclick="closeBlurScreen()" class="add-contact-btn-left">
-                  Cancel
-                  <img src="img/btn-left.png" alt="" />
-                </button>
+                            Cancel
+                            <img src="img/btn-left.png" alt="" />
+                        </button>
                         <button type="submit" class="add-contact-btn-right">
-                  Create contact
-                  <img src="img/btn-right.png" alt="" />
-                </button>
+                            Create contact
+                            <img src="img/btn-right.png" alt="" />
+                        </button>
                     </div>
                 </form>
             </div>
