@@ -9,6 +9,7 @@ let importance;
 let newContactAddTaskActive = true;
 let showCurrentUserNameForSummery;
 let urgentCounter;
+let contacts;
 console.log(subtasks);
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 
@@ -82,7 +83,7 @@ function allFieldsFilled() {
   let description = document.getElementById("description-input");
   let category = document.getElementById("select-category"); // .innerHTML.includes('Select')
   let date = document.getElementById("select-date-task"); // value
-  let contacts = selectedContacts; // length
+  contacts = selectedContacts; // length
 
   let result = "";
 
@@ -169,7 +170,7 @@ function resetImportanceButtons() {
 async function renderContactsAddTask() {
   /*   let url = "../contacts.json";
   let response = await fetch(url); */
-  let contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
+  contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
   contacts.sort((a, b) => (a.name > b.name ? 1 : -1));
 
   for (let i = 0; i < contacts.length; i++) {
@@ -526,7 +527,15 @@ async function invateCreateNewContact(invateNewContactName, email) {
   exist.push(contact);
   await backend.setItem("contacts", JSON.stringify(exist));
   newContactAddTaskReturn();
-  openContactsToSelect();
+  clearContactsBeforeRendering();
+  renderContactsAddTask();
+}
+
+function clearContactsBeforeRendering() {
+  for (let i = 0; i < contacts.length; i++) {
+    const element = contacts[i];
+    document.getElementById(`selected-contact-${i}`).parentElement.remove();
+  }
 }
 
 function getFirstLetterInvate(contact) {

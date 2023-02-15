@@ -1,4 +1,4 @@
-let contacts = [];
+contacts = [];
 let color;
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 

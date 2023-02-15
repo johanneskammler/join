@@ -162,14 +162,23 @@ function enableSidebar() {
 
 async function renderContacts() {
   contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
-
-  // list contacts in slphabetical order
+  
+  // list contacts in alphabetical order
   contacts.sort((a, b) => (a.name > b.name ? 1 : -1));
+
+  // document.getElementById('contacts-drop-down').innerHTML = '';
 
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];
     document.getElementById("contacts-drop-down").innerHTML +=
       generateHTMLcontacts(element, i);
+  }
+}
+
+function clearContactsBeforeRendering() {
+  for (let i = 0; i < contacts.length; i++) {
+    const element = contacts[i];
+    document.getElementById(`selected-contact-${i}`).parentElement.remove();
   }
 }
 
@@ -450,12 +459,12 @@ function addNameNewContact() {
                                     <div id="new-subtask-accept" class="new-subtask-accept m-i-e">
                                       <img onmouseup="newContactAddTaskReturn()" src="../add_task/img-add_task/x_blue.png">
                                       <span>|</span>
-                                      <img onmouseup="creatNewContactAddTask()" src="../add_task/img-add_task/check_blue.png">
+                                      <img onmouseup="createNewContactAddTask()" src="../add_task/img-add_task/check_blue.png">
                                    </div>
                                 </div>`;
 }
 
-async function creatNewContactAddTask() {
+async function createNewContactAddTask() {
   let invateNewContactName = document.getElementById("add_task_name").value;
   await invateCreateNewContact(invateNewContactName, email);
 }
@@ -470,12 +479,13 @@ async function invateCreateNewContact(invateNewContactName, email) {
     firstletter: firstletter,
     color: color,
   };
-
+  let exist = await JSON.parse(backend.getItem('contacts'));
   // if anweisung mit indexOf
-  invateContacts.push(contact);
-  await backend.setItem("contacts", JSON.stringify(invateContacts));
+  exist.push(contact);
+  await backend.setItem("contacts", JSON.stringify(exist));
   newContactAddTaskReturn();
-  openContactsToSelect();
+  clearContactsBeforeRendering();
+  renderContacts();
 }
 
 function getFirstLetterInvate(contact) {
