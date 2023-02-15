@@ -493,13 +493,20 @@ function renderContactsTodo(id) {
     letters = String(letters).split(",");
   }
   let contactsSection = document.getElementById(`contacts_card${id}`);
+  checkForContactNumber(contacts, letters, contactsSection, colors);
+}
+
+function checkForContactNumber(contacts, letters, contactsSection, colors) {
+  let changedColorForDots;
   if (contacts.length > 2) {
-    for (let i = 0; i < colors.lenght; i++) {
-      const element = colors[i];
+    let element;
+    for (let i = 0; i < 2; i++) {
+      element = colors[i];
 
       contactsSection.innerHTML += `<p class="invate font" style="background-color: ${element};">${letters[i]}</p>`;
     }
-    contactsSection.innerHTML += `<p class="invate font" style="background-color: ${element};">...</p>`;
+    changedColorForDots = element.slice(0, 4);
+    contactsSection.innerHTML += `<p class="invate font" style="background-color: ${changedColorForDots};">...</p>`;
   } else {
     for (let i = 0; i < contacts.length; i++) {
       const element = colors[i];
