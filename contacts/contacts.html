@@ -65,10 +65,8 @@
                             <p onclick="openContactsToSelect()" class="select-contacts">
                                 Select contacts to assign
                             </p>
-                            <img onclick="openContactsToSelect()" src="../add_task/img-add_task/dropdown_blue.png"
-                                class="drop-down-arrow" id="contacts-drop-down-arrow" />
-                            <div onclick="allFieldsFilled()" id="contacts-drop-down"
-                                class="contacts-dropdown-content d-none">
+                            <img onclick="openContactsToSelect()" src="../add_task/img-add_task/dropdown_blue.png" class="drop-down-arrow" id="contacts-drop-down-arrow" />
+                            <div onclick="allFieldsFilled()" id="contacts-drop-down" class="contacts-dropdown-content d-none">
                                 <div class="contacts-list-elem">
                                     <label class="control control-checkbox">
                                         <div class="contacts-list-elem-box">
@@ -198,10 +196,8 @@
                             <p onclick="openCategoriesToSelect()" id="select-category" class="select-category">
                                 Select task category
                             </p>
-                            <img onclick="openCategoriesToSelect()" src="../add_task/img-add_task/dropdown_blue.png"
-                                class="drop-down-arrow" id="drop-down-arrow-categories" />
-                            <input type="text" placeholder="New category name" id="new-category-input"
-                                class="new-category-input d-none" />
+                            <img onclick="openCategoriesToSelect()" src="../add_task/img-add_task/dropdown_blue.png" class="drop-down-arrow" id="drop-down-arrow-categories" />
+                            <input type="text" placeholder="New category name" id="new-category-input" class="new-category-input d-none" />
                             <div id="new-category-accept" class="new-category-accept d-none">
                                 <img onclick="goBackToSelectCategory()" src="../add_task/img-add_task/x_blue.png" />
                                 <span>|</span>
@@ -221,53 +217,41 @@
                                 </div>
                             </div>
                             <div id="new-category-content" class="new-category-content d-none">
-                                <img onclick="selectCategoryColor('turquois')"
-                                    src="../add_task/img-add_task/circle_turquois.png" id="category-color-turquois" />
-                                <img onclick="selectCategoryColor('red')" src="../add_task/img-add_task/circle_red.png"
-                                    id="category-color-red" />
-                                <img onclick="selectCategoryColor('green')"
-                                    src="../add_task/img-add_task/circle_green.png" id="category-color-green" />
-                                <img onclick="selectCategoryColor('orange')"
-                                    src="../add_task/img-add_task/circle_orange.png" id="category-color-orange" />
-                                <img onclick="selectCategoryColor('pink')"
-                                    src="../add_task/img-add_task/circle_pink.png" id="category-color-pink" />
-                                <img onclick="selectCategoryColor('blue')"
-                                    src="../add_task/img-add_task/circle_blue.png" id="category-color-blue" />
+                                <img onclick="selectCategoryColor('turquois')" src="../add_task/img-add_task/circle_turquois.png" id="category-color-turquois" />
+                                <img onclick="selectCategoryColor('red')" src="../add_task/img-add_task/circle_red.png" id="category-color-red" />
+                                <img onclick="selectCategoryColor('green')" src="../add_task/img-add_task/circle_green.png" id="category-color-green" />
+                                <img onclick="selectCategoryColor('orange')" src="../add_task/img-add_task/circle_orange.png" id="category-color-orange" />
+                                <img onclick="selectCategoryColor('pink')" src="../add_task/img-add_task/circle_pink.png" id="category-color-pink" />
+                                <img onclick="selectCategoryColor('blue')" src="../add_task/img-add_task/circle_blue.png" id="category-color-blue" />
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="importance-buttons" onclick="allFieldsFilled()">
-                    <button onclick="fillImportanceButton(1)" class="importance-button1" id="importance-button1"
-                        type="button">
+                    <button onclick="fillImportanceButton(1)" class="importance-button1" id="importance-button1" type="button">
                         <span>Urgent</span>
                         <img src="../add_task/img-add_task/urgent.png" />
                     </button>
-                    <button onclick="fillImportanceButton(1)" class="importance-button1-colored d-none"
-                        id="importance-button1-colored" type="button">
+                    <button onclick="fillImportanceButton(1)" class="importance-button1-colored d-none" id="importance-button1-colored" type="button">
                         <span>Urgent</span>
                         <img src="../add_task/img-add_task/urgent_white.png" />
                     </button>
 
-                    <button onclick="fillImportanceButton(2)" class="importance-button2" id="importance-button2"
-                        type="button">
+                    <button onclick="fillImportanceButton(2)" class="importance-button2" id="importance-button2" type="button">
                         <span>Medium</span>
                         <img src="../add_task/img-add_task/medium.png" />
                     </button>
-                    <button onclick="fillImportanceButton(2)" class="importance-button2-colored d-none"
-                        id="importance-button2-colored" type="button">
+                    <button onclick="fillImportanceButton(2)" class="importance-button2-colored d-none" id="importance-button2-colored" type="button">
                         <span>Medium</span>
                         <img src="../add_task/img-add_task/medium_white.png" />
                     </button>
 
-                    <button onclick="fillImportanceButton(3)" class="importance-button3" id="importance-button3"
-                        type="button">
+                    <button onclick="fillImportanceButton(3)" class="importance-button3" id="importance-button3" type="button">
                         <span>Low</span>
                         <img src="../add_task/img-add_task/low.png" />
                     </button>
-                    <button onclick="fillImportanceButton(3)" class="importance-button3-colored d-none"
-                        id="importance-button3-colored" type="button">
+                    <button onclick="fillImportanceButton(3)" class="importance-button3-colored d-none" id="importance-button3-colored" type="button">
                         <span>Low</span>
                         <img src="../add_task/img-add_task/low_white.png" />
                     </button>
@@ -275,15 +259,13 @@
 
                 <div class="description-box">
                     <span class="description-text">Description</span>
-                    <textarea name="description" id="description-input" class="description-input" cols="30"
-                        max-rows="10" style="max-height: 70px" placeholder="Enter a description"></textarea>
+                    <textarea name="description" id="description-input" class="description-input" cols="30" max-rows="10" style="max-height: 70px" placeholder="Enter a description"></textarea>
                     <img src="../add_task/img-add_task/input_icon.png" />
                 </div>
 
                 <div class="subtask-box">
                     <div style="position: relative">
-                        <input onkeyup="createNewSubtask()" type="text" placeholder="Add new subtask"
-                            class="add-subtask" id="add-subtask" name="add-subtask" />
+                        <input onkeyup="createNewSubtask()" type="text" placeholder="Add new subtask" class="add-subtask" id="add-subtask" name="add-subtask" />
                         <img src="../add_task/img-add_task/plus_blue.png" class="plus-icon" id="plus-icon" />
                         <div id="new-subtask-accept" class="new-subtask-accept d-none">
                             <img onclick="backToSubtasks()" src="../add_task/img-add_task/x_blue.png" />
@@ -541,7 +523,7 @@
                     <div class="img-container">
                         <img src="img/people.png" alt="" />
                     </div>
-                    <form onsubmit="event.preventDefault(); saveEditContact(event);">
+                    <form onsubmit="saveEditContact()">
                         <input id="input-name-edit" class="input-name" placeholder="Name" type="text" required />
                         <input id="input-mail-edit" class="input-mail" placeholder="Email" type="email" required />
                         <input id="input-phone-edit" class="input-phone" placeholder="Phone" type="tel" required />
