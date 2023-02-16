@@ -457,13 +457,3 @@ section {
   cursor: pointer;
 }
 
-.logout-box {
-  cursor: pointer;
-  position: absolute;
-  top: 90px;
-  right: 36px;
-}
-
-.logout-box:hover {
-  content: url(../templates/img/logout_hover.png);
-}
