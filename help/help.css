@@ -50,7 +50,9 @@ p {
 
 .list-item {
     display: flex;
-    align-items: unset;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 h3 {
