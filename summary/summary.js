@@ -82,3 +82,4 @@ async function renderAmountToTasks() {
 function goToBoard() {
   window.location = "../board/board.html";
 }
+
