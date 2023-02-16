@@ -153,12 +153,27 @@ header span {
 }
 
 .logout-box {
+  font-size: 20px;
   cursor: pointer;
   position: absolute;
   top: 90px;
   right: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  gap: 10px;
+  border-radius: 16px;
+  padding: 12px;
+  border: 1px solid lightgray;
 }
 
-.logout-box:hover {
-  content: url(../templates/img/logout_hover.png);
+.logout-box a {
+  text-decoration: none;
+  color: #4489FF;
+}
+
+.logout-box a:hover {
+  scale: 1.1;
+  transition: all 225ms ease-in-out;
 }
