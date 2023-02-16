@@ -422,6 +422,7 @@ async function saveEditContact(event) {
 
     await backend.setItem("contacts", JSON.stringify(contacts));
     renderContactList();
+    closeBlurScreen();
 }
 
 function dateFuture() {
