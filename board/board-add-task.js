@@ -525,10 +525,9 @@ function addNameNewContact() {
 }
 
 async function creatNewContactAddTask() {
-  creatNewContactAddTask();
-  getCheckboxValue();
   let invateNewContactName = document.getElementById("add_task_name").value;
   await invateCreateNewContact(invateNewContactName, email);
+  getCheckboxValue();
 }
 
 function getCheckboxValue() {
@@ -539,7 +538,7 @@ function getCheckboxValue() {
     `contacts-checkbox-${lastContactIndex}`
   );
   for (let i = 0; i < contactsSize; i++) {
-    const element = document.getElementById(`contacts-checkbox-0${i}`);
+    const element = document.getElementById(`contacts-checkbox-${i}`);
     if (element.checked === true) {
       checkedIndex.push(i);
     }
