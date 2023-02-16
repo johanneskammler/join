@@ -27,6 +27,7 @@
 
     .list-item {
         min-height: 90px;
+        margin-bottom: 80px;
     }
 
     h3 {
@@ -52,11 +53,17 @@
     h1 {
         margin-right: 24px !important;
     }
+    .list-item {
+        margin-bottom: 80px;
+    }
 }
 
 @media (max-width: 410px) {
     h1 {
         font-size: 40px !important;
         margin-top: 36px !important;
+    }
+    .list-item {
+        margin-bottom: 80px;
     }
 }
