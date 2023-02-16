@@ -538,9 +538,9 @@ function renderPopupHTML(
       </div>
       
       <div class="progress-box-popup" id="progress_box_popup${id}">
-        <div class="progess-text">
+        <div class="progess-text" id="progress_text${id}">
         
-        <h3 class="subtask">Subtasks:</h3><p class="tasks" id="task"></p>
+        <h3 class="subtask">Subtasks:</h3><p class="tasks" id="task${id}"></p>
         </div>
         <div class="progress-box-2">
           <div class="progressbar">

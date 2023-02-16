@@ -306,7 +306,7 @@ body {
   position: absolute;
   top: 105px;
   right: 34vw;
-  z-index: 5;
+  z-index: 10;
   box-shadow: -14px 9px 34px rgb(0 0 0 / 16%);
   border-radius: 30px;
 }
@@ -652,6 +652,15 @@ h4 {
   font-family: "Inter";
   font-weight: 800;
   color: #ffffffc2;
+}
+
+.progress-text-edit {
+  align-items: baseline;
+  gap: 0px;
+  flex-direction: column;
+}
+.task-edit {
+  margin-top: 0;
 }
 
 /* POPUP EDIR CLASSES END */

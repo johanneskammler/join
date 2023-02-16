@@ -49,6 +49,7 @@ async function init() {
   tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
 
   getUrgentCounter();
+  getCurrentContacts();
 }
 
 function openPopup(id) {
@@ -168,7 +169,6 @@ function openAddTask() {
   dateFuture();
 }
 
-
 function dateFuture() {
   const today = new Date().toISOString().split("T")[0];
   document.getElementById("select-date-task").setAttribute("min", today);
@@ -181,6 +181,8 @@ function closeAddTask() {
   document.getElementById("add-board").classList.add("slide-right");
   setTimeout(openAddTask, 350);
   setTimeout(activateDragAndDrop, 350);
+  subtasks = [];
+  subCounterAdd = 0;
 }
 
 /**
@@ -345,7 +347,7 @@ function contentTodo(section, id, map) {
   let mapTitle = map.get(`${id}`)["title"];
   let mapDescription = map.get(`${id}`)["description"];
   let totalSub = map.get(`${id}`)["subtask"];
-  if (!(Array.isArray(totalSub)) && totalSub.length > 0) {
+  if (!Array.isArray(totalSub) && totalSub.length > 0) {
     totalSub = totalSub.split(",");
   }
   totalSub = totalSub.length;
@@ -409,10 +411,10 @@ function renderContactsDone(id) {
     let contactsSection = document.getElementById(`contacts_card${id}`);
     contactsSection.classList.add("d-none");
   }
-  if (donesMap.get(`${id}`)["colors"] == 'string') {
+  if (donesMap.get(`${id}`)["colors"] == "string") {
     colors.split(",");
   }
-  if (donesMap.get(`${id}`)["letters"] == 'string') {
+  if (donesMap.get(`${id}`)["letters"] == "string") {
     letters.split(",");
   }
   let contactsSection = document.getElementById(`contacts_card${id}`);
@@ -428,10 +430,10 @@ function renderContactsFeedback(id) {
     let contactsSection = document.getElementById(`contacts_card${id}`);
     contactsSection.classList.add("d-none");
   }
-  if (feedbacksMap.get(`${id}`)["colors"] == 'string') {
+  if (feedbacksMap.get(`${id}`)["colors"] == "string") {
     colors.split(",");
   }
-  if (feedbacksMap.get(`${id}`)["letters"] == 'string') {
+  if (feedbacksMap.get(`${id}`)["letters"] == "string") {
     letters.split(",");
   }
   let contactsSection = document.getElementById(`contacts_card${id}`);
@@ -447,10 +449,10 @@ function renderContactsProgress(id) {
     let contactsSection = document.getElementById(`contacts_card${id}`);
     contactsSection.classList.add("d-none");
   }
-  if (progressesMap.get(`${id}`)["colors"] == 'string') {
+  if (progressesMap.get(`${id}`)["colors"] == "string") {
     colors.split(",");
   }
-  if (progressesMap.get(`${id}`)["letters"] == 'string') {
+  if (progressesMap.get(`${id}`)["letters"] == "string") {
     letters.split(",");
   }
   let contactsSection = document.getElementById(`contacts_card${id}`);
@@ -550,12 +552,17 @@ function renderPopup(
   generateCards();
 }
 
-
-// function generateSubtasksSum(id) {
-//   let map = new Map(wichSection(id));
-//   let counter = map.get(`${id}`)['subtask'].size;
-//   document.getElementById(`done_status_popup${id}`).innerHTML = `0/${counter} done`;
-// }
+function generateSubtasksSum(id) {
+  let map = new Map(wichSection(id));
+  let totalSub = map.get(`${id}`)["subtask"];
+  if (!Array.isArray(totalSub) && totalSub.length > 0) {
+    totalSub = totalSub.split(",");
+  }
+  totalSub = totalSub.length;
+  document.getElementById(
+    `done_status_popup${id}`
+  ).innerHTML = `0/${totalSub} Done`;
+}
 
 function checkSubtasksPopup(section, id) {
   let popSub = document.getElementById(`progress_box_popup${id}`);
@@ -566,7 +573,8 @@ function checkSubtasksPopup(section, id) {
 
 function checkTitlePopup(section, id) {
   let titlePopup = document.getElementById("popup_title");
-  if (titlePopup.innerHTML.length < 17) { }
+  if (titlePopup.innerHTML.length < 17) {
+  }
 }
 
 function renderPopupContacts(colors, contactsSplit, letters) {
@@ -591,7 +599,6 @@ function generatePopup(id) {
   let description;
   let progressStatus;
   let importance;
-
 
   let colors = String(section.get(`${id}`)["colors"]);
   colors = colors.split(",");
@@ -640,8 +647,18 @@ function wichSection(id) {
 }
 
 function renderSubtasksPopup(id, section) {
-  let task = document.getElementById("task");
-  task.innerHTML = `${section.get(`${id}`)["subtask"]}`;
+  let taskId = document.getElementById(`task${id}`);
+  let taskLength = section.get(`${id}`)[`subtask`].length;
+  let tasks = section.get(`${id}`)[`subtask`];
+  let pText = document.getElementById(`progress_text${id}`);
+  if (taskLength > 1) {
+    for (let i = 0; i < taskLength; i++) {
+      console.log("HALLLLLLLLLLLLLLLLLO");
+      const element = tasks[i];
+      pText.innerHTML += `<p>${element}</p>`;
+    }
+  }
+  taskId.innerHTML = `${section.get(`${id}`)[`subtask`]}`;
 }
 
 function checkMap(id) {
@@ -679,8 +696,6 @@ function editContactsPopup(id) {
   }
   return contactsInPopup;
 }
-
-// have a list with contacts check if indexOf than id.checked sikis party
 
 function edit(id) {
   let currentMap = new Map(checkMap(id));
@@ -862,6 +877,15 @@ function editContacts(id) {
   return contacts;
 }
 
+function subtaskLayout(id) {
+  let div = document.getElementById(`progress_text${id}`);
+  let task = document.getElementById(`task${id}`);
+
+  div.classList.add("progress-text-edit");
+  task.classList.add("task-edit");
+}
+
+// EDIT END ____________________________________________________________________________________|
 function checkPrioBtn() {
   let urgent = document.getElementById("importance-button1-colored").style
     .cssText;
@@ -1013,6 +1037,7 @@ async function checkIfEmpty() {
   }
 }
 
+// SERACH SECTION
 function takeSearch() {
   setTimeout(serach, 200);
 }
@@ -1021,7 +1046,6 @@ function emptySearchArrays() {
   searchHits = [];
   searchInputs = [];
 }
-
 async function serach() {
   emptySearchArrays();
   let input = document.getElementById("inp-board").value;
@@ -1147,11 +1171,10 @@ function highlightAndDone() {
   }
 }
 
-
 async function cut() {
-  await backend.deleteItem('todoJson');
-  await backend.deleteItem('urgentCounter');
-  await backend.deleteItem('progressJson');
-  await backend.deleteItem('feedbackJson');
-  await backend.deleteItem('doneJson');
+  await backend.deleteItem("todoJson");
+  await backend.deleteItem("urgentCounter");
+  await backend.deleteItem("progressJson");
+  await backend.deleteItem("feedbackJson");
+  await backend.deleteItem("doneJson");
 }

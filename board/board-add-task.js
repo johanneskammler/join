@@ -11,12 +11,17 @@ let showCurrentUserNameForSummery;
 let urgentCounter;
 let contacts;
 let exist;
+let currentContacts;
 console.log(subtasks);
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 
 async function getUrgentCounter() {
-  urgentCounter = await backend.getItem('urgentCounter') || 0;
+  urgentCounter = (await backend.getItem("urgentCounter")) || 0;
   urgentCounter = parseInt(urgentCounter);
+}
+
+async function getCurrentContacts() {
+  currentContacts = await JSON.parse(backend.getItem("contacts"));
 }
 
 async function addToTasks() {
@@ -281,8 +286,12 @@ function createNewSubtask() {
 
 function addSubtask() {
   let newSubtask = document.getElementById("add-subtask").value;
-
-  subtasks.push(newSubtask);
+  if (typeof subtasks === "undefined") {
+    let subtasks = [];
+    subtasks.push(newSubtask);
+  } else {
+    subtasks.push(newSubtask);
+  }
   document.getElementById("add-subtask").value = "";
   document.getElementById("plus-icon").classList.remove("d-none");
   document.getElementById("new-subtask-accept").classList.add("d-none");
@@ -298,15 +307,23 @@ function backToSubtasks() {
   document.getElementById("new-subtask-accept").classList.add("d-none");
   document.getElementById("add-subtask").value = "";
 }
-
+let subCounterAdd = 0;
 function renderSubtasks() {
-  document.getElementById("subtask-content").innerHTML = "";
-  for (let i = 0; i < subtasks.length; i++) {
-    const subtask = subtasks[i];
-    document.getElementById("subtask-content").innerHTML += generateHTMLsubtask(
-      subtask,
-      i
-    );
+  /*   document.getElementById("subtask-content").innerHTML = "";
+   */ if (subtasks.length > 0) {
+    for (let i = 0; i < 1; i++) {
+      const subtask = subtasks[subCounterAdd];
+      document.getElementById("subtask-content").innerHTML +=
+        generateHTMLsubtask(subtask, i);
+      subCounterAdd++;
+    }
+  } else {
+    for (let i = 0; i < 1; i++) {
+      const subtask = subtasks[subCounterAdd++];
+      document.getElementById("subtask-content").innerHTML +=
+        generateHTMLsubtask(subtask, i);
+      subCounterAdd++;
+    }
   }
 }
 
@@ -508,8 +525,26 @@ function addNameNewContact() {
 }
 
 async function creatNewContactAddTask() {
+  creatNewContactAddTask();
+  getCheckboxValue();
   let invateNewContactName = document.getElementById("add_task_name").value;
   await invateCreateNewContact(invateNewContactName, email);
+}
+
+function getCheckboxValue() {
+  let contactsSize = currentContacts.length;
+  let checkedIndex = [];
+  let lastContactIndex = contactsSize + 1;
+  let lastContactId = document.getElementById(
+    `contacts-checkbox-${lastContactIndex}`
+  );
+  for (let i = 0; i < contactsSize; i++) {
+    const element = document.getElementById(`contacts-checkbox-0${i}`);
+    if (element.checked === true) {
+      checkedIndex.push(i);
+    }
+    console.log(checkedIndex);
+  }
 }
 
 async function invateCreateNewContact(invateNewContactName, email) {
@@ -522,7 +557,7 @@ async function invateCreateNewContact(invateNewContactName, email) {
     firstletter: firstletter,
     color: color,
   };
-  exist = await JSON.parse(backend.getItem("contacts")) || [];
+  exist = (await JSON.parse(backend.getItem("contacts"))) || [];
   let indexLength;
 
   if (exist.length > 0) {
