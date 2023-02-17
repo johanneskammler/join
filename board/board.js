@@ -183,6 +183,7 @@ function closeAddTask() {
   setTimeout(activateDragAndDrop, 350);
   subtasks = [];
   subCounterAdd = 0;
+  selectedContacts = [];
 }
 
 /**

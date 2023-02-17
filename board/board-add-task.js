@@ -184,6 +184,9 @@ async function renderContactsAddTask() {
     document.getElementById("contacts-drop-down").innerHTML +=
       generateHTMLcontactsBoard(element, i);
   }
+  if (checkedIndex.length > 0) {
+    checkedSetting(checkedIndex);
+  }
 }
 
 function addContactToTaskBoard(i) {
@@ -523,30 +526,17 @@ function addNameNewContact() {
                                    </div>
                                 </div>`;
 }
-
+let checkedIndex = [];
 async function creatNewContactAddTask() {
   let invateNewContactName = document.getElementById("add_task_name").value;
+  getCheckboxValue(invateNewContactName, email);
   await invateCreateNewContact(invateNewContactName, email);
-  getCheckboxValue();
 }
-
-function getCheckboxValue() {
-  let contactsSize = currentContacts.length;
-  let checkedIndex = [];
-  let lastContactIndex = contactsSize + 1;
-  let lastContactId = document.getElementById(
-    `contacts-checkbox-${lastContactIndex}`
-  );
-  for (let i = 0; i < contactsSize; i++) {
-    const element = document.getElementById(`contacts-checkbox-${i}`);
-    if (element.checked === true) {
-      checkedIndex.push(i);
-    }
-    console.log(checkedIndex);
-  }
-}
-
-async function invateCreateNewContact(invateNewContactName, email) {
+async function invateCreateNewContact(
+  invateNewContactName,
+  email,
+  checkedIndex
+) {
   let invateContacts = [];
   let firstletter = getFirstLetterInvate(invateNewContactName);
   let color = getNewColorContacts();
@@ -556,6 +546,7 @@ async function invateCreateNewContact(invateNewContactName, email) {
     firstletter: firstletter,
     color: color,
   };
+  await backend.setItem("contacts", JSON.stringify(exist));
   exist = (await JSON.parse(backend.getItem("contacts"))) || [];
   let indexLength;
 
@@ -566,10 +557,39 @@ async function invateCreateNewContact(invateNewContactName, email) {
 
   // if anweisung mit indexOf
   exist.push(contact);
-  await backend.setItem("contacts", JSON.stringify(exist));
   newContactAddTaskReturn();
   clearContactsBeforeRendering(indexLength);
   renderContactsAddTask();
+}
+
+async function getCheckboxValue() {
+  checkedIndex = [];
+  if (currentContacts == null) {
+    checkedIndex.push(0);
+  } else {
+    for (let i = 0; i < currentContacts.length; i++) {
+      const element = document.getElementById(`contacts-checkbox-${i}`);
+      if (element.checked === true) {
+        checkedIndex.push(i);
+      }
+    }
+  }
+}
+
+function checkedSetting() {
+  if (currentContacts > 1) {
+    let lastContactIndex = currentContacts.length - 1;
+    let lastContactId = document.getElementById(
+      `contacts-checkbox-${lastContactIndex}`
+    );
+    lastContactId.checked = true;
+  }
+
+  for (let j = 0; j < checkedIndex.length; j++) {
+    const element = checkedIndex[j];
+    document.getElementById(`contacts-checkbox-${element}`).checked = true;
+  }
+  console.log(checkedIndex);
 }
 
 function clearContactsBeforeRendering(indexLength) {
