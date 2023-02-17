@@ -1,85 +1,89 @@
- contacts = [];
- let color;
- setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
+contacts = [];
+let color;
+let firstLetters;
+setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 
- async function init() {
-     await downloadFromServer();
-     await includeHTML();
-     checkSize();
-     await renderContactList();
- }
+async function init() {
+    await downloadFromServer();
+    await includeHTML();
+    checkSize();
+    await renderContactList();
+}
 
- function hoverContactsHtml() {
-     document.getElementById("contacts-html").classList.add("section-background-normal");
-     document.getElementById("contacts_bg").classList.remove("section-background");
- }
+function hoverContactsHtml() {
+    document.getElementById("contacts-html").classList.add("section-background-normal");
+    document.getElementById("contacts_bg").classList.remove("section-background");
+}
 
- function hoverContactsRespons() {
-     document.getElementById("contacts-html").classList.remove("section-background");
-     document.getElementById("contacts_bg").classList.add("section-background");
- }
+function hoverContactsRespons() {
+    document.getElementById("contacts-html").classList.remove("section-background");
+    document.getElementById("contacts_bg").classList.add("section-background");
+}
 
- function checkSize() {
-     let size = window.innerWidth;
-     console.log(size);
-     if (size < 1024) {
-         sidebarTabled();
-         hoverContactsRespons();
-     } else if (size > 1024) {
-         enableSidebar();
-         hoverContactsHtml();
-     }
- }
+function checkSize() {
+    let size = window.innerWidth;
+    console.log(size);
+    if (size < 1024) {
+        sidebarTabled();
+        hoverContactsRespons();
+    } else if (size > 1024) {
+        enableSidebar();
+        hoverContactsHtml();
+    }
+}
 
- function sidebarTabled() {
-     document.getElementById("sidebar").classList.remove("sidebar");
-     document.getElementById("sidebar").classList.add("tablet-sidebar");
-     document.getElementById("help-section-btn").classList.add("d-none");
-     // document.getElementById("create-btn-responsive").classList.remove("d-none");
+function sidebarTabled() {
+    document.getElementById("sidebar").classList.remove("sidebar");
+    document.getElementById("sidebar").classList.add("tablet-sidebar");
+    document.getElementById("help-section-btn").classList.add("d-none");
+    // document.getElementById("create-btn-responsive").classList.remove("d-none");
 
-     let response = document.getElementById("header-name-resp");
-     if (!(response == null)) {
-         response.classList.remove("d-none");
-     }
- }
+    let response = document.getElementById("header-name-resp");
+    if (!(response == null)) {
+        response.classList.remove("d-none");
+    }
+}
 
- function enableSidebar() {
-     document.getElementById("sidebar").classList.add("sidebar");
-     document.getElementById("sidebar").classList.remove("tablet-sidebar");
- }
+function enableSidebar() {
+    document.getElementById("sidebar").classList.add("sidebar");
+    document.getElementById("sidebar").classList.remove("tablet-sidebar");
+}
 
- // Contact JS
+// Contact JS
 
- async function createNewContact() {
-     let name = document.getElementById("input-name");
-     let mail = document.getElementById("input-mail");
-     let mobil = document.getElementById("input-phone"); // Bitte die FirstLetters im Backend speichern
-     let contact = {
-         name: name.value,
-         mail: mail.value,
-         mobil: mobil.value,
-         color: color
+async function createNewContact() {
+    let name = document.getElementById("input-name");
+    let mail = document.getElementById("input-mail");
+    let mobil = document.getElementById("input-phone"); // Bitte die FirstLetters im Backend speichern
+    firstLetters = name.value.split(/\s+/).map((word) => word[0]);
+    firstLetters = firstLetters.join("");
+    getNewColor();
+    let contact = {
+        name: name.value,
+        mail: mail.value,
+        mobil: mobil.value,
+        color: color,
+        firstLetters: firstLetters,
+    };
 
-     };
+    // if anweisung mit indexOf
+    contacts.push(contact);
+    await backend.setItem("contacts", JSON.stringify(contacts));
+    renderContactList();
+    closeBlurScreen();
 
-     // if anweisung mit indexOf
-     contacts.push(contact);
-     await backend.setItem("contacts", JSON.stringify(contacts));
-     renderContactList();
-     closeBlurScreen();
+    name.value = "";
+    mail.value = "";
+    mobil.value = "";
+}
 
-     name.value = "";
-     mail.value = "";
-     mobil.value = "";
- }
+function renderContactsRaster() {
+    let raster = document.getElementById("contact_list_container");
+    raster.innerHTML = renderContactsRasterHTML();
+}
 
- function renderContactsRaster() {
-     let raster = document.getElementById("contact_list_container");
-     raster.innerHTML = renderContactsRasterHTML();
- }
-
- function renderContactsRasterHTML() {
-     return `
+function renderContactsRasterHTML() {
+    return `
             <div class="contact-list-inner-container">
                 <div id="a_container">
                     <div class="contact-char">A</div>
@@ -240,32 +244,32 @@
                 <div id="z"></div>
               </div>
             `;
- }
+}
 
- async function renderContactList() {
-     let a = document.getElementById("contact_list_container");
-     a.innerHTML = "";
-     renderContactsRaster();
-     contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
-     for (let i = 0; i < contacts.length; i++) {
-         const element = contacts[i];
-         let firstLetters = element["name"].split(/\s+/).map((word) => word[0]);
-         let acronym = firstLetters.join("");
-         renderContactListHTML(element, acronym, i);
-         getNewColor(i);
-         disableContactContainer();
-     }
- }
+async function renderContactList() {
+    let a = document.getElementById("contact_list_container");
+    a.innerHTML = "";
+    renderContactsRaster();
+    contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
+    for (let i = 0; i < contacts.length; i++) {
+        const element = contacts[i];
+        let firstLetters = element["name"].split(/\s+/).map((word) => word[0]);
+        let acronym = firstLetters.join("");
+        renderContactListHTML(element, acronym, i);
+        setColorOnRendering(i);
+        disableContactContainer();
+    }
+}
 
- function renderContactListHTML(element, acronym, i) {
-     let firstLetter = element["name"] ? element["name"][0] : "";
-     if (!firstLetter) {
-         console.error("First letter is undefined");
-         return;
-     }
-     let id = firstLetter.toLowerCase();
-     /*  document.getElementById(id).innerHTML = ""; */
-     document.getElementById(id).innerHTML += `
+function renderContactListHTML(element, acronym, i) {
+    let firstLetter = element["name"] ? element["name"][0] : "";
+    if (!firstLetter) {
+        console.error("First letter is undefined");
+        return;
+    }
+    let id = firstLetter.toLowerCase();
+    /*  document.getElementById(id).innerHTML = ""; */
+    document.getElementById(id).innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
             <div id="circle_contacts${i}" class="circle">${acronym.toUpperCase()}</div>
             <div class="contact-info-container">
@@ -274,301 +278,305 @@
             </div>
         </div>
     `;
- }
+}
 
- async function openContactDetail(i) {
-     let contacts = JSON.parse(backend.getItem("contacts"));
-     let contact = contacts[i];
-     let name = contact["name"];
-     let email = contact["mail"];
-     let phone = contact["mobil"];
-     let firstLetters = contact["name"].split(/\s+/).map((word) => word[0]);
-     let acronym = firstLetters.join("");
+async function openContactDetail(i) {
+    let contacts = JSON.parse(backend.getItem("contacts"));
+    let contact = contacts[i];
+    let name = contact["name"];
+    let email = contact["mail"];
+    let phone = contact["mobil"];
+    let acronym = contact['firstLetters'];
+    //  firstLetters = contact["name"].split(/\s+/).map((word) => word[0]);
+    //  let acronym = firstLetters.join("");
 
-     const body = document.body;
-     const bodyWidth = body.offsetWidth;
-     if (bodyWidth < 1280) {
-         document.getElementById("new_contact_btn").classList.add("d-none");
-         document.getElementById("contact_list_container").classList.add("d-none");
-         document.getElementById("edit_contact_pencil").classList.add("d-none");
-         document.getElementById("backarrow").classList.remove("d-none");
-         document.getElementById("edit_contact").classList.remove("d-none");
-         document.getElementById("contact_right").classList.remove("d-none");
-         document.getElementById("name_right").innerHTML = name;
-         document.getElementById("mail_right").innerHTML = email;
-         document.getElementById("mobil_right").innerHTML = `${phone}`;
-         document.getElementById("circle_right").innerHTML = acronym.toUpperCase();
-         // gsap.from("#contact_right", {
-         //     x: 500,
-         //     opacity: 0,
-         //     duration: 0.33,
-         //     ease: 'back.out(0.7)'
-         // });
-     } else {
-         document.getElementById("contact_right").classList.remove("d-none");
-         document.getElementById("name_right").innerHTML = name;
-         document.getElementById("mail_right").innerHTML = email;
-         document.getElementById("mobil_right").innerHTML = `${phone}`;
-         document.getElementById("circle_right").innerHTML = acronym.toUpperCase();
-         // gsap.from("#contact_right", {
-         //     x: 500,
-         //     opacity: 0,
-         //     duration: 0.33,
-         //     ease: 'back.out(0.7)'
-         // });
-     }
- }
+    const body = document.body;
+    const bodyWidth = body.offsetWidth;
+    if (bodyWidth < 1280) {
+        document.getElementById("new_contact_btn").classList.add("d-none");
+        document.getElementById("contact_list_container").classList.add("d-none");
+        document.getElementById("edit_contact_pencil").classList.add("d-none");
+        document.getElementById("backarrow").classList.remove("d-none");
+        document.getElementById("edit_contact").classList.remove("d-none");
+        document.getElementById("contact_right").classList.remove("d-none");
+        document.getElementById("name_right").innerHTML = name;
+        document.getElementById("mail_right").innerHTML = email;
+        document.getElementById("mobil_right").innerHTML = `${phone}`;
+        document.getElementById("circle_right").innerHTML = acronym.toUpperCase();
+        // gsap.from("#contact_right", {
+        //     x: 500,
+        //     opacity: 0,
+        //     duration: 0.33,
+        //     ease: 'back.out(0.7)'
+        // });
+    } else {
+        document.getElementById("contact_right").classList.remove("d-none");
+        document.getElementById("name_right").innerHTML = name;
+        document.getElementById("mail_right").innerHTML = email;
+        document.getElementById("mobil_right").innerHTML = `${phone}`;
+        document.getElementById("circle_right").innerHTML = acronym.toUpperCase();
+        // gsap.from("#contact_right", {
+        //     x: 500,
+        //     opacity: 0,
+        //     duration: 0.33,
+        //     ease: 'back.out(0.7)'
+        // });
+    }
+}
 
- function closeDetail() {
-     document.getElementById("edit_contact_pencil").classList.remove("d-none");
-     document.getElementById("edit_contact").classList.add("d-none");
-     document.getElementById("contact_list_container").classList.remove("d-none");
-     document.getElementById("new_contact_btn").classList.remove("d-none");
-     document.getElementById("contact_right").classList.add("d-none");
-     document.getElementById("backarrow").classList.add("d-none");
- }
+function closeDetail() {
+    document.getElementById("edit_contact_pencil").classList.remove("d-none");
+    document.getElementById("edit_contact").classList.add("d-none");
+    document.getElementById("contact_list_container").classList.remove("d-none");
+    document.getElementById("new_contact_btn").classList.remove("d-none");
+    document.getElementById("contact_right").classList.add("d-none");
+    document.getElementById("backarrow").classList.add("d-none");
+}
 
- function addNewContact() {
-     const addContactContainer = document.getElementById("add_contact_container");
-     const blurScreen = document.getElementById("blur_screen");
-     if (addContactContainer.classList.contains("d-none")) {
-         addContactContainer.classList.remove("d-none");
-         blurScreen.classList.remove("d-none");
-         gsap.from("#add_contact_container", {
-             width: 1200,
-             x: -1000,
-             duration: 0.55,
-             ease: "back.out(0.35)",
-         });
-     } else {
-         addContactContainer.classList.add("d-none");
-         blurScreen.classList.add("d-none");
-     }
- }
+function addNewContact() {
+    const addContactContainer = document.getElementById("add_contact_container");
+    const blurScreen = document.getElementById("blur_screen");
+    if (addContactContainer.classList.contains("d-none")) {
+        addContactContainer.classList.remove("d-none");
+        blurScreen.classList.remove("d-none");
+        gsap.from("#add_contact_container", {
+            width: 1200,
+            x: -1000,
+            duration: 0.55,
+            ease: "back.out(0.35)",
+        });
+    } else {
+        addContactContainer.classList.add("d-none");
+        blurScreen.classList.add("d-none");
+    }
+}
 
- function closeBlurScreen() {
-     const addContactContainer = document.getElementById("add_contact_container");
-     const blurScreen = document.getElementById("blur_screen");
-     const editBlurscreen = document.getElementById("blur_screen-edit");
-     addContactContainer.classList.add("d-none");
-     blurScreen.classList.add("d-none");
-     editBlurscreen.classList.add("d-none");
- }
+function closeBlurScreen() {
+    const addContactContainer = document.getElementById("add_contact_container");
+    const blurScreen = document.getElementById("blur_screen");
+    const editBlurscreen = document.getElementById("blur_screen-edit");
+    addContactContainer.classList.add("d-none");
+    blurScreen.classList.add("d-none");
+    editBlurscreen.classList.add("d-none");
+}
 
- function openAddTask() {
-     document.getElementById("add_task").classList.toggle("d-none");
-     window.scrollTo(0, 0);
-     let list = document.getElementsByTagName("html");
-     let html = list[0];
-     renderContactsAddTask();
-     html.classList.toggle("hide-overflow-y");
-     renderAddTask();
+function openAddTask() {
+    document.getElementById("add_task").classList.toggle("d-none");
+    window.scrollTo(0, 0);
+    let list = document.getElementsByTagName("html");
+    let html = list[0];
+    renderContactsAddTask();
+    html.classList.toggle("hide-overflow-y");
+    renderAddTask();
 
-     dateFuture();
- }
+    dateFuture();
+}
 
- function renderAddTask() {
-     document.getElementById("add_task").innerHTML = renderAddTaskHTML();
- }
+function renderAddTask() {
+    document.getElementById("add_task").innerHTML = renderAddTaskHTML();
+}
 
- function closeAddTask() {
-     document.getElementById("add-board").classList.remove("slide-left");
-     document.getElementById("add-board").classList.add("slide-right");
-     setTimeout(openAddTask, 350);
- }
+function closeAddTask() {
+    document.getElementById("add-board").classList.remove("slide-left");
+    document.getElementById("add-board").classList.add("slide-right");
+    setTimeout(openAddTask, 350);
+}
 
- function getNewColor(i) {
-     let symbols, color;
-     symbols = "0123456789ABCDEF";
-     color = "#";
+function getNewColor() {
+    let symbols;
+    symbols = "0123456789ABCDEF";
+    color = "#";
 
-     for (let f = 0; f < 6; f++) {
-         color = color + symbols[Math.floor(Math.random() * 16)];
-         document.getElementById(`circle_contacts${i}`).style.background = color;
-     }
- }
+    for (let f = 0; f < 6; f++) {
+        color = color + symbols[Math.floor(Math.random() * 16)];
+    }
+}
 
- function clickDialog(e) {
-     e.stopPropagation();
- }
+function setColorOnRendering(i) {
+    document.getElementById(`circle_contacts${i}`).style.background = contacts[i]['color'];
+}
 
- async function openEditContact() {
-     contacts = await JSON.parse(backend.getItem("contacts"));
-     let selectedContact = document.getElementById(`contact${i}`);
+function clickDialog(e) {
+    e.stopPropagation();
+}
 
-     for (let i = 0; i < contacts.length; i++) {
-         const element = contacts[i]['name'];
-         if (element.includes(selectedContact.value)) {
+async function openEditContact() {
+    contacts = await JSON.parse(backend.getItem("contacts"));
+    let selectedContact = document.getElementById(`contact${i}`);
 
-         }
-     }
+    for (let i = 0; i < contacts.length; i++) {
+        const element = contacts[i]['name'];
+        if (element.includes(selectedContact.value)) {
 
-
-     document.getElementById("blur_screen-edit").classList.remove("d-none");
-
-     gsap.from("#add_contact_container", {
-         width: 1200,
-         x: -1000,
-         duration: 0.55,
-         ease: "back.out(0.35)",
-     });
- }
-
- async function saveEditContact() {
-
-     contacts = await JSON.parse(backend.getItem("contacts"));
-     let name_input = document.getElementById("input-name-edit");
-     let mail_input = document.getElementById("input-mail-edit");
-     let phone_input = document.getElementById("input-phone-edit");
-
-     let contact = {
-         name: name_input.value,
-         mail: mail_input.value,
-         mobil: phone_input.value,
-     };
-     contacts.push(contact);
+        }
+    }
 
 
-     await backend.setItem("contacts", JSON.stringify(contacts));
-     renderContactList();
-     closeBlurScreen();
- }
+    document.getElementById("blur_screen-edit").classList.remove("d-none");
 
- function dateFuture() {
-     const today = new Date().toISOString().split("T")[0];
-     document.getElementById("select-date-task").setAttribute("min", today);
- }
+    gsap.from("#add_contact_container", {
+        width: 1200,
+        x: -1000,
+        duration: 0.55,
+        ease: "back.out(0.35)",
+    });
+}
 
- //  Render HMTL
- function disableContactContainer() {
-     if (document.getElementById("a").innerHTML < 1) {
-         document.getElementById("a_container").classList.add("d-none");
-     } else {
-         document.getElementById("a_container").classList.remove("d-none");
-     }
-     if (document.getElementById("b").innerHTML < 1) {
-         document.getElementById("b_container").classList.add("d-none");
-     } else {
-         document.getElementById("b_container").classList.remove("d-none");
-     }
-     if (document.getElementById("c").innerHTML < 1) {
-         document.getElementById("c_container").classList.add("d-none");
-     } else {
-         document.getElementById("c_container").classList.remove("d-none");
-     }
-     if (document.getElementById("d").innerHTML < 1) {
-         document.getElementById("d_container").classList.add("d-none");
-     } else {
-         document.getElementById("d_container").classList.remove("d-none");
-     }
-     if (document.getElementById("e").innerHTML < 1) {
-         document.getElementById("e_container").classList.add("d-none");
-     } else {
-         document.getElementById("e_container").classList.remove("d-none");
-     }
-     if (document.getElementById("f").innerHTML < 1) {
-         document.getElementById("f_container").classList.add("d-none");
-     } else {
-         document.getElementById("f_container").classList.remove("d-none");
-     }
-     if (document.getElementById("g").innerHTML < 1) {
-         document.getElementById("g_container").classList.add("d-none");
-     } else {
-         document.getElementById("g_container").classList.remove("d-none");
-     }
-     if (document.getElementById("h").innerHTML < 1) {
-         document.getElementById("h_container").classList.add("d-none");
-     } else {
-         document.getElementById("h_container").classList.remove("d-none");
-     }
-     if (document.getElementById("i").innerHTML < 1) {
-         document.getElementById("i_container").classList.add("d-none");
-     } else {
-         document.getElementById("i_container").classList.remove("d-none");
-     }
-     if (document.getElementById("j").innerHTML < 1) {
-         document.getElementById("j_container").classList.add("d-none");
-     } else {
-         document.getElementById("j_container").classList.remove("d-none");
-     }
-     if (document.getElementById("k").innerHTML < 1) {
-         document.getElementById("k_container").classList.add("d-none");
-     } else {
-         document.getElementById("k_container").classList.remove("d-none");
-     }
-     if (document.getElementById("l").innerHTML < 1) {
-         document.getElementById("l_container").classList.add("d-none");
-     } else {
-         document.getElementById("l_container").classList.remove("d-none");
-     }
-     if (document.getElementById("m").innerHTML < 1) {
-         document.getElementById("m_container").classList.add("d-none");
-     } else {
-         document.getElementById("m_container").classList.remove("d-none");
-     }
-     if (document.getElementById("n").innerHTML < 1) {
-         document.getElementById("n_container").classList.add("d-none");
-     } else {
-         document.getElementById("n_container").classList.remove("d-none");
-     }
-     if (document.getElementById("o").innerHTML < 1) {
-         document.getElementById("o_container").classList.add("d-none");
-     } else {
-         document.getElementById("o_container").classList.remove("d-none");
-     }
-     if (document.getElementById("p").innerHTML < 1) {
-         document.getElementById("p_container").classList.add("d-none");
-     } else {
-         document.getElementById("p_container").classList.remove("d-none");
-     }
-     if (document.getElementById("q").innerHTML < 1) {
-         document.getElementById("q_container").classList.add("d-none");
-     } else {
-         document.getElementById("q_container").classList.remove("d-none");
-     }
-     if (document.getElementById("r").innerHTML < 1) {
-         document.getElementById("r_container").classList.add("d-none");
-     } else {
-         document.getElementById("r_container").classList.remove("d-none");
-     }
-     if (document.getElementById("s").innerHTML < 1) {
-         document.getElementById("s_container").classList.add("d-none");
-     } else {
-         document.getElementById("s_container").classList.remove("d-none");
-     }
-     if (document.getElementById("t").innerHTML < 1) {
-         document.getElementById("t_container").classList.add("d-none");
-     } else {
-         document.getElementById("t_container").classList.remove("d-none");
-     }
-     if (document.getElementById("u").innerHTML < 1) {
-         document.getElementById("u_container").classList.add("d-none");
-     } else {
-         document.getElementById("u_container").classList.remove("d-none");
-     }
-     if (document.getElementById("v").innerHTML < 1) {
-         document.getElementById("v_container").classList.add("d-none");
-     } else {
-         document.getElementById("v_container").classList.remove("d-none");
-     }
-     if (document.getElementById("w").innerHTML < 1) {
-         document.getElementById("w_container").classList.add("d-none");
-     } else {
-         document.getElementById("w_container").classList.remove("d-none");
-     }
-     if (document.getElementById("x").innerHTML < 1) {
-         document.getElementById("x_container").classList.add("d-none");
-     } else {
-         document.getElementById("x_container").classList.remove("d-none");
-     }
-     if (document.getElementById("y").innerHTML < 1) {
-         document.getElementById("y_container").classList.add("d-none");
-     } else {
-         document.getElementById("y_container").classList.remove("d-none");
-     }
-     if (document.getElementById("z").innerHTML < 1) {
-         document.getElementById("z_container").classList.add("d-none");
-     } else {
-         document.getElementById("z_container").classList.remove("d-none");
-     }
- }
+async function saveEditContact() {
+
+    contacts = await JSON.parse(backend.getItem("contacts"));
+    let name_input = document.getElementById("input-name-edit");
+    let mail_input = document.getElementById("input-mail-edit");
+    let phone_input = document.getElementById("input-phone-edit");
+
+    let contact = {
+        name: name_input.value,
+        mail: mail_input.value,
+        mobil: phone_input.value,
+    };
+    contacts.push(contact);
+
+
+    await backend.setItem("contacts", JSON.stringify(contacts));
+    renderContactList();
+    closeBlurScreen();
+}
+
+function dateFuture() {
+    const today = new Date().toISOString().split("T")[0];
+    document.getElementById("select-date-task").setAttribute("min", today);
+}
+
+//  Render HMTL
+function disableContactContainer() {
+    if (document.getElementById("a").innerHTML < 1) {
+        document.getElementById("a_container").classList.add("d-none");
+    } else {
+        document.getElementById("a_container").classList.remove("d-none");
+    }
+    if (document.getElementById("b").innerHTML < 1) {
+        document.getElementById("b_container").classList.add("d-none");
+    } else {
+        document.getElementById("b_container").classList.remove("d-none");
+    }
+    if (document.getElementById("c").innerHTML < 1) {
+        document.getElementById("c_container").classList.add("d-none");
+    } else {
+        document.getElementById("c_container").classList.remove("d-none");
+    }
+    if (document.getElementById("d").innerHTML < 1) {
+        document.getElementById("d_container").classList.add("d-none");
+    } else {
+        document.getElementById("d_container").classList.remove("d-none");
+    }
+    if (document.getElementById("e").innerHTML < 1) {
+        document.getElementById("e_container").classList.add("d-none");
+    } else {
+        document.getElementById("e_container").classList.remove("d-none");
+    }
+    if (document.getElementById("f").innerHTML < 1) {
+        document.getElementById("f_container").classList.add("d-none");
+    } else {
+        document.getElementById("f_container").classList.remove("d-none");
+    }
+    if (document.getElementById("g").innerHTML < 1) {
+        document.getElementById("g_container").classList.add("d-none");
+    } else {
+        document.getElementById("g_container").classList.remove("d-none");
+    }
+    if (document.getElementById("h").innerHTML < 1) {
+        document.getElementById("h_container").classList.add("d-none");
+    } else {
+        document.getElementById("h_container").classList.remove("d-none");
+    }
+    if (document.getElementById("i").innerHTML < 1) {
+        document.getElementById("i_container").classList.add("d-none");
+    } else {
+        document.getElementById("i_container").classList.remove("d-none");
+    }
+    if (document.getElementById("j").innerHTML < 1) {
+        document.getElementById("j_container").classList.add("d-none");
+    } else {
+        document.getElementById("j_container").classList.remove("d-none");
+    }
+    if (document.getElementById("k").innerHTML < 1) {
+        document.getElementById("k_container").classList.add("d-none");
+    } else {
+        document.getElementById("k_container").classList.remove("d-none");
+    }
+    if (document.getElementById("l").innerHTML < 1) {
+        document.getElementById("l_container").classList.add("d-none");
+    } else {
+        document.getElementById("l_container").classList.remove("d-none");
+    }
+    if (document.getElementById("m").innerHTML < 1) {
+        document.getElementById("m_container").classList.add("d-none");
+    } else {
+        document.getElementById("m_container").classList.remove("d-none");
+    }
+    if (document.getElementById("n").innerHTML < 1) {
+        document.getElementById("n_container").classList.add("d-none");
+    } else {
+        document.getElementById("n_container").classList.remove("d-none");
+    }
+    if (document.getElementById("o").innerHTML < 1) {
+        document.getElementById("o_container").classList.add("d-none");
+    } else {
+        document.getElementById("o_container").classList.remove("d-none");
+    }
+    if (document.getElementById("p").innerHTML < 1) {
+        document.getElementById("p_container").classList.add("d-none");
+    } else {
+        document.getElementById("p_container").classList.remove("d-none");
+    }
+    if (document.getElementById("q").innerHTML < 1) {
+        document.getElementById("q_container").classList.add("d-none");
+    } else {
+        document.getElementById("q_container").classList.remove("d-none");
+    }
+    if (document.getElementById("r").innerHTML < 1) {
+        document.getElementById("r_container").classList.add("d-none");
+    } else {
+        document.getElementById("r_container").classList.remove("d-none");
+    }
+    if (document.getElementById("s").innerHTML < 1) {
+        document.getElementById("s_container").classList.add("d-none");
+    } else {
+        document.getElementById("s_container").classList.remove("d-none");
+    }
+    if (document.getElementById("t").innerHTML < 1) {
+        document.getElementById("t_container").classList.add("d-none");
+    } else {
+        document.getElementById("t_container").classList.remove("d-none");
+    }
+    if (document.getElementById("u").innerHTML < 1) {
+        document.getElementById("u_container").classList.add("d-none");
+    } else {
+        document.getElementById("u_container").classList.remove("d-none");
+    }
+    if (document.getElementById("v").innerHTML < 1) {
+        document.getElementById("v_container").classList.add("d-none");
+    } else {
+        document.getElementById("v_container").classList.remove("d-none");
+    }
+    if (document.getElementById("w").innerHTML < 1) {
+        document.getElementById("w_container").classList.add("d-none");
+    } else {
+        document.getElementById("w_container").classList.remove("d-none");
+    }
+    if (document.getElementById("x").innerHTML < 1) {
+        document.getElementById("x_container").classList.add("d-none");
+    } else {
+        document.getElementById("x_container").classList.remove("d-none");
+    }
+    if (document.getElementById("y").innerHTML < 1) {
+        document.getElementById("y_container").classList.add("d-none");
+    } else {
+        document.getElementById("y_container").classList.remove("d-none");
+    }
+    if (document.getElementById("z").innerHTML < 1) {
+        document.getElementById("z_container").classList.add("d-none");
+    } else {
+        document.getElementById("z_container").classList.remove("d-none");
+    }
+}
