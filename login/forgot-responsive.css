@@ -52,7 +52,7 @@
 @media (width <=500px) {
     .forgot-box {
         width: 117vw !important;
-        height: 58vh !important;
+        height: 74vh !important;
     }
 
     .forgot-text {
@@ -67,7 +67,7 @@
 
 @media (width <=363px) {
     .forgot-box {
-        height: 55vh !important;
+        height: 70vh !important;
     }
 
     .login-screen-no-animation h1 {
