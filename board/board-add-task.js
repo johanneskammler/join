@@ -76,7 +76,7 @@ function contactToSave(selectedContacts) {
       if (element["name"] == selected) {
         names.push(element["name"]);
         colors.push(element["color"]);
-        letters.push(element["firstletter"]);
+        letters.push(element["firstLetters"]);
       }
     }
   }
