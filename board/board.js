@@ -55,7 +55,7 @@ async function init() {
 function openPopup(id) {
     generatePopup(id);
     popup();
-    dateFuture();
+    dateFutureTask();
 }
 
 function hoverBoardHtml() {
@@ -167,7 +167,7 @@ function openAddTask() {
     renderContactsAddTask();
     html.classList.toggle("hide-overflow-y");
     renderAddTask();
-
+    dateFutureTask();
 }
 
 /**
@@ -713,6 +713,12 @@ function edit(id) {
 function dateFuture() {
   const today = new Date().toISOString().split("T")[0];
   document.getElementById("select-date").setAttribute("min", today);
+  // document.getElementById("select-date-task").setAttribute("min", today);
+}
+
+function dateFutureTask() {
+  const today = new Date().toISOString().split("T")[0];
+  document.getElementById("select-date-task").setAttribute("min", today);
 }
 
 function showEdit(title, description, id) {
