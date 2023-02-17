@@ -19,16 +19,17 @@
   z-index: 20;
 }
 
-@media (width <= 1800px) {
+@media (width <=1800px) {
   .board {
     margin-left: 18.5vw;
   }
+
   .board-main {
     height: 71vh;
   }
 }
 
-@media (width <= 1660px) {
+@media (width <=1660px) {
   .mr26 {
     margin-right: 3vw;
   }
@@ -38,54 +39,14 @@
   }
 }
 
-@media (width <= 1600px) {
+@media (width <=1600px) {
   .popup-card {
     right: 26vw;
   }
 }
 
-@media (width <= 1440px) {
-  .popup-card {
-    right: 22vw;
-  }
-}
+@media (width <=1560px) {
 
-@media (width <= 1440px) {
-  .popup-card {
-    right: 30vw;
-    width: 31%;
-  }
-}
-
-@media (width <= 1200px) {
-  .popup-card {
-    right: 28vw;
-    width: 361px;
-  }
-}
-
-@media (width <= 950px) {
-  .popup-card {
-    right: 26vw;
-  }
-}
-
-@media (width <= 830px) {
-  .popup-card {
-    right: 21vw;
-  }
-}
-
-@media (width <= 757px) {
-  .popup-card {
-    top: 101px;
-    right: 0px;
-    width: 364px;
-    position: fixed;
-  }
-}
-
-@media (width <= 1560px) {
   .todo-content,
   .progress-content,
   .await-feedback-content,
@@ -101,6 +62,7 @@
   .card-content-popup {
     width: 85% !important;
   }
+
   .card {
     width: 15.5vw !important;
   }
@@ -125,12 +87,13 @@
   .mr26 {
     margin-right: 2.5vw;
   }
+
   .board {
     margin-left: 22vw;
   }
 }
 
-@media (width <= 1441px) {
+@media (width <=1441px) {
   body {
     width: 100%;
     height: 100vh;
@@ -161,6 +124,7 @@
   .board-main {
     height: 68vh;
   }
+
   .todo-content,
   .progress-content,
   .await-feedback-content,
@@ -168,9 +132,9 @@
     width: calc(17.5vw - 8px);
   }
 
-  .todobox {
+  /* .todobox {
     margin-inline-start: -6px;
-  }
+  } */
 
   .head {
     margin-bottom: 10px;
@@ -196,31 +160,21 @@
   }
 }
 
-@media (width <= 1380px) {
-  .board {
-    margin-left: 23.4vw;
-  }
-  .popup-title {
-    font-size: 50px;
-  }
 
-  .head {
-    width: 16vw !important;
-  }
-
-  .todo-content,
-  .progress-content,
-  .await-feedback-content,
-  .done-content {
-    width: 17vw !important;
-  }
-
-  .card {
-    width: 15vw !important;
+@media (width <=1440px) {
+  .popup-card {
+    right: 22vw;
   }
 }
 
-@media (width <= 1400px) {
+@media (width <=1440px) {
+  .popup-card {
+    right: 30vw;
+    width: 31%;
+  }
+}
+
+@media (width <=1400px) {
   .card {
     width: 16.4vw;
   }
@@ -283,7 +237,33 @@
   }
 }
 
-@media (width <= 1240px) {
+
+@media (width <=1380px) {
+  .board {
+    margin-left: 23.4vw;
+  }
+
+  .popup-title {
+    font-size: 50px;
+  }
+
+  .head {
+    width: 16vw !important;
+  }
+
+  .todo-content,
+  .progress-content,
+  .await-feedback-content,
+  .done-content {
+    width: 17vw !important;
+  }
+
+  .card {
+    width: 15vw !important;
+  }
+}
+
+@media (width <=1240px) {
   .edit-box {
     width: 395px;
     display: flex;
@@ -300,7 +280,15 @@
   }
 }
 
-@media (width <= 1200px) {
+
+@media (width <=1200px) {
+  .popup-card {
+    right: 28vw;
+    width: 361px;
+  }
+}
+
+@media (width <=1200px) {
   .head {
     width: 14.5vw !important;
   }
@@ -317,9 +305,13 @@
   }
 }
 
-@media (width <= 1024px) {
+@media (width <=1024px) {
   .kanban {
     display: block;
+  }
+
+  .board-top {
+    margin-bottom: 32px !important;
   }
 
   .popup-card-title {
@@ -340,26 +332,16 @@
 
   .board {
     margin-left: 0px !important;
-
+    margin-top: 140px !important;
     align-items: center !important;
   }
 
-  .board-top {
-    width: initial !important;
-    margin-inline-start: -334px !important;
-  }
-
   .inpbox {
-    width: 30vw !important;
+    width: 63vw !important;
   }
 
   .btn-top {
     display: none;
-  }
-
-  .inpbox {
-    margin-left: 0;
-    width: 31vw;
   }
 
   header span {
@@ -404,6 +386,8 @@
   .await-feedback-content,
   .done-content {
     height: 41.3vh;
+    width: 25vw !important;
+    padding-bottom: 48px !important;
   }
 
   .board-main {
@@ -415,13 +399,13 @@
     margin-inline-start: 0;
   }
 
-  .head {
+  /* .head {
     width: 26.5vw;
     margin-inline-start: -22px;
-  }
+  } */
 
   .head h2 {
-    padding-inline-start: 0;
+    padding-inline-start: 0 !important;
   }
 
   .for-tablet {
@@ -438,39 +422,106 @@
     width: 27vw !important;
   }
 
-  .todo-content,
-  .progress-content,
-  .await-feedback-content,
-  .done-content {
-    width: 25vw !important;
-  }
-
   .card {
     width: 26vw !important;
   }
 }
 
-@media (width <= 900px) {
+
+@media (width <=950px) {
+  .popup-card {
+    right: 26vw;
+  }
+}
+
+@media (width <=900px) {
   .popup-title {
     font-size: 40px;
     width: 47vw;
   }
 }
 
-*/  /* For all of us */
+*/
+/* For all of us */
 
-  header {
+header {
   height: 40px !important;
 }
 
-@media (width <= 500px) {
+@media (width <=830px) {
+  .popup-card {
+    right: 21vw;
+  }
+}
+
+@media (width <=767px) and (height <=800px) {
+
+  .todo-content,
+  .progress-content,
+  .await-feedback-content,
+  .done-content {
+    height: 25.3vh;
+  }
+}
+
+@media (width <=767px) and (height <=700px) {
+
+  .todo-content,
+  .progress-content,
+  .await-feedback-content,
+  .done-content {
+    height: 28.3vh;
+  }
+}
+
+@media (width <=757px) {
+  .popup-card {
+    top: 101px;
+    right: 0px;
+    width: 364px;
+    position: fixed;
+  }
+}
+
+@media (width <=670px) {
+  .popup-card-title {
+    width: 65vw;
+  }
+}
+
+@media (width <=500px) and (height <=800px) {
+
+  .todo-content,
+  .progress-content,
+  .await-feedback-content,
+  .done-content {
+    height: 27vh;
+  }
+}
+
+@media (width <=500px) and (height <=690px) {
+
+  .todo-content,
+  .progress-content,
+  .await-feedback-content,
+  .done-content {
+    height: 30vh;
+  }
+}
+
+@media (width <=500px) {
   header {
     padding: 8px 39px !important;
+  }
+
+  .board {
+    margin-top: 100px !important;
   }
 
   .popup {
     justify-content: end;
   }
+
   .kanban {
     width: 361px;
   }
@@ -485,14 +536,9 @@
     line-height: 46.2px;
     width: 68vw;
   }
+
   .board-main {
     gap: 0;
-  }
-
-  .board-top {
-    width: 364px;
-    margin-inline-start: 8px;
-    margin-bottom: -8px;
   }
 
   .for-tablet {
@@ -524,15 +570,13 @@
     width: 100%;
   }
 
-  .head {
-    width: 392px;
-    margin-inline-start: 0px;
-    margin-top: 3vh;
-  }
+  /* .head {
+    width: 392px !important;
+  } */
 
-  .card {
+  /* .card {
     width: 364px;
-  }
+  } */
 
   .done {
     height: 58vh;
@@ -543,17 +587,9 @@
   }
 }
 
-@media (width <= 670px) {
-  .popup-card-title {
-    width: 65vw;
-  }
-}
 
-@media (width <= 500px) {
-  .board-top {
-    width: 77vw;
-  }
 
+@media (width <=500px) {
   .popup {
     right: -21px;
   }
@@ -574,7 +610,7 @@
   }
 
   .card {
-    width: 74vw;
+    width: 56vw !important;
   }
 
   .in-progress {
@@ -592,12 +628,12 @@
     height: 26vh;
   }
 
-  .head {
+  /* .head {
     width: 79.5vw;
-  }
+  } */
 }
 
-@media (width <= 455px) {
+@media (width <=455px) {
   .popup {
     right: -46px;
   }
@@ -606,11 +642,13 @@
   .popup-card-title {
     width: 76vw;
   }
+
   .kanban {
     width: 77vw;
   }
 }
-@media (width <= 430px) {
+
+@media (width <=430px) {
   .popup-card {
     width: 82vw;
     right: -18px;
@@ -623,7 +661,7 @@
   }
 }
 
-@media (width <= 400px) {
+@media (width <=400px) {
   .popup {
     right: -57px;
   }
@@ -635,6 +673,7 @@
   .in-progress {
     margin-top: 5vh;
   }
+
   .done {
     margin-top: 1vh;
     height: 65vh;
@@ -646,7 +685,8 @@
   }
 }
 
-@media (width <= 365px) {
+@media (width <=365px) {
+
   .popup-title,
   .popup-card-title {
     width: 100vw;
@@ -660,7 +700,7 @@
   }
 }
 
-@media (width <= 330px) {
+@media (width <=330px) {
   .popup-card {
     width: 99vw;
     padding: 50px 20px;
@@ -675,42 +715,6 @@
   .edit-box {
     width: 308px;
     margin-block-start: -16px;
-  }
-}
-
-@media (width <= 767px) and (height <= 800px) {
-  .todo-content,
-  .progress-content,
-  .await-feedback-content,
-  .done-content {
-    height: 25.3vh;
-  }
-}
-
-@media (width <= 767px) and (height <= 700px) {
-  .todo-content,
-  .progress-content,
-  .await-feedback-content,
-  .done-content {
-    height: 28.3vh;
-  }
-}
-
-@media (width <= 500px) and (height <= 800px) {
-  .todo-content,
-  .progress-content,
-  .await-feedback-content,
-  .done-content {
-    height: 27vh;
-  }
-}
-
-@media (width <= 500px) and (height <= 690px) {
-  .todo-content,
-  .progress-content,
-  .await-feedback-content,
-  .done-content {
-    height: 30vh;
   }
 }
 

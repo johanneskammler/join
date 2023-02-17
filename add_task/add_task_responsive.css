@@ -33,6 +33,12 @@
     display: none;
   }
 
+  .create-task-btn-resp {
+    top: 3.3vh;
+    right: 5vw;
+    z-index: 6;
+  }
+
   .new-contact {
     margin-right: 14px;
     width: 382px;
@@ -45,7 +51,6 @@
   }
 
   .create-task-btn-resp {
-    top: 2.8vh;
     right: 8vw;
   }
 
@@ -136,18 +141,8 @@
     margin-top: 36px;
   }
 
-  .create-task-btn-resp {
-    top: 3vh;
-    right: 8vw;
-  }
-
   #header-name-resp {
     margin-top: -48px;
-  }
-
-  .clear-task-btn,
-  .create-task-btn {
-    display: none;
   }
 
   .importance-buttons button span {
