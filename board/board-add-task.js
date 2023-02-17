@@ -173,7 +173,7 @@ function resetImportanceButtons() {
   document.getElementById("importance-button3-colored").classList.add("d-none");
 }
 
-async function renderContactsAddTask() {
+async function renderContactsAddTask(invateNewContactName) {
   /*   let url = "../contacts.json";
   let response = await fetch(url); */
   contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
@@ -185,7 +185,7 @@ async function renderContactsAddTask() {
       generateHTMLcontactsBoard(element, i);
   }
   if (checkedIndex.length > 0) {
-    checkedSetting(checkedIndex);
+    checkedSetting(invateNewContactName);
   }
 }
 
@@ -546,8 +546,9 @@ async function invateCreateNewContact(
     firstletter: firstletter,
     color: color,
   };
-  await backend.setItem("contacts", JSON.stringify(exist));
   exist = (await JSON.parse(backend.getItem("contacts"))) || [];
+  exist.push(contact);
+  await backend.setItem("contacts", JSON.stringify(exist));
   let indexLength;
 
   if (exist.length > 0) {
@@ -556,10 +557,9 @@ async function invateCreateNewContact(
   // contacts = exist;
 
   // if anweisung mit indexOf
-  exist.push(contact);
   newContactAddTaskReturn();
   clearContactsBeforeRendering(indexLength);
-  renderContactsAddTask();
+  renderContactsAddTask(invateNewContactName);
 }
 
 async function getCheckboxValue() {
@@ -576,25 +576,35 @@ async function getCheckboxValue() {
   }
 }
 
-function checkedSetting() {
-  if (currentContacts > 1) {
-    let lastContactIndex = currentContacts.length - 1;
-    let lastContactId = document.getElementById(
-      `contacts-checkbox-${lastContactIndex}`
-    );
-    lastContactId.checked = true;
+async function checkedSetting(invateNewContactName) {
+  let people = await JSON.parse(backend.getItem("contacts"));
+  people = people.sort((a, b) => (a.name > b.name ? 1 : -1));
+  if (currentContacts.length > 0) {
+    for (let i = 0; i < contacts.length; i++) {
+      const element = contacts[i]["name"];
+      if (element.indexOf(`${invateNewContactName}`) > -1) {
+        let lastContactId = document.getElementById(`contacts-checkbox-${i}`);
+        lastContactId.checked = true;
+      }
+    }
   }
 
-  for (let j = 0; j < checkedIndex.length; j++) {
-    const element = checkedIndex[j];
-    document.getElementById(`contacts-checkbox-${element}`).checked = true;
+  for (let i = 0; i < people.length; i++) {
+    let theName = people[i]["name"];
+    for (let j = 0; j < selectedContacts.length; j++) {
+      const selected = selectedContacts[j];
+      if (theName.indexOf(selected) > -1) {
+        let theIndex = i;
+        document.getElementById(`contacts-checkbox-${theIndex}`).checked = true;
+      }
+    }
   }
   console.log(checkedIndex);
 }
 
 function clearContactsBeforeRendering(indexLength) {
   if (exist.length > 0) {
-    for (let i = 0; i < indexLength; i++) {
+    for (let i = 0; i < indexLength - 1; i++) {
       // const element = contacts[i];
       document.getElementById(`selected-contact-${i}`).parentElement.remove();
     }
