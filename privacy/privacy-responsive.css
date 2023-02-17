@@ -4,10 +4,13 @@
         justify-content: center;
         margin: 0;
     }
-    
+
     .privacy-content {
         margin-left: 0;
         margin-top: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     h1 {
@@ -19,10 +22,16 @@
     h2 {
         font-size: 23px;
         margin-bottom: 0;
+        max-width: 60vw;
+    }
+
+    ul {
+        max-width: 60vw;
     }
 }
 
 @media (max-width: 620px) {
+
     #header-name,
     #help-section-btn {
         display: none;

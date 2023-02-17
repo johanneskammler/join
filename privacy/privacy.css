@@ -40,6 +40,8 @@ p {
 .privacy-headline img {
     cursor: pointer;
     margin-block-start: 46px;
+    position: absolute;
+    right: 2rem;
 }
 
 .privacy_html {
