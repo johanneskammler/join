@@ -32,43 +32,44 @@ let idCounter = 0;
  */
 
 function checkMaps(place) {
-  console.log(place);
+    console.log(place);
 }
 
 async function init() {
-  await includeHTML();
-  await downloadFromServer();
-  checkSize();
-  draggableTrue();
-  setTimeout(activateDragAndDrop, 300); /* setCards(); */
-  await getMaps();
+    await includeHTML();
+    await downloadFromServer();
+    checkSize();
+    draggableTrue();
+    setTimeout(activateDragAndDrop, 300); /* setCards(); */
+    await getMaps();
 
-  generateCards();
-  checkIfEmpty();
+    generateCards();
+    checkIfEmpty();
 
-  tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
+    tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
 
-  getUrgentCounter();
-  getCurrentContacts();
+    getUrgentCounter();
+    getCurrentContacts();
 }
 
 function openPopup(id) {
-  generatePopup(id);
-  popup();
+    generatePopup(id);
+    popup();
+    dateFuture();
 }
 
 function hoverBoardHtml() {
-  document
-    .getElementById("board_bg")
-    .classList.add("section-background-normal");
-  document.getElementById("board_bg").classList.remove("section-background");
+    document
+        .getElementById("board_bg")
+        .classList.add("section-background-normal");
+    document.getElementById("board_bg").classList.remove("section-background");
 }
 
 function hoverBoardRespons() {
-  document
-    .getElementById("board_bg")
-    .classList.remove("section-background-normal");
-  document.getElementById("board_bg").classList.add("section-background");
+    document
+        .getElementById("board_bg")
+        .classList.remove("section-background-normal");
+    document.getElementById("board_bg").classList.add("section-background");
 }
 /**
  * Remove the display none from the div's and show the popup
@@ -76,20 +77,20 @@ function hoverBoardRespons() {
  * block scolling while view on popup
  */
 function popup(id) {
-  let background = document.getElementById("popup");
-  let card = document.getElementById("popup_card");
-  let list = document.getElementsByTagName("html");
-  let html = list[0];
+    let background = document.getElementById("popup");
+    let card = document.getElementById("popup_card");
+    let list = document.getElementsByTagName("html");
+    let html = list[0];
 
-  document.getElementById("edit_priority").classList.remove("correctPrio");
-  document.getElementById("popup_title").classList.remove("card-content-popup");
-  document.getElementById("card_content").classList.remove("set-content");
+    document.getElementById("edit_priority").classList.remove("correctPrio");
+    document.getElementById("popup_title").classList.remove("card-content-popup");
+    document.getElementById("card_content").classList.remove("set-content");
 
-  window.scrollTo(0, 0);
-  //html.classList.toggle("hide-overflow-y");
-  card.classList.toggle("d-none");
-  background.classList.toggle("d-none");
-  activateDragAndDrop();
+    window.scrollTo(0, 0);
+    //html.classList.toggle("hide-overflow-y");
+    card.classList.toggle("d-none");
+    background.classList.toggle("d-none");
+    activateDragAndDrop();
 }
 
 /*  
@@ -98,44 +99,44 @@ function popup(id) {
  * to set the sidebar and deactivate the dragAndDrop
  */
 function checkSize() {
-  let size = window.innerWidth;
-  console.log(size);
-  if (size <= 1024) {
-    sidebarTabled();
-    draggableFalse();
-    hoverBoardRespons();
-  } else if (size > 1024) {
-    draggableTrue();
-    sidebarDesktop();
-    hoverBoardHtml();
-  }
+    let size = window.innerWidth;
+    console.log(size);
+    if (size <= 1024) {
+        sidebarTabled();
+        draggableFalse();
+        hoverBoardRespons();
+    } else if (size > 1024) {
+        draggableTrue();
+        sidebarDesktop();
+        hoverBoardHtml();
+    }
 }
 
 /**
  * set The Sidebar to the Bottom
  */
 function sidebarTabled() {
-  document.getElementById("sidebar").classList.remove("sidebar");
-  document.getElementById("sidebar").classList.add("tablet-sidebar");
+    document.getElementById("sidebar").classList.remove("sidebar");
+    document.getElementById("sidebar").classList.add("tablet-sidebar");
 }
 
 /**
  * set the sidebar to the left
  */
 function sidebarDesktop() {
-  document.getElementById("sidebar").classList.add("sidebar");
-  document.getElementById("sidebar").classList.remove("tablet-sidebar");
+    document.getElementById("sidebar").classList.add("sidebar");
+    document.getElementById("sidebar").classList.remove("tablet-sidebar");
 }
 
 /**
  * disable the dragAndDrop function
  */
 function draggableFalse() {
-  let cards = document.getElementsByClassName("card");
-  for (let i = 0; i < cards.length; i++) {
-    const card = cards[i];
-    card.setAttribute("draggable", false);
-  }
+    let cards = document.getElementsByClassName("card");
+    for (let i = 0; i < cards.length; i++) {
+        const card = cards[i];
+        card.setAttribute("draggable", false);
+    }
 }
 
 /**
@@ -143,47 +144,43 @@ function draggableFalse() {
  */
 
 function draggableTrue() {
-  let cards = document.getElementsByClassName("card");
-  for (let i = 0; i < cards.length; i++) {
-    const card = cards[i];
-    card.setAttribute("draggable", true);
-    card.onmousedown = "";
-  }
+    let cards = document.getElementsByClassName("card");
+    for (let i = 0; i < cards.length; i++) {
+        const card = cards[i];
+        card.setAttribute("draggable", true);
+        card.onmousedown = "";
+    }
 }
 
 function renderAddTask() {
-  document.getElementById("add_task").innerHTML = renderAddTaskHTML();
+    document.getElementById("add_task").innerHTML = renderAddTaskHTML();
 }
 
 /**
  * open addTask and remove the d-none class from the div with id add-task
  */
 function openAddTask() {
-  document.getElementById("add_task").classList.toggle("d-none");
-  window.scrollTo(0, 0);
-  let list = document.getElementsByTagName("html");
-  let html = list[0];
-  renderContactsAddTask();
-  html.classList.toggle("hide-overflow-y");
-  renderAddTask();
-  dateFuture();
+    document.getElementById("add_task").classList.toggle("d-none");
+    window.scrollTo(0, 0);
+    let list = document.getElementsByTagName("html");
+    let html = list[0];
+    renderContactsAddTask();
+    html.classList.toggle("hide-overflow-y");
+    renderAddTask();
+
 }
 
-function dateFuture() {
-  const today = new Date().toISOString().split("T")[0];
-  document.getElementById("select-date-task").setAttribute("min", today);
-}
 /**
  * close the addTask div and add the d-none class from the div with id add-task
  */
 function closeAddTask() {
-  document.getElementById("add-board").classList.remove("slide-left");
-  document.getElementById("add-board").classList.add("slide-right");
-  setTimeout(openAddTask, 350);
-  setTimeout(activateDragAndDrop, 350);
-  subtasks = [];
-  subCounterAdd = 0;
-  selectedContacts = [];
+    document.getElementById("add-board").classList.remove("slide-left");
+    document.getElementById("add-board").classList.add("slide-right");
+    setTimeout(openAddTask, 350);
+    setTimeout(activateDragAndDrop, 350);
+    subtasks = [];
+    subCounterAdd = 0;
+    selectedContacts = [];
 }
 
 /**
@@ -191,347 +188,334 @@ function closeAddTask() {
  */
 
 async function getFirstLetter(contacts, idCounter) {
-  let namesSplit = new Map();
-  let nameList = [];
-  let letterList = [];
-  let colorList = [];
+    let namesSplit = new Map();
+    let nameList = [];
+    let letterList = [];
+    let colorList = [];
 
-  /*   let url = "../contacts.json";
-  let response = await fetch(url); */
-  let contactsJson = backend.getItem("contacts");
-  let namesList = [];
-  for (let i = 0; i < contactsJson.length; i++) {
-    namesList.push(contactsJson[i]["name"]);
-  }
-
-  for (let i = 0; i < contacts.length; i++) {
-    if (namesList.indexOf(`${contacts[i]}`) >= 0) {
-      const element = contacts[i];
-      let index = namesList.indexOf(`${contacts[i]}`);
-      let name = element.split(" ");
-      let justName = `${name[0]} ${name[1]}`;
-      let nameColor = contactsJson[index]["color"];
-      let firstLetter = name[0].split("");
-      let secondLetter = name[1].split("");
-      let firstLetters = firstLetter[0] + secondLetter[0];
-
-      nameList.push(justName);
-      letterList.push(firstLetters);
-      colorList.push(nameColor);
+    /*   let url = "../contacts.json";
+    let response = await fetch(url); */
+    let contactsJson = backend.getItem("contacts");
+    let namesList = [];
+    for (let i = 0; i < contactsJson.length; i++) {
+        namesList.push(contactsJson[i]["name"]);
     }
-  }
-  namesSplit.set(`${idCounter}`, {
-    contacts: `${nameList}`,
-    letters: `${letterList}`,
-    color: `${colorList}`,
-  });
-  return namesSplit;
+
+    for (let i = 0; i < contacts.length; i++) {
+        if (namesList.indexOf(`${contacts[i]}`) >= 0) {
+            const element = contacts[i];
+            let index = namesList.indexOf(`${contacts[i]}`);
+            let name = element.split(" ");
+            let justName = `${name[0]} ${name[1]}`;
+            let nameColor = contactsJson[index]["color"];
+            let firstLetter = name[0].split("");
+            let secondLetter = name[1].split("");
+            let firstLetters = firstLetter[0] + secondLetter[0];
+
+            nameList.push(justName);
+            letterList.push(firstLetters);
+            colorList.push(nameColor);
+        }
+    }
+    namesSplit.set(`${idCounter}`, {
+        contacts: `${nameList}`,
+        letters: `${letterList}`,
+        color: `${colorList}`,
+    });
+    return namesSplit;
 }
 
 async function setTasks() {
-  let tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
-  let subtask;
-  let currentId;
+    let tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
+    let subtask;
+    let currentId;
 
-  if (tasks.length > 0) {
-    for (let i = 0; i < tasks.length; i++) {
-      loadCounter();
-      if (idCounter == "leer") {
-        idCounter = 0;
-      }
+    if (tasks.length > 0) {
+        for (let i = 0; i < tasks.length; i++) {
+            loadCounter();
+            if (idCounter == "leer") {
+                idCounter = 0;
+            }
 
-      key = tasks[i];
-      todosMap.set(`${idCounter}`, {
-        category: key["category"],
-        categorycolor: key["categorycolor"],
-        contacts: key["contacts"],
-        colors: key["colors"],
-        letters: key["letters"],
-        date: key["date"],
-        description: key["description"],
-        importance: key["importance"],
-        subtask: key["subtasks"],
-        subtaskStatus: "0",
-        title: key["title"],
-        progressStatus: key[0],
-      });
+            key = tasks[i];
+            todosMap.set(`${idCounter}`, {
+                category: key["category"],
+                categorycolor: key["categorycolor"],
+                contacts: key["contacts"],
+                colors: key["colors"],
+                letters: key["letters"],
+                date: key["date"],
+                description: key["description"],
+                importance: key["importance"],
+                subtask: key["subtasks"],
+                subtaskStatus: "0",
+                title: key["title"],
+                progressStatus: key[0],
+            });
 
-      await saveMaps();
-      await backend.deleteItem("tasks");
-      subtask = todosMap.get(`${idCounter}`)["substack"];
-      currentId = idCounter;
-      idCounter++;
-      idCounterToJson();
+            await saveMaps();
+            await backend.deleteItem("tasks");
+            subtask = todosMap.get(`${idCounter}`)["substack"];
+            currentId = idCounter;
+            idCounter++;
+            idCounterToJson();
+        }
     }
-  }
-  setCards(todo);
+    setCards(todo);
 }
 
 function setCards(section) {
-  if (section === "todo") {
-    let todo = document.getElementById("todo-board");
-    todo.innerHTML = "";
-    for (const [key, value] of todosMap) {
-      if (!(key === "x")) {
-        cardContent(section, key);
-        if (todosMap.get(`${key}`)["subtask"].length === 0) {
-          checkSubtasks(key, todosMap);
+    if (section === "todo") {
+        let todo = document.getElementById("todo-board");
+        todo.innerHTML = "";
+        for (const [key, value] of todosMap) {
+            if (!(key === "x")) {
+                cardContent(section, key);
+                if (todosMap.get(`${key}`)["subtask"].length === 0) {
+                    checkSubtasks(key, todosMap);
+                }
+                renderContacts(section, key);
+            }
         }
-        renderContacts(section, key);
-      }
     }
-  }
-  if (section === "progress") {
-    let progress = document.getElementById("progress-board");
-    progress.innerHTML = ``;
-    for (const [key, value] of progressesMap) {
-      if (!(key === "x")) {
-        cardContent(section, key);
-        if (progressesMap.get(`${key}`)["subtask"].length === 0) {
-          checkSubtasks(key, progressesMap);
+    if (section === "progress") {
+        let progress = document.getElementById("progress-board");
+        progress.innerHTML = ``;
+        for (const [key, value] of progressesMap) {
+            if (!(key === "x")) {
+                cardContent(section, key);
+                if (progressesMap.get(`${key}`)["subtask"].length === 0) {
+                    checkSubtasks(key, progressesMap);
+                }
+                renderContacts(section, key);
+            }
         }
-        renderContacts(section, key);
-      }
     }
-  }
-  if (section === "feedback") {
-    let feedback = document.getElementById("feedback-board");
-    feedback.innerHTML = ``;
-    for (const [key, value] of feedbacksMap) {
-      if (!(key === "x")) {
-        cardContent(section, key);
-        if (feedbacksMap.get(`${key}`)["subtask"].length === 0) {
-          checkSubtasks(key, feedbacksMap);
+    if (section === "feedback") {
+        let feedback = document.getElementById("feedback-board");
+        feedback.innerHTML = ``;
+        for (const [key, value] of feedbacksMap) {
+            if (!(key === "x")) {
+                cardContent(section, key);
+                if (feedbacksMap.get(`${key}`)["subtask"].length === 0) {
+                    checkSubtasks(key, feedbacksMap);
+                }
+                renderContacts(section, key);
+            }
         }
-        renderContacts(section, key);
-      }
     }
-  }
-  if (section === "done") {
-    let done = document.getElementById("done-board");
-    done.innerHTML = "";
-    for (const [key, value] of donesMap) {
-      if (!(key === "x")) {
-        cardContent(section, key);
-        if (donesMap.get(`${key}`)["subtask"].length === 0) {
-          checkSubtasks(key, donesMap);
+    if (section === "done") {
+        let done = document.getElementById("done-board");
+        done.innerHTML = "";
+        for (const [key, value] of donesMap) {
+            if (!(key === "x")) {
+                cardContent(section, key);
+                if (donesMap.get(`${key}`)["subtask"].length === 0) {
+                    checkSubtasks(key, donesMap);
+                }
+                renderContacts(section, key);
+            }
         }
-        renderContacts(section, key);
-      }
     }
-  }
 }
 
 function cardContent(section, id) {
-  if (section === "todo") {
-    contentTodo(section, id, todosMap);
-  } else if (section === "progress") {
-    contentTodo(section, id, progressesMap);
-  } else if (section === "feedback") {
-    contentTodo(section, id, feedbacksMap);
-  } else if (section === "done") {
-    contentTodo(section, id, donesMap);
-  }
+    if (section === "todo") {
+        contentTodo(section, id, todosMap);
+    } else if (section === "progress") {
+        contentTodo(section, id, progressesMap);
+    } else if (section === "feedback") {
+        contentTodo(section, id, feedbacksMap);
+    } else if (section === "done") {
+        contentTodo(section, id, donesMap);
+    }
 }
 
 function setCardImportanc(id) {
-  let footer = document.getElementById(`importance_footer${id}`);
-  if (donesMap.get(`${id}`)["importance"] === "urgent") {
-    footer.innerHTML = ` <img class="img-position" src="img-board/${importance}.png">
+    let footer = document.getElementById(`importance_footer${id}`);
+    if (donesMap.get(`${id}`)["importance"] === "urgent") {
+        footer.innerHTML = ` <img class="img-position" src="img-board/${importance}.png">
                         <img src="img-board/${importance}.png">`;
-  }
+    }
 }
 
 function contentTodo(section, id, map) {
-  let mapCategory = map.get(`${id}`)["category"];
-  let mapCatColor = map.get(`${id}`)["categorycolor"];
-  let mapTitle = map.get(`${id}`)["title"];
-  let mapDescription = map.get(`${id}`)["description"];
-  let totalSub = map.get(`${id}`)["subtask"];
-  if (!Array.isArray(totalSub) && totalSub.length > 0) {
-    totalSub = totalSub.split(",");
-  }
-  totalSub = totalSub.length;
-  if (totalSub == undefined) {
-    document.getElementById(`${section}-board`).innerHTML += setCardHTML(
-      mapCategory,
-      mapCatColor,
-      mapTitle,
-      mapDescription,
-      undefined,
-      undefined,
-      id
-    );
-  } else {
-    // totalSub = map.get(`${id}`)["subtask"].size;
-    let progressStatus = map.get(`${id}`)["subtaskStatus"];
-    document.getElementById(`${section}-board`).innerHTML += setCardHTML(
-      mapCategory,
-      mapCatColor,
-      mapTitle,
-      mapDescription,
-      totalSub,
-      progressStatus,
-      id
-    );
-  }
+    let mapCategory = map.get(`${id}`)["category"];
+    let mapCatColor = map.get(`${id}`)["categorycolor"];
+    let mapTitle = map.get(`${id}`)["title"];
+    let mapDescription = map.get(`${id}`)["description"];
+    let totalSub = map.get(`${id}`)["subtask"];
+    if (!Array.isArray(totalSub) && totalSub.length > 0) {
+        totalSub = totalSub.split(",");
+    }
+    totalSub = totalSub.length;
+    if (totalSub == undefined) {
+        document.getElementById(`${section}-board`).innerHTML += setCardHTML(
+            mapCategory,
+            mapCatColor,
+            mapTitle,
+            mapDescription,
+            undefined,
+            undefined,
+            id
+        );
+    } else {
+        // totalSub = map.get(`${id}`)["subtask"].size;
+        let progressStatus = map.get(`${id}`)["subtaskStatus"];
+        document.getElementById(`${section}-board`).innerHTML += setCardHTML(
+            mapCategory,
+            mapCatColor,
+            mapTitle,
+            mapDescription,
+            totalSub,
+            progressStatus,
+            id
+        );
+    }
 }
 
 function checkSubtasks(id, map) {
-  let currentMap = new Map(map);
-  let progressId = document.getElementById(`progress_box${id}`);
-  if (currentMap.get(`${id}`)["subtask"] == "") {
-    progressId.classList.add("d-none");
-    addHeight(id);
-  }
+    let currentMap = new Map(map);
+    let progressId = document.getElementById(`progress_box${id}`);
+    if (currentMap.get(`${id}`)["subtask"] == "") {
+        progressId.classList.add("d-none");
+        addHeight(id);
+    }
 }
 
 function addHeight(id) {
-  let list = document.getElementById(`footer${id}`);
-  list.style.height = "55px";
+    let list = document.getElementById(`footer${id}`);
+    list.style.height = "55px";
 }
 
 function renderContacts(section, id) {
-  if (section === "todo") {
-    renderContactsTodo(id);
-  } else if (section === "progress") {
-    renderContactsProgress(id);
-  } else if (section === "feedback") {
-    renderContactsFeedback(id);
-  } else if (section === "done") {
-    renderContactsDone(id);
-  }
+    if (section === "todo") {
+        renderContactsTodo(id);
+    } else if (section === "progress") {
+        renderContactsProgress(id);
+    } else if (section === "feedback") {
+        renderContactsFeedback(id);
+    } else if (section === "done") {
+        renderContactsDone(id);
+    }
 }
 
 function renderContactsDone(id) {
-  let contacts = donesMap.get(`${id}`)["contacts"];
-  let colors = donesMap.get(`${id}`)["colors"];
-  let letters = donesMap.get(`${id}`)["letters"];
+    let contacts = donesMap.get(`${id}`)["contacts"];
+    let colors = donesMap.get(`${id}`)["colors"];
+    let letters = donesMap.get(`${id}`)["letters"];
 
-  if (contacts.length === 0) {
+    if (contacts.length === 0) {
+        let contactsSection = document.getElementById(`contacts_card${id}`);
+        contactsSection.classList.add("d-none");
+    }
+    if (donesMap.get(`${id}`)["colors"] == "string") {
+        colors.split(",");
+    }
+    if (donesMap.get(`${id}`)["letters"] == "string") {
+        letters.split(",");
+    }
     let contactsSection = document.getElementById(`contacts_card${id}`);
-    contactsSection.classList.add("d-none");
-  }
-  if (donesMap.get(`${id}`)["colors"] == "string") {
-    colors.split(",");
-  }
-  if (donesMap.get(`${id}`)["letters"] == "string") {
-    letters.split(",");
-  }
-  let contactsSection = document.getElementById(`contacts_card${id}`);
-  checkForContactNumber(contacts, letters, contactsSection, colors);
+    checkForContactNumber(contacts, letters, contactsSection, colors);
 }
 
 function renderContactsFeedback(id) {
-  let contacts = feedbacksMap.get(`${id}`)["contacts"];
-  let colors = feedbacksMap.get(`${id}`)["colors"];
-  let letters = feedbacksMap.get(`${id}`)["letters"];
+    let contacts = feedbacksMap.get(`${id}`)["contacts"];
+    let colors = feedbacksMap.get(`${id}`)["colors"];
+    let letters = feedbacksMap.get(`${id}`)["letters"];
 
-  if (contacts.length === 0) {
+    if (contacts.length === 0) {
+        let contactsSection = document.getElementById(`contacts_card${id}`);
+        contactsSection.classList.add("d-none");
+    }
+    if (feedbacksMap.get(`${id}`)["colors"] == "string") {
+        colors.split(",");
+    }
+    if (feedbacksMap.get(`${id}`)["letters"] == "string") {
+        letters.split(",");
+    }
     let contactsSection = document.getElementById(`contacts_card${id}`);
-    contactsSection.classList.add("d-none");
-  }
-  if (feedbacksMap.get(`${id}`)["colors"] == "string") {
-    colors.split(",");
-  }
-  if (feedbacksMap.get(`${id}`)["letters"] == "string") {
-    letters.split(",");
-  }
-  let contactsSection = document.getElementById(`contacts_card${id}`);
-  checkForContactNumber(contacts, letters, contactsSection, colors);
+    checkForContactNumber(contacts, letters, contactsSection, colors);
 }
 
 function renderContactsProgress(id) {
-  let contacts = progressesMap.get(`${id}`)["contacts"];
-  let colors = progressesMap.get(`${id}`)["colors"];
-  let letters = progressesMap.get(`${id}`)["letters"];
+    let contacts = progressesMap.get(`${id}`)["contacts"];
+    let colors = progressesMap.get(`${id}`)["colors"];
+    let letters = progressesMap.get(`${id}`)["letters"];
 
-  if (contacts.length === 0) {
+    if (contacts.length === 0) {
+        let contactsSection = document.getElementById(`contacts_card${id}`);
+        contactsSection.classList.add("d-none");
+    }
+    if (progressesMap.get(`${id}`)["colors"] == "string") {
+        colors.split(",");
+    }
+    if (progressesMap.get(`${id}`)["letters"] == "string") {
+        letters.split(",");
+    }
     let contactsSection = document.getElementById(`contacts_card${id}`);
-    contactsSection.classList.add("d-none");
-  }
-  if (progressesMap.get(`${id}`)["colors"] == "string") {
-    colors.split(",");
-  }
-  if (progressesMap.get(`${id}`)["letters"] == "string") {
-    letters.split(",");
-  }
-  let contactsSection = document.getElementById(`contacts_card${id}`);
-  checkForContactNumber(contacts, letters, contactsSection, colors);
+    checkForContactNumber(contacts, letters, contactsSection, colors);
 }
 
 function renderContactsTodo(id) {
-  let contacts = todosMap.get(`${id}`)["contacts"];
-  let element;
-  if (typeof contacts === "string") {
-    contacts = contacts.split(";");
-  }
+    let contacts = todosMap.get(`${id}`)["contacts"];
+    let element;
+    if (typeof contacts === "string") {
+        contacts = contacts.split(";");
+    }
 
-  if (contacts.length === 0) {
+    if (contacts.length === 0) {
+        let contactsSection = document.getElementById(`contacts_card${id}`);
+        contactsSection.classList.add("d-none");
+    }
+
+    let colors = [todosMap.get(`${id}`)["colors"]];
+    if ((colors.length = 1)) {
+        colors = colors[0];
+    } else {
+        colors = colors.split(",");
+    }
+
+    let letters = todosMap.get(`${id}`)["letters"];
+    if (letters.length == 1) {
+        letters = [letters[0]];
+    } else {
+        letters = String(letters).split(",");
+    }
     let contactsSection = document.getElementById(`contacts_card${id}`);
-    contactsSection.classList.add("d-none");
-  }
-
-  let colors = [todosMap.get(`${id}`)["colors"]];
-  if ((colors.length = 1)) {
-    colors = colors[0];
-  } else {
-    colors = colors.split(",");
-  }
-
-  let letters = todosMap.get(`${id}`)["letters"];
-  if (letters.length == 1) {
-    letters = [letters[0]];
-  } else {
-    letters = String(letters).split(",");
-  }
-  let contactsSection = document.getElementById(`contacts_card${id}`);
-  checkForContactNumber(contacts, letters, contactsSection, colors);
+    checkForContactNumber(contacts, letters, contactsSection, colors);
 }
 
 function checkForContactNumber(contacts, letters, contactsSection, colors) {
-  let changedColorForDots;
-  if (contacts.length > 2) {
-    let element;
-    for (let i = 0; i < 2; i++) {
-      element = colors[i];
+    let changedColorForDots;
+    if (contacts.length > 2) {
+        let element;
+        for (let i = 0; i < 2; i++) {
+            element = colors[i];
 
-      contactsSection.innerHTML += `<p class="invate font" style="background-color: ${element};">${letters[i]}</p>`;
-    }
-    changedColorForDots = element.slice(0, 4);
-    contactsSection.innerHTML += `<p class="invate font" style="background-color: ${changedColorForDots};">...</p>`;
-  } else {
-    for (let i = 0; i < contacts.length; i++) {
-      const element = colors[i];
+            contactsSection.innerHTML += `<p class="invate font" style="background-color: ${element};">${letters[i]}</p>`;
+        }
+        changedColorForDots = element.slice(0, 4);
+        contactsSection.innerHTML += `<p class="invate font" style="background-color: ${changedColorForDots};">...</p>`;
+    } else {
+        for (let i = 0; i < contacts.length; i++) {
+            const element = colors[i];
 
-      contactsSection.innerHTML += `<p class="invate font" style="background-color: ${element};">${letters[i]}</p>`;
+            contactsSection.innerHTML += `<p class="invate font" style="background-color: ${element};">${letters[i]}</p>`;
+        }
     }
-  }
 }
 
 function generateCards() {
-  setTasks();
+    setTasks();
 
-  setCards(progress);
-  setCards(feedback);
-  setCards(done);
-  return;
+    setCards(progress);
+    setCards(feedback);
+    setCards(done);
+    return;
 }
 
 function renderPopup(
-  category,
-  color,
-  title,
-  description,
-  progressStatus,
-  id,
-  colors,
-  contactsSplit,
-  letters,
-  section,
-  importance
-) {
-  document.getElementById("popup_card").innerHTML = renderPopupHTML(
     category,
     color,
     title,
@@ -543,123 +527,135 @@ function renderPopup(
     letters,
     section,
     importance
-  );
-  renderPopupContacts(colors, contactsSplit, letters);
-  setTimeout(setPriority, 50, importance, id, section);
-  checkSubtasksPopup(section, id);
-  checkTitlePopup(section, id);
-  generateSubtasksSum(id);
-  saveMaps();
-  generateCards();
+) {
+    document.getElementById("popup_card").innerHTML = renderPopupHTML(
+        category,
+        color,
+        title,
+        description,
+        progressStatus,
+        id,
+        colors,
+        contactsSplit,
+        letters,
+        section,
+        importance
+    );
+    renderPopupContacts(colors, contactsSplit, letters);
+    setTimeout(setPriority, 50, importance, id, section);
+    checkSubtasksPopup(section, id);
+    checkTitlePopup(section, id);
+    generateSubtasksSum(id);
+    saveMaps();
+    generateCards();
 }
 
 function generateSubtasksSum(id) {
-  let map = new Map(wichSection(id));
-  let totalSub = map.get(`${id}`)["subtask"];
-  if (!Array.isArray(totalSub) && totalSub.length > 0) {
-    totalSub = totalSub.split(",");
-  }
-  totalSub = totalSub.length;
-  document.getElementById(
-    `done_status_popup${id}`
-  ).innerHTML = `0/${totalSub} Done`;
+    let map = new Map(wichSection(id));
+    let totalSub = map.get(`${id}`)["subtask"];
+    if (!Array.isArray(totalSub) && totalSub.length > 0) {
+        totalSub = totalSub.split(",");
+    }
+    totalSub = totalSub.length;
+    document.getElementById(
+        `done_status_popup${id}`
+    ).innerHTML = `0/${totalSub} Done`;
 }
 
 function checkSubtasksPopup(section, id) {
-  let popSub = document.getElementById(`progress_box_popup${id}`);
-  if (section.get(`${id}`)["subtask"] == "") {
-    popSub.classList.add("d-none");
-  }
+    let popSub = document.getElementById(`progress_box_popup${id}`);
+    if (section.get(`${id}`)["subtask"] == "") {
+        popSub.classList.add("d-none");
+    }
 }
 
 function checkTitlePopup(section, id) {
-  let titlePopup = document.getElementById("popup_title");
-  if (titlePopup.innerHTML.length < 17) {
-  }
+    let titlePopup = document.getElementById("popup_title");
+    if (titlePopup.innerHTML.length < 17) {}
 }
 
 function renderPopupContacts(colors, contactsSplit, letters) {
-  let contact = document.getElementById(`assigned`);
-  let card = document.getElementById("popup_card");
-  if (colors[0] == "" && colors.length == 1) {
-    contact.classList.add("d-none");
-    card.style.marginTop = "80px";
-  } else {
-    for (let i = 0; i < contactsSplit.length; i++) {
-      const element = contactsSplit[i];
-      contact.innerHTML += renderPopupContactsHTML(colors, element, i, letters);
+    let contact = document.getElementById(`assigned`);
+    let card = document.getElementById("popup_card");
+    if (colors[0] == "" && colors.length == 1) {
+        contact.classList.add("d-none");
+        card.style.marginTop = "80px";
+    } else {
+        for (let i = 0; i < contactsSplit.length; i++) {
+            const element = contactsSplit[i];
+            contact.innerHTML += renderPopupContactsHTML(colors, element, i, letters);
+        }
     }
-  }
 }
 
 function generatePopup(id) {
-  let section = new Map(wichSection(id));
-  let category;
-  let color;
-  let title;
-  let description;
-  let progressStatus;
-  let importance;
+    let section = new Map(wichSection(id));
+    let category;
+    let color;
+    let title;
+    let description;
+    let progressStatus;
+    let importance;
 
-  let colors = String(section.get(`${id}`)["colors"]);
-  colors = colors.split(",");
-  let contactsSplit = section.get(`${id}`)["contacts"];
+    let colors = String(section.get(`${id}`)["colors"]);
+    colors = colors.split(",");
+    let contactsSplit = section.get(`${id}`)["contacts"];
 
-  let letters = String(section.get(`${id}`)["letters"]);
-  letters = letters.split(",");
+    let letters = String(section.get(`${id}`)["letters"]);
+    letters = letters.split(",");
 
-  if (typeof contactsSplit == "string") {
-    contactsSplit = contactsSplit.split(",");
-  }
-  category = section.get(`${id}`)["category"];
-  color = section.get(`${id}`)["categorycolor"];
-  title = section.get(`${id}`)["title"];
-  description = section.get(`${id}`)["description"];
-  subtasks = section.get(`${id}`)["subtasks"];
-  progressStatus = section.get(`${id}`)["progressStatus"];
-  importance = section.get(`${id}`)["importance"];
+    if (typeof contactsSplit == "string") {
+        contactsSplit = contactsSplit.split(",");
+    }
+    category = section.get(`${id}`)["category"];
+    color = section.get(`${id}`)["categorycolor"];
+    title = section.get(`${id}`)["title"];
+    description = section.get(`${id}`)["description"];
+    subtasks = section.get(`${id}`)["subtasks"];
+    progressStatus = section.get(`${id}`)["progressStatus"];
+    importance = section.get(`${id}`)["importance"];
 
-  renderPopup(
-    category,
-    color,
-    title,
-    description,
-    progressStatus,
-    id,
-    colors,
-    contactsSplit,
-    letters,
-    section,
-    importance
-  );
-  renderSubtasksPopup(id, section);
+    renderPopup(
+        category,
+        color,
+        title,
+        description,
+        progressStatus,
+        id,
+        colors,
+        contactsSplit,
+        letters,
+        section,
+        importance
+    );
+    renderSubtasksPopup(id, section);
 }
 
 function wichSection(id) {
-  if (todosMap.has(`${id}`)) {
-    return todosMap;
-  } else if (progressesMap.has(`${id}`)) {
-    return progressesMap;
-  } else if (feedbacksMap.has(`${id}`)) {
-    return feedbacksMap;
-  } else if (donesMap.has(`${id}`)) {
-    return donesMap;
-  }
+    if (todosMap.has(`${id}`)) {
+        return todosMap;
+    } else if (progressesMap.has(`${id}`)) {
+        return progressesMap;
+    } else if (feedbacksMap.has(`${id}`)) {
+        return feedbacksMap;
+    } else if (donesMap.has(`${id}`)) {
+        return donesMap;
+    }
 }
 
 function renderSubtasksPopup(id, section) {
-  let taskId = document.getElementById(`task${id}`);
-  let taskLength = section.get(`${id}`)[`subtask`].length;
-  let tasks = section.get(`${id}`)[`subtask`];
-  let pText = document.getElementById(`progress_text${id}`);
-  if (taskLength > 1) {
-    for (let i = 0; i < taskLength; i++) {
-      console.log("HALLLLLLLLLLLLLLLLLO");
-      const element = tasks[i];
-      pText.innerHTML += `<p>${element}</p>`;
+    let taskId = document.getElementById(`task${id}`);
+    let taskLength = section.get(`${id}`)[`subtask`].length;
+    let tasks = section.get(`${id}`)[`subtask`];
+    let pText = document.getElementById(`progress_text${id}`);
+    if (taskLength > 1) {
+        for (let i = 0; i < taskLength; i++) {
+            console.log("HALLLLLLLLLLLLLLLLLO");
+            const element = tasks[i];
+            pText.innerHTML += `<p>${element}</p>`;
+        }
     }
-  }
-  taskId.innerHTML = `${section.get(`${id}`)[`subtask`]}`;
+    taskId.innerHTML = `${section.get(`${id}`)[`subtask`]}`;
 }
 
 function checkMap(id) {
@@ -711,6 +707,12 @@ function edit(id) {
     element.classList.add("d-none");
   }
   showEdit(title, description, id);
+  dateFuture();
+}
+
+function dateFuture() {
+  const today = new Date().toISOString().split("T")[0];
+  document.getElementById("select-date").setAttribute("min", today);
 }
 
 function showEdit(title, description, id) {
