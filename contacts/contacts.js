@@ -1,6 +1,7 @@
 contacts = [];
 let color;
 let firstLetters;
+4
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 
 async function init() {
@@ -288,7 +289,7 @@ async function openContactDetail(i) {
     let phone = contact["mobil"];
     let acronym = contact['firstLetters'];
     let color = contact['color'];
-
+    renderOpenDetail(i);
 
     const body = document.body;
     const bodyWidth = body.offsetWidth;
@@ -304,12 +305,7 @@ async function openContactDetail(i) {
         document.getElementById("mobil_right").innerHTML = `${phone}`;
         document.getElementById("circle_right").innerHTML = acronym;
         document.getElementById("circle_right").style.background = color;
-        // gsap.from("#contact_right", {
-        //     x: 500,
-        //     opacity: 0,
-        //     duration: 0.33,
-        //     ease: 'back.out(0.7)'
-        // });
+
     } else {
         document.getElementById("contact_right").classList.remove("d-none");
         document.getElementById("name_right").innerHTML = name;
@@ -317,13 +313,48 @@ async function openContactDetail(i) {
         document.getElementById("mobil_right").innerHTML = `${phone}`;
         document.getElementById("circle_right").innerHTML = acronym;
         document.getElementById("circle_right").style.background = color;
-        // gsap.from("#contact_right", {
-        //     x: 500,
-        //     opacity: 0,
-        //     duration: 0.33,
-        //     ease: 'back.out(0.7)'
-        // });
+        gsap.from("#contact_right", {
+            x: 150,
+            opacity: 0,
+            duration: 0.33,
+            ease: 'back.out(0.7)'
+        });
     }
+}
+
+function renderOpenDetail(i) {
+    document.getElementById('contact_right').innerHTML = `
+    <img onclick="closeDetail()" class="d-none" id="backarrow" src="img/backarrow.png" alt="" />
+        <div class="name-container">
+            <div class="circle-right" id="circle_right"></div>
+            <div class="name">
+                <h1 id="name_right"></h1>
+                <div onclick="openAddTask()" class="name-addTask">
+                    <img class="cross" src="img/cross.png" alt="" />
+                    <p>Add Task</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-information-container">
+            <div class="contact-information">
+                <h2>Contact Information</h2>
+                <div class="info-email">
+                    <p>Email</p>
+                    <span id="mail_right"></span>
+                </div>
+                <div class="info-mobil">
+                    <p>Mobil</p>
+                    <span id="mobil_right"></span>
+                </div>
+            </div>
+            <div onclick="openEditContact(${i})" id="edit_contact_pencil" class="edit-contact">
+                <img src="img/pencil.png" alt="" />
+                <p>Edit Contact</p>
+            </div>
+        </div>
+        <img src="img/edit-contact.png" id="edit_contact" class="d-none" alt="" />
+    `;
 }
 
 function closeDetail() {
@@ -402,16 +433,17 @@ function clickDialog(e) {
     e.stopPropagation();
 }
 
-async function openEditContact() {
-    contacts = await JSON.parse(backend.getItem("contacts"));
-    let selectedContact = document.getElementById(`contact${i}`);
+async function openEditContact(i) {
+    let contacts = await JSON.parse(backend.getItem("contacts"));
+    let selectedContact = contacts[i];
 
-    // for (let i = 0; i < contacts.length; i++) {
-    //     const element = contacts[i]['name'];
-    //     if (element.includes(selectedContact.value)) {
-    //     }
-    // }
+    let nameInput = document.getElementById("input-name-edit");
+    let mailInput = document.getElementById("input-mail-edit");
+    let phoneInput = document.getElementById("input-phone-edit");
 
+    nameInput.value = selectedContact.name;
+    mailInput.value = selectedContact.mail;
+    phoneInput.value = selectedContact.mobil;
 
     document.getElementById("blur_screen-edit").classList.remove("d-none");
 
@@ -423,25 +455,26 @@ async function openEditContact() {
     });
 }
 
+
 async function saveEditContact() {
 
-    contacts = await JSON.parse(backend.getItem("contacts"));
-    let name_input = document.getElementById("input-name-edit");
-    let mail_input = document.getElementById("input-mail-edit");
-    let phone_input = document.getElementById("input-phone-edit");
+    let contacts = await JSON.parse(backend.getItem("contacts"));
+    let selectedIndex = parseInt(document.getElementById("edit-contact-index").value);
+    let nameInput = document.getElementById("input-name-edit");
+    let mailInput = document.getElementById("input-mail-edit");
+    let phoneInput = document.getElementById("input-phone-edit");
+    let selectedContact = contacts[selectedIndex];
 
-    let contact = {
-        name: name_input.value,
-        mail: mail_input.value,
-        mobil: phone_input.value,
-    };
-    contacts.push(contact);
-
+    selectedContact.name = nameInput.value;
+    selectedContact.mail = mailInput.value;
+    selectedContact.mobil = phoneInput.value;
 
     await backend.setItem("contacts", JSON.stringify(contacts));
+
     renderContactList();
     closeBlurScreen();
 }
+
 
 function dateFuture() {
     const today = new Date().toISOString().split("T")[0];
