@@ -314,8 +314,14 @@
     margin-bottom: 32px !important;
   }
 
+  .popup-card {
+    left: 50% !important;
+    margin-left: -290px !important;
+    z-index: 6 !important;
+  }
+
   .popup-card-title {
-    width: 41vw;
+    width: 500px !important;
   }
 
   .card-content-popup {
@@ -323,7 +329,8 @@
   }
 
   .popup-title {
-    font-size: 40px;
+    font-size: 50px !important;
+    width: 500px !important;
   }
 
   body {
@@ -427,13 +434,6 @@
   }
 }
 
-
-@media (width <=950px) {
-  .popup-card {
-    right: 26vw;
-  }
-}
-
 @media (width <=900px) {
   .popup-title {
     font-size: 40px;
@@ -441,7 +441,6 @@
   }
 }
 
-*/
 /* For all of us */
 
 header {
@@ -486,6 +485,33 @@ header {
 @media (width <=670px) {
   .popup-card-title {
     width: 65vw;
+  }
+}
+
+@media (width <=600px) {
+  .popup-card {
+    top: 11.5vh !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 50.5% !important;
+    width: 100% !important;
+    max-width: 85vw !important;
+  }
+
+  .popup-title {
+    width: 72vw !important;
+  }
+
+  .popup-card-title h1 {
+    font-size: 50px !important;
+  }
+
+  .edit-box {
+    width: 82vw !important;
+  }
+
+  .assigned, .assigned-to, .popup-card-title, .priority-box {
+    width: 80vw !important;
   }
 }
 
