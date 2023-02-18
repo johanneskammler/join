@@ -287,8 +287,8 @@ async function openContactDetail(i) {
     let email = contact["mail"];
     let phone = contact["mobil"];
     let acronym = contact['firstLetters'];
-    //  firstLetters = contact["name"].split(/\s+/).map((word) => word[0]);
-    //  let acronym = firstLetters.join("");
+    let color = contact['color'];
+
 
     const body = document.body;
     const bodyWidth = body.offsetWidth;
@@ -302,7 +302,8 @@ async function openContactDetail(i) {
         document.getElementById("name_right").innerHTML = name;
         document.getElementById("mail_right").innerHTML = email;
         document.getElementById("mobil_right").innerHTML = `${phone}`;
-        document.getElementById("circle_right").innerHTML = acronym.toUpperCase();
+        document.getElementById("circle_right").innerHTML = acronym;
+        document.getElementById("circle_right").style.background = color;
         // gsap.from("#contact_right", {
         //     x: 500,
         //     opacity: 0,
@@ -314,7 +315,8 @@ async function openContactDetail(i) {
         document.getElementById("name_right").innerHTML = name;
         document.getElementById("mail_right").innerHTML = email;
         document.getElementById("mobil_right").innerHTML = `${phone}`;
-        document.getElementById("circle_right").innerHTML = acronym.toUpperCase();
+        document.getElementById("circle_right").innerHTML = acronym;
+        document.getElementById("circle_right").style.background = color;
         // gsap.from("#contact_right", {
         //     x: 500,
         //     opacity: 0,
@@ -404,12 +406,11 @@ async function openEditContact() {
     contacts = await JSON.parse(backend.getItem("contacts"));
     let selectedContact = document.getElementById(`contact${i}`);
 
-    for (let i = 0; i < contacts.length; i++) {
-        const element = contacts[i]['name'];
-        if (element.includes(selectedContact.value)) {
-
-        }
-    }
+    // for (let i = 0; i < contacts.length; i++) {
+    //     const element = contacts[i]['name'];
+    //     if (element.includes(selectedContact.value)) {
+    //     }
+    // }
 
 
     document.getElementById("blur_screen-edit").classList.remove("d-none");
