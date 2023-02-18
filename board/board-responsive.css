@@ -443,10 +443,6 @@
 
 /* For all of us */
 
-header {
-  height: 40px !important;
-}
-
 @media (width <=830px) {
   .popup-card {
     right: 21vw;
@@ -536,12 +532,8 @@ header {
 }
 
 @media (width <=500px) {
-  header {
-    padding: 8px 39px !important;
-  }
-
   .board {
-    margin-top: 100px !important;
+    margin-top: 125px !important;
   }
 
   .popup {
