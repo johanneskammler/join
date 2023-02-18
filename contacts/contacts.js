@@ -282,7 +282,7 @@ function renderContactListHTML(element, acronym, i) {
 }
 
 async function openContactDetail(i) {
-    let contacts = JSON.parse(backend.getItem("contacts"));
+    contacts = JSON.parse(backend.getItem("contacts"));
     let contact = contacts[i];
     let name = contact["name"];
     let email = contact["mail"];
@@ -447,9 +447,8 @@ async function openEditContact(i) {
 
     document.getElementById("blur_screen-edit").classList.remove("d-none");
 
-    gsap.from("#add_contact_container", {
-        width: 1200,
-        x: -1000,
+    gsap.from(".edit-contact-inner-container", {
+        x: -400,
         duration: 0.55,
         ease: "back.out(0.35)",
     });
@@ -457,24 +456,23 @@ async function openEditContact(i) {
 
 
 async function saveEditContact() {
-
     let contacts = await JSON.parse(backend.getItem("contacts"));
-    let selectedIndex = parseInt(document.getElementById("edit-contact-index").value);
-    let nameInput = document.getElementById("input-name-edit");
-    let mailInput = document.getElementById("input-mail-edit");
-    let phoneInput = document.getElementById("input-phone-edit");
-    let selectedContact = contacts[selectedIndex];
+    let name_input = document.getElementById("input-name-edit");
+    let mail_input = document.getElementById("input-mail-edit");
+    let phone_input = document.getElementById("input-phone-edit");
 
-    selectedContact.name = nameInput.value;
-    selectedContact.mail = mailInput.value;
-    selectedContact.mobil = phoneInput.value;
+    let contact = {
+        name: name_input.value,
+        mail: mail_input.value,
+        mobil: phone_input.value,
+    };
 
+    contacts.push(contact);
     await backend.setItem("contacts", JSON.stringify(contacts));
 
     renderContactList();
     closeBlurScreen();
 }
-
 
 function dateFuture() {
     const today = new Date().toISOString().split("T")[0];
