@@ -616,6 +616,12 @@
     right: -21px;
   }
 
+  .todo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .popup-card {
     transform: scale(0.9);
     right: -22px;
@@ -682,6 +688,9 @@
 
   .kanban {
     width: 77vw;
+    margin-bottom: 24px;
+    display: flex !important;
+    margin-top: 0 !important;
   }
 
   .head {
