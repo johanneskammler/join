@@ -796,6 +796,10 @@
   .popup-card {
     left: 18rem !important;
   }
+
+  #priority {
+    margin-left: 30px;
+  }
 }
 
 /* end */
