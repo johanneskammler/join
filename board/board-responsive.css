@@ -402,7 +402,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    height: 122vh;
+    /* height: 122vh; */
     gap: 0;
     margin-inline-start: 0;
   }
