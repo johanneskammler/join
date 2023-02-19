@@ -1,5 +1,9 @@
 function openLogoutOption() {
-    document.getElementById('logout-box').classList.toggle('d-none');
+    if (window.innerWidth > 1024) {
+        document.getElementById("logout-box-resp").classList.toggle("d-none");
+    } else {
+        document.getElementById("logout-box").classList.toggle("d-none");
+    }
 }
 
 
