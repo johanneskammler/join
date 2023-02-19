@@ -661,6 +661,7 @@
   .head {
     margin-inline-start: 9px;
     width: 80vw !important;
+    margin-bottom: 0 !important;
   }
 }
 
