@@ -296,7 +296,6 @@ body {
 }
 
 .popup-card {
-  width: 520px;
   caret-color: transparent;
   display: flex;
   flex-direction: column;
@@ -486,7 +485,6 @@ body {
 }
 
 .edit-box {
-  width: 500px;
   display: flex;
   justify-content: end;
   margin-right: 0;

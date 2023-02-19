@@ -41,12 +41,11 @@
 
 @media (width <=1600px) {
   .popup-card {
-    right: 26vw;
+    right: 26vw !important;
   }
 }
 
 @media (width <=1560px) {
-
   .todo-content,
   .progress-content,
   .await-feedback-content,
@@ -59,25 +58,11 @@
     margin-right: 8px !important;
   }
 
-  .card-content-popup {
-    width: 85% !important;
-  }
-
   .card {
     width: 15.5vw !important;
   }
 
-  .popup-title {
-    height: 109px;
-    font-weight: 700;
-    font-size: 53px;
-    line-height: 57.2px;
-    width: 33vw;
-    margin-block-end: 80px;
-  }
-
   .edit-box {
-    width: 33vw;
     display: flex;
     justify-content: end;
     margin-right: 0;
@@ -107,18 +92,8 @@
     margin-top: 0px;
   }
 
-  .edit-box {
-    width: 30vw;
-  }
-
   .popup-card {
     top: 8px;
-  }
-
-  .popup-title {
-    margin-block-end: 0px;
-    margin-bottom: -8px;
-    margin-top: 16px;
   }
 
   .board-main {
@@ -160,7 +135,6 @@
   }
 }
 
-
 @media (width <=1440px) {
   .popup-card {
     right: 22vw;
@@ -170,11 +144,10 @@
 @media (width <=1440px) {
   .popup-card {
     right: 30vw;
-    width: 31%;
   }
 }
 
-@media (width <=1400px) {
+@media (width <=1409px) {
   .card {
     width: 16.4vw;
   }
@@ -237,7 +210,6 @@
   }
 }
 
-
 @media (width <=1380px) {
   .board {
     margin-left: 23.4vw;
@@ -265,7 +237,6 @@
 
 @media (width <=1240px) {
   .edit-box {
-    width: 395px;
     display: flex;
     justify-content: end;
     margin-right: 15vw;
@@ -280,11 +251,9 @@
   }
 }
 
-
 @media (width <=1200px) {
   .popup-card {
-    right: 28vw;
-    width: 361px;
+    right: 25vw !important;
   }
 }
 
@@ -316,9 +285,10 @@
   }
 
   .popup-card {
-    left: 50% !important;
+    left: 53% !important;
     margin-left: -290px !important;
     z-index: 6 !important;
+    width: 469px;
   }
 
   .popup-card-title {
@@ -407,11 +377,6 @@
     margin-inline-start: 0;
   }
 
-  /* .head {
-    width: 26.5vw;
-    margin-inline-start: -22px;
-  } */
-
   .head h2 {
     padding-inline-start: 0 !important;
   }
@@ -433,6 +398,10 @@
   .card {
     width: 26vw !important;
   }
+
+  .edit-box {
+    width: 469px;
+  }
 }
 
 @media (width <=900px) {
@@ -451,7 +420,6 @@
 }
 
 @media (width <=767px) and (height <=800px) {
-
   .todo-content,
   .progress-content,
   .await-feedback-content,
@@ -461,7 +429,6 @@
 }
 
 @media (width <=767px) and (height <=700px) {
-
   .todo-content,
   .progress-content,
   .await-feedback-content,
@@ -474,7 +441,8 @@
   .popup-card {
     top: 101px;
     right: 0px;
-    width: 364px;
+    left: 53% !important;
+
     position: fixed;
   }
 }
@@ -487,15 +455,10 @@
 
 @media (width <=600px) {
   .popup-card {
-    top: 11.5vh !important;
+    scale: 0.9;
+    top: 10.5vh !important;
     right: 0 !important;
-    /* bottom: 0 !important;
-    left: 50.5% !important;
-    width: 100% !important;
-    max-width: 85vw !important; */
-
-    width: 80vw !important;
-    left: 19rem !important;
+    left: 54% !important;
     height: 72vh;
   }
 
@@ -507,17 +470,15 @@
     font-size: 50px !important;
   }
 
-  .edit-box {
-    width: 82vw !important;
-  }
-
-  .assigned, .assigned-to, .popup-card-title, .priority-box {
+  .assigned,
+  .assigned-to,
+  .popup-card-title,
+  .priority-box {
     width: 80vw !important;
   }
 }
 
 @media (width <=500px) and (height <=800px) {
-
   .todo-content,
   .progress-content,
   .await-feedback-content,
@@ -527,7 +488,6 @@
 }
 
 @media (width <=500px) and (height <=690px) {
-
   .todo-content,
   .progress-content,
   .await-feedback-content,
@@ -551,7 +511,7 @@
 
   .popup-card-title {
     width: 50vw;
-    margin-bottom: -3vh;
+
     width: 57vw;
   }
 
@@ -610,8 +570,6 @@
   }
 }
 
-
-
 @media (width <=500px) {
   .popup {
     right: -21px;
@@ -626,7 +584,6 @@
   .popup-card {
     transform: scale(0.9);
     right: -22px;
-
   }
 
   .popup-card-title {
@@ -683,6 +640,12 @@
     right: -46px;
   }
 
+  .popup-card {
+    scale: 0.75;
+    height: 75vh;
+    margin-top: -9vh;
+  }
+
   .popup-title,
   .popup-card-title {
     width: 76vw;
@@ -699,24 +662,12 @@
     margin-inline-start: 9px;
     width: 80vw !important;
   }
-  
 }
 
 @media (width <=430px) {
-  .popup-card {
-    width: 82vw;
-    right: -18px;
-
-
-    height: 70vh;
-    width: 70vw !important;
-    left: 19.5rem !important;
-  }
-
   .edit-box {
-    width: 96vw;
-    transform: scale(0.8);
-    right: -11vw;
+    width: inherit;
+    margin-inline-start: -21px;
   }
 
   .head {
@@ -746,7 +697,7 @@
 
   .popup-title,
   .popup-card-title {
-    width: 89vw;
+    width: 100vw !important;
   }
 
   .todo {
@@ -757,7 +708,6 @@
 }
 
 @media (width <=365px) {
-
   .popup-title,
   .popup-card-title {
     width: 100vw;
@@ -771,29 +721,6 @@
   }
 }
 
-@media (width <=330px) {
-  .popup-card {
-    width: 80vw;
-    padding: 50px 20px;
-    justify-content: center;
-  }
-
-  .popup-title {
-    line-height: 37.2px;
-    font-size: 36px;
-    margin-bottom: -12px;
-  }
-
-  .edit-box {
-    width: 308px;
-    margin-block-start: -16px;
-  }
-
-  .priority-box {
-    flex-wrap: wrap;
-  }
-}
-
 @media (width <= 300px) {
   .popup-card {
     left: 18rem !important;
@@ -801,6 +728,13 @@
 
   #priority {
     margin-left: 30px;
+  }
+}
+
+@media (width <= 391px) {
+  .popup-card {
+    scale: 0.6;
+    left: 57% !important;
   }
 }
 
