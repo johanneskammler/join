@@ -1,6 +1,8 @@
 contacts = [];
 let color;
 let firstLetters;
+let selectedColor;
+let selectedLetter;
 4
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 
@@ -436,6 +438,8 @@ function clickDialog(e) {
 async function openEditContact(i) {
     let contacts = await JSON.parse(backend.getItem("contacts"));
     let selectedContact = contacts[i];
+    selectedColor = selectedContact['color'];
+    selectedLetter = selectedContact['firstLetters'];
 
     let nameInput = document.getElementById("input-name-edit");
     let mailInput = document.getElementById("input-mail-edit");
@@ -465,6 +469,8 @@ async function saveEditContact() {
         name: name_input.value,
         mail: mail_input.value,
         mobil: phone_input.value,
+        color: selectedColor,
+        firstLetters: selectedLetter
     };
 
     contacts.push(contact);
