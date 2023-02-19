@@ -3,7 +3,7 @@ let color;
 let firstLetters;
 let selectedColor;
 let selectedLetter;
-let selectedContact;
+let selectedContact = null;
 4
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 
@@ -325,6 +325,16 @@ async function openContactDetail(i) {
     }
 }
 
+function closeContactRight() {
+    document.getElementById('contact_right').classList.add('slide-bottom')
+
+    setTimeout(() => {
+        document.getElementById("contact_right").classList.add("d-none");
+        document.getElementById('contact_right').classList.remove('slide-bottom')
+    }, 300);
+
+}
+
 function renderOpenDetail(i) {
     document.getElementById('contact_right').innerHTML = `
     <img onclick="closeDetail()" class="d-none" id="backarrow" src="img/backarrow.png" alt="" />
@@ -356,7 +366,7 @@ function renderOpenDetail(i) {
                 <p>Edit Contact</p>
             </div>
         </div>
-        <img src="img/edit-contact.png" id="edit_contact" class="d-none" alt="" />
+        <img onclick="openEditContact(${i})" src="img/edit-contact.png" id="edit_contact" class="d-none" alt="" />
     `;
 }
 
@@ -465,10 +475,6 @@ async function saveEditContact() {
     let name_input = document.getElementById("input-name-edit");
     let mail_input = document.getElementById("input-mail-edit");
     let phone_input = document.getElementById("input-phone-edit");
-    const ind = contacts.indexOf(selectedContact);
-    if (ind > -1) {
-        contacts.splice(ind, 1);
-    }
 
     let contact = {
         name: name_input.value,
@@ -478,6 +484,7 @@ async function saveEditContact() {
         firstLetters: selectedLetter
     };
 
+    contacts.splice(selectedContact, 1);
     console.log(selectedContact);
     contacts.push(contact);
     await backend.setItem("contacts", JSON.stringify(contacts));
@@ -485,6 +492,8 @@ async function saveEditContact() {
     selectedContact = null;
     renderContactList();
     closeBlurScreen();
+    closeContactRight();
+    openContactDetail();
 }
 
 function dateFuture() {
