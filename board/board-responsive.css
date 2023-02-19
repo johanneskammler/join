@@ -417,7 +417,7 @@
 
   .for-tablet {
     gap: 8vw;
-    margin-left: 5%;
+    /* margin-left: 5%; */
     justify-content: center;
   }
 
@@ -628,15 +628,27 @@
   }
 
   .card {
-    width: 56vw !important;
+    width: 75vw !important;
   }
 
   .in-progress {
     margin-top: 3vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .done {
     margin-top: -3vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .await-feedback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .todo-content,
@@ -646,9 +658,10 @@
     height: 26vh;
   }
 
-  /* .head {
-    width: 79.5vw;
-  } */
+  .head {
+    margin-inline-start: 9px;
+    width: 80vw !important;
+  }
 }
 
 @media (width <=455px) {
@@ -664,6 +677,12 @@
   .kanban {
     width: 77vw;
   }
+
+  .head {
+    margin-inline-start: 9px;
+    width: 80vw !important;
+  }
+  
 }
 
 @media (width <=430px) {
@@ -677,6 +696,11 @@
     transform: scale(0.8);
     right: -11vw;
   }
+
+  .head {
+    margin-inline-start: 9px;
+    width: 80vw !important;
+  }
 }
 
 @media (width <=400px) {
@@ -686,6 +710,7 @@
 
   .head {
     margin-inline-start: 9px;
+    width: 80vw !important;
   }
 
   .in-progress {
@@ -700,6 +725,12 @@
   .popup-title,
   .popup-card-title {
     width: 89vw;
+  }
+
+  .todo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 
