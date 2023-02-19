@@ -307,7 +307,8 @@
 
 @media (width <=1024px) {
   .kanban {
-    display: block;
+    display: flex !important;
+    justify-content: center;
   }
 
   .board-top {
@@ -636,6 +637,7 @@
     font-size: 11px;
     width: 76vw;
     margin-inline-end: -2vw;
+    justify-content: center;
   }
 
   .card {
