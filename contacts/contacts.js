@@ -450,7 +450,7 @@ async function openEditContact(i) {
     let contacts = await JSON.parse(backend.getItem("contacts"));
     selectedContact = contacts[i];
     selectedColor = selectedContact['color'];
-    selectedLetter = selectedContact['firstLetters'];
+
 
     let nameInput = document.getElementById("input-name-edit");
     let mailInput = document.getElementById("input-mail-edit");
@@ -475,16 +475,18 @@ async function saveEditContact() {
     let name_input = document.getElementById("input-name-edit");
     let mail_input = document.getElementById("input-mail-edit");
     let phone_input = document.getElementById("input-phone-edit");
+    let firstLetters = name_input.value.split(/\s+/).map((word) => word[0]);
+    let firstLetter = firstLetters.join("");
 
     let contact = {
         name: name_input.value,
         mail: mail_input.value,
         mobil: phone_input.value,
         color: selectedColor,
-        firstLetters: selectedLetter
+        firstLetters: firstLetter
     };
 
-    contacts.splice(selectedContact, 1);
+    // contacts.splice(selectedContact, 1);
     console.log(selectedContact);
     contacts.push(contact);
     await backend.setItem("contacts", JSON.stringify(contacts));
@@ -493,7 +495,9 @@ async function saveEditContact() {
     renderContactList();
     closeBlurScreen();
     closeContactRight();
-    openContactDetail();
+    setTimeout(() => {
+        renderOpenDetail();
+    }, 200);
 }
 
 function dateFuture() {
