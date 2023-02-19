@@ -482,7 +482,7 @@ async function saveEditContact() {
     contacts.push(contact);
     await backend.setItem("contacts", JSON.stringify(contacts));
 
-    // selectedContact = null;
+    selectedContact = null;
     renderContactList();
     closeBlurScreen();
 }
