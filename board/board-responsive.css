@@ -771,8 +771,9 @@
 
 @media (width <=330px) {
   .popup-card {
-    width: 99vw;
+    width: 80vw;
     padding: 50px 20px;
+    justify-content: center;
   }
 
   .popup-title {
@@ -784,6 +785,16 @@
   .edit-box {
     width: 308px;
     margin-block-start: -16px;
+  }
+
+  .priority-box {
+    flex-wrap: wrap;
+  }
+}
+
+@media (width <= 300px) {
+  .popup-card {
+    left: 18rem !important;
   }
 }
 
