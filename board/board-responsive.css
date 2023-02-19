@@ -488,10 +488,14 @@
   .popup-card {
     top: 11.5vh !important;
     right: 0 !important;
-    bottom: 0 !important;
+    /* bottom: 0 !important;
     left: 50.5% !important;
     width: 100% !important;
-    max-width: 85vw !important;
+    max-width: 85vw !important; */
+
+    width: 80vw !important;
+    left: 19rem !important;
+    height: 72vh;
   }
 
   .popup-title {
@@ -615,6 +619,7 @@
   .popup-card {
     transform: scale(0.9);
     right: -22px;
+
   }
 
   .popup-card-title {
@@ -690,6 +695,11 @@
   .popup-card {
     width: 82vw;
     right: -18px;
+
+
+    height: 70vh;
+    width: 70vw !important;
+    left: 19.5rem !important;
   }
 
   .edit-box {
