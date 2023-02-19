@@ -8,6 +8,18 @@
     }
 }
 
+@media (max-width: 1024px) {
+    .container {
+        margin: 0 !important;
+    }
+}
+
+@media (max-width: 820px) {
+    #summary-container {
+        scale: 1.2;
+    }
+}
+
 
 @media (max-width: 768px) {
 
@@ -91,7 +103,7 @@
         height: calc(100vh - 97.3px);
         top: 140px;
         gap: 30px;
-
+        scale: 1;
     }
 
     #task-to-do-container {
@@ -149,6 +161,7 @@
         justify-content: space-evenly;
         gap: 30px;
         margin-left: 0 !important;
+        margin-bottom: 15rem !important;
     }
 
     #urgent-left-top img {
@@ -197,5 +210,8 @@
 @media (max-width: 375px) {
     #summary-container {
         justify-content: flex-start;
+        margin-bottom: 15rem !important;
+        top: 6rem;
+        scale: 0.8;
     }
 }
