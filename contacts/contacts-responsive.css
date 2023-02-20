@@ -124,9 +124,10 @@
     }
     form {
         margin-top: 50px;
+        align-items: center;
     }
     #add_contact_container {
-        height: 94vh;
+        /* height: 94vh; */
     }
     .new-contact-btn-container {
         margin-top: 10px;
@@ -219,7 +220,6 @@
     }
     #add_contact_container {
         height: 100vh;
-        width: 80vw;
     }
     .add-contact-header {
         width: 100vw;
@@ -241,6 +241,9 @@
     }
     .name-addTask {
         margin-top: 8px;
+    }
+    .input-phone {
+        margin-bottom: 25px;
     }
 }
 
@@ -268,12 +271,15 @@
 
 /* height */
 
-@media (height <=1201px) {
+@media (height <=1206px) {
     .new-contact-btn-container {
         padding-top: 10px;
     }
     .contact-list-container {
         height: 91vh;
+    }
+    .contact-list-inner-container {
+        height: 100vh;
     }
 }
 
