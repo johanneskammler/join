@@ -10,11 +10,16 @@ async function checkInput() {
 
   for (let i = 0; i < storedUsers.length; i++) {
     const element = storedUsers[i];
-    if (
-      element["email"].includes(email) &&
-      element["password"].includes(password)
-    ) {
-      await loginSteps(element);
+    if (element["email"] == email) {
+      if (
+        element["email"] == email &&
+        element["password"] == password
+      ) {
+        await loginSteps(element);
+      } else {
+        alert('Password is incorrect!')
+        return;
+      }
     }
   }
 }
