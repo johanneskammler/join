@@ -222,6 +222,27 @@
     }
 }
 
+@media (width >=1980px) {
+    .contact-list-container {
+        width: 500px;
+        padding-top: 50px;
+        height: 90vh;
+    }
+    .contact-list-inner-container {
+        width: 100vw;
+        align-items: center;
+    }
+    .contact {
+        width: 20vw;
+    }
+}
+
+@media (width >=2160px) {
+    .contact {
+        width: 15vw;
+    }
+}
+
 
 /* height */
 
