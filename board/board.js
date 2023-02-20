@@ -701,7 +701,6 @@ function edit(id) {
   let description = currentMap.get(`${id}`)["description"];
   let name = document.getElementsByClassName("fullName");
 
-  popTop.style = "top: 20px !important;";
   for (let i = 0; i < name.length; i++) {
     const element = name[i];
     element.classList.add("d-none");

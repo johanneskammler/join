@@ -296,6 +296,7 @@ body {
 }
 
 .popup-card {
+  width: 439px;
   caret-color: transparent;
   display: flex;
   flex-direction: column;
@@ -487,7 +488,7 @@ body {
 .edit-box {
   display: flex;
   justify-content: end;
-  margin-right: 0;
+  margin-right: 55px;
   margin-block-start: -24px;
 }
 
@@ -555,7 +556,7 @@ body {
 
 .popup-title-edit {
   outline: none;
-  width: 100%;
+  width: 415px;
   height: 56px;
   font-size: 48px;
   border: 2px solid #80808038;
@@ -575,6 +576,7 @@ textarea {
   font-size: 21px;
   caret-color: black;
   max-height: 70px;
+  width: 415px;
 }
 textarea::placeholder {
   color: rgba(107, 107, 107, 0.962);
@@ -629,13 +631,13 @@ h4 {
 }
 
 .ok {
+  cursor: pointer;
   background-color: #4589ff;
   font-size: 19px;
   color: wheat;
   font-family: "Inter";
   position: absolute;
-  right: 46px;
-  height: 55px;
+  right: 42px;
   height: 55px;
   width: 55px;
   display: flex;
@@ -649,7 +651,7 @@ h4 {
   margin: 0;
   font-family: "Inter";
   font-weight: 800;
-  color: #ffffffc2;
+  color: white;
 }
 
 .progress-text-edit {

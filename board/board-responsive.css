@@ -292,7 +292,11 @@
   }
 
   .popup-card-title {
-    width: 500px !important;
+    width: 415px !important;
+  }
+
+  textarea {
+    width: 415px !important;
   }
 
   .card-content-popup {
@@ -400,7 +404,11 @@
   }
 
   .edit-box {
-    width: 469px;
+    width: 441px;
+  }
+
+  .ok {
+    right: 25px !important;
   }
 }
 
@@ -665,11 +673,6 @@
 }
 
 @media (width <=430px) {
-  .edit-box {
-    width: inherit;
-    margin-inline-start: -21px;
-  }
-
   .head {
     margin-inline-start: 9px;
     width: 80vw !important;
