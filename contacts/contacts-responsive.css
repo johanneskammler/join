@@ -258,9 +258,6 @@
     .save-btn {
         margin-top: 0;
     }
-    .edit-contact-inner-container {
-        width: 100vw;
-    }
 }
 
 @media (height <=821px) {
