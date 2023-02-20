@@ -486,7 +486,7 @@ async function saveEditContact() {
         firstLetters: firstLetter
     };
 
-    // contacts.splice(selectedContact, 1);
+    contacts.splice(selectedContact, 1);
     console.log(selectedContact);
     contacts.push(contact);
     await backend.setItem("contacts", JSON.stringify(contacts));

@@ -160,6 +160,7 @@
     }
     #add_contact_container {
         width: 100vw;
+        height: 100vh;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
     }
@@ -200,6 +201,9 @@
 }
 
 @media (width <=580px) {
+    .contact {
+        width: 80vw;
+    }
     #add_contact_container {
         height: 100vh;
         width: 80vw;
@@ -227,6 +231,35 @@
     }
     .contact-list-container {
         height: 91vh;
+    }
+}
+
+@media (height <=1000px) {
+    .new-contact-btn-container {
+        padding-top: 0;
+    }
+    .add-contact-paragraph {
+        padding-bottom: 50px;
+    }
+    .img-container {
+        margin-top: 25px;
+    }
+}
+
+@media (height <=930px) {
+    .img-container {
+        margin-top: 12.5px;
+        width: 120px;
+        height: 120px;
+    }
+    .add-contact-paragraph {
+        padding-bottom: 25px;
+    }
+    .save-btn {
+        margin-top: 0;
+    }
+    .edit-contact-inner-container {
+        width: 100vw;
     }
 }
 
