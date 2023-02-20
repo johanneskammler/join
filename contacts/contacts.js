@@ -3,8 +3,8 @@ let color;
 let firstLetters;
 let selectedColor;
 let selectedLetter;
-let selectedContact = null;
-4
+let selectedContact;
+
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 
 async function init() {
@@ -296,7 +296,7 @@ async function openContactDetail(i) {
 
     const body = document.body;
     const bodyWidth = body.offsetWidth;
-    if (bodyWidth < 1280) {
+    if (bodyWidth < 800) {
         document.getElementById("new_contact_btn").classList.add("d-none");
         document.getElementById("contact_list_container").classList.add("d-none");
         document.getElementById("edit_contact_pencil").classList.add("d-none");
@@ -486,18 +486,39 @@ async function saveEditContact() {
         firstLetters: firstLetter
     };
 
-    contacts.splice(selectedContact, 1);
-    console.log(selectedContact);
-    contacts.push(contact);
+    deleteSelectedContact(contact, contacts);
     await backend.setItem("contacts", JSON.stringify(contacts));
-
     selectedContact = null;
+    setContactListByResponsive();
     renderContactList();
     closeBlurScreen();
     closeContactRight();
     setTimeout(() => {
         renderOpenDetail();
     }, 200);
+}
+
+function deleteSelectedContact(contact, contacts) {
+    let selectedContactInList = contacts.find(c =>
+        c.name === selectedContact.name &&
+        c.mail === selectedContact.mail &&
+        c.mobil === selectedContact.mobil
+    );
+
+    if (selectedContactInList) {
+        contacts.splice(contacts.indexOf(selectedContactInList), 1, contact);
+    }
+}
+
+function setContactListByResponsive() {
+    const bodyWidth = document.body.offsetWidth;
+
+    if (bodyWidth <= 800) {
+        setTimeout(() => {
+            document.getElementById("contact_list_container").classList.remove("d-none");
+            document.getElementById("new_contact_btn").classList.remove("d-none");
+        }, 400);
+    }
 }
 
 function dateFuture() {

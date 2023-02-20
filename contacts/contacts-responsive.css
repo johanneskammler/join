@@ -18,10 +18,13 @@
 
 @media (width <=1550px) {
     .contact {
-        width: 25vw;
+        width: 26vw;
     }
     .contact-list-container {
-        width: 34vw;
+        width: 31vw;
+    }
+    .contact-right {
+        left: 50vw;
     }
 }
 
@@ -38,16 +41,14 @@
     .contact-email {
         font-size: 14px;
     }
+    .contact-right {
+        transform: scale(0.9) !important;
+    }
 }
 
 @media (width <=1280px) {
     .contact-right {
-        position: absolute;
-        top: 150px;
-        left: 300px;
-        overflow: hidden;
-        height: 80vh;
-        width: 70vw;
+        left: 52vw;
     }
     #backarrow {
         position: absolute;
@@ -76,13 +77,26 @@
     .contact {
         width: 27vw;
     }
+    .name-container {
+        width: 100%;
+    }
+    .contact-right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        left: 58vw;
+    }
+    .name-container {
+        flex-direction: column;
+        margin-left: 0;
+    }
 }
 
 @media (width <=1024px) {
     .new-contact-btn {
         padding: 14px 6px;
-        right: 5%;
-        top: 84%;
+        right: 3%;
+        top: 82% !important;
     }
     .contact-char {
         margin-left: 10px;
@@ -92,10 +106,7 @@
         width: 45vw;
     }
     .contact-right {
-        position: absolute;
-        top: 100px;
-        left: 350px;
-        overflow: hidden;
+        left: 45vw;
     }
     .contact {
         padding: 15px 20px;
@@ -131,8 +142,8 @@
     }
     .edit-contact {
         position: absolute;
-        left: 21%;
-        top: 92%;
+        left: 50%;
+        top: 88%;
     }
 }
 
@@ -178,8 +189,7 @@
     }
     .contact-right {
         width: 85vw;
-        left: 10vw;
-        top: 25vh;
+        left: 5vw;
         height: 68vh;
     }
     .name-container {
@@ -197,6 +207,9 @@
     }
     .contact-information {
         margin-left: 0;
+    }
+    .edit-contact-inner-container {
+        width: 100vw;
     }
 }
 
@@ -219,6 +232,15 @@
     }
     .new-contact-btn-container {
         width: 80vw;
+    }
+    #name_right {
+        text-align: center;
+    }
+    .contact-right {
+        height: fit-content;
+    }
+    .name-addTask {
+        margin-top: 8px;
     }
 }
 
@@ -283,6 +305,15 @@
 
 @media (height <=821px) {
     .new-contact-btn {
-        top: 80vh;
+        top: 86vh;
+    }
+}
+
+@media (height <=820px) {
+    form {
+        margin-top: 40px;
+    }
+    .input-phone {
+        margin-bottom: 12px;
     }
 }
