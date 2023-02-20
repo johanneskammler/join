@@ -1,15 +1,15 @@
 /* onmousedown = "return false"; */
 
 function setCardHTML(
-    category,
-    color,
-    title,
-    description,
-    totalSubtasks,
-    progressStatus,
-    id
+  category,
+  color,
+  title,
+  description,
+  totalSubtasks,
+  progressStatus,
+  id
 ) {
-    return `
+  return `
                     <div draggable="true" class="card" onclick="openPopup(${id})" id="card${id}">
                       <div class="card-head">
                         <div class="category-overlay" id="c-color${id}" style="background-color: ${color}">
@@ -45,7 +45,7 @@ function setCardHTML(
 }
 
 function renderAddTaskHTML() {
-    return `
+  return `
     
   <div class="test">
   
@@ -323,21 +323,21 @@ function renderAddTaskHTML() {
 }
 
 function descriptionHTML(description) {
-    return `<div class="edit-title">
+  return `<div class="edit-title">
                   <h4>Description<h4>
                   <textarea cols="36" rows="5" charswidth="500" name="text_body"id="popup_description_edit" placeholder="${description}"></textarea>
                 </div>`;
 }
 
 function dateHTML() {
-    return `<div class="correctDate">
+  return `<div class="correctDate">
       <h4 class="due-date-text">Due date</h4>
       <input type="date" placeholder="dd/mm/yyyy" id="select-date" class="select-date" required />
     </div>`;
 }
 
 function priorityHTML() {
-    return `
+  return `
               <div class="importance-buttons">
                 <button onclick="fillImportanceButton1()" class="importance-button1" id="importance-button1"
                     type="button">
@@ -375,7 +375,7 @@ function priorityHTML() {
 }
 
 function assignedHTML(id) {
-    return `
+  return `
               <div class="contacts-box">
                 <div style="position: relative">
                     <div class="contacts-dropdown">
@@ -405,18 +405,18 @@ function assignedHTML(id) {
 }
 
 function popupCardHTML(
-    category,
-    color,
-    title,
-    description,
-    subtask,
-    progressStatus,
-    id,
-    colors,
-    contactsSplit,
-    letters
+  category,
+  color,
+  title,
+  description,
+  subtask,
+  progressStatus,
+  id,
+  colors,
+  contactsSplit,
+  letters
 ) {
-    return `
+  return `
     <div class="card-head relative" id="popup_head">
       <div class="category-overlay" id="c-color" style="background-color: ${color}">
         <p id="c_overlay${id}">${category}</p>
@@ -447,10 +447,14 @@ function popupCardHTML(
         <p id="priority"> urgent</p>
       </div>
       
-      <div class="progress-box-popup" id="progress_box_popup${id}">
+      <div class="progress-box-popup" >
         <div class="progess-text">
-        
         <h3 class="subtask">Subtasks:</h3><p class="tasks">${subtask}</p>
+          <div class="p-overlay" id="progress_box_popup${id}">
+          
+          
+          </div>
+        
         </div>
         <div class="progress-box-2">
           <div class="progressbar">
@@ -474,40 +478,40 @@ function popupCardHTML(
 }
 
 function buttonURGENT() {
-    return `<button class="importance-popup button1-colored" type="button">
+  return `<button class="importance-popup button1-colored" type="button">
             <span>Urgent</span>
             <img src="../add_task/img-add_task/urgent.png">
           </button>`;
 }
 
 function buttonMEDIUM() {
-    return `<button  class="importance-popup button2-colored" type="button">
+  return `<button  class="importance-popup button2-colored" type="button">
             <span>Medium</span>
             <img src="../add_task/img-add_task/medium.png">
           </button>`;
 }
 
 function buttonLOW() {
-    return `<button  class="importance-popup button3-colored" type="button">
+  return `<button  class="importance-popup button3-colored" type="button">
             <span>Low</span>
             <img src="../add_task/img-add_task/low.png">
           </button>`;
 }
 
 function renderPopupHTML(
-    category,
-    color,
-    title,
-    description,
-    progressStatus,
-    id,
-    colors,
-    contactsSplit,
-    letters,
-    section,
-    importance
+  category,
+  color,
+  title,
+  description,
+  progressStatus,
+  id,
+  colors,
+  contactsSplit,
+  letters,
+  section,
+  importance
 ) {
-    return `
+  return `
     <div class="card-head relative" id="popup_head">
       <div class="category-overlay" id="c-color" style="background-color: ${color}">
         <p id="c_overlay${id}">${category}</p>
@@ -541,7 +545,7 @@ function renderPopupHTML(
       <div class="progress-box-popup" id="progress_box_popup${id}">
         <div class="progess-text" id="progress_text${id}">
         
-        <h3 class="subtask">Subtasks:</h3><p class="tasks" id="task${id}"></p>
+        <h3 class="subtask" id="subtask_id">Subtasks:</h3><p class="tasks" id="task${id}"></p>
         </div>
         <div class="progress-box-2">
           <div class="progressbar">
@@ -565,7 +569,7 @@ function renderPopupHTML(
 }
 
 function renderPopupContactsHTML(colors, element, i, letters) {
-    return `
+  return `
         <div class="contactsDiv">
           <p class="invate font" style="background-color: ${colors[i]};">${letters[i]}</p>
           <p class="font fullName">${element}</p>

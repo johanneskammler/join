@@ -344,7 +344,7 @@ body {
 .progess-text {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 10px;
 }
 
 .popup-title {
@@ -410,6 +410,10 @@ body {
   font-size: 19px;
   line-height: 120%;
   margin-left: 54px;
+}
+
+.subtext {
+  font-size: 19px;
 }
 
 .assigned-to {
@@ -705,3 +709,13 @@ h4 {
 }
 
 /* form add-task.css end  */
+
+.add-colum {
+  display: flex;
+  flex-direction: column;
+  gap: 0 !important;
+}
+
+.m0 {
+  margin: 0;
+}

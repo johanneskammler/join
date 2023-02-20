@@ -41,7 +41,11 @@
 
 @media (width <=1600px) {
   .popup-card {
-    right: 26vw !important;
+    right: 32vw !important;
+  }
+  .add-task-content-overlay {
+    scale: 0.9;
+    margin-block-start: -77px;
   }
 }
 
@@ -183,13 +187,6 @@
     font-size: 45px;
   }
 
-  .popup-text,
-  .popup-card p,
-  .priority,
-  .assigned-to {
-    font-size: 19px;
-  }
-
   #contact0,
   #contact1,
   #contact2 {
@@ -285,7 +282,7 @@
   }
 
   .popup-card {
-    left: 53% !important;
+    left: 55% !important;
     margin-left: -290px !important;
     z-index: 6 !important;
     width: 469px;
@@ -449,7 +446,7 @@
   .popup-card {
     top: 101px;
     right: 0px;
-    left: 53% !important;
+    left: 56% !important;
 
     position: fixed;
   }
@@ -466,7 +463,7 @@
     scale: 0.9;
     top: 10.5vh !important;
     right: 0 !important;
-    left: 54% !important;
+    left: 57% !important;
     height: 72vh;
   }
 
@@ -652,6 +649,7 @@
     scale: 0.75;
     height: 75vh;
     margin-top: -9vh;
+    left: 59% !important;
   }
 
   .popup-title,
@@ -737,7 +735,7 @@
 @media (width <= 391px) {
   .popup-card {
     scale: 0.6;
-    left: 57% !important;
+    left: 61.5% !important;
   }
 }
 

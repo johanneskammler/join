@@ -30,6 +30,7 @@ async function addToTasks() {
   let date = document.getElementById("select-date-task");
   let description = document.getElementById("description-input");
   let contactsData = contactToSave(selectedContacts);
+  selectedSubtasks = subtasks;
 
   let task = {
     title: title.value,
@@ -289,16 +290,11 @@ function createNewSubtask() {
 
 function addSubtask() {
   let newSubtask = document.getElementById("add-subtask").value;
-  if (typeof subtasks === "undefined") {
-    let subtasks = [];
-    subtasks.push(newSubtask);
-  } else {
-    subtasks.push(newSubtask);
-  }
+  subtasks.push(newSubtask);
+  renderSubtasks();
   document.getElementById("add-subtask").value = "";
   document.getElementById("plus-icon").classList.remove("d-none");
   document.getElementById("new-subtask-accept").classList.add("d-none");
-  renderSubtasks();
 }
 
 function subtaskReturn() {
