@@ -43,10 +43,10 @@
   .popup-card {
     right: 32vw !important;
   }
-  .add-task-content-overlay {
+  /*   .add-task-content-overlay {
     scale: 0.9;
     margin-block-start: -77px;
-  }
+  } */
 }
 
 @media (width <=1560px) {

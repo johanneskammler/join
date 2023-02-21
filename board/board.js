@@ -661,17 +661,44 @@ function renderSubtasksPopup(id, section) {
       <div id='subtask_checking${i}'>
         <p class="subtext" id="sub_p${id}">${element}</p>
         <div  class="sub-checkmark d-none">
-          <img class="sub-img-setup" src="../add_task/img-add_task/x_blue.png" onclick="removeProgress(${i})">
-          <span>|</span>
-          <img  class="sub-img-setup" src="../add_task/img-add_task/check_blue.png" onclick="addPorgress(${i})">
+          <img class="sub-img-setup d-none" id="cancel_sub${i}" src="../add_task/img-add_task/x_blue.png" onclick="removeProgress(${i})">
+          <span id="span${i}">|</span>
+          <img  class="sub-img-setup" id="add_sub${i}" src="../add_task/img-add_task/check_blue.png" onclick="addPorgress(${i})">
         </div>
-      </div>`;
+      </div>`; // beim checken hacken entfernen und das P element mit text-decoration: line-through; durchstreichen
   }
   taskLength = section.get(`${id}`)[`subtask`].length;
   let tasks = section.get(`${id}`)[`subtask`];
 }
 
-function addPorgress() {
+function toggleSelecter(i) {
+  let cancel = document.getElementById(`cancel_sub${i}`);
+  let add = document.getElementById(`add_sub${i}`);
+  let span = document.getElementById(`span${i}`);
+
+  cancel.classList.toggle("d-none");
+  add.classList.toggle("d-none");
+  span.classList.toggle("mr15");
+}
+
+function removeProgress(i) {
+  let subSum = document.getElementsByClassName("subtext");
+  let pct = 100 / subSum.length;
+  let progressPct = document.getElementById("progress_edit");
+
+  if (progressPct.style.width == "0px") {
+    return;
+  } else if (
+    !(progressPct.style.width == "100%") &&
+    !(progressPct.style.width == "0px")
+  ) {
+    currentProgress = currentProgress - pct;
+    progressPct.style = `width: ${currentProgress}%;`;
+    toggleSelecter(i);
+  }
+}
+
+function addPorgress(i) {
   let subSum = document.getElementsByClassName("subtext");
   let pct = 100 / subSum.length;
   let progressPct = document.getElementById("progress_edit");
@@ -679,12 +706,14 @@ function addPorgress() {
   if (progressPct.style.width == "0px") {
     progressPct.style = `width: ${pct}%;`;
     currentProgress = pct;
+    toggleSelecter(i);
   } else if (
     !(progressPct.style.width == "100%") &&
     !(progressPct.style.width == "0px")
   ) {
     currentProgress = currentProgress + pct;
     progressPct.style = `width: ${currentProgress}%;`;
+    toggleSelecter(i);
   }
 }
 
