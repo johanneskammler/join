@@ -243,9 +243,10 @@ async function setTasks() {
       }
 
       key = tasks[i];
-      if (tasks[i]["subtasks"].length > 0) {
-        for (let j = 0; j < tasks[j]["subtasks"].length; j++) {
-          doneCoordinates.push([j, false]);
+      let subtaskLength = tasks[i]["subtasks"].length;
+      if (subtaskLength > 0) {
+        for (let j = 0; j < subtaskLength; j++) {
+          doneCoordinates.push(`cancel_sub${j}`);
         }
       }
       todosMap.set(`${idCounter}`, {
@@ -281,9 +282,9 @@ function setCards(section) {
     for (const [key, value] of todosMap) {
       if (!(key === "x")) {
         cardContent(section, key);
-        if (todosMap.get(`${key}`)["subtask"].length === 0) {
-          checkSubtasks(key, todosMap);
-        }
+
+        checkSubtasks(key, todosMap);
+
         renderContacts(section, key);
       }
     }
@@ -294,9 +295,9 @@ function setCards(section) {
     for (const [key, value] of progressesMap) {
       if (!(key === "x")) {
         cardContent(section, key);
-        if (progressesMap.get(`${key}`)["subtask"].length === 0) {
-          checkSubtasks(key, progressesMap);
-        }
+
+        checkSubtasks(key, progressesMap);
+
         renderContacts(section, key);
       }
     }
@@ -372,10 +373,18 @@ function contentTodo(section, id, map) {
     );
   } else {
     // totalSub = map.get(`${id}`)["subtask"].size;
+    if (typeof totalSub == "string") {
+      totalSub = totalSub.split(",");
+    } else {
+      totalSub = totalSub.length;
+    }
     let progressStatus = map.get(`${id}`)["subtaskStatus"];
+    if (typeof progressStatus == "string") {
+      progressStatus = progressStatus.split(",");
+    }
     for (let i = 0; i < progressStatus.length; i++) {
       const element = progressStatus[i];
-      if (element[1] == true) {
+      if (element == `add_sub${i}`) {
         doneSum++;
       }
     }
@@ -395,9 +404,23 @@ function contentTodo(section, id, map) {
 function checkSubtasks(id, map) {
   let currentMap = new Map(map);
   let progressId = document.getElementById(`progress_box${id}`);
+  let counter = 0;
   if (currentMap.get(`${id}`)["subtask"] == "") {
     progressId.classList.add("d-none");
     addHeight(id);
+  } else {
+    let subtaskCards = currentMap.get(`${id}`)["subtaskStatus"];
+    if (typeof subtaskCards == "string") {
+      subtaskCards = subtaskCards.split(",");
+    }
+    for (let i = 0; i < subtaskCards.length; i++) {
+      const element = subtaskCards[i];
+      if (element.includes("add")) {
+        counter++;
+      }
+    }
+    let cardProgress = counter * (100 / subtaskCards.length);
+    addProgressCard(cardProgress, id);
   }
 }
 
@@ -579,6 +602,28 @@ function generateSubtasksSum(id) {
   document.getElementById(
     `done_status_popup${id}`
   ).innerHTML = `<span id="subtask_done${id}">0</span>/${totalSub} Done`;
+  renderPopupProgressStatus(id);
+}
+
+function renderPopupProgressStatus(id) {
+  let counter = 0;
+  let currentMap = wichSection(id);
+  let subtaskCards = currentMap.get(`${id}`)["subtaskStatus"];
+  let sub_done = document.getElementById(`subtask_done${id}`);
+  let progressEdit = document.getElementById("progress_edit");
+
+  if (typeof subtaskCards == "string") {
+    subtaskCards = subtaskCards.split(",");
+  }
+  for (let i = 0; i < subtaskCards.length; i++) {
+    const element = subtaskCards[i];
+    if (element.includes("add")) {
+      counter++;
+    }
+  }
+  let cardProgress = counter * (100 / subtaskCards.length);
+  sub_done.innerHTML = counter;
+  progressEdit.style = `width: ${cardProgress}%;`;
 }
 
 function checkSubtasksPopup(section, id) {
@@ -686,6 +731,26 @@ function renderSubtasksPopup(id, section) {
   }
   taskLength = section.get(`${id}`)[`subtask`].length;
   let tasks = section.get(`${id}`)[`subtask`];
+  let map = wichSection(id);
+  let progressesPopup = map.get(`${id}`)["subtaskStatus"];
+  let currentArray = [];
+  if (typeof progressesPopup == "string") {
+    progressesPopup = progressesPopup.split(",");
+  }
+  for (let i = 0; i < progressesPopup.length; i++) {
+    const element = progressesPopup[i];
+    if (element.includes("add")) {
+      currentArray.push(1);
+    } else {
+      currentArray.push(0);
+    }
+  }
+  for (let i = 0; i < currentArray.length; i++) {
+    const element = currentArray[i];
+    if (element == 1) {
+      toggleSelecter(i);
+    }
+  }
 }
 
 function toggleSelecter(i) {
@@ -711,8 +776,9 @@ function removeProgress(i) {
   ) {
     currentProgress = currentProgress - pct;
     progressPct.style = `width: ${currentProgress}%;`;
+    addProgressCard(progressPct, id);
     doneSum--;
-    doneCoordinates.push([i, false]);
+    doneCoordinates.splice(i, 1, `cancel_sub${i}`);
     toggleSelecter(i);
     renderSubtaskStatus();
   }
@@ -722,29 +788,50 @@ function addPorgress(i, id) {
   let subSum = document.getElementsByClassName("subtext");
   let pct = 100 / subSum.length;
   let progressPct = document.getElementById("progress_edit");
-
+  let map = wichSection(id);
+  let counter = 0;
+  doneCoordinates = map.get(`${id}`)["subtaskStatus"];
+  if (typeof doneCoordinates == "string") {
+    doneCoordinates = doneCoordinates.split(",");
+  }
+  for (let i = 0; i < doneCoordinates.length; i++) {
+    const element = doneCoordinates[i];
+    if (element.includes("add")) {
+      counter++;
+    }
+  }
+  currentProgress = counter * pct;
   if (progressPct.style.width == "0px") {
     progressPct.style = `width: ${pct}%;`;
+    addProgressCard(pct, id);
     currentProgress = pct;
     toggleSelecter(i);
     doneSum++;
-    doneCoordinates.push([i, true]);
+
+    doneCoordinates.splice(i, 1, `add_sub${i}`);
     renderSubtaskStatus(id);
   } else if (
     !(progressPct.style.width == "100%") &&
     !(progressPct.style.width == "0px")
   ) {
+    doneSum = parseInt(document.getElementById(`subtask_done${id}`).innerHTML);
     currentProgress = currentProgress + pct;
     progressPct.style = `width: ${currentProgress}%;`;
+    addProgressCard(progressPct, id);
     toggleSelecter(i);
     doneSum++;
-    doneCoordinates.push([i, true]);
+    doneCoordinates.splice(i, 1, `add_sub${i}`);
     renderSubtaskStatus(id);
   }
 }
 
 function renderSubtaskStatus(id) {
   document.getElementById(`subtask_done${id}`).innerHTML = doneSum;
+}
+
+function addProgressCard(number, id) {
+  let bar = document.getElementById(`progress_card${id}`);
+  bar.style = `width: ${number}%;`;
 }
 
 function checkMap(id) {
@@ -910,6 +997,7 @@ function editDone(id) {
   }); */
   generatePopup(id);
   doneSum = 0;
+  currentProgress = 0;
 }
 
 function saveIn(
