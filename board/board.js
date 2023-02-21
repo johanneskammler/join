@@ -17,6 +17,7 @@ let comeTo;
 let searchHits = [];
 let searchInputs = [];
 let contactsEdit = [];
+let currentProgress = 0;
 
 let todo = "todo";
 let feedback = "feedback";
@@ -656,10 +657,35 @@ function renderSubtasksPopup(id, section) {
   for (let i = 0; i < taskLength; i++) {
     const element = taskArray[i];
     let pText = document.getElementById(`progress_text${id}`);
-    pText.innerHTML += `<p class="subtext">${element}</p>`;
+    pText.innerHTML += `
+      <div id='subtask_checking${i}'>
+        <p class="subtext" id="sub_p${id}">${element}</p>
+        <div  class="sub-checkmark d-none">
+          <img class="sub-img-setup" src="../add_task/img-add_task/x_blue.png" onclick="removeProgress(${i})">
+          <span>|</span>
+          <img  class="sub-img-setup" src="../add_task/img-add_task/check_blue.png" onclick="addPorgress(${i})">
+        </div>
+      </div>`;
   }
   taskLength = section.get(`${id}`)[`subtask`].length;
   let tasks = section.get(`${id}`)[`subtask`];
+}
+
+function addPorgress() {
+  let subSum = document.getElementsByClassName("subtext");
+  let pct = 100 / subSum.length;
+  let progressPct = document.getElementById("progress_edit");
+
+  if (progressPct.style.width == "0px") {
+    progressPct.style = `width: ${pct}%;`;
+    currentProgress = pct;
+  } else if (
+    !(progressPct.style.width == "100%") &&
+    !(progressPct.style.width == "0px")
+  ) {
+    currentProgress = currentProgress + pct;
+    progressPct.style = `width: ${currentProgress}%;`;
+  }
 }
 
 function checkMap(id) {
@@ -701,8 +727,18 @@ function editContactsPopup(id) {
 function setSubtasksLayout(id) {
   let progressText = document.getElementById(`progress_text${id}`);
   let subText = document.getElementById("subtask_id");
+  let subP = document.getElementsByClassName("subtext");
+  let subCheck = document.getElementsByClassName("sub-checkmark");
 
-  subtask = progressText.classList.add("add-colum");
+  progressText.classList.add("add-colum");
+  subText.classList.add("mb");
+  subText.classList.add("mt11");
+  for (let i = 0; i < subP.length; i++) {
+    const element = subP[i];
+    element.classList.add("mt0");
+    subCheck[i].classList.remove("d-none");
+    document.getElementById(`subtask_checking${i}`).classList.add("scw");
+  }
 }
 
 function edit(id) {

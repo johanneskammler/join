@@ -235,10 +235,6 @@ body {
   justify-content: center;
 }
 
-.subtask {
-  font-size: 21px;
-}
-
 .progress-box {
   width: 100%;
   display: flex;
@@ -256,7 +252,6 @@ body {
 }
 
 .progress {
-  width: 33%;
   background-color: #4589ff;
   height: 8px;
   border-top-left-radius: 7%;
@@ -268,7 +263,7 @@ body {
   align-items: baseline;
   width: 80%;
   justify-content: space-between;
-  margin-block-start: -20px;
+  margin-block-start: -11px;
 }
 
 /* Popup Sections */
@@ -714,8 +709,46 @@ h4 {
   display: flex;
   flex-direction: column;
   gap: 0 !important;
+  align-items: baseline;
+  width: 383px;
 }
 
 .m0 {
   margin: 0;
+}
+
+.mt0 {
+  margin-top: 0;
+  margin-bottom: 6px;
+  width: 100%;
+}
+
+.subtask {
+  font-size: 21px;
+}
+
+.add-subtext {
+  margin-top: 0;
+}
+
+.mt11 {
+  margin-bottom: 11px;
+}
+
+.scw {
+  width: 100%;
+  display: flex;
+}
+
+.sub-checkmark {
+  display: flex;
+  align-items: center;
+}
+
+.sub-img-setup {
+  width: 14px;
+  object-fit: cover;
+}
+.progress0 {
+  width: 0;
 }
