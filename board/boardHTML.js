@@ -67,11 +67,11 @@ function renderAddTaskHTML() {
         <img src="img-board/line.png">
       </div>
     </div>
-    <input  type="text" placeholder="Enter a title" id="title-input" class="title-input" required />
+    <input  type="text" placeholder="Enter a title" id="title-input" class="title-input" required onkeyup="allFieldsFilled()" />
 
     <div class="contacts-box">
     <div style="position: relative">
-      <div class="contacts-dropdown">
+      <div class="contacts-dropdown" onmouseup="allFieldsFilled()">
         <p onclick="openContactsToSelect()" class="select-contacts">
           Select contacts to assign
         </p>
@@ -104,7 +104,7 @@ function renderAddTaskHTML() {
     </div>
   </div>
 
-  <div class="date-box">
+  <div class="date-box" onkeyup="allFieldsFilled()">
   <span class="due-date-text">Due date</span>
   <input
     
@@ -119,7 +119,7 @@ function renderAddTaskHTML() {
 <div class="category-box">
 <span class="category-text">Category</span>
 <div style="position: relative">
-  <div class="category-dropdown">
+  <div class="category-dropdown" onmouseup="allFieldsFilled()">
     <p
       onclick="openCategoriesToSelect()"
       id="select-category"
@@ -273,13 +273,13 @@ function renderAddTaskHTML() {
 </button>
 </div>
 
-<div class="description-box">
+<div class="description-box" onkeyup="allFieldsFilled()">
 <span class="description-text">Description</span>
 <textarea
 
   name="description"
   id="description-input"
-  class="description-input"
+  class="description-input add-task-descript-input"
   cols="30"
   max-rows="10"
   style="max-height: 70px"

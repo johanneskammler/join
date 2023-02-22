@@ -1,5 +1,11 @@
+.add-task-descript-input {
+  width: 389px;
+}
+
 .add-task-content {
-  top: -100px !important;
+  top: 1px !important;
+  padding-top: 1%;
+  height: auto;
 }
 
 .header {
@@ -14,6 +20,7 @@
   position: relative;
   margin-top: 45px;
   margin-bottom: -22px;
+  z-index: -1;
 }
 
 .close-add-task-board {
