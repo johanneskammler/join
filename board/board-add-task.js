@@ -525,8 +525,8 @@ function addNameNewContact() {
 let checkedIndex = [];
 async function creatNewContactAddTask() {
   let invateNewContactName = document.getElementById("add_task_name").value;
-  getCheckboxValue(invateNewContactName, email);
   await invateCreateNewContact(invateNewContactName, email);
+  getCheckboxValue(invateNewContactName, email);
 }
 async function invateCreateNewContact(
   invateNewContactName,
@@ -575,12 +575,13 @@ async function getCheckboxValue() {
 async function checkedSetting(invateNewContactName) {
   let people = await JSON.parse(backend.getItem("contacts"));
   people = people.sort((a, b) => (a.name > b.name ? 1 : -1));
-  if (currentContacts.length > 0) {
+  if (people.length > 0) {
     for (let i = 0; i < contacts.length; i++) {
       const element = contacts[i]["name"];
       if (element.indexOf(`${invateNewContactName}`) > -1) {
         let lastContactId = document.getElementById(`contacts-checkbox-${i}`);
         lastContactId.checked = true;
+        checkedIndex.push(invateNewContactName);
       }
     }
   }

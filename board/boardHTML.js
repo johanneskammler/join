@@ -31,7 +31,7 @@ function setCardHTML(
                         <div class="progressbar">
                           <div class="progress" id="progress_card${id}" style="width:0;" ></div>
                         </div>
-                          <p class="done-p" id="done_status${id}">${progressStatus}/${totalSubtasks} Done</p>
+                          <p class="done-p" id="done_status${id}"><span id="progress_card_done${id}">${progressStatus}</span>/${totalSubtasks} Done</p>
                       </div>
 
                       <div class="card-footer" id="footer${id}">

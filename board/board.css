@@ -213,8 +213,8 @@ body {
   background-color: transparent;
   border: none;
   position: absolute;
-  right: 0;
-  bottom: 20px;
+  right: 2px;
+  bottom: 26px;
 }
 
 .card-invite {
@@ -307,9 +307,6 @@ body {
 }
 
 .popup-card-title {
-  display: flex;
-  height: 130px;
-  align-items: center;
   margin-top: 25px;
 }
 
@@ -344,8 +341,15 @@ body {
 
 .popup-title {
   font-weight: 700;
-  font-size: 61px;
-  line-height: 73.2px;
+  font-size: 57px;
+  line-height: 61.2px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.popup-title-for_edit {
+  margin-top: 110px !important;
+  margin-bottom: 46px;
 }
 
 .popup-text {
@@ -754,4 +758,8 @@ h4 {
 }
 .mr15 {
   margin-right: 15px;
+}
+
+.td {
+  text-decoration: line-through;
 }

@@ -17,10 +17,7 @@ let comeTo;
 let searchHits = [];
 let searchInputs = [];
 let contactsEdit = [];
-let currentProgress = 0;
-let doneSum = 0;
-let doneCoordinates = [];
-
+let globalProgress = [];
 let todo = "todo";
 let feedback = "feedback";
 let progress = "progress";
@@ -199,32 +196,27 @@ async function getFirstLetter(contacts, idCounter) {
 
   /*   let url = "../contacts.json";
     let response = await fetch(url); */
-  let contactsJson = backend.getItem("contacts");
+  /*  let contactsJson = backend.getItem("contacts");
   let namesList = [];
   for (let i = 0; i < contactsJson.length; i++) {
     namesList.push(contactsJson[i]["name"]);
-  }
+  } */
 
   for (let i = 0; i < contacts.length; i++) {
-    if (namesList.indexOf(`${contacts[i]}`) >= 0) {
-      const element = contacts[i];
-      let index = namesList.indexOf(`${contacts[i]}`);
-      let name = element.split(" ");
-      let justName = `${name[0]} ${name[1]}`;
-      let nameColor = contactsJson[index]["color"];
-      let firstLetter = name[0].split("");
-      let secondLetter = name[1].split("");
-      let firstLetters = firstLetter[0] + secondLetter[0];
+    const element = contacts[i];
+    let name = element.split(" ");
+    let justName = `${name[0]} ${name[1]}`;
 
-      nameList.push(justName);
-      letterList.push(firstLetters);
-      colorList.push(nameColor);
-    }
+    let firstLetter = name[0].split("");
+    let secondLetter = name[1].split("");
+    let firstLetters = firstLetter[0] + secondLetter[0];
+
+    nameList.push(justName);
+    letterList.push(firstLetters);
   }
   namesSplit.set(`${idCounter}`, {
     contacts: `${nameList}`,
     letters: `${letterList}`,
-    color: `${colorList}`,
   });
   return namesSplit;
 }
@@ -244,6 +236,13 @@ async function setTasks() {
 
       key = tasks[i];
       let subtaskLength = tasks[i]["subtasks"].length;
+      if (tasks[i]["letters"][0] == null) {
+        let contactsLetter = tasks[i]["contacts"];
+        if (typeof contactsLetter == "string") {
+          contactsLetter = contactsLetter.split(",");
+        }
+        namesSplit = await getFirstLetter(contactsLetter, idCounter);
+      }
       if (subtaskLength > 0) {
         for (let j = 0; j < subtaskLength; j++) {
           doneCoordinates.push(`cancel_sub${j}`);
@@ -254,7 +253,7 @@ async function setTasks() {
         categorycolor: key["categorycolor"],
         contacts: key["contacts"],
         colors: key["colors"],
-        letters: key["letters"],
+        letters: namesSplit.get(`${idCounter}`)["letters"],
         date: key["date"],
         description: key["description"],
         importance: key["importance"],
@@ -356,6 +355,7 @@ function contentTodo(section, id, map) {
   let mapTitle = map.get(`${id}`)["title"];
   let mapDescription = map.get(`${id}`)["description"];
   let totalSub = map.get(`${id}`)["subtask"];
+  let doneSum = document.getElementById(`subtask_done${id}`);
 
   if (!Array.isArray(totalSub) && totalSub.length > 0) {
     totalSub = totalSub.split(",");
@@ -384,7 +384,8 @@ function contentTodo(section, id, map) {
     }
     for (let i = 0; i < progressStatus.length; i++) {
       const element = progressStatus[i];
-      if (element == `add_sub${i}`) {
+      if (element == `add_sub${i}` && !(doneSum == null)) {
+        doneSum = parseInt(doneSum.innerHTML);
         doneSum++;
       }
     }
@@ -398,7 +399,6 @@ function contentTodo(section, id, map) {
       id
     );
   }
-  doneSum = 0;
 }
 
 function checkSubtasks(id, map) {
@@ -420,7 +420,7 @@ function checkSubtasks(id, map) {
       }
     }
     let cardProgress = counter * (100 / subtaskCards.length);
-    addProgressCard(cardProgress, id);
+    addProgressCard(cardProgress, id, counter);
   }
 }
 
@@ -534,15 +534,21 @@ function checkForContactNumber(contacts, letters, contactsSection, colors) {
     for (let i = 0; i < 2; i++) {
       element = colors[i];
 
-      contactsSection.innerHTML += `<p class="invate font" style="background-color: ${element};">${letters[i]}</p>`;
+      contactsSection.innerHTML += `<p class="invate font" style="background-color: ${colors[i]};">${letters[i]}</p>`;
     }
     changedColorForDots = element.slice(0, 4);
     contactsSection.innerHTML += `<p class="invate font" style="background-color: ${changedColorForDots};">...</p>`;
+  } else if (contacts.length == 2) {
+    for (let i = 0; i < contacts.length; i++) {
+      const element = colors[i];
+
+      contactsSection.innerHTML += `<p class="invate font" style="background-color: ${colors[i]};">${letters[i]}</p>`;
+    }
   } else {
     for (let i = 0; i < contacts.length; i++) {
       const element = colors[i];
 
-      contactsSection.innerHTML += `<p class="invate font" style="background-color: ${element};">${letters[i]}</p>`;
+      contactsSection.innerHTML += `<p class="invate font" style="background-color: ${colors};">${letters[i]}</p>`;
     }
   }
 }
@@ -611,6 +617,10 @@ function renderPopupProgressStatus(id) {
   let subtaskCards = currentMap.get(`${id}`)["subtaskStatus"];
   let sub_done = document.getElementById(`subtask_done${id}`);
   let progressEdit = document.getElementById("progress_edit");
+  let subtaskMap = currentMap.get(`${id}`)["subtask"];
+  if (typeof subtaskMap == "string") {
+    subtaskMap = subtaskMap.split(",");
+  }
 
   if (typeof subtaskCards == "string") {
     subtaskCards = subtaskCards.split(",");
@@ -618,10 +628,12 @@ function renderPopupProgressStatus(id) {
   for (let i = 0; i < subtaskCards.length; i++) {
     const element = subtaskCards[i];
     if (element.includes("add")) {
+      let subtaskRenderList = document.getElementById(`sub_p${i}`);
       counter++;
+      /* subtaskRenderList.classList.add("td"); */
     }
   }
-  let cardProgress = counter * (100 / subtaskCards.length);
+  let cardProgress = counter * (100 / subtaskMap.length);
   sub_done.innerHTML = counter;
   progressEdit.style = `width: ${cardProgress}%;`;
 }
@@ -721,11 +733,11 @@ function renderSubtasksPopup(id, section) {
     let pText = document.getElementById(`progress_text${id}`);
     pText.innerHTML += `
       <div id='subtask_checking${i}'>
-        <p class="subtext" id="sub_p${id}">${element}</p>
+        <p class="subtext" id="sub_p${i}">${element}</p>
         <div  class="sub-checkmark d-none">
-          <img class="sub-img-setup d-none" id="cancel_sub${i}" src="../add_task/img-add_task/x_blue.png" onclick="removeProgress(${i})">
+          <img class="sub-img-setup d-none" id="cancel_sub${i}" src="../add_task/img-add_task/x_blue.png" onclick="removeProgress(${i}, ${id})">
           <span id="span${i}">|</span>
-          <img  class="sub-img-setup" id="add_sub${i}" src="../add_task/img-add_task/check_blue.png" onclick="addPorgress(${i}, ${id})">
+          <img  class="sub-img-setup" id="add_sub${i}" src="../add_task/img-add_task/check_blue.png" onclick="addProgress(${i}, ${id})">
         </div>
       </div>`; // beim checken hacken entfernen und das P element mit text-decoration: line-through; durchstreichen
   }
@@ -763,36 +775,44 @@ function toggleSelecter(i) {
   span.classList.toggle("mr15");
 }
 
-function removeProgress(i) {
+function removeProgress(i, id) {
+  let doneSum = document.getElementById(`subtask_done${id}`).innerHTML;
   let subSum = document.getElementsByClassName("subtext");
   let pct = 100 / subSum.length;
   let progressPct = document.getElementById("progress_edit");
-
-  if (progressPct.style.width == "0px") {
-    return;
-  } else if (
-    !(progressPct.style.width == "100%") &&
-    !(progressPct.style.width == "0px")
-  ) {
-    currentProgress = currentProgress - pct;
-    progressPct.style = `width: ${currentProgress}%;`;
-    addProgressCard(progressPct, id);
-    doneSum--;
-    doneCoordinates.splice(i, 1, `cancel_sub${i}`);
-    toggleSelecter(i);
-    renderSubtaskStatus();
+  let map = wichSection(id);
+  let doneCoordinates = map.get(`${id}`)["subtaskStatus"];
+  if (typeof doneCoordinates == "string") {
+    doneCoordinates = doneCoordinates.split(",");
   }
+  if (progressPct.style.width == "0%") {
+    return;
+  }
+  let progressCut = document.getElementById("progress_edit").style.width;
+  let cutted = parseInt(progressCut.split("%"));
+  currentProgress = parseInt(cutted) - parseInt(pct);
+  progressPct.style = `width: ${parseInt(currentProgress)}%;`;
+  doneSum--;
+  addProgressCard(currentProgress, id, doneSum);
+  doneCoordinates.splice(i, 1, `cancel_sub${i}`);
+  toggleSelecter(i);
+  renderSubtaskStatus(id, doneSum);
+  globalProgress = doneCoordinates;
+  qickSaveMap(id);
 }
 
-function addPorgress(i, id) {
+function addProgress(i, id) {
+  let doneSum = document.getElementById(`subtask_done${id}`).innerHTML;
   let subSum = document.getElementsByClassName("subtext");
   let pct = 100 / subSum.length;
   let progressPct = document.getElementById("progress_edit");
   let map = wichSection(id);
   let counter = 0;
+
   doneCoordinates = map.get(`${id}`)["subtaskStatus"];
   if (typeof doneCoordinates == "string") {
     doneCoordinates = doneCoordinates.split(",");
+    currentProgress = counter * pct;
   }
   for (let i = 0; i < doneCoordinates.length; i++) {
     const element = doneCoordinates[i];
@@ -800,37 +820,48 @@ function addPorgress(i, id) {
       counter++;
     }
   }
-  currentProgress = counter * pct;
-  if (progressPct.style.width == "0px") {
+  if (progressPct.style.width == "0%") {
+    /*     let progressString = document.getElementById("progress_edit").style.width;
+    let progressCut = progressString.split("%");
+    currentProgress = parseInt(progressCut[0]);
+    currentProgress = parseInt(currentProgress) * parseInt(counter); */
     progressPct.style = `width: ${pct}%;`;
-    addProgressCard(pct, id);
+    addProgressCard(pct, id, doneSum);
     currentProgress = pct;
     toggleSelecter(i);
     doneSum++;
 
     doneCoordinates.splice(i, 1, `add_sub${i}`);
-    renderSubtaskStatus(id);
+    renderSubtaskStatus(id, doneSum);
   } else if (
     !(progressPct.style.width == "100%") &&
-    !(progressPct.style.width == "0px")
+    !(progressPct.style.width == "0%")
   ) {
     doneSum = parseInt(document.getElementById(`subtask_done${id}`).innerHTML);
-    currentProgress = currentProgress + pct;
+    let theProgress = document.getElementById("progress_edit").style.width;
+
+    theProgress = theProgress.split("%");
+    currentProgress = parseInt(theProgress) + parseInt(pct);
     progressPct.style = `width: ${currentProgress}%;`;
-    addProgressCard(progressPct, id);
     toggleSelecter(i);
     doneSum++;
+    addProgressCard(currentProgress, id, doneSum);
     doneCoordinates.splice(i, 1, `add_sub${i}`);
-    renderSubtaskStatus(id);
+    renderSubtaskStatus(id, doneSum);
   }
+  globalProgress = doneCoordinates;
+  qickSaveMap(id);
 }
 
-function renderSubtaskStatus(id) {
+function renderSubtaskStatus(id, doneSum) {
   document.getElementById(`subtask_done${id}`).innerHTML = doneSum;
 }
 
-function addProgressCard(number, id) {
+function addProgressCard(number, id, doneSum) {
+  let progressStatusCard = document.getElementById(`progress_card_done${id}`);
   let bar = document.getElementById(`progress_card${id}`);
+
+  progressStatusCard.innerHTML = doneSum;
   bar.style = `width: ${number}%;`;
 }
 
@@ -901,6 +932,12 @@ function edit(id) {
   showEdit(title, description, id);
   dateFuture();
   setSubtasksLayout(id);
+  toggleEditTitle();
+}
+
+function toggleEditTitle() {
+  let titleEdit = document.getElementById("popup-card-title");
+  titleEdit.classList.toggle("popup-title-for_edit");
 }
 
 function dateFuture() {
@@ -935,7 +972,7 @@ function showEdit(title, description, id) {
   document.getElementById;
 }
 
-function editDone(id) {
+function qickSaveMap(id) {
   let titleEdit = document.getElementById("popup_title_edit").value;
   let descriptionEdit = document.getElementById("popup_description_edit").value;
   let dateEdit = document.getElementById("select-date").value;
@@ -948,7 +985,56 @@ function editDone(id) {
   let colors = section.get(`${id}`)["colors"];
   let letters = section.get(`${id}`)["letters"];
   let subtask = section.get(`${id}`)["subtask"];
-  let subtaskStatus = doneCoordinates;
+  let subtaskStatus = globalProgress;
+  if (titleEdit.length == 0) {
+    titleEdit = section.get(`${id}`)["title"];
+  }
+  if (descriptionEdit.length == 0) {
+    descriptionEdit = section.get(`${id}`)["description"];
+  }
+  if (dateEdit.length == 0) {
+    dateEdit = section.get(`${id}`)["date"];
+  }
+  if (contactsEdit.length == 0 || contactsEdit[0] == "") {
+    contact = section.get(`${id}`)["contacts"];
+    contactsEdit = contact;
+  }
+  if (button == undefined) {
+    button = section.get(`${id}`)["importance"];
+  }
+
+  saveIn(
+    titleEdit,
+    descriptionEdit,
+    dateEdit,
+    contactsEdit,
+    button,
+    section,
+    category,
+    categorycolor,
+    colors,
+    letters,
+    subtask,
+    subtaskStatus,
+    id
+  );
+}
+
+function editDone(id) {
+  toggleEditTitle();
+  let titleEdit = document.getElementById("popup_title_edit").value;
+  let descriptionEdit = document.getElementById("popup_description_edit").value;
+  let dateEdit = document.getElementById("select-date").value;
+  let contactsEdit = selectedContacts;
+  let button = checkPrioBtn();
+  let section = wichSection(id);
+
+  let category = section.get(`${id}`)["category"];
+  let categorycolor = section.get(`${id}`)["categorycolor"];
+  let colors = section.get(`${id}`)["colors"];
+  let letters = section.get(`${id}`)["letters"];
+  let subtask = section.get(`${id}`)["subtask"];
+  let subtaskStatus = globalProgress;
   if (titleEdit.length == 0) {
     titleEdit = section.get(`${id}`)["title"];
   }
