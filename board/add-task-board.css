@@ -19,14 +19,17 @@
   width: 422px;
   position: relative;
   margin-top: 45px;
-  margin-bottom: -22px;
-  z-index: -1;
+  margin-block-start: 17px;
+}
+
+.input-correction {
+  margin-top: 8px;
 }
 
 .close-add-task-board {
   position: absolute;
   right: -9px;
-  top: -1px;
+  top: -4px;
 }
 
 .add-title {

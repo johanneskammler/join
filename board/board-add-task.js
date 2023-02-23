@@ -13,6 +13,7 @@ let contacts;
 let exist;
 let currentContacts;
 console.log(subtasks);
+let filled = false;
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 
 async function getUrgentCounter() {
@@ -25,6 +26,12 @@ async function getCurrentContacts() {
 }
 
 async function addToTasks() {
+  if (filled == false) {
+    return;
+  }
+  let btn = document.getElementById("submit-btn");
+  btn.classList.remove("opacity");
+
   let title = document.getElementById("title-input");
   let category = document.getElementById("select-category");
   let date = document.getElementById("select-date-task");
@@ -105,9 +112,6 @@ function allFieldsFilled() {
   } else {
     let btn = document.getElementById("submit-btn");
     btn.classList.add("opacity");
-    btn.onclick = function () {
-      console.log("");
-    };
   }
 }
 
@@ -124,21 +128,16 @@ async function buttonImportanceCheck() {
   ) {
     let btn = document.getElementById("submit-btn");
     btn.classList.remove("opacity");
-    btn.onclick = function () {
-      addToTasks();
-    };
+    filled = true;
   } else {
     let btn = document.getElementById("submit-btn");
     btn.classList.add("opacity");
-    btn.onclick = function () {
-      console.log("");
-    };
   }
-
-  // buttonUrgent.classList.contains("d-none") ||
-  // buttonMedium.classList.contains("d-none") ||
-  // buttonLow.classList.contains("d-none")
 }
+
+// buttonUrgent.classList.contains("d-none") ||
+// buttonMedium.classList.contains("d-none") ||
+// buttonLow.classList.contains("d-none")
 
 function resetAddedButton() {
   let result = allFieldsFilled();

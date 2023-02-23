@@ -23,11 +23,11 @@
   border: 0.5px solid gray;
 }
 
-.date-box,
+/* .date-box,
 .category-box,
 .description-box {
   margin-bottom: 18px !important;
-}
+} */
 .for-close {
   width: 100%;
   height: 100vh;

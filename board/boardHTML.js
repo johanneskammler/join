@@ -58,16 +58,16 @@ function renderAddTaskHTML() {
   <div class="header ">
     <img src="../templates/img/logo_blue.png" class="logo" />
   </div>
-  <div class="add-task-content-overlay" onkeyup="allFieldsFilled()"  >
+  <div class="add-task-content-overlay">
     <div class="add-tasks-board-head" id="add-board">
       <h1 class="add-title">Add Task</h1>
-      <button id="submit-btn" class="add-card btn-create opacity" >Creat Task <img src="img-board/checkmark.png"></button>
+      <button id="submit-btn" class="add-card btn-create opacity"  onclick="addToTasks()"   >Creat Task <img src="img-board/checkmark.png" ></button>
       <div class="close-add-task-board" onclick="closeAddTask()">
         <img class="close-img" src="img-board/line.png">
         <img src="img-board/line.png">
       </div>
     </div>
-    <input  type="text" placeholder="Enter a title" id="title-input" class="title-input" required onkeyup="allFieldsFilled()" />
+    <input  type="text" placeholder="Enter a title" id="title-input" class="title-input input-correction" required onkeyup="allFieldsFilled()" />
 
     <div class="contacts-box">
     <div style="position: relative">

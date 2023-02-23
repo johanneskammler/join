@@ -316,7 +316,7 @@
   }
 
   .inpbox {
-    width: 63vw !important;
+    width: 317px !important;
   }
 
   .btn-top {
@@ -555,16 +555,9 @@
   }
 
   .inpbox {
-    width: 100%;
+    width: 217px !important;
+    margin-left: 9px !important;
   }
-
-  /* .head {
-    width: 392px !important;
-  } */
-
-  /* .card {
-    width: 364px;
-  } */
 
   .done {
     height: 58vh;
@@ -572,6 +565,13 @@
 
   .in-progress {
     margin-top: 5vh;
+  }
+
+  .kanban {
+    width: 77vw;
+    margin-bottom: 24px;
+    display: flex !important;
+    margin-top: 0 !important;
   }
 }
 
