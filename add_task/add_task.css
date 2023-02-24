@@ -128,6 +128,10 @@ html {
     padding-right: 15px;
 }
 
+.contact-list-element-img {
+    margin-inline-end: 15px;
+}
+
 .contacts-list-elem-box,
 .subtask-list-elem-box {
     display: flex;

@@ -395,9 +395,9 @@ function assignedHTML(id) {
                                     </div>
                                 </label>
                             </div>
-                            <div class="contacts-list-elem new-contact rendered-contact-name">
+                            <div onmousedown="newContactAddTask()" class="contacts-list-elem new-contact">
                                 Invite new contact
-                                <img src="../add_task/img-add_task/contact_blue.png" />
+                                <img class="contact-list-element-img" src="../add_task/img-add_task/contact_blue.png" />
                             </div>
                         </div>
                     </div>
