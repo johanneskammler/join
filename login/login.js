@@ -11,13 +11,10 @@ async function checkInput() {
   for (let i = 0; i < storedUsers.length; i++) {
     const element = storedUsers[i];
     if (element["email"] == email) {
-      if (
-        element["email"] == email &&
-        element["password"] == password
-      ) {
+      if (element["email"] == email && element["password"] == password) {
         await loginSteps(element);
       } else {
-        alert('Password is incorrect!')
+        alert("Password is incorrect!");
         return;
       }
     }
@@ -94,7 +91,7 @@ function openSummaryAsUser() {
 }
 
 async function openSummary() {
-  currentUser = "Max Kebabman";
+  currentUser = "Guest user";
   userAsJson = JSON.stringify(currentUser);
   await backend.setItem("currentUser", userAsJson);
   window.location = "../summary/summary.html";
