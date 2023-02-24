@@ -32,7 +32,7 @@ async function init() {
   function loadAtStart() {
     let nameTest = JSON.parse(backend.getItem("currentUser")) || [];
     if (nameTest.length < 2) {
-      ShowCurrentUserNameForSummery = "Guest";
+      ShowCurrentUserNameForSummery = "Guest user";
     } else {
       ShowCurrentUserNameForSummery = nameTest;
     }
