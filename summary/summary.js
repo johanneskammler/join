@@ -66,9 +66,8 @@ function renderCurrentDate() {
 }
 
 async function renderAmountToTasks() {
-  let urgentCounter = await backend.getItem('urgentCounter') || 0;
-  document.getElementById("task-id-").innerHTML =
-    urgentCounter;
+  let urgentCounter = (await backend.getItem("urgentCounter")) || 0;
+  document.getElementById("task-id-").innerHTML = urgentCounter;
   document.getElementById("task-to-do-id-").innerHTML = todosMap.size - 1;
   document.getElementById("task-in-board-id-").innerHTML =
     todosMap.size + progressesMap.size + feedbacksMap.size + donesMap.size - 4;
@@ -82,4 +81,3 @@ async function renderAmountToTasks() {
 function goToBoard() {
   window.location = "../board/board.html";
 }
-

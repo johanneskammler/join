@@ -199,10 +199,6 @@ body {
   position: relative;
 }
 
-.done-p {
-  font-family: "Inter";
-}
-
 .card-invite {
   margin-top: -15px;
 }
@@ -353,7 +349,6 @@ body {
 }
 
 .popup-text {
-  font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 21px;
@@ -416,7 +411,6 @@ body {
 }
 
 .assigned-to {
-  font-family: "Inter";
   font-style: normal;
   font-weight: 700;
   font-size: 21px;
@@ -618,7 +612,7 @@ h4 {
 }
 
 .set-contact-popup {
-  height: 176px !important;
+  height: 155px !important;
   font-size: 16px !important;
   position: absolute;
   z-index: 20;

@@ -30,7 +30,6 @@ function hoverContactsRespons() {
 
 function checkSize() {
   let size = window.innerWidth;
-  console.log(size);
   if (size < 1024) {
     sidebarTabled();
     hoverContactsRespons();

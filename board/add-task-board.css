@@ -3,13 +3,17 @@
 }
 
 .add-task-content {
-  top: 1px !important;
+  top: -100px !important;
   padding-top: 1%;
   height: auto;
 }
 
 .header {
   display: none;
+}
+
+.board-descriptionbox-img {
+  right: -4px !important;
 }
 
 .add-tasks-board-head {
@@ -20,6 +24,10 @@
   position: relative;
   margin-top: 45px;
   margin-block-start: 17px;
+}
+
+.contacts-dropdown-content {
+  height: 155p !important;
 }
 
 .input-correction {

@@ -13,7 +13,7 @@ let urgentCounter;
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 
 async function getUrgentCounter() {
-  urgentCounter = await backend.getItem('urgentCounter') || 0;
+  urgentCounter = (await backend.getItem("urgentCounter")) || 0;
   urgentCounter = parseInt(urgentCounter);
 }
 
@@ -41,7 +41,6 @@ async function addToTasks() {
     };
     selectedContacts = []; // Du hast es in resetTasksInput drin aber es hat es nicht geleert, bei mir sind 2 tasks mit den Selben Kontackten erschienen jedesmal, weil er bsw erte task leer also ohne kontackte gespeichert zweite task mit und komischerweise hat er den ersten task auch dann selben kontackt reingeschrieben, wahrscheinlich weil des array selectedContacts nicht leer war. Logisch ist es nicht aber jetzt gehts wieder
     tasks.push(task);
-    console.log(tasks);
     resetTasksInputs(
       title,
       selectedContacts,
@@ -57,9 +56,8 @@ async function addToTasks() {
   }
 }
 
-
 function checkImportance() {
-  if (importance == 'urgent') {
+  if (importance == "urgent") {
     urgentCounter++;
   }
 }
@@ -162,7 +160,7 @@ function enableSidebar() {
 
 async function renderContacts() {
   contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
-  
+
   // list contacts in alphabetical order
   contacts.sort((a, b) => (a.name > b.name ? 1 : -1));
 
@@ -187,10 +185,8 @@ function addContactToTask(i) {
 
   if (selectedContacts.includes(contact)) {
     selectedContacts.splice(i, 1);
-    console.log(selectedContacts);
   } else {
     selectedContacts.push(contact);
-    console.log(selectedContacts);
   }
 }
 
@@ -308,10 +304,8 @@ function addSubtaskToTask(i) {
 
   if (selectedSubtasks.includes(subtask)) {
     selectedSubtasks.splice(i, 1);
-    console.log(selectedSubtasks);
   } else {
     selectedSubtasks.push(subtask);
-    console.log(selectedSubtasks);
   }
 }
 
@@ -479,7 +473,7 @@ async function invateCreateNewContact(invateNewContactName, email) {
     firstletter: firstletter,
     color: color,
   };
-  let exist = await JSON.parse(backend.getItem('contacts'));
+  let exist = await JSON.parse(backend.getItem("contacts"));
   // if anweisung mit indexOf
   exist.push(contact);
   await backend.setItem("contacts", JSON.stringify(exist));

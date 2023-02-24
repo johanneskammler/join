@@ -1,11 +1,3 @@
-/*let selectedContacts = [];
-let importance;
-let subtasksEdit = []; // subtask is not defined <<<----   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-let selectedSubtasks = [];
-let newCategories = [];
-let categoryName;
-let categoryColor; */
-
 function openEditContactsToSelect(id) {
   var element = document.getElementById("contacts-drop-down");
   element.classList.toggle("d-none");
@@ -14,8 +6,6 @@ function openEditContactsToSelect(id) {
 }
 
 async function renderContactsEdit() {
-  /*   let url = "../contacts.json";
-  let response = await fetch(url); */
   let contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
   contacts.sort((a, b) => (a.name > b.name ? 1 : -1));
 
@@ -24,20 +14,6 @@ async function renderContactsEdit() {
     document.getElementById("contacts-drop-down").innerHTML +=
       generateHTMLcontacts(element, i);
   }
-}
-
-function generateHTMLcontacts(element, i) {
-  return `
-    <div class="contacts-list-elem">
-      <label class="control control-checkbox" id="selected-contact" onmouseup="addContactToTask(${i})">
-        <div class="contacts-list-elem-box">
-          <span id="name${i}" class="rendered-contact-name">${element["name"]}</span>
-          <input id="contacts-checkbox-${i}" type="checkbox" value="${element["name"]}" />
-          <div id="control-indicator${i}" class="control-indicator control-setup"></div>
-        </div>
-      </label>
-    </div>
-    `;
 }
 
 function contactsCheckboxUpdate(id) {
@@ -58,11 +34,9 @@ async function addContactToTask(element, id) {
 
   if (selectedContacts.indexOf(contact) == -1) {
     selectedContacts.push(contact);
-    console.log(selectedContacts);
   } else {
     let pos = selectedContacts.indexOf(contact);
     selectedContacts.splice(pos, 1);
-    console.log(selectedContacts);
   }
   await safeEdit(id, selectedContacts);
 }
@@ -82,19 +56,20 @@ async function safeEdit(id, selectedContacts) {
 }
 
 function setupTodosMap(id, selectedContacts) {
-  let category = todosMap.get(`${id}`)["category"];
-  let categorycolor = todosMap.get(`${id}`)["categorycolor"];
-  let colors = todosMap.get(`${id}`)["colors"];
+  let map = wichSection(id);
+  let category = map.get(`${id}`)["category"];
+  let categorycolor = map.get(`${id}`)["categorycolor"];
+  let colors = map.get(`${id}`)["colors"];
   let contacts = selectedContacts;
-  let date = todosMap.get(`${id}`)["date"];
-  let description = todosMap.get(`${id}`)["description"];
-  let importance = todosMap.get(`${id}`)["importance"];
-  let letters = todosMap.get(`${id}`)["letters"];
-  let subtask = todosMap.get(`${id}`)["subtask"];
-  let subtaskStatus = todosMap.get(`${id}`)["subtaskStatus"];
-  let title = todosMap.get(`${id}`)["title"];
+  let date = map.get(`${id}`)["date"];
+  let description = map.get(`${id}`)["description"];
+  let importance = map.get(`${id}`)["importance"];
+  let letters = map.get(`${id}`)["letters"];
+  let subtask = map.get(`${id}`)["subtask"];
+  let subtaskStatus = map.get(`${id}`)["subtaskStatus"];
+  let title = map.get(`${id}`)["title"];
 
-  todosMap.set(`${id}`, {
+  map.set(`${id}`, {
     category: `${category}`,
     categorycolor: `${categorycolor}`,
     colors: `${colors}`,
@@ -192,35 +167,6 @@ function setupProgressesMap(id, selectedContacts) {
     title: `${title}`,
   });
 }
-
-/* umschreiben für edit
-
-function addToTasks() {
-  triggerAddedToBoardButton();
-
-  let title = document.getElementById("title-input");
-  let date = document.getElementById("select-date");
-  let category = document.getElementById("select-category");
-  let description = document.getElementById("description-input");
-
-  let task = {
-    'title': title.value,
-    'contacts': selectedContacts,
-    'date': date.value,
-    'category': category.innerText,
-    'category-color': categoryColor,
-    'importance': importance,
-    'decription': description.value,
-    'subtasks': selectedSubtasks
-  };
-
-  tasks.push(task);
-  console.log(tasks);
-  resetTasksInputs(title, selectedContacts, date, categoryColor, description, selectedSubtasks);
-  resetImportanceButtons();
-
-  backend.setItem("tasks", JSON.stringify(tasks));
-} */
 
 function fillImportanceButton1() {
   importance = "urgent";

@@ -31,9 +31,9 @@ let idCounter = 0;
  *
  */
 
-function checkMaps(place) {
+/* function checkMaps(place) {
   console.log(place);
-}
+} */
 
 async function init() {
   await includeHTML();
@@ -42,12 +42,9 @@ async function init() {
   draggableTrue();
   setTimeout(activateDragAndDrop, 300); /* setCards(); */
   await getMaps();
-
   generateCards();
   checkIfEmpty();
-
   tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
-
   getUrgentCounter();
   getCurrentContacts();
 }
@@ -59,35 +56,34 @@ function openPopup(id) {
 }
 
 function hoverBoardHtml() {
-  document
-    .getElementById("board_bg")
-    .classList.add("section-background-normal");
-  document.getElementById("board_bg").classList.remove("section-background");
+  let boardBG = document.getElementById("board_bg");
+
+  boardBG.classList.add("section-background-normal");
+  boardBG.classList.remove("section-background");
 }
 
 function hoverBoardRespons() {
-  document
-    .getElementById("board_bg")
-    .classList.remove("section-background-normal");
-  document.getElementById("board_bg").classList.add("section-background");
+  let boardBG = document.getElementById("board_bg");
+
+  boardBG.classList.remove("section-background-normal");
+  boardBG.classList.add("section-background");
 }
+
 /**
  * Remove the display none from the div's and show the popup
  * scroll to the top for good view (Layout)
  * block scolling while view on popup
  */
+
 function popup(id) {
   let background = document.getElementById("popup");
   let card = document.getElementById("popup_card");
-  let list = document.getElementsByTagName("html");
-  let html = list[0];
 
   document.getElementById("edit_priority").classList.remove("correctPrio");
   document.getElementById("popup_title").classList.remove("card-content-popup");
   document.getElementById("card_content").classList.remove("set-content");
 
   window.scrollTo(0, 0);
-  //html.classList.toggle("hide-overflow-y");
   card.classList.toggle("d-none");
   background.classList.toggle("d-none");
   activateDragAndDrop();
@@ -100,7 +96,7 @@ function popup(id) {
  */
 function checkSize() {
   let size = window.innerWidth;
-  console.log(size);
+
   if (size <= 1024) {
     sidebarTabled();
     draggableFalse();
@@ -116,16 +112,20 @@ function checkSize() {
  * set The Sidebar to the Bottom
  */
 function sidebarTabled() {
-  document.getElementById("sidebar").classList.remove("sidebar");
-  document.getElementById("sidebar").classList.add("tablet-sidebar");
+  let sidebar = document.getElementById("sidebar");
+
+  sidebar.classList.remove("sidebar");
+  sidebar.classList.add("tablet-sidebar");
 }
 
 /**
  * set the sidebar to the left
  */
 function sidebarDesktop() {
-  document.getElementById("sidebar").classList.add("sidebar");
-  document.getElementById("sidebar").classList.remove("tablet-sidebar");
+  let sidebar = document.getElementById("sidebar");
+
+  sidebar.classList.add("sidebar");
+  sidebar.classList.remove("tablet-sidebar");
 }
 
 /**
@@ -133,6 +133,7 @@ function sidebarDesktop() {
  */
 function draggableFalse() {
   let cards = document.getElementsByClassName("card");
+
   for (let i = 0; i < cards.length; i++) {
     const card = cards[i];
     card.setAttribute("draggable", false);
@@ -145,6 +146,7 @@ function draggableFalse() {
 
 function draggableTrue() {
   let cards = document.getElementsByClassName("card");
+
   for (let i = 0; i < cards.length; i++) {
     const card = cards[i];
     card.setAttribute("draggable", true);
@@ -153,17 +155,21 @@ function draggableTrue() {
 }
 
 function renderAddTask() {
-  document.getElementById("add_task").innerHTML = renderAddTaskHTML();
+  let addTask = document.getElementById("add_task");
+
+  addTask.innerHTML = renderAddTaskHTML();
 }
 
 /**
  * open addTask and remove the d-none class from the div with id add-task
  */
 function openAddTask() {
-  document.getElementById("add_task").classList.toggle("d-none");
-  window.scrollTo(0, 0);
+  let addTask = document.getElementById("add_task");
   let list = document.getElementsByTagName("html");
   let html = list[0];
+
+  addTask.classList.toggle("d-none");
+  window.scrollTo(0, 0);
   renderContactsAddTask();
   html.classList.toggle("hide-overflow-y");
   renderAddTask();
@@ -175,8 +181,10 @@ function openAddTask() {
  * close the addTask div and add the d-none class from the div with id add-task
  */
 function closeAddTask() {
-  document.getElementById("add-board").classList.remove("slide-left");
-  document.getElementById("add-board").classList.add("slide-right");
+  let addBoard = document.getElementById("add-board");
+
+  addBoard.classList.remove("slide-left");
+  addBoard.classList.add("slide-right");
   setTimeout(openAddTask, 350);
   setTimeout(activateDragAndDrop, 350);
   subtasks = [];
@@ -192,21 +200,11 @@ async function getFirstLetter(contacts, idCounter) {
   let namesSplit = new Map();
   let nameList = [];
   let letterList = [];
-  let colorList = [];
-
-  /*   let url = "../contacts.json";
-    let response = await fetch(url); */
-  /*  let contactsJson = backend.getItem("contacts");
-  let namesList = [];
-  for (let i = 0; i < contactsJson.length; i++) {
-    namesList.push(contactsJson[i]["name"]);
-  } */
 
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];
     let name = element.split(" ");
     let justName = `${name[0]} ${name[1]}`;
-
     let firstLetter = name[0].split("");
     let secondLetter = name[1].split("");
     let firstLetters = firstLetter[0] + secondLetter[0];
@@ -221,33 +219,38 @@ async function getFirstLetter(contacts, idCounter) {
   return namesSplit;
 }
 
+function checkIdCounter() {
+  loadCounter();
+  if (idCounter == "leer") {
+    idCounter = 0;
+  }
+}
+
 async function setTasks() {
   let tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
-  /*     let subtask; */
-  let currentId;
   let doneCoordinates = [];
 
   if (tasks.length > 0) {
     for (let i = 0; i < tasks.length; i++) {
-      loadCounter();
-      if (idCounter == "leer") {
-        idCounter = 0;
-      }
-
+      checkIdCounter();
       key = tasks[i];
       let subtaskLength = tasks[i]["subtasks"].length;
+
       if (tasks[i]["letters"][0] == null) {
         let contactsLetter = tasks[i]["contacts"];
+
         if (typeof contactsLetter == "string") {
           contactsLetter = contactsLetter.split(",");
         }
         namesSplit = await getFirstLetter(contactsLetter, idCounter);
       }
+
       if (subtaskLength > 0) {
         for (let j = 0; j < subtaskLength; j++) {
           doneCoordinates.push(`cancel_sub${j}`);
         }
       }
+
       todosMap.set(`${idCounter}`, {
         category: key["category"],
         categorycolor: key["categorycolor"],
@@ -892,7 +895,6 @@ function editContactsPopup(id) {
   let i = 0;
   while (contactsInPopup.length < mapsContacts.length) {
     let dok = document.getElementById(`contacts-checkbox-${i}`);
-    console.log(contactsInPopup.indexOf(dok.value));
     if (mapsContacts.indexOf(dok.value) > -1) {
       contactsInPopup.push(i);
     }
@@ -948,7 +950,11 @@ function dateFuture() {
 
 function dateFutureTask() {
   const today = new Date().toISOString().split("T")[0];
-  document.getElementById("select-date-task").setAttribute("min", today);
+  let dateId = document.getElementById("select-date-task");
+  if (dateId == null) {
+    return;
+  }
+  dateId.setAttribute("min", today);
 }
 
 function showEdit(title, description, id) {
@@ -1345,7 +1351,6 @@ async function serach() {
     setTimeout(activateDragAndDrop, 150);
   } else {
     input = input.toLowerCase();
-    console.log(input);
 
     for (let i = 0; i < maps.length; i++) {
       const map = maps[i];
@@ -1435,7 +1440,6 @@ function outputNumber(values, key, input) {
     }
     let shine = document.getElementById(`card${key}`);
     shine.classList.remove("d-none");
-    console.log("number/numbers: " + values);
   }
 }
 
