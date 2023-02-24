@@ -1,49 +1,5 @@
-// let newUsers = [];
-
-// setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
-
-// async function signUpUser() {
-//   let userName = document.getElementById('user').value;
-//   let email = document.getElementById('email').value;
-//   let password = document.getElementById('pw').value;
-
-//   let newUser = {
-//     userName: userName,
-//     email: email,
-//     password: password
-//   };
-
-//   newUsers.push(newUser);
-
-//   backend.setItem("newUsers", JSON.stringify(newUsers));
-
-//   await downloadFromServer();
-//   tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
-
-//   if (userName == "") {
-//       alert("Bitte gib deinen Namen ein.");
-//       return false;
-//   } else if (email == "") {
-//       alert("Bitte gib deine E-Mail-Adresse ein.");
-//   } else if (password == "") {
-//       alert("Bitte gib ein Passwort ein.");
-//   } else {
-//       window.location = "../login/startPage.html";
-//   }
-
-//   return true;
-// }
-
-// // Retrieve the array from local storage when the page loads
-// let storedUsers = backend.getItem("newUsers");
-// if (storedUsers) {
-//   newUsers = JSON.parse(storedUsers);
-// }
-
-// console.log(newUsers);
-
-// let newUsers = [];
 let storedUsers = [];
+let emailValue = false;
 
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 
@@ -51,6 +7,12 @@ async function signUpUser() {
   let userName = document.getElementById("user").value;
   let email = document.getElementById("email").value;
   let password = document.getElementById("pw").value;
+
+  checkIfEmailIsCorrectForm(email);
+
+  if (emailValue == false) {
+    return;
+  }
 
   let newUser = {
     userName: userName,
@@ -74,7 +36,16 @@ async function signUpUser() {
     window.location = "../login/startPage.html";
   }
 
+  emailValue = false;
   return true;
+}
+
+function checkIfEmailIsCorrectForm(email) {
+  if (!email.includes('.')) {
+    alert('Incorrect e-mail form!');
+  } else {
+    emailValue = true;
+  }
 }
 
 async function retrieveUsers() {
