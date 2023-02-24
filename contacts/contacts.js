@@ -271,6 +271,12 @@ async function renderContactList() {
     contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
     if (contacts.length < 1) {
         document.getElementById("contact-list-id").classList.add('d-none');
+        document.getElementById("contact_list_container").innerHTML = `
+        <div class="no-contacts">
+        <h4>No contacts yet. <br> Please add a new contact!</h4>
+    </div>
+        `;
+
     } else {
         for (let i = 0; i < contacts.length; i++) {
             const element = contacts[i];

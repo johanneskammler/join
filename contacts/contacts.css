@@ -500,3 +500,12 @@ form input::placeholder {
     bottom: 20px;
     right: 40vw;
 }
+
+.no-contacts {
+    display: flex;
+    text-align: center;
+    font-family: 'open sans';
+    font-size: 19px;
+    color: #7676768d;
+    margin-top: 200px;
+}
