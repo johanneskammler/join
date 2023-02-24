@@ -882,18 +882,17 @@ function checkMap(id) {
   return currentMap;
 }
 
-function editContactsPopup(id) {
-  let map = wichSection(id);
-  if (map == undefined) {
+async function editContactsPopup(id) {
+  let map = await JSON.parse(backend.getItme("contacts"));
+  if (map == undefined || map == null) {
     return;
   }
-  let mapsContacts = map.get(`${id}`)["contacts"];
-  if (typeof mapsContacts === "string") {
-    mapsContacts = mapsContacts.split(",");
+  if (typeof map === "string") {
+    map = map.split(",");
   }
   let contactsInPopup = [];
   let i = 0;
-  while (contactsInPopup.length < mapsContacts.length) {
+  while (contactsInPopup.length < map.length) {
     let dok = document.getElementById(`contacts-checkbox-${i}`);
     if (mapsContacts.indexOf(dok.value) > -1) {
       contactsInPopup.push(i);
