@@ -883,7 +883,7 @@ function checkMap(id) {
 }
 
 async function editContactsPopup(id) {
-  let map = await JSON.parse(backend.getItme("contacts"));
+  let map = await JSON.parse(backend.getItem("contacts"));
   if (map == undefined || map == null) {
     return;
   }
@@ -891,13 +891,15 @@ async function editContactsPopup(id) {
     map = map.split(",");
   }
   let contactsInPopup = [];
-  let i = 0;
-  while (contactsInPopup.length < map.length) {
+  for (let i = 0; i < map.length; i++) {
+    const element = map[i]["name"];
     let dok = document.getElementById(`contacts-checkbox-${i}`);
-    if (mapsContacts.indexOf(dok.value) > -1) {
-      contactsInPopup.push(i);
+    if (dok == null || dok == undefined) {
+      return;
     }
-    i++;
+    if (contactsInPopup.indexOf(element) < 0) {
+      contactsInPopup.push(element);
+    }
   }
   return contactsInPopup;
 }

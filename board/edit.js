@@ -7,25 +7,29 @@ function openEditContactsToSelect(id) {
 
 async function renderContactsEdit() {
   let contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
-  contacts.sort((a, b) => (a.name > b.name ? 1 : -1));
+  let dropdown = document.getElementById("contacts-drop-down");
+  /*   let contactsDiv = document.getElementById("contacts_div");
+  contactsDiv.innerHTML = ""; */
 
+  contacts.sort((a, b) => (a.name > b.name ? 1 : -1));
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];
-    document.getElementById("contacts-drop-down").innerHTML +=
-      generateHTMLcontacts(element, i);
+    dropdown.innerHTML += generateHTMLcontacts(element, i);
   }
 }
 
-function contactsCheckboxUpdate(id) {
-  let contacts = editContactsPopup(id);
+async function contactsCheckboxUpdate(id) {
+  let contacts = await editContactsPopup(id);
   if (contacts == undefined) {
     return;
   }
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];
-    let id = document.getElementById(`contacts-checkbox-${element}`);
-    id.checked = true;
-    addContactToTask(element, id);
+    if (contacts.indexOf(element) < 0) {
+      let id = document.getElementById(`contacts-checkbox-${element}`);
+      id.checked = true;
+      addContactToTask(element, id);
+    }
   }
 }
 
