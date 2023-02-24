@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,59 +14,39 @@
     <script src="../login/users.js"></script>
     <script src="../login/signUp.js"></script>
     <title>Sign up</title>
-  </head>
+</head>
 
-  <body onload="retrieveUsers()">
+<body onload="retrieveUsers()">
     <div class="blue-screen" id="sign-up-bluescreen"></div>
     <div id="logos" class="logos-sign-up">
-      <div class="#">
-        <img
-          src="../login/img/logo_white.png"
-          class="sign-up-logo"
-          id="white-logo"
-        />
-      </div>
+        <div class="#">
+            <img src="../login/img/logo_white.png" class="sign-up-logo" id="white-logo" />
+        </div>
 
-      <div class="login-screen-no-animation">
-        <a onclick="backToStart()"
-          ><img
-            id="back-from-signup"
-            class="back-arrow"
-            src="../login/img/arrow_left.png"
-        /></a>
-        <h1 id="login-headline">Sign up</h1>
-        <hr class="underline" />
+        <div class="login-screen-no-animation">
+            <a onclick="backToStart()"><img id="back-from-signup" class="back-arrow" src="../login/img/arrow_left.png" /></a>
+            <h1 id="login-headline">Sign up</h1>
+            <hr class="underline" />
 
-        <form onsubmit="signUpUser(); return false" action="../login/startPage.html">
-          <input
-            type="text"
-            name=""
-            id="user"
-            placeholder="Name"
-            style="margin-bottom: 29px"
-            required
-          />
-          <input type="email" name="" id="email" placeholder="Email" required />
-          <input
-            type="password"
-            name=""
-            id="pw"
-            placeholder="Password"
-            class="#"
-            required
-          />
+            <form onsubmit="signUpUser(); return false" action="../login/startPage.html">
+                <input type="text" name="" id="user" placeholder="Name" style="margin-bottom: 29px" required />
+                <input type="email" name="" id="email" placeholder="Email" required />
+                <input type="password" name="" id="pw" placeholder="Password" class="#" required />
 
-          <div id="login-buttons" class="login-btn">
-            <button type="submit" id="sign-up-btn" class="sign-up-btn position-bottom">
+                <div id="login-buttons" class="login-btn">
+                    <button type="submit" id="sign-up-btn" class="sign-up-btn position-bottom">
               Sign up
             </button>
-          </div>
-  
-        </form>
-
-
-
-      </div>
+                </div>
+            </form>
+        </div>
+        <div class="new-acc-created-container d-none" id="new_acc_created">
+            <div class="new-acc-created">
+                <h4>New Account created <br> You will be redirected to the login page!</h4>
+            </div>
+        </div>
     </div>
-  </body>
+
+</body>
+
 </html>

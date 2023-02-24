@@ -350,14 +350,17 @@ form input::placeholder {
 
 .input-name {
     background: url(../login/img/user.png) no-repeat scroll 95% 7px;
+    font-size: 19px;
 }
 
 .input-mail {
     background: url(../login/img/email.png) no-repeat scroll 95% 7px;
+    font-size: 19px;
 }
 
 .input-phone {
     background: url(img/phone.png) no-repeat scroll 95% 7px;
+    font-size: 19px;
 }
 
 .new-contact-btn-container {
@@ -490,4 +493,19 @@ form input::placeholder {
         transform: translateY(100px);
         opacity: 0;
     }
+}
+
+.succes-img {
+    position: absolute;
+    bottom: 20px;
+    right: 40vw;
+}
+
+.no-contacts {
+    display: flex;
+    text-align: center;
+    font-family: 'open sans';
+    font-size: 19px;
+    color: #76767667;
+    margin-top: 200px;
 }
