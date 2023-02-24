@@ -172,15 +172,16 @@ function resetImportanceButtons() {
 }
 
 async function renderContactsAddTask(invateNewContactName) {
-  /*   let url = "../contacts.json";
-    let response = await fetch(url); */
+  let dropdown = document.getElementById("contacts-drop-down");
   contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
   contacts.sort((a, b) => (a.name > b.name ? 1 : -1));
 
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];
-    document.getElementById("contacts-drop-down").innerHTML +=
-      generateHTMLcontactsBoard(element, i);
+    if (dropdown == null) {
+      dropdown = document.getElementById("contacts-drop-down-edit");
+    }
+    dropdown.innerHTML += generateHTMLcontactsBoard(element, i);
   }
   if (checkedIndex.length > 0) {
     checkedSetting(invateNewContactName);
@@ -189,6 +190,7 @@ async function renderContactsAddTask(invateNewContactName) {
 
 function addContactToTaskBoard(i) {
   let contact = document.getElementById("contacts-checkbox-" + i).value;
+  getCheckboxValue();
 
   if (selectedContacts.includes(contact)) {
     selectedContacts.splice(i, 1);
@@ -474,6 +476,9 @@ function generateHTMLsubtask(subtask, i) {
 function newContactAddTask() {
   if (newContactAddTaskActive) {
     let invateContact = document.getElementById("new_contact");
+    if (invateContact == null) {
+      invateContact = document.getElementById("new_contact-edit");
+    }
     invateContact.innerHTML = `<div class="new-contact-add-task">
                                   <input onkeyup="" type="email" placeholder="Add Contact Email" class="add-subtask correct-width" id="add_task_email"> 
                                     <div id="new-subtask-accept" class="new-subtask-accept m-i-e">
@@ -492,6 +497,9 @@ function newContactAddTask() {
 
 function newContactAddTaskReturn() {
   let invateContact = document.getElementById("new_contact");
+  if (invateContact == null) {
+    invateContact = document.getElementById("new_contact-edit");
+  }
   invateContact.classList.add("contacts-list-elem");
   invateContact.classList.add("new-contact");
   invateContact.classList.remove("invate-class");
@@ -511,6 +519,9 @@ function addNameNewContact() {
   let invateNewContactEmail = document.getElementById("add_task_email").value;
   email = [String(invateNewContactEmail)];
   let invateContact = document.getElementById("new_contact");
+  if (invateContact == null) {
+    invateContact = document.getElementById("new_contact-edit");
+  }
   invateContact.innerHTML = `<div class="new-contact-add-task">
                                   <input onkeyup="" type="text" placeholder="First and Lastname" class="add-subtask correct-width" id="add_task_name"> 
                                     <div id="new-subtask-accept" class="new-subtask-accept m-i-e">
@@ -566,6 +577,7 @@ async function getCheckboxValue() {
       if (element.checked === true) {
         checkedIndex.push(i);
       }
+      console.log(checkedIndex);
     }
   }
 }
@@ -600,7 +612,11 @@ function clearContactsBeforeRendering(indexLength) {
   if (exist.length > 0) {
     for (let i = 0; i < indexLength - 1; i++) {
       // const element = contacts[i];
-      document.getElementById(`selected-contact-${i}`).parentElement.remove();
+      let contact = document.getElementById(`selected-contact-${i}`);
+      if (contacts == null) {
+        continue;
+      }
+      contact.parentElement.remove();
     }
   }
 }
@@ -640,3 +656,5 @@ function loadAtStartTask() {
   }
   return showCurrentUserNameForSummery;
 }
+
+//  Von board-add-task den ablauf von Checked und  addContactToTaskBoard(i) zuweisung von der Variable selectedContacts  addContactToTaskBoard(i) -->  getCheckboxValue()

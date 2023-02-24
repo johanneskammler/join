@@ -376,7 +376,7 @@ function priorityHTML() {
 
 function assignedHTML(id) {
   return `
-              <div class="contacts-box">
+              <div class="contacts-box" onclick="getCheckboxValue()">
                 <div style="position: relative">
                     <div class="contacts-dropdown">
                         <p onclick="openEditContactsToSelect(${id})" class="select-contacts">
@@ -394,7 +394,7 @@ function assignedHTML(id) {
                                     </div>
                                 </label>
                             </div>
-                            <div onclick="newContactAddTask()" class="contacts-list-elem new-contact" id="new_contact">
+                            <div onclick="newContactAddTask()" class="contacts-list-elem new-contact" id="new_contact-edit">
                                 Invite new contact
                                 <img class="contact-list-element-img" src="../add_task/img-add_task/contact_blue.png" />
                             </div>

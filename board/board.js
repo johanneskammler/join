@@ -170,7 +170,7 @@ function openAddTask() {
 
   addTask.classList.toggle("d-none");
   window.scrollTo(0, 0);
-  renderContactsAddTask();
+  setTimeout(renderContactsAddTask, 250);
   html.classList.toggle("hide-overflow-y");
   renderAddTask();
   dateFutureTask();
