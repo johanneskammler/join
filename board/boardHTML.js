@@ -395,7 +395,7 @@ function assignedHTML(id) {
                                     </div>
                                 </label>
                             </div>
-                            <div onclick="newContactAddTask(0)" class="contacts-list-elem new-contact" id="new_contact-edit">
+                            <div onclick="newContactEdit(0)" class="contacts-list-elem new-contact" id="new_contact-edit">
                                 Invite new contact
                                 <img class="contact-list-element-img" src="../add_task/img-add_task/contact_blue.png" />
                             </div>
@@ -584,7 +584,7 @@ function generateHTMLcontacts(element, i) {
       <label class="control control-checkbox" id="selected-contact${i}" onmouseup="addContactToTask(${i})">
         <div class="contacts-list-elem-box">
           <span id="name${i}" class="rendered-contact-name">${element["name"]}</span>
-          <input id="contacts-checkbox-${i}" type="checkbox" value="${element["name"]}" />
+          <input id="contacts-checkbox${i}" type="checkbox" value="${element["name"]}" />
           <div id="control-indicator${i}" class="control-indicator control-setup"></div>
         </div>
       </label>
