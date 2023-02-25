@@ -641,7 +641,6 @@ async function getCheckboxValue() {
       if (checkedEdit.indexOf(checkedIndex) < 0) {
         checkedEdit.push(checkedIndex);
       }
-      console.log(checkedIndex);
     }
   }
 }
