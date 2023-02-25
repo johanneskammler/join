@@ -497,7 +497,7 @@ form input::placeholder {
 
 .succes-img {
     position: absolute;
-    bottom: 20px;
+    bottom: 45%;
     right: 40vw;
 }
 
@@ -509,3 +509,31 @@ form input::placeholder {
     color: #76767667;
     margin-top: 200px;
 }
+
+.slide-top {
+    -webkit-animation: slide-top 1.5s cubic-bezier(0.23, 1, 0.32, 1) 2 alternate
+      both;
+    animation: slide-top 1.5s cubic-bezier(0.23, 1, 0.32, 1) 2 alternate both;
+  }
+  
+  @-webkit-keyframes slide-top {
+    0% {
+      -webkit-transform: translateY(600px);
+      transform: translateY(600px);
+    }
+    100% {
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slide-top {
+    0% {
+      -webkit-transform: translateY(600px);
+      transform: translateY(600px);
+    }
+    100% {
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+    }
+  }

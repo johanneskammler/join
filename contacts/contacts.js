@@ -90,7 +90,7 @@ function succesImg() {
     document.getElementById('succes_img').classList.remove('d-none');
     setTimeout(() => {
         document.getElementById('succes_img').classList.add('d-none');
-    }, 2500);
+    }, 4500);
 
 
 }
