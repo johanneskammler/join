@@ -353,6 +353,7 @@ function contentTodo(section, id, map) {
   let mapDescription = map.get(`${id}`)["description"];
   let totalSub = map.get(`${id}`)["subtask"];
   let doneSum = document.getElementById(`subtask_done${id}`);
+  let importance = map.get(`${id}`)["importance"];
 
   if (!Array.isArray(totalSub) && totalSub.length > 0) {
     totalSub = totalSub.split(",");
@@ -366,7 +367,8 @@ function contentTodo(section, id, map) {
       mapDescription,
       undefined,
       undefined,
-      id
+      id,
+      importance
     );
   } else {
     // totalSub = map.get(`${id}`)["subtask"].size;
@@ -393,7 +395,8 @@ function contentTodo(section, id, map) {
       mapDescription,
       totalSub,
       doneSum,
-      id
+      id,
+      importance
     );
   }
 }

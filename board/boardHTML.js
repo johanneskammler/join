@@ -7,7 +7,8 @@ function setCardHTML(
   description,
   totalSubtasks,
   progressStatus,
-  id
+  id,
+  importance
 ) {
   return `
                     <div draggable="true" class="card" onclick="openPopup(${id})" id="card${id}">
@@ -37,8 +38,8 @@ function setCardHTML(
                       <div class="card-footer" id="footer${id}">
                         <div class="card-invite" id="contacts_card${id}"></div>
                         <div class="btn-footer" id="importance_footer${id}">
-                          <img class="img-position" src="img-board/low.png">
-                          <img src="img-board/low.png">
+                          <img class="img-position" src="img-board/${importance}.png">
+                          <img src="img-board/${importance}.png">
                         </div>
                       <div>
                     </div>`;
