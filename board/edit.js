@@ -3,6 +3,7 @@ function openEditContactsToSelect(id) {
   element.classList.toggle("d-none");
   renderContactsEdit();
   setTimeout(contactsCheckboxUpdate, 200, id);
+  checkedSettingEdit(checkedEdit);
 }
 
 async function renderContactsEdit() {
@@ -231,4 +232,30 @@ function emptyImportanceButton3() {
   document.getElementById("importance-button3").style = "display: flex;";
   document.getElementById("importance-button3-colored").style =
     "display: none;";
+}
+
+async function checkedSettingEdit(array) {
+  let people = await JSON.parse(backend.getItem("contacts"));
+  people = people.sort((a, b) => (a.name > b.name ? 1 : -1));
+  if (people.length > 0) {
+    for (let i = 0; i < people.length; i++) {
+      const element = people[i]["name"];
+      if (`${array}`.indexOf(element) > -1) {
+        let lastContactId = document.getElementById(`contacts-checkbox-${i}`);
+        lastContactId.checked = true;
+        checkedIndex.push(array);
+      }
+    }
+  }
+  /* 
+  for (let i = 0; i < people.length; i++) {
+    let theName = people[i]["name"];
+    for (let j = 0; j < selectedContacts.length; j++) {
+      const selected = selectedContacts[j];
+      if (theName.indexOf(selected) > -1) {
+        let theIndex = i;
+        document.getElementById(`contacts-checkbox-${theIndex}`).checked = true;
+      }
+    }
+  } */
 }

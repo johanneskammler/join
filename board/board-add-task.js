@@ -13,6 +13,7 @@ let contacts;
 let exist;
 let currentContacts;
 let filled = false;
+let checkedEdit = [];
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 
 async function getUrgentCounter() {
@@ -574,24 +575,30 @@ async function getCheckboxValue() {
   } else {
     for (let i = 0; i < currentContacts.length; i++) {
       const element = document.getElementById(`contacts-checkbox-${i}`);
+      if (element == null) {
+        continue;
+      }
       if (element.checked === true) {
         checkedIndex.push(i);
+      }
+      if (checkedEdit.indexOf(checkedIndex) < 0) {
+        checkedEdit.push(checkedIndex);
       }
       console.log(checkedIndex);
     }
   }
 }
 
-async function checkedSetting(invateNewContactName) {
+async function checkedSetting(array) {
   let people = await JSON.parse(backend.getItem("contacts"));
   people = people.sort((a, b) => (a.name > b.name ? 1 : -1));
   if (people.length > 0) {
-    for (let i = 0; i < contacts.length; i++) {
-      const element = contacts[i]["name"];
-      if (element.indexOf(`${invateNewContactName}`) > -1) {
+    for (let i = 0; i < people.length; i++) {
+      const element = people[i]["name"];
+      if (element.indexOf(`${array}`) > -1) {
         let lastContactId = document.getElementById(`contacts-checkbox-${i}`);
         lastContactId.checked = true;
-        checkedIndex.push(invateNewContactName);
+        checkedIndex.push(array);
       }
     }
   }
