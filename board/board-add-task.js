@@ -619,8 +619,8 @@ function clearContactsBeforeRendering(indexLength) {
   if (exist.length > 0) {
     for (let i = 0; i < indexLength - 1; i++) {
       // const element = contacts[i];
-      let contact = document.getElementById(`selected-contact-${i}`);
-      if (contacts == null) {
+      let contact = document.getElementById(`selected-contact${i}`);
+      if (contact == null) {
         continue;
       }
       contact.parentElement.remove();
