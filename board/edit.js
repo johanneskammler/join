@@ -236,7 +236,9 @@ function emptyImportanceButton3() {
 
 async function checkedSettingEdit(array) {
   let people = await JSON.parse(backend.getItem("contacts"));
-  people = people.sort((a, b) => (a.name > b.name ? 1 : -1));
+  if (people.length > 1) {
+    people = people.sort((a, b) => (a.name > b.name ? 1 : -1));
+  }
   if (people.length > 0) {
     for (let i = 0; i < people.length; i++) {
       const element = people[i]["name"];

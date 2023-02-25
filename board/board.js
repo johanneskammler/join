@@ -887,7 +887,7 @@ async function editContactsPopup(id) {
   let contactsInPopup = [];
   for (let i = 0; i < map.length; i++) {
     const element = map[i]["name"];
-    let dok = document.getElementById(`contacts-checkbox-${i}`);
+    let dok = document.getElementById(`contacts-checkbox${i}`);
     if (dok == null || dok == undefined) {
       return;
     }

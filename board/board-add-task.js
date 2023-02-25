@@ -190,7 +190,7 @@ async function renderContactsAddTask(invateNewContactName) {
 }
 
 function addContactToTaskBoard(i) {
-  let contact = document.getElementById("contacts-checkbox-" + i).value;
+  let contact = document.getElementById("contacts-checkbox" + i).value;
   getCheckboxValue();
 
   if (selectedContacts.includes(contact)) {
@@ -408,7 +408,7 @@ function generateHTMLcontactsBoard(element, i) {
         <label class="control control-checkbox" id="selected-contact${i}">
           <div class="contacts-list-elem-box">
             <span class="rendered-contact-name">${element["name"]}</span>
-            <input onclick="addContactToTaskBoard(${i})" id="contacts-checkbox-${i}" type="checkbox" value="${element["name"]}" />
+            <input onclick="addContactToTaskBoard(${i})" id="contacts-checkbox${i}" type="checkbox" value="${element["name"]}" />
             <div id="control-indicator-${i}" class="control-indicator"></div>
           </div>
         </label>
@@ -576,7 +576,7 @@ async function getCheckboxValue() {
     checkedIndex.push(0);
   } else {
     for (let i = 0; i < currentContacts.length; i++) {
-      const element = document.getElementById(`contacts-checkbox-${i}`);
+      const element = document.getElementById(`contacts-checkbox${i}`);
       if (element == null) {
         continue;
       }
@@ -598,7 +598,7 @@ async function checkedSetting(array) {
     for (let i = 0; i < people.length; i++) {
       const element = people[i]["name"];
       if (element.indexOf(`${array}`) > -1) {
-        let lastContactId = document.getElementById(`contacts-checkbox-${i}`);
+        let lastContactId = document.getElementById(`contacts-checkbox${i}`);
         lastContactId.checked = true;
         checkedIndex.push(array);
       }
@@ -611,7 +611,7 @@ async function checkedSetting(array) {
       const selected = selectedContacts[j];
       if (theName.indexOf(selected) > -1) {
         let theIndex = i;
-        document.getElementById(`contacts-checkbox-${theIndex}`).checked = true;
+        document.getElementById(`contacts-checkbox${theIndex}`).checked = true;
       }
     }
   }
