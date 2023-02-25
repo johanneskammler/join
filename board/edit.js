@@ -28,7 +28,7 @@ async function contactsCheckboxUpdate(id) {
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];
     if (contacts.indexOf(element) < 0) {
-      let id = document.getElementById(`contacts-checkbox-${element}`);
+      let id = document.getElementById(`contacts-checkbox${element}`);
       id.checked = true;
       addContactToTask(element, id);
     }
@@ -36,7 +36,7 @@ async function contactsCheckboxUpdate(id) {
 }
 
 async function addContactToTask(element, id) {
-  let contact = document.getElementById("contacts-checkbox-" + element).value;
+  let contact = document.getElementById("contacts-checkbox" + element).value;
 
   if (selectedContacts.indexOf(contact) == -1) {
     selectedContacts.push(contact);
@@ -241,7 +241,7 @@ async function checkedSettingEdit(array) {
     for (let i = 0; i < people.length; i++) {
       const element = people[i]["name"];
       if (`${array}`.indexOf(element) > -1) {
-        let lastContactId = document.getElementById(`contacts-checkbox-${i}`);
+        let lastContactId = document.getElementById(`contacts-checkbox${i}`);
         lastContactId.checked = true;
         checkedIndex.push(array);
       }

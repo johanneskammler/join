@@ -1,5 +1,4 @@
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
-/*gruppe-417.developerakademie.net/join/smallest_backend_ever*/
 let startposition;
 let todosMap = new Map();
 todosMap.set("x", { value: "none" });
@@ -24,49 +23,43 @@ let progress = "progress";
 let done = "done";
 let idCounter = 0;
 
-/* check a background color for the new contacts up */
-
 /**
  * This function Initialized some functions that need to run with onload of the body
  *
  */
 
-/* function checkMaps(place) {
-  console.log(place);
-} */
-
 async function init() {
-    await includeHTML();
-    await downloadFromServer();
-    checkSize();
-    draggableTrue();
-    setTimeout(activateDragAndDrop, 300); /* setCards(); */
-    await getMaps();
-    generateCards();
-    checkIfEmpty();
-    tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
-    getUrgentCounter();
-    getCurrentContacts();
+  await includeHTML();
+  await downloadFromServer();
+  checkSize();
+  draggableTrue();
+  setTimeout(activateDragAndDrop, 300); /* setCards(); */
+  await getMaps();
+  generateCards();
+  checkIfEmpty();
+  tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
+  getUrgentCounter();
+  getCurrentContacts();
 }
 
 function openPopup(id) {
-    generatePopup(id);
-    popup();
-    dateFutureTask();
+  generatePopup(id);
+  popup();
+  dateFutureTask();
 }
 
 function hoverBoardHtml() {
-    let boardBG = document.getElementById("board_bg");
+  let boardBG = document.getElementById("board_bg");
 
-    boardBG.classList.add("section-background-normal");
-    boardBG.classList.remove("section-background");
+  boardBG.classList.add("section-background-normal");
+  boardBG.classList.remove("section-background");
 }
 
 function hoverBoardRespons() {
-    let boardBG = document.getElementById("board_bg");
+  let boardBG = document.getElementById("board_bg");
 
-    boardBG.classList.remove("section-background-normal");
-    boardBG.classList.add("section-background");
+  boardBG.classList.remove("section-background-normal");
+  boardBG.classList.add("section-background");
 }
 
 /**
@@ -76,17 +69,18 @@ function hoverBoardRespons() {
  */
 
 function popup(id) {
-    let background = document.getElementById("popup");
-    let card = document.getElementById("popup_card");
+  let background = document.getElementById("popup");
+  let card = document.getElementById("popup_card");
 
-    document.getElementById("edit_priority").classList.remove("correctPrio");
-    document.getElementById("popup_title").classList.remove("card-content-popup");
-    document.getElementById("card_content").classList.remove("set-content");
+  document.getElementById("edit_priority").classList.remove("correctPrio");
+  document.getElementById("popup_title").classList.remove("card-content-popup");
+  document.getElementById("card_content").classList.remove("set-content");
 
-    window.scrollTo(0, 0);
-    card.classList.toggle("d-none");
-    background.classList.toggle("d-none");
-    activateDragAndDrop();
+  window.scrollTo(0, 0);
+  card.classList.toggle("d-none");
+  background.classList.toggle("d-none");
+  activateDragAndDrop();
+  newContactAddTaskActive = true;
 }
 
 /*  
@@ -95,49 +89,49 @@ function popup(id) {
  * to set the sidebar and deactivate the dragAndDrop
  */
 function checkSize() {
-    let size = window.innerWidth;
+  let size = window.innerWidth;
 
-    if (size <= 1024) {
-        sidebarTabled();
-        draggableFalse();
-        hoverBoardRespons();
-    } else if (size > 1024) {
-        draggableTrue();
-        sidebarDesktop();
-        hoverBoardHtml();
-    }
+  if (size <= 1024) {
+    sidebarTabled();
+    draggableFalse();
+    hoverBoardRespons();
+  } else if (size > 1024) {
+    draggableTrue();
+    sidebarDesktop();
+    hoverBoardHtml();
+  }
 }
 
 /**
  * set The Sidebar to the Bottom
  */
 function sidebarTabled() {
-    let sidebar = document.getElementById("sidebar");
+  let sidebar = document.getElementById("sidebar");
 
-    sidebar.classList.remove("sidebar");
-    sidebar.classList.add("tablet-sidebar");
+  sidebar.classList.remove("sidebar");
+  sidebar.classList.add("tablet-sidebar");
 }
 
 /**
  * set the sidebar to the left
  */
 function sidebarDesktop() {
-    let sidebar = document.getElementById("sidebar");
+  let sidebar = document.getElementById("sidebar");
 
-    sidebar.classList.add("sidebar");
-    sidebar.classList.remove("tablet-sidebar");
+  sidebar.classList.add("sidebar");
+  sidebar.classList.remove("tablet-sidebar");
 }
 
 /**
  * disable the dragAndDrop function
  */
 function draggableFalse() {
-    let cards = document.getElementsByClassName("card");
+  let cards = document.getElementsByClassName("card");
 
-    for (let i = 0; i < cards.length; i++) {
-        const card = cards[i];
-        card.setAttribute("draggable", false);
-    }
+  for (let i = 0; i < cards.length; i++) {
+    const card = cards[i];
+    card.setAttribute("draggable", false);
+  }
 }
 
 /**
@@ -145,51 +139,51 @@ function draggableFalse() {
  */
 
 function draggableTrue() {
-    let cards = document.getElementsByClassName("card");
+  let cards = document.getElementsByClassName("card");
 
-    for (let i = 0; i < cards.length; i++) {
-        const card = cards[i];
-        card.setAttribute("draggable", true);
-        card.onmousedown = "";
-    }
+  for (let i = 0; i < cards.length; i++) {
+    const card = cards[i];
+    card.setAttribute("draggable", true);
+    card.onmousedown = "";
+  }
 }
 
 function renderAddTask() {
-    let addTask = document.getElementById("add_task");
+  let addTask = document.getElementById("add_task");
 
-    addTask.innerHTML = renderAddTaskHTML();
+  addTask.innerHTML = renderAddTaskHTML();
 }
 
 /**
  * open addTask and remove the d-none class from the div with id add-task
  */
 function openAddTask() {
-    let addTask = document.getElementById("add_task");
-    let list = document.getElementsByTagName("html");
-    let html = list[0];
+  let addTask = document.getElementById("add_task");
+  let list = document.getElementsByTagName("html");
+  let html = list[0];
 
-    addTask.classList.toggle("d-none");
-    window.scrollTo(0, 0);
-    setTimeout(renderContactsAddTask, 250);
-    html.classList.toggle("hide-overflow-y");
-    renderAddTask();
-    dateFutureTask();
-    subtasks = [];
+  addTask.classList.toggle("d-none");
+  window.scrollTo(0, 0);
+  setTimeout(renderContactsAddTask, 250);
+  html.classList.toggle("hide-overflow-y");
+  renderAddTask();
+  dateFutureTask();
+  subtasks = [];
 }
 
 /**
  * close the addTask div and add the d-none class from the div with id add-task
  */
 function closeAddTask() {
-    let addBoard = document.getElementById("add-board");
+  let addBoard = document.getElementById("add-board");
 
-    addBoard.classList.remove("slide-left");
-    addBoard.classList.add("slide-right");
-    setTimeout(openAddTask, 350);
-    setTimeout(activateDragAndDrop, 350);
-    subtasks = [];
-    subCounterAdd = 0;
-    selectedContacts = [];
+  addBoard.classList.remove("slide-left");
+  addBoard.classList.add("slide-right");
+  setTimeout(openAddTask, 350);
+  setTimeout(activateDragAndDrop, 350);
+  subtasks = [];
+  subCounterAdd = 0;
+  selectedContacts = [];
 }
 
 /**
@@ -197,375 +191,388 @@ function closeAddTask() {
  */
 
 async function getFirstLetter(contacts, idCounter) {
-    let namesSplit = new Map();
-    let nameList = [];
-    let letterList = [];
+  let namesSplit = new Map();
+  let nameList = [];
+  let letterList = [];
 
-    for (let i = 0; i < contacts.length; i++) {
-        const element = contacts[i];
-        let name = element.split(" ");
-        let justName = `${name[0]} ${name[1]}`;
-        let firstLetter = name[0].split("");
-        let secondLetter = name[1].split("");
-        let firstLetters = firstLetter[0] + secondLetter[0];
+  for (let i = 0; i < contacts.length; i++) {
+    const element = contacts[i];
+    let name = element.split(" ");
+    let justName = `${name[0]} ${name[1]}`;
+    let firstLetter = name[0].split("");
+    let secondLetter = name[1].split("");
+    let firstLetters = firstLetter[0] + secondLetter[0];
 
-        nameList.push(justName);
-        letterList.push(firstLetters);
-    }
-    namesSplit.set(`${idCounter}`, {
-        contacts: `${nameList}`,
-        letters: `${letterList}`,
-    });
-    return namesSplit;
+    nameList.push(justName);
+    letterList.push(firstLetters);
+  }
+  namesSplit.set(`${idCounter}`, {
+    contacts: `${nameList}`,
+    letters: `${letterList}`,
+  });
+  return namesSplit;
 }
 
 function checkIdCounter() {
-    loadCounter();
-    if (idCounter == "leer") {
-        idCounter = 0;
-    }
+  loadCounter();
+  if (idCounter == "leer") {
+    idCounter = 0;
+  }
 }
 
 async function setTasks() {
-    let tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
-    let doneCoordinates = [];
+  let tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
+  let doneCoordinates = [];
 
-    if (tasks.length > 0) {
-        for (let i = 0; i < tasks.length; i++) {
-            checkIdCounter();
-            key = tasks[i];
-            let subtaskLength = tasks[i]["subtasks"].length;
+  if (tasks.length > 0) {
+    for (let i = 0; i < tasks.length; i++) {
+      checkIdCounter();
+      key = tasks[i];
+      let subtaskLength = tasks[i]["subtasks"].length;
 
-            if (tasks[i]["letters"][0] == null) {
-                let contactsLetter = tasks[i]["contacts"];
+      if (tasks[i]["letters"][0] == null) {
+        let contactsLetter = tasks[i]["contacts"];
 
-                if (typeof contactsLetter == "string") {
-                    contactsLetter = contactsLetter.split(",");
-                }
-                namesSplit = await getFirstLetter(contactsLetter, idCounter);
-            }
-
-            if (subtaskLength > 0) {
-                for (let j = 0; j < subtaskLength; j++) {
-                    doneCoordinates.push(`cancel_sub${j}`);
-                }
-            }
-
-            todosMap.set(`${idCounter}`, {
-                category: key["category"],
-                categorycolor: key["categorycolor"],
-                contacts: key["contacts"],
-                colors: key["colors"],
-                letters: namesSplit.get(`${idCounter}`)["letters"],
-                date: key["date"],
-                description: key["description"],
-                importance: key["importance"],
-                subtask: key["subtasks"],
-                subtaskStatus: doneCoordinates,
-                title: key["title"],
-                progressStatus: key[0],
-            });
-
-            await saveMaps();
-            await backend.deleteItem("tasks");
-            subtask = todosMap.get(`${idCounter}`)["substack"];
-            currentId = idCounter;
-            idCounter++;
-            idCounterToJson();
+        if (typeof contactsLetter == "string") {
+          contactsLetter = contactsLetter.split(",");
         }
+        namesSplit = await getFirstLetter(contactsLetter, idCounter);
+      }
+
+      if (subtaskLength > 0) {
+        for (let j = 0; j < subtaskLength; j++) {
+          doneCoordinates.push(`cancel_sub${j}`);
+        }
+      }
+
+      todosMap.set(`${idCounter}`, {
+        category: key["category"],
+        categorycolor: key["categorycolor"],
+        contacts: key["contacts"],
+        colors: key["colors"],
+        letters: namesSplit.get(`${idCounter}`)["letters"],
+        date: key["date"],
+        description: key["description"],
+        importance: key["importance"],
+        subtask: key["subtasks"],
+        subtaskStatus: doneCoordinates,
+        title: key["title"],
+        progressStatus: key[0],
+      });
+
+      await saveMaps();
+      await backend.deleteItem("tasks");
+      subtask = todosMap.get(`${idCounter}`)["substack"];
+      currentId = idCounter;
+      idCounter++;
+      idCounterToJson();
     }
-    setCards(todo);
+  }
+  setCards(todo);
 }
 
 function setCards(section) {
-    if (section === "todo") {
-        let todo = document.getElementById("todo-board");
-        todo.innerHTML = "";
-        for (const [key, value] of todosMap) {
-            if (!(key === "x")) {
-                cardContent(section, key);
+  if (section === "todo") {
+    let todo = document.getElementById("todo-board");
+    todo.innerHTML = "";
+    for (const [key, value] of todosMap) {
+      if (!(key === "x")) {
+        cardContent(section, key);
 
-                checkSubtasks(key, todosMap);
+        checkSubtasks(key, todosMap);
 
-                renderContacts(section, key);
-            }
-        }
+        renderContacts(section, key);
+      }
     }
-    if (section === "progress") {
-        let progress = document.getElementById("progress-board");
-        progress.innerHTML = ``;
-        for (const [key, value] of progressesMap) {
-            if (!(key === "x")) {
-                cardContent(section, key);
+  }
+  if (section === "progress") {
+    let progress = document.getElementById("progress-board");
+    progress.innerHTML = ``;
+    for (const [key, value] of progressesMap) {
+      if (!(key === "x")) {
+        cardContent(section, key);
 
-                checkSubtasks(key, progressesMap);
+        checkSubtasks(key, progressesMap);
 
-                renderContacts(section, key);
-            }
-        }
+        renderContacts(section, key);
+      }
     }
-    if (section === "feedback") {
-        let feedback = document.getElementById("feedback-board");
-        feedback.innerHTML = ``;
-        for (const [key, value] of feedbacksMap) {
-            if (!(key === "x")) {
-                cardContent(section, key);
-                if (feedbacksMap.get(`${key}`)["subtask"].length === 0) {
-                    checkSubtasks(key, feedbacksMap);
-                }
-                renderContacts(section, key);
-            }
+  }
+  if (section === "feedback") {
+    let feedback = document.getElementById("feedback-board");
+    feedback.innerHTML = ``;
+    for (const [key, value] of feedbacksMap) {
+      if (!(key === "x")) {
+        cardContent(section, key);
+        if (feedbacksMap.get(`${key}`)["subtask"].length === 0) {
+          checkSubtasks(key, feedbacksMap);
         }
+        renderContacts(section, key);
+      }
     }
-    if (section === "done") {
-        let done = document.getElementById("done-board");
-        done.innerHTML = "";
-        for (const [key, value] of donesMap) {
-            if (!(key === "x")) {
-                cardContent(section, key);
-                if (donesMap.get(`${key}`)["subtask"].length === 0) {
-                    checkSubtasks(key, donesMap);
-                }
-                renderContacts(section, key);
-            }
+  }
+  if (section === "done") {
+    let done = document.getElementById("done-board");
+    done.innerHTML = "";
+    for (const [key, value] of donesMap) {
+      if (!(key === "x")) {
+        cardContent(section, key);
+        if (donesMap.get(`${key}`)["subtask"].length === 0) {
+          checkSubtasks(key, donesMap);
         }
+        renderContacts(section, key);
+      }
     }
+  }
 }
 
 function cardContent(section, id) {
-    if (section === "todo") {
-        contentTodo(section, id, todosMap);
-    } else if (section === "progress") {
-        contentTodo(section, id, progressesMap);
-    } else if (section === "feedback") {
-        contentTodo(section, id, feedbacksMap);
-    } else if (section === "done") {
-        contentTodo(section, id, donesMap);
-    }
+  if (section === "todo") {
+    contentTodo(section, id, todosMap);
+  } else if (section === "progress") {
+    contentTodo(section, id, progressesMap);
+  } else if (section === "feedback") {
+    contentTodo(section, id, feedbacksMap);
+  } else if (section === "done") {
+    contentTodo(section, id, donesMap);
+  }
 }
 
 function setCardImportanc(id) {
-    let footer = document.getElementById(`importance_footer${id}`);
-    if (donesMap.get(`${id}`)["importance"] === "urgent") {
-        footer.innerHTML = ` <img class="img-position" src="img-board/${importance}.png">
+  let footer = document.getElementById(`importance_footer${id}`);
+  if (donesMap.get(`${id}`)["importance"] === "urgent") {
+    footer.innerHTML = ` <img class="img-position" src="img-board/${importance}.png">
                         <img src="img-board/${importance}.png">`;
-    }
+  }
 }
 
 function contentTodo(section, id, map) {
-    let mapCategory = map.get(`${id}`)["category"];
-    let mapCatColor = map.get(`${id}`)["categorycolor"];
-    let mapTitle = map.get(`${id}`)["title"];
-    let mapDescription = map.get(`${id}`)["description"];
-    let totalSub = map.get(`${id}`)["subtask"];
-    let doneSum = document.getElementById(`subtask_done${id}`);
+  let mapCategory = map.get(`${id}`)["category"];
+  let mapCatColor = map.get(`${id}`)["categorycolor"];
+  let mapTitle = map.get(`${id}`)["title"];
+  let mapDescription = map.get(`${id}`)["description"];
+  let totalSub = map.get(`${id}`)["subtask"];
+  let doneSum = document.getElementById(`subtask_done${id}`);
 
-    if (!Array.isArray(totalSub) && totalSub.length > 0) {
-        totalSub = totalSub.split(",");
-    }
+  if (!Array.isArray(totalSub) && totalSub.length > 0) {
+    totalSub = totalSub.split(",");
+  }
 
-    if (totalSub == "") {
-        document.getElementById(`${section}-board`).innerHTML += setCardHTML(
-            mapCategory,
-            mapCatColor,
-            mapTitle,
-            mapDescription,
-            undefined,
-            undefined,
-            id
-        );
+  if (totalSub == "") {
+    document.getElementById(`${section}-board`).innerHTML += setCardHTML(
+      mapCategory,
+      mapCatColor,
+      mapTitle,
+      mapDescription,
+      undefined,
+      undefined,
+      id
+    );
+  } else {
+    // totalSub = map.get(`${id}`)["subtask"].size;
+    if (typeof totalSub == "string") {
+      totalSub = totalSub.split(",");
     } else {
-        // totalSub = map.get(`${id}`)["subtask"].size;
-        if (typeof totalSub == "string") {
-            totalSub = totalSub.split(",");
-        } else {
-            totalSub = totalSub.length;
-        }
-        let progressStatus = map.get(`${id}`)["subtaskStatus"];
-        if (typeof progressStatus == "string") {
-            progressStatus = progressStatus.split(",");
-        }
-        for (let i = 0; i < progressStatus.length; i++) {
-            const element = progressStatus[i];
-            if (element == `add_sub${i}` && !(doneSum == null)) {
-                doneSum = parseInt(doneSum.innerHTML);
-                doneSum++;
-            }
-        }
-        document.getElementById(`${section}-board`).innerHTML += setCardHTML(
-            mapCategory,
-            mapCatColor,
-            mapTitle,
-            mapDescription,
-            totalSub,
-            doneSum,
-            id
-        );
+      totalSub = totalSub.length;
     }
+    let progressStatus = map.get(`${id}`)["subtaskStatus"];
+    if (typeof progressStatus == "string") {
+      progressStatus = progressStatus.split(",");
+    }
+    for (let i = 0; i < progressStatus.length; i++) {
+      const element = progressStatus[i];
+      if (element == `add_sub${i}` && !(doneSum == null)) {
+        doneSum = parseInt(doneSum.innerHTML);
+        doneSum++;
+      }
+    }
+    document.getElementById(`${section}-board`).innerHTML += setCardHTML(
+      mapCategory,
+      mapCatColor,
+      mapTitle,
+      mapDescription,
+      totalSub,
+      doneSum,
+      id
+    );
+  }
 }
 
 function checkSubtasks(id, map) {
-    let currentMap = new Map(map);
-    let progressId = document.getElementById(`progress_box${id}`);
-    let counter = 0;
-    if (currentMap.get(`${id}`)["subtask"] == "") {
-        progressId.classList.add("d-none");
-        addHeight(id);
-    } else {
-        let subtaskCards = currentMap.get(`${id}`)["subtaskStatus"];
-        if (typeof subtaskCards == "string") {
-            subtaskCards = subtaskCards.split(",");
-        }
-        for (let i = 0; i < subtaskCards.length; i++) {
-            const element = subtaskCards[i];
-            if (element.includes("add")) {
-                counter++;
-            }
-        }
-        let cardProgress = counter * (100 / subtaskCards.length);
-        addProgressCard(cardProgress, id, counter);
+  let currentMap = new Map(map);
+  let progressId = document.getElementById(`progress_box${id}`);
+  let counter = 0;
+  if (currentMap.get(`${id}`)["subtask"] == "") {
+    progressId.classList.add("d-none");
+    addHeight(id);
+  } else {
+    let subtaskCards = currentMap.get(`${id}`)["subtaskStatus"];
+    if (typeof subtaskCards == "string") {
+      subtaskCards = subtaskCards.split(",");
     }
+    for (let i = 0; i < subtaskCards.length; i++) {
+      const element = subtaskCards[i];
+      if (element.includes("add")) {
+        counter++;
+      }
+    }
+    let cardProgress = counter * (100 / subtaskCards.length);
+    addProgressCard(cardProgress, id, counter);
+  }
 }
 
 function addHeight(id) {
-    let list = document.getElementById(`footer${id}`);
-    list.style.height = "55px";
+  let list = document.getElementById(`footer${id}`);
+  list.style.height = "55px";
 }
 
 function renderContacts(section, id) {
-    if (section === "todo") {
-        renderContactsTodo(id);
-    } else if (section === "progress") {
-        renderContactsProgress(id);
-    } else if (section === "feedback") {
-        renderContactsFeedback(id);
-    } else if (section === "done") {
-        renderContactsDone(id);
-    }
+  if (section === "todo") {
+    renderContactsTodo(id);
+  } else if (section === "progress") {
+    renderContactsProgress(id);
+  } else if (section === "feedback") {
+    renderContactsFeedback(id);
+  } else if (section === "done") {
+    renderContactsDone(id);
+  }
 }
 
 function renderContactsDone(id) {
-    let contacts = donesMap.get(`${id}`)["contacts"];
-    let colors = donesMap.get(`${id}`)["colors"];
-    let letters = donesMap.get(`${id}`)["letters"];
+  let contacts = donesMap.get(`${id}`)["contacts"];
+  let colors = donesMap.get(`${id}`)["colors"];
+  let letters = donesMap.get(`${id}`)["letters"];
 
-    if (contacts.length === 0) {
-        let contactsSection = document.getElementById(`contacts_card${id}`);
-        contactsSection.classList.add("d-none");
-    }
-    if (donesMap.get(`${id}`)["colors"] == "string") {
-        colors.split(",");
-    }
-    if (donesMap.get(`${id}`)["letters"] == "string") {
-        letters.split(",");
-    }
+  if (contacts.length === 0) {
     let contactsSection = document.getElementById(`contacts_card${id}`);
-    checkForContactNumber(contacts, letters, contactsSection, colors);
+    contactsSection.classList.add("d-none");
+  }
+  if (donesMap.get(`${id}`)["colors"] == "string") {
+    colors.split(",");
+  }
+  if (donesMap.get(`${id}`)["letters"] == "string") {
+    letters.split(",");
+  }
+  let contactsSection = document.getElementById(`contacts_card${id}`);
+  checkForContactNumber(contacts, letters, contactsSection, colors);
 }
 
 function renderContactsFeedback(id) {
-    let contacts = feedbacksMap.get(`${id}`)["contacts"];
-    let colors = feedbacksMap.get(`${id}`)["colors"];
-    let letters = feedbacksMap.get(`${id}`)["letters"];
+  let contacts = feedbacksMap.get(`${id}`)["contacts"];
+  let colors = feedbacksMap.get(`${id}`)["colors"];
+  let letters = feedbacksMap.get(`${id}`)["letters"];
 
-    if (contacts.length === 0) {
-        let contactsSection = document.getElementById(`contacts_card${id}`);
-        contactsSection.classList.add("d-none");
-    }
-    if (feedbacksMap.get(`${id}`)["colors"] == "string") {
-        colors.split(",");
-    }
-    if (feedbacksMap.get(`${id}`)["letters"] == "string") {
-        letters.split(",");
-    }
+  if (contacts.length === 0) {
     let contactsSection = document.getElementById(`contacts_card${id}`);
-    checkForContactNumber(contacts, letters, contactsSection, colors);
+    contactsSection.classList.add("d-none");
+  }
+  if (feedbacksMap.get(`${id}`)["colors"] == "string") {
+    colors.split(",");
+  }
+  if (feedbacksMap.get(`${id}`)["letters"] == "string") {
+    letters.split(",");
+  }
+  let contactsSection = document.getElementById(`contacts_card${id}`);
+  checkForContactNumber(contacts, letters, contactsSection, colors);
 }
 
 function renderContactsProgress(id) {
-    let contacts = progressesMap.get(`${id}`)["contacts"];
-    let colors = progressesMap.get(`${id}`)["colors"];
-    let letters = progressesMap.get(`${id}`)["letters"];
+  let contacts = progressesMap.get(`${id}`)["contacts"];
+  let colors = progressesMap.get(`${id}`)["colors"];
+  let letters = progressesMap.get(`${id}`)["letters"];
 
-    if (contacts.length === 0) {
-        let contactsSection = document.getElementById(`contacts_card${id}`);
-        contactsSection.classList.add("d-none");
-    }
-    if (progressesMap.get(`${id}`)["colors"] == "string") {
-        colors.split(",");
-    }
-    if (progressesMap.get(`${id}`)["letters"] == "string") {
-        letters.split(",");
-    }
+  if (contacts.length === 0) {
     let contactsSection = document.getElementById(`contacts_card${id}`);
-    checkForContactNumber(contacts, letters, contactsSection, colors);
+    contactsSection.classList.add("d-none");
+  }
+  if (progressesMap.get(`${id}`)["colors"] == "string") {
+    colors.split(",");
+  }
+  if (progressesMap.get(`${id}`)["letters"] == "string") {
+    letters.split(",");
+  }
+  let contactsSection = document.getElementById(`contacts_card${id}`);
+  checkForContactNumber(contacts, letters, contactsSection, colors);
 }
 
 function renderContactsTodo(id) {
-    let contacts = todosMap.get(`${id}`)["contacts"];
-    let element;
-    if (typeof contacts === "string") {
-        contacts = contacts.split(";");
-    }
+  let contacts = todosMap.get(`${id}`)["contacts"];
+  let element;
+  if (typeof contacts === "string") {
+    contacts = contacts.split(";");
+  }
 
-    if (contacts.length === 0) {
-        let contactsSection = document.getElementById(`contacts_card${id}`);
-        contactsSection.classList.add("d-none");
-    }
-
-    let colors = [todosMap.get(`${id}`)["colors"]];
-    if ((colors.length = 1)) {
-        colors = colors[0];
-    } else {
-        colors = colors.split(",");
-    }
-
-    let letters = todosMap.get(`${id}`)["letters"];
-    if (letters.length == 1) {
-        letters = [letters[0]];
-    } else {
-        letters = String(letters).split(",");
-    }
+  if (contacts.length === 0) {
     let contactsSection = document.getElementById(`contacts_card${id}`);
-    checkForContactNumber(contacts, letters, contactsSection, colors);
+    contactsSection.classList.add("d-none");
+  }
+
+  let colors = [todosMap.get(`${id}`)["colors"]];
+  if ((colors.length = 1)) {
+    colors = colors[0];
+  } else {
+    colors = colors.split(",");
+  }
+
+  let letters = todosMap.get(`${id}`)["letters"];
+  if (letters.length == 1) {
+    letters = [letters[0]];
+  } else {
+    letters = String(letters).split(",");
+  }
+  let contactsSection = document.getElementById(`contacts_card${id}`);
+  checkForContactNumber(contacts, letters, contactsSection, colors);
 }
 
 function checkForContactNumber(contacts, letters, contactsSection, colors) {
-    let changedColorForDots;
-    if (contacts.length > 2) {
-        let element;
-        for (let i = 0; i < 2; i++) {
-            element = colors[i];
+  let changedColorForDots;
+  if (contacts.length > 2) {
+    let element;
+    for (let i = 0; i < 2; i++) {
+      element = colors[i];
 
-            contactsSection.innerHTML += `<p class="invate font" style="background-color: ${colors[i]};">${letters[i]}</p>`;
-        }
-        changedColorForDots = element.slice(0, 4);
-        contactsSection.innerHTML += `<p class="invate font" style="background-color: ${changedColorForDots};">...</p>`;
-    } else if (contacts.length == 2) {
-        for (let i = 0; i < contacts.length; i++) {
-            const element = colors[i];
-
-            contactsSection.innerHTML += `<p class="invate font" style="background-color: ${colors[i]};">${letters[i]}</p>`;
-        }
-    } else {
-        for (let i = 0; i < contacts.length; i++) {
-            const element = colors[i];
-
-            contactsSection.innerHTML += `<p class="invate font" style="background-color: ${colors};">${letters[i]}</p>`;
-        }
+      contactsSection.innerHTML += `<p class="invate font" style="background-color: ${colors[i]};">${letters[i]}</p>`;
     }
+    changedColorForDots = element.slice(0, 4);
+    contactsSection.innerHTML += `<p class="invate font" style="background-color: ${changedColorForDots};">...</p>`;
+  } else if (contacts.length == 2) {
+    for (let i = 0; i < contacts.length; i++) {
+      const element = colors[i];
+
+      contactsSection.innerHTML += `<p class="invate font" style="background-color: ${colors[i]};">${letters[i]}</p>`;
+    }
+  } else {
+    for (let i = 0; i < contacts.length; i++) {
+      const element = colors[i];
+
+      contactsSection.innerHTML += `<p class="invate font" style="background-color: ${colors};">${letters[i]}</p>`;
+    }
+  }
 }
 
 function generateCards() {
-    setTasks();
+  setTasks();
 
-    setCards(progress);
-    setCards(feedback);
-    setCards(done);
-    return;
+  setCards(progress);
+  setCards(feedback);
+  setCards(done);
+  return;
 }
 
 function renderPopup(
+  category,
+  color,
+  title,
+  description,
+  progressStatus,
+  id,
+  colors,
+  contactsSplit,
+  letters,
+  section,
+  importance
+) {
+  document.getElementById("popup_card").innerHTML = renderPopupHTML(
     category,
     color,
     title,
@@ -577,163 +584,151 @@ function renderPopup(
     letters,
     section,
     importance
-) {
-    document.getElementById("popup_card").innerHTML = renderPopupHTML(
-        category,
-        color,
-        title,
-        description,
-        progressStatus,
-        id,
-        colors,
-        contactsSplit,
-        letters,
-        section,
-        importance
-    );
-    renderPopupContacts(colors, contactsSplit, letters);
-    setTimeout(setPriority, 50, importance, id, section);
-    checkSubtasksPopup(section, id);
-    checkTitlePopup(section, id);
-    generateSubtasksSum(id);
-    saveMaps();
-    generateCards();
+  );
+  renderPopupContacts(colors, contactsSplit, letters);
+  setTimeout(setPriority, 50, importance, id, section);
+  checkSubtasksPopup(section, id);
+  checkTitlePopup(section, id);
+  generateSubtasksSum(id);
+  saveMaps();
+  generateCards();
 }
 
 function generateSubtasksSum(id) {
-    let map = new Map(wichSection(id));
-    let totalSub = map.get(`${id}`)["subtask"];
-    if (!Array.isArray(totalSub) && totalSub.length > 0) {
-        totalSub = totalSub.split(",");
-    }
-    totalSub = totalSub.length;
+  let map = new Map(wichSection(id));
+  let totalSub = map.get(`${id}`)["subtask"];
+  if (!Array.isArray(totalSub) && totalSub.length > 0) {
+    totalSub = totalSub.split(",");
+  }
+  totalSub = totalSub.length;
 
-    document.getElementById(
-        `done_status_popup${id}`
-    ).innerHTML = `<span id="subtask_done${id}">0</span>/${totalSub} Done`;
-    renderPopupProgressStatus(id);
+  document.getElementById(
+    `done_status_popup${id}`
+  ).innerHTML = `<span id="subtask_done${id}">0</span>/${totalSub} Done`;
+  renderPopupProgressStatus(id);
 }
 
 function renderPopupProgressStatus(id) {
-    let counter = 0;
-    let currentMap = wichSection(id);
-    let subtaskCards = currentMap.get(`${id}`)["subtaskStatus"];
-    let sub_done = document.getElementById(`subtask_done${id}`);
-    let progressEdit = document.getElementById("progress_edit");
-    let subtaskMap = currentMap.get(`${id}`)["subtask"];
-    if (typeof subtaskMap == "string") {
-        subtaskMap = subtaskMap.split(",");
-    }
+  let counter = 0;
+  let currentMap = wichSection(id);
+  let subtaskCards = currentMap.get(`${id}`)["subtaskStatus"];
+  let sub_done = document.getElementById(`subtask_done${id}`);
+  let progressEdit = document.getElementById("progress_edit");
+  let subtaskMap = currentMap.get(`${id}`)["subtask"];
+  if (typeof subtaskMap == "string") {
+    subtaskMap = subtaskMap.split(",");
+  }
 
-    if (typeof subtaskCards == "string") {
-        subtaskCards = subtaskCards.split(",");
+  if (typeof subtaskCards == "string") {
+    subtaskCards = subtaskCards.split(",");
+  }
+  for (let i = 0; i < subtaskCards.length; i++) {
+    const element = subtaskCards[i];
+    if (element.includes("add")) {
+      let subtaskRenderList = document.getElementById(`sub_p${i}`);
+      counter++;
+      /* subtaskRenderList.classList.add("td"); */
     }
-    for (let i = 0; i < subtaskCards.length; i++) {
-        const element = subtaskCards[i];
-        if (element.includes("add")) {
-            let subtaskRenderList = document.getElementById(`sub_p${i}`);
-            counter++;
-            /* subtaskRenderList.classList.add("td"); */
-        }
-    }
-    let cardProgress = counter * (100 / subtaskMap.length);
-    sub_done.innerHTML = counter;
-    progressEdit.style = `width: ${cardProgress}%;`;
+  }
+  let cardProgress = counter * (100 / subtaskMap.length);
+  sub_done.innerHTML = counter;
+  progressEdit.style = `width: ${cardProgress}%;`;
 }
 
 function checkSubtasksPopup(section, id) {
-    let popSub = document.getElementById(`progress_box_popup${id}`);
-    if (section.get(`${id}`)["subtask"] == "") {
-        popSub.classList.add("d-none");
-    }
+  let popSub = document.getElementById(`progress_box_popup${id}`);
+  if (section.get(`${id}`)["subtask"] == "") {
+    popSub.classList.add("d-none");
+  }
 }
 
 function checkTitlePopup(section, id) {
-    let titlePopup = document.getElementById("popup_title");
-    if (titlePopup.innerHTML.length < 17) {}
+  let titlePopup = document.getElementById("popup_title");
+  if (titlePopup.innerHTML.length < 17) {
+  }
 }
 
 function renderPopupContacts(colors, contactsSplit, letters) {
-    let contact = document.getElementById(`assigned`);
-    let card = document.getElementById("popup_card");
-    if (colors[0] == "" && colors.length == 1) {
-        contact.classList.add("d-none");
-        card.style.marginTop = "80px";
-    } else {
-        for (let i = 0; i < contactsSplit.length; i++) {
-            const element = contactsSplit[i];
-            contact.innerHTML += renderPopupContactsHTML(colors, element, i, letters);
-        }
+  let contact = document.getElementById(`assigned`);
+  let card = document.getElementById("popup_card");
+  if (colors[0] == "" && colors.length == 1) {
+    contact.classList.add("d-none");
+    card.style.marginTop = "80px";
+  } else {
+    for (let i = 0; i < contactsSplit.length; i++) {
+      const element = contactsSplit[i];
+      contact.innerHTML += renderPopupContactsHTML(colors, element, i, letters);
     }
+  }
 }
 
 function generatePopup(id) {
-    let section = new Map(wichSection(id));
-    let category;
-    let color;
-    let title;
-    let description;
-    let progressStatus;
-    let importance;
+  let section = new Map(wichSection(id));
+  let category;
+  let color;
+  let title;
+  let description;
+  let progressStatus;
+  let importance;
 
-    let colors = String(section.get(`${id}`)["colors"]);
-    colors = colors.split(",");
-    let contactsSplit = section.get(`${id}`)["contacts"];
+  let colors = String(section.get(`${id}`)["colors"]);
+  colors = colors.split(",");
+  let contactsSplit = section.get(`${id}`)["contacts"];
 
-    let letters = String(section.get(`${id}`)["letters"]);
-    letters = letters.split(",");
+  let letters = String(section.get(`${id}`)["letters"]);
+  letters = letters.split(",");
 
-    if (typeof contactsSplit == "string") {
-        contactsSplit = contactsSplit.split(",");
-    }
-    category = section.get(`${id}`)["category"];
-    color = section.get(`${id}`)["categorycolor"];
-    title = section.get(`${id}`)["title"];
-    description = section.get(`${id}`)["description"];
-    subtasks = section.get(`${id}`)["subtasks"];
-    progressStatus = section.get(`${id}`)["progressStatus"];
-    importance = section.get(`${id}`)["importance"];
+  if (typeof contactsSplit == "string") {
+    contactsSplit = contactsSplit.split(",");
+  }
+  category = section.get(`${id}`)["category"];
+  color = section.get(`${id}`)["categorycolor"];
+  title = section.get(`${id}`)["title"];
+  description = section.get(`${id}`)["description"];
+  subtasks = section.get(`${id}`)["subtasks"];
+  progressStatus = section.get(`${id}`)["progressStatus"];
+  importance = section.get(`${id}`)["importance"];
 
-    renderPopup(
-        category,
-        color,
-        title,
-        description,
-        progressStatus,
-        id,
-        colors,
-        contactsSplit,
-        letters,
-        section,
-        importance
-    );
-    renderSubtasksPopup(id, section);
+  renderPopup(
+    category,
+    color,
+    title,
+    description,
+    progressStatus,
+    id,
+    colors,
+    contactsSplit,
+    letters,
+    section,
+    importance
+  );
+  renderSubtasksPopup(id, section);
 }
 
 function wichSection(id) {
-    if (todosMap.has(`${id}`)) {
-        return todosMap;
-    } else if (progressesMap.has(`${id}`)) {
-        return progressesMap;
-    } else if (feedbacksMap.has(`${id}`)) {
-        return feedbacksMap;
-    } else if (donesMap.has(`${id}`)) {
-        return donesMap;
-    }
+  if (todosMap.has(`${id}`)) {
+    return todosMap;
+  } else if (progressesMap.has(`${id}`)) {
+    return progressesMap;
+  } else if (feedbacksMap.has(`${id}`)) {
+    return feedbacksMap;
+  } else if (donesMap.has(`${id}`)) {
+    return donesMap;
+  }
 }
 
 function renderSubtasksPopup(id, section) {
-    let taskId = document.getElementById(`task${id}`);
-    let taskArray = section.get(`${id}`)[`subtask`];
-    let taskLength;
-    if (typeof taskArray == "string") {
-        taskArray = taskArray.split(",");
-    }
-    taskLength = taskArray.length;
-    for (let i = 0; i < taskLength; i++) {
-        const element = taskArray[i];
-        let pText = document.getElementById(`progress_text${id}`);
-        pText.innerHTML += `
+  let taskId = document.getElementById(`task${id}`);
+  let taskArray = section.get(`${id}`)[`subtask`];
+  let taskLength;
+  if (typeof taskArray == "string") {
+    taskArray = taskArray.split(",");
+  }
+  taskLength = taskArray.length;
+  for (let i = 0; i < taskLength; i++) {
+    const element = taskArray[i];
+    let pText = document.getElementById(`progress_text${id}`);
+    pText.innerHTML += `
       <div id='subtask_checking${i}'>
         <p class="subtext" id="sub_p${i}">${element}</p>
         <div  class="sub-checkmark d-none">
@@ -742,356 +737,274 @@ function renderSubtasksPopup(id, section) {
           <img  class="sub-img-setup" id="add_sub${i}" src="../add_task/img-add_task/check_blue.png" onclick="addProgress(${i}, ${id})">
         </div>
       </div>`; // beim checken hacken entfernen und das P element mit text-decoration: line-through; durchstreichen
+  }
+  taskLength = section.get(`${id}`)[`subtask`].length;
+  let tasks = section.get(`${id}`)[`subtask`];
+  let map = wichSection(id);
+  let progressesPopup = map.get(`${id}`)["subtaskStatus"];
+  let currentArray = [];
+  if (typeof progressesPopup == "string") {
+    progressesPopup = progressesPopup.split(",");
+  }
+  for (let i = 0; i < progressesPopup.length; i++) {
+    const element = progressesPopup[i];
+    if (element.includes("add")) {
+      currentArray.push(1);
+    } else {
+      currentArray.push(0);
     }
-    taskLength = section.get(`${id}`)[`subtask`].length;
-    let tasks = section.get(`${id}`)[`subtask`];
-    let map = wichSection(id);
-    let progressesPopup = map.get(`${id}`)["subtaskStatus"];
-    let currentArray = [];
-    if (typeof progressesPopup == "string") {
-        progressesPopup = progressesPopup.split(",");
+  }
+  for (let i = 0; i < currentArray.length; i++) {
+    const element = currentArray[i];
+    if (element == 1) {
+      toggleSelecter(i);
     }
-    for (let i = 0; i < progressesPopup.length; i++) {
-        const element = progressesPopup[i];
-        if (element.includes("add")) {
-            currentArray.push(1);
-        } else {
-            currentArray.push(0);
-        }
-    }
-    for (let i = 0; i < currentArray.length; i++) {
-        const element = currentArray[i];
-        if (element == 1) {
-            toggleSelecter(i);
-        }
-    }
+  }
 }
 
 function toggleSelecter(i) {
-    let cancel = document.getElementById(`cancel_sub${i}`);
-    let add = document.getElementById(`add_sub${i}`);
-    let span = document.getElementById(`span${i}`);
+  let cancel = document.getElementById(`cancel_sub${i}`);
+  let add = document.getElementById(`add_sub${i}`);
+  let span = document.getElementById(`span${i}`);
 
-    cancel.classList.toggle("d-none");
-    add.classList.toggle("d-none");
-    span.classList.toggle("mr15");
+  cancel.classList.toggle("d-none");
+  add.classList.toggle("d-none");
+  span.classList.toggle("mr15");
 }
 
 function removeProgress(i, id) {
-    let doneSum = document.getElementById(`subtask_done${id}`).innerHTML;
-    let subSum = document.getElementsByClassName("subtext");
-    let pct = 100 / subSum.length;
-    let progressPct = document.getElementById("progress_edit");
-    let map = wichSection(id);
-    let doneCoordinates = map.get(`${id}`)["subtaskStatus"];
-    if (typeof doneCoordinates == "string") {
-        doneCoordinates = doneCoordinates.split(",");
-    }
-    if (progressPct.style.width == "0%") {
-        return;
-    }
-    let progressCut = document.getElementById("progress_edit").style.width;
-    let cutted = parseInt(progressCut.split("%"));
-    currentProgress = parseInt(cutted) - parseInt(pct);
-    progressPct.style = `width: ${parseInt(currentProgress)}%;`;
-    doneSum--;
-    addProgressCard(currentProgress, id, doneSum);
-    doneCoordinates.splice(i, 1, `cancel_sub${i}`);
-    toggleSelecter(i);
-    renderSubtaskStatus(id, doneSum);
-    globalProgress = doneCoordinates;
-    qickSaveMap(id);
+  let doneSum = document.getElementById(`subtask_done${id}`).innerHTML;
+  let subSum = document.getElementsByClassName("subtext");
+  let pct = 100 / subSum.length;
+  let progressPct = document.getElementById("progress_edit");
+  let map = wichSection(id);
+  let doneCoordinates = map.get(`${id}`)["subtaskStatus"];
+  if (typeof doneCoordinates == "string") {
+    doneCoordinates = doneCoordinates.split(",");
+  }
+  if (progressPct.style.width == "0%") {
+    return;
+  }
+  let progressCut = document.getElementById("progress_edit").style.width;
+  let cutted = parseInt(progressCut.split("%"));
+  currentProgress = parseInt(cutted) - parseInt(pct);
+  progressPct.style = `width: ${parseInt(currentProgress)}%;`;
+  doneSum--;
+  addProgressCard(currentProgress, id, doneSum);
+  doneCoordinates.splice(i, 1, `cancel_sub${i}`);
+  toggleSelecter(i);
+  renderSubtaskStatus(id, doneSum);
+  globalProgress = doneCoordinates;
+  qickSaveMap(id);
 }
 
 function addProgress(i, id) {
-    let doneSum = document.getElementById(`subtask_done${id}`).innerHTML;
-    let subSum = document.getElementsByClassName("subtext");
-    let pct = 100 / subSum.length;
-    let progressPct = document.getElementById("progress_edit");
-    let map = wichSection(id);
-    let counter = 0;
+  let doneSum = document.getElementById(`subtask_done${id}`).innerHTML;
+  let subSum = document.getElementsByClassName("subtext");
+  let pct = 100 / subSum.length;
+  let progressPct = document.getElementById("progress_edit");
+  let map = wichSection(id);
+  let counter = 0;
 
-    doneCoordinates = map.get(`${id}`)["subtaskStatus"];
-    if (typeof doneCoordinates == "string") {
-        doneCoordinates = doneCoordinates.split(",");
-        currentProgress = counter * pct;
+  doneCoordinates = map.get(`${id}`)["subtaskStatus"];
+  if (typeof doneCoordinates == "string") {
+    doneCoordinates = doneCoordinates.split(",");
+    currentProgress = counter * pct;
+  }
+  for (let i = 0; i < doneCoordinates.length; i++) {
+    const element = doneCoordinates[i];
+    if (element.includes("add")) {
+      counter++;
     }
-    for (let i = 0; i < doneCoordinates.length; i++) {
-        const element = doneCoordinates[i];
-        if (element.includes("add")) {
-            counter++;
-        }
-    }
-    if (progressPct.style.width == "0%") {
-        /*     let progressString = document.getElementById("progress_edit").style.width;
+  }
+  if (progressPct.style.width == "0%") {
+    /*     let progressString = document.getElementById("progress_edit").style.width;
         let progressCut = progressString.split("%");
         currentProgress = parseInt(progressCut[0]);
         currentProgress = parseInt(currentProgress) * parseInt(counter); */
-        progressPct.style = `width: ${pct}%;`;
-        addProgressCard(pct, id, doneSum);
-        currentProgress = pct;
-        toggleSelecter(i);
-        doneSum++;
+    progressPct.style = `width: ${pct}%;`;
+    addProgressCard(pct, id, doneSum);
+    currentProgress = pct;
+    toggleSelecter(i);
+    doneSum++;
 
-        doneCoordinates.splice(i, 1, `add_sub${i}`);
-        renderSubtaskStatus(id, doneSum);
-    } else if (!(progressPct.style.width == "100%") &&
-        !(progressPct.style.width == "0%")
-    ) {
-        doneSum = parseInt(document.getElementById(`subtask_done${id}`).innerHTML);
-        let theProgress = document.getElementById("progress_edit").style.width;
+    doneCoordinates.splice(i, 1, `add_sub${i}`);
+    renderSubtaskStatus(id, doneSum);
+  } else if (
+    !(progressPct.style.width == "100%") &&
+    !(progressPct.style.width == "0%")
+  ) {
+    doneSum = parseInt(document.getElementById(`subtask_done${id}`).innerHTML);
+    let theProgress = document.getElementById("progress_edit").style.width;
 
-        theProgress = theProgress.split("%");
-        currentProgress = parseInt(theProgress) + parseInt(pct);
-        progressPct.style = `width: ${currentProgress}%;`;
-        toggleSelecter(i);
-        doneSum++;
-        addProgressCard(currentProgress, id, doneSum);
-        doneCoordinates.splice(i, 1, `add_sub${i}`);
-        renderSubtaskStatus(id, doneSum);
-    }
-    globalProgress = doneCoordinates;
-    qickSaveMap(id);
+    theProgress = theProgress.split("%");
+    currentProgress = parseInt(theProgress) + parseInt(pct);
+    progressPct.style = `width: ${currentProgress}%;`;
+    toggleSelecter(i);
+    doneSum++;
+    addProgressCard(currentProgress, id, doneSum);
+    doneCoordinates.splice(i, 1, `add_sub${i}`);
+    renderSubtaskStatus(id, doneSum);
+  }
+  globalProgress = doneCoordinates;
+  qickSaveMap(id);
 }
 
 function renderSubtaskStatus(id, doneSum) {
-    document.getElementById(`subtask_done${id}`).innerHTML = doneSum;
+  document.getElementById(`subtask_done${id}`).innerHTML = doneSum;
 }
 
 function addProgressCard(number, id, doneSum) {
-    let progressStatusCard = document.getElementById(`progress_card_done${id}`);
-    let bar = document.getElementById(`progress_card${id}`);
+  let progressStatusCard = document.getElementById(`progress_card_done${id}`);
+  let bar = document.getElementById(`progress_card${id}`);
 
-    progressStatusCard.innerHTML = doneSum;
-    bar.style = `width: ${number}%;`;
+  progressStatusCard.innerHTML = doneSum;
+  bar.style = `width: ${number}%;`;
 }
 
 function checkMap(id) {
-    let currentMap = new Map();
-    if (todosMap.has(`${id}`)) {
-        currentMap = new Map(todosMap);
-    } else if (progressesMap.has(`${id}`)) {
-        currentMap = new Map(progressesMap);
-    } else if (feedbacksMap.has(`${id}`)) {
-        currentMap = new Map(feedbacksMap);
-    } else {
-        currentMap = new Map(donesMap);
-    }
-    return currentMap;
+  let currentMap = new Map();
+  if (todosMap.has(`${id}`)) {
+    currentMap = new Map(todosMap);
+  } else if (progressesMap.has(`${id}`)) {
+    currentMap = new Map(progressesMap);
+  } else if (feedbacksMap.has(`${id}`)) {
+    currentMap = new Map(feedbacksMap);
+  } else {
+    currentMap = new Map(donesMap);
+  }
+  return currentMap;
 }
 
 async function editContactsPopup(id) {
-    let map = await JSON.parse(backend.getItem("contacts"));
-    if (map == undefined || map == null) {
-        return;
+  let map = await JSON.parse(backend.getItem("contacts"));
+  if (map == undefined || map == null) {
+    return;
+  }
+  if (typeof map === "string") {
+    map = map.split(",");
+  }
+  let contactsInPopup = [];
+  for (let i = 0; i < map.length; i++) {
+    const element = map[i]["name"];
+    let dok = document.getElementById(`contacts-checkbox-${i}`);
+    if (dok == null || dok == undefined) {
+      return;
     }
-    if (typeof map === "string") {
-        map = map.split(",");
+    if (contactsInPopup.indexOf(element) < 0) {
+      contactsInPopup.push(element);
     }
-    let contactsInPopup = [];
-    for (let i = 0; i < map.length; i++) {
-        const element = map[i]["name"];
-        let dok = document.getElementById(`contacts-checkbox-${i}`);
-        if (dok == null || dok == undefined) {
-            return;
-        }
-        if (contactsInPopup.indexOf(element) < 0) {
-            contactsInPopup.push(element);
-        }
-    }
-    return contactsInPopup;
+  }
+  return contactsInPopup;
 }
 
 function setSubtasksLayout(id) {
-    let progressText = document.getElementById(`progress_text${id}`);
-    let subText = document.getElementById("subtask_id");
-    let subP = document.getElementsByClassName("subtext");
-    let subCheck = document.getElementsByClassName("sub-checkmark");
+  let progressText = document.getElementById(`progress_text${id}`);
+  let subText = document.getElementById("subtask_id");
+  let subP = document.getElementsByClassName("subtext");
+  let subCheck = document.getElementsByClassName("sub-checkmark");
 
-    progressText.classList.add("add-colum");
-    subText.classList.add("mb");
-    subText.classList.add("mt11");
-    for (let i = 0; i < subP.length; i++) {
-        const element = subP[i];
-        element.classList.add("mt0");
-        subCheck[i].classList.remove("d-none");
-        document.getElementById(`subtask_checking${i}`).classList.add("scw");
-    }
+  progressText.classList.add("add-colum");
+  subText.classList.add("mb");
+  subText.classList.add("mt11");
+  for (let i = 0; i < subP.length; i++) {
+    const element = subP[i];
+    element.classList.add("mt0");
+    subCheck[i].classList.remove("d-none");
+    document.getElementById(`subtask_checking${i}`).classList.add("scw");
+  }
 }
 
 function edit(id) {
-    let currentMap = new Map(checkMap(id));
-    let popTop = document.getElementById("popup_card");
-    let title = currentMap.get(`${id}`)["title"];
-    let description = currentMap.get(`${id}`)["description"];
-    let name = document.getElementsByClassName("fullName");
+  let currentMap = new Map(checkMap(id));
+  let popTop = document.getElementById("popup_card");
+  let title = currentMap.get(`${id}`)["title"];
+  let description = currentMap.get(`${id}`)["description"];
+  let name = document.getElementsByClassName("fullName");
 
-    for (let i = 0; i < name.length; i++) {
-        const element = name[i];
-        element.classList.add("d-none");
-    }
-    showEdit(title, description, id);
-    dateFuture();
-    setSubtasksLayout(id);
-    toggleEditTitle();
+  for (let i = 0; i < name.length; i++) {
+    const element = name[i];
+    element.classList.add("d-none");
+  }
+  showEdit(title, description, id);
+  dateFuture();
+  setSubtasksLayout(id);
+  toggleEditTitle();
 }
 
 function toggleEditTitle() {
-    let titleEdit = document.getElementById("popup-card-title");
-    titleEdit.classList.toggle("popup-title-for_edit");
+  let titleEdit = document.getElementById("popup-card-title");
+  titleEdit.classList.toggle("popup-title-for_edit");
 }
 
 function dateFuture() {
-    const today = new Date().toISOString().split("T")[0];
-    document.getElementById("select-date").setAttribute("min", today);
-    // document.getElementById("select-date-task").setAttribute("min", today);
+  const today = new Date().toISOString().split("T")[0];
+  document.getElementById("select-date").setAttribute("min", today);
+  // document.getElementById("select-date-task").setAttribute("min", today);
 }
 
 function dateFutureTask() {
-    const today = new Date().toISOString().split("T")[0];
-    let dateId = document.getElementById("select-date-task");
-    if (dateId == null) {
-        return;
-    }
-    dateId.setAttribute("min", today);
+  const today = new Date().toISOString().split("T")[0];
+  let dateId = document.getElementById("select-date-task");
+  if (dateId == null) {
+    return;
+  }
+  dateId.setAttribute("min", today);
 }
 
 function showEdit(title, description, id) {
-    document.getElementById(`c-color`).classList.add("d-none");
-    document.getElementById(
-        "popup_title"
-    ).innerHTML = `<input type="text" class="popup-title-edit" id="popup_title_edit" placeholder="${title}">`;
-    document.getElementById("popup_title").classList.add("set-title");
-    document.getElementById("card_content").classList.add("set-content");
-    document.getElementById("popup_description").innerHTML =
-        descriptionHTML(description);
+  document.getElementById(`c-color`).classList.add("d-none");
+  document.getElementById(
+    "popup_title"
+  ).innerHTML = `<input type="text" class="popup-title-edit" id="popup_title_edit" placeholder="${title}">`;
+  document.getElementById("popup_title").classList.add("set-title");
+  document.getElementById("card_content").classList.add("set-content");
+  document.getElementById("popup_description").innerHTML =
+    descriptionHTML(description);
 
-    document.getElementById("date_box").innerHTML = dateHTML();
-    document.getElementById("edit_priority").classList.add("correctPrio");
-    document.getElementById("edit_priority").innerHTML = priorityHTML();
-    document.getElementById("edit-assigned").innerHTML += assignedHTML(id);
-    document.getElementById("contact").classList.add("flex-contact");
-    document.getElementById(
-        "edit_box"
-    ).innerHTML += `<div class="ok" onclick="editDone(${id})"><p class="ok-text">Done</p></div>`;
-    document.getElementById;
+  document.getElementById("date_box").innerHTML = dateHTML();
+  document.getElementById("edit_priority").classList.add("correctPrio");
+  document.getElementById("edit_priority").innerHTML = priorityHTML();
+  document.getElementById("edit-assigned").innerHTML += assignedHTML(id);
+  document.getElementById("contact").classList.add("flex-contact");
+  document.getElementById(
+    "edit_box"
+  ).innerHTML += `<div class="ok" onclick="editDone(${id})"><p class="ok-text">Done</p></div>`;
+  document.getElementById;
 }
 
 function qickSaveMap(id) {
-    let titleEdit = document.getElementById("popup_title_edit").value;
-    let descriptionEdit = document.getElementById("popup_description_edit").value;
-    let dateEdit = document.getElementById("select-date").value;
-    let contactsEdit = selectedContacts;
-    let button = checkPrioBtn();
-    let section = wichSection(id);
+  let titleEdit = document.getElementById("popup_title_edit").value;
+  let descriptionEdit = document.getElementById("popup_description_edit").value;
+  let dateEdit = document.getElementById("select-date").value;
+  let contactsEdit = selectedContacts;
+  let button = checkPrioBtn();
+  let section = wichSection(id);
 
-    let category = section.get(`${id}`)["category"];
-    let categorycolor = section.get(`${id}`)["categorycolor"];
-    let colors = section.get(`${id}`)["colors"];
-    let letters = section.get(`${id}`)["letters"];
-    let subtask = section.get(`${id}`)["subtask"];
-    let subtaskStatus = globalProgress;
-    if (titleEdit.length == 0) {
-        titleEdit = section.get(`${id}`)["title"];
-    }
-    if (descriptionEdit.length == 0) {
-        descriptionEdit = section.get(`${id}`)["description"];
-    }
-    if (dateEdit.length == 0) {
-        dateEdit = section.get(`${id}`)["date"];
-    }
-    if (contactsEdit.length == 0 || contactsEdit[0] == "") {
-        contact = section.get(`${id}`)["contacts"];
-        contactsEdit = contact;
-    }
-    if (button == undefined) {
-        button = section.get(`${id}`)["importance"];
-    }
+  let category = section.get(`${id}`)["category"];
+  let categorycolor = section.get(`${id}`)["categorycolor"];
+  let colors = section.get(`${id}`)["colors"];
+  let letters = section.get(`${id}`)["letters"];
+  let subtask = section.get(`${id}`)["subtask"];
+  let subtaskStatus = globalProgress;
+  if (titleEdit.length == 0) {
+    titleEdit = section.get(`${id}`)["title"];
+  }
+  if (descriptionEdit.length == 0) {
+    descriptionEdit = section.get(`${id}`)["description"];
+  }
+  if (dateEdit.length == 0) {
+    dateEdit = section.get(`${id}`)["date"];
+  }
+  if (contactsEdit.length == 0 || contactsEdit[0] == "") {
+    contact = section.get(`${id}`)["contacts"];
+    contactsEdit = contact;
+  }
+  if (button == undefined) {
+    button = section.get(`${id}`)["importance"];
+  }
 
-    saveIn(
-        titleEdit,
-        descriptionEdit,
-        dateEdit,
-        contactsEdit,
-        button,
-        section,
-        category,
-        categorycolor,
-        colors,
-        letters,
-        subtask,
-        subtaskStatus,
-        id
-    );
-}
-
-function editDone(id) {
-    toggleEditTitle();
-    let titleEdit = document.getElementById("popup_title_edit").value;
-    let descriptionEdit = document.getElementById("popup_description_edit").value;
-    let dateEdit = document.getElementById("select-date").value;
-    let contactsEdit = selectedContacts;
-    let button = checkPrioBtn();
-    let section = wichSection(id);
-
-    let category = section.get(`${id}`)["category"];
-    let categorycolor = section.get(`${id}`)["categorycolor"];
-    let colors = getNewColorContacts();
-    let letters = getFirstLetterInvate(selectedContacts);
-    let subtask = section.get(`${id}`)["subtask"];
-    let subtaskStatus = globalProgress;
-    if (titleEdit.length == 0) {
-        titleEdit = section.get(`${id}`)["title"];
-    }
-    if (descriptionEdit.length == 0) {
-        descriptionEdit = section.get(`${id}`)["description"];
-    }
-    if (dateEdit.length == 0) {
-        dateEdit = section.get(`${id}`)["date"];
-    }
-    if (contactsEdit.length == 0 || contactsEdit[0] == "") {
-        contact = section.get(`${id}`)["contacts"];
-        contactsEdit = contact;
-    }
-    if (button == undefined) {
-        button = section.get(`${id}`)["importance"];
-    }
-
-    saveIn(
-        titleEdit,
-        descriptionEdit,
-        dateEdit,
-        contactsEdit,
-        button,
-        section,
-        category,
-        categorycolor,
-        colors,
-        letters,
-        subtask,
-        subtaskStatus,
-        id
-    );
-
-    /*   section.set(`${id}`, {
-      category: `${category}`,
-      categorycolor: `${categorycolor}`,
-      colors: `${colors}`,
-      contacts: `${contactsEdit}`,
-      date: `${dateEdit}`,
-      description: `${descriptionEdit}`,
-      importance: `${button}`,
-      letters: `${letters}`,
-      subtask: `${subtask}`,
-      subtaskStatus: `${subtaskStatus}`,
-      title: `${titleEdit}`,
-    }); */
-    generatePopup(id);
-    doneSum = 0;
-    currentProgress = 0;
-}
-
-function saveIn(
+  saveIn(
     titleEdit,
     descriptionEdit,
     dateEdit,
@@ -1105,369 +1018,452 @@ function saveIn(
     subtask,
     subtaskStatus,
     id
+  );
+}
+
+function editDone(id) {
+  toggleEditTitle();
+  let titleEdit = document.getElementById("popup_title_edit").value;
+  let descriptionEdit = document.getElementById("popup_description_edit").value;
+  let dateEdit = document.getElementById("select-date").value;
+  let contactsEdit = selectedContacts;
+  let button = checkPrioBtn();
+  let section = wichSection(id);
+
+  let category = section.get(`${id}`)["category"];
+  let categorycolor = section.get(`${id}`)["categorycolor"];
+  let colors = getNewColorContacts();
+  let letters = getFirstLetterInvate(selectedContacts);
+  let subtask = section.get(`${id}`)["subtask"];
+  let subtaskStatus = globalProgress;
+  if (titleEdit.length == 0) {
+    titleEdit = section.get(`${id}`)["title"];
+  }
+  if (descriptionEdit.length == 0) {
+    descriptionEdit = section.get(`${id}`)["description"];
+  }
+  if (dateEdit.length == 0) {
+    dateEdit = section.get(`${id}`)["date"];
+  }
+  if (contactsEdit.length == 0 || contactsEdit[0] == "") {
+    contact = section.get(`${id}`)["contacts"];
+    contactsEdit = contact;
+  }
+  if (button == undefined) {
+    button = section.get(`${id}`)["importance"];
+  }
+
+  saveIn(
+    titleEdit,
+    descriptionEdit,
+    dateEdit,
+    contactsEdit,
+    button,
+    section,
+    category,
+    categorycolor,
+    colors,
+    letters,
+    subtask,
+    subtaskStatus,
+    id
+  );
+
+  /*   section.set(`${id}`, {
+      category: `${category}`,
+      categorycolor: `${categorycolor}`,
+      colors: `${colors}`,
+      contacts: `${contactsEdit}`,
+      date: `${dateEdit}`,
+      description: `${descriptionEdit}`,
+      importance: `${button}`,
+      letters: `${letters}`,
+      subtask: `${subtask}`,
+      subtaskStatus: `${subtaskStatus}`,
+      title: `${titleEdit}`,
+    }); */
+  generatePopup(id);
+  doneSum = 0;
+  currentProgress = 0;
+}
+
+function saveIn(
+  titleEdit,
+  descriptionEdit,
+  dateEdit,
+  contactsEdit,
+  button,
+  section,
+  category,
+  categorycolor,
+  colors,
+  letters,
+  subtask,
+  subtaskStatus,
+  id
 ) {
-    if (todosMap.has(`${id}`)) {
-        todosMap.set(`${id}`, {
-            category: `${category}`,
-            categorycolor: `${categorycolor}`,
-            colors: `${colors}`,
-            contacts: `${contactsEdit}`,
-            date: `${dateEdit}`,
-            description: `${descriptionEdit}`,
-            importance: `${button}`,
-            letters: `${letters}`,
-            subtask: `${subtask}`,
-            subtaskStatus: `${subtaskStatus}`,
-            title: `${titleEdit}`,
-        });
-    } else if (progressesMap.has(`${id}`)) {
-        progressesMap.set(`${id}`, {
-            category: `${category}`,
-            categorycolor: `${categorycolor}`,
-            colors: `${colors}`,
-            contacts: `${contactsEdit}`,
-            date: `${dateEdit}`,
-            description: `${descriptionEdit}`,
-            importance: `${button}`,
-            letters: `${letters}`,
-            subtask: `${subtask}`,
-            subtaskStatus: `${subtaskStatus}`,
-            title: `${titleEdit}`,
-        });
-    } else if (feedbacksMap.has(`${id}`)) {
-        feedbacksMap.set(`${id}`, {
-            category: `${category}`,
-            categorycolor: `${categorycolor}`,
-            colors: `${colors}`,
-            contacts: `${contactsEdit}`,
-            date: `${dateEdit}`,
-            description: `${descriptionEdit}`,
-            importance: `${button}`,
-            letters: `${letters}`,
-            subtask: `${subtask}`,
-            subtaskStatus: `${subtaskStatus}`,
-            title: `${titleEdit}`,
-        });
-    } else if (donesMap.has(`${id}`)) {
-        donesMap.set(`${id}`, {
-            category: `${category}`,
-            categorycolor: `${categorycolor}`,
-            colors: `${colors}`,
-            contacts: `${contactsEdit}`,
-            date: `${dateEdit}`,
-            description: `${descriptionEdit}`,
-            importance: `${button}`,
-            letters: `${letters}`,
-            subtask: `${subtask}`,
-            subtaskStatus: `${subtaskStatus}`,
-            title: `${titleEdit}`,
-        });
-    }
-    setTimeout(activateDragAndDrop, 150);
+  if (todosMap.has(`${id}`)) {
+    todosMap.set(`${id}`, {
+      category: `${category}`,
+      categorycolor: `${categorycolor}`,
+      colors: `${colors}`,
+      contacts: `${contactsEdit}`,
+      date: `${dateEdit}`,
+      description: `${descriptionEdit}`,
+      importance: `${button}`,
+      letters: `${letters}`,
+      subtask: `${subtask}`,
+      subtaskStatus: `${subtaskStatus}`,
+      title: `${titleEdit}`,
+    });
+  } else if (progressesMap.has(`${id}`)) {
+    progressesMap.set(`${id}`, {
+      category: `${category}`,
+      categorycolor: `${categorycolor}`,
+      colors: `${colors}`,
+      contacts: `${contactsEdit}`,
+      date: `${dateEdit}`,
+      description: `${descriptionEdit}`,
+      importance: `${button}`,
+      letters: `${letters}`,
+      subtask: `${subtask}`,
+      subtaskStatus: `${subtaskStatus}`,
+      title: `${titleEdit}`,
+    });
+  } else if (feedbacksMap.has(`${id}`)) {
+    feedbacksMap.set(`${id}`, {
+      category: `${category}`,
+      categorycolor: `${categorycolor}`,
+      colors: `${colors}`,
+      contacts: `${contactsEdit}`,
+      date: `${dateEdit}`,
+      description: `${descriptionEdit}`,
+      importance: `${button}`,
+      letters: `${letters}`,
+      subtask: `${subtask}`,
+      subtaskStatus: `${subtaskStatus}`,
+      title: `${titleEdit}`,
+    });
+  } else if (donesMap.has(`${id}`)) {
+    donesMap.set(`${id}`, {
+      category: `${category}`,
+      categorycolor: `${categorycolor}`,
+      colors: `${colors}`,
+      contacts: `${contactsEdit}`,
+      date: `${dateEdit}`,
+      description: `${descriptionEdit}`,
+      importance: `${button}`,
+      letters: `${letters}`,
+      subtask: `${subtask}`,
+      subtaskStatus: `${subtaskStatus}`,
+      title: `${titleEdit}`,
+    });
+  }
+  setTimeout(activateDragAndDrop, 150);
 }
 
 function editContacts(id) {
-    let map = wichSection(id);
-    let contacts = map.get(`${id}`)["contacts"].split(",");
-    return contacts;
+  let map = wichSection(id);
+  let contacts = map.get(`${id}`)["contacts"].split(",");
+  return contacts;
 }
 
 function subtaskLayout(id) {
-    let div = document.getElementById(`progress_text${id}`);
-    let task = document.getElementById(`task${id}`);
+  let div = document.getElementById(`progress_text${id}`);
+  let task = document.getElementById(`task${id}`);
 
-    div.classList.add("progress-text-edit");
-    task.classList.add("task-edit");
+  div.classList.add("progress-text-edit");
+  task.classList.add("task-edit");
 }
 
 // EDIT END ____________________________________________________________________________________|
 function checkPrioBtn() {
-    let urgent = document.getElementById("importance-button1-colored").style
-        .cssText;
-    let medium = document.getElementById("importance-button2-colored").style
-        .cssText;
-    let low = document.getElementById("importance-button3-colored").style.cssText;
-    let result;
+  let urgent = document.getElementById("importance-button1-colored").style
+    .cssText;
+  let medium = document.getElementById("importance-button2-colored").style
+    .cssText;
+  let low = document.getElementById("importance-button3-colored").style.cssText;
+  let result;
 
-    if (urgent.includes("flex")) {
-        result = "urgent";
-    } else if (medium.includes("flex")) {
-        result = "medium";
-    } else if (low.includes("flex")) {
-        result = "low";
-    }
-    return result;
+  if (urgent.includes("flex")) {
+    result = "urgent";
+  } else if (medium.includes("flex")) {
+    result = "medium";
+  } else if (low.includes("flex")) {
+    result = "low";
+  }
+  return result;
 }
 
 function setPriority(importance, id, section) {
-    if (importance === "Urgent") {
-        priority.innerHTML = buttonURGENT();
-    } else if (importance === "Medium") {
-        priority.innerHTML = buttonMEDIUM();
-    } else if (importance === "Low") {
-        priority.innerHTML = buttonLOW();
-    }
+  if (importance === "Urgent") {
+    priority.innerHTML = buttonURGENT();
+  } else if (importance === "Medium") {
+    priority.innerHTML = buttonMEDIUM();
+  } else if (importance === "Low") {
+    priority.innerHTML = buttonLOW();
+  }
 }
 
 function checkCards() {
-    let id = draggedItem.id.slice(-1);
-    let start = comeFrom.id.split("-")[0];
-    let end = comeTo.childNodes[1].id.split("-")[0];
-    if (start === "todo") {
-        setFromTodo(end, id);
-    } else if (start === "progress") {
-        setFromProgress(end, id);
-    } else if (start === "feedback") {
-        setFromFeedback(end, id);
-    } else if (start === "done") {
-        setFromDone(end, id);
-    }
-    saveMaps();
+  let id = draggedItem.id.slice(-1);
+  let start = comeFrom.id.split("-")[0];
+  let end = comeTo.childNodes[1].id.split("-")[0];
+  if (start === "todo") {
+    setFromTodo(end, id);
+  } else if (start === "progress") {
+    setFromProgress(end, id);
+  } else if (start === "feedback") {
+    setFromFeedback(end, id);
+  } else if (start === "done") {
+    setFromDone(end, id);
+  }
+  saveMaps();
 }
 
 function setFromTodo(end, id) {
-    if (end === "progress") {
-        progressesMap.set(id, todosMap.get(id));
-        todosMap.delete(id);
-    } else if (end === "feedback") {
-        feedbacksMap.set(id, todosMap.get(id));
-        todosMap.delete(id);
-    } else if (end === "done") {
-        donesMap.set(id, todosMap.get(id));
-        todosMap.delete(id);
-    }
+  if (end === "progress") {
+    progressesMap.set(id, todosMap.get(id));
+    todosMap.delete(id);
+  } else if (end === "feedback") {
+    feedbacksMap.set(id, todosMap.get(id));
+    todosMap.delete(id);
+  } else if (end === "done") {
+    donesMap.set(id, todosMap.get(id));
+    todosMap.delete(id);
+  }
 }
 
 function setFromProgress(end, id) {
-    if (end === "todo") {
-        todosMap.set(id, progressesMap.get(id));
-        progressesMap.delete(id);
-    } else if (end === "feedback") {
-        feedbacksMap.set(id, progressesMap.get(id));
-        progressesMap.delete(id);
-    } else if (end === "done") {
-        donesMap.set(id, progressesMap.get(id));
-        progressesMap.delete(id);
-    }
+  if (end === "todo") {
+    todosMap.set(id, progressesMap.get(id));
+    progressesMap.delete(id);
+  } else if (end === "feedback") {
+    feedbacksMap.set(id, progressesMap.get(id));
+    progressesMap.delete(id);
+  } else if (end === "done") {
+    donesMap.set(id, progressesMap.get(id));
+    progressesMap.delete(id);
+  }
 }
 
 function setFromFeedback(end, id) {
-    if (end === "todo") {
-        todosMap.set(id, feedbacksMap.get(id));
-        feedbacksMap.delete(id);
-    } else if (end === "progress") {
-        progressesMap.set(id, feedbacksMap.get(id));
-        feedbacksMap.delete(id);
-    } else if (end === "done") {
-        donesMap.set(id, feedbacksMap.get(id));
-        feedbacksMap.delete(id);
-    }
+  if (end === "todo") {
+    todosMap.set(id, feedbacksMap.get(id));
+    feedbacksMap.delete(id);
+  } else if (end === "progress") {
+    progressesMap.set(id, feedbacksMap.get(id));
+    feedbacksMap.delete(id);
+  } else if (end === "done") {
+    donesMap.set(id, feedbacksMap.get(id));
+    feedbacksMap.delete(id);
+  }
 }
 
 function setFromDone(end, id) {
-    if (end === "todo") {
-        todosMap.set(id, donesMap.get(id));
-        donesMap.delete(id);
-    } else if (end === "progress") {
-        progressesMap.set(id, donesMap.get(id));
-        donesMap.delete(id);
-    } else if (end === "feedback") {
-        feedbacksMap.set(id, donesMap.get(id));
-        donesMap.delete(id);
-    }
+  if (end === "todo") {
+    todosMap.set(id, donesMap.get(id));
+    donesMap.delete(id);
+  } else if (end === "progress") {
+    progressesMap.set(id, donesMap.get(id));
+    donesMap.delete(id);
+  } else if (end === "feedback") {
+    feedbacksMap.set(id, donesMap.get(id));
+    donesMap.delete(id);
+  }
 }
 
 async function getMaps() {
-    loadCounter();
-    let todos = (await JSON.parse(backend.getItem("todoJson"))) || [];
-    if (todos.length > 1) {
-        todosMap = new Map(Object.entries(JSON.parse(todos)));
-    }
+  loadCounter();
+  let todos = (await JSON.parse(backend.getItem("todoJson"))) || [];
+  if (todos.length > 1) {
+    todosMap = new Map(Object.entries(JSON.parse(todos)));
+  }
 
-    let progresses = (await JSON.parse(backend.getItem("progressJson"))) || [];
-    if (progresses.length > 1) {
-        progressesMap = new Map(Object.entries(JSON.parse(progresses)));
-    }
+  let progresses = (await JSON.parse(backend.getItem("progressJson"))) || [];
+  if (progresses.length > 1) {
+    progressesMap = new Map(Object.entries(JSON.parse(progresses)));
+  }
 
-    let feedbacks = (await JSON.parse(backend.getItem("feedbackJson"))) || [];
-    if (feedbacks.length > 1) {
-        feedbacksMap = new Map(Object.entries(JSON.parse(feedbacks)));
-    }
+  let feedbacks = (await JSON.parse(backend.getItem("feedbackJson"))) || [];
+  if (feedbacks.length > 1) {
+    feedbacksMap = new Map(Object.entries(JSON.parse(feedbacks)));
+  }
 
-    let dones = (await JSON.parse(backend.getItem("doneJson"))) || [];
-    if (dones.length > 1) {
-        donesMap = new Map(Object.entries(JSON.parse(dones)));
-    }
-    maps = [todosMap, progressesMap, feedbacksMap, donesMap];
+  let dones = (await JSON.parse(backend.getItem("doneJson"))) || [];
+  if (dones.length > 1) {
+    donesMap = new Map(Object.entries(JSON.parse(dones)));
+  }
+  maps = [todosMap, progressesMap, feedbacksMap, donesMap];
 }
 
 async function saveMaps() {
-    const todos = JSON.stringify(Object.fromEntries(todosMap));
-    await backend.setItem("todoJson", JSON.stringify(todos));
-    const progresses = JSON.stringify(Object.fromEntries(progressesMap));
-    await backend.setItem("progressJson", JSON.stringify(progresses));
-    const feedbackes = JSON.stringify(Object.fromEntries(feedbacksMap));
-    await backend.setItem("feedbackJson", JSON.stringify(feedbackes));
-    const dones = JSON.stringify(Object.fromEntries(donesMap));
-    await backend.setItem("doneJson", JSON.stringify(dones));
+  const todos = JSON.stringify(Object.fromEntries(todosMap));
+  await backend.setItem("todoJson", JSON.stringify(todos));
+  const progresses = JSON.stringify(Object.fromEntries(progressesMap));
+  await backend.setItem("progressJson", JSON.stringify(progresses));
+  const feedbackes = JSON.stringify(Object.fromEntries(feedbacksMap));
+  await backend.setItem("feedbackJson", JSON.stringify(feedbackes));
+  const dones = JSON.stringify(Object.fromEntries(donesMap));
+  await backend.setItem("doneJson", JSON.stringify(dones));
 }
 
 async function idCounterToJson() {
-    await backend.setItem("count", JSON.stringify(idCounter));
+  await backend.setItem("count", JSON.stringify(idCounter));
 }
 
 async function loadCounter() {
-    idCounter = parseInt(await JSON.parse(backend.getItem("count"))) || 0;
+  idCounter = parseInt(await JSON.parse(backend.getItem("count"))) || 0;
 }
 
 async function checkIfEmpty() {
-    if (
-        todosMap.size === 1 &&
-        progressesMap.size === 1 &&
-        feedbacksMap.size == 1 &&
-        donesMap.size === 1
-    ) {
-        await backend.deleteItem("count");
-        idCounter = 0;
-    }
+  if (
+    todosMap.size === 1 &&
+    progressesMap.size === 1 &&
+    feedbacksMap.size == 1 &&
+    donesMap.size === 1
+  ) {
+    await backend.deleteItem("count");
+    idCounter = 0;
+  }
 }
 
 // SERACH SECTION
 function takeSearch() {
-    setTimeout(serach, 200);
+  setTimeout(serach, 200);
 }
 
 function emptySearchArrays() {
-    searchHits = [];
-    searchInputs = [];
+  searchHits = [];
+  searchInputs = [];
 }
 async function serach() {
-    emptySearchArrays();
-    let input = document.getElementById("inp-board").value;
+  emptySearchArrays();
+  let input = document.getElementById("inp-board").value;
 
-    if (input === "") {
-        generateCards();
-        setTimeout(activateDragAndDrop, 150);
-    } else {
-        input = input.toLowerCase();
+  if (input === "") {
+    generateCards();
+    setTimeout(activateDragAndDrop, 150);
+  } else {
+    input = input.toLowerCase();
 
-        for (let i = 0; i < maps.length; i++) {
-            const map = maps[i];
-            searchMaps(map, input);
-        }
-        highlightAndDone();
+    for (let i = 0; i < maps.length; i++) {
+      const map = maps[i];
+      searchMaps(map, input);
     }
+    highlightAndDone();
+  }
 }
 
 function highlightText(input, key) {
-    let title = document.getElementById(`title${key}`);
-    let description = document.getElementById(`description${key}`);
-    let inputs = input;
+  let title = document.getElementById(`title${key}`);
+  let description = document.getElementById(`description${key}`);
+  let inputs = input;
 
-    inputs = inputs.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  inputs = inputs.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-    let pattern = new RegExp(`${inputs}`, "gi");
+  let pattern = new RegExp(`${inputs}`, "gi");
 
-    title.innerHTML = title.textContent.replace(
-        pattern,
-        (match) => `<mark>${match}</mark>`
-    );
-    description.innerHTML = description.textContent.replace(
-        pattern,
-        (match) => `<mark>${match}</mark>`
-    );
+  title.innerHTML = title.textContent.replace(
+    pattern,
+    (match) => `<mark>${match}</mark>`
+  );
+  description.innerHTML = description.textContent.replace(
+    pattern,
+    (match) => `<mark>${match}</mark>`
+  );
 }
 
 function searchMaps(map, input) {
-    for (const [key, value] of map) {
-        if (key == "x") {
-            continue;
-        }
-        searchInValue(value, key, input);
+  for (const [key, value] of map) {
+    if (key == "x") {
+      continue;
     }
+    searchInValue(value, key, input);
+  }
 }
 
 function searchInValue(value, key, input) {
-    for (let i = 0; i < mapsValue.length; i++) {
-        let values = value[mapsValue[i]];
-        if (values == "" || values === [] || values == undefined) {
-            continue;
-        }
-        if (
-            Number.isInteger(parseInt(values)) &&
-            Number.isInteger(parseInt(input))
-        ) {
-            outputNumber(values, key, input);
-        } else if (
-            Number.isInteger(parseInt(values)) ||
-            Number.isInteger(parseInt(input))
-        ) {
-            continue;
-        } else if (Array.isArray(values)) {
-            for (let j = 0; j < values.length; j++) {
-                const element = values[j];
-                checkIfIncludes(element, key, input);
-            }
-        } else if (mapsValue[i] === "description" || mapsValue[i] === "title") {
-            checkIfIncludes(values, key, input);
-        } else {
-            checkIfNumberIncludes(values, key, input);
-            checkIfIncludes(values, key, input);
-        }
+  for (let i = 0; i < mapsValue.length; i++) {
+    let values = value[mapsValue[i]];
+    if (values == "" || values === [] || values == undefined) {
+      continue;
     }
+    if (
+      Number.isInteger(parseInt(values)) &&
+      Number.isInteger(parseInt(input))
+    ) {
+      outputNumber(values, key, input);
+    } else if (
+      Number.isInteger(parseInt(values)) ||
+      Number.isInteger(parseInt(input))
+    ) {
+      continue;
+    } else if (Array.isArray(values)) {
+      for (let j = 0; j < values.length; j++) {
+        const element = values[j];
+        checkIfIncludes(element, key, input);
+      }
+    } else if (mapsValue[i] === "description" || mapsValue[i] === "title") {
+      checkIfIncludes(values, key, input);
+    } else {
+      checkIfNumberIncludes(values, key, input);
+      checkIfIncludes(values, key, input);
+    }
+  }
 }
 
 function checkIfIncludes(values, key, input) {
-    if (!Number.isInteger(values)) {
-        values = values.toLowerCase();
-        outputSerach(values, key, input);
-    }
+  if (!Number.isInteger(values)) {
+    values = values.toLowerCase();
+    outputSerach(values, key, input);
+  }
 }
 
 function outputSerach(values, key, input) {
-    if (values.includes(input)) {
-        PushInArray(values, key, input);
-    }
+  if (values.includes(input)) {
+    PushInArray(values, key, input);
+  }
 }
 
 function outputNumber(values, key, input) {
-    if (values.includes(input) && firstNumber.includes(input)) {
-        highlightText(input, key);
-        for (let i = idCounter - 1; i > -1; i--) {
-            let card = document.getElementById(`card${i}`);
-            card.classList.add("d-none");
-        }
-        let shine = document.getElementById(`card${key}`);
-        shine.classList.remove("d-none");
+  if (values.includes(input) && firstNumber.includes(input)) {
+    highlightText(input, key);
+    for (let i = idCounter - 1; i > -1; i--) {
+      let card = document.getElementById(`card${i}`);
+      card.classList.add("d-none");
     }
+    let shine = document.getElementById(`card${key}`);
+    shine.classList.remove("d-none");
+  }
 }
 
 function PushInArray(values, key, input) {
-    if (searchHits.indexOf(key) === -1) {
-        searchInputs.push(input);
-        searchHits.push(key);
-    }
+  if (searchHits.indexOf(key) === -1) {
+    searchInputs.push(input);
+    searchHits.push(key);
+  }
 }
 
 function highlightAndDone() {
-    for (let i = idCounter - 1; i > -1; i--) {
-        let card = document.getElementById(`card${i}`);
-        card.classList.add("d-none");
-    }
+  for (let i = idCounter - 1; i > -1; i--) {
+    let card = document.getElementById(`card${i}`);
+    card.classList.add("d-none");
+  }
 
-    for (let j = 0; j < searchHits.length; j++) {
-        let idS = +searchHits[j];
-        let inpS = searchInputs[j];
-        let shine = document.getElementById(`card${idS}`);
-        shine.classList.remove("d-none");
-        highlightText(inpS, idS);
-    }
+  for (let j = 0; j < searchHits.length; j++) {
+    let idS = +searchHits[j];
+    let inpS = searchInputs[j];
+    let shine = document.getElementById(`card${idS}`);
+    shine.classList.remove("d-none");
+    highlightText(inpS, idS);
+  }
 }
 
 async function cut() {
-    await backend.deleteItem("todoJson");
-    await backend.deleteItem("urgentCounter");
-    await backend.deleteItem("progressJson");
-    await backend.deleteItem("feedbackJson");
-    await backend.deleteItem("doneJson");
+  await backend.deleteItem("todoJson");
+  await backend.deleteItem("urgentCounter");
+  await backend.deleteItem("progressJson");
+  await backend.deleteItem("feedbackJson");
+  await backend.deleteItem("doneJson");
 }

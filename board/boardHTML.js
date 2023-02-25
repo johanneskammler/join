@@ -95,7 +95,7 @@ function renderAddTaskHTML() {
           </div>
         </label>
       </div>
-          <div class="contacts-list-elem new-contact" onmousedown="newContactAddTask()" id="new_contact">
+          <div class="contacts-list-elem new-contact" onmousedown="newContactAddTask(1)" id="new_contact">
             <span class="rendered-contact-name">Invite new contact</span>
             <img class="contact-list-element-img" src="../add_task/img-add_task/contact_blue.png"/>
           </div>
@@ -394,7 +394,7 @@ function assignedHTML(id) {
                                     </div>
                                 </label>
                             </div>
-                            <div onclick="newContactAddTask()" class="contacts-list-elem new-contact" id="new_contact-edit">
+                            <div onclick="newContactAddTask(0)" class="contacts-list-elem new-contact" id="new_contact-edit">
                                 Invite new contact
                                 <img class="contact-list-element-img" src="../add_task/img-add_task/contact_blue.png" />
                             </div>

@@ -405,7 +405,7 @@ function openCategoriesToSelect() {
 function generateHTMLcontactsBoard(element, i) {
   return `
       <div class="contacts-list-elem">
-        <label class="control control-checkbox" id="selected-contact-${i}">
+        <label class="control control-checkbox" id="selected-contact${i}">
           <div class="contacts-list-elem-box">
             <span class="rendered-contact-name">${element["name"]}</span>
             <input onclick="addContactToTaskBoard(${i})" id="contacts-checkbox-${i}" type="checkbox" value="${element["name"]}" />
@@ -474,20 +474,22 @@ function generateHTMLsubtask(subtask, i) {
       `;
 }
 
-function newContactAddTask() {
-  if (newContactAddTaskActive) {
-    let invateContact = document.getElementById("new_contact");
-    if (invateContact == null) {
+function newContactAddTask(index) {
+  if (newContactAddTaskActive == true) {
+    let invateContact;
+    if (index == 1) {
+      invateContact = document.getElementById("new_contact");
+    } else if (index == 0) {
       invateContact = document.getElementById("new_contact-edit");
     }
     invateContact.innerHTML = `<div class="new-contact-add-task">
-                                  <input onkeyup="" type="email" placeholder="Add Contact Email" class="add-subtask correct-width" id="add_task_email"> 
-                                    <div id="new-subtask-accept" class="new-subtask-accept m-i-e">
-                                      <img onmouseup="newContactAddTaskReturn()" src="../add_task/img-add_task/x_blue.png">
-                                      <span>|</span>
-                                      <img onclick="addNameNewContact()" src="../add_task/img-add_task/check_blue.png">
-                                   </div>
-                                </div>`;
+                                    <input onkeyup="" type="email" placeholder="Add Contact Email" class="add-subtask correct-width" id="add_task_email"> 
+                                      <div id="new-subtask-accept" class="new-subtask-accept m-i-e">
+                                        <img onmouseup="newContactAddTaskReturn()" src="../add_task/img-add_task/x_blue.png">
+                                        <span>|</span>
+                                        <img onclick="addNameNewContact()" src="../add_task/img-add_task/check_blue.png">
+                                     </div>
+                                  </div>`;
     invateContact.classList.remove("contacts-list-elem");
     invateContact.classList.remove("new-contact");
     invateContact.classList.add("invate-class");
