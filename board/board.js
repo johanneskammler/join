@@ -923,16 +923,29 @@ function edit(id) {
   let popTop = document.getElementById("popup_card");
   let title = currentMap.get(`${id}`)["title"];
   let description = currentMap.get(`${id}`)["description"];
-  let name = document.getElementsByClassName("fullName");
+  let names = document.getElementsByClassName("fullName");
 
-  for (let i = 0; i < name.length; i++) {
-    const element = name[i];
+  for (let i = 0; i < names.length; i++) {
+    const element = names[i];
     element.classList.add("d-none");
   }
+
   showEdit(title, description, id);
   dateFuture();
   setSubtasksLayout(id);
   toggleEditTitle();
+}
+
+function getContactsForCheckbox(id) {
+  let map = wichSection(id);
+  let contacts = map.get(`${id}`)["contacts"];
+  if (typeof contacts == "string") {
+    contacts = contacts.split(",");
+  }
+  for (let j = 0; j < contacts.length; j++) {
+    const newElement = contacts[j];
+    document.getElementById(newElement).checked = true;
+  }
 }
 
 function toggleEditTitle() {

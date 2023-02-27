@@ -2,8 +2,22 @@ function openEditContactsToSelect(id) {
   let element = document.getElementById("contacts-drop-down-edit");
   element.classList.toggle("d-none");
   renderContactsEdit();
-  setTimeout(contactsCheckboxUpdate, 200, id);
-  checkedSettingEdit(checkedEdit);
+  setTimeout(checkExistContact, 400, id);
+  //setTimeout(contactsCheckboxUpdate, 350, id);
+  //checkedSettingEdit(checkedEdit);
+}
+
+function checkExistContact(id) {
+  let map = wichSection(id);
+  let contactOnCard = map.get(`${id}`)["contacts"];
+  if (typeof contactOnCard == "string") {
+    contactOnCard = contactOnCard.split(",");
+  }
+  for (let i = 0; i < contactOnCard.length; i++) {
+    const name = contactOnCard[i];
+    let docElement = document.getElementById(name);
+    docElement.childNodes[3].checked = true;
+  }
 }
 
 async function renderContactsEdit() {
@@ -22,17 +36,11 @@ async function renderContactsEdit() {
 
 async function contactsCheckboxUpdate(id) {
   let contacts = await editContactsPopup(id);
-  if (contacts == undefined) {
-    return;
-  }
-  for (let i = 0; i < contacts.length; i++) {
-    const element = contacts[i];
-    if (contacts.indexOf(element) < 0) {
-      let id = document.getElementById(`contacts-checkbox${element}`);
-      id.checked = true;
-      addContactToTask(element, id);
-    }
-  }
+  let docIndex = contacts.length - 1;
+  let name = contacts[docIndex];
+  let docElement = document.getElementById(name);
+  docElement.childNodes[3].checked = true;
+  addContactToTask(docIndex, id);
 }
 
 async function addContactToTask(element, id) {

@@ -406,7 +406,7 @@ function generateHTMLcontactsBoard(element, i) {
   return `
       <div class="contacts-list-elem">
         <label class="control control-checkbox" id="selected-contact${i}">
-          <div class="contacts-list-elem-box">
+          <div class="contacts-list-elem-box" id="${element["name"]}">
             <span class="rendered-contact-name">${element["name"]}</span>
             <input onclick="addContactToTaskBoard(${i})" id="contacts-checkbox${i}" type="checkbox" value="${element["name"]}" />
             <div id="control-indicator-${i}" class="control-indicator"></div>
@@ -511,7 +511,7 @@ function newContactEdit(index) {
                                       <div id="new-subtask-accept" class="new-subtask-accept m-i-e">
                                         <img onmouseup="newContactAddTaskReturn()" src="../add_task/img-add_task/x_blue.png">
                                         <span>|</span>
-                                        <img onclick="addNameNewContactEdit()" src="../add_task/img-add_task/check_blue.png">
+                                        <img onclick="addNameNewContactEdit(${index})" src="../add_task/img-add_task/check_blue.png">
                                      </div>
                                   </div>`;
     invateContact.classList.remove("contacts-list-elem");
@@ -520,7 +520,7 @@ function newContactEdit(index) {
 
     newContactAddTaskActive = false;
   }
-} 
+}
 
 function newContactAddTaskReturn() {
   let invateContact = document.getElementById("new_contact");
@@ -559,7 +559,7 @@ function addNameNewContact() {
                                 </div>`;
 }
 
-function addNameNewContactEdit() {
+function addNameNewContactEdit(index) {
   let emailInput = document.getElementById("add_task_email").value;
   if (!emailInput.includes(".")) {
     return;
@@ -567,18 +567,16 @@ function addNameNewContactEdit() {
   let invateNewContactEmail = document.getElementById("add_task_email").value;
   email = [String(invateNewContactEmail)];
   let invateContact = document.getElementById("new_contact-edit");
-  
+
   invateContact.innerHTML = `<div class="new-contact-add-task">
                                   <input onkeyup="" type="text" placeholder="First and Lastname" class="add-subtask correct-width" id="add_task_name"> 
                                     <div id="new-subtask-accept" class="new-subtask-accept m-i-e">
                                       <img onmouseup="newContactAddTaskReturn()" src="../add_task/img-add_task/x_blue.png">
                                       <span>|</span>
-                                      <img onmouseup="creatNewContactEdit()" src="../add_task/img-add_task/check_blue.png">
+                                      <img onmouseup="creatNewContactEdit(${index})" src="../add_task/img-add_task/check_blue.png">
                                    </div>
                                 </div>`;
-
 }
-
 
 let checkedIndex = [];
 async function creatNewContactAddTask() {
@@ -587,10 +585,11 @@ async function creatNewContactAddTask() {
   getCheckboxValue(invateNewContactName, email);
 }
 
-
-async function creatNewContactEdit() {
+async function creatNewContactEdit(id) {
   let invateNewContactName = document.getElementById("add_task_name").value;
   await invateCreateNewContact(invateNewContactName, email);
+  setTimeout(contactsCheckboxUpdate, 400, id);
+
   getCheckboxValue(invateNewContactName, email);
 }
 
@@ -603,7 +602,6 @@ async function invateCreateNewContact(
   let firstletter = getFirstLetterInvate(invateNewContactName);
   let color = getNewColorContacts();
   let contact = {
-  
     name: invateNewContactName,
     mail: email,
     firstletter: firstletter,
