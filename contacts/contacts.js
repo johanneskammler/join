@@ -309,16 +309,6 @@ function renderContactListHTML(element, acronym, i) {
     `;
 }
 
-function openContactsOnContactsHtml() {
-    renderContactsAddTask();
-    openContactsToSelect();
-}
-
-// function renderContactsAfterCreate() {
-//     creatNewContactAddTask();
-//     renderContactList();
-// }
-
 async function openContactDetail(i) {
     contacts = JSON.parse(backend.getItem("contacts"));
     let contact = contacts[i];
