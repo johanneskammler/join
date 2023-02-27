@@ -4,6 +4,10 @@
         justify-content: center;
         margin: 0;
     }
+
+    #help-section-btn {
+        display: none;
+    }
     
     .legal-notice-content {
         margin-left: 0;
