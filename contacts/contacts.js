@@ -90,7 +90,7 @@ function succesImg() {
     document.getElementById('succes_img').classList.remove('d-none');
     setTimeout(() => {
         document.getElementById('succes_img').classList.add('d-none');
-    }, 4500);
+    }, 500);
 
 
 }
@@ -308,6 +308,16 @@ function renderContactListHTML(element, acronym, i) {
         </div>
     `;
 }
+
+function openContactsOnContactsHtml() {
+    renderContactsAddTask();
+    openContactsToSelect();
+}
+
+// function renderContactsAfterCreate() {
+//     creatNewContactAddTask();
+//     renderContactList();
+// }
 
 async function openContactDetail(i) {
     contacts = JSON.parse(backend.getItem("contacts"));
