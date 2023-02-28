@@ -184,9 +184,8 @@ async function renderContactsAddTask(invateNewContactName) {
     }
     dropdown.innerHTML += generateHTMLcontactsBoard(element, i);
   }
-  if (checkedIndex.length > 0) {
-    checkedSetting(invateNewContactName);
-  }
+
+  checkedSetting(invateNewContactName);
 }
 
 function addContactToTaskBoard(i) {
@@ -538,7 +537,7 @@ function newContactAddTaskReturn() {
 
 let email;
 
-function addNameNewContact() {
+function addNameNewContact(id) {
   let emailInput = document.getElementById("add_task_email").value;
   if (!emailInput.includes(".")) {
     return;
@@ -554,7 +553,7 @@ function addNameNewContact() {
                                     <div id="new-subtask-accept" class="new-subtask-accept m-i-e">
                                       <img onmouseup="newContactAddTaskReturn()" src="../add_task/img-add_task/x_blue.png">
                                       <span>|</span>
-                                      <img onmouseup="creatNewContactAddTask()" src="../add_task/img-add_task/check_blue.png">
+                                      <img onmouseup="creatNewContactAddTask(${id})" src="../add_task/img-add_task/check_blue.png">
                                    </div>
                                 </div>`;
 }
@@ -581,23 +580,22 @@ function addNameNewContactEdit(index) {
 let checkedIndex = [];
 async function creatNewContactAddTask() {
   let invateNewContactName = document.getElementById("add_task_name").value;
+  if (invateNewContactName == "") {
+    return;
+  }
   await invateCreateNewContact(invateNewContactName, email);
-  getCheckboxValue(invateNewContactName, email);
+  getCheckboxValue(invateNewContactName);
 }
 
 async function creatNewContactEdit(id) {
   let invateNewContactName = document.getElementById("add_task_name").value;
-  await invateCreateNewContact(invateNewContactName, email);
+  await invateCreateNewContact(invateNewContactName, email, id);
   setTimeout(contactsCheckboxUpdate, 400, id);
 
-  getCheckboxValue(invateNewContactName, email);
+  getCheckboxValue(invateNewContactName);
 }
 
-async function invateCreateNewContact(
-  invateNewContactName,
-  email,
-  checkedIndex
-) {
+async function invateCreateNewContact(invateNewContactName, email, id) {
   let invateContacts = [];
   let firstletter = getFirstLetterInvate(invateNewContactName);
   let color = getNewColorContacts();
@@ -623,7 +621,10 @@ async function invateCreateNewContact(
   renderContactsAddTask(invateNewContactName);
 }
 
-async function getCheckboxValue() {
+async function getCheckboxValue(invateNewContactName) {
+  if (!invateNewContactName == undefined) {
+    selectedContacts.push(invateNewContactName);
+  }
   checkedIndex = [];
   if (currentContacts == null) {
     checkedIndex.push(0);
@@ -643,29 +644,20 @@ async function getCheckboxValue() {
   }
 }
 
-async function checkedSetting(array) {
-  let people = await JSON.parse(backend.getItem("contacts"));
-  people = people.sort((a, b) => (a.name > b.name ? 1 : -1));
-  if (people.length > 0) {
-    for (let i = 0; i < people.length; i++) {
-      const element = people[i]["name"];
-      if (element.indexOf(`${array}`) > -1) {
-        let lastContactId = document.getElementById(`contacts-checkbox${i}`);
-        lastContactId.checked = true;
-        checkedIndex.push(array);
-      }
-    }
+async function checkedSetting(invateNewContactName) {
+  if (invateNewContactName == undefined) {
+    return;
   }
-
-  for (let i = 0; i < people.length; i++) {
-    let theName = people[i]["name"];
-    for (let j = 0; j < selectedContacts.length; j++) {
-      const selected = selectedContacts[j];
-      if (theName.indexOf(selected) > -1) {
-        let theIndex = i;
-        document.getElementById(`contacts-checkbox${theIndex}`).checked = true;
-      }
+  selectedContacts.push(invateNewContactName);
+  if (selectedContacts.length > 1) {
+    for (let i = 0; i < selectedContacts.length; i++) {
+      const names = selectedContacts[i];
+      let docElement = document.getElementById(names);
+      docElement.childNodes[3].checked = true;
     }
+  } else {
+    let docElement = document.getElementById(invateNewContactName);
+    docElement.childNodes[3].checked = true;
   }
 }
 
@@ -685,6 +677,9 @@ function clearContactsBeforeRendering(indexLength) {
 function getFirstLetterInvate(contact) {
   let contacts = contact;
   let letterList;
+  if (contacts.length == 0) {
+    return;
+  }
   if (typeof contacts == "string") {
     contacts = contacts.split(",");
   }

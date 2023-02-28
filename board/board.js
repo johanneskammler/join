@@ -918,12 +918,22 @@ function setSubtasksLayout(id) {
   }
 }
 
+function setSelecdetContacts(id) {
+  let map = wichSection(id);
+  let contacts = map.get(`${id}`)["contacts"];
+  if (typeof contacts == "string") {
+    contacts = contacts.split(",");
+  }
+  selectedContacts = contacts;
+}
+
 function edit(id) {
   let currentMap = new Map(checkMap(id));
   let popTop = document.getElementById("popup_card");
   let title = currentMap.get(`${id}`)["title"];
   let description = currentMap.get(`${id}`)["description"];
   let names = document.getElementsByClassName("fullName");
+  setSelecdetContacts(id);
 
   for (let i = 0; i < names.length; i++) {
     const element = names[i];
@@ -1037,12 +1047,32 @@ function qickSaveMap(id) {
   );
 }
 
+function checkContacts(id) {
+  let newContacts = selectedContacts;
+  let map = wichSection(id);
+  let currentContacts = map.get(`${id}`)["contacts"];
+  if (typeof selectedContacts == "string") {
+    selectedContacts = selectedContacts.split(",");
+  }
+  if (typeof currentContacts == "string") {
+    currentContacts = currentContacts.split(",");
+  }
+  if (selectedContacts.length > 0) {
+    for (let i = 0; i < selectedContacts.length; i++) {
+      const element = selectedContacts[i];
+      currentContacts.push(element);
+    }
+  }
+  selectedContacts = [];
+  return currentContacts;
+}
+
 function editDone(id) {
   toggleEditTitle();
   let titleEdit = document.getElementById("popup_title_edit").value;
   let descriptionEdit = document.getElementById("popup_description_edit").value;
   let dateEdit = document.getElementById("select-date").value;
-  let contactsEdit = selectedContacts;
+  let contactsEdit = checkContacts(id);
   let button = checkPrioBtn();
   let section = wichSection(id);
 

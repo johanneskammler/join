@@ -1,13 +1,18 @@
 function openEditContactsToSelect(id) {
   let element = document.getElementById("contacts-drop-down-edit");
   element.classList.toggle("d-none");
+
   renderContactsEdit();
-  setTimeout(checkExistContact, 400, id);
+  setTimeout(checkExistContact, 100, id);
   //setTimeout(contactsCheckboxUpdate, 350, id);
   //checkedSettingEdit(checkedEdit);
 }
 
 function checkExistContact(id) {
+  let element = document.getElementById("contacts-drop-down-edit");
+  if (element.classList.contains("d-none")) {
+    return;
+  }
   let map = wichSection(id);
   let contactOnCard = map.get(`${id}`)["contacts"];
   if (typeof contactOnCard == "string") {
@@ -15,6 +20,9 @@ function checkExistContact(id) {
   }
   for (let i = 0; i < contactOnCard.length; i++) {
     const name = contactOnCard[i];
+    if (selectedContacts.indexOf(name) == -1) {
+      selectedContacts.push(name);
+    }
     let docElement = document.getElementById(name);
     docElement.childNodes[3].checked = true;
   }
@@ -24,8 +32,6 @@ async function renderContactsEdit() {
   let contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
   let dropdown = document.getElementById("add_task_new_render_container");
   dropdown.innerHTML = "";
-  /*   let contactsDiv = document.getElementById("contacts_div");
-    contactsDiv.innerHTML = ""; */
 
   contacts.sort((a, b) => (a.name > b.name ? 1 : -1));
   for (let i = 0; i < contacts.length; i++) {
