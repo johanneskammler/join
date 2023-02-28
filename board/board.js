@@ -510,12 +510,7 @@ function renderContactsTodo(id) {
     contactsSection.classList.add("d-none");
   }
 
-  let colors = todosMap.get(`${id}`)["colors"];
-  if ((colors.length = 1)) {
-    colors = colors[0];
-  } else {
-    colors = colors.split(",");
-  }
+  let contactColor = todosMap.get(`${id}`)["colors"];
 
   let letters = todosMap.get(`${id}`)["letters"];
   if (letters.length == 1) {
@@ -524,7 +519,7 @@ function renderContactsTodo(id) {
     letters = String(letters).split(",");
   }
   let contactsSection = document.getElementById(`contacts_card${id}`);
-  checkForContactNumber(contacts, letters, contactsSection, colors);
+  checkForContactNumber(contacts, letters, contactsSection, contactColor);
 }
 
 function checkForContactNumber(contacts, letters, contactsSection, colors) {
