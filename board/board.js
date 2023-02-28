@@ -500,7 +500,7 @@ function renderContactsProgress(id) {
 
 function renderContactsTodo(id) {
   let contacts = todosMap.get(`${id}`)["contacts"];
-  let element;
+
   if (typeof contacts === "string") {
     contacts = contacts.split(";");
   }
@@ -510,7 +510,7 @@ function renderContactsTodo(id) {
     contactsSection.classList.add("d-none");
   }
 
-  let colors = [todosMap.get(`${id}`)["colors"]];
+  let colors = todosMap.get(`${id}`)["colors"];
   if ((colors.length = 1)) {
     colors = colors[0];
   } else {
@@ -1060,14 +1060,31 @@ function checkContacts(id) {
   if (selectedContacts.length > 0) {
     for (let i = 0; i < selectedContacts.length; i++) {
       const element = selectedContacts[i];
-      currentContacts.push(element);
+      if (currentContacts.indexOf(element) == -1) {
+        currentContacts.push(element);
+      }
     }
   }
   selectedContacts = [];
   return currentContacts;
 }
 
-function editDone(id) {
+async function setColorsExist() {
+  let contacts = await JSON.parse(backend.getItem("contacts"));
+  let colorList = [];
+  for (let i = 0; i < contactsEdit.length; i++) {
+    const taskName = contactsEdit[i];
+    for (let j = 0; j < contacts.length; j++) {
+      const contactsName = contacts[j]["name"];
+      if (contactsName.includes(taskName)) {
+        colorList.push(contactsName["color"]);
+      }
+    }
+  }
+  return colorList;
+}
+
+async function editDone(id) {
   toggleEditTitle();
   let titleEdit = document.getElementById("popup_title_edit").value;
   let descriptionEdit = document.getElementById("popup_description_edit").value;
@@ -1078,7 +1095,7 @@ function editDone(id) {
 
   let category = section.get(`${id}`)["category"];
   let categorycolor = section.get(`${id}`)["categorycolor"];
-  let colors = getNewColorContacts();
+  let colors = await setColorsExist();
   let letters = getFirstLetterInvate(selectedContacts);
   let subtask = section.get(`${id}`)["subtask"];
   let subtaskStatus = globalProgress;

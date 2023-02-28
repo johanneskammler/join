@@ -537,7 +537,7 @@ function newContactAddTaskReturn() {
 
 let email;
 
-function addNameNewContact(id) {
+function addNameNewContact() {
   let emailInput = document.getElementById("add_task_email").value;
   if (!emailInput.includes(".")) {
     return;
@@ -553,7 +553,7 @@ function addNameNewContact(id) {
                                     <div id="new-subtask-accept" class="new-subtask-accept m-i-e">
                                       <img onmouseup="newContactAddTaskReturn()" src="../add_task/img-add_task/x_blue.png">
                                       <span>|</span>
-                                      <img onmouseup="creatNewContactAddTask(${id})" src="../add_task/img-add_task/check_blue.png">
+                                      <img onmouseup="creatNewContactAddTask()" src="../add_task/img-add_task/check_blue.png">
                                    </div>
                                 </div>`;
 }
