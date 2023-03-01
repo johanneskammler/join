@@ -176,6 +176,7 @@ function openAddTask() {
  */
 function closeAddTask() {
   let addBoard = document.getElementById("add-board");
+  let contactAdd = document.getElementById("new_contact").childNodes;
 
   addBoard.classList.remove("slide-left");
   addBoard.classList.add("slide-right");
@@ -183,6 +184,9 @@ function closeAddTask() {
   setTimeout(activateDragAndDrop, 350);
   subtasks = [];
   subCounterAdd = 0;
+  if (contactAdd.length == 1) {
+    newContactAddTaskReturn();
+  }
 }
 
 /**
