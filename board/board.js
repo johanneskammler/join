@@ -244,7 +244,7 @@ async function setTasks() {
       key = tasks[i];
       let subtaskLength = tasks[i]["subtasks"].length;
 
-      if (tasks[i]["letters"][0] == null || task[i]["letters"] == null) {
+      if (tasks[i]["letters"] == null || tasks[i]["letters"][0] == null) {
         let contactsLetter = tasks[i]["contacts"];
 
         if (typeof contactsLetter == "string") {
