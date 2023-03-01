@@ -50,6 +50,9 @@ function openPopup(id) {
 
 function hoverBoardHtml() {
   let boardBG = document.getElementById("board_bg");
+  if (boardBG == null) {
+    return;
+  }
 
   boardBG.classList.add("section-background-normal");
   boardBG.classList.remove("section-background");
@@ -57,7 +60,9 @@ function hoverBoardHtml() {
 
 function hoverBoardRespons() {
   let boardBG = document.getElementById("board_bg");
-
+  if (boardBG == null) {
+    return;
+  }
   boardBG.classList.remove("section-background-normal");
   boardBG.classList.add("section-background");
 }
@@ -239,7 +244,7 @@ async function setTasks() {
       key = tasks[i];
       let subtaskLength = tasks[i]["subtasks"].length;
 
-      if (tasks[i]["letters"][0] == null) {
+      if (tasks[i]["letters"] == null) {
         let contactsLetter = tasks[i]["contacts"];
 
         if (typeof contactsLetter == "string") {
@@ -935,6 +940,7 @@ function setSelecdetContacts(id) {
 }
 
 function edit(id) {
+  addEditClasses();
   let currentMap = new Map(checkMap(id));
   let popTop = document.getElementById("popup_card");
   let title = currentMap.get(`${id}`)["title"];
@@ -1096,6 +1102,7 @@ async function setColorsExist() {
 }
 
 async function editDone(id) {
+  addEditClasses();
   toggleEditTitle();
   let titleEdit = document.getElementById("popup_title_edit").value;
   let descriptionEdit = document.getElementById("popup_description_edit").value;
@@ -1545,4 +1552,11 @@ async function cut() {
   await backend.deleteItem("progressJson");
   await backend.deleteItem("feedbackJson");
   await backend.deleteItem("doneJson");
+}
+
+function addEditClasses() {
+  if (screen.width < 500) {
+    let editPopup = document.getElementById("popup_card");
+    editPopup.classList.toggle("editRespons");
+  }
 }

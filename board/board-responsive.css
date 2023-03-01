@@ -19,6 +19,11 @@
   z-index: 20;
 }
 
+.editRespons {
+  margin-top: -169px !important;
+  height: 104vh !important;
+}
+
 @media (width <=1800px) {
   .board {
     margin-left: 18.5vw;
@@ -313,7 +318,7 @@
   }
 
   textarea {
-    width: 415px !important;
+    width: 384px !important;
   }
 
   .card-content-popup {
@@ -519,13 +524,6 @@
     font-size: 50px !important;
   }
 
-  .assigned,
-  .assigned-to,
-  .popup-card-title,
-  .priority-box {
-    width: 106vw !important;
-  }
-
   .card {
     width: 154px !important;
   }
@@ -626,9 +624,7 @@
     display: flex !important;
     margin-top: 0 !important;
   }
-  .add-tasks-board-head {
-    width: 83vw;
-  }
+
   .importance-buttons {
     width: 423px !important;
   }
@@ -698,16 +694,55 @@
     width: 80vw !important;
     margin-bottom: 0 !important;
   }
+
+  .add-tasks-board-head {
+    width: 403px !important;
+  }
+
+  .add-task-content-overlay {
+    scale: 0.7 !important;
+  }
 }
 
-@media (width <=470px) {
+@media (width <=480px) {
   .popup {
     right: -46px;
+  }
+  textarea {
+    width: 377px !important;
+  }
+  .date-box,
+  .category-box,
+  .contacts-box,
+  .description-box,
+  .subtask-box {
+    width: 422px !important;
+  }
+  .title-input {
+    width: 400px !important;
+  }
+
+  .select-contacts,
+  .select-category,
+  .add-subtask {
+    width: 400px !important;
+  }
+
+  .date-box,
+  .category-box,
+  .contacts-box,
+  .description-box,
+  .subtask-box {
+    width: 422px !important;
+  }
+
+  .select-date {
+    width: 384px !important;
   }
 
   .popup-card {
     scale: 0.75;
-    height: 75vh;
+    height: 82vh;
     margin-top: -9vh;
     left: 62% !important;
   }
@@ -734,6 +769,61 @@
   .head {
     margin-inline-start: 9px;
     width: 80vw !important;
+  }
+}
+@media (width <= 440px) {
+  .add-task-content-overlay {
+    margin-inline-start: 15% !important;
+  }
+}
+@media (width <= 420px) {
+  .add-task-content-overlay {
+    margin-inline-start: 19% !important;
+  }
+}
+
+@media (width <= 400px) {
+  .add-task-content-overlay {
+    margin-inline-start: 23% !important;
+  }
+}
+
+@media (width <= 380px) {
+  .add-task-content-overlay {
+    margin-inline-start: 27% !important;
+  }
+}
+
+@media (width <= 365px) {
+  .add-task-content-overlay {
+    margin-inline-start: 31% !important;
+  }
+}
+
+@media (width <= 350px) {
+  .add-task-content-overlay {
+    margin-inline-start: 37% !important;
+  }
+}
+
+@media (width <= 342px) {
+  .add-task-content-overlay {
+    margin-inline-start: 39% !important;
+    scale: 0.65 !important;
+  }
+}
+
+@media (width <= 330px) {
+  .add-task-content-overlay {
+    margin-inline-start: 43% !important;
+    scale: 0.6 !important;
+  }
+}
+
+@media (width <= 315px) {
+  .add-task-content-overlay {
+    margin-inline-start: 45% !important;
+    scale: 0.5 !important;
   }
 }
 
@@ -766,9 +856,7 @@
     flex-direction: column;
     align-items: center;
   }
-  .add-tasks-board-head {
-    width: 81vw !important;
-  }
+
   .select-date {
     width: 380px !important;
   }
@@ -780,13 +868,6 @@
   .add-subtask {
     width: 95% !important;
     margin-inline-start: -8px !important;
-  }
-  .date-box,
-  .category-box,
-  .contacts-box,
-  .description-box,
-  .subtask-box {
-    width: 104vw !important;
   }
 }
 
