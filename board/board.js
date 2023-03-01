@@ -107,6 +107,9 @@ function checkSize() {
  */
 function sidebarTabled() {
   let sidebar = document.getElementById("sidebar");
+  if (sidebar == null) {
+    return;
+  }
 
   sidebar.classList.remove("sidebar");
   sidebar.classList.add("tablet-sidebar");
