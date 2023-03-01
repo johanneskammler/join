@@ -23,7 +23,8 @@ function checkExistContact(id) {
     if (selectedContacts.indexOf(name) == -1) {
       selectedContacts.push(name);
     }
-    let docElement = document.getElementById(name);
+    let nameId = name + "edit";
+    let docElement = document.getElementById(nameId);
     docElement.childNodes[3].checked = true;
   }
 }

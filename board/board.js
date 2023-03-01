@@ -183,7 +183,6 @@ function closeAddTask() {
   setTimeout(activateDragAndDrop, 350);
   subtasks = [];
   subCounterAdd = 0;
-  selectedContacts = [];
 }
 
 /**
@@ -502,7 +501,7 @@ function renderContactsTodo(id) {
   let contacts = todosMap.get(`${id}`)["contacts"];
 
   if (typeof contacts === "string") {
-    contacts = contacts.split(";");
+    contacts = contacts.split(",");
   }
 
   if (contacts.length === 0) {
@@ -511,6 +510,9 @@ function renderContactsTodo(id) {
   }
 
   let contactColor = todosMap.get(`${id}`)["colors"];
+  if (typeof contactColor == "string") {
+    contactColor = contactColor.split(",");
+  }
 
   let letters = todosMap.get(`${id}`)["letters"];
   if (letters.length == 1) {
@@ -523,15 +525,15 @@ function renderContactsTodo(id) {
 }
 
 function checkForContactNumber(contacts, letters, contactsSection, colors) {
-  let changedColorForDots;
+  let changedColorForDots = [];
+
   if (contacts.length > 2) {
-    let element;
     for (let i = 0; i < 2; i++) {
       element = colors[i];
 
       contactsSection.innerHTML += `<p class="invate font" style="background-color: ${colors[i]};">${letters[i]}</p>`;
     }
-    changedColorForDots = element.slice(0, 4);
+    changedColorForDots = "#FFAA00";
     contactsSection.innerHTML += `<p class="invate font" style="background-color: ${changedColorForDots};">...</p>`;
   } else if (contacts.length == 2) {
     for (let i = 0; i < contacts.length; i++) {
@@ -939,6 +941,7 @@ function edit(id) {
   dateFuture();
   setSubtasksLayout(id);
   toggleEditTitle();
+  setTimeout(checkExistContact, 100, id);
 }
 
 function getContactsForCheckbox(id) {
@@ -1052,6 +1055,9 @@ function checkContacts(id) {
   if (typeof currentContacts == "string") {
     currentContacts = currentContacts.split(",");
   }
+  if (currentContacts == selectedContacts) {
+    return currentContacts;
+  }
   if (selectedContacts.length > 0) {
     for (let i = 0; i < selectedContacts.length; i++) {
       const element = selectedContacts[i];
@@ -1060,19 +1066,19 @@ function checkContacts(id) {
       }
     }
   }
-  selectedContacts = [];
+
   return currentContacts;
 }
 
 async function setColorsExist() {
   let contacts = await JSON.parse(backend.getItem("contacts"));
   let colorList = [];
-  for (let i = 0; i < contactsEdit.length; i++) {
-    const taskName = contactsEdit[i];
+  for (let i = 0; i < selectedContacts.length; i++) {
+    const taskName = selectedContacts[i];
     for (let j = 0; j < contacts.length; j++) {
       const contactsName = contacts[j]["name"];
       if (contactsName.includes(taskName)) {
-        colorList.push(contactsName["color"]);
+        colorList.push(contacts[j]["color"]);
       }
     }
   }
@@ -1084,8 +1090,8 @@ async function editDone(id) {
   let titleEdit = document.getElementById("popup_title_edit").value;
   let descriptionEdit = document.getElementById("popup_description_edit").value;
   let dateEdit = document.getElementById("select-date").value;
-  let contactsEdit = checkContacts(id);
-  let button = checkPrioBtn();
+  let contactsEdit = currentContacts;
+  let button = checkPrioBtn(id);
   let section = wichSection(id);
 
   let category = section.get(`${id}`)["category"];
@@ -1143,6 +1149,7 @@ async function editDone(id) {
   generatePopup(id);
   doneSum = 0;
   currentProgress = 0;
+  selectedContacts = [];
 }
 
 function saveIn(
@@ -1235,7 +1242,9 @@ function subtaskLayout(id) {
 }
 
 // EDIT END ____________________________________________________________________________________|
-function checkPrioBtn() {
+function checkPrioBtn(id) {
+  let map = wichSection(id);
+  let currentPrio = map.get(`${id}`)["importance"];
   let urgent = document.getElementById("importance-button1-colored").style
     .cssText;
   let medium = document.getElementById("importance-button2-colored").style
@@ -1249,6 +1258,8 @@ function checkPrioBtn() {
     result = "medium";
   } else if (low.includes("flex")) {
     result = "low";
+  } else {
+    result = currentPrio;
   }
   return result;
 }

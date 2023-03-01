@@ -523,7 +523,9 @@ function newContactEdit(index) {
 
 function newContactAddTaskReturn() {
   let invateContact = document.getElementById("new_contact");
-  if (invateContact == null) {
+  let addTask = document.getElementById("add_task");
+
+  if (addTask == null || addTask.classList.contains("d-none")) {
     invateContact = document.getElementById("new_contact-edit");
   }
   invateContact.classList.add("contacts-list-elem");
@@ -676,7 +678,7 @@ function clearContactsBeforeRendering(indexLength) {
 
 function getFirstLetterInvate(contact) {
   let contacts = contact;
-  let letterList;
+  let letterList = [];
   if (contacts.length == 0) {
     return;
   }
@@ -689,10 +691,11 @@ function getFirstLetterInvate(contact) {
     let firstLetter = name[0].split("");
     let secondLetter = name[1].split("");
     let firstLetters = firstLetter[0] + secondLetter[0];
-    letterList = firstLetters;
+    letterList.push(firstLetters);
   }
   return letterList;
 }
+
 function getNewColorContacts() {
   let color = "#";
   const symbols = "0123456789ABCDEF";

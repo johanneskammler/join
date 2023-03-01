@@ -582,7 +582,7 @@ function generateHTMLcontacts(element, i) {
   return `
     <div class="contacts-list-elem" >
       <label class="control control-checkbox" id="selected-contact${i}" onmouseup="addContactToTask(${i})">
-        <div class="contacts-list-elem-box" id="${element["name"]}">
+        <div class="contacts-list-elem-box" id="${element["name"]}edit">
           <span id="name${i}" class="rendered-contact-name">${element["name"]}</span>
           <input id="contacts-checkbox${i}" type="checkbox" value="${element["name"]}" />
           <div id="control-indicator${i}" class="control-indicator control-setup"></div>
