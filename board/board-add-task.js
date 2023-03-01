@@ -11,7 +11,7 @@ let showCurrentUserNameForSummery;
 let urgentCounter;
 let contacts;
 let exist;
-let currentContacts;
+let currentContacts = [];
 let filled = false;
 let checkedEdit = [];
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
@@ -591,6 +591,7 @@ async function creatNewContactAddTask() {
 
 async function creatNewContactEdit(id) {
   let invateNewContactName = document.getElementById("add_task_name").value;
+  selectedContacts.push(invateNewContactName);
   await invateCreateNewContact(invateNewContactName, email, id);
   setTimeout(contactsCheckboxUpdate, 400, id);
 

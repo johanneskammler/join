@@ -1090,7 +1090,7 @@ async function editDone(id) {
   let titleEdit = document.getElementById("popup_title_edit").value;
   let descriptionEdit = document.getElementById("popup_description_edit").value;
   let dateEdit = document.getElementById("select-date").value;
-  let contactsEdit = currentContacts;
+  let contactsEdit = selectedContacts;
   let button = checkPrioBtn(id);
   let section = wichSection(id);
 
