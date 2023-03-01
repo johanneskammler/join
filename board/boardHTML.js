@@ -56,9 +56,7 @@ function renderAddTaskHTML() {
 
 
   <div class="add-task-content slide-left" id="add-board">
-  <div class="header ">
-    <img src="../templates/img/logo_blue.png" class="logo" />
-  </div>
+
   <div class="add-task-content-overlay">
     <div class="add-tasks-board-head" id="add-board">
       <h1 class="add-title">Add Task</h1>
@@ -396,7 +394,7 @@ function assignedHTML(id) {
                                 </label>
                             </div>
                             <div onclick="newContactEdit(0)" class="contacts-list-elem new-contact" id="new_contact-edit">
-                                Invite new contact
+                                 <span class="rendered-contact-name">Invite new contact</span>
                                 <img class="contact-list-element-img" src="../add_task/img-add_task/contact_blue.png" />
                             </div>
                             <div class="add-task-new-render-container" id="add_task_new_render_container"></div>

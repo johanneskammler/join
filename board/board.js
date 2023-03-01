@@ -117,6 +117,9 @@ function sidebarTabled() {
  */
 function sidebarDesktop() {
   let sidebar = document.getElementById("sidebar");
+  if (sidebar == null) {
+    return;
+  }
 
   sidebar.classList.add("sidebar");
   sidebar.classList.remove("tablet-sidebar");

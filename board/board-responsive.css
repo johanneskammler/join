@@ -43,10 +43,18 @@
   .popup-card {
     right: 32vw !important;
   }
-  /*   .add-task-content-overlay {
-    scale: 0.9;
-    margin-block-start: -77px;
-  } */
+  .add-task-content-overlay {
+    scale: 0.8 !important;
+    height: 100% !important;
+    margin-inline-end: -49px !important;
+    margin-inline-start: -47px;
+    margin-block-start: -64px;
+  }
+
+  .popup-card {
+    scale: 0.8;
+    margin-top: -52px;
+  }
 }
 
 @media (width <=1560px) {
@@ -87,6 +95,10 @@
     width: 100%;
     height: 100vh;
     position: relative;
+  }
+  .popup-title-for_edit {
+    margin-top: 91px !important;
+    margin-bottom: 67px !important;
   }
 
   .popup-card-title {
@@ -139,13 +151,13 @@
   }
 }
 
-@media (width <=1440px) {
+/* @media (width <=1440px) {
   .popup-card {
     right: 22vw;
   }
-}
+} */
 
-@media (width <=1440px) {
+@media (max-width: 1500px) {
   .popup-card {
     right: 30vw;
   }
@@ -277,6 +289,14 @@
     justify-content: center;
   }
 
+  .add-task-content-overlay {
+    margin-block-start: -162px;
+  }
+
+  .add-task-content {
+    height: 100% !important;
+  }
+
   .board-top {
     margin-bottom: 32px !important;
   }
@@ -284,7 +304,7 @@
   .popup-card {
     left: 55% !important;
     margin-left: -290px !important;
-    z-index: 6 !important;
+    z-index: 8 !important;
     width: 469px;
   }
 
@@ -442,14 +462,40 @@
   }
 }
 
-@media (width <=757px) {
-  .popup-card {
-    top: 101px;
-    right: 0px;
-    left: 56% !important;
-
-    position: fixed;
+@media (width <=767px) {
+  .add-task-content {
+    top: -100px !important;
+    bottom: 277px !important;
+    display: flex;
+    align-items: center;
+    width: 89vw;
   }
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 70px;
+    gap: 34px;
+    position: absolute;
+    height: 48px;
+    right: 0px;
+    left: 0px;
+    top: 0px;
+    background: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+  }
+  .logo {
+    width: 47px;
+    height: 57.3px;
+  }
+  .close-add-task-board {
+    top: 4px;
+  }
+}
+
+@media (width <=757px) {
 }
 
 @media (width <=670px) {
@@ -461,10 +507,8 @@
 @media (width <=600px) {
   .popup-card {
     scale: 0.9;
-    top: 10.5vh !important;
+    top: 142px !important;
     right: 0 !important;
-    left: 57% !important;
-    height: 72vh;
   }
 
   .popup-title {
@@ -479,7 +523,11 @@
   .assigned-to,
   .popup-card-title,
   .priority-box {
-    width: 80vw !important;
+    width: 106vw !important;
+  }
+
+  .card {
+    width: 154px !important;
   }
 }
 
@@ -504,6 +552,11 @@
 @media (width <=500px) {
   .board {
     margin-top: 125px !important;
+  }
+  .add-task-content-overlay {
+    width: 100%;
+    margin-inline-end: 0 !important;
+    margin-inline-start: 0 !important;
   }
 
   .popup {
@@ -573,6 +626,12 @@
     display: flex !important;
     margin-top: 0 !important;
   }
+  .add-tasks-board-head {
+    width: 83vw;
+  }
+  .importance-buttons {
+    width: 423px !important;
+  }
 }
 
 @media (width <=500px) {
@@ -589,6 +648,7 @@
   .popup-card {
     transform: scale(0.9);
     right: -22px;
+    margin-left: -305px !important;
   }
 
   .popup-card-title {
@@ -640,7 +700,7 @@
   }
 }
 
-@media (width <=455px) {
+@media (width <=470px) {
   .popup {
     right: -46px;
   }
@@ -649,7 +709,7 @@
     scale: 0.75;
     height: 75vh;
     margin-top: -9vh;
-    left: 59% !important;
+    left: 62% !important;
   }
 
   .popup-title,
@@ -706,6 +766,28 @@
     flex-direction: column;
     align-items: center;
   }
+  .add-tasks-board-head {
+    width: 81vw !important;
+  }
+  .select-date {
+    width: 380px !important;
+  }
+  .add-task-content {
+    margin-top: 141px !important;
+  }
+  .elect-contacts,
+  .select-category,
+  .add-subtask {
+    width: 95% !important;
+    margin-inline-start: -8px !important;
+  }
+  .date-box,
+  .category-box,
+  .contacts-box,
+  .description-box,
+  .subtask-box {
+    width: 104vw !important;
+  }
 }
 
 @media (width <=365px) {
@@ -730,12 +812,22 @@
   #priority {
     margin-left: 30px;
   }
+  .add-task-content-overlay {
+    margin-inline-start: 53px;
+  }
 }
 
 @media (width <= 391px) {
   .popup-card {
     scale: 0.6;
-    left: 61.5% !important;
+    left: 64% !important;
+    margin-top: -163px;
+  }
+}
+
+@media (width <= 335px) {
+  .popup-card {
+    margin-left: -294px !important;
   }
 }
 
