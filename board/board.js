@@ -574,8 +574,8 @@ function renderPopupProgressStatus(id) {
   let sub_done = document.getElementById(`subtask_done${id}`);
   let progressEdit = document.getElementById("progress_edit");
   let subtaskMap = currentMap.get(`${id}`)["subtask"];
-  subtaskMap = contactColor(subtaskMap);
-  subtaskCards = checkIfString(checkIfString);
+  subtaskMap = checkIfString(subtaskMap);
+  subtaskCards = checkIfString(subtaskCards);
 
   for (let i = 0; i < subtaskCards.length; i++) {
     const element = subtaskCards[i];
