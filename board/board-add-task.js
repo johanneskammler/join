@@ -68,7 +68,7 @@ async function addToTasks() {
   tasks = [];
   closeAddTask();
   setTasks();
-  setTimeout(activateDragAndDrop, 300); /* setCards(); */
+  setTimeout(activateDragAndDrop, 200); /* setCards(); */
 }
 
 function contactToSave(selectedContacts) {
