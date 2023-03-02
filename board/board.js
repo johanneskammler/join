@@ -76,10 +76,13 @@ function hoverBoardRespons() {
 function popup(id) {
   let background = document.getElementById("popup");
   let card = document.getElementById("popup_card");
+  let editPrio = document.getElementById("edit_priority");
+  let title = document.getElementById("popup_title");
+  let content = document.getElementById("card_content");
 
-  document.getElementById("edit_priority").classList.remove("correctPrio");
-  document.getElementById("popup_title").classList.remove("card-content-popup");
-  document.getElementById("card_content").classList.remove("set-content");
+  editPrio.classList.remove("correctPrio");
+  title.classList.remove("card-content-popup");
+  content.classList.remove("set-content");
 
   window.scrollTo(0, 0);
   card.classList.toggle("d-none");
@@ -161,7 +164,6 @@ function draggableTrue() {
 
 function renderAddTask() {
   let addTask = document.getElementById("add_task");
-
   addTask.innerHTML = renderAddTaskHTML();
 }
 
@@ -246,10 +248,7 @@ async function setTasks() {
 
       if (tasks[i]["letters"] == null || tasks[i]["letters"][0] == null) {
         let contactsLetter = tasks[i]["contacts"];
-
-        if (typeof contactsLetter == "string") {
-          contactsLetter = contactsLetter.split(",");
-        }
+        contactsLetter = checkIfString(contactsLetter);
         namesSplit = await getFirstLetter(contactsLetter, idCounter);
       } else {
         namesSplit = new Map();
@@ -382,16 +381,11 @@ function contentTodo(section, id, map) {
       importance
     );
   } else {
-    // totalSub = map.get(`${id}`)["subtask"].size;
-    if (typeof totalSub == "string") {
-      totalSub = totalSub.split(",");
-    } else {
-      totalSub = totalSub.length;
-    }
+    totalSub = checkIfString(totalSub);
+    totalSub = totalSub.length;
     let progressStatus = map.get(`${id}`)["subtaskStatus"];
-    if (typeof progressStatus == "string") {
-      progressStatus = progressStatus.split(",");
-    }
+    progressStatus = checkIfString(progressStatus);
+
     for (let i = 0; i < progressStatus.length; i++) {
       const element = progressStatus[i];
       if (element == `add_sub${i}` && !(doneSum == null)) {
@@ -421,9 +415,8 @@ function checkSubtasks(id, map) {
     addHeight(id);
   } else {
     let subtaskCards = currentMap.get(`${id}`)["subtaskStatus"];
-    if (typeof subtaskCards == "string") {
-      subtaskCards = subtaskCards.split(",");
-    }
+    subtaskCards = checkIfString(subtaskCards);
+
     for (let i = 0; i < subtaskCards.length; i++) {
       const element = subtaskCards[i];
       if (element.includes("add")) {
@@ -556,14 +549,13 @@ function renderPopup(
 function generateSubtasksSum(id) {
   let map = new Map(wichSection(id));
   let totalSub = map.get(`${id}`)["subtask"];
+  let done = document.getElementById(`done_status_popup${id}`);
+
   if (!Array.isArray(totalSub) && totalSub.length > 0) {
     totalSub = totalSub.split(",");
   }
   totalSub = totalSub.length;
-
-  document.getElementById(
-    `done_status_popup${id}`
-  ).innerHTML = `<span id="subtask_done${id}">0</span>/${totalSub} Done`;
+  done.innerHTML = `<span id="subtask_done${id}">0</span>/${totalSub} Done`;
   renderPopupProgressStatus(id);
 }
 
@@ -582,7 +574,6 @@ function renderPopupProgressStatus(id) {
     if (element.includes("add")) {
       let subtaskRenderList = document.getElementById(`sub_p${i}`);
       counter++;
-      /* subtaskRenderList.classList.add("td"); */
     }
   }
   let cardProgress = counter * (100 / subtaskMap.length);
@@ -625,14 +616,12 @@ function generatePopup(id) {
   let description;
   let progressStatus;
   let importance;
-
   let colors = String(section.get(`${id}`)["colors"]);
-  colors = colors.split(",");
   let contactsSplit = section.get(`${id}`)["contacts"];
-
   let letters = String(section.get(`${id}`)["letters"]);
-  letters = letters.split(",");
 
+  colors = colors.split(",");
+  letters = letters.split(",");
   contactsSplit = checkIfString(contactsSplit);
 
   category = section.get(`${id}`)["category"];
@@ -672,7 +661,6 @@ function wichSection(id) {
 }
 
 function renderSubtasksPopup(id, section) {
-  let taskId = document.getElementById(`task${id}`);
   let taskArray = section.get(`${id}`)[`subtask`];
   let taskLength;
 
