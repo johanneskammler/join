@@ -24,3 +24,7 @@ function logoutFromJoin() {
 function backToHome() {
     window.location = "../summary/summary.html";
 }
+
+function openHelpSection() {
+    window.location = "../help/help.html";
+}
