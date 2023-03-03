@@ -5,6 +5,10 @@
         margin: 0;
     }
 
+    #help-section-btn {
+        display: none;
+    }
+
     .privacy-content {
         margin-left: 0;
         margin-top: 100px;

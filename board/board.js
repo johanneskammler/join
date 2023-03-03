@@ -50,6 +50,9 @@ function openPopup(id) {
 
 function hoverBoardHtml() {
   let boardBG = document.getElementById("board_bg");
+  if (boardBG == null) {
+    return;
+  }
 
   boardBG.classList.add("section-background-normal");
   boardBG.classList.remove("section-background");
@@ -57,7 +60,9 @@ function hoverBoardHtml() {
 
 function hoverBoardRespons() {
   let boardBG = document.getElementById("board_bg");
-
+  if (boardBG == null) {
+    return;
+  }
   boardBG.classList.remove("section-background-normal");
   boardBG.classList.add("section-background");
 }
@@ -71,10 +76,13 @@ function hoverBoardRespons() {
 function popup(id) {
   let background = document.getElementById("popup");
   let card = document.getElementById("popup_card");
+  let editPrio = document.getElementById("edit_priority");
+  let title = document.getElementById("popup_title");
+  let content = document.getElementById("card_content");
 
-  document.getElementById("edit_priority").classList.remove("correctPrio");
-  document.getElementById("popup_title").classList.remove("card-content-popup");
-  document.getElementById("card_content").classList.remove("set-content");
+  editPrio.classList.remove("correctPrio");
+  title.classList.remove("card-content-popup");
+  content.classList.remove("set-content");
 
   window.scrollTo(0, 0);
   card.classList.toggle("d-none");
@@ -107,6 +115,9 @@ function checkSize() {
  */
 function sidebarTabled() {
   let sidebar = document.getElementById("sidebar");
+  if (sidebar == null) {
+    return;
+  }
 
   sidebar.classList.remove("sidebar");
   sidebar.classList.add("tablet-sidebar");
@@ -117,6 +128,9 @@ function sidebarTabled() {
  */
 function sidebarDesktop() {
   let sidebar = document.getElementById("sidebar");
+  if (sidebar == null) {
+    return;
+  }
 
   sidebar.classList.add("sidebar");
   sidebar.classList.remove("tablet-sidebar");
@@ -150,7 +164,6 @@ function draggableTrue() {
 
 function renderAddTask() {
   let addTask = document.getElementById("add_task");
-
   addTask.innerHTML = renderAddTaskHTML();
 }
 
@@ -176,6 +189,7 @@ function openAddTask() {
  */
 function closeAddTask() {
   let addBoard = document.getElementById("add-board");
+  let contactAdd = document.getElementById("new_contact").childNodes;
 
   addBoard.classList.remove("slide-left");
   addBoard.classList.add("slide-right");
@@ -183,7 +197,9 @@ function closeAddTask() {
   setTimeout(activateDragAndDrop, 350);
   subtasks = [];
   subCounterAdd = 0;
-  selectedContacts = [];
+  if (contactAdd.length == 1) {
+    newContactAddTaskReturn();
+  }
 }
 
 /**
@@ -230,13 +246,13 @@ async function setTasks() {
       key = tasks[i];
       let subtaskLength = tasks[i]["subtasks"].length;
 
-      if (tasks[i]["letters"][0] == null) {
+      if (tasks[i]["letters"] == null || tasks[i]["letters"][0] == null) {
         let contactsLetter = tasks[i]["contacts"];
-
-        if (typeof contactsLetter == "string") {
-          contactsLetter = contactsLetter.split(",");
-        }
+        contactsLetter = checkIfString(contactsLetter);
         namesSplit = await getFirstLetter(contactsLetter, idCounter);
+      } else {
+        namesSplit = new Map();
+        namesSplit.set(`${idCounter}`, { letters: `${tasks[i]["letters"]}` });
       }
 
       if (subtaskLength > 0) {
@@ -291,9 +307,7 @@ function setCards(section) {
     for (const [key, value] of progressesMap) {
       if (!(key === "x")) {
         cardContent(section, key);
-
         checkSubtasks(key, progressesMap);
-
         renderContacts(section, key);
       }
     }
@@ -304,9 +318,7 @@ function setCards(section) {
     for (const [key, value] of feedbacksMap) {
       if (!(key === "x")) {
         cardContent(section, key);
-        if (feedbacksMap.get(`${key}`)["subtask"].length === 0) {
-          checkSubtasks(key, feedbacksMap);
-        }
+        checkSubtasks(key, feedbacksMap);
         renderContacts(section, key);
       }
     }
@@ -317,9 +329,7 @@ function setCards(section) {
     for (const [key, value] of donesMap) {
       if (!(key === "x")) {
         cardContent(section, key);
-        if (donesMap.get(`${key}`)["subtask"].length === 0) {
-          checkSubtasks(key, donesMap);
-        }
+        checkSubtasks(key, donesMap);
         renderContacts(section, key);
       }
     }
@@ -371,16 +381,11 @@ function contentTodo(section, id, map) {
       importance
     );
   } else {
-    // totalSub = map.get(`${id}`)["subtask"].size;
-    if (typeof totalSub == "string") {
-      totalSub = totalSub.split(",");
-    } else {
-      totalSub = totalSub.length;
-    }
+    totalSub = checkIfString(totalSub);
+    totalSub = totalSub.length;
     let progressStatus = map.get(`${id}`)["subtaskStatus"];
-    if (typeof progressStatus == "string") {
-      progressStatus = progressStatus.split(",");
-    }
+    progressStatus = checkIfString(progressStatus);
+
     for (let i = 0; i < progressStatus.length; i++) {
       const element = progressStatus[i];
       if (element == `add_sub${i}` && !(doneSum == null)) {
@@ -410,9 +415,8 @@ function checkSubtasks(id, map) {
     addHeight(id);
   } else {
     let subtaskCards = currentMap.get(`${id}`)["subtaskStatus"];
-    if (typeof subtaskCards == "string") {
-      subtaskCards = subtaskCards.split(",");
-    }
+    subtaskCards = checkIfString(subtaskCards);
+
     for (let i = 0; i < subtaskCards.length; i++) {
       const element = subtaskCards[i];
       if (element.includes("add")) {
@@ -431,112 +435,57 @@ function addHeight(id) {
 
 function renderContacts(section, id) {
   if (section === "todo") {
-    renderContactsTodo(id);
+    renderContactsCard(id);
   } else if (section === "progress") {
-    renderContactsProgress(id);
+    renderContactsCard(id);
   } else if (section === "feedback") {
-    renderContactsFeedback(id);
+    renderContactsCard(id);
   } else if (section === "done") {
-    renderContactsDone(id);
+    renderContactsCard(id);
   }
 }
 
-function renderContactsDone(id) {
-  let contacts = donesMap.get(`${id}`)["contacts"];
-  let colors = donesMap.get(`${id}`)["colors"];
-  let letters = donesMap.get(`${id}`)["letters"];
-
-  if (contacts.length === 0) {
-    let contactsSection = document.getElementById(`contacts_card${id}`);
-    contactsSection.classList.add("d-none");
+function checkIfString(element) {
+  if (typeof element === "string") {
+    element = element.split(",");
   }
-  if (donesMap.get(`${id}`)["colors"] == "string") {
-    colors.split(",");
-  }
-  if (donesMap.get(`${id}`)["letters"] == "string") {
-    letters.split(",");
-  }
-  let contactsSection = document.getElementById(`contacts_card${id}`);
-  checkForContactNumber(contacts, letters, contactsSection, colors);
+  return element;
 }
 
-function renderContactsFeedback(id) {
-  let contacts = feedbacksMap.get(`${id}`)["contacts"];
-  let colors = feedbacksMap.get(`${id}`)["colors"];
-  let letters = feedbacksMap.get(`${id}`)["letters"];
+function renderContactsCard(id) {
+  let map = wichSection(id);
+  let contacts = map.get(`${id}`)["contacts"];
 
-  if (contacts.length === 0) {
-    let contactsSection = document.getElementById(`contacts_card${id}`);
-    contactsSection.classList.add("d-none");
-  }
-  if (feedbacksMap.get(`${id}`)["colors"] == "string") {
-    colors.split(",");
-  }
-  if (feedbacksMap.get(`${id}`)["letters"] == "string") {
-    letters.split(",");
-  }
-  let contactsSection = document.getElementById(`contacts_card${id}`);
-  checkForContactNumber(contacts, letters, contactsSection, colors);
-}
-
-function renderContactsProgress(id) {
-  let contacts = progressesMap.get(`${id}`)["contacts"];
-  let colors = progressesMap.get(`${id}`)["colors"];
-  let letters = progressesMap.get(`${id}`)["letters"];
-
-  if (contacts.length === 0) {
-    let contactsSection = document.getElementById(`contacts_card${id}`);
-    contactsSection.classList.add("d-none");
-  }
-  if (progressesMap.get(`${id}`)["colors"] == "string") {
-    colors.split(",");
-  }
-  if (progressesMap.get(`${id}`)["letters"] == "string") {
-    letters.split(",");
-  }
-  let contactsSection = document.getElementById(`contacts_card${id}`);
-  checkForContactNumber(contacts, letters, contactsSection, colors);
-}
-
-function renderContactsTodo(id) {
-  let contacts = todosMap.get(`${id}`)["contacts"];
-  let element;
-  if (typeof contacts === "string") {
-    contacts = contacts.split(";");
-  }
+  contacts = checkIfString(contacts);
 
   if (contacts.length === 0) {
     let contactsSection = document.getElementById(`contacts_card${id}`);
     contactsSection.classList.add("d-none");
   }
 
-  let colors = [todosMap.get(`${id}`)["colors"]];
-  if ((colors.length = 1)) {
-    colors = colors[0];
-  } else {
-    colors = colors.split(",");
-  }
+  let contactColor = map.get(`${id}`)["colors"];
+  contactColor = checkIfString(contactColor);
 
-  let letters = todosMap.get(`${id}`)["letters"];
+  let letters = map.get(`${id}`)["letters"];
   if (letters.length == 1) {
     letters = [letters[0]];
   } else {
     letters = String(letters).split(",");
   }
   let contactsSection = document.getElementById(`contacts_card${id}`);
-  checkForContactNumber(contacts, letters, contactsSection, colors);
+  checkForContactNumber(contacts, letters, contactsSection, contactColor);
 }
 
 function checkForContactNumber(contacts, letters, contactsSection, colors) {
-  let changedColorForDots;
+  let changedColorForDots = [];
+
   if (contacts.length > 2) {
-    let element;
     for (let i = 0; i < 2; i++) {
       element = colors[i];
 
       contactsSection.innerHTML += `<p class="invate font" style="background-color: ${colors[i]};">${letters[i]}</p>`;
     }
-    changedColorForDots = element.slice(0, 4);
+    changedColorForDots = "#FFAA00";
     contactsSection.innerHTML += `<p class="invate font" style="background-color: ${changedColorForDots};">...</p>`;
   } else if (contacts.length == 2) {
     for (let i = 0; i < contacts.length; i++) {
@@ -600,14 +549,13 @@ function renderPopup(
 function generateSubtasksSum(id) {
   let map = new Map(wichSection(id));
   let totalSub = map.get(`${id}`)["subtask"];
+  let done = document.getElementById(`done_status_popup${id}`);
+
   if (!Array.isArray(totalSub) && totalSub.length > 0) {
     totalSub = totalSub.split(",");
   }
   totalSub = totalSub.length;
-
-  document.getElementById(
-    `done_status_popup${id}`
-  ).innerHTML = `<span id="subtask_done${id}">0</span>/${totalSub} Done`;
+  done.innerHTML = `<span id="subtask_done${id}">0</span>/${totalSub} Done`;
   renderPopupProgressStatus(id);
 }
 
@@ -618,19 +566,14 @@ function renderPopupProgressStatus(id) {
   let sub_done = document.getElementById(`subtask_done${id}`);
   let progressEdit = document.getElementById("progress_edit");
   let subtaskMap = currentMap.get(`${id}`)["subtask"];
-  if (typeof subtaskMap == "string") {
-    subtaskMap = subtaskMap.split(",");
-  }
+  subtaskMap = checkIfString(subtaskMap);
+  subtaskCards = checkIfString(subtaskCards);
 
-  if (typeof subtaskCards == "string") {
-    subtaskCards = subtaskCards.split(",");
-  }
   for (let i = 0; i < subtaskCards.length; i++) {
     const element = subtaskCards[i];
     if (element.includes("add")) {
       let subtaskRenderList = document.getElementById(`sub_p${i}`);
       counter++;
-      /* subtaskRenderList.classList.add("td"); */
     }
   }
   let cardProgress = counter * (100 / subtaskMap.length);
@@ -673,17 +616,14 @@ function generatePopup(id) {
   let description;
   let progressStatus;
   let importance;
-
   let colors = String(section.get(`${id}`)["colors"]);
-  colors = colors.split(",");
   let contactsSplit = section.get(`${id}`)["contacts"];
-
   let letters = String(section.get(`${id}`)["letters"]);
-  letters = letters.split(",");
 
-  if (typeof contactsSplit == "string") {
-    contactsSplit = contactsSplit.split(",");
-  }
+  colors = colors.split(",");
+  letters = letters.split(",");
+  contactsSplit = checkIfString(contactsSplit);
+
   category = section.get(`${id}`)["category"];
   color = section.get(`${id}`)["categorycolor"];
   title = section.get(`${id}`)["title"];
@@ -721,12 +661,11 @@ function wichSection(id) {
 }
 
 function renderSubtasksPopup(id, section) {
-  let taskId = document.getElementById(`task${id}`);
   let taskArray = section.get(`${id}`)[`subtask`];
   let taskLength;
-  if (typeof taskArray == "string") {
-    taskArray = taskArray.split(",");
-  }
+
+  taskArray = checkIfString(taskArray);
+
   taskLength = taskArray.length;
   for (let i = 0; i < taskLength; i++) {
     const element = taskArray[i];
@@ -746,9 +685,8 @@ function renderSubtasksPopup(id, section) {
   let map = wichSection(id);
   let progressesPopup = map.get(`${id}`)["subtaskStatus"];
   let currentArray = [];
-  if (typeof progressesPopup == "string") {
-    progressesPopup = progressesPopup.split(",");
-  }
+  progressesPopup = checkIfString(progressesPopup);
+
   for (let i = 0; i < progressesPopup.length; i++) {
     const element = progressesPopup[i];
     if (element.includes("add")) {
@@ -782,12 +720,12 @@ function removeProgress(i, id) {
   let progressPct = document.getElementById("progress_edit");
   let map = wichSection(id);
   let doneCoordinates = map.get(`${id}`)["subtaskStatus"];
-  if (typeof doneCoordinates == "string") {
-    doneCoordinates = doneCoordinates.split(",");
-  }
+  doneCoordinates = checkIfString(doneCoordinates);
+
   if (progressPct.style.width == "0%") {
     return;
   }
+
   let progressCut = document.getElementById("progress_edit").style.width;
   let cutted = parseInt(progressCut.split("%"));
   currentProgress = parseInt(cutted) - parseInt(pct);
@@ -821,10 +759,6 @@ function addProgress(i, id) {
     }
   }
   if (progressPct.style.width == "0%") {
-    /*     let progressString = document.getElementById("progress_edit").style.width;
-        let progressCut = progressString.split("%");
-        currentProgress = parseInt(progressCut[0]);
-        currentProgress = parseInt(currentProgress) * parseInt(counter); */
     progressPct.style = `width: ${pct}%;`;
     addProgressCard(pct, id, doneSum);
     currentProgress = pct;
@@ -918,21 +852,44 @@ function setSubtasksLayout(id) {
   }
 }
 
+function setSelecdetContacts(id) {
+  let map = wichSection(id);
+  let contacts = map.get(`${id}`)["contacts"];
+  contacts = checkIfString(contacts);
+
+  selectedContacts = contacts;
+}
+
 function edit(id) {
+  addEditClasses();
   let currentMap = new Map(checkMap(id));
   let popTop = document.getElementById("popup_card");
   let title = currentMap.get(`${id}`)["title"];
   let description = currentMap.get(`${id}`)["description"];
-  let name = document.getElementsByClassName("fullName");
+  let names = document.getElementsByClassName("fullName");
+  setSelecdetContacts(id);
 
-  for (let i = 0; i < name.length; i++) {
-    const element = name[i];
+  for (let i = 0; i < names.length; i++) {
+    const element = names[i];
     element.classList.add("d-none");
   }
+
   showEdit(title, description, id);
   dateFuture();
   setSubtasksLayout(id);
   toggleEditTitle();
+  setTimeout(checkExistContact, 100, id);
+}
+
+function getContactsForCheckbox(id) {
+  let map = wichSection(id);
+  let contacts = map.get(`${id}`)["contacts"];
+  contacts = checkIfString(contacts);
+
+  for (let j = 0; j < contacts.length; j++) {
+    const newElement = contacts[j];
+    document.getElementById(newElement).checked = true;
+  }
 }
 
 function toggleEditTitle() {
@@ -943,7 +900,6 @@ function toggleEditTitle() {
 function dateFuture() {
   const today = new Date().toISOString().split("T")[0];
   document.getElementById("select-date").setAttribute("min", today);
-  // document.getElementById("select-date-task").setAttribute("min", today);
 }
 
 function dateFutureTask() {
@@ -1024,18 +980,57 @@ function qickSaveMap(id) {
   );
 }
 
-function editDone(id) {
+function checkContacts(id) {
+  let newContacts = selectedContacts;
+  let map = wichSection(id);
+  let currentContacts = map.get(`${id}`)["contacts"];
+
+  selectedContacts = checkIfString(selectedContacts);
+  currentContacts = checkIfString(currentContacts);
+
+  if (currentContacts == selectedContacts) {
+    return currentContacts;
+  }
+  if (selectedContacts.length > 0) {
+    for (let i = 0; i < selectedContacts.length; i++) {
+      const element = selectedContacts[i];
+      if (currentContacts.indexOf(element) == -1) {
+        currentContacts.push(element);
+      }
+    }
+  }
+
+  return currentContacts;
+}
+
+async function setColorsExist() {
+  let contacts = await JSON.parse(backend.getItem("contacts"));
+  let colorList = [];
+  for (let i = 0; i < selectedContacts.length; i++) {
+    const taskName = selectedContacts[i];
+    for (let j = 0; j < contacts.length; j++) {
+      const contactsName = contacts[j]["name"];
+      if (contactsName.includes(taskName)) {
+        colorList.push(contacts[j]["color"]);
+      }
+    }
+  }
+  return colorList;
+}
+
+async function editDone(id) {
+  addEditClasses();
   toggleEditTitle();
   let titleEdit = document.getElementById("popup_title_edit").value;
   let descriptionEdit = document.getElementById("popup_description_edit").value;
   let dateEdit = document.getElementById("select-date").value;
   let contactsEdit = selectedContacts;
-  let button = checkPrioBtn();
+  let button = checkPrioBtn(id);
   let section = wichSection(id);
 
   let category = section.get(`${id}`)["category"];
   let categorycolor = section.get(`${id}`)["categorycolor"];
-  let colors = getNewColorContacts();
+  let colors = await setColorsExist();
   let letters = getFirstLetterInvate(selectedContacts);
   let subtask = section.get(`${id}`)["subtask"];
   let subtaskStatus = globalProgress;
@@ -1072,22 +1067,10 @@ function editDone(id) {
     id
   );
 
-  /*   section.set(`${id}`, {
-      category: `${category}`,
-      categorycolor: `${categorycolor}`,
-      colors: `${colors}`,
-      contacts: `${contactsEdit}`,
-      date: `${dateEdit}`,
-      description: `${descriptionEdit}`,
-      importance: `${button}`,
-      letters: `${letters}`,
-      subtask: `${subtask}`,
-      subtaskStatus: `${subtaskStatus}`,
-      title: `${titleEdit}`,
-    }); */
   generatePopup(id);
   doneSum = 0;
   currentProgress = 0;
+  selectedContacts = [];
 }
 
 function saveIn(
@@ -1180,7 +1163,9 @@ function subtaskLayout(id) {
 }
 
 // EDIT END ____________________________________________________________________________________|
-function checkPrioBtn() {
+function checkPrioBtn(id) {
+  let map = wichSection(id);
+  let currentPrio = map.get(`${id}`)["importance"];
   let urgent = document.getElementById("importance-button1-colored").style
     .cssText;
   let medium = document.getElementById("importance-button2-colored").style
@@ -1194,6 +1179,8 @@ function checkPrioBtn() {
     result = "medium";
   } else if (low.includes("flex")) {
     result = "low";
+  } else {
+    result = currentPrio;
   }
   return result;
 }
@@ -1209,17 +1196,17 @@ function setPriority(importance, id, section) {
 }
 
 function checkCards() {
-  let id = draggedItem.id.slice(-1);
+  let idCard = draggedItem.id.slice(-1);
   let start = comeFrom.id.split("-")[0];
   let end = comeTo.childNodes[1].id.split("-")[0];
   if (start === "todo") {
-    setFromTodo(end, id);
+    setFromTodo(end, idCard);
   } else if (start === "progress") {
-    setFromProgress(end, id);
+    setFromProgress(end, idCard);
   } else if (start === "feedback") {
-    setFromFeedback(end, id);
+    setFromFeedback(end, idCard);
   } else if (start === "done") {
-    setFromDone(end, id);
+    setFromDone(end, idCard);
   }
   saveMaps();
 }
@@ -1469,4 +1456,11 @@ async function cut() {
   await backend.deleteItem("progressJson");
   await backend.deleteItem("feedbackJson");
   await backend.deleteItem("doneJson");
+}
+
+function addEditClasses() {
+  if (screen.width < 500) {
+    let editPopup = document.getElementById("popup_card");
+    editPopup.classList.toggle("editRespons");
+  }
 }

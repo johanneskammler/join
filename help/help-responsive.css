@@ -6,7 +6,7 @@
 
     #header-name,
     #help-section-btn {
-        display: block !important;
+        display: none;
     }
     
     .help-content {

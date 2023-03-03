@@ -22,7 +22,6 @@ async function signUpUser() {
 
     storedUsers.push(newUser);
 
-    // await downloadFromServer();
     await backend.setItem("storedUsers", JSON.stringify(storedUsers));
 
     if (userName == "") {
@@ -33,22 +32,23 @@ async function signUpUser() {
     } else if (password == "") {
         alert("Bitte gib ein Passwort ein.");
     } else {
-        newAccCreated();
+        // newAccCreated();
+        document.getElementById('sign-up-successful').classList.remove('d-none');
         setTimeout(() => {
             window.location = "../login/startPage.html";
-        }, 1000);
+        }, 3000);
     }
 
     emailValue = false;
     return true;
 }
 
-function newAccCreated() {
-    document.getElementById('new_acc_created').classList.remove('d-none');
-    setTimeout(() => {
-        document.getElementById('new_acc_created').classList.add('d-none');
-    }, 2500);
-}
+// function newAccCreated() {
+//     document.getElementById('new_acc_created').classList.remove('d-none');
+//     setTimeout(() => {
+//         document.getElementById('new_acc_created').classList.add('d-none');
+//     }, 2500);
+// }
 
 function checkIfEmailIsCorrectForm(email) {
     if (!email.includes('.')) {

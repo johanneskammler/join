@@ -11,8 +11,9 @@ body {
 }
 
 .help-content {
-    margin-top: 200px;
+    margin-top: 150px;
     margin-left: 350px;
+    margin-bottom: 100px;
     display: flex;
     flex-direction: column;
 }

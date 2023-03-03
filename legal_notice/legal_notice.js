@@ -3,15 +3,18 @@ async function init() {
   checkSize();
 }
 
+
 function hoverLegalNoticeHtml() {
   document
     .getElementById("legal-notice-html")
     .classList.add("legal_notice_html");
 }
 
+
 function goBackToLastPage() {
   window.history.back();
 }
+
 
 function hoverNoticeHtml() {
   document
@@ -20,12 +23,14 @@ function hoverNoticeHtml() {
   document.getElementById("notice_bg").classList.remove("section-background");
 }
 
+
 function hoverNoticeRespons() {
   document
     .getElementById("notice_bg")
     .classList.remove("section-background-normal");
   document.getElementById("notice_bg").classList.add("section-background");
 }
+
 
 function checkSize() {
   let size = window.innerWidth;
@@ -41,14 +46,18 @@ function checkSize() {
   }
 }
 
+
 function sidebarTabled() {
   document.getElementById("sidebar").classList.remove("sidebar");
   document.getElementById("sidebar").classList.add("tablet-sidebar");
 }
+
+
 function sidebarDesktop() {
   document.getElementById("sidebar").classList.add("sidebar");
   document.getElementById("sidebar").classList.remove("tablet-sidebar");
 }
+
 
 function draggableFalse() {
   let cards = document.getElementsByClassName("card");
@@ -57,6 +66,7 @@ function draggableFalse() {
     card.setAttribute("draggable", false);
   }
 }
+
 
 function draggableTrue() {
   let cards = document.getElementsByClassName("card");

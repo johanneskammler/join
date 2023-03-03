@@ -414,7 +414,7 @@ form input::placeholder {
     right: 0;
     backdrop-filter: blur(5px);
     background-color: rgba(24, 24, 24, 0.096);
-    z-index: 6;
+    z-index: 24;
     transition: all ease-in-out 125ms;
 }
 

@@ -1,3 +1,44 @@
+.sign-up-successful {
+  position: absolute;
+  top: 47%;
+  right: 30%;
+  background-color: #4589ff;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 60px;
+  font-size: 18px;
+}
+
+.slide-top {
+  -webkit-animation: slide-top 1.5s cubic-bezier(0.23, 1, 0.32, 1) 2 alternate both;
+  animation: slide-top 1.5s cubic-bezier(0.23, 1, 0.32, 1) 2 alternate both;
+}
+
+@-webkit-keyframes slide-top {
+  0% {
+    -webkit-transform: translateY(600px);
+    transform: translateY(600px);
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-top {
+  0% {
+    -webkit-transform: translateY(600px);
+    transform: translateY(600px);
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
 @media (width <= 1200px) {
   .sign-up-logo {
     width: 100px;

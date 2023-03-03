@@ -11,7 +11,7 @@ let showCurrentUserNameForSummery;
 let urgentCounter;
 let contacts;
 let exist;
-let currentContacts;
+let currentContacts = [];
 let filled = false;
 let checkedEdit = [];
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
@@ -68,7 +68,7 @@ async function addToTasks() {
   tasks = [];
   closeAddTask();
   setTasks();
-  setTimeout(activateDragAndDrop, 300); /* setCards(); */
+  setTimeout(activateDragAndDrop, 200); /* setCards(); */
 }
 
 function contactToSave(selectedContacts) {
@@ -184,9 +184,8 @@ async function renderContactsAddTask(invateNewContactName) {
     }
     dropdown.innerHTML += generateHTMLcontactsBoard(element, i);
   }
-  if (checkedIndex.length > 0) {
-    checkedSetting(invateNewContactName);
-  }
+
+  checkedSetting(invateNewContactName);
 }
 
 function addContactToTaskBoard(i) {
@@ -406,7 +405,7 @@ function generateHTMLcontactsBoard(element, i) {
   return `
       <div class="contacts-list-elem">
         <label class="control control-checkbox" id="selected-contact${i}">
-          <div class="contacts-list-elem-box">
+          <div class="contacts-list-elem-box" id="${element["name"]}">
             <span class="rendered-contact-name">${element["name"]}</span>
             <input onclick="addContactToTaskBoard(${i})" id="contacts-checkbox${i}" type="checkbox" value="${element["name"]}" />
             <div id="control-indicator-${i}" class="control-indicator"></div>
@@ -511,7 +510,7 @@ function newContactEdit(index) {
                                       <div id="new-subtask-accept" class="new-subtask-accept m-i-e">
                                         <img onmouseup="newContactAddTaskReturn()" src="../add_task/img-add_task/x_blue.png">
                                         <span>|</span>
-                                        <img onclick="addNameNewContactEdit()" src="../add_task/img-add_task/check_blue.png">
+                                        <img onclick="addNameNewContactEdit(${index})" src="../add_task/img-add_task/check_blue.png">
                                      </div>
                                   </div>`;
     invateContact.classList.remove("contacts-list-elem");
@@ -520,11 +519,13 @@ function newContactEdit(index) {
 
     newContactAddTaskActive = false;
   }
-} 
+}
 
 function newContactAddTaskReturn() {
   let invateContact = document.getElementById("new_contact");
-  if (invateContact == null) {
+  let addTask = document.getElementById("add_task");
+
+  if (addTask == null || addTask.classList.contains("d-none")) {
     invateContact = document.getElementById("new_contact-edit");
   }
   invateContact.classList.add("contacts-list-elem");
@@ -559,7 +560,7 @@ function addNameNewContact() {
                                 </div>`;
 }
 
-function addNameNewContactEdit() {
+function addNameNewContactEdit(index) {
   let emailInput = document.getElementById("add_task_email").value;
   if (!emailInput.includes(".")) {
     return;
@@ -567,43 +568,41 @@ function addNameNewContactEdit() {
   let invateNewContactEmail = document.getElementById("add_task_email").value;
   email = [String(invateNewContactEmail)];
   let invateContact = document.getElementById("new_contact-edit");
-  
+
   invateContact.innerHTML = `<div class="new-contact-add-task">
                                   <input onkeyup="" type="text" placeholder="First and Lastname" class="add-subtask correct-width" id="add_task_name"> 
                                     <div id="new-subtask-accept" class="new-subtask-accept m-i-e">
                                       <img onmouseup="newContactAddTaskReturn()" src="../add_task/img-add_task/x_blue.png">
                                       <span>|</span>
-                                      <img onmouseup="creatNewContactEdit()" src="../add_task/img-add_task/check_blue.png">
+                                      <img onmouseup="creatNewContactEdit(${index})" src="../add_task/img-add_task/check_blue.png">
                                    </div>
                                 </div>`;
-
 }
-
 
 let checkedIndex = [];
 async function creatNewContactAddTask() {
   let invateNewContactName = document.getElementById("add_task_name").value;
+  if (invateNewContactName == "") {
+    return;
+  }
   await invateCreateNewContact(invateNewContactName, email);
-  getCheckboxValue(invateNewContactName, email);
+  getCheckboxValue(invateNewContactName);
 }
 
-
-async function creatNewContactEdit() {
+async function creatNewContactEdit(id) {
   let invateNewContactName = document.getElementById("add_task_name").value;
-  await invateCreateNewContact(invateNewContactName, email);
-  getCheckboxValue(invateNewContactName, email);
+  selectedContacts.push(invateNewContactName);
+  await invateCreateNewContact(invateNewContactName, email, id);
+  setTimeout(contactsCheckboxUpdate, 400, id);
+
+  getCheckboxValue(invateNewContactName);
 }
 
-async function invateCreateNewContact(
-  invateNewContactName,
-  email,
-  checkedIndex
-) {
+async function invateCreateNewContact(invateNewContactName, email, id) {
   let invateContacts = [];
   let firstletter = getFirstLetterInvate(invateNewContactName);
   let color = getNewColorContacts();
   let contact = {
-  
     name: invateNewContactName,
     mail: email,
     firstletter: firstletter,
@@ -625,7 +624,10 @@ async function invateCreateNewContact(
   renderContactsAddTask(invateNewContactName);
 }
 
-async function getCheckboxValue() {
+async function getCheckboxValue(invateNewContactName) {
+  if (!invateNewContactName == undefined) {
+    selectedContacts.push(invateNewContactName);
+  }
   checkedIndex = [];
   if (currentContacts == null) {
     checkedIndex.push(0);
@@ -645,29 +647,20 @@ async function getCheckboxValue() {
   }
 }
 
-async function checkedSetting(array) {
-  let people = await JSON.parse(backend.getItem("contacts"));
-  people = people.sort((a, b) => (a.name > b.name ? 1 : -1));
-  if (people.length > 0) {
-    for (let i = 0; i < people.length; i++) {
-      const element = people[i]["name"];
-      if (element.indexOf(`${array}`) > -1) {
-        let lastContactId = document.getElementById(`contacts-checkbox${i}`);
-        lastContactId.checked = true;
-        checkedIndex.push(array);
-      }
-    }
+async function checkedSetting(invateNewContactName) {
+  if (invateNewContactName == undefined) {
+    return;
   }
-
-  for (let i = 0; i < people.length; i++) {
-    let theName = people[i]["name"];
-    for (let j = 0; j < selectedContacts.length; j++) {
-      const selected = selectedContacts[j];
-      if (theName.indexOf(selected) > -1) {
-        let theIndex = i;
-        document.getElementById(`contacts-checkbox${theIndex}`).checked = true;
-      }
+  selectedContacts.push(invateNewContactName);
+  if (selectedContacts.length > 1) {
+    for (let i = 0; i < selectedContacts.length; i++) {
+      const names = selectedContacts[i];
+      let docElement = document.getElementById(names);
+      docElement.childNodes[3].checked = true;
     }
+  } else {
+    let docElement = document.getElementById(invateNewContactName);
+    docElement.childNodes[3].checked = true;
   }
 }
 
@@ -686,7 +679,10 @@ function clearContactsBeforeRendering(indexLength) {
 
 function getFirstLetterInvate(contact) {
   let contacts = contact;
-  let letterList;
+  let letterList = [];
+  if (contacts.length == 0) {
+    return;
+  }
   if (typeof contacts == "string") {
     contacts = contacts.split(",");
   }
@@ -696,10 +692,11 @@ function getFirstLetterInvate(contact) {
     let firstLetter = name[0].split("");
     let secondLetter = name[1].split("");
     let firstLetters = firstLetter[0] + secondLetter[0];
-    letterList = firstLetters;
+    letterList.push(firstLetters);
   }
   return letterList;
 }
+
 function getNewColorContacts() {
   let color = "#";
   const symbols = "0123456789ABCDEF";

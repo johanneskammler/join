@@ -56,9 +56,7 @@ function renderAddTaskHTML() {
 
 
   <div class="add-task-content slide-left" id="add-board">
-  <div class="header ">
-    <img src="../templates/img/logo_blue.png" class="logo" />
-  </div>
+
   <div class="add-task-content-overlay">
     <div class="add-tasks-board-head" id="add-board">
       <h1 class="add-title">Add Task</h1>
@@ -396,7 +394,7 @@ function assignedHTML(id) {
                                 </label>
                             </div>
                             <div onclick="newContactEdit(0)" class="contacts-list-elem new-contact" id="new_contact-edit">
-                                Invite new contact
+                                 <span class="rendered-contact-name">Invite new contact</span>
                                 <img class="contact-list-element-img" src="../add_task/img-add_task/contact_blue.png" />
                             </div>
                             <div class="add-task-new-render-container" id="add_task_new_render_container"></div>
@@ -580,9 +578,9 @@ function renderPopupContactsHTML(colors, element, i, letters) {
 
 function generateHTMLcontacts(element, i) {
   return `
-    <div class="contacts-list-elem">
+    <div class="contacts-list-elem" >
       <label class="control control-checkbox" id="selected-contact${i}" onmouseup="addContactToTask(${i})">
-        <div class="contacts-list-elem-box">
+        <div class="contacts-list-elem-box" id="${element["name"]}edit">
           <span id="name${i}" class="rendered-contact-name">${element["name"]}</span>
           <input id="contacts-checkbox${i}" type="checkbox" value="${element["name"]}" />
           <div id="control-indicator${i}" class="control-indicator control-setup"></div>
