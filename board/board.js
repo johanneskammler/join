@@ -216,11 +216,16 @@ async function getFirstLetter(contacts, idCounter) {
     let name = element.split(" ");
     let justName = `${name[0]} ${name[1]}`;
     let firstLetter = name[0].split("");
-    let secondLetter = name[1].split("");
-    let firstLetters = firstLetter[0] + secondLetter[0];
+    if (!(name[1] == undefined)) {
+      let secondLetter = name[1].split("");
+      let firstLetters = firstLetter[0] + secondLetter[0];
+      letterList.push(firstLetters);
+    } else {
+      let firstLetters = firstLetter[0];
+      letterList.push(firstLetters);
+    }
 
     nameList.push(justName);
-    letterList.push(firstLetters);
   }
   namesSplit.set(`${idCounter}`, {
     contacts: `${nameList}`,
@@ -229,11 +234,38 @@ async function getFirstLetter(contacts, idCounter) {
   return namesSplit;
 }
 
+function getNewColorContact() {
+  let symbols, color;
+  symbols = "0123456789ABCDEF";
+  color = "#";
+
+  for (let f = 0; f < 6; f++) {
+    color = color + symbols[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
 function checkIdCounter() {
   loadCounter();
   if (idCounter == "leer") {
     idCounter = 0;
   }
+}
+
+async function checkContactsColor(contacts) {
+  let contactsBackend = await JSON.parse(backend.getItem("contacts"));
+  let contactData = [];
+
+  for (let j = 0; j < contacts.length; j++) {
+    const contact = contacts[j];
+    for (let i = 0; i < contactsBackend.length; i++) {
+      const element = contactsBackend[i];
+      if (element["name"].includes(contact)) {
+        contactData.push(element["colors"]);
+      }
+    }
+  }
+  return contactData;
 }
 
 async function setTasks() {
@@ -255,6 +287,8 @@ async function setTasks() {
         namesSplit.set(`${idCounter}`, { letters: `${tasks[i]["letters"]}` });
       }
 
+      let colors = await checkContactsColor(key["contacts"]);
+
       if (subtaskLength > 0) {
         for (let j = 0; j < subtaskLength; j++) {
           doneCoordinates.push(`cancel_sub${j}`);
@@ -265,7 +299,7 @@ async function setTasks() {
         category: key["category"],
         categorycolor: key["categorycolor"],
         contacts: key["contacts"],
-        colors: key["colors"],
+        colors: colors,
         letters: namesSplit.get(`${idCounter}`)["letters"],
         date: key["date"],
         description: key["description"],
