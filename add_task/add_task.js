@@ -164,8 +164,6 @@ async function renderContacts() {
   // list contacts in alphabetical order
   contacts.sort((a, b) => (a.name > b.name ? 1 : -1));
 
-  // document.getElementById('contacts-drop-down').innerHTML = '';
-
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];
     document.getElementById("contacts-drop-down").innerHTML +=
