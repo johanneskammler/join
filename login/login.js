@@ -64,8 +64,8 @@ function sendMeTheEmail() {
     document.getElementById("sent-overlay").classList.remove("d-none");
     document.getElementById("sent-box").classList.remove("d-none");
     setTimeout(backToStart, 1500);
+    return true;
   }
-  return true;
 }
 
 function resetPassword() {
