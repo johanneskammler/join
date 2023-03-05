@@ -85,15 +85,13 @@ function renderAddTaskHTML() {
           id="contacts-drop-down"
           class="contacts-dropdown-content d-none"
         >
-        <div class="contacts-list-elem">
-        <label class="control control-checkbox">
-          <div class="contacts-list-elem-box">
-            <span class="rendered-contact-name">You</span>
-            <input type="checkbox">
-            <div class="control-indicator-add-task"></div>
-          </div>
-        </label>
-      </div>
+
+
+
+
+
+
+
           <div class="contacts-list-elem new-contact" onmousedown="newContactAddTask(1)" id="new_contact">
             <span class="rendered-contact-name">Invite new contact</span>
             <img class="contact-list-element-img" src="../add_task/img-add_task/contact_blue.png"/>
@@ -321,6 +319,16 @@ function renderAddTaskHTML() {
 `;
 }
 
+/* <div class="contacts-list-elem">
+<label class="control control-checkbox">
+  <div class="contacts-list-elem-box">
+    <span class="rendered-contact-name">You</span>
+    <input type="checkbox">
+    <div class="control-indicator-add-task"></div>
+  </div>
+</label>
+</div> */
+
 function descriptionHTML(description) {
   return `<div class="edit-title">
                   <h4>Description<h4>
@@ -384,15 +392,11 @@ function assignedHTML(id) {
                         <img onclick="openEditContactsToSelect(${id})" src="../add_task/img-add_task/dropdown_blue.png"
                             class="drop-down-arrow" />
                         <div id="contacts-drop-down-edit" class="contacts-dropdown-content d-none set-contact-popup">
-                            <div class="contacts-list-elem">
-                                <label class="control control-checkbox" onmousedown="loadAtStartTask()">
-                                    <div class="contacts-list-elem-box">
-                                        <span class="rendered-contact-name">You</span>
-                                        <input type="checkbox" />
-                                        <div class="control-indicator"></div>
-                                    </div>
-                                </label>
-                            </div>
+
+
+
+
+
                             <div onclick="newContactEdit(0)" class="contacts-list-elem new-contact" id="new_contact-edit">
                                  <span class="rendered-contact-name">Invite new contact</span>
                                 <img class="contact-list-element-img" src="../add_task/img-add_task/contact_blue.png" />
@@ -403,6 +407,16 @@ function assignedHTML(id) {
                 </div>
             </div`;
 }
+
+/* <div class="contacts-list-elem">
+<label class="control control-checkbox" onmousedown="loadAtStartTask()">
+    <div class="contacts-list-elem-box">
+        <span class="rendered-contact-name">You</span>
+        <input type="checkbox" />
+        <div class="control-indicator"></div>
+    </div>
+</label>
+</div> */
 
 function popupCardHTML(
   category,

@@ -434,9 +434,9 @@ function openAddTask() {
     window.scrollTo(0, 0);
     let list = document.getElementsByTagName("html");
     let html = list[0];
-    renderContactsAddTask();
     html.classList.toggle("hide-overflow-y");
     renderAddTask();
+    renderContactsAddTask();
 
     dateFuture();
 }

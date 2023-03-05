@@ -164,8 +164,6 @@ async function renderContacts() {
   // list contacts in alphabetical order
   contacts.sort((a, b) => (a.name > b.name ? 1 : -1));
 
-  // document.getElementById('contacts-drop-down').innerHTML = '';
-
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];
     document.getElementById("contacts-drop-down").innerHTML +=
@@ -466,14 +464,14 @@ async function createNewContactAddTask() {
 async function invateCreateNewContact(invateNewContactName, email) {
   let invateContacts = [];
   let firstletter = getFirstLetterInvate(invateNewContactName);
-  let color = getNewColorContact();
+  let colors = getNewColorContact();
   let contact = {
     name: invateNewContactName,
     mail: email,
     firstletter: firstletter,
-    color: color,
+    colors: colors,
   };
-  let exist = await JSON.parse(backend.getItem("contacts"));
+  let exist = await JSON.parse(backend.getItem("contacts")) || [];
   // if anweisung mit indexOf
   exist.push(contact);
   await backend.setItem("contacts", JSON.stringify(exist));
@@ -506,6 +504,6 @@ function getNewColorContact() {
 
   for (let f = 0; f < 6; f++) {
     color = color + symbols[Math.floor(Math.random() * 16)];
-    return color;
   }
+  return color;
 }
