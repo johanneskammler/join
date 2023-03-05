@@ -271,6 +271,7 @@ async function checkContactsColor(contacts) {
 async function setTasks() {
   let tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
   let doneCoordinates = [];
+  let colors = [];
 
   if (tasks.length > 0) {
     for (let i = 0; i < tasks.length; i++) {
@@ -286,8 +287,15 @@ async function setTasks() {
         namesSplit = new Map();
         namesSplit.set(`${idCounter}`, { letters: `${tasks[i]["letters"]}` });
       }
+      if (key[`colors`] == undefined) {
+        colors = await checkContactsColor(key["contacts"]);
+      }
+      else {
+        colors = key[`color`];
+      }
 
-      let colors = await checkContactsColor(key["contacts"]);
+
+      
 
       if (subtaskLength > 0) {
         for (let j = 0; j < subtaskLength; j++) {

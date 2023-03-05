@@ -93,12 +93,11 @@ body {
 
 .contact:hover {
     border-radius: 10px;
-    background-color: #4589ff;
+    background-color: #d2e3ff;
     transition: all 5m0ms ease-in-out;
 }
 
 .contact:hover span {
-    color: white;
     transition: all 5m0ms ease-in-out;
 }
 
@@ -114,9 +113,6 @@ body {
     color: #4589ff;
 }
 
-.contact-email:hover {
-    color: white;
-}
 
 .circle {
     display: flex;
