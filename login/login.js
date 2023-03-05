@@ -58,7 +58,6 @@ function backFromReset() {
 function sendMeTheEmail() {
     var email = document.getElementById("email").value;
     if (email == "") {
-        alert("Bitte gib eine E-Mail-Adresse ein.");
         return false;
     } else {
         document.getElementById("sent-overlay").classList.remove("d-none");

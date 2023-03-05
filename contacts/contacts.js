@@ -121,6 +121,7 @@ async function renderContactList() {
             let firstLetters = element["name"].split(/\s+/).map((word) => word[0]);
             let acronym = firstLetters.join("");
             let color = element["colors"];
+
             renderContactListHTML(element, acronym, i);
             setColorOnRendering(i);
             disableContactContainer();
