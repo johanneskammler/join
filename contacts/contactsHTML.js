@@ -226,7 +226,12 @@ function renderDetailHTML(name, email, phone, acronym, color) {
     document.getElementById("contact_right").classList.remove("d-none");
     document.getElementById("name_right").innerHTML = name;
     document.getElementById("mail_right").innerHTML = email;
-    document.getElementById("mobil_right").innerHTML = `${phone}`;
+
+    if (phone == undefined) {
+        document.getElementById("mobil_right").innerHTML = '';
+    } else {
+        document.getElementById("mobil_right").innerHTML = `${phone}`;
+    }
     document.getElementById("circle_right").innerHTML = acronym;
     document.getElementById("circle_right").style.background = color;
 }

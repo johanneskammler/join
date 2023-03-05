@@ -247,14 +247,20 @@ async function openEditContact(i) {
     let nameInput = document.getElementById("input-name-edit");
     let mailInput = document.getElementById("input-mail-edit");
     let phoneInput = document.getElementById("input-phone-edit");
+    let mobileRight = document.getElementById('mobile_right');
 
     nameInput.value = selectedContact.name;
     mailInput.value = selectedContact.mail;
-    phoneInput.value = selectedContact.mobil;
+    if (selectedContact.mobil !== undefined) {
+        phoneInput.value = selectedContact.mobil;
+    } else {
+        phoneInput.value = '';
+    }
 
     removeBlurscreen();
     animateEditContact();
 }
+
 
 async function saveEditContact() {
     let contacts = await JSON.parse(backend.getItem("contacts"));
