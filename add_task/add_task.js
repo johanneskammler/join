@@ -52,6 +52,7 @@ async function addToTasks() {
       selectedSubtasks
     );
     resetImportanceButtons();
+    document.getElementById('subtask-content').innerHTML = '';
 
     await backend.setItem("tasks", JSON.stringify(tasks));
     await backend.setItem("urgentCounter", JSON.stringify(urgentCounter));

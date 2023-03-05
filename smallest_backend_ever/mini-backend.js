@@ -26,7 +26,6 @@ async function downloadFromServer() {
   if (result.length > 0) {
     jsonFromServer = JSON.parse(result);
   }
-  console.log("Loaded", result);
 }
 
 function setURL(url) {
