@@ -73,17 +73,19 @@ async function createNewContact() {
         firstLetters: firstLetters,
     };
 
-    // if anweisung mit indexOf
     contacts.push(contact);
     await backend.setItem("contacts", JSON.stringify(contacts));
     renderContactList();
     closeBlurScreen();
     succesImg();
+    resetValue(name, mail, mobil);
 
+}
+
+function resetValue(name, mail, mobil) {
     name.value = "";
     mail.value = "";
     mobil.value = "";
-
 }
 
 function succesImg() {
@@ -100,182 +102,18 @@ function renderContactsRaster() {
     raster.innerHTML = renderContactsRasterHTML();
 }
 
-function renderContactsRasterHTML() {
-    return `
-            <div id="contact-list-id" class="contact-list-inner-container">
-                <div id="a_container">
-                    <div class="contact-char">A</div>
-                    <hr class="underline" />
-                </div>
-                <div id="a"></div>
 
-                <div id="b_container">
-                    <div class="contact-char">B</div>
-                    <hr class="underline" />
-                </div>
-                <div id="b"></div>
-
-                <div id="c_container">
-                    <div>
-                        <div class="contact-char">C</div>
-                        <hr class="underline" />
-                    </div>
-                    <div id="c"></div>
-                </div>
-
-                <div id="d_container">
-                    <div class="contact-char">D</div>
-                    <hr class="underline" />
-                </div>
-                <div id="d"></div>
-
-                <div id="e_container">
-                    <div class="contact-char">E</div>
-                    <hr class="underline" />
-                </div>
-                <div id="e"></div>
-
-                <div id="f_container">
-                    <div class="contact-char">F</div>
-                    <hr class="underline" />
-                </div>
-                <div id="f"></div>
-
-                <div id="g_container">
-                    <div class="contact-char">G</div>
-                    <hr class="underline" />
-                </div>
-                <div id="g"></div>
-
-                <div id="h_container">
-                    <div class="contact-char">H</div>
-                    <hr class="underline" />
-                </div>
-                <div id="h"></div>
-
-                <div id="i_container">
-                    <div class="contact-char">I</div>
-                    <hr class="underline" />
-                </div>
-                <div id="i"></div>
-
-                <div id="j_container">
-                    <div class="contact-char">J</div>
-                    <hr class="underline" />
-                </div>
-                <div id="j"></div>
-
-                <div id="k_container">
-                    <div class="contact-char">K</div>
-                    <hr class="underline" />
-                </div>
-                <div id="k"></div>
-
-                <div id="l_container">
-                    <div class="contact-char">L</div>
-                    <hr class="underline" />
-                </div>
-                <div id="l"></div>
-
-                <div id="m_container">
-                    <div class="contact-char">M</div>
-                    <hr class="underline" />
-                </div>
-                <div id="m"></div>
-
-                <div id="n_container">
-                    <div class="contact-char">N</div>
-                    <hr class="underline" />
-                </div>
-                <div id="n"></div>
-
-                <div id="o_container">
-                    <div class="contact-char">O</div>
-                    <hr class="underline" />
-                </div>
-                <div id="o"></div>
-
-                <div id="p_container">
-                    <div class="contact-char">P</div>
-                    <hr class="underline" />
-                </div>
-                <div id="p"></div>
-
-                <div id="q_container">
-                    <div class="contact-char">Q</div>
-                    <hr class="underline" />
-                </div>
-                <div id="q"></div>
-
-                <div id="r_container">
-                    <div class="contact-char">R</div>
-                    <hr class="underline" />
-                </div>
-                <div id="r"></div>
-
-                <div id="s_container">
-                    <div class="contact-char">S</div>
-                    <hr class="underline" />
-                </div>
-                <div id="s"></div>
-
-                <div id="t_container">
-                    <div class="contact-char">T</div>
-                    <hr class="underline" />
-                </div>
-                <div id="t"></div>
-
-                <div id="u_container">
-                    <div class="contact-char">U</div>
-                    <hr class="underline" />
-                </div>
-                <div id="u"></div>
-
-                <div id="v_container">
-                    <div class="contact-char">V</div>
-                    <hr class="underline" />
-                </div>
-                <div id="v"></div>
-
-                <div id="w_container">
-                    <div class="contact-char">W</div>
-                    <hr class="underline" />
-                </div>
-                <div id="w"></div>
-
-                <div id="x_container">
-                    <div class="contact-char">X</div>
-                    <hr class="underline" />
-                </div>
-                <div id="x"></div>
-
-                <div id="y_container">
-                    <div class="contact-char">Y</div>
-                    <hr class="underline" />
-                </div>
-                <div id="y"></div>
-
-                <div id="z_container">
-                    <div class="contact-char">Z</div>
-                    <hr class="underline" />
-                </div>
-                <div id="z"></div>
-              </div>
-            `;
-}
 
 async function renderContactList() {
     let a = document.getElementById("contact_list_container");
+    let b = document.getElementById("contact-list-id");
     a.innerHTML = "";
     renderContactsRaster();
+
     contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
     if (contacts.length < 1) {
-        document.getElementById("contact-list-id").classList.add('d-none');
-        document.getElementById("contact_list_container").innerHTML = `
-        <div class="no-contacts">
-        <h4>No contacts yet. <br> Please add a new contact!</h4>
-    </div>
-        `;
+        b.classList.add('d-none');
+        showNoContacts();
 
     } else {
         for (let i = 0; i < contacts.length; i++) {
@@ -287,7 +125,6 @@ async function renderContactList() {
             disableContactContainer();
         }
     }
-
 }
 
 function renderContactListHTML(element, acronym, i) {
@@ -296,17 +133,9 @@ function renderContactListHTML(element, acronym, i) {
         console.error("First letter is undefined");
         return;
     }
+
     let id = firstLetter.toLowerCase();
-    /*  document.getElementById(id).innerHTML = ""; */
-    document.getElementById(id).innerHTML += `
-        <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym.toUpperCase()}</div>
-            <div class="contact-info-container">
-                <span class="contact-name">${element["name"]}</span>
-                <span class="contact-email">${element["mail"]}</span>
-            </div>
-        </div>
-    `;
+    ContactListHTML(id, acronym, i, element);
 }
 
 async function openContactDetail(i) {
@@ -322,30 +151,11 @@ async function openContactDetail(i) {
     const body = document.body;
     const bodyWidth = body.offsetWidth;
     if (bodyWidth < 800) {
-        document.getElementById("new_contact_btn").classList.add("d-none");
-        document.getElementById("contact_list_container").classList.add("d-none");
-        document.getElementById("edit_contact_pencil").classList.add("d-none");
-        document.getElementById("backarrow").classList.remove("d-none");
-        document.getElementById("edit_contact").classList.remove("d-none");
-        document.getElementById("contact_right").classList.remove("d-none");
-        document.getElementById("name_right").innerHTML = name;
-        document.getElementById("mail_right").innerHTML = email;
-        document.getElementById("mobil_right").innerHTML = `${phone}`;
-        document.getElementById("circle_right").innerHTML = acronym;
-        document.getElementById("circle_right").style.background = color;
+        renderDetailHTMLRespons();
+        renderDetailHTML(name, email, phone, acronym, color);
     } else {
-        document.getElementById("contact_right").classList.remove("d-none");
-        document.getElementById("name_right").innerHTML = name;
-        document.getElementById("mail_right").innerHTML = email;
-        document.getElementById("mobil_right").innerHTML = `${phone}`;
-        document.getElementById("circle_right").innerHTML = acronym;
-        document.getElementById("circle_right").style.background = color;
-        gsap.from("#contact_right", {
-            x: 150,
-            opacity: 0,
-            duration: 0.33,
-            ease: "back.out(0.7)",
-        });
+        renderDetailHTML(name, email, phone, acronym, color);
+        animateDetail();
     }
 }
 
@@ -356,41 +166,6 @@ function closeContactRight() {
         document.getElementById("contact_right").classList.add("d-none");
         document.getElementById("contact_right").classList.remove("slide-bottom");
     }, 300);
-}
-
-function renderOpenDetail(i) {
-    document.getElementById("contact_right").innerHTML = `
-    <img onclick="closeDetail()" class="d-none" id="backarrow" src="img/backarrow.png" alt="" />
-        <div class="name-container">
-            <div class="circle-right" id="circle_right"></div>
-            <div class="name">
-                <h1 id="name_right"></h1>
-                <div onclick="openAddTask()" class="name-addTask">
-                    <img class="cross" src="img/cross.png" alt="" />
-                    <p>Add Task</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="contact-information-container">
-            <div class="contact-information">
-                <h2>Contact Information</h2>
-                <div class="info-email">
-                    <p>Email</p>
-                    <span id="mail_right"></span>
-                </div>
-                <div class="info-mobil">
-                    <p>Mobil</p>
-                    <span id="mobil_right"></span>
-                </div>
-            </div>
-            <div onclick="openEditContact(${i})" id="edit_contact_pencil" class="edit-contact">
-                <img src="img/pencil.png" alt="" />
-                <p>Edit Contact</p>
-            </div>
-        </div>
-        <img onclick="openEditContact(${i})" src="img/edit-contact.png" id="edit_contact" class="d-none" alt="" />
-    `;
 }
 
 function closeDetail() {
@@ -408,12 +183,7 @@ function addNewContact() {
     if (addContactContainer.classList.contains("d-none")) {
         addContactContainer.classList.remove("d-none");
         blurScreen.classList.remove("d-none");
-        gsap.from("#add_contact_container", {
-            width: 1200,
-            x: -1000,
-            duration: 0.55,
-            ease: "back.out(0.35)",
-        });
+        animateAddContact();
     } else {
         addContactContainer.classList.add("d-none");
         blurScreen.classList.add("d-none");
@@ -435,9 +205,9 @@ function openAddTask() {
     let list = document.getElementsByTagName("html");
     let html = list[0];
     html.classList.toggle("hide-overflow-y");
+
     renderAddTask();
     renderContactsAddTask();
-
     dateFuture();
 }
 
@@ -483,13 +253,8 @@ async function openEditContact(i) {
     mailInput.value = selectedContact.mail;
     phoneInput.value = selectedContact.mobil;
 
-    document.getElementById("blur_screen-edit").classList.remove("d-none");
-
-    gsap.from(".edit-contact-inner-container", {
-        x: -400,
-        duration: 0.55,
-        ease: "back.out(0.35)",
-    });
+    removeBlurscreen();
+    animateEditContact();
 }
 
 async function saveEditContact() {
@@ -550,6 +315,15 @@ function dateFuture() {
     const today = new Date().toISOString().split("T")[0];
     document.getElementById("select-date-task").setAttribute("min", today);
 }
+
+function removeBlurscreen() {
+    document.getElementById("blur_screen-edit").classList.remove("d-none");
+}
+
+function addBlurscreen() {
+    document.getElementById("blur_screen-edit").classList.add("d-none");
+}
+
 
 //  Render HMTL
 function disableContactContainer() {
