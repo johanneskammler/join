@@ -2,7 +2,7 @@
 
 ########### CONFIG ###############
 
-$recipient = 'gky.shn@gmx.de';
+$recipient = 'tom.kuestermann76@gmail.com';
 $redirect = 'startPage.html';
 
 ########### CONFIG END ###########
@@ -43,7 +43,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $headers = "From:  noreply@developerakademie.com";
 
         mail($recipient, $subject, $_POST['message'], $headers);
-        header("Location: " . $redirect); 
+        usleep(1000000);
+header("Location: " . $redirect);
+
 
         break;
     default: //Reject any non POST or OPTIONS requests.
