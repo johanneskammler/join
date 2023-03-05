@@ -12,6 +12,7 @@ function generateHTMLcontacts(element, i) {
     `;
 }
 
+
 function generateHTMLcategory(categoryName, categoryColor) {
   return `
   <div onclick="fillCategory('${categoryName}')" class="categories-list-elem">
@@ -20,6 +21,7 @@ function generateHTMLcategory(categoryName, categoryColor) {
   </div>
   `;
 }
+
 
 function setCategoryToSales() {
   return `
@@ -30,6 +32,7 @@ function setCategoryToSales() {
     `;
 }
 
+
 function setCategoryToBackoffice() {
   return `
     <div class="selected-category">
@@ -38,6 +41,7 @@ function setCategoryToBackoffice() {
     </div>
     `;
 }
+
 
 function setCategoryToNewCategory(categoryName, categoryColor, newCategories) {
   return `
@@ -48,6 +52,7 @@ function setCategoryToNewCategory(categoryName, categoryColor, newCategories) {
     `;
 }
 
+
 function resetCategory() {
   return `
   <div class="selected-category">
@@ -55,6 +60,7 @@ function resetCategory() {
   </div>
   `;
 }
+
 
 function generateHTMLsubtask(subtask, i) {
   return `
@@ -66,6 +72,34 @@ function generateHTMLsubtask(subtask, i) {
           <div class="control-indicator-subtask"></div>
         </div>
       </label>
+    </div>
+    `;
+}
+
+
+function generateHTMLinviteNewContactEmail() {
+  return `
+    <div class="new-contact-add-task">
+      <input onkeyup="" type="email" placeholder="Add Contact Email" class="add-subtask correct-width" id="add_task_email"> 
+        <div id="new-subtask-accept" class="new-subtask-accept m-i-e">
+          <img onmouseup="newContactAddTaskReturn()" src="../add_task/img-add_task/x_blue.png">
+          <span>|</span>
+          <img onclick="addNameNewContact()" src="../add_task/img-add_task/check_blue.png">
+      </div>
+    </div>
+    `;
+}
+
+
+function generateHTMLinviteNewContactName() {
+  return `
+    <div class="new-contact-add-task">
+      <input onkeyup="" type="text" placeholder="First and Lastname" class="add-subtask correct-width" id="add_task_name"> 
+        <div id="new-subtask-accept" class="new-subtask-accept m-i-e">
+          <img onmouseup="newContactAddTaskReturn()" src="../add_task/img-add_task/x_blue.png">
+          <span>|</span>
+          <img onmouseup="createNewContactAddTask()" src="../add_task/img-add_task/check_blue.png">
+      </div>
     </div>
     `;
 }

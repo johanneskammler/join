@@ -12,10 +12,12 @@ let urgentCounter;
 
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 
+
 async function getUrgentCounter() {
   urgentCounter = (await backend.getItem("urgentCounter")) || 0;
   urgentCounter = parseInt(urgentCounter);
 }
+
 
 async function addToTasks() {
   if (selectedContacts.length == 0) {
@@ -56,11 +58,13 @@ async function addToTasks() {
   }
 }
 
+
 function checkImportance() {
   if (importance == "urgent") {
     urgentCounter++;
   }
 }
+
 
 function hoverAddtaskHtml() {
   document
@@ -69,6 +73,7 @@ function hoverAddtaskHtml() {
   document.getElementById("addtask_bg").classList.remove("section-background");
 }
 
+
 function hoverAddtaskRespons() {
   document
     .getElementById("board_bg")
@@ -76,14 +81,17 @@ function hoverAddtaskRespons() {
   document.getElementById("addtask_bg").classList.add("section-background");
 }
 
+
 function triggerAddedToBoardButton() {
   document.getElementById("task-added-to-board").classList.remove("d-none");
   setTimeout(resetAddedButton, 3000);
 }
 
+
 function resetAddedButton() {
   document.getElementById("task-added-to-board").classList.add("d-none");
 }
+
 
 function resetTasksInputs(
   title,
@@ -102,6 +110,7 @@ function resetTasksInputs(
   resetCheckboxes();
 }
 
+
 function resetImportanceButtons() {
   document.getElementById("importance-button1").style = "display: flex;";
   document.getElementById("importance-button1-colored").style =
@@ -113,6 +122,7 @@ function resetImportanceButtons() {
   document.getElementById("importance-button3-colored").style =
     "display: none;";
 }
+
 
 async function init() {
   await includeHTML();
@@ -127,9 +137,11 @@ async function init() {
   getUrgentCounter();
 }
 
+
 function hoverAddTaskHtml() {
   document.getElementById("add-task-html").classList.add("add_task_html");
 }
+
 
 function checkSize() {
   let size = window.innerWidth;
@@ -142,6 +154,7 @@ function checkSize() {
   }
 }
 
+
 function sidebarTabled() {
   document.getElementById("sidebar").classList.remove("sidebar");
   document.getElementById("sidebar").classList.add("tablet-sidebar");
@@ -150,6 +163,7 @@ function sidebarTabled() {
   document.getElementById("header-name-resp").classList.remove("d-none");
 }
 
+
 function enableSidebar() {
   document.getElementById("sidebar").classList.add("sidebar");
   document.getElementById("sidebar").classList.remove("tablet-sidebar");
@@ -157,6 +171,7 @@ function enableSidebar() {
   document.getElementById("create-btn-responsive").classList.add("d-none");
   document.getElementById("header-name-resp").classList.add("d-none");
 }
+
 
 async function renderContacts() {
   contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
@@ -171,12 +186,14 @@ async function renderContacts() {
   }
 }
 
+
 function clearContactsBeforeRendering() {
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];
     document.getElementById(`selected-contact-${i}`).parentElement.remove();
   }
 }
+
 
 function addContactToTask(i) {
   let contact = document.getElementById("contacts-checkbox-" + i).value;
@@ -187,6 +204,7 @@ function addContactToTask(i) {
     selectedContacts.push(contact);
   }
 }
+
 
 function fillCategory(category) {
   let categoryField = document.getElementById("select-category");
@@ -212,6 +230,7 @@ function fillCategory(category) {
   }
 }
 
+
 function createNewCategory() {
   document.getElementById("new-category-input").value = "";
   openCategoriesToSelect();
@@ -220,6 +239,7 @@ function createNewCategory() {
   document.getElementById("drop-down-arrow-categories").classList.add("d-none");
   document.getElementById("new-category-accept").classList.remove("d-none");
 }
+
 
 function goBackToSelectCategory() {
   document.getElementById("new-category-input").classList.add("d-none");
@@ -231,6 +251,7 @@ function goBackToSelectCategory() {
   document.getElementById("select-category").innerHTML = "Select task category";
   categoryColor = "";
 }
+
 
 function addNewCategory() {
   categoryName = document.getElementById("new-category-input").value;
@@ -245,6 +266,7 @@ function addNewCategory() {
   newCategories.push(categoryName, categoryColor);
   renderNewCategories(categoryName, categoryColor);
 }
+
 
 function selectCategoryColor(color) {
   document
@@ -261,15 +283,18 @@ function selectCategoryColor(color) {
   }
 }
 
+
 function renderNewCategories(categoryName, categoryColor) {
   document.getElementById("categories-drop-down").innerHTML +=
     generateHTMLcategory(categoryName, categoryColor);
 }
 
+
 function createNewSubtask() {
   document.getElementById("plus-icon").classList.add("d-none");
   document.getElementById("new-subtask-accept").classList.remove("d-none");
 }
+
 
 function addSubtask() {
   let newSubtask = document.getElementById("add-subtask").value;
@@ -280,11 +305,13 @@ function addSubtask() {
   renderSubtasks();
 }
 
+
 function backToSubtasks() {
   document.getElementById("plus-icon").classList.remove("d-none");
   document.getElementById("new-subtask-accept").classList.add("d-none");
   document.getElementById("add-subtask").value = "";
 }
+
 
 function renderSubtasks() {
   document.getElementById("subtask-content").innerHTML = "";
@@ -297,6 +324,7 @@ function renderSubtasks() {
   }
 }
 
+
 function addSubtaskToTask(i) {
   let subtask = document.getElementById("subtasks-checkbox-" + i).value;
 
@@ -306,6 +334,7 @@ function addSubtaskToTask(i) {
     selectedSubtasks.push(subtask);
   }
 }
+
 
 function fillImportanceButton1() {
   importance = "urgent";
@@ -320,12 +349,14 @@ function fillImportanceButton1() {
     "display: none;";
 }
 
+
 function emptyImportanceButton1() {
   importance = "";
   document.getElementById("importance-button1").style = "display: flex;";
   document.getElementById("importance-button1-colored").style =
     "display: none;";
 }
+
 
 function fillImportanceButton2() {
   importance = "medium";
@@ -340,12 +371,14 @@ function fillImportanceButton2() {
     "display: none;";
 }
 
+
 function emptyImportanceButton2() {
   importance = "";
   document.getElementById("importance-button2").style = "display: flex;";
   document.getElementById("importance-button2-colored").style =
     "display: none;";
 }
+
 
 function fillImportanceButton3() {
   importance = "low";
@@ -360,12 +393,14 @@ function fillImportanceButton3() {
     "display: none;";
 }
 
+
 function emptyImportanceButton3() {
   importance = "";
   document.getElementById("importance-button3").style = "display: flex;";
   document.getElementById("importance-button3-colored").style =
     "display: none;";
 }
+
 
 let contactsRendered = false;
 function openContactsToSelect() {
@@ -380,6 +415,7 @@ function openContactsToSelect() {
   overlay.classList.toggle("overlay-z");
 }
 
+
 function openCategoriesToSelect() {
   let ddCategories = document.getElementById("categories-drop-down");
   let overlay = document.getElementById("overlay-categories");
@@ -388,11 +424,13 @@ function openCategoriesToSelect() {
   overlay.classList.toggle("overlay-z");
 }
 
+
 function resetCheckboxes() {
   for (let i = 0; i < contacts.length; i++) {
     document.getElementById(`contacts-checkbox-${i}`).checked = false;
   }
 }
+
 
 function clearAllInputFields() {
   document.getElementById("title-input").value = "";
@@ -409,17 +447,11 @@ function clearAllInputFields() {
   resetCheckboxes();
 }
 
+
 function newContactAddTask() {
   if (newContactAddTaskActive) {
     let invateContact = document.getElementById("new_contact");
-    invateContact.innerHTML = `<div class="new-contact-add-task">
-                                  <input onkeyup="" type="email" placeholder="Add Contact Email" class="add-subtask correct-width" id="add_task_email"> 
-                                    <div id="new-subtask-accept" class="new-subtask-accept m-i-e">
-                                      <img onmouseup="newContactAddTaskReturn()" src="../add_task/img-add_task/x_blue.png">
-                                      <span>|</span>
-                                      <img onclick="addNameNewContact()" src="../add_task/img-add_task/check_blue.png">
-                                   </div>
-                                </div>`;
+    invateContact.innerHTML = generateHTMLinviteNewContactEmail();
     invateContact.classList.remove("contacts-list-elem");
     invateContact.classList.remove("new-contact");
     invateContact.classList.add("invate-class");
@@ -427,6 +459,7 @@ function newContactAddTask() {
     newContactAddTaskActive = false;
   }
 }
+
 
 function newContactAddTaskReturn() {
   let invateContact = document.getElementById("new_contact");
@@ -441,25 +474,21 @@ function newContactAddTaskReturn() {
   newContactAddTaskActive = true;
 }
 
+
 let email;
 function addNameNewContact() {
   let invateNewContactEmail = document.getElementById("add_task_email").value;
   email = [String(invateNewContactEmail)];
   let invateContact = document.getElementById("new_contact");
-  invateContact.innerHTML = `<div class="new-contact-add-task">
-                                  <input onkeyup="" type="text" placeholder="First and Lastname" class="add-subtask correct-width" id="add_task_name"> 
-                                    <div id="new-subtask-accept" class="new-subtask-accept m-i-e">
-                                      <img onmouseup="newContactAddTaskReturn()" src="../add_task/img-add_task/x_blue.png">
-                                      <span>|</span>
-                                      <img onmouseup="createNewContactAddTask()" src="../add_task/img-add_task/check_blue.png">
-                                   </div>
-                                </div>`;
+  invateContact.innerHTML = generateHTMLinviteNewContactName();
 }
+
 
 async function createNewContactAddTask() {
   let invateNewContactName = document.getElementById("add_task_name").value;
   await invateCreateNewContact(invateNewContactName, email);
 }
+
 
 async function invateCreateNewContact(invateNewContactName, email) {
   let invateContacts = [];
@@ -480,6 +509,7 @@ async function invateCreateNewContact(invateNewContactName, email) {
   renderContacts();
 }
 
+
 function getFirstLetterInvate(contact) {
   let contacts = [contact];
   let letterList;
@@ -496,6 +526,7 @@ function getFirstLetterInvate(contact) {
 
   return letterList;
 }
+
 
 function getNewColorContact() {
   let symbols, color;
