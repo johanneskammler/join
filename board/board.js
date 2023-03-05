@@ -261,7 +261,11 @@ async function checkContactsColor(contacts) {
     for (let i = 0; i < contactsBackend.length; i++) {
       const element = contactsBackend[i];
       if (element["name"].includes(contact)) {
-        contactData.push(element["colors"]);
+        if (element["color"] == undefined) {
+          contactData.push(element["colors"]);
+        } else {
+          contactData.push(element["color"]);
+        }
       }
     }
   }
