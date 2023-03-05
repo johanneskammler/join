@@ -106,13 +106,13 @@ function renderContactsRaster() {
 
 async function renderContactList() {
     let a = document.getElementById("contact_list_container");
-    let b = document.getElementById("contact-list-id");
+
     a.innerHTML = "";
     renderContactsRaster();
 
     contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
     if (contacts.length < 1) {
-        b.classList.add('d-none');
+        document.getElementById("contact-list-id").classList.add('d-none');
         showNoContacts();
 
     } else {
