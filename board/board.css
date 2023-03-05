@@ -271,7 +271,7 @@ body {
 }
 
 .card-content-popup {
-  width: 479px;
+  width: 424px;
 }
 
 .popup {
@@ -485,7 +485,7 @@ body {
 .edit-box {
   display: flex;
   justify-content: end;
-  margin-right: 55px;
+  margin-right: 20px;
   margin-block-start: -24px;
 }
 
@@ -634,7 +634,7 @@ h4 {
   color: wheat;
   font-family: "Inter";
   position: absolute;
-  right: 42px;
+  right: 61px;
   height: 55px;
   width: 55px;
   display: flex;
