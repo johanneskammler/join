@@ -62,7 +62,7 @@ async function addToTasks() {
     selectedSubtasks
   );
   resetImportanceButtons();
-  document.getElementById('subtask-content').innerHTML = '';
+  document.getElementById("subtask-content").innerHTML = "";
 
   await backend.setItem("urgentCounter", JSON.stringify(urgentCounter));
   await backend.setItem("tasks", JSON.stringify(tasks));
@@ -83,7 +83,11 @@ function contactToSave(selectedContacts) {
       const element = list[i];
       if (element["name"] == selected) {
         names.push(element["name"]);
-        colors.push(element["color"]);
+        if (element["color"] == undefined) {
+          colors.push(element["colors"]);
+        } else {
+          colors.push(element["color"]);
+        }
         letters.push(element["firstLetters"]);
       }
     }
