@@ -2,6 +2,7 @@ body {
     caret-color: transparent;
     margin: 0;
     font-family: "Open Sans";
+    overflow: hidden;
 }
 
 .d-none {

@@ -34,9 +34,9 @@ async function signUpUser() {
     } else {
         // newAccCreated();
         document.getElementById('sign-up-successful').classList.remove('d-none');
-        // setTimeout(() => {
-        //     window.location = "../login/startPage.html";
-        // }, 3000);
+        setTimeout(() => {
+            window.location = "../login/startPage.html";
+        }, 3000);
     }
 
     emailValue = false;
