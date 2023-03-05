@@ -289,13 +289,9 @@ async function setTasks() {
       }
       if (key[`colors`] == undefined) {
         colors = await checkContactsColor(key["contacts"]);
+      } else {
+        colors = key[`colors`];
       }
-      else {
-        colors = key[`color`];
-      }
-
-
-      
 
       if (subtaskLength > 0) {
         for (let j = 0; j < subtaskLength; j++) {

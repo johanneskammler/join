@@ -79,7 +79,6 @@ async function createNewContact() {
     closeBlurScreen();
     succesImg();
     resetValue(name, mail, mobil);
-
 }
 
 function resetValue(name, mail, mobil) {
@@ -89,12 +88,10 @@ function resetValue(name, mail, mobil) {
 }
 
 function succesImg() {
-    document.getElementById('succes_img').classList.remove('d-none');
+    document.getElementById("succes_img").classList.remove("d-none");
     setTimeout(() => {
-        document.getElementById('succes_img').classList.add('d-none');
+        document.getElementById("succes_img").classList.add("d-none");
     }, 500);
-
-
 }
 
 function renderContactsRaster() {
@@ -102,19 +99,16 @@ function renderContactsRaster() {
     raster.innerHTML = renderContactsRasterHTML();
 }
 
-
-
 async function renderContactList() {
     let a = document.getElementById("contact_list_container");
-
+    let b = document.getElementById("contact-list-id");
     a.innerHTML = "";
     renderContactsRaster();
 
     contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
     if (contacts.length < 1) {
-        document.getElementById("contact-list-id").classList.add('d-none');
+        b.classList.add("d-none");
         showNoContacts();
-
     } else {
         for (let i = 0; i < contacts.length; i++) {
             const element = contacts[i];
@@ -148,7 +142,7 @@ async function openContactDetail(i) {
     let name = contact["name"];
     let email = contact["mail"];
     let phone = contact["mobil"];
-    let color = contact["colors"];
+    let color = contact["color"];
     let firstLetters = contact["name"].split(/\s+/).map((word) => word[0]);
     let acronym = firstLetters.join("");
     renderOpenDetail(i);
@@ -328,7 +322,6 @@ function removeBlurscreen() {
 function addBlurscreen() {
     document.getElementById("blur_screen-edit").classList.add("d-none");
 }
-
 
 //  Render HMTL
 function disableContactContainer() {
