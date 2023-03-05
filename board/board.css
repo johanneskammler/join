@@ -573,7 +573,7 @@ textarea {
   font-size: 21px;
   caret-color: black;
   max-height: 70px;
-  width: 415px;
+  width: 413px;
 }
 textarea::placeholder {
   color: rgba(107, 107, 107, 0.962);

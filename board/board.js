@@ -639,9 +639,14 @@ function checkTitlePopup(section, id) {
 function renderPopupContacts(colors, contactsSplit, letters) {
   let contact = document.getElementById(`assigned`);
   let card = document.getElementById("popup_card");
+  let contacts = document.querySelectorAll(".contactsDiv");
+
   if (colors[0] == "" && colors.length == 1) {
-    contact.classList.add("d-none");
-    card.style.marginTop = "80px";
+    for (let i = 0; i < contacts.length; i++) {
+      const element = contacts[i];
+      element.innerHTML = "";
+      selectedContacts = [];
+    }
   } else {
     for (let i = 0; i < contactsSplit.length; i++) {
       const element = contactsSplit[i];
@@ -895,11 +900,19 @@ function setSubtasksLayout(id) {
 }
 
 function setSelecdetContacts(id) {
+  let dropDown = document.getElementById("contacts-drop-down-edit");
+
+  if (dropDown.classList.contains("d-none")) {
+    return;
+  }
   let map = wichSection(id);
   let contacts = map.get(`${id}`)["contacts"];
   contacts = checkIfString(contacts);
-
-  selectedContacts = contacts;
+  if (contacts[0] == "") {
+    selectedContacts = [];
+  } else {
+    selectedContacts = contacts;
+  }
 }
 
 function edit(id) {
@@ -909,7 +922,6 @@ function edit(id) {
   let title = currentMap.get(`${id}`)["title"];
   let description = currentMap.get(`${id}`)["description"];
   let names = document.getElementsByClassName("fullName");
-  setSelecdetContacts(id);
 
   for (let i = 0; i < names.length; i++) {
     const element = names[i];
@@ -1085,10 +1097,10 @@ async function editDone(id) {
   if (dateEdit.length == 0) {
     dateEdit = section.get(`${id}`)["date"];
   }
-  if (contactsEdit.length == 0 || contactsEdit[0] == "") {
+  /*   if (contactsEdit.length == 0 || contactsEdit[0] == "") {
     contact = section.get(`${id}`)["contacts"];
     contactsEdit = contact;
-  }
+  } */
   if (button == undefined) {
     button = section.get(`${id}`)["importance"];
   }
@@ -1230,11 +1242,11 @@ function checkPrioBtn(id) {
 }
 
 function setPriority(importance, id, section) {
-  if (importance === "Urgent") {
+  if (importance === "urgent") {
     priority.innerHTML = buttonURGENT();
-  } else if (importance === "Medium") {
+  } else if (importance === "medium") {
     priority.innerHTML = buttonMEDIUM();
-  } else if (importance === "Low") {
+  } else if (importance === "low") {
     priority.innerHTML = buttonLOW();
   }
 }

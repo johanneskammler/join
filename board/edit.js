@@ -4,6 +4,8 @@ function openEditContactsToSelect(id) {
 
   renderContactsEdit();
   setTimeout(checkExistContact, 100, id);
+  setSelecdetContacts(id);
+
   //setTimeout(contactsCheckboxUpdate, 350, id);
   //checkedSettingEdit(checkedEdit);
 }
@@ -13,13 +15,13 @@ function checkExistContact(id) {
   if (element.classList.contains("d-none")) {
     return;
   }
-  let map = wichSection(id);
+  /*   let map = wichSection(id);
   let contactOnCard = map.get(`${id}`)["contacts"];
   if (typeof contactOnCard == "string") {
     contactOnCard = contactOnCard.split(",");
-  }
-  for (let i = 0; i < contactOnCard.length; i++) {
-    const name = contactOnCard[i];
+  } */
+  for (let i = 0; i < selectedContacts.length; i++) {
+    const name = selectedContacts[i];
     if (selectedContacts.indexOf(name) == -1) {
       selectedContacts.push(name);
     }
