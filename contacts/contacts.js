@@ -120,15 +120,18 @@ async function renderContactList() {
             const element = contacts[i];
             let firstLetters = element["name"].split(/\s+/).map((word) => word[0]);
             let acronym = firstLetters.join("");
+            let color = element["colors"];
             renderContactListHTML(element, acronym, i);
             setColorOnRendering(i);
             disableContactContainer();
+            document.getElementById(`circle_contacts${i}`).style.background = color;
         }
     }
 }
 
-function renderContactListHTML(element, acronym, i) {
+async function renderContactListHTML(element, acronym, i) {
     let firstLetter = element["name"] ? element["name"][0] : "";
+
     if (!firstLetter) {
         console.error("First letter is undefined");
         return;
@@ -139,13 +142,14 @@ function renderContactListHTML(element, acronym, i) {
 }
 
 async function openContactDetail(i) {
-    contacts = JSON.parse(backend.getItem("contacts"));
+    contacts = await JSON.parse(backend.getItem("contacts"));
     let contact = contacts[i];
     let name = contact["name"];
     let email = contact["mail"];
     let phone = contact["mobil"];
-    let acronym = contact["firstLetters"];
-    let color = contact["color"];
+    let color = contact["colors"];
+    let firstLetters = contact["name"].split(/\s+/).map((word) => word[0]);
+    let acronym = firstLetters.join("");
     renderOpenDetail(i);
 
     const body = document.body;
