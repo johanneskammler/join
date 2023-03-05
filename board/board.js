@@ -1072,7 +1072,7 @@ async function editDone(id) {
 
   let category = section.get(`${id}`)["category"];
   let categorycolor = section.get(`${id}`)["categorycolor"];
-  let colors = await setColorsExist();
+  let colors = await contactToSave(selectedContacts);
   let letters = getFirstLetterInvate(selectedContacts);
   let subtask = section.get(`${id}`)["subtask"];
   let subtaskStatus = globalProgress;
@@ -1092,6 +1092,8 @@ async function editDone(id) {
   if (button == undefined) {
     button = section.get(`${id}`)["importance"];
   }
+
+  colors = colors[1];
 
   saveIn(
     titleEdit,

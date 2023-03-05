@@ -36,7 +36,7 @@ async function addToTasks() {
   let category = document.getElementById("select-category");
   let date = document.getElementById("select-date-task");
   let description = document.getElementById("description-input");
-  let contactsData = contactToSave(selectedContacts);
+  let contactsData = await contactToSave(selectedContacts);
   selectedSubtasks = subtasks;
 
   let task = {
@@ -72,11 +72,11 @@ async function addToTasks() {
   setTimeout(activateDragAndDrop, 200); /* setCards(); */
 }
 
-function contactToSave(selectedContacts) {
+async function contactToSave(selectedContacts) {
   let names = [];
   let colors = [];
   let letters = [];
-  let list = JSON.parse(backend.getItem("contacts"));
+  let list = await JSON.parse(backend.getItem("contacts"));
   for (let j = 0; j < selectedContacts.length; j++) {
     const selected = selectedContacts[j];
     for (let i = 0; i < list.length; i++) {
@@ -88,7 +88,11 @@ function contactToSave(selectedContacts) {
         } else {
           colors.push(element["color"]);
         }
-        letters.push(element["firstLetters"]);
+        if (element["firstLetters"] == undefined) {
+          letters.push(element["firstletter"]);
+        } else {
+          letters.push(element["firstLetters"]);
+        }
       }
     }
   }
