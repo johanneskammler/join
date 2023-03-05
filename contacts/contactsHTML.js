@@ -181,7 +181,7 @@ function ContactListHTML(id, acronym, i, element) {
             <div id="circle_contacts${i}" class="circle">${acronym.toUpperCase()}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${element["name"]}</span>
-                <span class="contact-email">${element["mail"]}</span>
+                <span id="contact-email-${i}" class="contact-email">${element["mail"]}</span>
             </div>
         </div>
     `;

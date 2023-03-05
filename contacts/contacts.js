@@ -156,6 +156,7 @@ async function openContactDetail(i) {
         renderDetailHTML(name, email, phone, acronym, color);
         animateDetail();
     }
+    openContactDetailHover(i);
 }
 
 function closeContactRight() {
@@ -455,4 +456,16 @@ function disableContactContainer() {
     } else {
         document.getElementById("z_container").classList.remove("d-none");
     }
+}
+
+function openContactDetailHover(i) {
+    // Zunächst entfernen Sie alle vorhandenen ‘selected’ Klassen von allen Kontakten.
+    const contacts = document.getElementsByClassName('contact');
+    for (let j = 0; j < contacts.length; j++) {
+        contacts[j].classList.remove('contact-selected');
+    }
+    // Fügen Sie die ‘selected’ Klasse nur zum angeklickten Kontakt hinzu.
+    const selectedContact = document.getElementById(`contact${i}`);
+    selectedContact.classList.add('contact-selected');
+    document.getElementById(`contact-email-${i}`).classList.add('color-white');
 }
