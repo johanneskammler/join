@@ -167,6 +167,11 @@ function renderAddTask() {
   addTask.innerHTML = renderAddTaskHTML();
 }
 
+function checkFille() {
+  allFieldsFilled();
+  setTimeout(checkFille, 250);
+}
+
 /**
  * open addTask and remove the d-none class from the div with id add-task
  */
