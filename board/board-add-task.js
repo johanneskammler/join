@@ -260,7 +260,7 @@ function addNewCategory() {
     setTimeout(showErrorCategory, 1235);
     return;
   }
-  if (categoryColor == undefined) {
+  if (categoryColor == "undefined" || categoryColor == "") {
     showErrorColor();
     setTimeout(showErrorColor, 1235);
   } else {
