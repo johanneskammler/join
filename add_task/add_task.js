@@ -257,7 +257,9 @@ function goBackToSelectCategory() {
 function addNewCategory() {
   if (categoryColor == undefined) {
     alert('Please select a new category color!')
+    document.getElementById('create-task-btn').disabled = true;
   } else {
+    document.getElementById('create-task-btn').disabled = false;
     categoryName = document.getElementById("new-category-input").value;
     document.getElementById("new-category-input").classList.add("d-none");
     document.getElementById("new-category-content").classList.add("d-none");
