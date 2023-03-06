@@ -44,6 +44,8 @@ async function greetUser() {
   let name = ShowCurrentUserNameForSummery["userName"];
   if (currentTime < 12) {
     document.getElementById("greet-at-time").innerHTML = "Good morning, ";
+  } else if (currentTime < 17) {
+    document.getElementById("greet-at-time").innerHTML = "Good afternoon, ";
   } else {
     document.getElementById("greet-at-time").innerHTML = "Good evening, ";
   }
