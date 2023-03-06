@@ -123,7 +123,6 @@ body {
     color: #4589ff;
 }
 
-
 .circle {
     display: flex;
     justify-content: center;
@@ -517,29 +516,35 @@ form input::placeholder {
 }
 
 .slide-top {
-    -webkit-animation: slide-top 1.5s cubic-bezier(0.23, 1, 0.32, 1) 2 alternate
-      both;
+    -webkit-animation: slide-top 1.5s cubic-bezier(0.23, 1, 0.32, 1) 2 alternate both;
     animation: slide-top 1.5s cubic-bezier(0.23, 1, 0.32, 1) 2 alternate both;
-  }
-  
-  @-webkit-keyframes slide-top {
+}
+
+@-webkit-keyframes slide-top {
     0% {
-      -webkit-transform: translateY(600px);
-      transform: translateY(600px);
+        -webkit-transform: translateY(600px);
+        transform: translateY(600px);
     }
     100% {
-      -webkit-transform: translateY(0);
-      transform: translateY(0);
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
     }
-  }
-  
-  @keyframes slide-top {
+}
+
+@keyframes slide-top {
     0% {
-      -webkit-transform: translateY(600px);
-      transform: translateY(600px);
+        -webkit-transform: translateY(600px);
+        transform: translateY(600px);
     }
     100% {
-      -webkit-transform: translateY(0);
-      transform: translateY(0);
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
     }
-  }
+}
+
+.error-message {
+    position: absolute;
+    z-index: 20;
+    background-color: white;
+    color: red;
+}

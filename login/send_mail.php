@@ -2,8 +2,8 @@
 
 ########### CONFIG ###############
 
-$recipient = 'tom.kuestermann76@gmail.com';
-$redirect = 'startPage.html';
+$recipient = 'tom.kuestermann75@gmail.com';
+// $redirect = 'startPage.html';
 
 ########### CONFIG END ###########
 
@@ -39,12 +39,24 @@ switch ($_SERVER['REQUEST_METHOD']) {
     case ("POST"): //Send the email;
         header("Access-Control-Allow-Origin: *");
 
-        $subject = "Contact From " . $_POST['name'];
-        $headers = "From:  noreply@developerakademie.com";
+        $email = $_POST['email'];
+        $message = "Hello,\n
+        \nhttps://gruppe-417.developerakademie.net/join/forgotPassword/resetYourPassword.html?email-" . $email . "\n
+        \nIf you didn't akt to reset your password, you can ignor this email.\n
+        \nThanks,\n
+        \n Your Join Team\n";
 
-        mail($recipient, $subject, $_POST['message'], $headers);
-        usleep(1000000);
-header("Location: " . $redirect);
+
+        $recipient = $email;
+        $subject = "Reset your password for Join App";
+        $headers = "From:  noreply@https://gruppe-417.developerakademie.net/join";
+
+        $result = mail($recipient, $subject, $headers);
+        print($result);
+
+        // // mail($recipient, $subject, $_POST['message'], $headers);
+        // usleep(1000000);
+        // header("Location: " . $redirect);
 
 
         break;
