@@ -255,17 +255,21 @@ function goBackToSelectCategory() {
 
 
 function addNewCategory() {
-  categoryName = document.getElementById("new-category-input").value;
-  document.getElementById("new-category-input").classList.add("d-none");
-  document.getElementById("new-category-content").classList.add("d-none");
-  document
-    .getElementById("drop-down-arrow-categories")
-    .classList.remove("d-none");
-  document.getElementById("new-category-accept").classList.add("d-none");
-  document.getElementById("select-category").innerHTML = "";
-  document.getElementById("select-category").innerHTML = categoryName;
-  newCategories.push(categoryName, categoryColor);
-  renderNewCategories(categoryName, categoryColor);
+  if (categoryColor == undefined) {
+    alert('Please select a new category color!')
+  } else {
+    categoryName = document.getElementById("new-category-input").value;
+    document.getElementById("new-category-input").classList.add("d-none");
+    document.getElementById("new-category-content").classList.add("d-none");
+    document
+      .getElementById("drop-down-arrow-categories")
+      .classList.remove("d-none");
+    document.getElementById("new-category-accept").classList.add("d-none");
+    document.getElementById("select-category").innerHTML = "";
+    document.getElementById("select-category").innerHTML = categoryName;
+    newCategories.push(categoryName, categoryColor);
+    renderNewCategories(categoryName, categoryColor);
+  }
 }
 
 
