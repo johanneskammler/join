@@ -231,6 +231,7 @@ function goBackToSelectCategory() {
   document.getElementById("new-category-accept").classList.add("d-none");
   document.getElementById("select-category").innerHTML = "Select task category";
   categoryColor = "";
+  categorySelectReset();
 }
 
 function addNewCategory() {
@@ -251,6 +252,7 @@ function addNewCategory() {
     newCategories.push(categoryName, categoryColor);
     renderNewCategories(categoryName, categoryColor);
   }
+  categorySelectReset();
 }
 
 function selectCategoryColor(color) {
