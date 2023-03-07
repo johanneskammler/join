@@ -199,13 +199,13 @@ function closeAddTask() {
   addBoard.classList.remove("slide-left");
   addBoard.classList.add("slide-right");
   setTimeout(openAddTask, 350);
-  setTimeout(activateDragAndDrop, 350);
   subtasks = [];
   subCounterAdd = 0;
   if (contactAdd.length == 1) {
     newContactAddTaskReturn();
   }
   filled = false;
+  setTimeout(activateDragAndDrop, 150);
 }
 
 /**

@@ -105,7 +105,7 @@ function allFieldsFilled() {
   let description = document.getElementById("description-input");
   let category = document.getElementById("select-category"); // .innerHTML.includes('Select')
   let date = document.getElementById("select-date-task"); // value
-  contacts = selectedContacts; // length
+  contacts = contactsOnTask; // length
 
   let result = "";
   if (
@@ -201,15 +201,17 @@ async function renderContactsAddTask(invateNewContactName) {
   checkedSetting(invateNewContactName);
 }
 
+let contactsOnTask = [];
 function addContactToTaskBoard(i) {
   let contact = document.getElementById("contacts-checkbox" + i).value;
-  getCheckboxValue();
+  getCheckboxValue(contact);
 
   if (selectedContacts.includes(contact)) {
     selectedContacts.splice(i, 1);
   } else {
     selectedContacts.push(contact);
   }
+  contactsOnTask = selectedContacts;
 }
 
 function fillCategory(category) {
@@ -674,8 +676,8 @@ async function invateCreateNewContact(invateNewContactName, email, id) {
 }
 
 async function getCheckboxValue(invateNewContactName) {
-  if (!invateNewContactName == undefined) {
-    selectedContacts.push(invateNewContactName);
+  if (invateNewContactName == undefined) {
+    selectedContacts = [];
   }
   checkedIndex = [];
   if (currentContacts == null) {
