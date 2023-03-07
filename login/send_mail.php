@@ -2,8 +2,8 @@
 
 ########### CONFIG ###############
 
-$recipient = 'tom.kuestermann75@gmail.';
-// $redirect = 'startPage.html';
+## $recipient = 'tom.kuestermann75@gmail.';
+$redirect = 'startPage.html';
 
 ########### CONFIG END ###########
 
@@ -49,14 +49,14 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
         $recipient = $email;
         $subject = "Reset your password for Join App";
-        $headers = "From:  noreply@https://gruppe-417.developerakademie.net/join";
+        $headers = "From:  noreply@https://gruppe-417.developerakademie.net/join/login/resetYourPassword.html";
 
         $result = mail($recipient, $subject, $headers);
         print($result);
 
-        // // mail($recipient, $subject, $_POST['message'], $headers);
-        // usleep(1000000);
-        // header("Location: " . $redirect);
+        ## mail($recipient, $subject, $_POST['message'], $headers);
+        usleep(1000000);
+        header("Location: " . $redirect);
 
 
         break;
