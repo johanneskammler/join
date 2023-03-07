@@ -276,6 +276,7 @@ function addNewCategory() {
 
 
 function selectCategoryColor(color) {
+  categorySelectReset();
   document
     .getElementById("category-color-" + color)
     .classList.toggle("select-new-category-color");
@@ -287,6 +288,24 @@ function selectCategoryColor(color) {
     categoryColor = color;
   } else {
     categoryColor = "";
+  }
+}
+
+
+function categorySelectReset() {
+  let categoryColorsList = [
+    "turquois",
+    "red",
+    "green",
+    "orange",
+    "pink",
+    "blue",
+  ];
+
+  for (let i = 0; i < categoryColorsList.length; i++) {
+    const element = categoryColorsList[i];
+    let categoryColorId = document.getElementById(`category-color-${element}`);
+    categoryColorId.classList.remove("select-new-category-color");
   }
 }
 
