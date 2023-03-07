@@ -31,6 +31,7 @@ html {
 .add-task-content {
   margin-top: 140px;
   margin-left: 350px;
+  margin-bottom: 120px;
   display: flex;
   flex-direction: column;
 }
@@ -512,6 +513,8 @@ html {
   justify-content: space-between;
   margin-top: 30px;
   margin-bottom: 24px;
+  position: fixed;
+  bottom: 0;
 }
 
 .clear-task-btn {
