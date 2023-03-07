@@ -620,6 +620,7 @@ html {
   position: absolute;
   top: 45vh;
   left: 40vw;
+  z-index: 100;
 }
 
 .slide-top {
