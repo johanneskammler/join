@@ -629,6 +629,7 @@ async function creatNewContactAddTask() {
   }
   await invateCreateNewContact(invateNewContactName, email);
   getCheckboxValue(invateNewContactName);
+  allFieldsFilled();
 }
 
 async function creatNewContactEdit(id) {

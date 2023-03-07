@@ -101,15 +101,15 @@ function renderAddTaskHTML() {
     </div>
   </div>
 
-  <div class="date-box" onkeyup="allFieldsFilled()">
+  <div class="date-box">
   <span class="due-date-text">Due date</span>
   <input
     
+    onmouseup="allFieldsFilled()"
     type="date"
     placeholder="dd/mm/yyyy"
     id="select-date-task"
     class="select-date"
-    required
   />
 </div>
 
