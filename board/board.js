@@ -221,7 +221,7 @@ async function getFirstLetter(contacts, idCounter) {
     let name = element.split(" ");
     let justName = `${name[0]} ${name[1]}`;
     let firstLetter = name[0].split("");
-    if (!(name[1] == undefined)) {
+    if (name[1] == undefined) {
       let secondLetter = name[1].split("");
       let firstLetters = firstLetter[0] + secondLetter[0];
       letterList.push(firstLetters);
