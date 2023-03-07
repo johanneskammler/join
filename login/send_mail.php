@@ -55,7 +55,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         print($result);
 
         ## mail($recipient, $subject, $_POST['message'], $headers);
-        usleep(1000000);
+        usleep(150);
         header("Location: " . $redirect);
 
 

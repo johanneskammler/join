@@ -9,12 +9,6 @@ async function onSubmit(event) {
   event.preventDefault();
   let formData = new FormData(event.target);
   let response = await action(formData);
-
-  if (response.ok) {
-    alert("Email was send!");
-  } else {
-    alert("Email not send!");
-  }
 }
 
 function action(formData) {
