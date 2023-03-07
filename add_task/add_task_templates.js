@@ -13,11 +13,11 @@ function generateHTMLcontacts(element, i) {
 }
 
 
-function generateHTMLcategory(categoryName, categoryColor) {
+function generateHTMLcategory(categoryName, categoryColorTrue) {
   return `
   <div onclick="fillCategory('${categoryName}')" class="categories-list-elem">
     ${categoryName}
-    <img src="../add_task/img-add_task/circle_${categoryColor}.png" />
+    <img src="../add_task/img-add_task/circle_${categoryColorTrue}.png" />
   </div>
   `;
 }
@@ -43,11 +43,11 @@ function setCategoryToBackoffice() {
 }
 
 
-function setCategoryToNewCategory(categoryName, categoryColor) {
+function setCategoryToNewCategory(categoryName, categoryColorTrue) {
   return `
     <div class="selected-category">
       ${categoryName}
-      <img src="../add_task/img-add_task/circle_${categoryColor}.png" />
+      <img src="../add_task/img-add_task/circle_${categoryColorTrue}.png" />
     </div>
     `;
 }
@@ -102,4 +102,14 @@ function generateHTMLinviteNewContactName() {
       </div>
     </div>
     `;
+}
+
+
+function generateHTMLnewCategoryNameAndColor(categoryName, categoryColorTrue) {
+  return `
+  <div class="selected-category">
+    ${categoryName}
+    <img src="../add_task/img-add_task/circle_${categoryColorTrue}.png" />
+  </div>
+  `;
 }

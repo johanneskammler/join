@@ -44,6 +44,10 @@
     margin-right: 14px;
     width: 382px;
   }
+
+  .new-category-input {
+    width: 55vw;
+  }
 }
 
 @media (max-width: 480px) {

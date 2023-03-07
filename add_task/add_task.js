@@ -6,6 +6,7 @@ let selectedSubtasks = [];
 let newCategories = [];
 let categoryName;
 let categoryColor;
+let categoryColorTrue;
 let contacts;
 let newContactAddTaskActive = true;
 let urgentCounter;
@@ -97,6 +98,7 @@ function resetTasksInputs(
   selectedContacts = [];
   date.value = "";
   categoryColor = "";
+  categoryColorTrue = "";
   document.getElementById("description-input").value = "";
   selectedSubtasks = [];
   document.getElementById("select-category").innerHTML = resetCategory();
@@ -206,7 +208,7 @@ function fillCategory(category) {
     categoryField.innerHTML = "";
     categoryField.innerHTML += setCategoryToNewCategory(
       categoryName,
-      categoryColor
+      categoryColorTrue
     );
     openCategoriesToSelect();
   }
@@ -230,6 +232,7 @@ function goBackToSelectCategory() {
   document.getElementById("new-category-accept").classList.add("d-none");
   document.getElementById("select-category").innerHTML = "Select task category";
   categoryColor = "";
+  categoryColorTrue = "";
   categorySelectReset();
 }
 
@@ -250,20 +253,11 @@ function addNewCategory() {
       .classList.remove("d-none");
     document.getElementById("new-category-accept").classList.add("d-none");
     document.getElementById("select-category").innerHTML = "";
-    document.getElementById("select-category").innerHTML = generateHTMLnewCategoryNameAndColor(categoryName, categoryColor);
-    newCategories.push(categoryName, categoryColor);
-    renderNewCategories(categoryName, categoryColor);
+    document.getElementById("select-category").innerHTML = generateHTMLnewCategoryNameAndColor(categoryName, categoryColor, categoryColorTrue);
+    newCategories.push(categoryName, categoryColor, categoryColorTrue);
+    renderNewCategories(categoryName, categoryColor, categoryColorTrue);
   }
   categorySelectReset();
-}
-
-function generateHTMLnewCategoryNameAndColor(categoryName, categoryColor) {
-  return `
-  <div class="selected-category">
-    ${categoryName}
-    <img src="../add_task/img-add_task/circle_${categoryColor}.png" />
-  </div>
-  `;
 }
 
 function selectCategoryColor(color) {
@@ -277,8 +271,10 @@ function selectCategoryColor(color) {
       .classList.contains("select-new-category-color")
   ) {
     categoryColor = color;
+    categoryColorTrue = color;
   } else {
     categoryColor = "";
+    categoryColorTrue = "";
   }
 }
 
@@ -442,6 +438,7 @@ function clearAllInputFields() {
   resetImportanceButtons();
   selectedContacts = [];
   categoryColor = "";
+  categoryColorTrue = "";
   selectedSubtasks = [];
   document.getElementById("select-category").innerHTML = resetCategory();
   resetCheckboxes();
