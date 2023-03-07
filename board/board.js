@@ -216,6 +216,7 @@ async function getFirstLetter(contacts, idCounter) {
   let namesSplit = new Map();
   let nameList = [];
   let letterList = [];
+  let firstLetters;
 
   for (let i = 0; i < contacts.length; i++) {
     const element = contacts[i];
@@ -224,10 +225,12 @@ async function getFirstLetter(contacts, idCounter) {
     let firstLetter = name[0].split("");
     if (name[1] == undefined) {
       let secondLetter = name[1].split("");
-      let firstLetters = firstLetter[0] + secondLetter[0];
+      firstLetters = firstLetter[0] + secondLetter[0];
+      firstLetters = firstLetters.toUpperCase();
       letterList.push(firstLetters);
     } else {
-      let firstLetters = firstLetter[0];
+      firstLetters = firstLetter[0];
+      firstLetters = firstLetters.toUpperCase();
       letterList.push(firstLetters);
     }
 

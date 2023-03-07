@@ -105,7 +105,7 @@ function allFieldsFilled() {
   let description = document.getElementById("description-input");
   let category = document.getElementById("select-category"); // .innerHTML.includes('Select')
   let date = document.getElementById("select-date-task"); // value
-  contacts = contactsOnTask; // length
+  contacts = selectedContacts; // length
 
   let result = "";
   if (
@@ -756,10 +756,12 @@ function getFirstLetterInvate(contact) {
     let firstLetter = name[0].split("");
     if (name[1] == undefined) {
       firstLetters = firstLetter;
+      firstLetters = firstLetters.toUpperCase();
       letterList.push(firstLetters);
     } else {
       let secondLetter = name[1].split("");
       firstLetters = firstLetter[0] + secondLetter[0];
+      firstLetters = firstLetters.toUpperCase();
       letterList.push(firstLetters);
     }
   }
