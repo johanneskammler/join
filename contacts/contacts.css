@@ -287,6 +287,10 @@ body {
     border-top-right-radius: 30px;
 }
 
+.edit-contact-header {
+    background-color: #005dff !important;
+}
+
 .add-contact-header p {
     color: white;
     font-family: "Open Sans";
