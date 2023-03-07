@@ -275,22 +275,6 @@ function addNewCategory() {
 }
 
 
-// function selectCategoryColor(color) {
-//   document
-//     .getElementById("category-color-" + color)
-//     .classList.toggle("select-new-category-color");
-//   if (
-//     document
-//       .getElementById("category-color-" + color)
-//       .classList.contains("select-new-category-color")
-//   ) {
-//     categoryColor = color;
-//   } else {
-//     categoryColor = "";
-//   }
-// }
-
-
 function selectCategoryColor(color) {
   categorySelectReset();
   document
