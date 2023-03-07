@@ -54,7 +54,7 @@
           your password.
         </p>
 
-        <form action="summery.html">
+        <form action="../summary/summary.html">
           <input
             type="text"
             name=""
@@ -62,9 +62,9 @@
             placeholder="Name"
             class="d-none"
           />
-          <input type="email" name="" id="email" placeholder="Email" />
-          <input type="password" name="" id="pw" placeholder="Password" />
-        </form>
+          <input type="email" name="" id="email" placeholder="Email" required/>
+          <input type="password" name="" id="pw" placeholder="Password" required/>
+
 
         <div id="pw-recovery" class="pw-recovery">
           <div class="remember-me">
@@ -88,16 +88,17 @@
         </div>
 
         <div id="login-buttons" class="login-btn">
-          <button onclick="checkInput()" id="login-btn" class="login-user">
+          <button onclick="checkInput()" id="login-btn" class="login-user" type="submit">
             Log in
           </button>
-          <button onclick="openSummary()" id="guest-btn" class="login-guest">
+          <button onclick="openSummary()" id="guest-btn" class="login-guest" formnovalidate>
             Guest log in
           </button>
           <button id="sign-up-btn" class="login-user d-none">Sign up</button>
           <button id="password-btn" class="login-user d-none">
             Send me the email
           </button>
+        </form>
         </div>
       </div>
     </div>
