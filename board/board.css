@@ -617,6 +617,7 @@ h4 {
   position: absolute;
   z-index: 20;
   background-color: white;
+  overflow-x: hidden;
 }
 
 .set-title {
