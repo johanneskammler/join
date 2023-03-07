@@ -108,7 +108,15 @@ function allFieldsFilled() {
   contacts = selectedContacts; // length
 
   let result = "";
-
+  if (
+    title.value.length > 0 &&
+    description.value.length > 0 &&
+    !category.innerHTML.includes("Select") &&
+    contacts.length >= 1 &&
+    date.value.length == 0
+  ) {
+    setTimeout(allFieldsFilled, 250);
+  }
   if (
     title.value.length > 0 &&
     description.value.length > 0 &&

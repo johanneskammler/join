@@ -205,6 +205,7 @@ function closeAddTask() {
   if (contactAdd.length == 1) {
     newContactAddTaskReturn();
   }
+  filled = false;
 }
 
 /**

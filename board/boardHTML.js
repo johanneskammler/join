@@ -57,7 +57,7 @@ function renderAddTaskHTML() {
 
   <div class="add-task-content slide-left" id="add-board">
 
-  <div class="add-task-content-overlay">
+  <div class="add-task-content-overlay" onclick="allFieldsFilled()">
     <div class="add-tasks-board-head" id="add-board">
       <h1 class="add-title">Add Task</h1>
       <button id="submit-btn" class="add-card btn-create opacity"  onclick="addToTasks()"   >Create Task <img src="img-board/checkmark.png" ></button>
