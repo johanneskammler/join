@@ -232,7 +232,7 @@ function renderDetailHTML(name, email, phone, acronym, color) {
     } else {
         document.getElementById("mobil_right").innerHTML = `${phone}`;
     }
-    document.getElementById("circle_right").innerHTML = acronym;
+    document.getElementById("circle_right").innerHTML = acronym.toUpperCase();
     document.getElementById("circle_right").style.background = color;
 }
 
