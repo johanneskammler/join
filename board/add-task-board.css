@@ -174,3 +174,7 @@
   z-index: 99999;
   transform: scale(0);
 }
+
+#new-category-input {
+  caret-color: black !important;
+}
