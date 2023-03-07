@@ -739,8 +739,8 @@ function getFirstLetterInvate(contact) {
   contact = checkIfString(contact);
   contact = spliceEmptyObject(contact);
 
-  for (let i = 0; i < contacts.length; i++) {
-    const element = contacts[i];
+  for (let i = 0; i < contact.length; i++) {
+    const element = contact[i];
     let name = element.split(" ");
     let firstLetter = name[0].split("");
     if (name[1] == undefined) {
