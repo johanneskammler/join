@@ -631,7 +631,7 @@ h4 {
   cursor: pointer;
   background-color: #4589ff;
   font-size: 19px;
-  color: wheat;
+  color: white;
   font-family: "Inter";
   position: absolute;
   right: 61px;
@@ -641,6 +641,7 @@ h4 {
   align-items: center;
   justify-content: center;
   border-radius: 11px;
+  border: none;
 }
 
 .error-message {

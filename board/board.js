@@ -937,6 +937,8 @@ function edit(id) {
   dateFuture();
   setSubtasksLayout(id);
   toggleEditTitle();
+  openEditContactsToSelect(id);
+  openEditContactsToSelect(id);
   setTimeout(checkExistContact, 100, id);
 }
 
@@ -987,7 +989,7 @@ function showEdit(title, description, id) {
   document.getElementById("contact").classList.add("flex-contact");
   document.getElementById(
     "edit_box"
-  ).innerHTML += `<div class="ok" onclick="editDone(${id})"><p class="ok-text">Done</p></div>`;
+  ).innerHTML += `<button class="ok-text ok" id="ok" onclick="editDone(${id})">Done</button>`;
   document.getElementById;
 }
 
@@ -1102,10 +1104,7 @@ async function editDone(id) {
   if (dateEdit.length == 0) {
     dateEdit = section.get(`${id}`)["date"];
   }
-  /*   if (contactsEdit.length == 0 || contactsEdit[0] == "") {
-    contact = section.get(`${id}`)["contacts"];
-    contactsEdit = contact;
-  } */
+
   if (button == undefined) {
     button = section.get(`${id}`)["importance"];
   }
