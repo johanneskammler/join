@@ -43,11 +43,11 @@ function setCategoryToBackoffice() {
 }
 
 
-function setCategoryToNewCategory(categoryName, categoryColor, newCategories) {
+function setCategoryToNewCategory(categoryName, categoryColor) {
   return `
     <div class="selected-category">
       ${categoryName}
-      <img src="../add_task/img-add_task/circle_${newCategories[1]}.png" />
+      <img src="../add_task/img-add_task/circle_${categoryColor}.png" />
     </div>
     `;
 }

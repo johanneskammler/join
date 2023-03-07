@@ -206,8 +206,7 @@ function fillCategory(category) {
     categoryField.innerHTML = "";
     categoryField.innerHTML += setCategoryToNewCategory(
       categoryName,
-      categoryColor,
-      newCategories
+      categoryColor
     );
     openCategoriesToSelect();
   }
@@ -235,7 +234,10 @@ function goBackToSelectCategory() {
 }
 
 function addNewCategory() {
-  if (categoryColor == undefined) {
+  if (document.getElementById('new-category-input').value == '') {
+    alert("Please select a new category name!");
+    document.getElementById("create-task-btn").disabled = true;
+  } else if (categoryColor == undefined) {
     alert("Please select a new category color!");
     document.getElementById("create-task-btn").disabled = true;
   } else {
@@ -248,11 +250,20 @@ function addNewCategory() {
       .classList.remove("d-none");
     document.getElementById("new-category-accept").classList.add("d-none");
     document.getElementById("select-category").innerHTML = "";
-    document.getElementById("select-category").innerHTML = categoryName;
+    document.getElementById("select-category").innerHTML = generateHTMLnewCategoryNameAndColor(categoryName, categoryColor);
     newCategories.push(categoryName, categoryColor);
     renderNewCategories(categoryName, categoryColor);
   }
   categorySelectReset();
+}
+
+function generateHTMLnewCategoryNameAndColor(categoryName, categoryColor) {
+  return `
+  <div class="selected-category">
+    ${categoryName}
+    <img src="../add_task/img-add_task/circle_${categoryColor}.png" />
+  </div>
+  `;
 }
 
 function selectCategoryColor(color) {
