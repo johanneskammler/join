@@ -8,7 +8,7 @@ let feedbacksMap = new Map();
 feedbacksMap.set("x", { value: "none" });
 let donesMap = new Map();
 donesMap.set("x", { value: "none" });
-let mapsList = ["todosMap", "progressesMap", "feedbacksMap", "donesMap"];
+let mapsList = [todosMap, progressesMap, feedbacksMap, donesMap];
 let maps = [];
 let mapsValue = ["description", "title"];
 let comeFrom;
@@ -162,9 +162,9 @@ function draggableTrue() {
   }
 }
 
-function renderAddTask() {
+function renderAddTask(section) {
   let addTask = document.getElementById("add_task");
-  addTask.innerHTML = renderAddTaskHTML();
+  addTask.innerHTML = renderAddTaskHTML(section);
 }
 
 function checkFille() {
@@ -175,16 +175,19 @@ function checkFille() {
 /**
  * open addTask and remove the d-none class from the div with id add-task
  */
-function openAddTask() {
+function openAddTask(section) {
   let addTask = document.getElementById("add_task");
   let list = document.getElementsByTagName("html");
   let html = list[0];
+  if (section == undefined) {
+    section = todosMap;
+  }
 
   addTask.classList.toggle("d-none");
   window.scrollTo(0, 0);
   setTimeout(renderContactsAddTask, 250);
   html.classList.toggle("hide-overflow-y");
-  renderAddTask();
+  renderAddTask(section);
   dateFutureTask();
   subtasks = [];
 }
@@ -280,8 +283,17 @@ async function checkContactsColor(contacts) {
   }
   return contactData;
 }
+function generateCards() {
+  setTasks("todo");
 
-async function setTasks() {
+  setCards("progress");
+  setCards("feedback");
+  setCards("done");
+  return;
+}
+
+async function setTasks(section) {
+  let map = checkWichMap(section);
   let tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
   let doneCoordinates = [];
   let colors = [];
@@ -312,7 +324,7 @@ async function setTasks() {
         }
       }
 
-      todosMap.set(`${idCounter}`, {
+      map.set(`${idCounter}`, {
         category: key["category"],
         categorycolor: key["categorycolor"],
         contacts: key["contacts"],
@@ -329,13 +341,16 @@ async function setTasks() {
 
       await saveMaps();
       await backend.deleteItem("tasks");
-      subtask = todosMap.get(`${idCounter}`)["substack"];
+      subtask = map.get(`${idCounter}`)["substack"];
       currentId = idCounter;
       idCounter++;
       idCounterToJson();
     }
   }
   setCards(todo);
+  setCards(progress);
+  setCards(feedback);
+  setCards(done);
 }
 
 function setCards(section) {
@@ -551,15 +566,6 @@ function checkForContactNumber(contacts, letters, contactsSection, colors) {
       contactsSection.innerHTML += `<p class="invate font" style="background-color: ${colors};">${letters[i]}</p>`;
     }
   }
-}
-
-function generateCards() {
-  setTasks();
-
-  setCards(progress);
-  setCards(feedback);
-  setCards(done);
-  return;
 }
 
 function renderPopup(

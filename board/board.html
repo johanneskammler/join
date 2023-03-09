@@ -59,7 +59,7 @@
 
         <button
           class="btn-top pointer"
-          onclick="openAddTask()"
+          onclick="openAddTask(todosMap)"
           id="btn-board-top font"
         >
           Add task +
@@ -73,7 +73,7 @@
               <h2 class="font">To do</h2>
               <img
                 src="img-board/plus-button.png"
-                onclick="openAddTask()"
+                onclick="openAddTask('todo')"
                 class="pointer"
               />
             </div>
@@ -87,7 +87,8 @@
               <h2 class="font">In progress</h2>
               <img
                 src="img-board/plus-button.png"
-                onclick="openAddTask()"
+                onclick="openAddTask(
+                  'progress')"
                 class="pointer"
               />
             </div>
@@ -103,7 +104,7 @@
               <h2 class="font">Await feedback</h2>
               <img
                 src="img-board/plus-button.png"
-                onclick="openAddTask()"
+                onclick="openAddTask('feedback')"
                 class="pointer"
               />
             </div>
@@ -120,7 +121,7 @@
               <h2 class="font">Done</h2>
               <img
                 src="img-board/plus-button.png"
-                onclick="openAddTask()"
+                onclick="openAddTask('done')"
                 class="pointer"
               />
             </div>

@@ -25,8 +25,23 @@ async function getCurrentContacts() {
   currentContacts = await JSON.parse(backend.getItem("contacts"));
 }
 
-async function addToTasks() {
-  if (filled == false) {
+function checkWichMap(section) {
+  let map;
+  if (section.includes("todo")) {
+    map = todosMap;
+  } else if (section.includes("progress")) {
+    map = progressesMap;
+  } else if (section.includes("feedback")) {
+    map = feedbacksMap;
+  } else if (section.includes("done")) {
+    map = donesMap;
+  }
+  return map;
+}
+
+async function addToTasks(section) {
+/*   let map = checkWichMap(section); // vielleicht auf der setTask machen besser ??? schauen
+ */  if (filled == false) {
     return;
   }
   let btn = document.getElementById("submit-btn");
@@ -68,7 +83,7 @@ async function addToTasks() {
   await backend.setItem("tasks", JSON.stringify(tasks));
   tasks = [];
   closeAddTask();
-  setTasks();
+  setTasks(section);
   setTimeout(activateDragAndDrop, 200); /* setCards(); */
 }
 

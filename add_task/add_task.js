@@ -189,6 +189,7 @@ function addContactToTask(i) {
   } else {
     selectedContacts.push(contact);
   }
+  renderContactsSelection(contacts);
 }
 
 function fillCategory(category) {
@@ -237,7 +238,7 @@ function goBackToSelectCategory() {
 }
 
 function addNewCategory() {
-  if (document.getElementById('new-category-input').value == '') {
+  if (document.getElementById("new-category-input").value == "") {
     alert("Please select a new category name!");
     document.getElementById("create-task-btn").disabled = true;
   } else if (categoryColor == undefined) {
@@ -253,7 +254,12 @@ function addNewCategory() {
       .classList.remove("d-none");
     document.getElementById("new-category-accept").classList.add("d-none");
     document.getElementById("select-category").innerHTML = "";
-    document.getElementById("select-category").innerHTML = generateHTMLnewCategoryNameAndColor(categoryName, categoryColor, categoryColorTrue);
+    document.getElementById("select-category").innerHTML =
+      generateHTMLnewCategoryNameAndColor(
+        categoryName,
+        categoryColor,
+        categoryColorTrue
+      );
     newCategories.push(categoryName, categoryColor, categoryColorTrue);
     renderNewCategories(categoryName, categoryColor, categoryColorTrue);
   }
@@ -527,4 +533,37 @@ function getNewColorContact() {
     color = color + symbols[Math.floor(Math.random() * 16)];
   }
   return color;
+}
+
+async function renderContactsSelection(contacts, letters, colors) {
+  let changedColorForDots = [];
+  let cBox = document.getElementById("contacts-box");
+  let currentContacts = contacts;
+  let conatctsShow = [];
+
+  for (let i = 0; i < selectedContacts.length; i++) {
+    const current = selectedContacts[i];
+    for (let j = 0; j < currentContacts.length; j++) {
+      const contactData = currentContacts[j]["name"];
+      if (contactData.includes(current)) {
+        conatctsShow.push(currentContacts[j]);
+      }
+    }
+  }
+
+  if (conatctsShow.length > 2) {
+    for (let i = 0; i < 2; i++) {
+      cBox.innerHTML += `<p class="invate-contact font-contact" style="background-color: ${conatctsShow[i]["color"]};">${conatctsShow[i]["firstletter"]}</p>`;
+    }
+    changedColorForDots = "#FFAA00";
+    cBox.innerHTML += `<p class="invate-contact font-contact" style="background-color: ${changedColorForDots};">...</p>`;
+  } else if (contacts.length == 2) {
+    for (let i = 0; i < contacts.length; i++) {
+      cBox.innerHTML += `<p class="invate-contact font-contact" style="background-color: ${conatctsShow[i]["color"]};">${conatctsShow[i]["firstletter"]}</p>`;
+    }
+  } else {
+    for (let i = 0; i < conatctsShow.length; i++) {
+      cBox.innerHTML += `<p class="invate-contact font-contact" style="background-color: ${conatctsShow[i]["color"]};">${conatctsShow[i]["firstletter"]}</p>`;
+    }
+  }
 }

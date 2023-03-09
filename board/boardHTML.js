@@ -45,7 +45,8 @@ function setCardHTML(
                     </div>`;
 }
 
-function renderAddTaskHTML() {
+function renderAddTaskHTML(section) {
+  let map = section;
   return `
     
   <div class="test">
@@ -60,7 +61,7 @@ function renderAddTaskHTML() {
   <div class="add-task-content-overlay" onclick="allFieldsFilled()">
     <div class="add-tasks-board-head" id="add-board">
       <h1 class="add-title">Add Task</h1>
-      <button id="submit-btn" class="add-card btn-create opacity"  onclick="addToTasks()"   >Create Task <img src="img-board/checkmark.png" ></button>
+      <button id="submit-btn" class="add-card btn-create opacity"  onclick="addToTasks(${map})"   >Create Task <img src="img-board/checkmark.png" ></button>
       <div class="close-add-task-board" onclick="closeAddTask()">
         <img class="close-img" src="img-board/line.png">
         <img src="img-board/line.png">
