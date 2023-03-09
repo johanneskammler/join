@@ -584,7 +584,7 @@ function renderPopupHTML(
       </div>
       
       <div class="edit-box" id="edit_box">
-        <img src="img-board/edit-button.png" class="pointer" onclick="edit(${id})">
+        <img src="img-board/edit-button.png" id="edit-none" class="pointer" onclick="edit(${id})">
       </div>
     </div>`;
 }

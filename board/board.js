@@ -955,6 +955,7 @@ function edit(id) {
   openEditContactsToSelect(id);
   setTimeout(checkExistContact, 100, id);
   ContactsDivDisplay();
+  editDnone();
 }
 
 function getContactsForCheckbox(id) {
@@ -988,24 +989,35 @@ function dateFutureTask() {
 }
 
 function showEdit(title, description, id) {
-  document.getElementById(`c-color`).classList.add("d-none");
-  document.getElementById(
-    "popup_title"
-  ).innerHTML = `<input type="text" class="popup-title-edit" id="popup_title_edit" placeholder="${title}">`;
-  document.getElementById("popup_title").classList.add("set-title");
-  document.getElementById("card_content").classList.add("set-content");
-  document.getElementById("popup_description").innerHTML =
-    descriptionHTML(description);
+  let colors = document.getElementById(`c-color`);
+  let popupTitle = document.getElementById("popup_title");
+  let cardConten = document.getElementById("card_content");
+  let popupDescription = document.getElementById("popup_description");
+  let date = document.getElementById("date_box");
+  let prio = document.getElementById("edit_priority");
+  let assing = document.getElementById("edit-assigned");
+  let contact = document.getElementById("contact");
+  let editBox = document.getElementById("edit_box");
 
-  document.getElementById("date_box").innerHTML = dateHTML();
-  document.getElementById("edit_priority").classList.add("correctPrio");
-  document.getElementById("edit_priority").innerHTML = priorityHTML();
-  document.getElementById("edit-assigned").innerHTML += assignedHTML(id);
-  document.getElementById("contact").classList.add("flex-contact");
-  document.getElementById(
-    "edit_box"
-  ).innerHTML += `<button class="ok-text ok" id="ok" onclick="editDone(${id})">Done</button>`;
-  document.getElementById;
+  colors.classList.add("d-none");
+  popupTitle.innerHTML = `<input type="text" class="popup-title-edit" id="popup_title_edit" placeholder="${title}">`;
+  popupTitle.classList.add("set-title");
+  cardConten.classList.add("set-content");
+  popupDescription.innerHTML = descriptionHTML(description);
+  date.innerHTML = dateHTML();
+  prio.classList.add("correctPrio");
+  prio.innerHTML = priorityHTML();
+  assing.innerHTML += assignedHTML(id);
+  contact.classList.add("flex-contact");
+  editBox.innerHTML += `<button class="ok-text ok" id="ok" onclick="editDone(${id})">Done</button>
+                        <button class="ok-text ok ok-delete" id="ok" onclick="deleteTask(${id})">Delete</button>`;
+}
+
+function deleteTask(id) {
+  let map = wichSection(id);
+  map.delete(`${id}`);
+  generateCards();
+  popup();
 }
 
 function qickSaveMap(id) {
@@ -1539,4 +1551,9 @@ function addEditClasses() {
     let editPopup = document.getElementById("popup_card");
     editPopup.classList.toggle("editRespons");
   }
+}
+
+function editDnone() {
+  let editButton = document.getElementById("edit-none");
+  editButton.classList.toggle("d-none");
 }

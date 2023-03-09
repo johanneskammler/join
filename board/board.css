@@ -352,7 +352,7 @@ body {
   font-size: 21px;
   line-height: 120%;
   margin-top: 25px;
-  margin-bottom: 6px;
+  margin-bottom: 14px;
 }
 
 .date-box-popup {
@@ -632,6 +632,11 @@ h4 {
   margin-block-start: -100px;
 }
 
+.ok-delete {
+  right: 129px !important;
+  background-color: #ff8400 !important;
+}
+
 .ok {
   cursor: pointer;
   background-color: #4589ff;
@@ -641,12 +646,13 @@ h4 {
   position: absolute;
   right: 61px;
   height: 55px;
-  width: 55px;
+  width: 59px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 11px;
   border: none;
+  bottom: 59px;
 }
 
 .error-message {
