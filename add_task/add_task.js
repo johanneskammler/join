@@ -184,8 +184,9 @@ function clearContactsBeforeRendering() {
 function addContactToTask(i) {
   let contact = document.getElementById("contacts-checkbox-" + i).value;
 
-  if (selectedContacts.includes(contact)) {
-    selectedContacts.splice(i, 1);
+  if (selectedContacts.indexOf(contact) > -1) {
+    let index = selectedContacts.indexOf(contact);
+    selectedContacts.splice(index, 1);
   } else {
     selectedContacts.push(contact);
   }
@@ -552,7 +553,10 @@ async function renderContactsSelection(contacts, letters, colors) {
       }
     }
   }
-
+  if (selectedContacts == "") {
+    cBox.innerHTML = "";
+    return;
+  }
   cBox.innerHTML = "";
   if (conatctsShow.length > 2) {
     for (let i = 0; i < 2; i++) {
