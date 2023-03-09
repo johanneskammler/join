@@ -64,6 +64,7 @@ async function createNewContact() {
     let mobil = document.getElementById("input-phone"); // Bitte die FirstLetters im Backend speichern
     firstLetters = name.value.split(/\s+/).map((word) => word[0]);
     firstLetters = firstLetters.join("");
+    firstLetters = firstLetters.toUpperCase();
     getNewColor();
     let contact = {
         name: name.value,
@@ -476,4 +477,11 @@ function openContactDetailHover(i) {
     const selectedContact = document.getElementById(`contact${i}`);
     selectedContact.classList.add("contact-selected");
     document.getElementById(`contact-email-${i}`).classList.add("color-white");
+}
+
+function checkIfString(element) {
+    if (typeof element === "string") {
+        element = element.split(",");
+    }
+    return element;
 }

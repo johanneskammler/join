@@ -552,3 +552,7 @@ form input::placeholder {
     background-color: white;
     color: red;
 }
+
+.invite {
+    display: flex;
+}

@@ -1,180 +1,183 @@
 .add-task-descript-input {
-  width: 389px;
+    width: 389px;
 }
 
 .add-task-content {
-  top: -100px !important;
-  padding-top: 1%;
-  height: auto;
+    top: -100px !important;
+    padding-top: 1%;
+    height: auto;
 }
 
 .header {
-  display: none;
+    display: none;
 }
 
 .board-descriptionbox-img {
-  right: -4px !important;
+    right: -4px !important;
 }
 
 .add-tasks-board-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 422px;
-  position: relative;
-  margin-top: 45px;
-  margin-block-start: 17px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 422px;
+    position: relative;
+    margin-top: 45px;
+    margin-block-start: 17px;
 }
 
 .contacts-dropdown-content {
-  height: 155p !important;
+    height: 155p !important;
 }
 
 .input-correction {
-  margin-top: 8px;
+    margin-top: 8px;
 }
 
 .close-add-task-board {
-  position: absolute;
-  right: -9px;
-  top: -4px;
+    position: absolute;
+    right: -9px;
+    top: -4px;
 }
 
 .add-title {
-  font-size: 48px;
+    font-size: 48px;
 }
 
 .main-buttons {
-  display: none;
+    display: none;
 }
 
 .btn-create {
-  cursor: pointer;
-  height: 50px;
-  padding: 10px 8px;
-  border: 1px solid #4589ff;
-  background: #4589ff;
-  border-radius: 8px;
-  color: white;
-  font-family: "Open Sans";
-  font-size: 23px;
-  line-height: 120%;
+    cursor: pointer;
+    height: 50px;
+    padding: 10px 8px;
+    border: 1px solid #4589ff;
+    background: #4589ff;
+    border-radius: 8px;
+    color: white;
+    font-family: "Open Sans";
+    font-size: 23px;
+    line-height: 120%;
 }
+
 
 /*                   RESPONSIV SECTION                      **/
 
 @media (width <=1600px) {
-  .add-task-content {
-    width: 449px;
-  }
+    .add-task-content {
+        width: 449px;
+    }
 }
 
 @media (width <=1024px) {
-  .profile-picture {
-    display: block !important;
-  }
-  .main-logo {
-    content: url(../templates/img/logo_white.png) !important;
-  }
-  .logo-in-blue {
-    content: url(../templates/img/logo_blue.png) !important;
-  }
-  header {
-    background-color: #4589ff !important;
-  }
-  .btn-create {
-    position: absolute;
-    top: 42px;
-    right: -44px;
-    scale: 0.7;
-  }
+    .profile-picture {
+        display: block !important;
+    }
+    .main-logo {
+        content: url(../templates/img/logo_white.png) !important;
+    }
+    .logo-in-blue {
+        content: url(../templates/img/logo_blue.png) !important;
+    }
+    header {
+        background-color: #4589ff !important;
+    }
+    .btn-create {
+        position: absolute;
+        top: 42px;
+        right: -44px;
+        scale: 0.7;
+    }
 }
 
 .opacity {
-  cursor: initial !important;
-  opacity: 0.7;
+    cursor: initial !important;
+    opacity: 0.7;
 }
 
 .control-indicator-add-task {
-  position: absolute;
-  top: 5px;
-  right: 0;
-  height: 16px;
-  width: 16px;
-  background: #ffffff;
-  border: 2px solid #4589ff;
-  border-radius: 3px;
+    position: absolute;
+    top: 5px;
+    right: 0;
+    height: 16px;
+    width: 16px;
+    background: #ffffff;
+    border: 2px solid #4589ff;
+    border-radius: 3px;
 }
 
-.control input:checked ~ .control-indicator-add-task,
-.control input:checked ~ .control-indicator-add-task-subtask {
-  background: white;
+.control input:checked~.control-indicator-add-task,
+.control input:checked~.control-indicator-add-task-subtask {
+    background: white;
 }
 
-.control:hover input:not([disabled]):checked ~ .control-indicator-add-task,
-.control input:checked:focus ~ .control-indicator-add-task,
-.control:hover
-  input:not([disabled]):checked
-  ~ .control-indicator-add-task-subtask,
-.control input:checked:focus ~ .control-indicator-add-task-subtask {
-  background: white;
+.control:hover input:not([disabled]):checked~.control-indicator-add-task,
+.control input:checked:focus~.control-indicator-add-task,
+.control:hover input:not([disabled]):checked~.control-indicator-add-task-subtask,
+.control input:checked:focus~.control-indicator-add-task-subtask {
+    background: white;
 }
 
-.control input:disabled ~ .control-indicator-add-task,
-.control input:disabled ~ .control-indicator-add-task-subtask {
-  background: #e6e6e6;
-  opacity: 7;
-  pointer-events: none;
+.control input:disabled~.control-indicator-add-task,
+.control input:disabled~.control-indicator-add-task-subtask {
+    background: #e6e6e6;
+    opacity: 7;
+    pointer-events: none;
 }
 
 .control-indicator-add-task:after,
 .control-indicator-add-task-subtask:after {
-  box-sizing: unset;
-  content: "  ";
-  position: absolute;
-  display: none;
+    box-sizing: unset;
+    content: "  ";
+    position: absolute;
+    display: none;
 }
 
-.control input:checked ~ .control-indicator-add-task:after,
-.control input:checked ~ .control-indicator-add-task-subtask:after {
-  display: block;
-  content: "";
+.control input:checked~.control-indicator-add-task:after,
+.control input:checked~.control-indicator-add-task-subtask:after {
+    display: block;
+    content: "";
 }
 
 .control-checkbox .control-indicator-add-task:after,
 .control-checkbox .control-indicator-add-task-subtask:after {
-  left: 8px;
-  top: -5px;
-  width: 5px;
-  height: 17px;
-  border: solid #4589ff;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
+    left: 8px;
+    top: -5px;
+    width: 5px;
+    height: 17px;
+    border: solid #4589ff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
 }
 
-.control-checkbox input:disabled ~ .control-indicator-add-task:after,
-.control-checkbox input:disabled ~ .control-indicator-add-task-subtask:after {
-  border-color: #7b7b7b;
+.control-checkbox input:disabled~.control-indicator-add-task:after,
+.control-checkbox input:disabled~.control-indicator-add-task-subtask:after {
+    border-color: #7b7b7b;
 }
 
 .control-checkbox .control-indicator-add-task::before,
 .control-checkbox .control-indicator-add-task-subtask::before {
-  content: "";
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 4.5rem;
-  height: 4.5rem;
-  margin-left: -1.3rem;
-  margin-top: -1.3rem;
-  background: #2aa1c0;
-  border-radius: 3rem;
-  opacity: 0.6;
-  z-index: 99999;
-  transform: scale(0);
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4.5rem;
+    height: 4.5rem;
+    margin-left: -1.3rem;
+    margin-top: -1.3rem;
+    background: #2aa1c0;
+    border-radius: 3rem;
+    opacity: 0.6;
+    z-index: 99999;
+    transform: scale(0);
 }
 
 #new-category-input {
-  caret-color: black !important;
+    caret-color: black !important;
+}
+
+.invite {
+    display: flex;
 }
