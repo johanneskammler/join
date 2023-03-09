@@ -1,16 +1,16 @@
 /* onmousedown = "return false"; */
 
 function setCardHTML(
-    category,
-    color,
-    title,
-    description,
-    totalSubtasks,
-    progressStatus,
-    id,
-    importance
+  category,
+  color,
+  title,
+  description,
+  totalSubtasks,
+  progressStatus,
+  id,
+  importance
 ) {
-    return `
+  return `
                     <div draggable="true" class="card" onclick="openPopup(${id})" id="card${id}">
                       <div class="card-head">
                         <div class="category-overlay" id="c-color${id}" style="background-color: ${color}">
@@ -46,8 +46,8 @@ function setCardHTML(
 }
 
 function renderAddTaskHTML(section) {
-    let map = section;
-    return `
+  let map = section;
+  return `
     
   <div class="test">
   
@@ -336,21 +336,21 @@ function renderAddTaskHTML(section) {
 </div> */
 
 function descriptionHTML(description) {
-    return `<div class="edit-title">
+  return `<div class="edit-title">
                   <h4>Description<h4>
                   <textarea cols="36" rows="5" charswidth="500" name="text_body"id="popup_description_edit" placeholder="${description}"></textarea>
                 </div>`;
 }
 
 function dateHTML() {
-    return `<div class="correctDate">
+  return `<div class="correctDate">
       <h4 class="due-date-text">Due date</h4>
       <input type="date" placeholder="dd/mm/yyyy" id="select-date" class="select-date" required />
     </div>`;
 }
 
 function priorityHTML() {
-    return `
+  return `
               <div class="importance-buttons">
                 <button onclick="fillImportanceButton1()" class="importance-button1" id="importance-button1"
                     type="button">
@@ -388,7 +388,7 @@ function priorityHTML() {
 }
 
 function assignedHTML(id) {
-    return `
+  return `
               <div class="contacts-box" onclick="getCheckboxValue()">
                 <div style="position: relative">
                     <div class="contacts-dropdown">
@@ -411,6 +411,7 @@ function assignedHTML(id) {
                         </div>
                     </div>
                 </div>
+                <div class="font invate" id="invite_contacts_select_edit"></div>
             </div`;
 }
 
@@ -425,18 +426,18 @@ function assignedHTML(id) {
 </div> */
 
 function popupCardHTML(
-    category,
-    color,
-    title,
-    description,
-    subtask,
-    progressStatus,
-    id,
-    colors,
-    contactsSplit,
-    letters
+  category,
+  color,
+  title,
+  description,
+  subtask,
+  progressStatus,
+  id,
+  colors,
+  contactsSplit,
+  letters
 ) {
-    return `
+  return `
     <div class="card-head relative" id="popup_head">
       <div class="category-overlay" id="c-color" style="background-color: ${color}">
         <p id="c_overlay${id}">${category}</p>
@@ -498,40 +499,40 @@ function popupCardHTML(
 }
 
 function buttonURGENT() {
-    return `<button class="importance-popup button1-colored" type="button">
+  return `<button class="importance-popup button1-colored" type="button">
             <span>Urgent</span>
             <img src="../add_task/img-add_task/urgent.png">
           </button>`;
 }
 
 function buttonMEDIUM() {
-    return `<button  class="importance-popup button2-colored" type="button">
+  return `<button  class="importance-popup button2-colored" type="button">
             <span>Medium</span>
             <img src="../add_task/img-add_task/medium.png">
           </button>`;
 }
 
 function buttonLOW() {
-    return `<button  class="importance-popup button3-colored" type="button">
+  return `<button  class="importance-popup button3-colored" type="button">
             <span>Low</span>
             <img src="../add_task/img-add_task/low.png">
           </button>`;
 }
 
 function renderPopupHTML(
-    category,
-    color,
-    title,
-    description,
-    progressStatus,
-    id,
-    colors,
-    contactsSplit,
-    letters,
-    section,
-    importance
+  category,
+  color,
+  title,
+  description,
+  progressStatus,
+  id,
+  colors,
+  contactsSplit,
+  letters,
+  section,
+  importance
 ) {
-    return `
+  return `
     <div class="card-head relative" id="popup_head">
       <div class="category-overlay" id="c-color" style="background-color: ${color}">
         <p id="c_overlay${id}">${category}</p>
@@ -589,17 +590,17 @@ function renderPopupHTML(
 }
 
 function renderPopupContactsHTML(colors, element, i, letters) {
-    return `
-        <div class="contactsDiv">
+  return `
+        <div class="contactsDiv" id="contactsDiv${i}">
           <p class="invate font" style="background-color: ${colors[i]};">${letters[i]}</p>
           <p class="font fullName">${element}</p>
         </div>`;
 }
 
 function generateHTMLcontacts(element, i) {
-    return `
+  return `
     <div class="contacts-list-elem" >
-      <label class="control control-checkbox" id="selected-contact${i}" onmouseup="addContactToTask(${i})">
+      <label class="control control-checkbox" id="selected-contact${i}" onmouseup="addContactToTaskBoard(${i})">
         <div class="contacts-list-elem-box" id="${element["name"]}edit">
           <span id="name${i}" class="rendered-contact-name">${element["name"]}</span>
           <input id="contacts-checkbox${i}" type="checkbox" value="${element["name"]}" />

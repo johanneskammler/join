@@ -215,7 +215,7 @@ function closeAddTask() {
  * get the json data
  */
 
-async function getFirstLetter(contacts, idCounter) {
+function getFirstLetter(contacts, idCounter) {
   let namesSplit = new Map();
   let nameList = [];
   let letterList = [];
@@ -227,12 +227,12 @@ async function getFirstLetter(contacts, idCounter) {
     let justName = `${name[0]} ${name[1]}`;
     let firstLetter = name[0].split("");
     if (name[1] == undefined) {
-      let secondLetter = name[1].split("");
-      firstLetters = firstLetter[0] + secondLetter[0];
+      firstLetters = firstLetter[0];
       firstLetters = firstLetters.toUpperCase();
       letterList.push(firstLetters);
     } else {
-      firstLetters = firstLetter[0];
+      let secondLetter = name[1].split("");
+      firstLetters = firstLetter[0] + secondLetter[0];
       firstLetters = firstLetters.toUpperCase();
       letterList.push(firstLetters);
     }
@@ -924,7 +924,7 @@ function setSelecdetContacts(id) {
   let contacts = map.get(`${id}`)["contacts"];
   contacts = checkIfString(contacts);
   if (contacts[0] == "") {
-    selectedContacts = [];
+    contacts.splice(0, 1);
   } else {
     selectedContacts = contacts;
   }
@@ -937,11 +937,15 @@ function edit(id) {
   let title = currentMap.get(`${id}`)["title"];
   let description = currentMap.get(`${id}`)["description"];
   let names = document.getElementsByClassName("fullName");
+  let contactsInEdit = [];
 
   for (let i = 0; i < names.length; i++) {
     const element = names[i];
     element.classList.add("d-none");
+    let contact = element.innerHTML;
+    contactsInEdit.push(contact);
   }
+  setTimeout(renderContactsSelection, 150, contactsInEdit);
 
   showEdit(title, description, id);
   dateFuture();
@@ -950,6 +954,7 @@ function edit(id) {
   openEditContactsToSelect(id);
   openEditContactsToSelect(id);
   setTimeout(checkExistContact, 100, id);
+  ContactsDivDisplay();
 }
 
 function getContactsForCheckbox(id) {
@@ -1102,7 +1107,8 @@ async function editDone(id) {
   let category = section.get(`${id}`)["category"];
   let categorycolor = section.get(`${id}`)["categorycolor"];
   let colors = await contactToSave(selectedContacts);
-  let letters = getFirstLetterInvate(selectedContacts);
+  let letters = getFirstLetter(selectedContacts, id);
+  letters = letters.get(`${id}`)["letters"];
   let subtask = section.get(`${id}`)["subtask"];
   let subtaskStatus = globalProgress;
   if (titleEdit.length == 0) {
