@@ -219,16 +219,17 @@ async function renderContactsAddTask(invateNewContactName) {
 
 let contactsOnTask = [];
 
-function addContactToTaskBoard(i) {
+async function addContactToTaskBoard(i) {
   let contact = document.getElementById("contacts-checkbox" + i).value;
   getCheckboxValue(contact);
 
-  if (selectedContacts.includes(contact)) {
+  if (selectedContacts.indexOf(contact) > -1) {
     let index = selectedContacts.indexOf(contact);
     selectedContacts.splice(index, 1);
-  } else {
+  } else if (selectedContacts.indexOf(contact) == -1) {
     selectedContacts.push(contact);
   }
+  await safeEdit(undefined, selectedContacts);
   contactsOnTask = selectedContacts;
   renderContactsSelection(selectedContacts);
 }
@@ -237,10 +238,20 @@ async function renderContactsSelection(contacts) {
   if (contacts[0] == "") {
     contacts.splice(0, 1);
   }
+  if (selectedContacts.length > 0) {
+    if (selectedContacts[0] == "") {
+      selectedContacts.splice(0, 1);
+    }
+  }
   let inviteContacts = [];
   let changedColorForDots = [];
+  let addTask = document.getElementById("add_task");
   let cBox = document.getElementById("invite_contacts_select");
-  if (cBox == null || cBox == undefined) {
+  if (
+    cBox == null ||
+    cBox == undefined ||
+    addTask.classList.contains("d-none")
+  ) {
     cBox = document.getElementById("invite_contacts_select_edit");
   }
   let currentContacts = await JSON.parse(backend.getItem("contacts"));
@@ -709,6 +720,7 @@ async function creatNewContactEdit(id) {
   setTimeout(contactsCheckboxUpdate, 400, id);
 
   getCheckboxValue(invateNewContactName);
+  renderContactsSelection(invateNewContactName);
 }
 
 async function invateCreateNewContact(invateNewContactName, email, id) {
@@ -724,6 +736,8 @@ async function invateCreateNewContact(invateNewContactName, email, id) {
   exist = (await JSON.parse(backend.getItem("contacts"))) || [];
   exist.push(contact);
   await backend.setItem("contacts", JSON.stringify(exist));
+  let currentContactsEdit =
+    (await JSON.parse(backend.getItem("contacts"))) || [];
   let indexLength;
 
   if (exist.length > 0) {
@@ -736,8 +750,8 @@ async function invateCreateNewContact(invateNewContactName, email, id) {
   renderContactsSelection(contacts);
 }
 
-function ContactsDivDisplay() {
-  for (let i = 0; i < selectedContacts.length; i++) {
+function ContactsDivDisplay(displayContacts) {
+  for (let i = 0; i < displayContacts.length; i++) {
     let contactsCard = document.getElementById(`contactsDiv${i}`);
     contactsCard.classList.add("d-none");
   }

@@ -1,4 +1,4 @@
-function openEditContactsToSelect(id) {
+async function openEditContactsToSelect(id) {
   let element = document.getElementById("contacts-drop-down-edit");
   let doneButton = document.getElementById("ok");
 
@@ -16,9 +16,9 @@ function openEditContactsToSelect(id) {
 
 function checkExistContact(id) {
   let element = document.getElementById("contacts-drop-down-edit");
-  if (element.classList.contains("d-none")) {
+  /* if (element.classList.contains("d-none")) {
     return;
-  }
+  } */
   let map = wichSection(id);
   let contactOnCard = map.get(`${id}`)["contacts"];
 
@@ -39,13 +39,16 @@ function checkExistContact(id) {
 }
 
 async function renderContactsEdit() {
-  let contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
-  let dropdown = document.getElementById("add_task_new_render_container");
+  let contactsEditRender =
+    (await JSON.parse(backend.getItem("contacts"))) || [];
+  /*   let contactsSafe = selectedContacts;
+   */ let dropdown = document.getElementById("add_task_new_render_container");
   dropdown.innerHTML = "";
-
-  contacts.sort((a, b) => (a.name > b.name ? 1 : -1));
-  for (let i = 0; i < contacts.length; i++) {
-    const element = contacts[i];
+  /*   selectedContacts = contactsSafe;
+   */
+  contactsEditRender.sort((a, b) => (a.name > b.name ? 1 : -1));
+  for (let i = 0; i < contactsEditRender.length; i++) {
+    const element = contactsEditRender[i];
     dropdown.innerHTML += generateHTMLcontacts(element, i);
   }
 }
@@ -72,6 +75,9 @@ async function addContactToTask(element, id) {
 }
 
 async function safeEdit(id, selectedContacts) {
+  if (id == undefined) {
+    id = globalId;
+  }
   let map = wichSection(id);
   if (map == todosMap) {
     setupTodosMap(id, selectedContacts);

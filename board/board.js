@@ -46,6 +46,7 @@ function openPopup(id) {
   generatePopup(id);
   popup();
   dateFutureTask();
+  setId(id);
 }
 
 function hoverBoardHtml() {
@@ -89,6 +90,7 @@ function popup(id) {
   background.classList.toggle("d-none");
   activateDragAndDrop();
   newContactAddTaskActive = true;
+  selectedContacts = [];
 }
 
 /*  
@@ -654,7 +656,7 @@ function checkTitlePopup(section, id) {
 function renderPopupContacts(colors, contactsSplit, letters) {
   let contact = document.getElementById(`assigned`);
   let card = document.getElementById("popup_card");
-  let contacts = document.querySelectorAll(".contactsDiv");
+  let contacts = selectedContacts; //  document.querySelectorAll(".contactsDiv");
 
   if (colors[0] == "" && colors.length == 1) {
     for (let i = 0; i < contacts.length; i++) {
@@ -951,11 +953,12 @@ function edit(id) {
   dateFuture();
   setSubtasksLayout(id);
   toggleEditTitle();
-  openEditContactsToSelect(id);
-  openEditContactsToSelect(id);
+  checkExistContact(id);
+  /*   openEditContactsToSelect(id);
+  openEditContactsToSelect(id); */
   setTimeout(checkExistContact, 100, id);
-  ContactsDivDisplay();
   editDnone();
+  setTimeout(ContactsDivDisplay, 100, contactsInEdit);
 }
 
 function getContactsForCheckbox(id) {
@@ -1018,6 +1021,7 @@ function deleteTask(id) {
   map.delete(`${id}`);
   generateCards();
   popup();
+  saveMaps();
 }
 
 function qickSaveMap(id) {
@@ -1109,12 +1113,13 @@ async function setColorsExist() {
 async function editDone(id) {
   addEditClasses();
   toggleEditTitle();
+  checkExistContact(id);
   let titleEdit = document.getElementById("popup_title_edit").value;
   let descriptionEdit = document.getElementById("popup_description_edit").value;
   let dateEdit = document.getElementById("select-date").value;
-  let contactsEdit = selectedContacts;
   let button = checkPrioBtn(id);
   let section = wichSection(id);
+  let contactsEdit = selectedContacts;
 
   let category = section.get(`${id}`)["category"];
   let categorycolor = section.get(`${id}`)["categorycolor"];
@@ -1555,5 +1560,10 @@ function addEditClasses() {
 
 function editDnone() {
   let editButton = document.getElementById("edit-none");
-  editButton.classList.toggle("d-none");
+  editButton.classList.add("d-none");
+}
+
+let globalId;
+function setId(id) {
+  globalId = id;
 }
