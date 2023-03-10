@@ -786,3 +786,7 @@ h4 {
   top: 251px !important;
   right: 38px !important;
 }
+
+.arrow {
+  width: 16px;
+}

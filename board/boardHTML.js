@@ -16,6 +16,10 @@ function setCardHTML(
                         <div class="category-overlay" id="c-color${id}" style="background-color: ${color}">
                           <p id="c_overlay${id}">${category}</p>
                         </div>
+                      <div class="arrows-card" id="arrows_card">
+                        <img src="img-board/arrow-left.png" class="arrow" onclick="turnLeft(${id})">
+                        <img src="img-board/arrow-right.png" class="arrow arrow-rigth" onclick="turnRight(${id})">
+                      </div>
                       </div>
 
                       <div class="card-title">

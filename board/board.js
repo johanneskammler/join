@@ -1567,3 +1567,67 @@ let globalId;
 function setId(id) {
   globalId = id;
 }
+
+function turnLeft(id) {
+  let parent = document.getElementById(`card${id}`);
+  if (parent.parentNode.id.includes("todo")) {
+    return;
+  } else if (parent.parentNode.id.includes("progress")) {
+    progressTodo(id);
+  } else if (parent.parentNode.id.includes("feedback")) {
+    feedbackProgress(id);
+  } else if (parent.parentNode.id.includes("done")) {
+    doneFeedback(id);
+  }
+  openPopup(id);
+  if (window.innerWidth > 1024) {
+    setTimeout(activateDragAndDrop, 50);
+  }
+}
+
+function progressTodo(id) {
+  todosMap.set(`${id}`, progressesMap.get(`${id}`));
+  progressesMap.delete(`${id}`);
+}
+
+function feedbackProgress(id) {
+  progressesMap.set(`${id}`, feedbacksMap.get(`${id}`));
+  feedbacksMap.delete(`${id}`);
+}
+
+function doneFeedback(id) {
+  feedbacksMap.set(`${id}`, donesMap.get(`${id}`));
+  donesMap.delete(`${id}`);
+}
+
+function turnRight(id) {
+  let parent = document.getElementById(`card${id}`);
+  if (parent.parentNode.id.includes("done")) {
+    return;
+  } else if (parent.parentNode.id.includes("feedback")) {
+    feedbackDone(id);
+  } else if (parent.parentNode.id.includes("progress")) {
+    progressFeedback(id);
+  } else if (parent.parentNode.id.includes("todo")) {
+    todoProgress(id);
+  }
+  openPopup(id);
+  if (window.innerWidth > 1024) {
+    setTimeout(activateDragAndDrop, 50);
+  }
+}
+
+function todoProgress(id) {
+  progressesMap.set(`${id}`, todosMap.get(`${id}`));
+  todosMap.delete(`${id}`);
+}
+
+function progressFeedback(id) {
+  feedbacksMap.set(`${id}`, progressesMap.get(`${id}`));
+  progressesMap.delete(`${id}`);
+}
+
+function feedbackDone(id) {
+  donesMap.set(`${id}`, feedbacksMap.get(`${id}`));
+  feedbacksMap.delete(`${id}`);
+}
