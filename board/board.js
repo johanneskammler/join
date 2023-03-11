@@ -1643,6 +1643,9 @@ function feedbackDone(id) {
 function toggleArrows() {
   for (let i = 0; i < idCounter; i++) {
     const arrows = document.getElementById(`arrows_card${i}`);
+    if (arrows == null) {
+      return;
+    }
     if (window.innerWidth > 1024) {
       arrows.classList.add("d-none");
     } else {
