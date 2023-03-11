@@ -293,24 +293,21 @@ function fillCategory(category) {
   if (category == "sales") {
     categoryField.innerHTML = "";
     categoryField.innerHTML += setCategoryToSales();
-    document.getElementById("categories-drop-down").classList.add("d-none");
+    openCategoriesToSelect();
     categoryColor = "#df1c9f";
   } else if (category == "backoffice") {
     categoryField.innerHTML = "";
     categoryField.innerHTML += setCategoryToBackoffice();
-    document.getElementById("categories-drop-down").classList.add("d-none");
+    openCategoriesToSelect();
     categoryColor = "#22bfc7";
   } else {
     categoryField.innerHTML = "";
     categoryField.innerHTML += setCategoryToNewCategory(
       categoryName,
-      categoryColor,
-      categoryColorTrue,
-      newCategories
+      categoryColorTrue
     );
-    document.getElementById("categories-drop-down").classList.add("d-none");
+    openCategoriesToSelect();
   }
-  document.getElementById("categories-drop-down").classList.add("d-none");
 }
 
 function createNewCategory() {
