@@ -47,6 +47,7 @@ function openPopup(id) {
   popup();
   dateFutureTask();
   setId(id);
+  setTimeout(toggleArrows, 100);
 }
 
 function hoverBoardHtml() {
@@ -100,6 +101,7 @@ function popup(id) {
  */
 function checkSize() {
   let size = window.innerWidth;
+  setTimeout(toggleArrows, 50);
 
   if (size <= 1024) {
     sidebarTabled();
@@ -1583,6 +1585,7 @@ function turnLeft(id) {
   if (window.innerWidth > 1024) {
     setTimeout(activateDragAndDrop, 50);
   }
+  setTimeout(toggleArrows, 75);
 }
 
 function progressTodo(id) {
@@ -1615,6 +1618,7 @@ function turnRight(id) {
   if (window.innerWidth > 1024) {
     setTimeout(activateDragAndDrop, 50);
   }
+  setTimeout(toggleArrows, 75);
 }
 
 function todoProgress(id) {
@@ -1630,4 +1634,13 @@ function progressFeedback(id) {
 function feedbackDone(id) {
   donesMap.set(`${id}`, feedbacksMap.get(`${id}`));
   feedbacksMap.delete(`${id}`);
+}
+
+function toggleArrows() {
+  let arrows = document.getElementById("arrows_card");
+  if (window.innerWidth > 1024) {
+    arrows.classList.add("d-none");
+  } else {
+    arrows.classList.remove("d-none");
+  }
 }

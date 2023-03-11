@@ -507,6 +507,9 @@
   .popup-card-title {
     width: 65vw;
   }
+  .category-overlay {
+    width: 113px !important;
+  }
 }
 
 @media (width <=600px) {
@@ -555,6 +558,9 @@
     width: 100%;
     margin-inline-end: 0 !important;
     margin-inline-start: 0 !important;
+  }
+  .category-overlay {
+    width: 127px !important;
   }
 
   .popup {
