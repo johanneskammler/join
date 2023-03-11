@@ -5,6 +5,7 @@ let selectedSubtasks = [];
 let newCategories = [];
 let categoryName;
 let categoryColor;
+let categoryColorTrue;
 let importance;
 let newContactAddTaskActive = true;
 let showCurrentUserNameForSummery;
@@ -187,6 +188,7 @@ function resetTasksInputs(
   selectedContacts = [];
   date.value = "";
   categoryColor = "";
+  categoryColorTrue = "";
   description.value = "";
   selectedSubtasks = [];
   document.getElementById("select-category").innerHTML = resetCategory();
@@ -303,6 +305,7 @@ function fillCategory(category) {
     categoryField.innerHTML += setCategoryToNewCategory(
       categoryName,
       categoryColor,
+      categoryColorTrue,
       newCategories
     );
     document.getElementById("categories-drop-down").classList.add("d-none");
@@ -328,6 +331,7 @@ function goBackToSelectCategory() {
   document.getElementById("new-category-accept").classList.add("d-none");
   document.getElementById("select-category").innerHTML = "Select task category";
   categoryColor = "";
+  categoryColorTrue = "";
 }
 
 function addNewCategory() {
@@ -337,7 +341,7 @@ function addNewCategory() {
     setTimeout(showErrorCategory, 1235);
     return;
   }
-  if (categoryColor == undefined || categoryColor == "") {
+  if (categoryColor == undefined) {
     showErrorColor();
     setTimeout(showErrorColor, 1235);
   } else {
@@ -349,9 +353,13 @@ function addNewCategory() {
       .classList.remove("d-none");
     document.getElementById("new-category-accept").classList.add("d-none");
     document.getElementById("select-category").innerHTML = "";
-    document.getElementById("select-category").innerHTML = categoryName;
-    newCategories.push(categoryName, categoryColor);
-    renderNewCategories(categoryName, categoryColor);
+    document.getElementById("select-category").innerHTML =
+      generateHTMLnewCategoryNameAndColor(
+        categoryName,
+        categoryColorTrue
+      );
+    newCategories.push(categoryName, categoryColor, categoryColorTrue);
+    renderNewCategories(categoryName, categoryColorTrue);
   }
 }
 
@@ -393,14 +401,16 @@ function selectCategoryColor(color) {
       .classList.contains("select-new-category-color")
   ) {
     categoryColor = color;
+    categoryColorTrue = color;
   } else {
     categoryColor = "";
+    categoryColorTrue = "";
   }
 }
 
-function renderNewCategories(categoryName, categoryColor) {
+function renderNewCategories(categoryName, categoryColorTrue) {
   document.getElementById("categories-drop-down").innerHTML +=
-    generateHTMLcategory(categoryName, categoryColor);
+    generateHTMLcategory(categoryName, categoryColorTrue);
 }
 
 function createNewSubtask() {
@@ -538,13 +548,13 @@ function generateHTMLcontactsBoard(element, i) {
       `;
 }
 
-function generateHTMLcategory(categoryName, categoryColor) {
+function generateHTMLcategory(categoryName, categoryColorTrue) {
   return `
-    <div onclick="fillCategory('${categoryName}')" class="categories-list-elem">
-      ${categoryName}
-      <img src="../add_task/img-add_task/circle_${categoryColor}.png" />
-    </div>
-    `;
+  <div onclick="fillCategory('${categoryName}')" class="categories-list-elem">
+    ${categoryName}
+    <img src="../add_task/img-add_task/circle_${categoryColorTrue}.png" />
+  </div>
+  `;
 }
 
 function setCategoryToSales() {
@@ -565,13 +575,22 @@ function setCategoryToBackoffice() {
       `;
 }
 
-function setCategoryToNewCategory(categoryName, categoryColor, newCategories) {
+function setCategoryToNewCategory(categoryName, categoryColorTrue) {
   return `
-      <div class="selected-category">
-        ${categoryName}
-        <img src="../add_task/img-add_task/circle_${newCategories[1]}.png" />
-      </div>
-      `;
+    <div class="selected-category">
+      ${categoryName}
+      <img src="../add_task/img-add_task/circle_${categoryColorTrue}.png" />
+    </div>
+    `;
+}
+
+function generateHTMLnewCategoryNameAndColor(categoryName, categoryColorTrue) {
+  return `
+  <div class="selected-category">
+    ${categoryName}
+    <img src="../add_task/img-add_task/circle_${categoryColorTrue}.png" />
+  </div>
+  `;
 }
 
 function resetCategory() {
