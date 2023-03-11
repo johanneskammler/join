@@ -52,12 +52,21 @@ async function addToTasks() {
       selectedSubtasks
     );
     resetImportanceButtons();
-    document.getElementById("subtask-content").innerHTML = "";
+    clearSubtasksAddTask();
+    contactsSmalView.innerHTML = "";
 
     await backend.setItem("tasks", JSON.stringify(tasks));
     await backend.setItem("urgentCounter", JSON.stringify(urgentCounter));
   }
-  contactsSmalView.innerHTML = "";
+}
+
+function clearSubtasksAddTask() {
+  let subs = document.getElementById("subtask-content");
+  if (subs == undefined) {
+    return;
+  } else {
+    subs.innerHTML = "";
+  }
 }
 
 function checkImportance() {
