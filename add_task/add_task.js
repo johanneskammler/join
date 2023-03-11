@@ -19,6 +19,7 @@ async function getUrgentCounter() {
 }
 
 async function addToTasks() {
+  let contactsSmalView = document.getElementById("contacts_box");
   if (selectedContacts.length == 0) {
     alert("Please select at least one contact!");
   } else {
@@ -56,6 +57,7 @@ async function addToTasks() {
     await backend.setItem("tasks", JSON.stringify(tasks));
     await backend.setItem("urgentCounter", JSON.stringify(urgentCounter));
   }
+  contactsSmalView.innerHTML = "";
 }
 
 function checkImportance() {
@@ -425,12 +427,9 @@ function openContactsToSelect() {
 function openCategoriesToSelect() {
   let ddCategories = document.getElementById("categories-drop-down");
   let overlay = document.getElementById("overlay-categories");
-  let contacts = document.getElementById("contacts_box");
   ddCategories.classList.toggle("d-none");
   ddCategories.classList.toggle("contacts-z");
   overlay.classList.toggle("overlay-z");
-
-  contacts.innerHTML = "";
 }
 
 function resetCheckboxes() {
@@ -440,6 +439,7 @@ function resetCheckboxes() {
 }
 
 function clearAllInputFields() {
+  let contacts = document.getElementById("contacts_box");
   document.getElementById("title-input").value = "";
   document.getElementById("select-date").value = "";
   document.getElementById("description-input").value = "";
@@ -453,6 +453,7 @@ function clearAllInputFields() {
   selectedSubtasks = [];
   document.getElementById("select-category").innerHTML = resetCategory();
   resetCheckboxes();
+  contacts.innerHTML = "";
 }
 
 function newContactAddTask() {
@@ -567,8 +568,8 @@ async function renderContactsSelection(contacts, letters, colors) {
     }
     changedColorForDots = "#FFAA00";
     cBox.innerHTML += `<p class="invate-contact font-contact" style="background-color: ${changedColorForDots};">...</p>`;
-  } else if (contacts.length == 2) {
-    for (let i = 0; i < contacts.length; i++) {
+  } else if (conatctsShow.length == 2) {
+    for (let i = 0; i < conatctsShow.length; i++) {
       cBox.innerHTML += `<p class="invate-contact font-contact" style="background-color: ${conatctsShow[i]["color"]};">${conatctsShow[i]["firstLetters"]}</p>`;
     }
   } else {

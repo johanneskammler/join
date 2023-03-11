@@ -37,7 +37,8 @@
   .create-task-btn-resp {
     top: 3.3vh;
     right: 5vw;
-    z-index: 50;
+    position: absolute;
+    z-index: 800;
   }
 
   .new-contact {
