@@ -40,6 +40,7 @@ async function init() {
   tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
   getUrgentCounter();
   getCurrentContacts();
+  setTimeout(load, 500);
 }
 
 function openPopup(id) {
@@ -1652,4 +1653,9 @@ function toggleArrows() {
       arrows.classList.remove("d-none");
     }
   }
+}
+
+function load() {
+  let loader = document.getElementById("loader");
+  loader.classList.toggle("d-none");
 }

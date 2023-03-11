@@ -43,6 +43,7 @@ function checkWichMap(section) {
 async function addToTasks(section) {
   /*   let map = checkWichMap(section); // vielleicht auf der setTask machen besser ??? schauen
    */
+  load();
   if (filled == false) {
     return;
   }
@@ -87,6 +88,7 @@ async function addToTasks(section) {
   closeAddTask();
   setTasks(section);
   setTimeout(activateDragAndDrop, 400); /* setCards(); */
+  setTimeout(load, 500);
 }
 
 async function contactToSave(selectedContacts) {
