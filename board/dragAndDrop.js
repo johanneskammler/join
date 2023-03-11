@@ -84,7 +84,7 @@ function dragEnd() {
   checkCards();
 }
 
-function Drop() {
+async function Drop() {
   if (window.innerWidth < 1024) {
     return;
   }
@@ -114,11 +114,4 @@ function dragLeave() {
     return;
   }
   this.classList.remove("hover");
-}
-
-function setRotation() {
-  if (window.innerWidth < 1024) {
-    return;
-  }
-  document.getElementById("card").classList.toggle("rotate-90-cw");
 }

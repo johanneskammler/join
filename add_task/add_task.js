@@ -425,9 +425,12 @@ function openContactsToSelect() {
 function openCategoriesToSelect() {
   let ddCategories = document.getElementById("categories-drop-down");
   let overlay = document.getElementById("overlay-categories");
+  let contacts = document.getElementById("contacts_box");
   ddCategories.classList.toggle("d-none");
   ddCategories.classList.toggle("contacts-z");
   overlay.classList.toggle("overlay-z");
+
+  contacts.innerHTML = "";
 }
 
 function resetCheckboxes() {

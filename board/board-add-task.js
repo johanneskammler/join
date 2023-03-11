@@ -86,7 +86,7 @@ async function addToTasks(section) {
   tasks = [];
   closeAddTask();
   setTasks(section);
-  setTimeout(activateDragAndDrop, 200); /* setCards(); */
+  setTimeout(activateDragAndDrop, 400); /* setCards(); */
 }
 
 async function contactToSave(selectedContacts) {
@@ -351,10 +351,7 @@ function addNewCategory() {
     document.getElementById("new-category-accept").classList.add("d-none");
     document.getElementById("select-category").innerHTML = "";
     document.getElementById("select-category").innerHTML =
-      generateHTMLnewCategoryNameAndColor(
-        categoryName,
-        categoryColorTrue
-      );
+      generateHTMLnewCategoryNameAndColor(categoryName, categoryColorTrue);
     newCategories.push(categoryName, categoryColor, categoryColorTrue);
     renderNewCategories(categoryName, categoryColorTrue);
   }

@@ -33,7 +33,7 @@ async function init() {
   await downloadFromServer();
   checkSize();
   draggableTrue();
-  setTimeout(activateDragAndDrop, 300); /* setCards(); */
+  setTimeout(activateDragAndDrop, 400); /* setCards(); */
   await getMaps();
   generateCards();
   checkIfEmpty();
@@ -111,6 +111,7 @@ function checkSize() {
     draggableTrue();
     sidebarDesktop();
     hoverBoardHtml();
+    activateDragAndDrop();
   }
 }
 
@@ -212,7 +213,7 @@ function closeAddTask() {
     newContactAddTaskReturn();
   }
   filled = false;
-  setTimeout(activateDragAndDrop, 150);
+  setTimeout(activateDragAndDrop, 50);
 }
 
 /**
@@ -1291,7 +1292,10 @@ function setPriority(importance, id, section) {
 }
 
 function checkCards() {
-  let idCard = draggedItem.id.slice(-1);
+  let idCard = draggedItem.id.slice(-2);
+  if (!(idCard == +idCard)) {
+    idCard = draggedItem.id.slice(-1);
+  }
   let start = comeFrom.id.split("-")[0];
   let end = comeTo.childNodes[1].id.split("-")[0];
   if (start === "todo") {
@@ -1637,10 +1641,12 @@ function feedbackDone(id) {
 }
 
 function toggleArrows() {
-  let arrows = document.getElementById("arrows_card");
-  if (window.innerWidth > 1024) {
-    arrows.classList.add("d-none");
-  } else {
-    arrows.classList.remove("d-none");
+  for (let i = 0; i < idCounter; i++) {
+    const arrows = document.getElementById(`arrows_card${i}`);
+    if (window.innerWidth > 1024) {
+      arrows.classList.add("d-none");
+    } else {
+      arrows.classList.remove("d-none");
+    }
   }
 }
