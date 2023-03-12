@@ -476,45 +476,37 @@ function setImportanceBoard(pushed) {
 }
 
 function fillImportanceButton(nr) {
-  let pushed = document.getElementById(`importance-button${nr}`);
-  let pushedColored = document.getElementById(`importance-button${nr}-colored`);
+  let pushed;
+  let pushedColored;
+  if (nr > 3) {
+    resetImportanceEdit();
+    pushed = document.getElementById(`importance-button-edit-${nr}`);
+    pushedColored = document.getElementById(
+      `importance-button-colored-edit-${nr}`
+    );
+  } else {
+    resetImportance();
+    pushed = document.getElementById(`importance-button${nr}`);
+    pushedColored = document.getElementById(`importance-button${nr}-colored`);
+  }
   setImportanceBoard(pushed);
   pushed.classList.toggle("d-none");
   pushedColored.classList.toggle("d-none");
+}
 
-  if (nr === 1) {
-    toggleBtn2();
-    toggleBtn3();
-  } else if (nr === 2) {
-    toggleBtn3();
-    toggleBtn1();
-  } else {
-    toggleBtn2();
-    toggleBtn1();
+function resetImportance() {
+  let index = [1, 2, 3];
+  let pushed;
+  let pushedColored;
+  for (let i = 0; i < index.length; i++) {
+    const element = index[i];
+    pushed = document.getElementById(`importance-button${element}`);
+    pushedColored = document.getElementById(
+      `importance-button${element}-colored`
+    );
+    pushed.classList.remove("d-none");
+    pushedColored.classList.add("d-none");
   }
-}
-
-function toggleBtn1() {
-  let btn1 = document.getElementById("importance-button1");
-  let btn1Colored = document.getElementById("importance-button1-colored");
-  btn1.classList.remove("d-none");
-  btn1Colored.classList.add("d-none");
-}
-
-function toggleBtn3() {
-  let btn3 = document.getElementById("importance-button3");
-  let btn3Colored = document.getElementById("importance-button3-colored");
-
-  btn3.classList.remove("d-none");
-  btn3Colored.classList.add("d-none");
-}
-
-function toggleBtn2() {
-  let button2 = document.getElementById("importance-button2");
-  let btn2Colored = document.getElementById("importance-button2-colored");
-
-  button2.classList.remove("d-none");
-  btn2Colored.classList.add("d-none");
 }
 
 function openContactsToSelect() {

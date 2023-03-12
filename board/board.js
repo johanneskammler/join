@@ -963,6 +963,7 @@ function edit(id) {
   setTimeout(checkExistContact, 100, id);
   editDnone();
   setTimeout(ContactsDivDisplay, 100, contactsInEdit);
+  setEditPrio(id);
 }
 
 function getContactsForCheckbox(id) {
@@ -1259,22 +1260,56 @@ function subtaskLayout(id) {
   task.classList.add("task-edit");
 }
 
-// EDIT END ____________________________________________________________________________________|
 function checkPrioBtn(id) {
   let map = wichSection(id);
   let currentPrio = map.get(`${id}`)["importance"];
-  let urgent = document.getElementById("importance-button1-colored").style
-    .cssText;
-  let medium = document.getElementById("importance-button2-colored").style
-    .cssText;
-  let low = document.getElementById("importance-button3-colored").style.cssText;
+  let urgent = document.getElementById("importance-button1-colored");
+  let medium;
+  let low;
   let result;
+
+  if (urgent == null) {
+    result = checkPrioBtnEdit(id);
+    return result;
+  } else {
+    urgent = document.getElementById("importance-button1-colored").style
+      .cssText;
+    medium = document.getElementById("importance-button2-colored").style
+      .cssText;
+    low = document.getElementById("importance-button3-colored").style.cssText;
+  }
 
   if (urgent.includes("flex")) {
     result = "urgent";
   } else if (medium.includes("flex")) {
     result = "medium";
   } else if (low.includes("flex")) {
+    result = "low";
+  } else {
+    result = currentPrio;
+  }
+  return result;
+}
+
+function checkPrioBtnEdit(id) {
+  let result;
+  let map = wichSection(id);
+  let currentPrio = map.get(`${id}`)["importance"];
+  let urgent = document.getElementById(
+    "importance-button-colored-edit-4"
+  ).classList;
+  let medium = document.getElementById(
+    "importance-button-colored-edit-5"
+  ).classList;
+  let low = document.getElementById(
+    "importance-button-colored-edit-6"
+  ).classList;
+
+  if (urgent[1] == undefined) {
+    result = "urgent";
+  } else if (medium[1] == undefined) {
+    result = "medium";
+  } else if (low[1] == undefined) {
     result = "low";
   } else {
     result = currentPrio;
@@ -1291,6 +1326,7 @@ function setPriority(importance, id, section) {
     priority.innerHTML = buttonLOW();
   }
 }
+// EDIT END ____________________________________________________________________________________|
 
 function checkCards() {
   let idCard = draggedItem.id.slice(-2);

@@ -356,35 +356,35 @@ function dateHTML() {
 function priorityHTML() {
   return `
               <div class="importance-buttons">
-                <button onclick="fillImportanceButton1()" class="importance-button1" id="importance-button1"
+                <button onclick="fillImportanceButton(${4})" class="importance-button1" id="importance-button-edit-4"
                     type="button">
                     <span>Urgent</span>
                     <img src="../add_task/img-add_task/urgent.png" />
                 </button>
-                <button onclick="emptyImportanceButton1()" class="importance-button1-colored"
-                    id="importance-button1-colored" style="display: none" type="button">
+                <button onclick="fillImportanceButton(${4})" class="importance-button1-colored d-none"
+                    id="importance-button-colored-edit-4" type="button">
                     <span>Urgent</span>
                     <img src="../add_task/img-add_task/urgent_white.png" />
                 </button>
 
-                <button onclick="fillImportanceButton2()" class="importance-button2" id="importance-button2"
+                <button onclick="fillImportanceButton(${5})" class="importance-button2" id="importance-button-edit-5"
                     type="button">
                     <span>Medium</span>
                     <img src="../add_task/img-add_task/medium.png" />
                 </button>
-                <button onclick="emptyImportanceButton2()" class="importance-button2-colored"
-                    id="importance-button2-colored" style="display: none" type="button">
+                <button onclick="fillImportanceButton(${5})" class="importance-button2-colored d-none"
+                    id="importance-button-colored-edit-5" type="button">
                     <span>Medium</span>
                     <img src="../add_task/img-add_task/medium_white.png" />
                 </button>
 
-                <button onclick="fillImportanceButton3()" class="importance-button3" id="importance-button3"
+                <button onclick="fillImportanceButton(${6})" class="importance-button3" id="importance-button-edit-6"
                     type="button">
                     <span>Low</span>
                     <img src="../add_task/img-add_task/low.png" />
                 </button>
-                <button onclick="emptyImportanceButton3()" class="importance-button3-colored"
-                    id="importance-button3-colored" style="display: none" type="button">
+                <button onclick="fillImportanceButton(${6})" class="importance-button3-colored d-none"
+                    id="importance-button-colored-edit-6"  type="button">
                     <span>Low</span>
                     <img src="../add_task/img-add_task/low_white.png" />
                 </button>

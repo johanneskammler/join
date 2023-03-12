@@ -204,66 +204,6 @@ function setupProgressesMap(id, selectedContacts) {
   });
 }
 
-function fillImportanceButton1() {
-  importance = "urgent";
-  document.getElementById("importance-button1").style = "display: none;";
-  document.getElementById("importance-button1-colored").style =
-    "display: flex; cursor: pointer;";
-  document.getElementById("importance-button2").style = "display: flex;";
-  document.getElementById("importance-button2-colored").style =
-    "display: none;";
-  document.getElementById("importance-button3").style = "display: flex;";
-  document.getElementById("importance-button3-colored").style =
-    "display: none;";
-}
-
-function emptyImportanceButton1() {
-  importance = "";
-  document.getElementById("importance-button1").style = "display: flex;";
-  document.getElementById("importance-button1-colored").style =
-    "display: none;";
-}
-
-function fillImportanceButton2() {
-  importance = "medium";
-  document.getElementById("importance-button2").style = "display: none;";
-  document.getElementById("importance-button2-colored").style =
-    "display: flex; cursor: pointer;";
-  document.getElementById("importance-button1").style = "display: flex;";
-  document.getElementById("importance-button1-colored").style =
-    "display: none;";
-  document.getElementById("importance-button3").style = "display: flex;";
-  document.getElementById("importance-button3-colored").style =
-    "display: none;";
-}
-
-function emptyImportanceButton2() {
-  importance = "";
-  document.getElementById("importance-button2").style = "display: flex;";
-  document.getElementById("importance-button2-colored").style =
-    "display: none;";
-}
-
-function fillImportanceButton3() {
-  importance = "low";
-  document.getElementById("importance-button3").style = "display: none;";
-  document.getElementById("importance-button3-colored").style =
-    "display: flex; cursor: pointer;";
-  document.getElementById("importance-button1").style = "display: flex;";
-  document.getElementById("importance-button1-colored").style =
-    "display: none;";
-  document.getElementById("importance-button2").style = "display: flex;";
-  document.getElementById("importance-button2-colored").style =
-    "display: none;";
-}
-
-function emptyImportanceButton3() {
-  importance = "";
-  document.getElementById("importance-button3").style = "display: flex;";
-  document.getElementById("importance-button3-colored").style =
-    "display: none;";
-}
-
 async function checkedSettingEdit(array) {
   let people = await JSON.parse(backend.getItem("contacts"));
   if (people.length > 1) {
@@ -278,5 +218,41 @@ async function checkedSettingEdit(array) {
         checkedIndex.push(array);
       }
     }
+  }
+}
+
+function setEditPrio(id) {
+  let map = wichSection(id);
+  let prio = map.get(`${id}`)["importance"];
+  let nr;
+  if (prio.includes("urgent")) {
+    nr = 4;
+  } else if (prio.includes("medium")) {
+    nr = 5;
+  } else if (prio.includes("low")) {
+    nr = 6;
+  }
+
+  let pushed = document.getElementById(`importance-button-edit-${nr}`);
+  let pushedColored = document.getElementById(
+    `importance-button-colored-edit-${nr}`
+  );
+  pushed.classList.toggle("d-none");
+  pushedColored.classList.toggle("d-none");
+}
+
+function resetImportanceEdit() {
+  let pushed;
+  let pushedColored;
+  let index = [4, 5, 6];
+
+  for (let i = 0; i < index.length; i++) {
+    const element = index[i];
+    pushed = document.getElementById(`importance-button-edit-${element}`);
+    pushedColored = document.getElementById(
+      `importance-button-colored-edit-${element}`
+    );
+    pushed.classList.remove("d-none");
+    pushedColored.classList.add("d-none");
   }
 }
