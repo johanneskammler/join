@@ -92,7 +92,7 @@ function succesImg() {
     document.getElementById("succes_img").classList.remove("d-none");
     setTimeout(() => {
         document.getElementById("succes_img").classList.add("d-none");
-    }, 500);
+    }, 1500);
 }
 
 function renderContactsRaster() {
