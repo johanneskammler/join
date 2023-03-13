@@ -17,6 +17,7 @@
   }
 
   #header-name-resp {
+    display: block;
     color: #4589ff;
     margin-top: -18px;
     margin-bottom: 24px;

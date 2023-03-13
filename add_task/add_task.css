@@ -701,3 +701,7 @@ html {
 .contacts-dropdown-selected {
     display: flex;
 }
+
+#header-name-resp {
+    display: none;
+}
