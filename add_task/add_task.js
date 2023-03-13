@@ -172,8 +172,12 @@ function enableSidebar() {
   document.getElementById("sidebar").classList.add("sidebar");
   document.getElementById("sidebar").classList.remove("tablet-sidebar");
   document.getElementById("help-section-btn").classList.remove("d-none");
-  document.getElementById("create-btn-responsive").classList.add("d-none");
   document.getElementById("header-name-resp").classList.add("d-none");
+  if (document.getElementById("create-btn-responsive") == null) {
+    return
+  } else {
+    document.getElementById("create-btn-responsive").classList.add("d-none");
+  };
 }
 
 async function renderContacts() {
