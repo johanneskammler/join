@@ -293,7 +293,7 @@ body {
   padding: 36px 25px 31px 39px;
   background: #ffffff;
   position: absolute;
-  top: 105px;
+  top: 150px;
   right: 34vw;
   z-index: 10;
   box-shadow: -14px 9px 34px rgb(0 0 0 / 16%);
@@ -352,7 +352,6 @@ body {
   font-size: 21px;
   line-height: 120%;
   margin-top: 25px;
-  margin-bottom: 14px;
 }
 
 .date-box-popup {

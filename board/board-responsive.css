@@ -21,7 +21,7 @@
 
 .editRespons {
   margin-top: -169px !important;
-  height: 104vh !important;
+  height: 84vh !important;
 }
 
 @media (width <=1800px) {
@@ -563,6 +563,10 @@
     width: 127px !important;
   }
 
+  .contacts-dropdown-content {
+    width: 424px !important;
+  }
+
   .popup {
     justify-content: end;
   }
@@ -641,6 +645,10 @@
     right: -21px;
   }
 
+  .popup-text {
+    margin-top: 33px !important;
+  }
+
   .todo {
     display: flex;
     flex-direction: column;
@@ -715,7 +723,7 @@
     right: -46px;
   }
   textarea {
-    width: 377px !important;
+    width: 413px !important;
   }
   .date-box,
   .category-box,
