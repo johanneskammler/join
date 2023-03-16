@@ -38,7 +38,7 @@
   .create-task-btn-resp {
     top: 3.3vh;
     right: 5vw;
-    position: absolute;
+    position: fixed;
     z-index: 800;
   }
 
