@@ -417,6 +417,9 @@ function createNewSubtask() {
 function addSubtask() {
   let newSubtask = document.getElementById("add-subtask").value;
   subtasks.push(newSubtask);
+  if (selectedSubtasks.indexOf(newSubtask) == -1) {
+    selectedSubtasks.push(newSubtask);
+  }
   renderSubtasks();
   document.getElementById("add-subtask").value = "";
   document.getElementById("plus-icon").classList.remove("d-none");
@@ -594,7 +597,7 @@ function generateHTMLsubtask(subtask, i) {
       <div class="subtask-list-elem">
         <label class="control control-checkbox" id="selected-subtask">
           <div class="subtask-list-elem-box">
-            <input onclick="addSubtaskToTask(${i})" id="subtasks-checkbox-${i}" type="checkbox" value="${subtask}" />
+            <input onclick="addSubtaskToTask(${i})" id="subtasks-checkbox-${i}" type="checkbox" value="${subtask}" checked/>
             <span class="rendered-subtask-name">${subtask}</span>
             <div class="control-indicator-subtask"></div>
           </div>

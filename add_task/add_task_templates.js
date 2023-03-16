@@ -65,9 +65,9 @@ function resetCategory() {
 function generateHTMLsubtask(subtask, i) {
   return `
     <div class="subtask-list-elem">
-      <label class="control control-checkbox" id="selected-subtask">
+      <label class="control control-checkbox" id="selected-subtask-${i}">
         <div class="subtask-list-elem-box">
-          <input onclick="addSubtaskToTask(${i})" id="subtasks-checkbox-${i}" type="checkbox" value="${subtask}" />
+          <input onclick="addSubtaskToTask(${i})" id="subtasks-checkbox-${i}" type="checkbox" value="${subtask}" checked/>
           <span class="rendered-subtask-name">${subtask}</span>
           <div class="control-indicator-subtask"></div>
         </div>
