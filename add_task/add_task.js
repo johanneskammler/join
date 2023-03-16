@@ -147,7 +147,7 @@ function hoverAddTaskHtml() {
 
 function checkSize() {
   let size = window.innerWidth;
-  if (size < 1024) {
+  if (size <= 1024) {
     sidebarTabled();
     hoverAddtaskRespons();
   } else if (size > 1024) {
