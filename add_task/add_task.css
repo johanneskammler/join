@@ -620,7 +620,7 @@ html {
 .task-added-to-board {
     height: 74px;
     width: 326px;
-    position: absolute;
+    position: fixed;
     top: 45vh;
     left: 40vw;
     z-index: 100;
