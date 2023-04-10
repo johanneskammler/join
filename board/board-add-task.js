@@ -43,7 +43,7 @@ function checkWichMap(section) {
 async function addToTasks(section) {
   /*   let map = checkWichMap(section); // vielleicht auf der setTask machen besser ??? schauen
    */
-  load();
+  // load();
   if (filled == false) {
     return;
   }
