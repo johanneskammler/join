@@ -43,10 +43,11 @@ function checkWichMap(section) {
 async function addToTasks(section) {
   /*   let map = checkWichMap(section); // vielleicht auf der setTask machen besser ??? schauen
    */
-  load();
   if (filled == false) {
     return;
   }
+  load();
+
   let btn = document.getElementById("submit-btn");
   btn.classList.remove("opacity");
 
