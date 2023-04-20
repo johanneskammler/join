@@ -43,6 +43,10 @@ function checkWichMap(section) {
 async function addToTasks(section) {
   /*   let map = checkWichMap(section); // vielleicht auf der setTask machen besser ??? schauen
    */
+<<<<<<< HEAD
+=======
+  // load();
+>>>>>>> f5e9aefe15200b3a98a3bcd47f41ea23ec5bc76c
   if (filled == false) {
     return;
   }
@@ -418,6 +422,9 @@ function createNewSubtask() {
 function addSubtask() {
   let newSubtask = document.getElementById("add-subtask").value;
   subtasks.push(newSubtask);
+  if (selectedSubtasks.indexOf(newSubtask) == -1) {
+    selectedSubtasks.push(newSubtask);
+  }
   renderSubtasks();
   document.getElementById("add-subtask").value = "";
   document.getElementById("plus-icon").classList.remove("d-none");
@@ -595,7 +602,7 @@ function generateHTMLsubtask(subtask, i) {
       <div class="subtask-list-elem">
         <label class="control control-checkbox" id="selected-subtask">
           <div class="subtask-list-elem-box">
-            <input onclick="addSubtaskToTask(${i})" id="subtasks-checkbox-${i}" type="checkbox" value="${subtask}" />
+            <input onclick="addSubtaskToTask(${i})" id="subtasks-checkbox-${i}" type="checkbox" value="${subtask}" checked/>
             <span class="rendered-subtask-name">${subtask}</span>
             <div class="control-indicator-subtask"></div>
           </div>

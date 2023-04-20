@@ -147,7 +147,7 @@ function hoverAddTaskHtml() {
 
 function checkSize() {
   let size = window.innerWidth;
-  if (size < 1024) {
+  if (size <= 1024) {
     sidebarTabled();
     hoverAddtaskRespons();
   } else if (size > 1024) {
@@ -334,6 +334,9 @@ function createNewSubtask() {
 function addSubtask() {
   let newSubtask = document.getElementById("add-subtask").value;
   subtasks.push(newSubtask);
+  if (selectedSubtasks.indexOf(newSubtask) == -1) {
+    selectedSubtasks.push(newSubtask);
+  }
   document.getElementById("add-subtask").value = "";
   document.getElementById("plus-icon").classList.remove("d-none");
   document.getElementById("new-subtask-accept").classList.add("d-none");
