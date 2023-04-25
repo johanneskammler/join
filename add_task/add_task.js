@@ -22,6 +22,10 @@ async function addToTasks() {
   let contactsSmalView = document.getElementById("contacts_box");
   if (selectedContacts.length == 0) {
     alert("Please select at least one contact!");
+  } else if (
+    document.getElementById("select-category").innerHTML.includes("Select")
+  ) {
+    alert("Please select category!");
   } else {
     triggerAddedToBoardButton();
     checkImportance();

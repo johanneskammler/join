@@ -329,6 +329,9 @@ async function setTasks(section) {
           doneCoordinates.push(`cancel_sub${j}`);
         }
       }
+      if (namesSplit.get(`${idCounter}`) == undefined) {
+        location.reload();
+      }
 
       map.set(`${idCounter}`, {
         category: key["category"],
@@ -345,8 +348,11 @@ async function setTasks(section) {
         progressStatus: key[0],
       });
 
-      await saveMaps();
       await backend.deleteItem("tasks");
+      tasks = [];
+      await saveMaps();
+      setTimeout(killBackendTasks, 1000);
+      tasks;
       subtask = map.get(`${idCounter}`)["substack"];
       currentId = idCounter;
       idCounter++;
@@ -358,6 +364,8 @@ async function setTasks(section) {
   setCards(feedback);
   setCards(done);
 }
+
+async function killBackendTasks() {}
 
 function setCards(section) {
   if (section === "todo") {
@@ -1034,7 +1042,7 @@ function qickSaveMap(id) {
   let descriptionEdit = document.getElementById("popup_description_edit").value;
   let dateEdit = document.getElementById("select-date").value;
   let contactsEdit = selectedContacts;
-  let button = checkPrioBtn();
+  let button = checkPrioBtn(id);
   let section = wichSection(id);
 
   let category = section.get(`${id}`)["category"];

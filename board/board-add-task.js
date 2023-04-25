@@ -59,6 +59,7 @@ async function addToTasks(section) {
   let description = document.getElementById("description-input");
   let contactsData = await contactToSave(selectedContacts);
   selectedSubtasks = subtasks;
+  subtaskChecked();
 
   let task = {
     title: title.value,
@@ -92,6 +93,13 @@ async function addToTasks(section) {
   setTasks(section);
   setTimeout(activateDragAndDrop, 400); /* setCards(); */
   setTimeout(load, 500);
+}
+
+let checkedList;
+function subtaskChecked() {
+  subtasks.forEach((task, i) => {
+    checkedList.push(document.getElementById(`subtasks-checkbox-${i}`).checked);
+  });
 }
 
 async function contactToSave(selectedContacts) {
@@ -447,7 +455,7 @@ function renderSubtasks() {
     for (let i = 0; i < 1; i++) {
       const subtask = subtasks[subCounterAdd];
       document.getElementById("subtask-content").innerHTML +=
-        generateHTMLsubtask(subtask, i);
+        generateHTMLsubtask(subtask, subCounterAdd);
       subCounterAdd++;
     }
   } else {
@@ -600,7 +608,7 @@ function generateHTMLsubtask(subtask, i) {
       <div class="subtask-list-elem">
         <label class="control control-checkbox" id="selected-subtask">
           <div class="subtask-list-elem-box">
-            <input onclick="addSubtaskToTask(${i})" id="subtasks-checkbox-${i}" type="checkbox" value="${subtask}" checked/>
+            <input onclick="addSubtaskToTask(${i})" id="subtasks-checkbox-${i}" type="checkbox" value="${subtask}"/>
             <span class="rendered-subtask-name">${subtask}</span>
             <div class="control-indicator-subtask"></div>
           </div>

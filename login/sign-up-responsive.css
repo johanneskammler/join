@@ -1,172 +1,175 @@
 .sign-up-successful {
-    position: absolute;
-    top: 47%;
-    right: 44%;
-    background-color: #4589ff;
-    color: white;
-    border: none;
-    border-radius: 12px;
-    padding: 12px 60px;
-    font-size: 18px;
+  position: absolute;
+  top: 47%;
+  right: 44%;
+  background-color: #4589ff;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 60px;
+  font-size: 18px;
 }
 
 .slide-top {
-    -webkit-animation: slide-top 1.5s cubic-bezier(0.23, 1, 0.32, 1) 2 alternate both;
-    animation: slide-top 1.5s cubic-bezier(0.23, 1, 0.32, 1) 2 alternate both;
+  -webkit-animation: slide-top 1.5s cubic-bezier(0.23, 1, 0.32, 1) 2 alternate
+    both;
+  animation: slide-top 1.5s cubic-bezier(0.23, 1, 0.32, 1) 2 alternate both;
 }
 
 @-webkit-keyframes slide-top {
-    0% {
-        -webkit-transform: translateY(600px);
-        transform: translateY(600px);
-    }
-    100% {
-        -webkit-transform: translateY(0);
-        transform: translateY(0);
-    }
+  0% {
+    -webkit-transform: translateY(600px);
+    transform: translateY(600px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
 }
 
 @keyframes slide-top {
-    0% {
-        -webkit-transform: translateY(600px);
-        transform: translateY(600px);
-    }
-    100% {
-        -webkit-transform: translateY(0);
-        transform: translateY(0);
-    }
+  0% {
+    -webkit-transform: translateY(600px);
+    transform: translateY(600px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
 }
 
 @media (width <=1920px) {
-    .sign-up-successful {
-        right: 38vw !important;
-    }
+  .sign-up-successful {
+    right: 38vw !important;
+  }
 }
 
 @media (width <=1450px) {
-    .sign-up-successful {
-        right: 36vw !important;
-    }
+  .sign-up-successful {
+    right: 36vw !important;
+  }
 }
 
 @media (width <=1250px) {
-    .sign-up-successful {
-        right: 33vw !important;
-    }
+  .sign-up-successful {
+    right: 33vw !important;
+  }
 }
 
 @media (width <=1200px) {
-    .sign-up-logo {
-        width: 100px;
-        height: 122px;
-        position: absolute;
-        top: 3vh;
-        left: 4vw;
-    }
+  .sign-up-logo {
+    width: 100px;
+    height: 122px;
+    position: absolute;
+    top: 3vh;
+    left: 4vw;
+  }
 }
 
 @media (width <=1080px) {
-    .sign-up-successful {
-        right: 31vw !important;
-    }
+  .sign-up-successful {
+    right: 31vw !important;
+  }
 }
 
 @media (width <=1024px) {
-    .login-screen-no-animation {
-        width: 63vw;
-    }
-    #user,
-    #email,
-    #pw {
-        width: 40vw;
-    }
+  .login-screen-no-animation {
+    width: 63vw;
+  }
+  #user,
+  #email,
+  #pw {
+    width: 40vw;
+  }
 }
 
 @media (width <950px) {
-    .sign-up-successful {
-        right: 29vw !important;
-    }
+  .sign-up-successful {
+    right: 29vw !important;
+  }
 }
 
 @media (width <825px) {
-    .sign-up-successful {
-        right: 26vw !important;
-    }
+  .sign-up-successful {
+    right: 26vw !important;
+  }
 }
 
 @media (width <=768px) {
-    .sign-up-successful {
-        right: 21vw !important;
-    }
-    .sign-up-logo {
-        width: 60px;
-        height: 80px;
-    }
-    .login-screen-no-animation {
-        width: 86vw;
-        height: 64vh;
-        margin-block-start: 5vh;
-    }
-    .logos-sign-up {
-        width: 100%;
-    }
-    .login-screen-no-animation {
-        width: 92vw;
-        height: 64vh;
-        margin-block-start: 15vh;
-    }
-    form {
-        width: 43vw;
-    }
-    #user,
-    #email,
-    #pw {
-        width: 50vw;
-    }
-    #user::placeholder,
-    #email::placeholder,
-    #pw::placeholder {
-        font-size: 16px;
-    }
-    .underline {
-        width: 20vw;
-    }
-    .login-btn {
-        width: 46vw;
-        height: 21vh;
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        margin-top: 0;
-    }
-    .sign-up-btn {
-        margin-top: 0;
-        margin-left: 0;
-    }
+  .sign-up-successful {
+    right: 21vw !important;
+  }
+  .sign-up-logo {
+    width: 60px;
+    height: 80px;
+  }
+  .login-screen-no-animation {
+    width: 86vw;
+    height: 64vh;
+    margin-block-start: 5vh;
+  }
+  .logos-sign-up {
+    width: 100%;
+  }
+  .login-screen-no-animation {
+    width: 92vw;
+    height: 64vh;
+    margin-block-start: 15vh;
+  }
+  form {
+    width: 43vw;
+  }
+  #user,
+  #email,
+  #pw {
+    width: 50vw;
+  }
+  #user::placeholder,
+  #email::placeholder,
+  #pw::placeholder {
+    font-size: 16px;
+  }
+  .underline {
+    width: 20vw;
+  }
+  .login-btn {
+    width: 46vw;
+    height: 21vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 0;
+  }
+  .sign-up-btn {
+    margin-top: 0;
+    height: 30px;
+    margin-left: 0;
+    bottom: 19px;
+  }
 }
 
 @media (width <590px) {
-    .sign-up-successful {
-        right: 20vw !important;
-        padding: 12px 15px;
-    }
+  .sign-up-successful {
+    right: 20vw !important;
+    padding: 12px 15px;
+  }
 }
 
 @media (width <450px) {
-    .sign-up-successful {
-        right: 14vw !important;
-    }
+  .sign-up-successful {
+    right: 14vw !important;
+  }
 }
 
 @media (width <404px) {
-    .sign-up-successful {
-        right: 9vw !important;
-    }
+  .sign-up-successful {
+    right: 9vw !important;
+  }
 }
 
 @media (width <385px) {
-    .sign-up-successful {
-        right: 5vw !important;
-        padding: 12px 5px;
-    }
+  .sign-up-successful {
+    right: 5vw !important;
+    padding: 12px 5px;
+  }
 }
