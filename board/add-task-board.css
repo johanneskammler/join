@@ -17,6 +17,14 @@
   right: -4px !important;
 }
 
+.add-subtask::placeholder {
+  color: rgba(107, 107, 107, 0.962);
+}
+
+.add-subtask-red::placeholder {
+  color: red !important;
+}
+
 .add-tasks-board-head {
   display: flex;
   justify-content: space-between;

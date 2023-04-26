@@ -72,6 +72,7 @@ async function addToTasks(section) {
     importance: importance,
     description: description.value,
     subtasks: selectedSubtasks,
+    subtaskCheck: checkedList,
   };
   selectedContacts = [];
   tasks.push(task);
@@ -95,7 +96,7 @@ async function addToTasks(section) {
   setTimeout(load, 500);
 }
 
-let checkedList;
+let checkedList = [];
 function subtaskChecked() {
   subtasks.forEach((task, i) => {
     checkedList.push(document.getElementById(`subtasks-checkbox-${i}`).checked);
@@ -431,10 +432,31 @@ function addSubtask() {
   if (selectedSubtasks.indexOf(newSubtask) == -1) {
     selectedSubtasks.push(newSubtask);
   }
+  subtaskDescription();
   renderSubtasks();
   document.getElementById("add-subtask").value = "";
   document.getElementById("plus-icon").classList.remove("d-none");
   document.getElementById("new-subtask-accept").classList.add("d-none");
+}
+
+let descript = 0;
+function subtaskDescription() {
+  if (descript == 0) {
+    descript++;
+    document.getElementById("add-subtask").placeholder =
+      "Decheck it, to remove the subtask!";
+    subtaskToggleRed();
+    setTimeout(subtaskSetBack, 1250);
+  }
+}
+
+function subtaskToggleRed() {
+  document.getElementById("add-subtask").classList.toggle("add-subtask-red");
+}
+
+function subtaskSetBack() {
+  document.getElementById("add-subtask").placeholder = "Add new subtask";
+  subtaskToggleRed();
 }
 
 function subtaskReturn() {
@@ -608,7 +630,7 @@ function generateHTMLsubtask(subtask, i) {
       <div class="subtask-list-elem">
         <label class="control control-checkbox" id="selected-subtask">
           <div class="subtask-list-elem-box">
-            <input onclick="addSubtaskToTask(${i})" id="subtasks-checkbox-${i}" type="checkbox" value="${subtask}"/>
+            <input onclick="addSubtaskToTask(${i})" id="subtasks-checkbox-${i}" type="checkbox" value="${subtask}" checked/>
             <span class="rendered-subtask-name">${subtask}</span>
             <div class="control-indicator-subtask"></div>
           </div>

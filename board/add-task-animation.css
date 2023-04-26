@@ -41,8 +41,8 @@
     transform: translateX(34vw);
   }
   100% {
-    -webkit-transform: translateX(-3vw);
-    transform: translateX(-3vw);
+    -webkit-transform: translateX(15vw);
+    transform: translateX(15vw);
   }
 }
 @keyframes slide-left {
