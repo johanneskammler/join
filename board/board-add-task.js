@@ -444,9 +444,9 @@ function subtaskDescription() {
   if (descript == 0) {
     descript++;
     document.getElementById("add-subtask").placeholder =
-      "Decheck it, to remove the subtask!";
+      "Uncheck it, to remove the subtask!";
     subtaskToggleRed();
-    setTimeout(subtaskSetBack, 1250);
+    setTimeout(subtaskSetBack, 1850);
   }
 }
 
