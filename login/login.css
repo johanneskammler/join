@@ -464,6 +464,7 @@ input::placeholder {
     cursor: pointer;
     display: flex;
     align-items: center;
+    margin-top: 12px;
     padding: 10px 35px;
     gap: 10px;
     width: 197px;
