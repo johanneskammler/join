@@ -22,7 +22,7 @@ async function init() {
   await includeHTML();
   await downloadFromServer();
   loadAtStart();
-  checkMainSize();
+  checkSize();
   await getMaps();
   renderCurrentDate();
   task_cards = JSON.parse(backend.getItem("tasks")) || [];
@@ -37,6 +37,53 @@ async function init() {
       ShowCurrentUserNameForSummery = nameTest;
     }
   }
+}
+
+function checkSize() {
+  let size = window.innerWidth;
+  setTimeout(toggleArrows, 50);
+
+  if (size <= 1024) {
+    sidebarTabled();
+    hoverSummaryRespons();
+  } else if (size > 1024) {
+    sidebarDesktop();
+    hoverSummaryHtml();
+  }
+}
+
+function sidebarTabled() {
+  let sidebar = document.getElementById("sidebar");
+  if (sidebar == null) {
+    return;
+  }
+
+  sidebar.classList.remove("sidebar");
+  sidebar.classList.add("tablet-sidebar");
+}
+
+function sidebarDesktop() {
+  let sidebar = document.getElementById("sidebar");
+  if (sidebar == null) {
+    return;
+  }
+
+  sidebar.classList.add("sidebar");
+  sidebar.classList.remove("tablet-sidebar");
+}
+
+function hoverSummaryHtml() {
+  document
+    .getElementById("summary-html")
+    .classList.add("section-background-normal");
+  document.getElementById("summary_bg").classList.remove("section-background");
+}
+
+function hoverSummaryRespons() {
+  document
+    .getElementById("board_bg")
+    .classList.remove("section-background-normal");
+  document.getElementById("summary_bg").classList.add("section-background");
 }
 
 async function greetUser() {
