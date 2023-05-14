@@ -167,13 +167,15 @@
 
 }
 
-@media (max-width: 414px) {
+@media (max-width: 430px) {
 
     #summary-container {
-        justify-content: space-evenly;
+        /* justify-content: space-evenly; */
         gap: 30px;
         margin-left: 0 !important;
-        margin-bottom: 15rem !important;
+        margin-bottom: 20rem !important;
+        height: 950px;
+        top: 90px;
     }
 
     #urgent-left-top img {
