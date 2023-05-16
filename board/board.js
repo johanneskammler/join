@@ -22,6 +22,7 @@ let feedback = "feedback";
 let progress = "progress";
 let done = "done";
 let idCounter = 0;
+let actualContacts;
 
 /**
  * This function Initialized some functions that need to run with onload of the body
@@ -38,6 +39,7 @@ async function init() {
   generateCards();
   checkIfEmpty();
   tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
+  actualContacts = (await JSON.parse(backend.getItem("contacts"))) || [];
   getUrgentCounter();
   getCurrentContacts();
   setTimeout(load, 500);
@@ -351,7 +353,6 @@ async function setTasks(section) {
       await backend.deleteItem("tasks");
       tasks = [];
       await saveMaps();
-      setTimeout(killBackendTasks, 1000);
       tasks;
       subtask = map.get(`${idCounter}`)["substack"];
       currentId = idCounter;
@@ -364,8 +365,6 @@ async function setTasks(section) {
   setCards(feedback);
   setCards(done);
 }
-
-async function killBackendTasks() {}
 
 function setCards(section) {
   if (section === "todo") {
@@ -532,13 +531,39 @@ function checkIfString(element) {
   return element;
 }
 
-function renderContactsCard(id) {
+/* async function contactsStillEqual(contacts, colors, map) {
+  actualContacts = (await JSON.parse(backend.getItem("contacts"))) || [];
+  let newContacts = [];
+  console.log("von der Map : " + contacts);
+
+  for (let i = 0; i < contacts.length; i++) {
+    console.log(contacts[i]);
+  }
+     console.log('task :' + color + ' ' + i );
+    actualContacts.forEach((contact, i) => {
+      console.log(contact.name);
+      if (color == contact.color) {
+        newContacts.push(contact.name);
+        if (newContacts == undefined || newContacts.length == undefined) {
+        } 
+        console.log(newContacts);
+      } else {
+        console.log("y");
+      
+    }); 
+}
+ */
+async function renderContactsCard(id) {
   let map = wichSection(id);
-  let contacts = map.get(`${id}`)["contacts"];
+  let contactsMap = map.get(`${id}`)["contacts"];
+  let colors = map.get(`${id}`)["colors"];
+  let contactsNew;
+  //colors = checkIfString(colors);
+  contactsMap = checkIfString(contactsMap);
 
-  contacts = checkIfString(contacts);
+  contactsNew = contactsMap;
 
-  if (contacts.length === 0) {
+  if (contactsNew.length === 0) {
     let contactsSection = document.getElementById(`contacts_card${id}`);
     contactsSection.classList.add("d-none");
   }
@@ -553,7 +578,7 @@ function renderContactsCard(id) {
     letters = String(letters).split(",");
   }
   let contactsSection = document.getElementById(`contacts_card${id}`);
-  checkForContactNumber(contacts, letters, contactsSection, contactColor);
+  checkForContactNumber(contactsNew, letters, contactsSection, contactColor);
 }
 
 function checkForContactNumber(contacts, letters, contactsSection, colors) {
