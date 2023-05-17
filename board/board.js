@@ -549,6 +549,9 @@ function checkIfString(element) {
         console.log(newContacts);
       } else {
         console.log("y");
+
+        
+        Erstmal ertsehen warum überhaupt die tasks nicht richtig gelden werden unddann das da oben versuchen
       
     }); 
 }
