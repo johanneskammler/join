@@ -315,7 +315,7 @@ async function setTasks(section) {
       if (tasks[i]["letters"] == null || tasks[i]["letters"][0] == null) {
         let contactsLetter = tasks[i]["contacts"];
         contactsLetter = checkIfString(contactsLetter);
-        namesSplit = await getFirstLetter(contactsLetter, idCounter);
+        namesSplit = getFirstLetter(contactsLetter, idCounter);
       } else {
         namesSplit = new Map();
         namesSplit.set(`${idCounter}`, { letters: `${tasks[i]["letters"]}` });
@@ -332,38 +332,41 @@ async function setTasks(section) {
         }
       }
       if (namesSplit.get(`${idCounter}`) == undefined) {
+        debugger;
         location.reload();
       }
 
-      map.set(`${idCounter}`, {
-        category: key["category"],
-        categorycolor: key["categorycolor"],
-        contacts: key["contacts"],
-        colors: colors,
-        letters: namesSplit.get(`${idCounter}`)["letters"],
-        date: key["date"],
-        description: key["description"],
-        importance: key["importance"],
-        subtask: key["subtasks"],
-        subtaskStatus: doneCoordinates,
-        title: key["title"],
-        progressStatus: key[0],
-      });
-
-      await backend.deleteItem("tasks");
-      tasks = [];
-      await saveMaps();
-      tasks;
+      setCardFromTasks(map, key, colors, namesSplit, doneCoordinates);
       subtask = map.get(`${idCounter}`)["substack"];
-      currentId = idCounter;
       idCounter++;
-      idCounterToJson();
+      idCounterToBackend();
     }
+    await backend.deleteItem("tasks");
+    tasks = [];
+    await saveMaps();
+    currentId = idCounter;
   }
   setCards(todo);
   setCards(progress);
   setCards(feedback);
   setCards(done);
+}
+
+function setCardFromTasks(map, key, colors, namesSplit, doneCoordinates) {
+  map.set(`${idCounter}`, {
+    category: key["category"],
+    categorycolor: key["categorycolor"],
+    contacts: key["contacts"],
+    colors: colors,
+    letters: namesSplit.get(`${idCounter}`)["letters"],
+    date: key["date"],
+    description: key["description"],
+    importance: key["importance"],
+    subtask: key["subtasks"],
+    subtaskStatus: doneCoordinates,
+    title: key["title"],
+    progressStatus: key[0],
+  });
 }
 
 function setCards(section) {
@@ -1470,7 +1473,7 @@ async function saveMaps() {
   await backend.setItem("doneJson", JSON.stringify(dones));
 }
 
-async function idCounterToJson() {
+async function idCounterToBackend() {
   await backend.setItem("count", JSON.stringify(idCounter));
 }
 
