@@ -310,9 +310,7 @@
   .new-contact-btn-container {
     padding-top: 0;
   }
-  .add-contact-paragraph {
-    padding-bottom: 50px;
-  }
+
   .img-container {
     margin-top: 25px;
   }
@@ -322,11 +320,9 @@
   .img-container {
     margin-top: 12.5px;
     width: 120px;
-    height: 120px;
+    height: 108px;
   }
-  .add-contact-paragraph {
-    padding-bottom: 25px;
-  }
+
   .save-btn {
     margin-top: 0;
   }

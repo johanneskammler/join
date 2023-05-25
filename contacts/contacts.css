@@ -283,6 +283,8 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
+  justify-content: center;
+  height: 31%;
   background-color: #4589ff;
   border-top-right-radius: 30px;
 }
@@ -298,8 +300,6 @@ body {
 }
 
 .add-contact-img {
-  margin-top: 51px;
-  margin-bottom: 12px;
   height: 66.48px;
   width: 55.12px;
 }
@@ -313,7 +313,6 @@ body {
 .add-contact-paragraph {
   font-size: 27px;
   font-weight: 400;
-  padding-bottom: 91px;
 }
 
 .add-contact-information {
@@ -328,9 +327,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 160px;
-  height: 160px;
-  margin-top: 25px;
+  width: 210px;
+  height: 210px;
+  margin-top: 64px;
   border-radius: 100%;
   background-color: #d1d1d1;
 }
@@ -370,6 +369,17 @@ form input::placeholder {
 .input-phone {
   background: url(img/phone.png) no-repeat scroll 95% 7px;
   font-size: 19px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
 }
 
 .new-contact-btn-container {

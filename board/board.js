@@ -310,49 +310,64 @@ async function setTasks(section) {
     for (let i = 0; i < tasks.length; i++) {
       checkIdCounter();
       key = tasks[i];
-      let subtaskLength = tasks[i]["subtasks"].length;
 
-      if (tasks[i]["letters"] == null || tasks[i]["letters"][0] == null) {
-        let contactsLetter = tasks[i]["contacts"];
-        contactsLetter = checkIfString(contactsLetter);
-        namesSplit = getFirstLetter(contactsLetter, idCounter);
-      } else {
-        namesSplit = new Map();
-        namesSplit.set(`${idCounter}`, { letters: `${tasks[i]["letters"]}` });
-      }
-      if (key[`colors`] == undefined) {
-        colors = await checkContactsColor(key["contacts"]);
-      } else {
-        colors = key[`colors`];
-      }
-
-      if (subtaskLength > 0) {
-        for (let j = 0; j < subtaskLength; j++) {
-          doneCoordinates.push(`cancel_sub${j}`);
-        }
-      }
-      if (namesSplit.get(`${idCounter}`) == undefined) {
-        debugger;
-        location.reload();
-      }
-
-      setCardFromTasks(map, key, colors, namesSplit, doneCoordinates);
-      subtask = map.get(`${idCounter}`)["substack"];
-      idCounter++;
-      idCounterToBackend();
+      await creatNewCard(map, key, colors, doneCoordinates);
     }
-    await backend.deleteItem("tasks");
-    tasks = [];
-    await saveMaps();
-    currentId = idCounter;
   }
+  await saveAndResetCounterAndTask();
+
   setCards(todo);
   setCards(progress);
   setCards(feedback);
   setCards(done);
 }
 
-function setCardFromTasks(map, key, colors, namesSplit, doneCoordinates) {
+async function saveAndResetCounterAndTask() {
+  await backend.deleteItem("tasks");
+  tasks = [];
+  await saveMaps();
+  currentId = idCounter;
+}
+
+async function creatNewCard(map, key, colors, doneCoordinates) {
+  let namesSplit = splitName(key);
+  colors = await defineColors(key);
+  setNewCard(map, key, colors, namesSplit, doneCoordinates);
+  subtask = map.get(`${idCounter}`)["substack"];
+  idCounter++;
+  idCounterToBackend();
+}
+
+async function defineColors(key) {
+  if (key[`colors`] == undefined) {
+    return (colors = await checkContactsColor(key["contacts"]));
+  } else {
+    return (colors = key[`colors`]);
+  }
+}
+
+function splitName(key) {
+  let subtaskLength = key["subtasks"].length;
+  if (key["letters"] == null || key["letters"][0] == null) {
+    let contactsLetter = key["contacts"];
+    contactsLetter = checkIfString(contactsLetter);
+    namesSplit = getFirstLetter(contactsLetter, idCounter);
+  } else {
+    namesSplit = new Map();
+    namesSplit.set(`${idCounter}`, { letters: `${key["letters"]}` });
+  }
+  if (subtaskLength > 0) {
+    for (let j = 0; j < subtaskLength; j++) {
+      doneCoordinates.push(`cancel_sub${j}`);
+    }
+  }
+  if (namesSplit.get(`${idCounter}`) == undefined) {
+    location.reload();
+  }
+  return namesSplit;
+}
+
+function setNewCard(map, key, colors, namesSplit, doneCoordinates) {
   map.set(`${idCounter}`, {
     category: key["category"],
     categorycolor: key["categorycolor"],

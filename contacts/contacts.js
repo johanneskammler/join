@@ -1,9 +1,14 @@
-contacts = [];
 let color;
 let firstLetters;
 let selectedColor;
 let selectedLetter;
 let selectedContact;
+let editContactIndex;
+/* let maps;
+let todosMap;
+let progressesMap;
+let feedbacksMap;
+let donesMap; */
 
 setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
 
@@ -12,6 +17,11 @@ async function init() {
   await includeHTML();
   checkSize();
   await renderContactList();
+  await loadContacts();
+}
+
+async function loadContacts() {
+  contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
 }
 
 function hoverContactsHtml() {
@@ -242,9 +252,9 @@ function clickDialog(e) {
 }
 
 async function openEditContact(i) {
-  let contacts = await JSON.parse(backend.getItem("contacts"));
   selectedContact = contacts[i];
   selectedColor = selectedContact["color"];
+  selectedContactIndex = i;
 
   let nameInput = document.getElementById("input-name-edit");
   let mailInput = document.getElementById("input-mail-edit");
@@ -264,6 +274,7 @@ async function openEditContact(i) {
 }
 
 async function saveEditContact() {
+  // hier kommt eine brutale edit function ala babo hin
   let contacts = await JSON.parse(backend.getItem("contacts"));
   let name_input = document.getElementById("input-name-edit");
   let mail_input = document.getElementById("input-mail-edit");
@@ -279,8 +290,8 @@ async function saveEditContact() {
     firstLetters: firstLetter,
   };
 
-  deleteSelectedContact(contact, contacts);
-  await backend.setItem("contacts", JSON.stringify(contacts));
+  await deleteSelectedContact(contact);
+  await saveMaps();
   selectedContact = null;
   setContactListByResponsive();
   renderContactList();
@@ -291,17 +302,57 @@ async function saveEditContact() {
   }, 200);
 }
 
-function deleteSelectedContact(contact, contacts) {
-  let selectedContactInList = contacts.find(
-    (c) =>
-      c.name === selectedContact.name &&
-      c.mail === selectedContact.mail &&
-      c.mobil === selectedContact.mobil
-  );
+async function deleteSelectedContact(contact) {
+  contacts[selectedContactIndex] = contact;
+  await backend.setItem("contacts", JSON.stringify(contacts));
+  await getMaps();
+  searchMapsForContact(contact);
+}
 
-  if (selectedContactInList) {
-    contacts.splice(contacts.indexOf(selectedContactInList), 1, contact);
+async function getMaps() {
+  let todos = (await JSON.parse(backend.getItem("todoJson"))) || [];
+  if (todos.length > 1) {
+    todosMap = new Map(Object.entries(JSON.parse(todos)));
   }
+
+  let progresses = (await JSON.parse(backend.getItem("progressJson"))) || [];
+  if (progresses.length > 1) {
+    progressesMap = new Map(Object.entries(JSON.parse(progresses)));
+  }
+
+  let feedbacks = (await JSON.parse(backend.getItem("feedbackJson"))) || [];
+  if (feedbacks.length > 1) {
+    feedbacksMap = new Map(Object.entries(JSON.parse(feedbacks)));
+  }
+
+  let dones = (await JSON.parse(backend.getItem("doneJson"))) || [];
+  if (dones.length > 1) {
+    donesMap = new Map(Object.entries(JSON.parse(dones)));
+  }
+  maps = [todosMap, progressesMap, feedbacksMap, donesMap];
+}
+
+function searchMapsForContact(contacts) {
+  maps.forEach((map) => {
+    map.forEach((index) => {
+      if (index.contacts == undefined) {
+        return;
+      } else {
+        console.log(index.contacts);
+        if (index.contacts.indexOf(selectedContact.name) >= 0) {
+          let i = index.contacts.indexOf(selectedContact.name);
+          index.contacts.splice(i, 1);
+          if (typeof index.letters == "string") {
+            index.letters = index.letters.split(",");
+          }
+          index.letters.splice(i, 1);
+          console.log(contacts.name);
+          index.letters.splice(i, 0, contacts.firstLetters);
+          index.contacts.splice(i, 0, contacts.name);
+        }
+      }
+    });
+  });
 }
 
 function setContactListByResponsive() {
@@ -315,6 +366,17 @@ function setContactListByResponsive() {
       document.getElementById("new_contact_btn").classList.remove("d-none");
     }, 400);
   }
+}
+
+async function saveMaps() {
+  const todos = JSON.stringify(Object.fromEntries(todosMap));
+  await backend.setItem("todoJson", JSON.stringify(todos));
+  const progresses = JSON.stringify(Object.fromEntries(progressesMap));
+  await backend.setItem("progressJson", JSON.stringify(progresses));
+  const feedbackes = JSON.stringify(Object.fromEntries(feedbacksMap));
+  await backend.setItem("feedbackJson", JSON.stringify(feedbackes));
+  const dones = JSON.stringify(Object.fromEntries(donesMap));
+  await backend.setItem("doneJson", JSON.stringify(dones));
 }
 
 function dateFuture() {
