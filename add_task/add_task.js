@@ -26,6 +26,12 @@ async function addToTasks() {
     document.getElementById("select-category").innerHTML.includes("Select")
   ) {
     alert("Please select category!");
+  } else if (
+    document.getElementById("importance-button1-colored").style.display === "none" &&
+    document.getElementById("importance-button2-colored").style.display === "none" &&
+    document.getElementById("importance-button3-colored").style.display === "none"
+  ) {
+    alert("Please select urgency!");
   } else {
     triggerAddedToBoardButton();
     checkImportance();
