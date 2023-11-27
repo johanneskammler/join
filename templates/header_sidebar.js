@@ -17,7 +17,7 @@ function closeLogoutDiv() {
 
 
 function logoutFromJoin() {
-    window.location = "../login/index.html";
+    window.location = "../index.html";
 }
 
 
