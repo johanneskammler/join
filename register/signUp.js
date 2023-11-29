@@ -22,7 +22,7 @@ function showBanner() {
   let button_spinner = document.getElementById("button_spinner");
 
   banner.classList.remove("d-none");
-  button_spinner.classList.remove('d-none');
+  button_spinner.classList.remove("d-none");
   button_text.classList.add("d-none");
 
   setTimeout(() => {

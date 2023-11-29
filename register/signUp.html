@@ -41,14 +41,16 @@
             id="user"
             placeholder="Name"
             style="margin-bottom: 29px"
+            required
           />
-          <input type="email" name="" id="email" placeholder="Email" />
+          <input type="email" name="" id="email" placeholder="Email" required />
           <input
             type="password"
             name=""
             id="pw"
             placeholder="Password"
             class="#"
+            required
           />
 
           <div id="login-buttons" class="login-btn">
@@ -59,9 +61,7 @@
             >
               <div class="" id="text_button">Sign up</div>
 
-              <div id="button_spinner" class="spinner-border d-none" role="status">
-                <span class="visually-hidden">Loading...</span>
-              </div>
+              <div id="button_spinner" class="loader d-none"></div>
             </button>
           </div>
         </form>

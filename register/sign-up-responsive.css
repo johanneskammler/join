@@ -24,6 +24,20 @@
   justify-content: center;
 }
 
+.loader {
+  border: 5px solid #f3f3f3; /* Light grey */
+  border-top: 5px solid #4589ff; /* Blue */
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  animation: spin 1000ms linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .scale-up-center {
   -webkit-animation: scale-up-center 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)
     both;
