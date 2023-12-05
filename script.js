@@ -1,42 +1,42 @@
 let currentUser;
+let userData = [];
 
-async function checkInput() {
-  const emailInput = document.getElementById("email");
-  const passwordInput = document.getElementById("pw");
+async function init() {
+  let data = await getItem("user");
+  userData.push(JSON.parse(data));
+  console.log(userData[0]);
+}
 
-  const email = emailInput.value;
-  const password = passwordInput.value;
+async function login() {
+  let email = document.getElementById("email").value;
+  let password = document.getElementById("pw").value;
+  let isLoggedIn = await checkInputValue(email, password);
 
-  if (!email || !password) {
-    alert("Bitte geben Sie Ihre E-Mail-Adresse und Ihr Passwort ein.");
-    return;
-  }
+  if (isLoggedIn) {
+    console.log('login success')
+  setTimeout(() => {
+    window.location = 'summary/summary.html';
+  }, 2000);
 
-  const user = storedUsers.find((element) => element.email === email);
-
-  if (user) {
-    if (user.password === password) {
-      await loginSteps(user);
-      openSummaryAsUser();
-    } else {
-      alert("Das Passwort ist falsch.");
-    }
   } else {
-    alert("Die angegebene E-Mail-Adresse wurde nicht gefunden.");
+    console.log("Fehlerhafte Anmeldeinformationen.");
   }
 }
 
-async function loginSteps(element) {
-  currentUser = element;
-  userAsJson = JSON.stringify(currentUser);
-  await backend.setItem("currentUser", userAsJson);
+async function checkInputValue(email, password) {
+  for (let i = 0; i < userData[0].length; i++) {
+    const user = userData[0][i];
+
+    if (user["email"] === email && user["password"] === password) {
+      return true;
+    }
+  }
+  return false;
 }
 
 function renderSignUpPage() {
   window.location = "../register/signUp.html";
 }
-
-
 
 function forgotPassword() {
   window.location = "forgotPassword/forgotPassword.html";
@@ -45,8 +45,6 @@ function forgotPassword() {
 function backFromReset() {
   forgotPassword();
 }
-
-
 
 function resetPassword() {
   var password = document.getElementById("new-password").value;

@@ -14,7 +14,7 @@
     <title>Login</title>
 </head>
 
-<body>
+<body onload="init()">
     <div class="blue-screen" id="logIn-blue-screen"></div>
     <div id="logos" class="logos">
 
@@ -51,8 +51,8 @@
                 <form>
                     <input type="text" name="" id="user" placeholder="Name" class="d-none" />
                     <input type="email" name="" id="email" placeholder="Email" required/>
-                    <input type="password" name="" id="pw" placeholder="Password" required/>
-
+                    <input type="password" name="" id="pw" placeholder="Password" required
+                    />
 
                     <div id="pw-recovery" class="pw-recovery">
                         <div class="remember-me">
@@ -63,20 +63,19 @@
                             </label>
                         </div>
                         <div class="forgot">
-                          
-                                <a onclick="forgotPassword()" id="forgot-password" href="#" class="c-blue">Forgot my
-                                    password</a>
-                            
+                         <a onclick="forgotPassword()" id="forgot-password" href="#" class="c-blue">
+                            Forgot my password</a>
                         </div>
                     </div>
 
                     <div id="login-buttons" class="login-btn">
-                        <button onclick="checkInput()" id="login-btn" class="login-user" type="submit">Log in</button>
+                        <button type="button" onclick="login()" id="login-btn" class="login-user">Log in</button>
                         <button onclick="openSummary()" id="guest-btn" class="login-guest" >Guest log in</button>
                         <button id="sign-up-btn" class="login-user d-none">Sign up</button>
                         <button id="password-btn" class="login-user d-none">
                             Send me the email
                         </button>
+                    </div>
                 </form>
             </div>
         </div>

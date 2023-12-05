@@ -1,5 +1,19 @@
 let users = [];
 
+async function init() {
+  if (users.length === 0) {
+    let data = await getItem("user");
+    if (data) {
+      users = JSON.parse(data);
+      console.log("Benutzerdaten geladen:", users);
+    } else {
+      console.log("Keine Benutzerdaten gefunden.");
+    }
+  } else {
+    console.log("Benutzerdaten sind bereits im Array vorhanden:", users);
+  }
+}
+
 async function register() {
   let userName = document.getElementById("user");
   let email = document.getElementById("email");
@@ -24,6 +38,8 @@ function showBanner() {
   banner.classList.remove("d-none");
   button_spinner.classList.remove("d-none");
   button_text.classList.add("d-none");
+
+  console.log(users);
 
   setTimeout(() => {
     banner.classList.add("d-none");
