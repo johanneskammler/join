@@ -11,15 +11,19 @@ async function login() {
   let email = document.getElementById("email").value;
   let password = document.getElementById("pw").value;
   let isLoggedIn = await checkInputValue(email, password);
+  let loginBtnText = document.getElementById("login_btn_text");
+  let btnSpinner = document.getElementById("button_spinner");
 
   if (isLoggedIn) {
-    console.log('login success')
-  setTimeout(() => {
-    window.location = 'summary/summary.html';
-  }, 2000);
+    console.log("login success");
+    loginBtnText.classList.add("d-none");
+    btnSpinner.classList.remove("d-none");
 
+    setTimeout(() => {
+      window.location = "summary/summary.html";
+    }, 2000);
   } else {
-    console.log("Fehlerhafte Anmeldeinformationen.");
+    alert("Incorrect login credentials!");
   }
 }
 

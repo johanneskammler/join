@@ -1,88 +1,41 @@
 let tasks = [];
-let selectedContacts = [];
-let importance;
-let subtasks = [];
-let selectedSubtasks = [];
-let newCategories = [];
-let categoryName;
-let categoryColor;
-let categoryColorTrue;
-let contacts;
-let newContactAddTaskActive = true;
-let urgentCounter;
 
-setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
+async function init() {
+  await loadData();
 
-async function getUrgentCounter() {
-  urgentCounter = (await backend.getItem("urgentCounter")) || 0;
-  urgentCounter = parseInt(urgentCounter);
+  await includeHTML();
+  checkSize();
+  getUrgentCounter();
+}
+
+async function loadData() {
+  if (tasks.length === 0) {
+    let data = await getItem("tasks");
+    if (data) {
+      tasks = JSON.parse(data);
+      console.log("Benutzerdaten geladen:", tasks);
+    } else {
+      console.log("Keine Benutzerdaten gefunden.");
+    }
+  } else {
+    console.log("Benutzerdaten sind bereits im Array vorhanden:", tasks);
+  }
 }
 
 async function addToTasks() {
-  let contactsSmalView = document.getElementById("contacts_box");
-  if (selectedContacts.length == 0) {
-    alert("Please select at least one contact!");
-  } else if (
-    document.getElementById("select-category").innerHTML.includes("Select")
-  ) {
-    alert("Please select category!");
-  } else if (
-    document.getElementById("importance-button1-colored").style.display === "none" &&
-    document.getElementById("importance-button2-colored").style.display === "none" &&
-    document.getElementById("importance-button3-colored").style.display === "none"
-  ) {
-    alert("Please select urgency!");
-  } else {
-    triggerAddedToBoardButton();
-    checkImportance();
+  let title = document.getElementById("title-input").value;
+  let date = document.getElementById("select-date").value;
+  let description = document.getElementById("description-input").value;
 
-    let title = document.getElementById("title-input");
-    let date = document.getElementById("select-date");
-    let category = document.getElementById("select-category");
-    let description = document.getElementById("description-input");
+  tasks.push({
+    title: title,
+    date: date,
+    description: description,
+  });
 
-    let task = {
-      title: title.value,
-      contacts: selectedContacts,
-      date: date.value,
-      category: category.innerText,
-      categorycolor: categoryColor,
-      importance: importance,
-      description: description.value,
-      subtasks: selectedSubtasks,
-    };
-    selectedContacts = [];
-    tasks.push(task);
-    resetTasksInputs(
-      title,
-      selectedContacts,
-      date,
-      categoryColor,
-      description,
-      selectedSubtasks
-    );
-    resetImportanceButtons();
-    clearSubtasksAddTask();
-    contactsSmalView.innerHTML = "";
+  await setItem("tasks", JSON.stringify(tasks));
 
-    await backend.setItem("tasks", JSON.stringify(tasks));
-    await backend.setItem("urgentCounter", JSON.stringify(urgentCounter));
-  }
-}
-
-function clearSubtasksAddTask() {
-  let subs = document.getElementById("subtask-content");
-  if (subs == undefined) {
-    return;
-  } else {
-    subs.innerHTML = "";
-  }
-}
-
-function checkImportance() {
-  if (importance == "urgent") {
-    urgentCounter++;
-  }
+  loadData();
 }
 
 function hoverAddtaskHtml() {
@@ -138,19 +91,6 @@ function resetImportanceButtons() {
     "display: none;";
 }
 
-async function init() {
-  await includeHTML();
-  checkSize();
-  await renderContacts();
-  hoverAddTaskHtml();
-  await downloadFromServer();
-  tasks = (await JSON.parse(backend.getItem("tasks"))) || [];
-  contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
-  const today = new Date().toISOString().split("T")[0];
-  document.getElementById("select-date").setAttribute("min", today);
-  getUrgentCounter();
-}
-
 function hoverAddTaskHtml() {
   document.getElementById("add-task-html").classList.add("add_task_html");
 }
@@ -187,19 +127,6 @@ function enableSidebar() {
     return;
   } else {
     document.getElementById("create-btn-responsive").classList.add("d-none");
-  }
-}
-
-async function renderContacts() {
-  contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
-
-  // list contacts in alphabetical order
-  contacts.sort((a, b) => (a.name > b.name ? 1 : -1));
-
-  for (let i = 0; i < contacts.length; i++) {
-    const element = contacts[i];
-    document.getElementById("contacts-drop-down").innerHTML +=
-      generateHTMLcontacts(element, i);
   }
 }
 

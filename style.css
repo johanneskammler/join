@@ -4,6 +4,31 @@ body {
   overflow: hidden;
 }
 
+
+
+.loader {
+  border: 5px solid #f3f3f3; /* Light grey */
+  border-top: 5px solid #4589ff; /* Blue */
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  animation: spin 1000ms linear infinite;
+}
+
+.size {
+  width: 20px;
+  height: 20px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .paragraph {
   margin-top: 0;
   margin-bottom: 0;
@@ -464,6 +489,9 @@ input::placeholder {
   color: white;
   transition: all 125ms ease-in-out;
   font-family: "Open Sans";
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .login-guest {
