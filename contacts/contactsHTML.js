@@ -1,10 +1,10 @@
 function openContactsOnContactsHtml() {
-    renderContactsAddTask();
-    openContactsToSelect();
+  renderContactsAddTask();
+  openContactsToSelect();
 }
 
 function renderContactsRasterHTML() {
-    return `
+  return `
             <div id="contact-list-id" class="contact-list-inner-container">
                 <div id="a_container">
                     <div class="contact-char">A</div>
@@ -168,27 +168,73 @@ function renderContactsRasterHTML() {
 }
 
 function showNoContacts() {
-    document.getElementById("contact_list_container").innerHTML = `
+  document.getElementById("contact_list_container").innerHTML = `
         <div class="no-contacts">
         <h4>No contacts yet. <br> Please add a new contact!</h4>
     </div>
         `;
 }
 
-function ContactListHTML(id, acronym, i, element) {
-    document.getElementById(id).innerHTML += `
+function ContactListHTML(i, fullName, email, firstLetter) {
+  if (firstLetter == "A") {
+    document.getElementById("a").innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${acronym.toUpperCase()}</div>
+            <div id="circle_contacts${i}" class="circle">${firstLetter}</div>
             <div class="contact-info-container">
-                <span class="contact-name">${element["name"]}</span>
-                <span id="contact-email-${i}" class="contact-email">${element["mail"]}</span>
+                <span class="contact-name">${fullName}</span>
+                <span id="contact-email-${i}" class="contact-email">${email}</span>
             </div>
         </div>
     `;
+  }
+  if (firstLetter == "B") {
+    document.getElementById("b").innerHTML += `
+        <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${firstLetter}</div>
+            <div class="contact-info-container">
+                <span class="contact-name">${fullName}</span>
+                <span id="contact-email-${i}" class="contact-email">${email}</span>
+            </div>
+        </div>
+    `;
+  }
+  if (firstLetter == "C") {
+    document.getElementById("c").innerHTML += `
+        <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${firstLetter}</div>
+            <div class="contact-info-container">
+                <span class="contact-name">${fullName}</span>
+                <span id="contact-email-${i}" class="contact-email">${email}</span>
+            </div>
+        </div>
+    `;
+  }
+  if (firstLetter == "D") {
+    document.getElementById("d").innerHTML += `
+        <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${firstLetter}</div>
+            <div class="contact-info-container">
+                <span class="contact-name">${fullName}</span>
+                <span id="contact-email-${i}" class="contact-email">${email}</span>
+            </div>
+        </div>
+    `;
+  }
+  if (firstLetter == "T") {
+    document.getElementById("t").innerHTML += `
+        <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
+            <div id="circle_contacts${i}" class="circle">${firstLetter}</div>
+            <div class="contact-info-container">
+                <span class="contact-name">${fullName}</span>
+                <span id="contact-email-${i}" class="contact-email">${email}</span>
+            </div>
+        </div>
+    `;
+  }
 }
 
 function renderOpenDetail(i) {
-    document.getElementById("contact_right").innerHTML = `
+  document.getElementById("contact_right").innerHTML = `
     <img onclick="closeDetail()" class="d-none" id="backarrow" src="img/backarrow.png" alt="" />
         <div class="name-container">
             <div class="circle-right" id="circle_right"></div>
@@ -223,24 +269,24 @@ function renderOpenDetail(i) {
 }
 
 function renderDetailHTML(name, email, phone, acronym, color) {
-    document.getElementById("contact_right").classList.remove("d-none");
-    document.getElementById("name_right").innerHTML = name;
-    document.getElementById("mail_right").innerHTML = email;
+  document.getElementById("contact_right").classList.remove("d-none");
+  document.getElementById("name_right").innerHTML = name;
+  document.getElementById("mail_right").innerHTML = email;
 
-    if (phone == undefined) {
-        document.getElementById("mobil_right").innerHTML = '';
-    } else {
-        document.getElementById("mobil_right").innerHTML = `${phone}`;
-    }
-    document.getElementById("circle_right").innerHTML = acronym.toUpperCase();
-    document.getElementById("circle_right").style.background = color;
+  if (phone == undefined) {
+    document.getElementById("mobil_right").innerHTML = "";
+  } else {
+    document.getElementById("mobil_right").innerHTML = `${phone}`;
+  }
+  document.getElementById("circle_right").innerHTML = acronym.toUpperCase();
+  document.getElementById("circle_right").style.background = color;
 }
 
-function renderDetailHTMLRespons() {
-    document.getElementById("new_contact_btn").classList.add("d-none");
-    document.getElementById("contact_list_container").classList.add("d-none");
-    document.getElementById("edit_contact_pencil").classList.add("d-none");
-    document.getElementById("backarrow").classList.remove("d-none");
-    document.getElementById("edit_contact").classList.remove("d-none");
-    document.getElementById("contact_right").classList.remove("d-none");
-}
+// function renderDetailHTMLRespons() {
+//   document.getElementById("new_contact_btn").classList.add("d-none");
+//   document.getElementById("contact_list_container").classList.add("d-none");
+//   document.getElementById("edit_contact_pencil").classList.add("d-none");
+//   document.getElementById("backarrow").classList.remove("d-none");
+//   document.getElementById("edit_contact").classList.remove("d-none");
+//   document.getElementById("contact_right").classList.remove("d-none");
+// }

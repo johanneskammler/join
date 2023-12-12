@@ -4,20 +4,99 @@ let selectedColor;
 let selectedLetter;
 let selectedContact;
 let editContactIndex;
-/* let maps;
-let todosMap;
-let progressesMap;
-let feedbacksMap;
-let donesMap; */
 
-setURL("https://gruppe-417.developerakademie.net/join/smallest_backend_ever");
+let contacts = [];
 
 async function init() {
-  await downloadFromServer();
   await includeHTML();
-  checkSize();
-  await renderContactList();
-  await loadContacts();
+
+  if (contacts.length === 0) {
+    let data = await getItem("contact");
+    if (data) {
+      contacts = JSON.parse(data);
+      console.log("Benutzerdaten geladen:", contacts);
+    } else {
+      console.log("Keine Benutzerdaten gefunden.");
+    }
+  } else {
+    console.log("Benutzerdaten sind bereits im Array vorhanden:", contacts);
+  }
+
+  renderContactList();
+}
+
+async function includeHTML() {
+  let includeElements = document.querySelectorAll("[w3-include-html]");
+  for (let i = 0; i < includeElements.length; i++) {
+    const element = includeElements[i];
+    file = element.getAttribute("w3-include-html");
+    let resp = await fetch(file);
+    if (resp.ok) {
+      element.innerHTML = await resp.text();
+    } else {
+      element.innerHTML = "Page not found";
+    }
+  }
+}
+
+async function createNewContact() {
+  let name = document.getElementById("input-name");
+  let mail = document.getElementById("input-mail");
+  let mobil = document.getElementById("input-phone");
+
+  contacts.push({
+    fullName: name.value,
+    email: mail.value,
+    mobil: mobil.value,
+  });
+
+  await setItem("contact", JSON.stringify(contacts));
+
+  console.log(contacts);
+
+  renderContactList();
+  closeBlurScreen();
+  succesImg();
+  resetValue(name, mail, mobil);
+}
+
+async function renderContactList() {
+  let a = document.getElementById("contact_list_container");
+  a.innerHTML = "";
+  renderContactsRaster();
+
+  for (let i = 0; i < contacts.length; i++) {
+    const element = contacts[i];
+
+    let fullName = element["fullName"];
+    let email = element["email"];
+    let firstLetter = getInitials(fullName);
+
+    console.log(fullName);
+    ContactListHTML(i, fullName, email, firstLetter);
+
+    //disableContactContainer();
+   
+  }
+}
+
+function getInitials(fullName) {
+  const names = fullName.split(" "); // Teile den vollen Namen in Vor- und Nachnamen auf
+  const initials = names.map((name) => name.charAt(0).toUpperCase()); // Extrahiere die Anfangsbuchstaben und konvertiere sie zu Großbuchstaben
+  return initials.join(""); // Gib die zusammengesetzten Anfangsbuchstaben zurück
+} // Extrahiere und konvertiere den ersten Buchstaben zu Großbuchstaben
+
+function resetValue(name, mail, mobil) {
+  name.value = "";
+  mail.value = "";
+  mobil.value = "";
+}
+
+function succesImg() {
+  document.getElementById("succes_img").classList.remove("d-none");
+  setTimeout(() => {
+    document.getElementById("succes_img").classList.add("d-none");
+  }, 1500);
 }
 
 async function loadContacts() {
@@ -66,83 +145,12 @@ function enableSidebar() {
   document.getElementById("sidebar").classList.remove("tablet-sidebar");
 }
 
-// Contact JS
-
-async function createNewContact() {
-  let name = document.getElementById("input-name");
-  let mail = document.getElementById("input-mail");
-  let mobil = document.getElementById("input-phone"); // Bitte die FirstLetters im Backend speichern
-  firstLetters = name.value.split(/\s+/).map((word) => word[0]);
-  firstLetters = firstLetters.join("");
-  firstLetters = firstLetters.toUpperCase();
-  getNewColor();
-  let contact = {
-    name: name.value,
-    mail: mail.value,
-    mobil: mobil.value,
-    color: color,
-    firstLetters: firstLetters,
-  };
-
-  contacts.push(contact);
-  await backend.setItem("contacts", JSON.stringify(contacts));
-  renderContactList();
-  closeBlurScreen();
-  succesImg();
-  resetValue(name, mail, mobil);
-}
-
-function resetValue(name, mail, mobil) {
-  name.value = "";
-  mail.value = "";
-  mobil.value = "";
-}
-
-function succesImg() {
-  document.getElementById("succes_img").classList.remove("d-none");
-  setTimeout(() => {
-    document.getElementById("succes_img").classList.add("d-none");
-  }, 1500);
-}
-
 function renderContactsRaster() {
   let raster = document.getElementById("contact_list_container");
   raster.innerHTML = renderContactsRasterHTML();
 }
 
-async function renderContactList() {
-  let a = document.getElementById("contact_list_container");
-  a.innerHTML = "";
-  renderContactsRaster();
-
-  contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
-  if (contacts.length < 1) {
-    document.getElementById("contact-list-id").classList.add("d-none");
-    showNoContacts();
-  } else {
-    for (let i = 0; i < contacts.length; i++) {
-      const element = contacts[i];
-      let firstLetters = element["name"].split(/\s+/).map((word) => word[0]);
-      let acronym = firstLetters.join("");
-      let color = element["colors"];
-
-      renderContactListHTML(element, acronym, i);
-      setColorOnRendering(i);
-      disableContactContainer();
-      document.getElementById(`circle_contacts${i}`).style.background = color;
-    }
-  }
-}
-
 async function renderContactListHTML(element, acronym, i) {
-  let firstLetter = element["name"] ? element["name"][0] : "";
-
-  if (!firstLetter) {
-    console.error("First letter is undefined");
-    return;
-  }
-
-  let id = firstLetter.toLowerCase();
   ContactListHTML(id, acronym, i, element);
 }
 
@@ -242,10 +250,10 @@ function getNewColor() {
   }
 }
 
-function setColorOnRendering(i) {
-  document.getElementById(`circle_contacts${i}`).style.background =
-    contacts[i]["color"];
-}
+// function setColorOnRendering(i) {
+//   document.getElementById(`circle_contacts${i}`).style.background =
+//     contacts[i]["color"];
+// }
 
 function clickDialog(e) {
   e.stopPropagation();
