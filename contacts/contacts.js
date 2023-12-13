@@ -70,13 +70,19 @@ async function renderContactList() {
 
     let fullName = element["fullName"];
     let email = element["email"];
-    let firstLetter = getInitials(fullName);
+    let firstLetters = getInitials(fullName);
+    let firstLetter = getFirstLetter(fullName);
 
     console.log(fullName);
-    ContactListHTML(i, fullName, email, firstLetter);
+    ContactListHTML(i, fullName, email, firstLetters, firstLetter);
+  }
+}
 
-    //disableContactContainer();
-   
+function getFirstLetter(str) {
+  if (str && typeof str === 'string') {
+    return str.charAt(0);
+  } else {
+    return '';
   }
 }
 
