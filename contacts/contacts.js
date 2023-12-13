@@ -43,16 +43,16 @@ async function createNewContact() {
   let name = document.getElementById("input-name");
   let mail = document.getElementById("input-mail");
   let mobil = document.getElementById("input-phone");
+  let color = getRandomHexColor();
 
   contacts.push({
     fullName: name.value,
     email: mail.value,
     mobil: mobil.value,
+    color: color,
   });
 
   await setItem("contact", JSON.stringify(contacts));
-
-  console.log(contacts);
 
   renderContactList();
   closeBlurScreen();
@@ -72,17 +72,26 @@ async function renderContactList() {
     let email = element["email"];
     let firstLetters = getInitials(fullName);
     let firstLetter = getFirstLetter(fullName);
+    let color = element["color"];
 
-    console.log(fullName);
-    ContactListHTML(i, fullName, email, firstLetters, firstLetter);
+    ContactListHTML(i, fullName, email, firstLetters, firstLetter, color);
   }
 }
 
+function getRandomHexColor() {
+  let letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
 function getFirstLetter(str) {
-  if (str && typeof str === 'string') {
+  if (str && typeof str === "string") {
     return str.charAt(0);
   } else {
-    return '';
+    return "";
   }
 }
 

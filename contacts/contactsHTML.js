@@ -175,11 +175,11 @@ function showNoContacts() {
         `;
 }
 
-function ContactListHTML(i, fullName, email, firstLetters, firstLetter) {
+function ContactListHTML(i, fullName, email, firstLetters, firstLetter, color) {
   if (firstLetter == "A") {
     document.getElementById("a").innerHTML += `
-        <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${firstLetters}</div>
+        <div class="contact"  id="contact${i}" onclick="openContactDetail(${i})">
+            <div style="background-color:${color};" id="circle_contacts${i}" class="circle">${firstLetters}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${fullName}</span>
                 <span id="contact-email-${i}" class="contact-email">${email}</span>
@@ -190,7 +190,7 @@ function ContactListHTML(i, fullName, email, firstLetters, firstLetter) {
   if (firstLetter == "B") {
     document.getElementById("b").innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${firstLetters}</div>
+            <div style="background-color:${color};" id="circle_contacts${i}" class="circle">${firstLetters}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${fullName}</span>
                 <span id="contact-email-${i}" class="contact-email">${email}</span>
@@ -201,7 +201,7 @@ function ContactListHTML(i, fullName, email, firstLetters, firstLetter) {
   if (firstLetter == "C") {
     document.getElementById("c").innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${firstLetters}</div>
+            <div style="background-color:${color};" id="circle_contacts${i}" class="circle">${firstLetters}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${fullName}</span>
                 <span id="contact-email-${i}" class="contact-email">${email}</span>
@@ -212,7 +212,7 @@ function ContactListHTML(i, fullName, email, firstLetters, firstLetter) {
   if (firstLetter == "D") {
     document.getElementById("d").innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${firstLetters}</div>
+            <div style="background-color:${color};" id="circle_contacts${i}" class="circle">${firstLetters}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${fullName}</span>
                 <span id="contact-email-${i}" class="contact-email">${email}</span>
@@ -223,7 +223,7 @@ function ContactListHTML(i, fullName, email, firstLetters, firstLetter) {
   if (firstLetter == "E") {
     document.getElementById("e").innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${firstLetters}</div>
+            <div style="background-color:${color};" id="circle_contacts${i}" class="circle">${firstLetters}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${fullName}</span>
                 <span id="contact-email-${i}" class="contact-email">${email}</span>
@@ -234,7 +234,7 @@ function ContactListHTML(i, fullName, email, firstLetters, firstLetter) {
   if (firstLetter == "F") {
     document.getElementById("f").innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${firstLetters}</div>
+            <div style="background-color:${color};" id="circle_contacts${i}" class="circle">${firstLetters}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${fullName}</span>
                 <span id="contact-email-${i}" class="contact-email">${email}</span>
@@ -245,7 +245,7 @@ function ContactListHTML(i, fullName, email, firstLetters, firstLetter) {
   if (firstLetter == "G") {
     document.getElementById("g").innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${firstLetters}</div>
+            <div style="background-color:${color};" id="circle_contacts${i}" class="circle">${firstLetters}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${fullName}</span>
                 <span id="contact-email-${i}" class="contact-email">${email}</span>
@@ -256,7 +256,7 @@ function ContactListHTML(i, fullName, email, firstLetters, firstLetter) {
   if (firstLetter == "H") {
     document.getElementById("h").innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${firstLetters}</div>
+            <div style="background-color:${color};" id="circle_contacts${i}" class="circle">${firstLetters}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${fullName}</span>
                 <span id="contact-email-${i}" class="contact-email">${email}</span>
@@ -267,7 +267,7 @@ function ContactListHTML(i, fullName, email, firstLetters, firstLetter) {
   if (firstLetter == "I") {
     document.getElementById("i").innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${firstLetters}</div>
+            <div style="background-color:${color};" id="circle_contacts${i}" class="circle">${firstLetters}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${fullName}</span>
                 <span id="contact-email-${i}" class="contact-email">${email}</span>
@@ -278,7 +278,7 @@ function ContactListHTML(i, fullName, email, firstLetters, firstLetter) {
   if (firstLetter == "J") {
     document.getElementById("j").innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${firstLetters}</div>
+            <div style="background-color:${color};" id="circle_contacts${i}" class="circle">${firstLetters}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${fullName}</span>
                 <span id="contact-email-${i}" class="contact-email">${email}</span>
@@ -289,7 +289,7 @@ function ContactListHTML(i, fullName, email, firstLetters, firstLetter) {
   if (firstLetter == "K") {
     document.getElementById("k").innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${firstLetters}</div>
+            <div style="background-color:${color};" id="circle_contacts${i}" class="circle">${firstLetters}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${fullName}</span>
                 <span id="contact-email-${i}" class="contact-email">${email}</span>
@@ -300,7 +300,7 @@ function ContactListHTML(i, fullName, email, firstLetters, firstLetter) {
   if (firstLetter == "L") {
     document.getElementById("l").innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${firstLetters}</div>
+            <div style="background-color:${color};" id="circle_contacts${i}" class="circle">${firstLetters}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${fullName}</span>
                 <span id="contact-email-${i}" class="contact-email">${email}</span>
@@ -311,7 +311,7 @@ function ContactListHTML(i, fullName, email, firstLetters, firstLetter) {
   if (firstLetter == "M") {
     document.getElementById("m").innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${firstLetters}</div>
+            <div style="background-color:${color};" id="circle_contacts${i}" class="circle">${firstLetters}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${fullName}</span>
                 <span id="contact-email-${i}" class="contact-email">${email}</span>
@@ -322,7 +322,7 @@ function ContactListHTML(i, fullName, email, firstLetters, firstLetter) {
   if (firstLetter == "N") {
     document.getElementById("n").innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${firstLetters}</div>
+            <div style="background-color:${color};" id="circle_contacts${i}" class="circle">${firstLetters}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${fullName}</span>
                 <span id="contact-email-${i}" class="contact-email">${email}</span>
@@ -333,7 +333,7 @@ function ContactListHTML(i, fullName, email, firstLetters, firstLetter) {
   if (firstLetter == "O") {
     document.getElementById("o").innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${firstLetters}</div>
+            <div style="background-color:${color};" id="circle_contacts${i}" class="circle">${firstLetters}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${fullName}</span>
                 <span id="contact-email-${i}" class="contact-email">${email}</span>
@@ -344,7 +344,7 @@ function ContactListHTML(i, fullName, email, firstLetters, firstLetter) {
   if (firstLetter == "P") {
     document.getElementById("p").innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${firstLetters}</div>
+            <div style="background-color:${color};" id="circle_contacts${i}" class="circle">${firstLetters}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${fullName}</span>
                 <span id="contact-email-${i}" class="contact-email">${email}</span>
@@ -355,7 +355,7 @@ function ContactListHTML(i, fullName, email, firstLetters, firstLetter) {
   if (firstLetter == "Q") {
     document.getElementById("q").innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${firstLetters}</div>
+            <div style="background-color:${color};" id="circle_contacts${i}" class="circle">${firstLetters}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${fullName}</span>
                 <span id="contact-email-${i}" class="contact-email">${email}</span>
@@ -366,7 +366,7 @@ function ContactListHTML(i, fullName, email, firstLetters, firstLetter) {
   if (firstLetter == "R") {
     document.getElementById("r").innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${firstLetters}</div>
+            <div style="background-color:${color};" id="circle_contacts${i}" class="circle">${firstLetters}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${fullName}</span>
                 <span id="contact-email-${i}" class="contact-email">${email}</span>
@@ -377,7 +377,7 @@ function ContactListHTML(i, fullName, email, firstLetters, firstLetter) {
   if (firstLetter == "S") {
     document.getElementById("s").innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${firstLetters}</div>
+            <div style="background-color:${color};" id="circle_contacts${i}" class="circle">${firstLetters}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${fullName}</span>
                 <span id="contact-email-${i}" class="contact-email">${email}</span>
@@ -388,7 +388,7 @@ function ContactListHTML(i, fullName, email, firstLetters, firstLetter) {
   if (firstLetter == "T") {
     document.getElementById("t").innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${firstLetters}</div>
+            <div style="background-color:${color};" id="circle_contacts${i}" class="circle">${firstLetters}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${fullName}</span>
                 <span id="contact-email-${i}" class="contact-email">${email}</span>
@@ -399,7 +399,7 @@ function ContactListHTML(i, fullName, email, firstLetters, firstLetter) {
   if (firstLetter == "U") {
     document.getElementById("u").innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${firstLetters}</div>
+            <div style="background-color:${color};" id="circle_contacts${i}" class="circle">${firstLetters}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${fullName}</span>
                 <span id="contact-email-${i}" class="contact-email">${email}</span>
@@ -410,7 +410,7 @@ function ContactListHTML(i, fullName, email, firstLetters, firstLetter) {
   if (firstLetter == "V") {
     document.getElementById("v").innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${firstLetters}</div>
+            <div style="background-color:${color};" id="circle_contacts${i}" class="circle">${firstLetters}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${fullName}</span>
                 <span id="contact-email-${i}" class="contact-email">${email}</span>
@@ -421,7 +421,7 @@ function ContactListHTML(i, fullName, email, firstLetters, firstLetter) {
   if (firstLetter == "W") {
     document.getElementById("w").innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${firstLetters}</div>
+            <div style="background-color:${color};" id="circle_contacts${i}" class="circle">${firstLetters}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${fullName}</span>
                 <span id="contact-email-${i}" class="contact-email">${email}</span>
@@ -432,7 +432,7 @@ function ContactListHTML(i, fullName, email, firstLetters, firstLetter) {
   if (firstLetter == "X") {
     document.getElementById("x").innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${firstLetters}</div>
+            <div style="background-color:${color};" id="circle_contacts${i}" class="circle">${firstLetters}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${fullName}</span>
                 <span id="contact-email-${i}" class="contact-email">${email}</span>
@@ -443,7 +443,7 @@ function ContactListHTML(i, fullName, email, firstLetters, firstLetter) {
   if (firstLetter == "Y") {
     document.getElementById("y").innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${firstLetters}</div>
+            <div style="background-color:${color};" id="circle_contacts${i}" class="circle">${firstLetters}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${fullName}</span>
                 <span id="contact-email-${i}" class="contact-email">${email}</span>
@@ -454,7 +454,7 @@ function ContactListHTML(i, fullName, email, firstLetters, firstLetter) {
   if (firstLetter == "Z") {
     document.getElementById("z").innerHTML += `
         <div class="contact" id="contact${i}" onclick="openContactDetail(${i})">
-            <div id="circle_contacts${i}" class="circle">${firstLetters}</div>
+            <div style="background-color:${color};" id="circle_contacts${i}" class="circle">${firstLetters}</div>
             <div class="contact-info-container">
                 <span class="contact-name">${fullName}</span>
                 <span id="contact-email-${i}" class="contact-email">${email}</span>
