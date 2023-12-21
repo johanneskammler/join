@@ -1,4 +1,4 @@
-let currentUser;
+let currentUserID = [];
 let userData = [];
 
 async function init() {
@@ -18,6 +18,7 @@ async function login() {
     console.log("login success");
     loginBtnText.classList.add("d-none");
     btnSpinner.classList.remove("d-none");
+    console.log(currentUserID);
 
     setTimeout(() => {
       window.location = "summary/summary.html";
@@ -32,6 +33,9 @@ async function checkInputValue(email, password) {
     const user = userData[0][i];
 
     if (user["email"] === email && user["password"] === password) {
+      currentUserID.push(user["id"]);
+      await setItem("currentUserID", JSON.stringify(currentUserID));
+
       return true;
     }
   }

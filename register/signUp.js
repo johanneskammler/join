@@ -18,16 +18,32 @@ async function register() {
   let userName = document.getElementById("user");
   let email = document.getElementById("email");
   let password = document.getElementById("pw");
+  let id = generateID();
 
   users.push({
     userName: userName.value,
     email: email.value,
     password: password.value,
+    id: id,
   });
 
   showBanner();
   resetForm(userName, email, password);
   await setItem("user", JSON.stringify(users));
+}
+
+function generateID() {
+  const idLength = 12;
+  const characters =
+    "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let randomID = "";
+
+  for (let i = 0; i < idLength; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    randomID += characters[randomIndex];
+  }
+
+  return randomID;
 }
 
 function showBanner() {

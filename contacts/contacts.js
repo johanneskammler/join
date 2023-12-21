@@ -6,15 +6,21 @@ let selectedContact;
 let editContactIndex;
 
 let contacts = [];
+let user = [];
+let sortetContacts = [];
 
 async function init() {
   await includeHTML();
+  let currentUserID = JSON.parse(await getItem("currentUserID"));
 
   if (contacts.length === 0) {
     let data = await getItem("contact");
     if (data) {
       contacts = JSON.parse(data);
       console.log("Benutzerdaten geladen:", contacts);
+
+      let filteredObjects = await filterObjectById(contacts, currentUserID);
+      sortetContacts.push(filteredObjects);
     } else {
       console.log("Keine Benutzerdaten gefunden.");
     }
@@ -23,6 +29,10 @@ async function init() {
   }
 
   renderContactList();
+}
+
+async function filterObjectById(object, id) {
+  return object.filter((obj) => obj.id.toString() === id.toString());
 }
 
 async function includeHTML() {
@@ -44,12 +54,14 @@ async function createNewContact() {
   let mail = document.getElementById("input-mail");
   let mobil = document.getElementById("input-phone");
   let color = getRandomHexColor();
+  let id = JSON.parse(await getItem("currentUserID"));
 
   contacts.push({
     fullName: name.value,
     email: mail.value,
     mobil: mobil.value,
     color: color,
+    id: id,
   });
 
   await setItem("contact", JSON.stringify(contacts));
@@ -58,6 +70,7 @@ async function createNewContact() {
   closeBlurScreen();
   succesImg();
   resetValue(name, mail, mobil);
+  window.location.reload();
 }
 
 async function renderContactList() {
@@ -65,8 +78,8 @@ async function renderContactList() {
   a.innerHTML = "";
   renderContactsRaster();
 
-  for (let i = 0; i < contacts.length; i++) {
-    const element = contacts[i];
+  for (let i = 0; i < sortetContacts[0].length; i++) {
+    const element = sortetContacts[0][i];
 
     let fullName = element["fullName"];
     let email = element["email"];
