@@ -21,6 +21,7 @@ async function init() {
 
       let filteredObjects = await filterObjectById(contacts, currentUserID);
       sortetContacts.push(filteredObjects);
+      console.log(sortetContacts);
     } else {
       console.log("Keine Benutzerdaten gefunden.");
     }
@@ -71,19 +72,25 @@ async function createNewContact() {
 
 async function renderContactList() {
   let a = document.getElementById("contact_list_container");
+  let sortetContactsLenght = sortetContacts[0].length;
   a.innerHTML = "";
-  renderContactsRaster();
 
-  for (let i = 0; i < sortetContacts[0].length; i++) {
-    const element = sortetContacts[0][i];
+  if (sortetContactsLenght < 1) {
+    showNoContacts();
+  } else {
+    renderContactsRaster();
 
-    let fullName = element["fullName"];
-    let email = element["email"];
-    let firstLetters = getInitials(fullName);
-    let firstLetter = getFirstLetter(fullName);
-    let color = element["color"];
+    for (let i = 0; i < sortetContacts[0].length; i++) {
+      const element = sortetContacts[0][i];
 
-    ContactListHTML(i, fullName, email, firstLetters, firstLetter, color);
+      let fullName = element["fullName"];
+      let email = element["email"];
+      let firstLetters = getInitials(fullName);
+      let firstLetter = getFirstLetter(fullName);
+      let color = element["color"];
+
+      ContactListHTML(i, fullName, email, firstLetters, firstLetter, color);
+    }
   }
 }
 
@@ -179,13 +186,12 @@ async function renderContactListHTML(element, acronym, i) {
 }
 
 async function openContactDetail(i) {
-  contacts = await JSON.parse(backend.getItem("contacts"));
-  let contact = contacts[i];
-  let name = contact["name"];
-  let email = contact["mail"];
+  let contact = sortetContacts[0][i];
+  let name = contact["fullName"];
+  let email = contact["email"];
   let phone = contact["mobil"];
   let color = contact["color"];
-  let firstLetters = contact["name"].split(/\s+/).map((word) => word[0]);
+  let firstLetters = contact["fullName"].split(/\s+/).map((word) => word[0]);
   let acronym = firstLetters.join("");
   renderOpenDetail(i);
 
