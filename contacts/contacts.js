@@ -31,10 +31,6 @@ async function init() {
   renderContactList();
 }
 
-async function filterObjectById(object, id) {
-  return object.filter((obj) => obj.id.toString() === id.toString());
-}
-
 async function includeHTML() {
   let includeElements = document.querySelectorAll("[w3-include-html]");
   for (let i = 0; i < includeElements.length; i++) {

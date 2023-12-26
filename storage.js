@@ -20,3 +20,7 @@ async function getItem(key) {
       throw `Could not find data with key "${key}".`;
     });
 }
+
+async function filterObjectById(object, id) {
+  return object.filter((obj) => obj.id.toString() === id.toString());
+}

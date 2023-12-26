@@ -8,27 +8,42 @@ async function init() {
 }
 
 async function login() {
-  let email = document.getElementById("email").value;
-  let password = document.getElementById("pw").value;
-  let isLoggedIn = await checkInputValue(email, password);
-  let loginBtnText = document.getElementById("login_btn_text");
-  let btnSpinner = document.getElementById("button_spinner");
+  let isLoggedIn = await checkInputValue();
 
   if (isLoggedIn) {
-    console.log("login success");
-    loginBtnText.classList.add("d-none");
-    btnSpinner.classList.remove("d-none");
-    console.log(currentUserID);
-
+    loginSteps("login_btn_text", "button_spinner");
     setTimeout(() => {
-      window.location = "summary/summary.html";
+      window.location = "../summary/summary.html";
     }, 2000);
   } else {
     alert("Incorrect login credentials!");
   }
 }
 
-async function checkInputValue(email, password) {
+async function loginAsGuest() {
+  let guestUserID = "GUESTUSER";
+  currentUserID.push(guestUserID);
+  await setItem("currentUserID", JSON.stringify(currentUserID));
+  loginSteps("login_btn_text_guest", "button_spinner_guest");
+}
+
+function loginSteps(BTNText, BTNSpinner) {
+  let loginBtnText = document.getElementById(BTNText);
+  let btnSpinner = document.getElementById(BTNSpinner);
+
+  console.log("login success");
+  loginBtnText.classList.add("d-none");
+  btnSpinner.classList.remove("d-none");
+  console.log(currentUserID);
+
+  setTimeout(() => {
+    window.location = "../summary/summary.html";
+  }, 2000);
+}
+
+async function checkInputValue() {
+  let email = document.getElementById("email").value;
+  let password = document.getElementById("pw").value;
   for (let i = 0; i < userData[0].length; i++) {
     const user = userData[0][i];
 
