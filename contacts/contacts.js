@@ -1,9 +1,6 @@
-let color;
-let firstLetters;
 let selectedColor;
 let selectedLetter;
 let selectedContact;
-let editContactIndex;
 
 let contacts = [];
 let user = [];
@@ -112,10 +109,10 @@ function getFirstLetter(str) {
 }
 
 function getInitials(fullName) {
-  const names = fullName.split(" "); // Teile den vollen Namen in Vor- und Nachnamen auf
-  const initials = names.map((name) => name.charAt(0).toUpperCase()); // Extrahiere die Anfangsbuchstaben und konvertiere sie zu Großbuchstaben
-  return initials.join(""); // Gib die zusammengesetzten Anfangsbuchstaben zurück
-} // Extrahiere und konvertiere den ersten Buchstaben zu Großbuchstaben
+  const names = fullName.split(" ");
+  const initials = names.map((name) => name.charAt(0).toUpperCase());
+  return initials.join("");
+}
 
 function resetValue(name, mail, mobil) {
   name.value = "";
@@ -128,10 +125,6 @@ function succesImg() {
   setTimeout(() => {
     document.getElementById("succes_img").classList.add("d-none");
   }, 1500);
-}
-
-async function loadContacts() {
-  contacts = (await JSON.parse(backend.getItem("contacts"))) || [];
 }
 
 function hoverContactsHtml() {
@@ -290,61 +283,51 @@ function clickDialog(e) {
 }
 
 async function openEditContact(i) {
-  selectedContact = contacts[i];
-  selectedColor = selectedContact["color"];
-  selectedContactIndex = i;
-
+  let contact = sortetContacts[0][i];
   let nameInput = document.getElementById("input-name-edit");
   let mailInput = document.getElementById("input-mail-edit");
   let phoneInput = document.getElementById("input-phone-edit");
-  let mobileRight = document.getElementById("mobile_right");
+  selectedContact = i;
 
-  nameInput.value = selectedContact.name;
-  mailInput.value = selectedContact.mail;
-  if (selectedContact.mobil !== undefined) {
-    phoneInput.value = selectedContact.mobil;
-  } else {
-    phoneInput.value = "";
-  }
+  console.log(selectedContact);
+
+  nameInput.value = contact["fullName"];
+  mailInput.value = contact["email"];
+  phoneInput.value = contact["mobil"];
 
   removeBlurscreen();
   animateEditContact();
 }
 
 async function saveEditContact() {
-  // hier kommt eine brutale edit function ala babo hin
-  let contacts = await JSON.parse(backend.getItem("contacts"));
+  let i = selectedContact;
+  let contact = sortetContacts[0][i];
   let name_input = document.getElementById("input-name-edit");
   let mail_input = document.getElementById("input-mail-edit");
   let phone_input = document.getElementById("input-phone-edit");
-  let firstLetters = name_input.value.split(/\s+/).map((word) => word[0]);
-  let firstLetter = firstLetters.join("");
+  let color = contact["color"];
+  let id = contact["id"];
 
-  let contact = {
-    name: name_input.value,
-    mail: mail_input.value,
+  contacts.push({
+    fullName: name_input.value,
+    email: mail_input.value,
     mobil: phone_input.value,
-    color: selectedColor,
-    firstLetters: firstLetter,
-  };
+    color: color,
+    id: id,
+  });
 
-  await deleteSelectedContact(contact);
-  await saveMaps();
+  await deleteSelectedContact(i);
   selectedContact = null;
-  setContactListByResponsive();
-  renderContactList();
   closeBlurScreen();
   closeContactRight();
-  setTimeout(() => {
-    renderOpenDetail();
-  }, 200);
+  window.location.reload();
 }
 
-async function deleteSelectedContact(contact) {
-  contacts[selectedContactIndex] = contact;
-  await backend.setItem("contacts", JSON.stringify(contacts));
-  await getMaps();
-  searchMapsForContact(contact);
+async function deleteSelectedContact(i) {
+  let index = contacts.indexOf(sortetContacts[0][i]);
+  contacts.splice(index, 1);
+
+  await setItem("contact", JSON.stringify(contacts));
 }
 
 async function getMaps() {
@@ -370,29 +353,6 @@ async function getMaps() {
   maps = [todosMap, progressesMap, feedbacksMap, donesMap];
 }
 
-function searchMapsForContact(contacts) {
-  maps.forEach((map) => {
-    map.forEach((index) => {
-      if (index.contacts == undefined) {
-        return;
-      } else {
-        console.log(index.contacts);
-        if (index.contacts.indexOf(selectedContact.name) >= 0) {
-          let i = index.contacts.indexOf(selectedContact.name);
-          index.contacts.splice(i, 1);
-          if (typeof index.letters == "string") {
-            index.letters = index.letters.split(",");
-          }
-          index.letters.splice(i, 1);
-          console.log(contacts.name);
-          index.letters.splice(i, 0, contacts.firstLetters);
-          index.contacts.splice(i, 0, contacts.name);
-        }
-      }
-    });
-  });
-}
-
 function setContactListByResponsive() {
   const bodyWidth = document.body.offsetWidth;
 
@@ -404,17 +364,6 @@ function setContactListByResponsive() {
       document.getElementById("new_contact_btn").classList.remove("d-none");
     }, 400);
   }
-}
-
-async function saveMaps() {
-  const todos = JSON.stringify(Object.fromEntries(todosMap));
-  await backend.setItem("todoJson", JSON.stringify(todos));
-  const progresses = JSON.stringify(Object.fromEntries(progressesMap));
-  await backend.setItem("progressJson", JSON.stringify(progresses));
-  const feedbackes = JSON.stringify(Object.fromEntries(feedbacksMap));
-  await backend.setItem("feedbackJson", JSON.stringify(feedbackes));
-  const dones = JSON.stringify(Object.fromEntries(donesMap));
-  await backend.setItem("doneJson", JSON.stringify(dones));
 }
 
 function dateFuture() {
