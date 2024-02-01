@@ -1,11 +1,12 @@
 let tasks = [];
+let selectedContacts = [];
+let importance = "";
+let selectedCategory = "";
 
 async function init() {
-  await loadData();
-
   await includeHTML();
+  await loadData();
   checkSize();
-  getUrgentCounter();
 }
 
 async function loadData() {
@@ -22,6 +23,20 @@ async function loadData() {
   }
 }
 
+async function includeHTML() {
+  let includeElements = document.querySelectorAll("[w3-include-html]");
+  for (let i = 0; i < includeElements.length; i++) {
+    const element = includeElements[i];
+    file = element.getAttribute("w3-include-html");
+    let resp = await fetch(file);
+    if (resp.ok) {
+      element.innerHTML = await resp.text();
+    } else {
+      element.innerHTML = "Page not found";
+    }
+  }
+}
+
 async function addToTasks() {
   let title = document.getElementById("title-input").value;
   let date = document.getElementById("select-date").value;
@@ -31,6 +46,9 @@ async function addToTasks() {
     title: title,
     date: date,
     description: description,
+    contacts: selectedContacts,
+    importance: importance,
+    category: selectedCategory,
   });
 
   await setItem("tasks", JSON.stringify(tasks));
@@ -140,19 +158,16 @@ function clearContactsBeforeRendering() {
 function addContactToTask(i) {
   let contact = document.getElementById("contacts-checkbox-" + i).value;
 
-  if (selectedContacts.indexOf(contact) > -1) {
-    let index = selectedContacts.indexOf(contact);
-    selectedContacts.splice(index, 1);
-  } else {
-    selectedContacts.push(contact);
-  }
-  renderContactsSelection(contacts);
+  selectedContacts.push(contact);
+
+  console.log(selectedContacts);
 }
 
 function fillCategory(category) {
   let categoryField = document.getElementById("select-category");
 
   if (category == "sales") {
+    selectedCategory = "sales";
     categoryField.innerHTML = "";
     categoryField.innerHTML += setCategoryToSales();
     openCategoriesToSelect();
@@ -162,10 +177,11 @@ function fillCategory(category) {
     categoryField.innerHTML += setCategoryToBackoffice();
     openCategoriesToSelect();
     categoryColor = "#22bfc7";
+    selectedCategory = "backoffice";
   } else {
     categoryField.innerHTML = "";
     categoryField.innerHTML += setCategoryToNewCategory(
-      categoryName,
+      category,
       categoryColorTrue
     );
     openCategoriesToSelect();
@@ -369,16 +385,29 @@ function emptyImportanceButton3() {
 
 let contactsRendered = false;
 
-function openContactsToSelect() {
+async function openContactsToSelect() {
   if (!contactsRendered) {
-    renderContacts();
+    await renderContacts();
     contactsRendered = true;
   }
   let ddContacts = document.getElementById("contacts-drop-down");
-  let overlay = document.getElementById("overlay-contacts");
+  // let overlay = document.getElementById("overlay-contacts");
   ddContacts.classList.toggle("d-none");
   ddContacts.classList.toggle("contacts-z");
-  overlay.classList.toggle("overlay-z");
+  // overlay.classList.toggle("overlay-z");
+}
+
+async function renderContacts() {
+  let currentUserID = JSON.parse(await getItem("currentUserID"));
+  let contacts = JSON.parse(await getItem("contact"));
+  let filteredObjects = await filterObjectById(contacts, currentUserID);
+  let contactsList = document.getElementById("contacts-drop-down");
+  console.log(filteredObjects);
+  contactsList.innerHTML = "";
+  for (let i = 0; i < filteredObjects.length; i++) {
+    const element = filteredObjects[i];
+    contactsList.innerHTML += generateHTMLcontacts(element, i);
+  }
 }
 
 function openCategoriesToSelect() {

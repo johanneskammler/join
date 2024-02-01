@@ -1,4 +1,4 @@
-const STORAGE_TOKEN = "QST1Y87FHA96RVWWQKEVYSAEKY601B81U1Z6R5HB";
+const STORAGE_TOKEN = "OE86CKWXJ76CJ1P1XWJAWPOZ5J0V8JEFJ6UYRS1U";
 const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 
 async function setItem(key, value) {
@@ -23,4 +23,22 @@ async function getItem(key) {
 
 async function filterObjectById(object, id) {
   return object.filter((obj) => obj.id.toString() === id.toString());
+}
+
+
+async function deleteAllData() {
+  let contactData = await getItem("contact");
+  let currentUserID = JSON.parse(await getItem("currentUserID"));
+  let userData = await getItem("user");
+  let addTaskData = await getItem("tasks");
+
+  contactData = [];
+  currentUserID = [];
+  userData = [];
+  addTaskData = [];
+
+  await setItem("contact",(contactData));
+  await setItem("currentUserID", (currentUserID));
+  await setItem("user", (userData));
+  await setItem("tasks", (addTaskData));
 }

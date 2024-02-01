@@ -15,26 +15,16 @@
       type="image/x-icon"
     />
     <script src="../storage.js"></script>
+    <script src="../include.js"></script>
+    <script src="../script.js"></script>
+    <script src="../templates/header_sidebar.js"></script>
     <script src="../help/help.js"></script>
     <script src="../add_task/add_task.js"></script>
-    <script src="../include.js"></script>
     <script src="../add_task/add_task_templates.js"></script>
-    <script src="../templates/header_sidebar.js"></script>
     <title>Add Task</title>
   </head>
 
   <body onload="init()">
-    <div
-      onclick="openContactsToSelect()"
-      class="overlay"
-      id="overlay-contacts"
-    ></div>
-    <div
-      onclick="openCategoriesToSelect()"
-      class="overlay"
-      id="overlay-categories"
-    ></div>
-
     <header w3-include-html="../templates/header.html"></header>
     <div w3-include-html="../templates/sidebar.html"></div>
 

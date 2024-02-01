@@ -8,25 +8,28 @@ let sortetContacts = [];
 
 async function init() {
   await includeHTML();
-  let currentUserID = JSON.parse(await getItem("currentUserID"));
-
   if (contacts.length === 0) {
-    let data = await getItem("contact");
-    if (data) {
-      contacts = JSON.parse(data);
-      console.log("Benutzerdaten geladen:", contacts);
-
-      let filteredObjects = await filterObjectById(contacts, currentUserID);
-      sortetContacts.push(filteredObjects);
-      console.log(sortetContacts);
-    } else {
-      console.log("Keine Benutzerdaten gefunden.");
-    }
+    await loadData();
   } else {
     console.log("Benutzerdaten sind bereits im Array vorhanden:", contacts);
   }
 
-  renderContactList();
+  await renderContactList();
+}
+
+async function loadData() {
+  let currentUserID = JSON.parse(await getItem("currentUserID"));
+  let data = await getItem("contact");
+  if (data) {
+    contacts = JSON.parse(data);
+    console.log("Benutzerdaten geladen:", contacts);
+
+    let filteredObjects = await filterObjectById(contacts, currentUserID);
+    sortetContacts.push(filteredObjects);
+    console.log(sortetContacts);
+  } else {
+    console.log("Keine Benutzerdaten gefunden.");
+  }
 }
 
 async function includeHTML() {
@@ -60,7 +63,7 @@ async function createNewContact() {
 
   await setItem("contact", JSON.stringify(contacts));
 
-  renderContactList();
+  await renderContactList();
   closeBlurScreen();
   succesImg();
   resetValue(name, mail, mobil);

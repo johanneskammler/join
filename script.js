@@ -4,7 +4,7 @@ let userData = [];
 async function init() {
   let data = await getItem("user");
   userData.push(JSON.parse(data));
-  console.log(userData[0]);
+  console.log("🚀 ~ userData:", userData[0]);
 }
 
 async function login() {
